@@ -2,7 +2,7 @@
 [![npm version](https://badge.fury.io/js/%40microsoft.azure%2Fautorest.typescript.svg)](https://badge.fury.io/js/%40microsoft.azure%2Fautorest.typescript)
 
 # Installation
-```
+```sh
 npm install -g autorest
 ```
 
@@ -15,12 +15,22 @@ This AutoRest extension generates TypeScript code that is compatible with:
 
 # Usage
 ### Basic Usage:
-```
-autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version=<your-package-version>
+```sh
+autorest --typescript \
+  --input-file=<path-to-swagger-spec> \
+  --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> \
+  --license-header=MICROSOFT_MIT_NO_VERSION \
+  --package-name=<your-package-name> \
+  --package-version=<your-package-version>
 ```
 If you have a markdown config file then there is no need to use `--input-file`, simply provide the path to the markdown file:
-```
-autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION <path-to-readme.md> --package-name=<your-package-name> --package-version=<your-package-version>
+```sh
+autorest --typescript \
+  <path-to-readme.md> \
+  --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> \
+  --license-header=MICROSOFT_MIT_NO_VERSION \
+  --package-name=<your-package-name> \
+  --package-version=<your-package-version>
 ```
 ### Generate Metadata files
 Generating MetaData files enable you to build and pack the result as an NPM Package.
@@ -30,30 +40,49 @@ If you want to generate metadata files provide `--generate-metadata=true`
 - .npmignore
 - webpack.config.js
 - tsconfig.json
-- README.md (with a sample))
+- README.md (with a sample)
 
 **NOTE:**
 - This will generate all the metadata files one level above the output-folder.
 - The output-folder **must end in the lib folder** for now. For example `--output-folder=D:\tmp\TSProject\lib`. This is required because the includes array in tsconfig.json and stuff inside webpack.config.js is hardwired to look for the generated stuff inside the lib folder.
 
-```
-autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version=<your-package-version> --generate-metadata=true
+```sh
+autorest --typescript \
+  --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> \
+  --license-header=MICROSOFT_MIT_NO_VERSION \
+  --input-file=<path-to-swagger-spec> \
+  --package-name=<your-package-name> \
+  --package-version=<your-package-version> \
+  --generate-metadata=true
 ```
 
 ### Azure Service Client
 For generating a client for an azure service, provide `--typescript.azure-arm=true`:
-```
-autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version=<your-package-version> --generate-metadata=true --typescript.azure-arm=true
+```sh
+autorest --typescript \
+  --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> \
+  --license-header=MICROSOFT_MIT_NO_VERSION \
+  --input-file=<path-to-swagger-spec> \
+  --package-name=<your-package-name> \
+  --package-version=<your-package-version> \
+  --generate-metadata=true \
+  --typescript.azure-arm=true
 ```
 
 ### With Client Credentials
 If you want to use services which need authorization you need to generate a constructor taking `msRest.ServiceClientCredentials`. In order to to do so add `--add-credentials` as commandline parameter
 ```
-autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version=<your-package-version> --add-credentials=true
+autorest --typescript \
+  --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> \
+  --license-header=MICROSOFT_MIT_NO_VERSION \
+  --input-file=<path-to-swagger-spec> \
+  --package-name=<your-package-name> \
+  --package-version=<your-package-version> \
+  --add-credentials=true
 ```
 
 the generated constructor will look like
-```
+```ts
 constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRest.ServiceClientOptions)
 ```
 
