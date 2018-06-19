@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
-using AutoRest.Extensions;
 using AutoRest.TypeScript.DSL;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
