@@ -577,10 +577,10 @@ namespace AutoRest.TypeScript
             else
             {
                 ConstructMapper(
-                    value,
-                    responseBodyModelType,
-                    "parsedResponse",
-                    null,
+                    value: value,
+                    type: responseBodyModelType,
+                    serializedName: "parsedResponse",
+                    parameter: null,
                     isPageable: false,
                     expandComposite: false,
                     isXML: method.CodeModel.ShouldGenerateXmlSerialization == true);

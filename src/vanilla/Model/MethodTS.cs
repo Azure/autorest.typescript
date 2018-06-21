@@ -628,17 +628,17 @@ namespace AutoRest.TypeScript.Model
 
                         if (hasResponsePairs)
                         {
-                            foreach (KeyValuePair<HttpStatusCode, Response> responsePair in responsePairs)
+                            foreach ((HttpStatusCode statusCode, Response response) in responsePairs)
                             {
-                                tryBlock.If($"statusCode === {GetStatusCodeReference(responsePair.Key)}", ifBlock =>
+                                tryBlock.If($"statusCode === {GetStatusCodeReference(statusCode)}", ifBlock =>
                                 {
-                                    if (responsePair.Value.Body != null)
+                                    if (response.Body != null)
                                     {
-                                        ifBlock.Line(DeserializeResponse(responsePair.Value.Body));
+                                        ifBlock.Line(DeserializeResponse(response.Body));
                                     }
-                                    if (responsePair.Value.Headers != null)
+                                    if (response.Headers != null)
                                     {
-                                        ifBlock.Line($"operationRes.parsedHeaders = this.serializer.deserialize(Mappers.{responsePair.Value.Headers.Name}, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');");
+                                        ifBlock.Line($"operationRes.parsedHeaders = this.serializer.deserialize(Mappers.{response.Headers.Name}, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');");
                                     }
                                 });
                             }
