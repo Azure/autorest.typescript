@@ -5,6 +5,7 @@
 
 import * as should from 'should';
 import * as assert from 'assert';
+import * as msAssert from "../util/msAssert";
 import * as msRest from 'ms-rest-js';
 import * as msRestAzure from 'ms-rest-azure-js';
 
@@ -23,7 +24,10 @@ describe('typescript', function () {
 
     describe('Pageable Operations', function () {
       clientOptions.requestOptions = { jar: true } as any;
-      clientOptions.requestPolicyCreators = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
+      clientOptions.requestPolicyCreators = [
+        msRest.exponentialRetryPolicy(3, 0, 0, 0),
+        msRest.serializationPolicy()
+      ];
       clientOptions.noRetryPolicy = true;
       var testClient = new AutoRestPagingTestService(credentials, baseUri, clientOptions);
 
@@ -157,34 +161,21 @@ describe('typescript', function () {
         });
       });
 
-      it('should fail on 400 single page', function (done) {
-        testClient.paging.getSinglePagesFailure(function (error, result) {
-          should.exist(error);
-          error.message.should.containEql('Expected');
-          done();
-        });
+      it('should fail on 400 single page', async () => {
+        const error: Error = await msAssert.throwsAsync(testClient.paging.getSinglePagesFailure());
+        error.message.should.containEql("Expected");
       });
 
-      it('should fail on 400 multiple pages', function (done) {
-        testClient.paging.getMultiplePagesFailure(function (error, result) {
-          should.not.exist(error);
-          testClient.paging.getMultiplePagesFailureNext(result.nextLink, function (error, result) {
-            should.exist(error);
-            error.message.should.containEql('Expected');
-            done();
-          });
-        });
+      it('should fail on 400 multiple pages', async () => {
+        const result = await testClient.paging.getMultiplePagesFailure();
+        const error: Error = await msAssert.throwsAsync(testClient.paging.getMultiplePagesFailureNext(result.nextLink));
+        error.message.should.containEql("Expected");
       });
 
-      it('should fail on invalid next link URL in multiple pages', function (done) {
-        testClient.paging.getMultiplePagesFailureUri(function (error, result) {
-          should.not.exist(error);
-          testClient.paging.getMultiplePagesFailureUriNext(result.nextLink, function (error, result) {
-            should.exist(error);
-            error.should.be.instanceof(Error);
-            done();
-          });
-        });
+      it('should fail on invalid next link URL in multiple pages', async () => {
+        const result = await testClient.paging.getMultiplePagesFailureUri();
+        const error: Error = await msAssert.throwsAsync(testClient.paging.getMultiplePagesFailureUriNext(result.nextLink));
+        error.should.be.instanceof(Error);
       });
     });
   });

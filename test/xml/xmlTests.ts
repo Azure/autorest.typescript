@@ -1,5 +1,10 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+
 import * as should from 'should';
 import * as assert from 'assert';
+import * as msAssert from "../util/msAssert";
+import * as msRest from "ms-rest-js";
 import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels as models } from './generated/Xml/autoRestSwaggerBATXMLService';
 
 const baseUri = 'http://localhost:3000';
@@ -22,13 +27,8 @@ describe('typescript', function () {
       const controller = getAbortController();
       const slideshowPromise = testClient.xml.getSimple({ abortSignal: controller.signal });
       controller.abort();
-      try {
-        await slideshowPromise;
-        assert.fail('');
-      } catch (err) {
-        err.should.not.be.instanceof(assert.AssertionError);
-        err.code.should.equal("REQUEST_ABORTED_ERROR");
-      }
+      const err: msRest.RestError = await msAssert.throwsAsync(slideshowPromise);
+      err.code.should.equal("REQUEST_ABORTED_ERROR");
     });
 
     it('should correctly deserialize a simple XML document', async function () {

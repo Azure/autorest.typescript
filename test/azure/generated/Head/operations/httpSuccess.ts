@@ -67,32 +67,17 @@ export class HttpSuccess {
               }
             }
           ],
+          responses: {
+            200: {},
+            404: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
+      // Deserialize Response
       let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 404) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       operationRes.parsedBody = (statusCode === 200);
     } catch (err) {
       return Promise.reject(err);
@@ -141,32 +126,17 @@ export class HttpSuccess {
               }
             }
           ],
+          responses: {
+            204: {},
+            404: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
+      // Deserialize Response
       let statusCode = operationRes.status;
-      if (statusCode !== 204 && statusCode !== 404) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       operationRes.parsedBody = (statusCode === 204);
     } catch (err) {
       return Promise.reject(err);
@@ -215,32 +185,17 @@ export class HttpSuccess {
               }
             }
           ],
+          responses: {
+            204: {},
+            404: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
+      // Deserialize Response
       let statusCode = operationRes.status;
-      if (statusCode !== 204 && statusCode !== 404) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       operationRes.parsedBody = (statusCode === 204);
     } catch (err) {
       return Promise.reject(err);

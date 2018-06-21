@@ -320,75 +320,45 @@ describe('typescript', function () {
     });
 
     /** LRO Retrys **/
-    it('retry should work with Put201CreatingSucceeded200', function (done) {
-      testClient.lRORetrys.put201CreatingSucceeded200({ product: product }, function (error, result) {
-        should.not.exist(error);
-        done();
-      });
+    it('retry should work with Put201CreatingSucceeded200', async () => {
+      await testClient.lRORetrys.put201CreatingSucceeded200({ product: product });
     });
 
-    it('retry should work with PutAsyncRelativeRetrySucceeded', function (done) {
-      testClient.lRORetrys.putAsyncRelativeRetrySucceeded({ product: product }, function (error, result) {
-        should.not.exist(error);
-        done();
-      });
+    it('retry should work with PutAsyncRelativeRetrySucceeded', async () => {
+      await testClient.lRORetrys.putAsyncRelativeRetrySucceeded({ product: product });
     });
 
-    it('retry should work with DeleteProvisioning202Accepted200Succeeded', function (done) {
-      testClient.lRORetrys.deleteProvisioning202Accepted200Succeeded(function (error, result) {
-        should.not.exist(error);
-        done();
-      });
+    it('retry should work with DeleteProvisioning202Accepted200Succeeded', async () => {
+      await testClient.lRORetrys.deleteProvisioning202Accepted200Succeeded();
     });
 
-    it('should work with Delete202Retry200', function (done) {
-      testClient.lRORetrys.delete202Retry200(function (error, result) {
-        should.not.exist(error);
-        done();
-      });
+    it('should work with Delete202Retry200', async () => {
+      await testClient.lRORetrys.delete202Retry200();
     });
 
-    it('should work with DeleteAsyncRelativeRetrySucceeded', function (done) {
-      testClient.lRORetrys.deleteAsyncRelativeRetrySucceeded(function (error, result) {
-        should.not.exist(error);
-        done();
-      });
+    it('should work with DeleteAsyncRelativeRetrySucceeded', async () => {
+      await testClient.lRORetrys.deleteAsyncRelativeRetrySucceeded();
     });
 
-    it('should work with Post202Retry200', function (done) {
-      testClient.lRORetrys.post202Retry200({ product: product }, function (error, result) {
-        should.not.exist(error);
-        done();
-      });
+    it('should work with Post202Retry200', async () => {
+      await testClient.lRORetrys.post202Retry200({ product: product });
     });
 
-    it('should work with PostAsyncRelativeRetrySucceeded', function (done) {
-      testClient.lRORetrys.postAsyncRelativeRetrySucceeded({ product: product }, function (error, result) {
-        should.not.exist(error);
-        done();
-      });
+    it('should work with PostAsyncRelativeRetrySucceeded', async () => {
+      await testClient.lRORetrys.postAsyncRelativeRetrySucceeded({ product: product });
     });
 
-    it('should work with Custom Headers', function (done) {
+    it('should work with Custom Headers', async () => {
       var options = {
         product: product,
         customHeaders: {
           'x-ms-client-request-id': '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
         }
       };
-      testClient.lROsCustomHeader.putAsyncRetrySucceeded(options, function (error, result) {
-        should.not.exist(error);
-        testClient.lROsCustomHeader.postAsyncRetrySucceeded(options, function (error, result) {
-          should.not.exist(error);
-          testClient.lROsCustomHeader.put201CreatingSucceeded200(options, function (error, result) {
-            should.not.exist(error);
-            testClient.lROsCustomHeader.post202Retry200(options, function (error, result) {
-              should.not.exist(error);
-              done();
-            });
-          });
-        });
-      });
+      await testClient.lROsCustomHeader.putAsyncRetrySucceeded(options);
+      await testClient.lROsCustomHeader.postAsyncRetrySucceeded(options);
+      await testClient.lROsCustomHeader.put201CreatingSucceeded200(options);
+      await testClient.lROsCustomHeader.post202Retry200(options);
     });
   });
 

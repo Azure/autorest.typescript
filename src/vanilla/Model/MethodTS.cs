@@ -115,29 +115,6 @@ namespace AutoRest.TypeScript.Model
         }
 
         /// <summary>
-        /// Get the predicate to determine of the http operation status code indicates success
-        /// </summary>
-        public string FailureStatusCodePredicate
-        {
-            get
-            {
-                if (Responses.Any())
-                {
-                    List<string> predicates = new List<string>();
-                    foreach (var responseStatus in Responses.Keys)
-                    {
-                        predicates.Add(string.Format(CultureInfo.InvariantCulture,
-                            "statusCode !== {0}", GetStatusCodeReference(responseStatus)));
-                    }
-
-                    return string.Join(" && ", predicates);
-                }
-
-                return "statusCode < 200 || statusCode >= 300";
-            }
-        }
-
-        /// <summary>
         /// Generate the method parameter declarations for a method
         /// </summary>
         public string MethodParameterDeclaration
@@ -298,32 +275,6 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public static string ConstructParameterDocumentation(string documentation)
-        {
-            var builder = new IndentedStringBuilder("  ");
-            return builder.AppendLine(documentation)
-                          .AppendLine(" * ").ToString();
-        }
-
-        /// <summary>
-        /// Get the type name for the method's return type
-        /// </summary>
-        [JsonIgnore]
-        public string ReturnTypeString
-        {
-            get
-            {
-                if (ReturnType.Body != null)
-                {
-                    return ReturnType.Body.Name;
-                }
-                else
-                {
-                    return "null";
-                }
-            }
-        }
-
         /// <summary>
         /// Get the type name for the method's return type for TS
         /// </summary>
@@ -362,72 +313,31 @@ namespace AutoRest.TypeScript.Model
         {
             get
             {
-                var builder = new IndentedStringBuilder("  ");
-                var errorVariable = this.GetUniqueName("deserializationError");
-                return builder.AppendLine("let {0} = new msRest.RestError(`Error ${{error}} occurred in " +
-                    "deserializing the responseBody - ${{operationRes.bodyAsText}}`);", errorVariable)
-                    .AppendLine("{0}.request = msRest.stripRequest(httpRequest);", errorVariable)
-                    .AppendLine("{0}.response = msRest.stripResponse(operationRes);", errorVariable)
-                    .AppendLine("return Promise.reject({0});", errorVariable).ToString();
+                TSBuilder builder = new TSBuilder();
+
+                string errorVariable = this.GetUniqueName("deserializationError");
+                builder.Line($"let {errorVariable} = new msRest.RestError(`Error ${{error}} occurred in deserializing the responseBody - ${{operationRes.bodyAsText}}`);");
+                builder.Line($"{errorVariable}.request = msRest.stripRequest(httpRequest);");
+                builder.Line($"{errorVariable}.response = msRest.stripResponse(operationRes);");
+                builder.Return($"Promise.reject({errorVariable})");
+
+                return builder.ToString();
             }
         }
 
-        public string PopulateErrorCodeAndMessage()
-        {
-            var builder = new IndentedStringBuilder("  ");
-            if (DefaultResponse.Body != null && DefaultResponse.Body.Name.RawValue.EqualsIgnoreCase("CloudError"))
-            {
-                builder.AppendLine("if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;")
-                       .AppendLine("if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;")
-                       .AppendLine("if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;");
-            }
-            else
-            {
-                builder.AppendLine("let internalError = null;")
-                       .AppendLine("if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;")
-                       .AppendLine("error.code = internalError ? internalError.code : parsedErrorResponse.code;")
-                       .AppendLine("error.message = internalError ? internalError.message : parsedErrorResponse.message;");
-            }
-            return builder.ToString();
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase")]
-        public static string GetParameterDocumentationType(Parameter parameter)
-        {
-            if (parameter == null)
-            {
-                throw new ArgumentNullException(nameof(parameter));
-            }
-            string typeName = "object";
-            if (parameter.ModelType is PrimaryTypeTS)
-            {
-                typeName = parameter.ModelType.Name;
-            }
-            else if (parameter.ModelType is Core.Model.SequenceType)
-            {
-                typeName = "array";
-            }
-            else if (parameter.ModelType is EnumType)
-            {
-                typeName = "string";
-            }
-
-            return typeName.ToLowerInvariant();
-        }
-
-        public string GetDeserializationString(IModelType type, string valueReference = "result", string responseVariable = "parsedResponse")
+        public string GetDeserializationString(IModelType type, string valueReference, string responseVariable)
         {
             TSBuilder builder = new TSBuilder();
+            builder.Text("const resultMapper = ");
             if (type is CompositeType)
             {
-                builder.Line($"const resultMapper = Mappers.{type.Name};");
+                builder.Text($"Mappers.{type.Name}");
             }
             else
             {
-                builder.Text($"const resultMapper = ");
                 ClientModelExtensions.ConstructMapper(builder, type, responseVariable, null, isPageable: false, expandComposite: false, isXML: CodeModel?.ShouldGenerateXmlSerialization == true);
-                builder.Line(";");
             }
+            builder.Line(";");
 
             if (CodeModel.ShouldGenerateXmlSerialization && type is SequenceType st)
             {
@@ -440,66 +350,32 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        [JsonIgnore]
-        public string ValidationString
-        {
-            get
-            {
-                var builder = new IndentedStringBuilder("  ");
-                foreach (var parameter in ParameterTemplateModels.Where(p => !p.IsConstant))
-                {
-                    if ((HttpMethod == HttpMethod.Patch && parameter.ModelType is CompositeType))
-                    {
-                        if (parameter.IsRequired)
-                        {
-                            builder.AppendLine("if ({0} === null || {0} === undefined) {{", parameter.Name)
-                                     .Indent()
-                                     .AppendLine("throw new Error('{0} cannot be null or undefined.');", parameter.Name)
-                                   .Outdent()
-                                   .AppendLine("}");
-                        }
-                    }
-                    else
-                    {
-                        builder.AppendLine(parameter.ModelType.ValidateType(this, parameter.Name, parameter.IsRequired));
-                        if (parameter.Constraints != null && parameter.Constraints.Count > 0 && parameter.Location != ParameterLocation.Body)
-                        {
-                            builder.AppendLine("if ({0} !== null && {0} !== undefined) {{", parameter.Name).Indent();
-                            builder = parameter.ModelType.AppendConstraintValidations(parameter.Name, parameter.Constraints, builder);
-                            builder.Outdent().AppendLine("}");
-                        }
-                    }
-                }
-                return "";
-            }
-        }
-
-        public string DeserializeResponse(IModelType type, string valueReference = "result", string responseVariable = "parsedResponse")
+        public string DeserializeResponse(IModelType type)
         {
             if (type == null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
 
-            var builder = new IndentedStringBuilder("  ");
-            builder.AppendLine("let {0} = {1} as {{ [key: string]: any }};", responseVariable, valueReference)
-                   .AppendLine("try {")
-                   .Indent();
-            var deserializeBody = GetDeserializationString(type, valueReference, responseVariable);
+            TSBuilder builder = new TSBuilder();
+            const string responseVariable = "parsedResponse";
+            const string valueReference = "operationRes.parsedBody";
+            builder.Line($"let {responseVariable} = {valueReference} as {{ [key: string]: any }};");
+            string deserializeBody = GetDeserializationString(type, valueReference, responseVariable);
             if (!string.IsNullOrWhiteSpace(deserializeBody))
             {
-                builder.AppendLine("if ({0} !== null && {0} !== undefined) {{", responseVariable)
-                         .Indent()
-                         .AppendLine(deserializeBody)
-                       .Outdent()
-                       .AppendLine("}");
+                builder.Try(tryBlock =>
+                {
+                    tryBlock.If($"{responseVariable} != undefined", ifBlock =>
+                    {
+                        ifBlock.Line(deserializeBody);
+                    });
+                })
+                .Catch("error", catchBlock =>
+                {
+                    catchBlock.Line(DeserializationError);
+                });
             }
-            builder.Outdent()
-                   .AppendLine("} catch (error) {")
-                     .Indent()
-                     .AppendLine(DeserializationError)
-                   .Outdent()
-                   .AppendLine("}");
 
             return builder.ToString();
         }
@@ -707,20 +583,6 @@ namespace AutoRest.TypeScript.Model
                             });
                         }
                     }
-
-                    string validationBlock = ValidationString;
-                    if (!string.IsNullOrWhiteSpace(validationBlock))
-                    {
-                        methodBody.LineComment("Validate");
-                        methodBody.Try(tryBlock =>
-                        {
-                            tryBlock.Line(validationBlock);
-                        })
-                        .Catch("error", catchBlock =>
-                        {
-                            catchBlock.Return("Promise.reject(error)");
-                        });
-                    }
                 }
 
                 methodBody.Line(emptyLine);
@@ -750,70 +612,41 @@ namespace AutoRest.TypeScript.Model
                     });
                     tryBlock.Line(";");
 
-                    tryBlock.Line("let statusCode = operationRes.status;");
-                    tryBlock.If(FailureStatusCodePredicate, ifBlock =>
-                    {
-                        string initialErrorMessage = hasStreamResponseType
-                            ? "`Unexpected status code: ${statusCode}`"
-                            : "operationRes.bodyAsText as string";
-                        ifBlock.Line($"let error = new msRest.RestError({initialErrorMessage});");
-                        ifBlock.Line($"error.statusCode = operationRes.status;");
-                        ifBlock.Line($"error.request = msRest.stripRequest(httpRequest);");
-                        ifBlock.Line($"error.response = msRest.stripResponse(operationRes);");
-                        const string parsedErrorResponse = "parsedErrorResponse";
-                        ifBlock.Line($"let {parsedErrorResponse} = operationRes.parsedBody as {{ [key: string]: any }};");
-                        ifBlock.Try(tryBlock2 =>
-                        {
-                            tryBlock2.If(parsedErrorResponse, ifErrorBlock =>
-                            {
-                                ifErrorBlock.Line(PopulateErrorCodeAndMessage());
-                            });
-
-                            if (DefaultResponse.Body != null)
-                            {
-                                string deserializeErrorBody = GetDeserializationString(DefaultResponse.Body, "error.body", "parsedErrorResponse");
-                                if (!string.IsNullOrEmpty(deserializeErrorBody))
-                                {
-                                    tryBlock2.If($"{parsedErrorResponse} !== null && {parsedErrorResponse} !== undefined", ifErrorBlock =>
-                                    {
-                                        ifErrorBlock.Line(deserializeErrorBody);
-                                    });
-                                }
-                            }
-                        })
-                        .Catch("defaultError", catchBlock =>
-                        {
-                            catchBlock.Line($"error.message = `Error \"${{defaultError.message}}\" occurred in deserializing the responseBody ` +");
-                            catchBlock.Line($"                 `- \"${{operationRes.bodyAsText}}\" for the default response.`;");
-                            catchBlock.Return("Promise.reject(error)");
-                        });
-                        ifBlock.Return("Promise.reject(error)");
-                    });
-
                     if (!hasStreamResponseType)
                     {
-                        tryBlock.Line(InitializeResult);
+                        string resultInitializer = InitializeResult;
 
                         IEnumerable<KeyValuePair<HttpStatusCode, Response>> responsePairs = Responses.Where(response => response.Value.Body != null || response.Value.Headers != null);
-                        foreach (KeyValuePair<HttpStatusCode, Response> responsePair in responsePairs)
+                        bool hasResponsePairs = responsePairs.Any();
+
+                        if (!string.IsNullOrEmpty(resultInitializer) || hasResponsePairs)
                         {
                             tryBlock.LineComment("Deserialize Response");
-                            tryBlock.If($"statusCode === {GetStatusCodeReference(responsePair.Key)}", ifBlock =>
+                            tryBlock.Line("let statusCode = operationRes.status;");
+                            tryBlock.Line(InitializeResult);
+                        }
+
+                        if (hasResponsePairs)
+                        {
+                            foreach ((HttpStatusCode statusCode, Response response) in responsePairs)
                             {
-                                if (responsePair.Value.Body != null)
+                                tryBlock.If($"statusCode === {GetStatusCodeReference(statusCode)}", ifBlock =>
                                 {
-                                    ifBlock.Line(DeserializeResponse(responsePair.Value.Body, "operationRes.parsedBody"));
-                                }
-                                if (responsePair.Value.Headers != null)
-                                {
-                                    ifBlock.Line($"operationRes.parsedHeaders = this.serializer.deserialize(Mappers.{responsePair.Value.Headers.Name}, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');");
-                                }
-                            });
+                                    if (response.Body != null)
+                                    {
+                                        ifBlock.Line(DeserializeResponse(response.Body));
+                                    }
+                                    if (response.Headers != null)
+                                    {
+                                        ifBlock.Line($"operationRes.parsedHeaders = this.serializer.deserialize(Mappers.{response.Headers.Name}, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');");
+                                    }
+                                });
+                            }
                         }
 
                         if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
                         {
-                            tryBlock.Line(DeserializeResponse(DefaultResponse.Body, "operationRes.parsedBody"));
+                            tryBlock.Line(DeserializeResponse(DefaultResponse.Body));
                         }
                     }
                 })
@@ -914,6 +747,34 @@ namespace AutoRest.TypeScript.Model
                     operationSpec.QuotedStringProperty("contentType", RequestContentType);
                 }
             }
+
+            operationSpec.ObjectProperty("responses", responses =>
+            {
+                bool isXml = CodeModelTS.ShouldGenerateXmlSerialization;
+                foreach (KeyValuePair<HttpStatusCode, Response> statusCodeResponsePair in Responses)
+                {
+                    HttpStatusCode statusCode = statusCodeResponsePair.Key;
+                    Response response = statusCodeResponsePair.Value;
+
+                    responses.ObjectProperty(((int)statusCode).ToString(), responseObject =>
+                    {
+                        if (response.Body != null)
+                        {
+                            responseObject.Property("bodyMapper", responseBodyMapper => ClientModelExtensions.ConstructResponseBodyMapper(responseBodyMapper, response, this));
+                        }
+                    });
+                }
+
+                responses.ObjectProperty("default", defaultResponseObject =>
+                {
+                    Response defaultResponse = DefaultResponse;
+                    if (defaultResponse != null && defaultResponse.Body != null)
+                    {
+                        defaultResponseObject.Property("bodyMapper", responseBodyMapper => ClientModelExtensions.ConstructResponseBodyMapper(responseBodyMapper, defaultResponse, this));
+                    }
+                });
+            });
+            
 
             if (CodeModel.ShouldGenerateXmlSerialization)
             {

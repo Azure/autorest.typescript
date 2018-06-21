@@ -52,38 +52,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/integer",
+          responses: {
+            200: {
+              bodyMapper: Mappers.IntWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.IntWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -139,33 +123,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -197,38 +162,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/long",
+          responses: {
+            200: {
+              bodyMapper: Mappers.LongWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.LongWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -284,33 +233,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -342,38 +272,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/float",
+          responses: {
+            200: {
+              bodyMapper: Mappers.FloatWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.FloatWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -429,33 +343,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -487,38 +382,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/double",
+          responses: {
+            200: {
+              bodyMapper: Mappers.DoubleWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.DoubleWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -575,33 +454,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -633,38 +493,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/bool",
+          responses: {
+            200: {
+              bodyMapper: Mappers.BooleanWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.BooleanWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -720,33 +564,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -778,38 +603,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/string",
+          responses: {
+            200: {
+              bodyMapper: Mappers.StringWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.StringWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -865,33 +674,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -923,38 +713,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/date",
+          responses: {
+            200: {
+              bodyMapper: Mappers.DateWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.DateWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1010,33 +784,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1068,38 +823,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/datetime",
+          responses: {
+            200: {
+              bodyMapper: Mappers.DatetimeWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.DatetimeWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1156,33 +895,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1214,38 +934,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/datetimerfc1123",
+          responses: {
+            200: {
+              bodyMapper: Mappers.Datetimerfc1123Wrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.Datetimerfc1123Wrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1302,33 +1006,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1360,38 +1045,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/duration",
+          responses: {
+            200: {
+              bodyMapper: Mappers.DurationWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.DurationWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1448,33 +1117,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1506,38 +1156,22 @@ export class Primitive {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/byte",
+          responses: {
+            200: {
+              bodyMapper: Mappers.ByteWrapper
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ByteWrapper;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1594,33 +1228,14 @@ export class Primitive {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }

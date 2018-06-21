@@ -52,39 +52,23 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/simple",
+          responses: {
+            200: {
+              bodyMapper: Mappers.Slideshow
+            },
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.Slideshow;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -140,34 +124,15 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -199,35 +164,21 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/wrapped-lists",
+          responses: {
+            200: {
+              bodyMapper: Mappers.AppleBarrel
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.AppleBarrel;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -283,34 +234,15 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {
+              bodyMapper: Mappers.ErrorModel
+            }
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -342,31 +274,15 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/headers",
+          responses: {
+            200: {},
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.XmlGetHeadersHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
@@ -401,35 +317,21 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-list",
+          responses: {
+            200: {
+              bodyMapper: Mappers.Slideshow
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.Slideshow;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -485,30 +387,13 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -540,35 +425,21 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-wrapped-lists",
+          responses: {
+            200: {
+              bodyMapper: Mappers.AppleBarrel
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.AppleBarrel;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -624,30 +495,13 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -679,35 +533,34 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/root-list",
+          responses: {
+            200: {
+              bodyMapper: {
+                xmlElementName: "bananas",
+                serializedName: "parsedResponse",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "BananaElementType",
+                    type: {
+                      name: "Composite",
+                      className: "Banana"
+                    }
+                  }
+                }
+              }
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = {
               xmlElementName: "bananas",
               serializedName: "parsedResponse",
@@ -787,30 +640,13 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -842,35 +678,34 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/root-list-single-item",
+          responses: {
+            200: {
+              bodyMapper: {
+                xmlElementName: "bananas",
+                serializedName: "parsedResponse",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "BananaElementType",
+                    type: {
+                      name: "Composite",
+                      className: "Banana"
+                    }
+                  }
+                }
+              }
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = {
               xmlElementName: "bananas",
               serializedName: "parsedResponse",
@@ -950,30 +785,13 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1005,35 +823,34 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-root-list",
+          responses: {
+            200: {
+              bodyMapper: {
+                xmlElementName: "bananas",
+                serializedName: "parsedResponse",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "BananaElementType",
+                    type: {
+                      name: "Composite",
+                      className: "Banana"
+                    }
+                  }
+                }
+              }
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = {
               xmlElementName: "bananas",
               serializedName: "parsedResponse",
@@ -1113,30 +930,13 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1168,35 +968,21 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-child-element",
+          responses: {
+            200: {
+              bodyMapper: Mappers.Banana
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.Banana;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1252,30 +1038,13 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1326,35 +1095,21 @@ export class Xml {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ListContainersResponse
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ListContainersResponse;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1429,35 +1184,21 @@ export class Xml {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.StorageServiceProperties
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.StorageServiceProperties;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1543,30 +1284,13 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1631,35 +1355,34 @@ export class Xml {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: {
+                xmlElementName: "SignedIdentifiers",
+                serializedName: "parsedResponse",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "SignedIdentifierElementType",
+                    type: {
+                      name: "Composite",
+                      className: "SignedIdentifier"
+                    }
+                  }
+                }
+              }
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = {
               xmlElementName: "SignedIdentifiers",
               serializedName: "parsedResponse",
@@ -1769,30 +1492,13 @@ export class Xml {
             }
           },
           contentType: "application/xml; charset=utf-8",
+          responses: {
+            201: {},
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1857,35 +1563,21 @@ export class Xml {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ListBlobsResponse
+            },
+            default: {}
+          },
           isXML: true,
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ListBlobsResponse;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }

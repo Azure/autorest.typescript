@@ -3,13 +3,13 @@
 
 'use strict';
 
-import * as should from 'should';
-import * as assert from 'assert';
-import * as msRest from 'ms-rest-js';
+import * as msAssert from "../util/msAssert";
 import * as msRestAzure from 'ms-rest-azure-js';
-
+import * as msRest from 'ms-rest-js';
+import * as should from 'should';
 import { AutoRestHeadTestService } from './generated/Head/autoRestHeadTestService';
 import { AutoRestHeadExceptionTestService } from './generated/HeadExceptions/autoRestHeadExceptionTestService';
+
 
 var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
@@ -29,57 +29,45 @@ describe('typescript', function () {
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHeadTestService(credentials, baseUri, clientOptions);
 
-      it('should return true for 200 status code', function (done) {
-        testClient.httpSuccess.head200(function (error, result) {
-          should.not.exist(error);
-          result.should.be.exactly(true);
-          done();
-        });
+      it('should return true for 200 status code', async () => {
+        const result: boolean = await testClient.httpSuccess.head200();
+        should.exist(result);
+        result.should.be.exactly(true);
       });
 
-      it('should return true for 204 status code', function (done) {
-        testClient.httpSuccess.head204(function (error, result) {
-          should.not.exist(error);
-          result.should.be.exactly(true);
-          done();
-        });
+      it('should return true for 204 status code', async () => {
+        const result: boolean = await testClient.httpSuccess.head204();
+        should.exist(result);
+        result.should.be.exactly(true);
       });
 
-      it('should return false for 404 status code', function (done) {
-        testClient.httpSuccess.head404(function (error, result) {
-          should.not.exist(error);
-          result.should.be.exactly(false);
-          done();
-        });
+      it('should return false for 404 status code', async () => {
+        const result: boolean = await testClient.httpSuccess.head404();
+        should.exist(result);
+        result.should.be.exactly(false);
       });
     });
 
     describe('Head Exception Operations', function () {
       var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
       testOptions.requestOptions = { jar: true } as any;
-      testOptions.requestPolicyCreators = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
+      testOptions.requestPolicyCreators = [
+        msRest.serializationPolicy()
+      ];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHeadExceptionTestService(credentials, baseUri, clientOptions);
 
-      it('should return true for 200 status code', function (done) {
-        testClient.headException.head200(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
+      it('should not throw for 200 status code', async () => {
+        await testClient.headException.head200();
       });
 
-      it('should return true for 204 status code', function (done) {
-        testClient.headException.head204(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
+      it('should not throw for 204 status code', async () => {
+        await testClient.headException.head204();
       });
 
-      it('should return false for 404 status code', function (done) {
-        testClient.headException.head404(function (error, result) {
-          should.exist(error);
-          done();
-        });
+      it('should throw for 404 status code', async () => {
+        const error: msRest.RestError = await msAssert.throwsAsync(testClient.headException.head404());
+        error.statusCode.should.equal(404);
       });
     });
   });
