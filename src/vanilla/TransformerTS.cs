@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System;
 using System.Linq;
@@ -22,13 +22,32 @@ namespace AutoRest.TypeScript
 
             // we're guaranteed to be in our language-specific context here.
             SwaggerExtensions.NormalizeClientModel(codeModel);
+            TransformHeaderCollectionParameterTypes(codeModel);
             PopulateAdditionalProperties(codeModel);
             NormalizeOdataFilterParameter(codeModel);
             PerformParameterMapping(codeModel);
             CreateModelTypeForOptionalClientProperties(codeModel);
             CreateModelTypesForOptionalMethodParameters(codeModel);
             AddEnumTypesToCodeModel(codeModel);
+
             return codeModel;
+        }
+
+        public void TransformHeaderCollectionParameterTypes(CodeModelTS cm)
+        {
+            foreach (var method in cm.Methods)
+            {
+                foreach (var parameter in method.Parameters)
+                {
+                    string prefix = parameter.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
+                    if (!string.IsNullOrEmpty(prefix) && !(parameter.ModelType is DictionaryTypeTS))
+                    {
+                        var dictionary = New<DictionaryTypeTS>().LoadFrom(parameter.ModelType);
+                        dictionary.ValueType = parameter.ModelType;
+                        parameter.ModelType = dictionary;
+                    }
+                }
+            }
         }
 
         public void AddEnumTypesToCodeModel(CodeModelTS cm)
@@ -62,7 +81,7 @@ namespace AutoRest.TypeScript
                         cm.Add(parameterAsEnum);
                     }
                 }
-                // If there is a response body or header in the response pair that is an EnumType and has not been 
+                // If there is a response body or header in the response pair that is an EnumType and has not been
                 // added to the EnumTypes then add it.
                 foreach (var responsePair in method.Responses)
                 {
