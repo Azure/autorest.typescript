@@ -6,6 +6,7 @@
 import * as should from 'should';
 import * as util from 'util';
 import * as assert from 'assert';
+import * as msAssert from "../util/msAssert";
 import * as msRest from 'ms-rest-js';
 import * as stream from 'stream';
 import * as fs from "fs";
@@ -2532,24 +2533,26 @@ describe('typescript', function () {
         });
       });
 
-      it('should work for all server failure status codes (5xx) with different verbs', function (done) {
-        testClient.httpServerFailure.head501(function (error, result) {
-          should.exist(error);
-          (<msRest.RestError>error).statusCode.should.equal(501);
-          testClient.httpServerFailure.get501(function (error, result) {
-            should.exist(error);
-            (<msRest.RestError>error).statusCode.should.equal(501);
-            testClient.httpServerFailure.post505({ booleanValue: true }, function (error, result) {
-              should.exist(error);
-              (<msRest.RestError>error).statusCode.should.equal(505);
-              testClient.httpServerFailure.delete505({ booleanValue: true }, function (error, result) {
-                should.exist(error);
-                (<msRest.RestError>error).statusCode.should.equal(505);
-                done();
-              });
-            });
+      it('should work for all server failure status codes (5xx) with different verbs', async () => {
+        await msAssert.throwsAsync(testClient.httpServerFailure.head501(),
+          (error: msRest.RestError) => {
+            error.statusCode.should.equal(501);
           });
-        });
+
+        await msAssert.throwsAsync(testClient.httpServerFailure.get501(),
+          (error: msRest.RestError) => {
+            error.statusCode.should.equal(501);
+          });
+
+        await msAssert.throwsAsync(testClient.httpServerFailure.post505({ booleanValue: true }),
+          (error: msRest.RestError) => {
+            error.statusCode.should.equal(505);
+          });
+
+        await msAssert.throwsAsync(testClient.httpServerFailure.delete505({ booleanValue: true }),
+          (error: msRest.RestError) => {
+            error.statusCode.should.equal(505);
+          });
       });
 
       it('should properly perform the Http retry', function (done) {
@@ -2588,143 +2591,108 @@ describe('typescript', function () {
         });
       });
 
-      it('should properly handle multiple responses with different verbs', function (done) {
-        testClient.multipleResponses.get200Model204NoModelDefaultError200Valid(function (error, result) {
-          should.not.exist(error);
-          result.statusCode.should.equal("200");
-          //should use models.Error to deserialize and set it as body of javascript Error object
-          testClient.multipleResponses.get200Model204NoModelDefaultError201Invalid(function (error, result) {
-            should.exist(error);
-            (<msRest.RestError>error).statusCode.should.equal(201);
-            testClient.multipleResponses.get200Model204NoModelDefaultError202None(function (error, result) {
-              should.exist(error);
-              (<msRest.RestError>error).statusCode.should.equal(202);
-              //should we set body property of msRest.HttpOperationResponse to {}.
-              //C3 does this Assert.Null(client.MultipleResponses.Get200Model204NoModelDefaultError204Valid());
-              testClient.multipleResponses.get200Model204NoModelDefaultError204Valid(function (error, result) {
-                should.not.exist(error);
-                should.not.exist(result);
-                //{"message":"client error","status":400} shouldn't we set this to error model defined in swagger?
-                testClient.multipleResponses.get200Model204NoModelDefaultError400Valid(function (error, result) {
-                  should.exist(error);
-                  (<msRest.RestError>error).statusCode.should.equal(400);
-                  testClient.multipleResponses.get200Model201ModelDefaultError200Valid(function (error, result) {
-                    should.not.exist(error);
-                    result.statusCode.should.equal("200");
-                    testClient.multipleResponses.get200Model201ModelDefaultError201Valid(function (error, result) {
-                      should.not.exist(error);
-                      should.exist(result);
-                      assert.deepEqual(result, { 'statusCode': '201', 'textStatusCode': 'Created' });
-                      testClient.multipleResponses.get200Model201ModelDefaultError400Valid(function (error, result) {
-                        should.exist(error);
-                        (<msRest.RestError>error).statusCode.should.equal(400);
-                        testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError200Valid(function (error, result) {
-                          should.not.exist(error);
-                          should.exist(result);
-                          result.statusCode.should.equal("200");
-                          testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError201Valid(function (error, result) {
-                            should.not.exist(error);
-                            should.exist(result);
-                            result.httpCode.should.equal("201");
-                            testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError404Valid(function (error, result) {
-                              should.not.exist(error);
-                              should.exist(result);
-                              result.httpStatusCode.should.equal("404");
-                              testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError400Valid(function (error, result) {
-                                should.exist(error);
-                                (<msRest.RestError>error).statusCode.should.equal(400);
-                                testClient.multipleResponses.get202None204NoneDefaultError202None(function (error, result) {
-                                  should.not.exist(error);
-                                  testClient.multipleResponses.get202None204NoneDefaultError204None(function (error, result) {
-                                    should.not.exist(error);
-                                    testClient.multipleResponses.get202None204NoneDefaultError400Valid(function (error, result) {
-                                      should.exist(error);
-                                      (<msRest.RestError>error).statusCode.should.equal(400);
-                                      testClient.multipleResponses.get202None204NoneDefaultNone202Invalid(function (error, result) {
-                                        should.not.exist(error);
-                                        testClient.multipleResponses.get202None204NoneDefaultNone204None(function (error, result) {
-                                          should.not.exist(error);
-                                          testClient.multipleResponses.get202None204NoneDefaultNone400None(function (error, result) {
-                                            should.exist(error);
-                                            (<msRest.RestError>error).statusCode.should.equal(400);
-                                            testClient.multipleResponses.get202None204NoneDefaultNone400Invalid(function (error, result) {
-                                              should.exist(error);
-                                              (<msRest.RestError>error).statusCode.should.equal(400);
-                                              testClient.multipleResponses.getDefaultModelA200Valid(function (error, result) {
-                                                should.not.exist(error);
-                                                //result.statusCode.should.equal("200");
-                                                testClient.multipleResponses.getDefaultModelA200None(function (error, result) {
-                                                  should.not.exist(error);
-                                                  testClient.multipleResponses.getDefaultModelA400Valid(function (error, result) {
-                                                    should.exist(error);
-                                                    (<msRest.RestError>error).statusCode.should.equal(400);
-                                                    testClient.multipleResponses.getDefaultModelA400None(function (error, result) {
-                                                      should.exist(error);
-                                                      (<msRest.RestError>error).statusCode.should.equal(400);
-                                                      testClient.multipleResponses.getDefaultNone200Invalid(function (error, result) {
-                                                        should.not.exist(error);
-                                                        testClient.multipleResponses.getDefaultNone200None(function (error, result) {
-                                                          should.not.exist(error);
-                                                          testClient.multipleResponses.getDefaultNone400Invalid(function (error, result) {
-                                                            should.exist(error);
-                                                            (<msRest.RestError>error).statusCode.should.equal(400);
-                                                            testClient.multipleResponses.getDefaultNone400None(function (error, result) {
-                                                              should.exist(error);
-                                                              (<msRest.RestError>error).statusCode.should.equal(400);
-                                                              testClient.multipleResponses.get200ModelA200None(function (error, result) {
-                                                                should.not.exist(error);
-                                                                testClient.multipleResponses.get200ModelA200Valid(function (error, result) {
-                                                                  should.not.exist(error);
-                                                                  result.statusCode.should.equal("200");
-                                                                  testClient.multipleResponses.get200ModelA200Invalid(function (error, result) {
-                                                                    should.not.exist(error);
-                                                                    testClient.multipleResponses.get200ModelA400None(function (error, result) {
-                                                                      should.exist(error);
-                                                                      (<msRest.RestError>error).statusCode.should.equal(400);
-                                                                      testClient.multipleResponses.get200ModelA400Valid(function (error, result) {
-                                                                        should.exist(error);
-                                                                        (<msRest.RestError>error).statusCode.should.equal(400);
-                                                                        testClient.multipleResponses.get200ModelA400Invalid(function (error, result) {
-                                                                          should.exist(error);
-                                                                          (<msRest.RestError>error).statusCode.should.equal(400);
-                                                                          testClient.multipleResponses.get200ModelA202Valid(function (error, result) {
-                                                                            should.exist(error);
-                                                                            (<msRest.RestError>error).statusCode.should.equal(202);
-                                                                            done();
-                                                                          });
-                                                                        });
-                                                                      });
-                                                                    });
-                                                                  });
-                                                                });
-                                                              });
-                                                            });
-                                                          });
-                                                        });
-                                                      });
-                                                    });
-                                                  });
-                                                });
-                                              });
-                                            });
-                                          });
-                                        });
-                                      });
-                                    });
-                                  });
-                                });
-                              });
-                            });
-                          });
-                        });
-                      });
-                    });
-                  });
-                });
-              });
-            });
-          });
-        });
+      it('should properly handle multiple responses with different verbs', async () => {
+        const result1 = await testClient.multipleResponses.get200Model204NoModelDefaultError200Valid();
+        should.exist(result1);
+        result1.statusCode.should.equal("200");
+
+        //should use models.Error to deserialize and set it as body of javascript Error object
+        await msAssert.throwsAsync(testClient.multipleResponses.get200Model204NoModelDefaultError201Invalid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(201));
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get200Model204NoModelDefaultError202None(),
+          (error: msRest.RestError) => error.statusCode.should.equal(202));
+
+        //should we set body property of msRest.HttpOperationResponse to {}.
+        //C3 does this Assert.Null(client.MultipleResponses.Get200Model204NoModelDefaultError204Valid());
+        await testClient.multipleResponses.get200Model204NoModelDefaultError204Valid();
+
+        //{"message":"client error","status":400} shouldn't we set this to error model defined in swagger?
+        await msAssert.throwsAsync(testClient.multipleResponses.get200Model204NoModelDefaultError400Valid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        const result2 = await testClient.multipleResponses.get200Model201ModelDefaultError200Valid();
+        should.exist(result2);
+        result2.statusCode.should.equal("200");
+
+        const result3 = await testClient.multipleResponses.get200Model201ModelDefaultError201Valid();
+        should.exist(result3);
+        assert.deepEqual(result3, { 'statusCode': '201', 'textStatusCode': 'Created' });
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get200Model201ModelDefaultError400Valid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        const result4 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError200Valid();
+        should.exist(result4);
+        result4.statusCode.should.equal("200");
+
+        const result5 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError201Valid();
+        should.exist(result5);
+        result5.httpCode.should.equal("201");
+
+        const result6 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError404Valid();
+        should.exist(result6);
+        result6.httpStatusCode.should.equal("404");
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError400Valid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await testClient.multipleResponses.get202None204NoneDefaultError202None();
+
+        await testClient.multipleResponses.get202None204NoneDefaultError204None();
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get202None204NoneDefaultError400Valid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await testClient.multipleResponses.get202None204NoneDefaultNone202Invalid();
+
+        await testClient.multipleResponses.get202None204NoneDefaultNone204None();
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get202None204NoneDefaultNone400None(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get202None204NoneDefaultNone400Invalid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        const result7 = await testClient.multipleResponses.getDefaultModelA200Valid();
+        result7.statusCode.should.equal("200");
+
+        await testClient.multipleResponses.getDefaultModelA200None();
+
+        await msAssert.throwsAsync(testClient.multipleResponses.getDefaultModelA400Valid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await msAssert.throwsAsync(testClient.multipleResponses.getDefaultModelA400None(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await testClient.multipleResponses.getDefaultNone200Invalid();
+
+        await testClient.multipleResponses.getDefaultNone200None();
+
+        await msAssert.throwsAsync(testClient.multipleResponses.getDefaultNone400Invalid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await msAssert.throwsAsync(testClient.multipleResponses.getDefaultNone400None(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await testClient.multipleResponses.get200ModelA200None();
+
+        const result8 = await testClient.multipleResponses.get200ModelA200Valid();
+        result8.statusCode.should.equal("200");
+
+        await testClient.multipleResponses.get200ModelA200Invalid();
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA400None(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA400Valid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA400Invalid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(400));
+
+        await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA202Valid(),
+          (error: msRest.RestError) => error.statusCode.should.equal(202));
       });
     });
   });

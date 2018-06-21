@@ -546,6 +546,11 @@ namespace AutoRest.TypeScript.DSL
             return new TSTryBlock(this);
         }
 
+        public void Return(string result)
+        {
+            Return(value => value.Text(result));
+        }
+
         public void Return(Action<TSValue> returnValueAction)
         {
             Text("return ");

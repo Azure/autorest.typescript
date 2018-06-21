@@ -530,100 +530,6 @@ namespace AutoRest.TypeScript
             return tsType;
         }
 
-        public static IndentedStringBuilder AppendConstraintValidations(this IModelType type, string valueReference, Dictionary<Constraint, string> constraints,
-            IndentedStringBuilder builder)
-        {
-            if (valueReference == null)
-            {
-                throw new ArgumentNullException(nameof(valueReference));
-            }
-
-            if (constraints == null)
-            {
-                throw new ArgumentNullException(nameof(constraints));
-            }
-
-            if (builder == null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
-
-            foreach (var constraint in constraints.Keys)
-            {
-                string constraintCheck;
-                string constraintValue = constraints[constraint];
-                switch (constraint)
-                {
-                    case Constraint.ExclusiveMaximum:
-                        constraintCheck = $"{valueReference} >= {constraints[constraint]}";
-                        break;
-                    case Constraint.ExclusiveMinimum:
-                        constraintCheck = $"{valueReference} <= {constraints[constraint]}";
-                        break;
-                    case Constraint.InclusiveMaximum:
-                        constraintCheck = $"{valueReference} > {constraints[constraint]}";
-                        break;
-                    case Constraint.InclusiveMinimum:
-                        constraintCheck = $"{valueReference} < {constraints[constraint]}";
-                        break;
-                    case Constraint.MaxItems:
-                        constraintCheck = $"{valueReference}.length > {constraints[constraint]}";
-                        break;
-                    case Constraint.MaxLength:
-                        constraintCheck = $"{valueReference}.length > {constraints[constraint]}";
-                        break;
-                    case Constraint.MinItems:
-                        constraintCheck = $"{valueReference}.length < {constraints[constraint]}";
-                        break;
-                    case Constraint.MinLength:
-                        constraintCheck = $"{valueReference}.length < {constraints[constraint]}";
-                        break;
-                    case Constraint.MultipleOf:
-                        constraintCheck = $"{valueReference} % {constraints[constraint]} !== 0";
-                        break;
-                    case Constraint.Pattern:
-
-                        constraintValue = CreatePatternConstraintValue(constraintValue);
-                        constraintCheck = $"{valueReference}.match({constraintValue}) === null";
-                        break;
-                    case Constraint.UniqueItems:
-                        if ("true".EqualsIgnoreCase(constraints[constraint]))
-                        {
-                            constraintCheck = string.Format(
-                                "{0}.length !== {0}.filter(function(item, i, ar) {{ return ar.indexOf(item) === i; }}).length", valueReference);
-                        }
-                        else
-                        {
-                            constraintCheck = null;
-                        }
-                        break;
-                    default:
-                        throw new NotSupportedException("Constraint '" + constraint + "' is not supported.");
-                }
-                if (constraintCheck != null)
-                {
-                    var escapedValueReference = valueReference.EscapeSingleQuotes();
-                    if (constraint != Constraint.UniqueItems)
-                    {
-                        builder.AppendLine("if ({0})", constraintCheck)
-                            .AppendLine("{").Indent()
-                            .AppendLine("throw new Error('\"{0}\" should satisfy the constraint - \"{1}\": {2}');",
-                                escapedValueReference, constraint, constraintValue).Outdent()
-                            .AppendLine("}");
-                    }
-                    else
-                    {
-                        builder.AppendLine("if ({0})", constraintCheck)
-                            .AppendLine("{").Indent()
-                            .AppendLine("throw new Error('\"{0}\" should satisfy the constraint - \"{1}\"');",
-                                escapedValueReference, constraint).Outdent()
-                            .AppendLine("}");
-                    }
-                }
-            }
-            return builder;
-        }
-
         private static string CreatePatternConstraintValue(string constraintValue)
         {
             return "/" + constraintValue.Replace("/", "\\/") + "/";
@@ -658,6 +564,26 @@ namespace AutoRest.TypeScript
                     isPageable: false,
                     expandComposite: false,
                     isXML: requestBody.Parent.CodeModel.ShouldGenerateXmlSerialization == true);
+            }
+        }
+
+        public static void ConstructResponseBodyMapper(TSValue value, Response response, Method method)
+        {
+            IModelType responseBodyModelType = response.Body;
+            if (responseBodyModelType is CompositeType)
+            {
+                value.Text($"Mappers.{responseBodyModelType.Name}");
+            }
+            else
+            {
+                ConstructMapper(
+                    value,
+                    responseBodyModelType,
+                    "parsedResponse",
+                    null,
+                    isPageable: false,
+                    expandComposite: false,
+                    isXML: method.CodeModel.ShouldGenerateXmlSerialization == true);
             }
         }
 
