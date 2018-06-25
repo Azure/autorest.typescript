@@ -328,6 +328,7 @@ const getRequiredPathOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.pathParameter
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -342,6 +343,7 @@ const putOptionalQueryOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.queryParameter
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -357,6 +359,7 @@ const putOptionalHeaderOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.queryParameter
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -397,6 +400,7 @@ const getRequiredGlobalPathOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.requiredGlobalPath
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -411,6 +415,7 @@ const getRequiredGlobalQueryOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.requiredGlobalQuery
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -425,6 +430,7 @@ const getOptionalGlobalQueryOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.optionalGlobalQuery
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel

@@ -410,6 +410,7 @@ const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/null",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -429,6 +430,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
 const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/invalid",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -448,6 +450,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
 const getOverflowOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/overflow",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -467,6 +470,7 @@ const getOverflowOperationSpec: msRest.OperationSpec = {
 const getUnderflowOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/underflow",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -509,6 +513,7 @@ const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
 const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/max/lowercase",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -528,6 +533,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
 const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/max/uppercase",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -570,6 +576,7 @@ const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
 const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/min",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

@@ -975,6 +975,7 @@ const serializer = new msRest.Serializer(Mappers);
 const head400OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/client/400",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -986,6 +987,7 @@ const head400OperationSpec: msRest.OperationSpec = {
 const get400OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/400",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1093,6 +1095,7 @@ const delete400OperationSpec: msRest.OperationSpec = {
 const head401OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/client/401",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1104,6 +1107,7 @@ const head401OperationSpec: msRest.OperationSpec = {
 const get402OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/402",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1115,6 +1119,7 @@ const get402OperationSpec: msRest.OperationSpec = {
 const get403OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/403",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1246,6 +1251,7 @@ const put409OperationSpec: msRest.OperationSpec = {
 const head410OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/client/410",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1257,6 +1263,7 @@ const head410OperationSpec: msRest.OperationSpec = {
 const get411OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/411",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1268,6 +1275,7 @@ const get411OperationSpec: msRest.OperationSpec = {
 const get412OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/412",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1351,6 +1359,7 @@ const post415OperationSpec: msRest.OperationSpec = {
 const get416OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/416",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1386,6 +1395,7 @@ const delete417OperationSpec: msRest.OperationSpec = {
 const head429OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/client/429",
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel

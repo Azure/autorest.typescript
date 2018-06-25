@@ -1105,6 +1105,7 @@ const postRequiredIntegerHeaderOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.headerParameter0
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1119,6 +1120,7 @@ const postOptionalIntegerHeaderOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.headerParameter1
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1224,6 +1226,7 @@ const postRequiredStringHeaderOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.headerParameter2
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1238,6 +1241,7 @@ const postOptionalStringHeaderOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.bodyParameter
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1437,6 +1441,7 @@ const postRequiredArrayHeaderOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.headerParameter3
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -1451,6 +1456,7 @@ const postOptionalArrayHeaderOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.headerParameter4
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

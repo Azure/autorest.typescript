@@ -1243,6 +1243,7 @@ const getSinglePagesOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1263,6 +1264,7 @@ const getMultiplePagesOperationSpec: msRest.OperationSpec = {
     Parameters.maxresults0,
     Parameters.timeout0
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1283,6 +1285,7 @@ const getOdataMultiplePagesOperationSpec: msRest.OperationSpec = {
     Parameters.maxresults1,
     Parameters.timeout1
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.OdataProductResult
@@ -1306,6 +1309,7 @@ const getMultiplePagesWithOffsetOperationSpec: msRest.OperationSpec = {
     Parameters.maxresults2,
     Parameters.timeout2
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1323,6 +1327,7 @@ const getMultiplePagesRetryFirstOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1340,6 +1345,7 @@ const getMultiplePagesRetrySecondOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1357,6 +1363,7 @@ const getSinglePagesFailureOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1374,6 +1381,7 @@ const getMultiplePagesFailureOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1391,6 +1399,7 @@ const getMultiplePagesFailureUriOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1414,6 +1423,7 @@ const getMultiplePagesFragmentNextLinkOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.OdataProductResult
@@ -1437,6 +1447,7 @@ const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: msRest.Operatio
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.OdataProductResult
@@ -1461,6 +1472,7 @@ const nextFragmentOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.OdataProductResult
@@ -1485,6 +1497,7 @@ const nextFragmentWithGroupingOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.OdataProductResult
@@ -1505,6 +1518,7 @@ const beginGetMultiplePagesLROOperationSpec: msRest.OperationSpec = {
     Parameters.maxresults3,
     Parameters.timeout3
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.ProductResult
@@ -1526,6 +1540,7 @@ const getSinglePagesNextOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1550,6 +1565,7 @@ const getMultiplePagesNextOperationSpec: msRest.OperationSpec = {
     Parameters.maxresults0,
     Parameters.timeout0
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1574,6 +1590,7 @@ const getOdataMultiplePagesNextOperationSpec: msRest.OperationSpec = {
     Parameters.maxresults1,
     Parameters.timeout1
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.OdataProductResult
@@ -1598,6 +1615,7 @@ const getMultiplePagesWithOffsetNextOperationSpec: msRest.OperationSpec = {
     Parameters.maxresults4,
     Parameters.timeout4
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1619,6 +1637,7 @@ const getMultiplePagesRetryFirstNextOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1640,6 +1659,7 @@ const getMultiplePagesRetrySecondNextOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1661,6 +1681,7 @@ const getSinglePagesFailureNextOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1682,6 +1703,7 @@ const getMultiplePagesFailureNextOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1703,6 +1725,7 @@ const getMultiplePagesFailureUriNextOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
@@ -1727,6 +1750,7 @@ const beginGetMultiplePagesLRONextOperationSpec: msRest.OperationSpec = {
     Parameters.maxresults3,
     Parameters.timeout3
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.ProductResult

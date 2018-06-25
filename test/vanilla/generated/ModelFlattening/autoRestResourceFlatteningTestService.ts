@@ -571,6 +571,7 @@ const putArrayOperationSpec: msRest.OperationSpec = {
 const getArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/array",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -629,6 +630,7 @@ const putWrappedArrayOperationSpec: msRest.OperationSpec = {
 const getWrappedArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/wrappedarray",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -687,6 +689,7 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
 const getDictionaryOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/dictionary",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -733,6 +736,7 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
 const getResourceCollectionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/resourcecollection",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ResourceCollection

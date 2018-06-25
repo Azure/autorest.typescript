@@ -369,6 +369,7 @@ const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/null",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -388,6 +389,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
 const getInvalidDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/invaliddate",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -407,6 +409,7 @@ const getInvalidDateOperationSpec: msRest.OperationSpec = {
 const getOverflowDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/overflowdate",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -426,6 +429,7 @@ const getOverflowDateOperationSpec: msRest.OperationSpec = {
 const getUnderflowDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/underflowdate",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -468,6 +472,7 @@ const putMaxDateOperationSpec: msRest.OperationSpec = {
 const getMaxDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/max",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -510,6 +515,7 @@ const putMinDateOperationSpec: msRest.OperationSpec = {
 const getMinDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/min",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

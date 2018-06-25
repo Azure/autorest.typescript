@@ -278,6 +278,7 @@ const serializer = new msRest.Serializer(Mappers);
 const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/valid",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.DictionaryWrapper
@@ -317,6 +318,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
 const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/empty",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.DictionaryWrapper
@@ -356,6 +358,7 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/null",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.DictionaryWrapper
@@ -370,6 +373,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
 const getNotProvidedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/notprovided",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.DictionaryWrapper

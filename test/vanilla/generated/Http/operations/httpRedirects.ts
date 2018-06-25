@@ -653,6 +653,7 @@ const serializer = new msRest.Serializer(Mappers);
 const head300OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/300",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsHead300Headers
@@ -670,6 +671,7 @@ const head300OperationSpec: msRest.OperationSpec = {
 const get300OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/300",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsGet300Headers
@@ -699,6 +701,7 @@ const get300OperationSpec: msRest.OperationSpec = {
 const head301OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/301",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsHead301Headers
@@ -716,6 +719,7 @@ const head301OperationSpec: msRest.OperationSpec = {
 const get301OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/301",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsGet301Headers
@@ -760,6 +764,7 @@ const put301OperationSpec: msRest.OperationSpec = {
 const head302OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/302",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsHead302Headers
@@ -777,6 +782,7 @@ const head302OperationSpec: msRest.OperationSpec = {
 const get302OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/302",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsGet302Headers
@@ -851,6 +857,7 @@ const post303OperationSpec: msRest.OperationSpec = {
 const head307OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/307",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsHead307Headers
@@ -868,6 +875,7 @@ const head307OperationSpec: msRest.OperationSpec = {
 const get307OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/307",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsGet307Headers

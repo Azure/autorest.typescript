@@ -1200,6 +1200,7 @@ const serializer = new msRest.Serializer(Mappers, true);
 const getComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/complex-type-ref-no-meta",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.RootWithRefAndNoMeta
@@ -1232,6 +1233,7 @@ const putComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
 const getComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/complex-type-ref-with-meta",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.RootWithRefAndMeta
@@ -1264,6 +1266,7 @@ const putComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
 const getSimpleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/simple",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Slideshow
@@ -1300,6 +1303,7 @@ const putSimpleOperationSpec: msRest.OperationSpec = {
 const getWrappedListsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/wrapped-lists",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.AppleBarrel
@@ -1334,6 +1338,7 @@ const putWrappedListsOperationSpec: msRest.OperationSpec = {
 const getHeadersOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/headers",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.XmlGetHeadersHeaders
@@ -1347,6 +1352,7 @@ const getHeadersOperationSpec: msRest.OperationSpec = {
 const getEmptyListOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-list",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Slideshow
@@ -1379,6 +1385,7 @@ const putEmptyListOperationSpec: msRest.OperationSpec = {
 const getEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-wrapped-lists",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.AppleBarrel
@@ -1411,6 +1418,7 @@ const putEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
 const getRootListOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/root-list",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1467,6 +1475,7 @@ const putRootListOperationSpec: msRest.OperationSpec = {
 const getRootListSingleItemOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/root-list-single-item",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1523,6 +1532,7 @@ const putRootListSingleItemOperationSpec: msRest.OperationSpec = {
 const getEmptyRootListOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-root-list",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1579,6 +1589,7 @@ const putEmptyRootListOperationSpec: msRest.OperationSpec = {
 const getEmptyChildElementOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-child-element",
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Banana
@@ -1614,6 +1625,7 @@ const listContainersOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.comp0
   ],
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ListContainersResponse
@@ -1631,6 +1643,7 @@ const getServicePropertiesOperationSpec: msRest.OperationSpec = {
     Parameters.comp1,
     Parameters.restype0
   ],
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.StorageServiceProperties
@@ -1671,6 +1684,7 @@ const getAclsOperationSpec: msRest.OperationSpec = {
     Parameters.comp2,
     Parameters.restype1
   ],
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1736,6 +1750,7 @@ const listBlobsOperationSpec: msRest.OperationSpec = {
     Parameters.comp0,
     Parameters.restype1
   ],
+  contentType: "application/xml; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ListBlobsResponse

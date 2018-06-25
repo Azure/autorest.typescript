@@ -263,6 +263,7 @@ const getAllWithValuesOperationSpec: msRest.OperationSpec = {
     Parameters.pathItemStringQuery,
     Parameters.globalStringQuery
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -285,6 +286,7 @@ const getGlobalQueryNullOperationSpec: msRest.OperationSpec = {
     Parameters.pathItemStringQuery,
     Parameters.globalStringQuery
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -307,6 +309,7 @@ const getGlobalAndLocalQueryNullOperationSpec: msRest.OperationSpec = {
     Parameters.pathItemStringQuery,
     Parameters.globalStringQuery
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -329,6 +332,7 @@ const getLocalPathItemQueryNullOperationSpec: msRest.OperationSpec = {
     Parameters.pathItemStringQuery,
     Parameters.globalStringQuery
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

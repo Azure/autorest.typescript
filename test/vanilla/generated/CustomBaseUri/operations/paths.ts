@@ -82,6 +82,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
     Parameters.accountName,
     Parameters.host
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

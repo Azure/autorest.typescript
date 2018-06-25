@@ -1045,6 +1045,7 @@ const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/null",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1064,6 +1065,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
 const getInvalidFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/invalidfloat",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1083,6 +1085,7 @@ const getInvalidFloatOperationSpec: msRest.OperationSpec = {
 const getInvalidDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/invaliddouble",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1102,6 +1105,7 @@ const getInvalidDoubleOperationSpec: msRest.OperationSpec = {
 const getInvalidDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/invaliddecimal",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1144,6 +1148,7 @@ const putBigFloatOperationSpec: msRest.OperationSpec = {
 const getBigFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/float/3.402823e+20",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1186,6 +1191,7 @@ const putBigDoubleOperationSpec: msRest.OperationSpec = {
 const getBigDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/double/2.5976931e+101",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1230,6 +1236,7 @@ const putBigDoublePositiveDecimalOperationSpec: msRest.OperationSpec = {
 const getBigDoublePositiveDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/double/99999999.99",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1274,6 +1281,7 @@ const putBigDoubleNegativeDecimalOperationSpec: msRest.OperationSpec = {
 const getBigDoubleNegativeDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/double/-99999999.99",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1316,6 +1324,7 @@ const putBigDecimalOperationSpec: msRest.OperationSpec = {
 const getBigDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/decimal/2.5976931e+101",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1360,6 +1369,7 @@ const putBigDecimalPositiveDecimalOperationSpec: msRest.OperationSpec = {
 const getBigDecimalPositiveDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/decimal/99999999.99",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1404,6 +1414,7 @@ const putBigDecimalNegativeDecimalOperationSpec: msRest.OperationSpec = {
 const getBigDecimalNegativeDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/decimal/-99999999.99",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1446,6 +1457,7 @@ const putSmallFloatOperationSpec: msRest.OperationSpec = {
 const getSmallFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/small/float/3.402823e-20",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1488,6 +1500,7 @@ const putSmallDoubleOperationSpec: msRest.OperationSpec = {
 const getSmallDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/small/double/2.5976931e-101",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1530,6 +1543,7 @@ const putSmallDecimalOperationSpec: msRest.OperationSpec = {
 const getSmallDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/small/decimal/2.5976931e-101",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

@@ -4382,6 +4382,7 @@ const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.Operat
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4404,6 +4405,7 @@ const beginDeleteProvisioning202DeletingFailed200OperationSpec: msRest.Operation
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4426,6 +4428,7 @@ const beginDeleteProvisioning202Deletingcanceled200OperationSpec: msRest.Operati
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4448,6 +4451,7 @@ const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     default: {
@@ -4463,6 +4467,7 @@ const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4484,6 +4489,7 @@ const beginDelete202NoRetry204OperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4505,6 +4511,7 @@ const beginDeleteNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
@@ -4525,6 +4532,7 @@ const beginDeleteAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
@@ -4545,6 +4553,7 @@ const beginDeleteAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
@@ -4562,6 +4571,7 @@ const beginDeleteAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
@@ -4579,6 +4589,7 @@ const beginDeleteAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
@@ -4596,6 +4607,7 @@ const beginDeleteAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
@@ -4613,6 +4625,7 @@ const beginPost200WithPayloadOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Sku
@@ -4684,6 +4697,7 @@ const beginPostDoubleHeadersFinalLocationGetOperationSpec: msRest.OperationSpec 
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.Product
@@ -4701,6 +4715,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec: msRest.OperationSp
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.Product
@@ -4718,6 +4733,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: msRest.Oper
   headerParameters: [
     Parameters.acceptLanguage
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.Product

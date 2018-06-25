@@ -216,6 +216,7 @@ const listOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.CatalogArray

@@ -770,6 +770,7 @@ const serializer = new msRest.Serializer(Mappers);
 const head200OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/200",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -782,6 +783,7 @@ const head200OperationSpec: msRest.OperationSpec = {
 const get200OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/success/200",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1051,6 +1053,7 @@ const delete202OperationSpec: msRest.OperationSpec = {
 const head204OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/204",
+  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     default: {
@@ -1163,6 +1166,7 @@ const delete204OperationSpec: msRest.OperationSpec = {
 const head404OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/404",
+  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     404: {},

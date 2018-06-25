@@ -88,6 +88,7 @@ const serializer = new msRest.Serializer(Mappers);
 const getFileOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/nonempty",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -107,6 +108,7 @@ const getFileOperationSpec: msRest.OperationSpec = {
 const getFileLargeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/verylarge",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -126,6 +128,7 @@ const getFileLargeOperationSpec: msRest.OperationSpec = {
 const getEmptyFileOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/empty",
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

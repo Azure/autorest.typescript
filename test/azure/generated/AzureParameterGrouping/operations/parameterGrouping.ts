@@ -249,6 +249,7 @@ const postOptionalOperationSpec: msRest.OperationSpec = {
     Parameters.acceptLanguage,
     Parameters.customHeader1
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -270,6 +271,7 @@ const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
     Parameters.headerOne,
     Parameters.headerTwo
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -289,6 +291,7 @@ const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
     Parameters.acceptLanguage,
     Parameters.headerOne
   ],
+  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
