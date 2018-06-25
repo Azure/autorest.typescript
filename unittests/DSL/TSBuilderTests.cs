@@ -198,5 +198,145 @@ namespace AutoRest.TypeScript.DSL
             });
             Assert.Equal("Cannot add a property to a TSObject while constructing its child property (\"child\").", exception.Message);
         }
+
+        [Fact]
+        public void NestedTryBlocks()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Try(tryBlock1 =>
+            {
+                tryBlock1.Try(tryBlock2 =>
+                {
+                })
+                .Catch("error1", catchBlock2 =>
+                {
+                });
+            })
+            .Catch("error2", catchBlock1 =>
+            {
+            });
+            Assert.Equal(
+                "try {" + Environment.NewLine +
+                "  try {" + Environment.NewLine +
+                "  } catch (error1) {" + Environment.NewLine +
+                "  }" + Environment.NewLine +
+                "} catch (error2) {" + Environment.NewLine +
+                "}",
+                builder.ToString());
+        }
+
+        [Fact]
+        public void NestedIfBlocks()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("a", ifBlock1 =>
+            {
+                ifBlock1.If("b", ifBlock2 =>
+                {
+                });
+            });
+            Assert.Equal(
+                "if (a) {" + Environment.NewLine +
+                "  if (b) {" + Environment.NewLine +
+                "  }" + Environment.NewLine +
+                "}",
+                builder.ToString());
+        }
+
+        [Fact]
+        public void NestedElseBlocks()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("a", ifBlock1 =>
+            {
+                ifBlock1.If("b", ifBlock2 =>
+                {
+                })
+                .Else(elseBlock2 =>
+                {
+                });
+            })
+            .Else(elseBlock1 =>
+            {
+            }); ;
+            Assert.Equal(
+                "if (a) {" + Environment.NewLine +
+                "  if (b) {" + Environment.NewLine +
+                "  } else {" + Environment.NewLine +
+                "  }" + Environment.NewLine +
+                "} else {" + Environment.NewLine +
+                "}",
+                builder.ToString());
+        }
+
+        [Fact]
+        public void NestedElseIfBlocks()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("a1", ifBlock1 =>
+            {
+                ifBlock1.If("b1", ifBlock2 =>
+                {
+                })
+                .ElseIf("b2", elseIfBlock2 =>
+                {
+                });
+            })
+            .ElseIf("a2", elseIfBlock1 =>
+            {
+            }); ;
+            Assert.Equal(
+                "if (a1) {" + Environment.NewLine +
+                "  if (b1) {" + Environment.NewLine +
+                "  } else if (b2) {" + Environment.NewLine +
+                "  }" + Environment.NewLine +
+                "} else if (a2) {" + Environment.NewLine +
+                "}",
+                builder.ToString());
+        }
+
+        [Fact]
+        public void TryBlockInIfBlock()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("true", ifBlock =>
+            {
+                ifBlock.Try(tryBlock =>
+                {
+                })
+                .Catch("error", catchBlock2 =>
+                {
+                });
+            });
+            Assert.Equal(
+                "if (true) {" + Environment.NewLine +
+                "  try {" + Environment.NewLine +
+                "  } catch (error) {" + Environment.NewLine +
+                "  }" + Environment.NewLine +
+                "}",
+                builder.ToString());
+        }
+
+        [Fact]
+        public void IfBlockInTryBlock()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Try(tryBlock =>
+            {
+                tryBlock.If("true", ifBlock =>
+                {
+                });
+            })
+            .Catch("error", catchBlock1 =>
+            {
+            });
+            Assert.Equal(
+                "try {" + Environment.NewLine +
+                "  if (true) {" + Environment.NewLine +
+                "  }" + Environment.NewLine +
+                "} catch (error) {" + Environment.NewLine +
+                "}",
+                builder.ToString());
+        }
     }
 }

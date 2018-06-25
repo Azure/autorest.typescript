@@ -350,21 +350,20 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        public string DeserializeResponse(IModelType type)
+        public void DeserializeResponse(TSBlock block, IModelType type)
         {
             if (type == null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
 
-            TSBuilder builder = new TSBuilder();
             const string responseVariable = "parsedResponse";
             const string valueReference = "operationRes.parsedBody";
-            builder.Line($"let {responseVariable} = {valueReference} as {{ [key: string]: any }};");
+            block.Line($"let {responseVariable} = {valueReference} as {{ [key: string]: any }};");
             string deserializeBody = GetDeserializationString(type, valueReference, responseVariable);
             if (!string.IsNullOrWhiteSpace(deserializeBody))
             {
-                builder.Try(tryBlock =>
+                block.Try(tryBlock =>
                 {
                     tryBlock.If($"{responseVariable} != undefined", ifBlock =>
                     {
@@ -376,7 +375,15 @@ namespace AutoRest.TypeScript.Model
                     catchBlock.Line(DeserializationError);
                 });
             }
+        }
 
+        public string DeserializeResponse(IModelType type)
+        {
+            TSBuilder builder = new TSBuilder();
+            using (TSBlock block = new TSBlock(builder))
+            {
+                DeserializeResponse(block, type);
+            }
             return builder.ToString();
         }
 
@@ -634,7 +641,7 @@ namespace AutoRest.TypeScript.Model
                                 {
                                     if (response.Body != null)
                                     {
-                                        ifBlock.Line(DeserializeResponse(response.Body));
+                                        DeserializeResponse(ifBlock, response.Body);
                                     }
                                 });
                             }
@@ -642,7 +649,7 @@ namespace AutoRest.TypeScript.Model
 
                         if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
                         {
-                            tryBlock.Line(DeserializeResponse(DefaultResponse.Body));
+                            DeserializeResponse(tryBlock, DefaultResponse.Body);
                         }
                     }
                 })

@@ -24,13 +24,13 @@ namespace AutoRest.TypeScript.DSL
 
         public const int multiLineCommentWordWrapWidth = 100;
 
-        private State currentState;
-
-        private enum State
+        public enum State
         {
             EmptyLine,
             LineWithText,
         }
+
+        public State CurrentState { get; private set; }
 
         /// <summary>
         /// Create a position object that will track a certain position within the TSBuilder's content.
@@ -266,7 +266,7 @@ namespace AutoRest.TypeScript.DSL
                 text = string.Format(text, formattedArguments);
             }
 
-            bool addPrefix = (currentState == State.EmptyLine);
+            bool addPrefix = (CurrentState == State.EmptyLine);
 
             List<string> lines = new List<string>();
 
@@ -310,7 +310,7 @@ namespace AutoRest.TypeScript.DSL
                 contents.Append(line);
             }
 
-            currentState = text.EndsWith(newLine) ? State.EmptyLine : State.LineWithText;
+            CurrentState = text.EndsWith(newLine) ? State.EmptyLine : State.LineWithText;
         }
 
         /// <summary>
@@ -528,6 +528,10 @@ namespace AutoRest.TypeScript.DSL
                     bodyAction.Invoke(block);
                 }
             });
+            if (CurrentState == State.LineWithText)
+            {
+                Line();
+            }
             Text($"}}");
             return new TSIfBlock(this);
         }
@@ -542,6 +546,10 @@ namespace AutoRest.TypeScript.DSL
                     tryAction.Invoke(block);
                 }
             });
+            if (CurrentState == State.LineWithText)
+            {
+                Line();
+            }
             Text($"}}");
             return new TSTryBlock(this);
         }

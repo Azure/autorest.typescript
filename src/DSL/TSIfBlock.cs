@@ -37,7 +37,6 @@ namespace AutoRest.TypeScript.DSL
                 }
             });
             builder.Text($"}}");
-            SetCurrentState(State.Statement);
         }
     }
 }
