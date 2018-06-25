@@ -13,8 +13,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/pathItemsMappers";
 import { AutoRestUrlTestServiceContext } from "../autoRestUrlTestServiceContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a PathItems. */
 export class PathItems {
   private readonly client: AutoRestUrlTestServiceContext;
@@ -48,23 +46,19 @@ export class PathItems {
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          localStringPath,
-          localStringQuery,
-          pathItemStringPath,
-          pathItemStringQuery,
-          "this.client.globalStringPath": this.client.globalStringPath,
-          "this.client.globalStringQuery": this.client.globalStringQuery
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            localStringPath,
+            localStringQuery,
+            pathItemStringPath,
+            pathItemStringQuery,
+            "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -165,23 +159,19 @@ export class PathItems {
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          localStringPath,
-          localStringQuery,
-          pathItemStringPath,
-          pathItemStringQuery,
-          "this.client.globalStringPath": this.client.globalStringPath,
-          "this.client.globalStringQuery": this.client.globalStringQuery
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            localStringPath,
+            localStringQuery,
+            pathItemStringPath,
+            pathItemStringQuery,
+            "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -282,23 +272,19 @@ export class PathItems {
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          localStringPath,
-          localStringQuery,
-          pathItemStringPath,
-          pathItemStringQuery,
-          "this.client.globalStringPath": this.client.globalStringPath,
-          "this.client.globalStringQuery": this.client.globalStringQuery
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            localStringPath,
+            localStringQuery,
+            pathItemStringPath,
+            pathItemStringQuery,
+            "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -399,23 +385,19 @@ export class PathItems {
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          localStringPath,
-          localStringQuery,
-          pathItemStringPath,
-          pathItemStringQuery,
-          "this.client.globalStringPath": this.client.globalStringPath,
-          "this.client.globalStringQuery": this.client.globalStringQuery
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            localStringPath,
+            localStringQuery,
+            pathItemStringPath,
+            pathItemStringQuery,
+            "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

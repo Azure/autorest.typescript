@@ -12,8 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/pathsMappers";
 import { AutoRestParameterizedHostTestClientContext } from "../autoRestParameterizedHostTestClientContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a Paths. */
 export class Paths {
   private readonly client: AutoRestParameterizedHostTestClientContext;
@@ -41,19 +39,15 @@ export class Paths {
    */
   async getEmptyWithHttpOperationResponse(accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          accountName,
-          "this.client.host": this.client.host
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            accountName,
+            "this.client.host": this.client.host
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

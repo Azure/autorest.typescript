@@ -13,8 +13,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/odataMappers";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a Odata. */
 export class Odata {
   private readonly client: AutoRestAzureSpecialParametersTestClientContext;
@@ -43,21 +41,17 @@ export class Odata {
     let top = (options && options.top !== undefined) ? options.top : undefined;
     let orderby = (options && options.orderby !== undefined) ? options.orderby : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          filter,
-          top,
-          orderby,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            filter,
+            top,
+            orderby,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

@@ -13,8 +13,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/headerMappers";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a Header. */
 export class Header {
   private readonly client: AutoRestAzureSpecialParametersTestClientContext;
@@ -42,19 +40,15 @@ export class Header {
    */
   async customNamedRequestIdWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdResponse> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          fooClientRequestId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            fooClientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -82,18 +76,15 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -117,19 +108,15 @@ export class Header {
    */
   async customNamedRequestIdParamGroupingWithHttpOperationResponse(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          "this.client.acceptLanguage": this.client.acceptLanguage,
-          headerCustomNamedRequestIdParamGroupingParameters
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+            headerCustomNamedRequestIdParamGroupingParameters
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -160,18 +147,15 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -193,19 +177,15 @@ export class Header {
    */
   async customNamedRequestIdHeadWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          fooClientRequestId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            fooClientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -233,8 +213,12 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
-            404: {},
+            200: {
+              headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
+            },
+            404: {
+              headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -242,14 +226,8 @@ export class Header {
           serializer: this.serializer
         });
       // Deserialize Response
-      let statusCode = operationRes.status;
+      const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
-      if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
-      }
-      if (statusCode === 404) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
-      }
     } catch (err) {
       return Promise.reject(err);
     }

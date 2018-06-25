@@ -12,7 +12,7 @@ namespace AutoRest.TypeScript.DSL
         {
         }
 
-        public TSTryBlock Catch(string errorName, Action<TSBlock> catchAction)
+        public void Catch(string errorName, Action<TSBlock> catchAction)
         {
             builder.Line($" catch ({errorName}) {{");
             builder.Indent(() =>
@@ -23,7 +23,6 @@ namespace AutoRest.TypeScript.DSL
                 }
             });
             builder.Text($"}}");
-            return this;
         }
     }
 }

@@ -12,8 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/httpSuccessMappers";
 import { AutoRestHeadTestServiceContext } from "../autoRestHeadTestServiceContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a HttpSuccess. */
 export class HttpSuccess {
   private readonly client: AutoRestHeadTestServiceContext;
@@ -39,18 +37,14 @@ export class HttpSuccess {
    */
   async head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -77,7 +71,7 @@ export class HttpSuccess {
           serializer: this.serializer
         });
       // Deserialize Response
-      let statusCode = operationRes.status;
+      const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
     } catch (err) {
       return Promise.reject(err);
@@ -98,18 +92,14 @@ export class HttpSuccess {
    */
   async head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -136,7 +126,7 @@ export class HttpSuccess {
           serializer: this.serializer
         });
       // Deserialize Response
-      let statusCode = operationRes.status;
+      const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
     } catch (err) {
       return Promise.reject(err);
@@ -157,18 +147,14 @@ export class HttpSuccess {
    */
   async head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -195,7 +181,7 @@ export class HttpSuccess {
           serializer: this.serializer
         });
       // Deserialize Response
-      let statusCode = operationRes.status;
+      const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
     } catch (err) {
       return Promise.reject(err);
