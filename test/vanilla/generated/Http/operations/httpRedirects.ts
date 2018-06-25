@@ -53,8 +53,12 @@ export class HttpRedirects {
           baseUrl: this.client.baseUri,
           path: "http/redirect/300",
           responses: {
-            200: {},
-            300: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsHead300Headers
+            },
+            300: {
+              headersMapper: Mappers.HttpRedirectsHead300Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -64,10 +68,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 300) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -101,7 +103,9 @@ export class HttpRedirects {
           baseUrl: this.client.baseUri,
           path: "http/redirect/300",
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsGet300Headers
+            },
             300: {
               bodyMapper: {
                 serializedName: "parsedResponse",
@@ -114,7 +118,8 @@ export class HttpRedirects {
                     }
                   }
                 }
-              }
+              },
+              headersMapper: Mappers.HttpRedirectsGet300Headers
             },
             default: {
               bodyMapper: Mappers.ErrorModel
@@ -125,7 +130,6 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 300) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -151,7 +155,6 @@ export class HttpRedirects {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -185,8 +188,12 @@ export class HttpRedirects {
           baseUrl: this.client.baseUri,
           path: "http/redirect/301",
           responses: {
-            200: {},
-            301: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsHead301Headers
+            },
+            301: {
+              headersMapper: Mappers.HttpRedirectsHead301Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -196,10 +203,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 301) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -233,8 +238,12 @@ export class HttpRedirects {
           baseUrl: this.client.baseUri,
           path: "http/redirect/301",
           responses: {
-            200: {},
-            301: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsGet301Headers
+            },
+            301: {
+              headersMapper: Mappers.HttpRedirectsGet301Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -244,10 +253,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 301) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -297,7 +304,9 @@ export class HttpRedirects {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            301: {},
+            301: {
+              headersMapper: Mappers.HttpRedirectsPut301Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -307,7 +316,6 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 301) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPut301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -341,8 +349,12 @@ export class HttpRedirects {
           baseUrl: this.client.baseUri,
           path: "http/redirect/302",
           responses: {
-            200: {},
-            302: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsHead302Headers
+            },
+            302: {
+              headersMapper: Mappers.HttpRedirectsHead302Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -352,10 +364,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 302) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -389,8 +399,12 @@ export class HttpRedirects {
           baseUrl: this.client.baseUri,
           path: "http/redirect/302",
           responses: {
-            200: {},
-            302: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsGet302Headers
+            },
+            302: {
+              headersMapper: Mappers.HttpRedirectsGet302Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -400,10 +414,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 302) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -453,7 +465,9 @@ export class HttpRedirects {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            302: {},
+            302: {
+              headersMapper: Mappers.HttpRedirectsPatch302Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -463,7 +477,6 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 302) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPatch302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -513,8 +526,12 @@ export class HttpRedirects {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            200: {},
-            303: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsPost303Headers
+            },
+            303: {
+              headersMapper: Mappers.HttpRedirectsPost303Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -524,10 +541,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPost303Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 303) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPost303Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -561,8 +576,12 @@ export class HttpRedirects {
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
           responses: {
-            200: {},
-            307: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsHead307Headers
+            },
+            307: {
+              headersMapper: Mappers.HttpRedirectsHead307Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -572,10 +591,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 307) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -609,8 +626,12 @@ export class HttpRedirects {
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
           responses: {
-            200: {},
-            307: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsGet307Headers
+            },
+            307: {
+              headersMapper: Mappers.HttpRedirectsGet307Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -620,10 +641,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 307) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -672,8 +691,12 @@ export class HttpRedirects {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            200: {},
-            307: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsPut307Headers
+            },
+            307: {
+              headersMapper: Mappers.HttpRedirectsPut307Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -683,10 +706,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPut307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 307) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPut307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -735,8 +756,12 @@ export class HttpRedirects {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            200: {},
-            307: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsPatch307Headers
+            },
+            307: {
+              headersMapper: Mappers.HttpRedirectsPatch307Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -746,10 +771,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPatch307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 307) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPatch307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -798,8 +821,12 @@ export class HttpRedirects {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            200: {},
-            307: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsPost307Headers
+            },
+            307: {
+              headersMapper: Mappers.HttpRedirectsPost307Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -809,10 +836,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPost307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 307) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPost307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -861,8 +886,12 @@ export class HttpRedirects {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            200: {},
-            307: {},
+            200: {
+              headersMapper: Mappers.HttpRedirectsDelete307Headers
+            },
+            307: {
+              headersMapper: Mappers.HttpRedirectsDelete307Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -872,10 +901,8 @@ export class HttpRedirects {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsDelete307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 307) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsDelete307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);

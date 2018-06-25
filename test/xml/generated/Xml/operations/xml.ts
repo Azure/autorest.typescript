@@ -275,7 +275,9 @@ export class Xml {
           baseUrl: this.client.baseUri,
           path: "xml/headers",
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.XmlGetHeadersHeaders
+            },
             default: {}
           },
           isXML: true,
@@ -284,7 +286,6 @@ export class Xml {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.XmlGetHeadersHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);

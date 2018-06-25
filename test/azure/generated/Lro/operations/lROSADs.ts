@@ -1365,7 +1365,8 @@ export class LROSADs {
           contentType: "application/json; charset=utf-8",
           responses: {
             200: {
-              bodyMapper: Mappers.Product
+              bodyMapper: Mappers.Product,
+              headersMapper: Mappers.LROSADsPutAsyncRelativeRetry400Headers
             },
             default: {
               bodyMapper: Mappers.CloudError
@@ -1388,7 +1389,6 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1438,7 +1438,9 @@ export class LROSADs {
             }
           ],
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsDeleteNonRetry400Headers
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -1448,7 +1450,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteNonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1498,7 +1499,9 @@ export class LROSADs {
             }
           ],
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsDelete202NonRetry400Headers
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -1508,7 +1511,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDelete202NonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1559,7 +1561,9 @@ export class LROSADs {
             }
           ],
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetry400Headers
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -1569,7 +1573,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1626,7 +1629,9 @@ export class LROSADs {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsPostNonRetry400Headers
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -1636,7 +1641,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostNonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1693,7 +1697,9 @@ export class LROSADs {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsPost202NonRetry400Headers
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -1703,7 +1709,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPost202NonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1761,7 +1766,9 @@ export class LROSADs {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsPostAsyncRelativeRetry400Headers
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -1771,7 +1778,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1929,7 +1935,8 @@ export class LROSADs {
           contentType: "application/json; charset=utf-8",
           responses: {
             200: {
-              bodyMapper: Mappers.Product
+              bodyMapper: Mappers.Product,
+              headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusHeaders
             },
             default: {
               bodyMapper: Mappers.CloudError
@@ -1952,7 +1959,6 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryNoStatusHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2013,7 +2019,8 @@ export class LROSADs {
           contentType: "application/json; charset=utf-8",
           responses: {
             200: {
-              bodyMapper: Mappers.Product
+              bodyMapper: Mappers.Product,
+              headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders
             },
             default: {
               bodyMapper: Mappers.CloudError
@@ -2036,7 +2043,6 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2142,7 +2148,9 @@ export class LROSADs {
             }
           ],
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryNoStatusHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -2152,7 +2160,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetryNoStatusHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2210,7 +2217,9 @@ export class LROSADs {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsPost202NoLocationHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -2220,7 +2229,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPost202NoLocationHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2280,7 +2288,9 @@ export class LROSADs {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -2290,7 +2300,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2433,7 +2442,8 @@ export class LROSADs {
           contentType: "application/json; charset=utf-8",
           responses: {
             200: {
-              bodyMapper: Mappers.Product
+              bodyMapper: Mappers.Product,
+              headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders
             },
             default: {
               bodyMapper: Mappers.CloudError
@@ -2456,7 +2466,6 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2517,7 +2526,8 @@ export class LROSADs {
           contentType: "application/json; charset=utf-8",
           responses: {
             200: {
-              bodyMapper: Mappers.Product
+              bodyMapper: Mappers.Product,
+              headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders
             },
             default: {
               bodyMapper: Mappers.CloudError
@@ -2540,7 +2550,6 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2591,7 +2600,9 @@ export class LROSADs {
             }
           ],
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsDelete202RetryInvalidHeaderHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -2601,7 +2612,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDelete202RetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2652,7 +2662,9 @@ export class LROSADs {
             }
           ],
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -2662,7 +2674,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2713,7 +2724,9 @@ export class LROSADs {
             }
           ],
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -2723,7 +2736,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2781,7 +2793,9 @@ export class LROSADs {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsPost202RetryInvalidHeaderHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -2791,7 +2805,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPost202RetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2851,7 +2864,9 @@ export class LROSADs {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -2861,7 +2876,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -2921,7 +2935,9 @@ export class LROSADs {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -2931,7 +2947,6 @@ export class LROSADs {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);

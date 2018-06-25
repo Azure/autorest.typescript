@@ -110,7 +110,9 @@ export class Header {
           baseUrl: this.client.baseUri,
           path: "header/response/existingkey",
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseExistingKeyHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -120,7 +122,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseExistingKeyHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -211,7 +212,9 @@ export class Header {
           baseUrl: this.client.baseUri,
           path: "header/response/protectedkey",
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseProtectedKeyHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -221,7 +224,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseProtectedKeyHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -346,7 +348,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseIntegerHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -356,7 +360,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseIntegerHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -481,7 +484,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseLongHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -491,7 +496,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseLongHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -616,7 +620,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseFloatHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -626,7 +632,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseFloatHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -751,7 +756,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseDoubleHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -761,7 +768,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDoubleHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -884,7 +890,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseBoolHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -894,7 +902,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseBoolHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1017,7 +1024,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseStringHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -1027,7 +1036,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseStringHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1150,7 +1158,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseDateHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -1160,7 +1170,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDateHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1284,7 +1293,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseDatetimeHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -1294,7 +1305,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDatetimeHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1416,7 +1426,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseDatetimeRfc1123Headers
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -1426,7 +1438,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDatetimeRfc1123Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1548,7 +1559,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseDurationHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -1558,7 +1571,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDurationHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1680,7 +1692,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseByteHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -1690,7 +1704,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseByteHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -1818,7 +1831,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderResponseEnumHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -1828,7 +1843,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseEnumHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);

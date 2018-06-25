@@ -246,7 +246,8 @@ export class LROsCustomHeader {
           contentType: "application/json; charset=utf-8",
           responses: {
             200: {
-              bodyMapper: Mappers.Product
+              bodyMapper: Mappers.Product,
+              headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
             },
             default: {
               bodyMapper: Mappers.CloudError
@@ -269,7 +270,6 @@ export class LROsCustomHeader {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -429,7 +429,9 @@ export class LROsCustomHeader {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -439,7 +441,6 @@ export class LROsCustomHeader {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROsCustomHeaderPost202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -500,7 +501,9 @@ export class LROsCustomHeader {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -510,7 +513,6 @@ export class LROsCustomHeader {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);

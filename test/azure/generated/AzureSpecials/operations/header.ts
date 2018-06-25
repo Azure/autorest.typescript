@@ -82,7 +82,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -92,7 +94,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -160,7 +161,9 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
+            200: {
+              headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -170,7 +173,6 @@ export class Header {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -233,8 +235,12 @@ export class Header {
             }
           ],
           responses: {
-            200: {},
-            404: {},
+            200: {
+              headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
+            },
+            404: {
+              headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
+            },
             default: {
               bodyMapper: Mappers.ErrorModel
             }
@@ -245,10 +251,8 @@ export class Header {
       let statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
       if (statusCode === 200) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 404) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);

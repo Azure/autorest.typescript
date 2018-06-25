@@ -2655,6 +2655,7 @@ describe('typescript', function () {
           (error: msRest.RestError) => error.statusCode.should.equal(400));
 
         const result7 = await testClient.multipleResponses.getDefaultModelA200Valid();
+        should.exist(result7);
         result7.statusCode.should.equal("200");
 
         await testClient.multipleResponses.getDefaultModelA200None();

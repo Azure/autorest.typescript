@@ -636,10 +636,6 @@ namespace AutoRest.TypeScript.Model
                                     {
                                         ifBlock.Line(DeserializeResponse(response.Body));
                                     }
-                                    if (response.Headers != null)
-                                    {
-                                        ifBlock.Line($"operationRes.parsedHeaders = this.serializer.deserialize(Mappers.{response.Headers.Name}, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');");
-                                    }
                                 });
                             }
                         }
@@ -761,6 +757,10 @@ namespace AutoRest.TypeScript.Model
                         if (response.Body != null)
                         {
                             responseObject.Property("bodyMapper", responseBodyMapper => ClientModelExtensions.ConstructResponseBodyMapper(responseBodyMapper, response, this));
+                        }
+                        if (response.Headers != null)
+                        {
+                            responseObject.Property("headersMapper", responseHeadersMapper => responseHeadersMapper.Text($"Mappers.{response.Headers.Name}"));
                         }
                     });
                 }

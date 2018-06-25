@@ -453,7 +453,8 @@ export class LRORetrys {
           contentType: "application/json; charset=utf-8",
           responses: {
             200: {
-              bodyMapper: Mappers.Product
+              bodyMapper: Mappers.Product,
+              headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
             },
             default: {
               bodyMapper: Mappers.CloudError
@@ -476,7 +477,6 @@ export class LRORetrys {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -529,10 +529,12 @@ export class LRORetrys {
           ],
           responses: {
             200: {
-              bodyMapper: Mappers.Product
+              bodyMapper: Mappers.Product,
+              headersMapper: Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders
             },
             202: {
-              bodyMapper: Mappers.Product
+              bodyMapper: Mappers.Product,
+              headersMapper: Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders
             },
             default: {
               bodyMapper: Mappers.CloudError
@@ -555,7 +557,6 @@ export class LRORetrys {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -570,7 +571,6 @@ export class LRORetrys {
           deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -621,7 +621,9 @@ export class LRORetrys {
             }
           ],
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LRORetrysDelete202Retry200Headers
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -631,7 +633,6 @@ export class LRORetrys {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDelete202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -682,7 +683,9 @@ export class LRORetrys {
             }
           ],
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -692,7 +695,6 @@ export class LRORetrys {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -750,7 +752,9 @@ export class LRORetrys {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LRORetrysPost202Retry200Headers
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -760,7 +764,6 @@ export class LRORetrys {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysPost202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
@@ -820,7 +823,9 @@ export class LRORetrys {
           },
           contentType: "application/json; charset=utf-8",
           responses: {
-            202: {},
+            202: {
+              headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
+            },
             default: {
               bodyMapper: Mappers.CloudError
             }
@@ -830,7 +835,6 @@ export class LRORetrys {
       // Deserialize Response
       let statusCode = operationRes.status;
       if (statusCode === 202) {
-        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
     } catch (err) {
       return Promise.reject(err);
