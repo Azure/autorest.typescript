@@ -12,7 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { AutoRestResourceFlatteningTestServiceContext } from "./autoRestResourceFlatteningTestServiceContext";
-const WebResource = msRest.WebResource;
 
 class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTestServiceContext {
   serializer = new msRest.Serializer(Mappers);
@@ -54,18 +53,14 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceArray
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceArray
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -115,14 +110,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlattenedProduct[]>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -149,34 +140,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = {
-              serializedName: "parsedResponse",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "FlattenedProductElementType",
-                  type: {
-                    name: "Composite",
-                    className: "FlattenedProduct"
-                  }
-                }
-              }
-            };
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -200,18 +163,14 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putWrappedArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceArray
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceArray
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -262,14 +221,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getWrappedArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductWrapper[]>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -296,34 +251,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = {
-              serializedName: "parsedResponse",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "ProductWrapperElementType",
-                  type: {
-                    name: "Composite",
-                    className: "ProductWrapper"
-                  }
-                }
-              }
-            };
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -346,18 +273,14 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let resourceDictionary = (options && options.resourceDictionary !== undefined) ? options.resourceDictionary : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceDictionary
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceDictionary
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -407,14 +330,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Models.FlattenedProduct }>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -441,34 +360,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = {
-              serializedName: "parsedResponse",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "FlattenedProductElementType",
-                  type: {
-                    name: "Composite",
-                    className: "FlattenedProduct"
-                  }
-                }
-              }
-            };
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -491,18 +382,14 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let resourceComplexObject = (options && options.resourceComplexObject !== undefined) ? options.resourceComplexObject : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceComplexObject
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceComplexObject
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -540,14 +427,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ResourceCollection>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -562,22 +445,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.ResourceCollection;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -600,18 +467,14 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putSimpleProductWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<msRest.HttpOperationResponse<Models.SimpleProduct>> {
     let simpleBodyProduct = (options && options.simpleBodyProduct !== undefined) ? options.simpleBodyProduct : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          simpleBodyProduct
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            simpleBodyProduct
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -631,22 +494,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.SimpleProduct;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -677,22 +524,18 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     let genericValue = (options && options.genericValue !== undefined) ? options.genericValue : undefined;
     let odatavalue = (options && options.odatavalue !== undefined) ? options.odatavalue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          productId,
-          description,
-          maxProductDisplayName,
-          genericValue,
-          odatavalue
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            productId,
+            description,
+            maxProductDisplayName,
+            genericValue,
+            odatavalue
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
@@ -718,22 +561,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.SimpleProduct;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -756,18 +583,14 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async putSimpleProductWithGroupingWithHttpOperationResponse(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SimpleProduct>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          flattenParameterGroup
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            flattenParameterGroup
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -823,22 +646,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.SimpleProduct;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }

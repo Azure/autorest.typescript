@@ -13,8 +13,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/httpRedirectsMappers";
 import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a HttpRedirects. */
 export class HttpRedirects {
   private readonly client: AutoRestHttpInfrastructureTestServiceContext;
@@ -40,14 +38,10 @@ export class HttpRedirects {
    */
   async head300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead300Response> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -65,12 +59,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 300) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -90,14 +78,10 @@ export class HttpRedirects {
    */
   async get300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet300Response> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -127,35 +111,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 300) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = {
-              serializedName: "parsedResponse",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "stringElementType",
-                  type: {
-                    name: "String"
-                  }
-                }
-              }
-            };
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -175,14 +130,10 @@ export class HttpRedirects {
    */
   async head301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead301Response> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -200,12 +151,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 301) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -225,14 +170,10 @@ export class HttpRedirects {
    */
   async get301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet301Response> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -250,12 +191,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 301) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -277,18 +212,14 @@ export class HttpRedirects {
   async put301WithHttpOperationResponse(options?: Models.HttpRedirectsPut301OptionalParams): Promise<Models.HttpRedirectsPut301Response> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -313,10 +244,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 301) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -336,14 +263,10 @@ export class HttpRedirects {
    */
   async head302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead302Response> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -361,12 +284,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 302) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -386,14 +303,10 @@ export class HttpRedirects {
    */
   async get302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet302Response> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -411,12 +324,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 302) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -438,18 +345,14 @@ export class HttpRedirects {
   async patch302WithHttpOperationResponse(options?: Models.HttpRedirectsPatch302OptionalParams): Promise<Models.HttpRedirectsPatch302Response> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
@@ -474,10 +377,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 302) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -499,18 +398,14 @@ export class HttpRedirects {
   async post303WithHttpOperationResponse(options?: Models.HttpRedirectsPost303OptionalParams): Promise<Models.HttpRedirectsPost303Response> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -538,12 +433,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 303) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -563,14 +452,10 @@ export class HttpRedirects {
    */
   async head307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead307Response> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -588,12 +473,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 307) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -613,14 +492,10 @@ export class HttpRedirects {
    */
   async get307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet307Response> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -638,12 +513,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 307) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -664,18 +533,14 @@ export class HttpRedirects {
   async put307WithHttpOperationResponse(options?: Models.HttpRedirectsPut307OptionalParams): Promise<Models.HttpRedirectsPut307Response> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -703,12 +568,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 307) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -729,18 +588,14 @@ export class HttpRedirects {
   async patch307WithHttpOperationResponse(options?: Models.HttpRedirectsPatch307OptionalParams): Promise<Models.HttpRedirectsPatch307Response> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
@@ -768,12 +623,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 307) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -794,18 +643,14 @@ export class HttpRedirects {
   async post307WithHttpOperationResponse(options?: Models.HttpRedirectsPost307OptionalParams): Promise<Models.HttpRedirectsPost307Response> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -833,12 +678,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 307) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -859,18 +698,14 @@ export class HttpRedirects {
   async delete307WithHttpOperationResponse(options?: Models.HttpRedirectsDelete307OptionalParams): Promise<Models.HttpRedirectsDelete307Response> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -898,12 +733,6 @@ export class HttpRedirects {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-      }
-      if (statusCode === 307) {
-      }
     } catch (err) {
       return Promise.reject(err);
     }

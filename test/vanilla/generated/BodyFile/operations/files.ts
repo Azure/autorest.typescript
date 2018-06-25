@@ -12,8 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/filesMappers";
 import { AutoRestSwaggerBATFileServiceContext } from "../autoRestSwaggerBATFileServiceContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a Files. */
 export class Files {
   private readonly client: AutoRestSwaggerBATFileServiceContext;
@@ -39,15 +37,10 @@ export class Files {
    */
   async getFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
-    httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -86,15 +79,10 @@ export class Files {
    */
   async getFileLargeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
-    httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -133,15 +121,10 @@ export class Files {
    */
   async getEmptyFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
-    httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

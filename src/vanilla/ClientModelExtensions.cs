@@ -661,9 +661,19 @@ namespace AutoRest.TypeScript
                     mapper.BooleanProperty("xmlElementIsWrapped", true);
                 }
 
-                if (!string.IsNullOrEmpty(sequence.ElementXmlName))
+                string xmlElementName = null;
+                if (sequence.ElementType is CompositeType compositeElementType)
                 {
-                    mapper.QuotedStringProperty("xmlElementName", sequence.ElementXmlName);
+                    xmlElementName = compositeElementType.XmlName;
+                }
+                else
+                {
+                    xmlElementName = sequence.ElementXmlName;
+                }
+
+                if (!string.IsNullOrEmpty(xmlElementName))
+                {
+                    mapper.QuotedStringProperty("xmlElementName", xmlElementName);
                 }
             }
 

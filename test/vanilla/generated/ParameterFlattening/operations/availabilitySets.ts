@@ -12,8 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/availabilitySetsMappers";
 import { AutoRestParameterFlatteningContext } from "../autoRestParameterFlatteningContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a AvailabilitySets. */
 export class AvailabilitySets {
   private readonly client: AutoRestParameterFlatteningContext;
@@ -46,20 +44,16 @@ export class AvailabilitySets {
    */
   async updateWithHttpOperationResponse(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          avset,
-          tags
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            avset,
+            tags
+          },
+          options),
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,

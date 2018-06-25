@@ -14,7 +14,6 @@ import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import { AzureCompositeModelContext } from "./azureCompositeModelContext";
 import * as operations from "./operations";
-const WebResource = msRest.WebResource;
 
 
 class AzureCompositeModel extends AzureCompositeModelContext {
@@ -90,21 +89,17 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let apiVersion = '2014-04-01-preview';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          "this.subscriptionId": this.subscriptionId,
-          resourceGroupName,
-          apiVersion,
-          "this.acceptLanguage": this.acceptLanguage
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            "this.subscriptionId": this.subscriptionId,
+            resourceGroupName,
+            apiVersion,
+            "this.acceptLanguage": this.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -169,22 +164,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.CatalogArray;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -213,22 +192,18 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
     let apiVersion = '2014-04-01-preview';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          subscriptionId,
-          resourceGroupName,
-          apiVersion,
-          "this.acceptLanguage": this.acceptLanguage,
-          productDictionaryOfArray
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            subscriptionId,
+            resourceGroupName,
+            apiVersion,
+            "this.acceptLanguage": this.acceptLanguage,
+            productDictionaryOfArray
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
@@ -301,22 +276,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.CatalogDictionary;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -345,22 +304,18 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
     let apiVersion = '2014-04-01-preview';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          subscriptionId,
-          resourceGroupName,
-          apiVersion,
-          "this.acceptLanguage": this.acceptLanguage,
-          productArrayOfDictionary
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            subscriptionId,
+            resourceGroupName,
+            apiVersion,
+            "this.acceptLanguage": this.acceptLanguage,
+            productArrayOfDictionary
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -433,22 +388,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.CatalogArray;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }

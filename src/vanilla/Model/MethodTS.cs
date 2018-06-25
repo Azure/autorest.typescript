@@ -303,53 +303,6 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        /// <summary>
-        /// The Deserialization Error handling code block that provides a useful Error
-        /// message when exceptions occur in deserialization along with the request
-        /// and response object
-        /// </summary>
-        [JsonIgnore]
-        public string DeserializationError
-        {
-            get
-            {
-                TSBuilder builder = new TSBuilder();
-
-                string errorVariable = this.GetUniqueName("deserializationError");
-                builder.Line($"let {errorVariable} = new msRest.RestError(`Error ${{error}} occurred in deserializing the responseBody - ${{operationRes.bodyAsText}}`);");
-                builder.Line($"{errorVariable}.request = msRest.stripRequest(httpRequest);");
-                builder.Line($"{errorVariable}.response = msRest.stripResponse(operationRes);");
-                builder.Return($"Promise.reject({errorVariable})");
-
-                return builder.ToString();
-            }
-        }
-
-        public string GetDeserializationString(IModelType type, string valueReference, string responseVariable)
-        {
-            TSBuilder builder = new TSBuilder();
-            builder.Text("const resultMapper = ");
-            if (type is CompositeType)
-            {
-                builder.Text($"Mappers.{type.Name}");
-            }
-            else
-            {
-                ClientModelExtensions.ConstructMapper(builder, type, responseVariable, null, isPageable: false, expandComposite: false, isXML: CodeModel?.ShouldGenerateXmlSerialization == true);
-            }
-            builder.Line(";");
-
-            if (CodeModel.ShouldGenerateXmlSerialization && type is SequenceType st)
-            {
-                builder.Line("{2} = this.serializer.deserialize(resultMapper, typeof {0} === 'object' ? {0}['{1}'] : [], '{2}');", responseVariable, st.ElementType.XmlName, valueReference);
-            }
-            else
-            {
-                builder.Line("{1} = this.serializer.deserialize(resultMapper, {0}, '{1}');", responseVariable, valueReference);
-            }
-            return builder.ToString();
-        }
-
         public void DeserializeResponse(TSBlock block, IModelType type)
         {
             if (type == null)
@@ -360,21 +313,44 @@ namespace AutoRest.TypeScript.Model
             const string responseVariable = "parsedResponse";
             const string valueReference = "operationRes.parsedBody";
             block.Line($"let {responseVariable} = {valueReference} as {{ [key: string]: any }};");
-            string deserializeBody = GetDeserializationString(type, valueReference, responseVariable);
-            if (!string.IsNullOrWhiteSpace(deserializeBody))
+            block.If($"{responseVariable} != undefined", ifBlock =>
             {
-                block.Try(tryBlock =>
+                ifBlock.Try(tryBlock =>
                 {
-                    tryBlock.If($"{responseVariable} != undefined", ifBlock =>
+                    ifBlock.Text($"{valueReference} = ");
+                    ifBlock.FunctionCall("this.serializer.deserialize", argumentList =>
                     {
-                        ifBlock.Line(deserializeBody);
+                        string expressionToDeserialize = responseVariable;
+
+                        if (type is CompositeType)
+                        {
+                            argumentList.Text($"Mappers.{type.Name}");
+                        }
+                        else
+                        {
+                            bool isXml = CodeModel?.ShouldGenerateXmlSerialization == true;
+                            if (isXml && type is SequenceType st)
+                            {
+                                expressionToDeserialize = $"typeof {responseVariable} === \"object\" ? {responseVariable}[\"{st.ElementType.XmlName}\"] : []";
+                            }
+
+                            ClientModelExtensions.ConstructMapper(argumentList, type, responseVariable, null, isPageable: false, expandComposite: false, isXML: isXml);
+                        }
+
+                        argumentList.Text(expressionToDeserialize);
+
+                        argumentList.QuotedString(valueReference);
                     });
                 })
                 .Catch("error", catchBlock =>
                 {
-                    catchBlock.Line(DeserializationError);
+                    string errorVariable = this.GetUniqueName("deserializationError");
+                    catchBlock.Line($"const {errorVariable} = new msRest.RestError(`Error ${{error}} occurred in deserializing the responseBody - ${{operationRes.bodyAsText}}`);");
+                    catchBlock.Line($"{errorVariable}.request = msRest.stripRequest(httpRequest);");
+                    catchBlock.Line($"{errorVariable}.response = msRest.stripResponse(operationRes);");
+                    catchBlock.Return($"Promise.reject({errorVariable})");
                 });
-            }
+            });
         }
 
         public string DeserializeResponse(IModelType type)
@@ -594,62 +570,30 @@ namespace AutoRest.TypeScript.Model
 
                 methodBody.Line(emptyLine);
 
-                methodBody.LineComment("Create HTTP transport objects");
-                methodBody.Line("const httpRequest = new WebResource();");
-
-                bool hasStreamResponseType = HasStreamResponseType();
-
-                if (hasStreamResponseType)
-                {
-                    methodBody.Line("httpRequest.rawResponse = true;");
-                }
-
                 methodBody.Line("let operationRes: msRest.HttpOperationResponse;");
 
                 methodBody.Try(tryBlock =>
                 {
-                    tryBlock.Text("const operationArguments: msRest.OperationArguments = ");
-                    tryBlock.FunctionCall("msRest.createOperationArguments", GenerateOperationArguments);
-                    tryBlock.Line(";");
                     tryBlock.FunctionCall($"operationRes = await {ClientReference}.sendOperationRequest", argumentList =>
                     {
-                        argumentList.Text("httpRequest");
-                        argumentList.Text("operationArguments");
+                        argumentList.FunctionCall("msRest.createOperationArguments", GenerateOperationArguments);
                         argumentList.Object(GenerateOperationSpec);
                     });
                     tryBlock.Line(";");
 
-                    if (!hasStreamResponseType)
+                    if (!HasStreamResponseType())
                     {
                         string resultInitializer = InitializeResult;
-
-                        IEnumerable<KeyValuePair<HttpStatusCode, Response>> responsePairs = Responses.Where(response => response.Value.Body != null || response.Value.Headers != null);
-                        bool hasResponsePairs = responsePairs.Any();
-
-                        if (!string.IsNullOrEmpty(resultInitializer) || hasResponsePairs)
+                        if (!string.IsNullOrEmpty(resultInitializer))
                         {
                             tryBlock.LineComment("Deserialize Response");
-                            tryBlock.Line("let statusCode = operationRes.status;");
+                            tryBlock.Line("const statusCode = operationRes.status;");
                             tryBlock.Line(InitializeResult);
-                        }
 
-                        if (hasResponsePairs)
-                        {
-                            foreach ((HttpStatusCode statusCode, Response response) in responsePairs)
+                            if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
                             {
-                                tryBlock.If($"statusCode === {GetStatusCodeReference(statusCode)}", ifBlock =>
-                                {
-                                    if (response.Body != null)
-                                    {
-                                        DeserializeResponse(ifBlock, response.Body);
-                                    }
-                                });
+                                DeserializeResponse(tryBlock, DefaultResponse.Body);
                             }
-                        }
-
-                        if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
-                        {
-                            DeserializeResponse(tryBlock, DefaultResponse.Body);
                         }
                     }
                 })

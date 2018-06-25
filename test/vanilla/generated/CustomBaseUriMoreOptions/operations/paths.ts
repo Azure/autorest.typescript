@@ -13,8 +13,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/pathsMappers";
 import { AutoRestParameterizedCustomHostTestClientContext } from "../autoRestParameterizedCustomHostTestClientContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a Paths. */
 export class Paths {
   private readonly client: AutoRestParameterizedCustomHostTestClientContext;
@@ -47,23 +45,19 @@ export class Paths {
   async getEmptyWithHttpOperationResponse(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let keyVersion = (options && options.keyVersion !== undefined) ? options.keyVersion : 'v1';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          vault,
-          secret,
-          "this.client.dnsSuffix": this.client.dnsSuffix,
-          keyName,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          keyVersion
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            vault,
+            secret,
+            "this.client.dnsSuffix": this.client.dnsSuffix,
+            keyName,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            keyVersion
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

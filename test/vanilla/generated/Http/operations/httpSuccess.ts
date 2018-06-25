@@ -13,8 +13,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/httpSuccessMappers";
 import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a HttpSuccess. */
 export class HttpSuccess {
   private readonly client: AutoRestHttpInfrastructureTestServiceContext;
@@ -40,14 +38,10 @@ export class HttpSuccess {
    */
   async head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -79,14 +73,10 @@ export class HttpSuccess {
    */
   async get200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -106,27 +96,6 @@ export class HttpSuccess {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = {
-              serializedName: "parsedResponse",
-              type: {
-                name: "Boolean"
-              }
-            };
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -147,18 +116,14 @@ export class HttpSuccess {
   async put200WithHttpOperationResponse(options?: Models.HttpSuccessPut200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -201,18 +166,14 @@ export class HttpSuccess {
   async patch200WithHttpOperationResponse(options?: Models.HttpSuccessPatch200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
@@ -255,18 +216,14 @@ export class HttpSuccess {
   async post200WithHttpOperationResponse(options?: Models.HttpSuccessPost200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -309,18 +266,14 @@ export class HttpSuccess {
   async delete200WithHttpOperationResponse(options?: Models.HttpSuccessDelete200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -363,18 +316,14 @@ export class HttpSuccess {
   async put201WithHttpOperationResponse(options?: Models.HttpSuccessPut201OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -417,18 +366,14 @@ export class HttpSuccess {
   async post201WithHttpOperationResponse(options?: Models.HttpSuccessPost201OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -471,18 +416,14 @@ export class HttpSuccess {
   async put202WithHttpOperationResponse(options?: Models.HttpSuccessPut202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -525,18 +466,14 @@ export class HttpSuccess {
   async patch202WithHttpOperationResponse(options?: Models.HttpSuccessPatch202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
@@ -579,18 +516,14 @@ export class HttpSuccess {
   async post202WithHttpOperationResponse(options?: Models.HttpSuccessPost202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -633,18 +566,14 @@ export class HttpSuccess {
   async delete202WithHttpOperationResponse(options?: Models.HttpSuccessDelete202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -686,14 +615,10 @@ export class HttpSuccess {
    */
   async head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -726,18 +651,14 @@ export class HttpSuccess {
   async put204WithHttpOperationResponse(options?: Models.HttpSuccessPut204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -780,18 +701,14 @@ export class HttpSuccess {
   async patch204WithHttpOperationResponse(options?: Models.HttpSuccessPatch204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
@@ -834,18 +751,14 @@ export class HttpSuccess {
   async post204WithHttpOperationResponse(options?: Models.HttpSuccessPost204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -888,18 +801,14 @@ export class HttpSuccess {
   async delete204WithHttpOperationResponse(options?: Models.HttpSuccessDelete204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -941,14 +850,10 @@ export class HttpSuccess {
    */
   async head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,

@@ -13,8 +13,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/httpRetryMappers";
 import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a HttpRetry. */
 export class HttpRetry {
   private readonly client: AutoRestHttpInfrastructureTestServiceContext;
@@ -40,14 +38,10 @@ export class HttpRetry {
    */
   async head408WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -80,18 +74,14 @@ export class HttpRetry {
   async put500WithHttpOperationResponse(options?: Models.HttpRetryPut500OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -134,18 +124,14 @@ export class HttpRetry {
   async patch500WithHttpOperationResponse(options?: Models.HttpRetryPatch500OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
@@ -187,14 +173,10 @@ export class HttpRetry {
    */
   async get502WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments({}, options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -227,18 +209,14 @@ export class HttpRetry {
   async post503WithHttpOperationResponse(options?: Models.HttpRetryPost503OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -281,18 +259,14 @@ export class HttpRetry {
   async delete503WithHttpOperationResponse(options?: Models.HttpRetryDelete503OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -335,18 +309,14 @@ export class HttpRetry {
   async put504WithHttpOperationResponse(options?: Models.HttpRetryPut504OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -389,18 +359,14 @@ export class HttpRetry {
   async patch504WithHttpOperationResponse(options?: Models.HttpRetryPatch504OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          booleanValue
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            booleanValue
+          },
+          options),
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,

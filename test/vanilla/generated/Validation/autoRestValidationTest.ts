@@ -12,7 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { AutoRestValidationTestContext } from "./autoRestValidationTestContext";
-const WebResource = msRest.WebResource;
 
 class AutoRestValidationTest extends AutoRestValidationTestContext {
   serializer = new msRest.Serializer(Mappers);
@@ -57,21 +56,17 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    */
   async validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          "this.subscriptionId": this.subscriptionId,
-          resourceGroupName,
-          id,
-          "this.apiVersion": this.apiVersion
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            "this.subscriptionId": this.subscriptionId,
+            resourceGroupName,
+            id,
+            "this.apiVersion": this.apiVersion
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -143,22 +138,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.Product;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -185,22 +164,18 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   async validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let body = (options && options.body !== undefined) ? options.body : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          "this.subscriptionId": this.subscriptionId,
-          resourceGroupName,
-          id,
-          body,
-          "this.apiVersion": this.apiVersion
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            "this.subscriptionId": this.subscriptionId,
+            resourceGroupName,
+            id,
+            body,
+            "this.apiVersion": this.apiVersion
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -277,22 +252,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.Product;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -312,18 +271,14 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   async getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let constantParam = 'constant';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          constantParam
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            constantParam
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -369,19 +324,15 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
     let body = (options && options.body !== undefined) ? options.body : undefined;
     let constantParam = 'constant';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          constantParam,
-          body
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            constantParam,
+            body
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
@@ -413,22 +364,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.Product;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }

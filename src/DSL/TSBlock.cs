@@ -124,10 +124,9 @@ namespace AutoRest.TypeScript.DSL
             builder.Throw(valueToThrow);
         }
 
-        public void ThrowNew(Action<TSValue> valueAction)
+        public void Value(Action<TSValue> valueAction)
         {
-            SetCurrentState(State.Threw);
-            builder.ThrowNew(valueAction);
+            builder.Value(valueAction);
         }
     }
 }

@@ -13,7 +13,6 @@ import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import { AutoRestReportServiceForAzureContext } from "./autoRestReportServiceForAzureContext";
-const WebResource = msRest.WebResource;
 
 
 class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext {
@@ -63,19 +62,15 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
     let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          qualifier,
-          "this.acceptLanguage": this.acceptLanguage
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            qualifier,
+            "this.acceptLanguage": this.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -124,33 +119,6 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = {
-              serializedName: "parsedResponse",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "numberElementType",
-                  type: {
-                    name: "Number"
-                  }
-                }
-              }
-            };
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }

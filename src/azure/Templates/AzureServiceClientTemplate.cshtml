@@ -1,5 +1,4 @@
 ﻿@using System.Linq
-@using AutoRest.Core.Model
 @using AutoRest.Core.Utilities
 @using AutoRest.TypeScript.vanilla.Templates
 @using AutoRest.TypeScript.Model
@@ -22,10 +21,6 @@ if (usesAzureOptionsType)
 import { @(Model.ContextName) } from "./@(Model.ContextName.ToCamelCase())";
 @if (Model.MethodGroupModels.Any()) {
 @:import * as operations from "./operations";
-}
-@if (Model.MethodTemplateModels.Any())
-{
-@:const WebResource = msRest.WebResource;
 }
 @EmptyLine
 @{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
