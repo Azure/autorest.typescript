@@ -49,7 +49,7 @@ export class Header {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        customNamedRequestId);
+        customNamedRequestIdOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -82,7 +82,7 @@ export class Header {
             headerCustomNamedRequestIdParamGroupingParameters
           },
           options),
-        customNamedRequestIdParamGrouping);
+        customNamedRequestIdParamGroupingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -113,7 +113,7 @@ export class Header {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        customNamedRequestIdHead);
+        customNamedRequestIdHeadOperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
@@ -257,7 +257,7 @@ export class Header {
 }
 
 // Operation Specifications
-const customNamedRequestId: msRest.OperationSpec = {
+const customNamedRequestIdOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/customNamedRequestId",
   headerParameters: [
@@ -293,7 +293,7 @@ const customNamedRequestId: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const customNamedRequestIdParamGrouping: msRest.OperationSpec = {
+const customNamedRequestIdParamGroupingOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/customNamedRequestIdParamGrouping",
   headerParameters: [
@@ -332,7 +332,7 @@ const customNamedRequestIdParamGrouping: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const customNamedRequestIdHead: msRest.OperationSpec = {
+const customNamedRequestIdHeadOperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "azurespecials/customNamedRequestIdHead",
   headerParameters: [

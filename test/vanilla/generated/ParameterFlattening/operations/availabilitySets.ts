@@ -54,7 +54,7 @@ export class AvailabilitySets {
             tags
           },
           options),
-        update);
+        updateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -112,7 +112,7 @@ export class AvailabilitySets {
 }
 
 // Operation Specifications
-const update: msRest.OperationSpec = {
+const updateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",
   urlParameters: [

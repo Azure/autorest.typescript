@@ -47,7 +47,7 @@ export class SubscriptionInCredentials {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        postMethodGlobalValid);
+        postMethodGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -77,7 +77,7 @@ export class SubscriptionInCredentials {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        postMethodGlobalNull);
+        postMethodGlobalNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -108,7 +108,7 @@ export class SubscriptionInCredentials {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        postMethodGlobalNotProvidedValid);
+        postMethodGlobalNotProvidedValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -138,7 +138,7 @@ export class SubscriptionInCredentials {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        postPathGlobalValid);
+        postPathGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -168,7 +168,7 @@ export class SubscriptionInCredentials {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        postSwaggerGlobalValid);
+        postSwaggerGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -388,7 +388,7 @@ export class SubscriptionInCredentials {
 }
 
 // Operation Specifications
-const postMethodGlobalValid: msRest.OperationSpec = {
+const postMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
@@ -424,7 +424,7 @@ const postMethodGlobalValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postMethodGlobalNull: msRest.OperationSpec = {
+const postMethodGlobalNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}",
   urlParameters: [
@@ -460,7 +460,7 @@ const postMethodGlobalNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postMethodGlobalNotProvidedValid: msRest.OperationSpec = {
+const postMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
@@ -508,7 +508,7 @@ const postMethodGlobalNotProvidedValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postPathGlobalValid: msRest.OperationSpec = {
+const postPathGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
@@ -544,7 +544,7 @@ const postPathGlobalValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postSwaggerGlobalValid: msRest.OperationSpec = {
+const postSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [

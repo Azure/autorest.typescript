@@ -40,7 +40,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -62,7 +62,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -84,7 +84,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -114,7 +114,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putEmpty);
+        putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -136,7 +136,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanTfft);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanTfftOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -166,7 +166,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putBooleanTfft);
+        putBooleanTfftOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -188,7 +188,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanInvalidNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -210,7 +210,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanInvalidString);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -232,7 +232,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntegerValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntegerValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -262,7 +262,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putIntegerValid);
+        putIntegerValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -284,7 +284,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntInvalidNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -306,7 +306,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntInvalidString);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -328,7 +328,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -358,7 +358,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putLongValid);
+        putLongValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -380,7 +380,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongInvalidNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -402,7 +402,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongInvalidString);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -424,7 +424,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -454,7 +454,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putFloatValid);
+        putFloatValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -476,7 +476,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatInvalidNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -498,7 +498,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatInvalidString);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -520,7 +520,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -550,7 +550,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putDoubleValid);
+        putDoubleValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -572,7 +572,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleInvalidNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -594,7 +594,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleInvalidString);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -616,7 +616,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -646,7 +646,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putStringValid);
+        putStringValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -668,7 +668,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringWithNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringWithNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -690,7 +690,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringWithInvalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringWithInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -713,7 +713,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUuidValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUuidValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -744,7 +744,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putUuidValid);
+        putUuidValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -766,7 +766,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUuidInvalidChars);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUuidInvalidCharsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -788,7 +788,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -818,7 +818,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putDateValid);
+        putDateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -840,7 +840,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateInvalidNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -862,7 +862,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateInvalidChars);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateInvalidCharsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -885,7 +885,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -916,7 +916,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putDateTimeValid);
+        putDateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -938,7 +938,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeInvalidNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -960,7 +960,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeInvalidChars);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeInvalidCharsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -983,7 +983,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeRfc1123Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeRfc1123ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1014,7 +1014,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putDateTimeRfc1123Valid);
+        putDateTimeRfc1123ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1036,7 +1036,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDurationValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDurationValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1066,7 +1066,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putDurationValid);
+        putDurationValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1089,7 +1089,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1120,7 +1120,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putByteValid);
+        putByteValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1142,7 +1142,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteInvalidNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1165,7 +1165,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64Url);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64UrlOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1187,7 +1187,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1209,7 +1209,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1232,7 +1232,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexItemNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexItemNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1255,7 +1255,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexItemEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexItemEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1278,7 +1278,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1309,7 +1309,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putComplexValid);
+        putComplexValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1331,7 +1331,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1353,7 +1353,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1375,7 +1375,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayItemNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayItemNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1397,7 +1397,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayItemEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayItemEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1419,7 +1419,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1449,7 +1449,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putArrayValid);
+        putArrayValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1471,7 +1471,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1493,7 +1493,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1516,7 +1516,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryItemNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryItemNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1539,7 +1539,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryItemEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryItemEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1562,7 +1562,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1593,7 +1593,7 @@ export class ArrayModel {
             arrayBody
           },
           options),
-        putDictionaryValid);
+        putDictionaryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -4317,7 +4317,7 @@ export class ArrayModel {
 }
 
 // Operation Specifications
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/null",
   responses: {
@@ -4342,7 +4342,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalid: msRest.OperationSpec = {
+const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/invalid",
   responses: {
@@ -4367,7 +4367,7 @@ const getInvalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/empty",
   responses: {
@@ -4392,7 +4392,7 @@ const getEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putEmpty: msRest.OperationSpec = {
+const putEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/empty",
   requestBody: {
@@ -4421,7 +4421,7 @@ const putEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBooleanTfft: msRest.OperationSpec = {
+const getBooleanTfftOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/boolean/tfft",
   responses: {
@@ -4446,7 +4446,7 @@ const getBooleanTfft: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBooleanTfft: msRest.OperationSpec = {
+const putBooleanTfftOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/boolean/tfft",
   requestBody: {
@@ -4475,7 +4475,7 @@ const putBooleanTfft: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBooleanInvalidNull: msRest.OperationSpec = {
+const getBooleanInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/boolean/true.null.false",
   responses: {
@@ -4500,7 +4500,7 @@ const getBooleanInvalidNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBooleanInvalidString: msRest.OperationSpec = {
+const getBooleanInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/boolean/true.boolean.false",
   responses: {
@@ -4525,7 +4525,7 @@ const getBooleanInvalidString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getIntegerValid: msRest.OperationSpec = {
+const getIntegerValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/integer/1.-1.3.300",
   responses: {
@@ -4550,7 +4550,7 @@ const getIntegerValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putIntegerValid: msRest.OperationSpec = {
+const putIntegerValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/integer/1.-1.3.300",
   requestBody: {
@@ -4579,7 +4579,7 @@ const putIntegerValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getIntInvalidNull: msRest.OperationSpec = {
+const getIntInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/integer/1.null.zero",
   responses: {
@@ -4604,7 +4604,7 @@ const getIntInvalidNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getIntInvalidString: msRest.OperationSpec = {
+const getIntInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/integer/1.integer.0",
   responses: {
@@ -4629,7 +4629,7 @@ const getIntInvalidString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLongValid: msRest.OperationSpec = {
+const getLongValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/long/1.-1.3.300",
   responses: {
@@ -4654,7 +4654,7 @@ const getLongValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putLongValid: msRest.OperationSpec = {
+const putLongValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/long/1.-1.3.300",
   requestBody: {
@@ -4683,7 +4683,7 @@ const putLongValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLongInvalidNull: msRest.OperationSpec = {
+const getLongInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/long/1.null.zero",
   responses: {
@@ -4708,7 +4708,7 @@ const getLongInvalidNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLongInvalidString: msRest.OperationSpec = {
+const getLongInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/long/1.integer.0",
   responses: {
@@ -4733,7 +4733,7 @@ const getLongInvalidString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getFloatValid: msRest.OperationSpec = {
+const getFloatValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/float/0--0.01-1.2e20",
   responses: {
@@ -4758,7 +4758,7 @@ const getFloatValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putFloatValid: msRest.OperationSpec = {
+const putFloatValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/float/0--0.01-1.2e20",
   requestBody: {
@@ -4787,7 +4787,7 @@ const putFloatValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getFloatInvalidNull: msRest.OperationSpec = {
+const getFloatInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/float/0.0-null-1.2e20",
   responses: {
@@ -4812,7 +4812,7 @@ const getFloatInvalidNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getFloatInvalidString: msRest.OperationSpec = {
+const getFloatInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/float/1.number.0",
   responses: {
@@ -4837,7 +4837,7 @@ const getFloatInvalidString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDoubleValid: msRest.OperationSpec = {
+const getDoubleValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/double/0--0.01-1.2e20",
   responses: {
@@ -4862,7 +4862,7 @@ const getDoubleValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDoubleValid: msRest.OperationSpec = {
+const putDoubleValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/double/0--0.01-1.2e20",
   requestBody: {
@@ -4891,7 +4891,7 @@ const putDoubleValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDoubleInvalidNull: msRest.OperationSpec = {
+const getDoubleInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/double/0.0-null-1.2e20",
   responses: {
@@ -4916,7 +4916,7 @@ const getDoubleInvalidNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDoubleInvalidString: msRest.OperationSpec = {
+const getDoubleInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/double/1.number.0",
   responses: {
@@ -4941,7 +4941,7 @@ const getDoubleInvalidString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getStringValid: msRest.OperationSpec = {
+const getStringValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string/foo1.foo2.foo3",
   responses: {
@@ -4966,7 +4966,7 @@ const getStringValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putStringValid: msRest.OperationSpec = {
+const putStringValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/string/foo1.foo2.foo3",
   requestBody: {
@@ -4995,7 +4995,7 @@ const putStringValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getStringWithNull: msRest.OperationSpec = {
+const getStringWithNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string/foo.null.foo2",
   responses: {
@@ -5020,7 +5020,7 @@ const getStringWithNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getStringWithInvalid: msRest.OperationSpec = {
+const getStringWithInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string/foo.123.foo2",
   responses: {
@@ -5045,7 +5045,7 @@ const getStringWithInvalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUuidValid: msRest.OperationSpec = {
+const getUuidValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/uuid/valid",
   responses: {
@@ -5070,7 +5070,7 @@ const getUuidValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putUuidValid: msRest.OperationSpec = {
+const putUuidValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/uuid/valid",
   requestBody: {
@@ -5099,7 +5099,7 @@ const putUuidValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUuidInvalidChars: msRest.OperationSpec = {
+const getUuidInvalidCharsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/uuid/invalidchars",
   responses: {
@@ -5124,7 +5124,7 @@ const getUuidInvalidChars: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateValid: msRest.OperationSpec = {
+const getDateValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date/valid",
   responses: {
@@ -5149,7 +5149,7 @@ const getDateValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDateValid: msRest.OperationSpec = {
+const putDateValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/date/valid",
   requestBody: {
@@ -5178,7 +5178,7 @@ const putDateValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateInvalidNull: msRest.OperationSpec = {
+const getDateInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date/invalidnull",
   responses: {
@@ -5203,7 +5203,7 @@ const getDateInvalidNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateInvalidChars: msRest.OperationSpec = {
+const getDateInvalidCharsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date/invalidchars",
   responses: {
@@ -5228,7 +5228,7 @@ const getDateInvalidChars: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateTimeValid: msRest.OperationSpec = {
+const getDateTimeValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time/valid",
   responses: {
@@ -5253,7 +5253,7 @@ const getDateTimeValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDateTimeValid: msRest.OperationSpec = {
+const putDateTimeValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/date-time/valid",
   requestBody: {
@@ -5282,7 +5282,7 @@ const putDateTimeValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateTimeInvalidNull: msRest.OperationSpec = {
+const getDateTimeInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time/invalidnull",
   responses: {
@@ -5307,7 +5307,7 @@ const getDateTimeInvalidNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateTimeInvalidChars: msRest.OperationSpec = {
+const getDateTimeInvalidCharsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time/invalidchars",
   responses: {
@@ -5332,7 +5332,7 @@ const getDateTimeInvalidChars: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateTimeRfc1123Valid: msRest.OperationSpec = {
+const getDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time-rfc1123/valid",
   responses: {
@@ -5357,7 +5357,7 @@ const getDateTimeRfc1123Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDateTimeRfc1123Valid: msRest.OperationSpec = {
+const putDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/date-time-rfc1123/valid",
   requestBody: {
@@ -5386,7 +5386,7 @@ const putDateTimeRfc1123Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDurationValid: msRest.OperationSpec = {
+const getDurationValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/duration/valid",
   responses: {
@@ -5411,7 +5411,7 @@ const getDurationValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDurationValid: msRest.OperationSpec = {
+const putDurationValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/duration/valid",
   requestBody: {
@@ -5440,7 +5440,7 @@ const putDurationValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getByteValid: msRest.OperationSpec = {
+const getByteValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/byte/valid",
   responses: {
@@ -5465,7 +5465,7 @@ const getByteValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putByteValid: msRest.OperationSpec = {
+const putByteValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/byte/valid",
   requestBody: {
@@ -5494,7 +5494,7 @@ const putByteValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getByteInvalidNull: msRest.OperationSpec = {
+const getByteInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/byte/invalidnull",
   responses: {
@@ -5519,7 +5519,7 @@ const getByteInvalidNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBase64Url: msRest.OperationSpec = {
+const getBase64UrlOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/base64url/valid",
   responses: {
@@ -5544,7 +5544,7 @@ const getBase64Url: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getComplexNull: msRest.OperationSpec = {
+const getComplexNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/null",
   responses: {
@@ -5570,7 +5570,7 @@ const getComplexNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getComplexEmpty: msRest.OperationSpec = {
+const getComplexEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/empty",
   responses: {
@@ -5596,7 +5596,7 @@ const getComplexEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getComplexItemNull: msRest.OperationSpec = {
+const getComplexItemNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/itemnull",
   responses: {
@@ -5622,7 +5622,7 @@ const getComplexItemNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getComplexItemEmpty: msRest.OperationSpec = {
+const getComplexItemEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/itemempty",
   responses: {
@@ -5648,7 +5648,7 @@ const getComplexItemEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getComplexValid: msRest.OperationSpec = {
+const getComplexValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/valid",
   responses: {
@@ -5674,7 +5674,7 @@ const getComplexValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putComplexValid: msRest.OperationSpec = {
+const putComplexValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/complex/valid",
   requestBody: {
@@ -5704,7 +5704,7 @@ const putComplexValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getArrayNull: msRest.OperationSpec = {
+const getArrayNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/null",
   responses: {
@@ -5735,7 +5735,7 @@ const getArrayNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getArrayEmpty: msRest.OperationSpec = {
+const getArrayEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/empty",
   responses: {
@@ -5766,7 +5766,7 @@ const getArrayEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getArrayItemNull: msRest.OperationSpec = {
+const getArrayItemNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/itemnull",
   responses: {
@@ -5797,7 +5797,7 @@ const getArrayItemNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getArrayItemEmpty: msRest.OperationSpec = {
+const getArrayItemEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/itemempty",
   responses: {
@@ -5828,7 +5828,7 @@ const getArrayItemEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getArrayValid: msRest.OperationSpec = {
+const getArrayValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/valid",
   responses: {
@@ -5859,7 +5859,7 @@ const getArrayValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putArrayValid: msRest.OperationSpec = {
+const putArrayValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/array/valid",
   requestBody: {
@@ -5894,7 +5894,7 @@ const putArrayValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDictionaryNull: msRest.OperationSpec = {
+const getDictionaryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/null",
   responses: {
@@ -5925,7 +5925,7 @@ const getDictionaryNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDictionaryEmpty: msRest.OperationSpec = {
+const getDictionaryEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/empty",
   responses: {
@@ -5956,7 +5956,7 @@ const getDictionaryEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDictionaryItemNull: msRest.OperationSpec = {
+const getDictionaryItemNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/itemnull",
   responses: {
@@ -5987,7 +5987,7 @@ const getDictionaryItemNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDictionaryItemEmpty: msRest.OperationSpec = {
+const getDictionaryItemEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/itemempty",
   responses: {
@@ -6018,7 +6018,7 @@ const getDictionaryItemEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDictionaryValid: msRest.OperationSpec = {
+const getDictionaryValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/valid",
   responses: {
@@ -6049,7 +6049,7 @@ const getDictionaryValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDictionaryValid: msRest.OperationSpec = {
+const putDictionaryValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/dictionary/valid",
   requestBody: {

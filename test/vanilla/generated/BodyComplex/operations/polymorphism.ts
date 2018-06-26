@@ -40,7 +40,7 @@ export class Polymorphism {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -102,7 +102,7 @@ export class Polymorphism {
             complexBody
           },
           options),
-        putValid);
+        putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -125,7 +125,7 @@ export class Polymorphism {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplicated);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplicatedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -156,7 +156,7 @@ export class Polymorphism {
             complexBody
           },
           options),
-        putComplicated);
+        putComplicatedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -186,7 +186,7 @@ export class Polymorphism {
             complexBody
           },
           options),
-        putMissingDiscriminator);
+        putMissingDiscriminatorOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -243,7 +243,7 @@ export class Polymorphism {
             complexBody
           },
           options),
-        putValidMissingRequired);
+        putValidMissingRequiredOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -568,7 +568,7 @@ export class Polymorphism {
 }
 
 // Operation Specifications
-const getValid: msRest.OperationSpec = {
+const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/polymorphism/valid",
   responses: {
@@ -582,7 +582,7 @@ const getValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putValid: msRest.OperationSpec = {
+const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/polymorphism/valid",
   requestBody: {
@@ -602,7 +602,7 @@ const putValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getComplicated: msRest.OperationSpec = {
+const getComplicatedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/polymorphism/complicated",
   responses: {
@@ -616,7 +616,7 @@ const getComplicated: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putComplicated: msRest.OperationSpec = {
+const putComplicatedOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/polymorphism/complicated",
   requestBody: {
@@ -636,7 +636,7 @@ const putComplicated: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putMissingDiscriminator: msRest.OperationSpec = {
+const putMissingDiscriminatorOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/polymorphism/missingdiscriminator",
   requestBody: {
@@ -658,7 +658,7 @@ const putMissingDiscriminator: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putValidMissingRequired: msRest.OperationSpec = {
+const putValidMissingRequiredOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/polymorphism/missingrequired/invalid",
   requestBody: {

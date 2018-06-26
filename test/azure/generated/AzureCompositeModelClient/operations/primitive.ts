@@ -46,7 +46,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getInt);
+        getIntOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -77,7 +77,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putInt);
+        putIntOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,7 +105,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getLong);
+        getLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -136,7 +136,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putLong);
+        putLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -164,7 +164,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getFloat);
+        getFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -195,7 +195,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putFloat);
+        putFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -223,7 +223,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getDouble);
+        getDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -255,7 +255,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putDouble);
+        putDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -283,7 +283,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getBool);
+        getBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -314,7 +314,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putBool);
+        putBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -342,7 +342,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getString);
+        getStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -373,7 +373,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putString);
+        putStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -401,7 +401,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getDate);
+        getDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -432,7 +432,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putDate);
+        putDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -460,7 +460,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getDateTime);
+        getDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -492,7 +492,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putDateTime);
+        putDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -520,7 +520,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getDateTimeRfc1123);
+        getDateTimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -552,7 +552,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putDateTimeRfc1123);
+        putDateTimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -580,7 +580,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getDuration);
+        getDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -610,7 +610,7 @@ export class Primitive {
             field
           },
           options),
-        putDuration);
+        putDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -638,7 +638,7 @@ export class Primitive {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getByte);
+        getByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -668,7 +668,7 @@ export class Primitive {
             field
           },
           options),
-        putByte);
+        putByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1601,7 +1601,7 @@ export class Primitive {
 }
 
 // Operation Specifications
-const getInt: msRest.OperationSpec = {
+const getIntOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/integer",
   headerParameters: [
@@ -1627,7 +1627,7 @@ const getInt: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putInt: msRest.OperationSpec = {
+const putIntOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/integer",
   headerParameters: [
@@ -1659,7 +1659,7 @@ const putInt: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLong: msRest.OperationSpec = {
+const getLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/long",
   headerParameters: [
@@ -1685,7 +1685,7 @@ const getLong: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putLong: msRest.OperationSpec = {
+const putLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/long",
   headerParameters: [
@@ -1717,7 +1717,7 @@ const putLong: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getFloat: msRest.OperationSpec = {
+const getFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/float",
   headerParameters: [
@@ -1743,7 +1743,7 @@ const getFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putFloat: msRest.OperationSpec = {
+const putFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/float",
   headerParameters: [
@@ -1775,7 +1775,7 @@ const putFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDouble: msRest.OperationSpec = {
+const getDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/double",
   headerParameters: [
@@ -1801,7 +1801,7 @@ const getDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDouble: msRest.OperationSpec = {
+const putDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/double",
   headerParameters: [
@@ -1833,7 +1833,7 @@ const putDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBool: msRest.OperationSpec = {
+const getBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/bool",
   headerParameters: [
@@ -1859,7 +1859,7 @@ const getBool: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBool: msRest.OperationSpec = {
+const putBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/bool",
   headerParameters: [
@@ -1891,7 +1891,7 @@ const putBool: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getString: msRest.OperationSpec = {
+const getStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/string",
   headerParameters: [
@@ -1917,7 +1917,7 @@ const getString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putString: msRest.OperationSpec = {
+const putStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/string",
   headerParameters: [
@@ -1949,7 +1949,7 @@ const putString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDate: msRest.OperationSpec = {
+const getDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/date",
   headerParameters: [
@@ -1975,7 +1975,7 @@ const getDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDate: msRest.OperationSpec = {
+const putDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/date",
   headerParameters: [
@@ -2007,7 +2007,7 @@ const putDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateTime: msRest.OperationSpec = {
+const getDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/datetime",
   headerParameters: [
@@ -2033,7 +2033,7 @@ const getDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDateTime: msRest.OperationSpec = {
+const putDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/datetime",
   headerParameters: [
@@ -2065,7 +2065,7 @@ const putDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateTimeRfc1123: msRest.OperationSpec = {
+const getDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/datetimerfc1123",
   headerParameters: [
@@ -2091,7 +2091,7 @@ const getDateTimeRfc1123: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDateTimeRfc1123: msRest.OperationSpec = {
+const putDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/datetimerfc1123",
   headerParameters: [
@@ -2123,7 +2123,7 @@ const putDateTimeRfc1123: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDuration: msRest.OperationSpec = {
+const getDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/duration",
   headerParameters: [
@@ -2149,7 +2149,7 @@ const getDuration: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDuration: msRest.OperationSpec = {
+const putDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/duration",
   headerParameters: [
@@ -2183,7 +2183,7 @@ const putDuration: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getByte: msRest.OperationSpec = {
+const getByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/byte",
   headerParameters: [
@@ -2209,7 +2209,7 @@ const getByte: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putByte: msRest.OperationSpec = {
+const putByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/byte",
   headerParameters: [

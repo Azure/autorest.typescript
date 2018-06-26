@@ -217,7 +217,7 @@ export class LROsCustomHeader {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutAsyncRetrySucceeded);
+        beginPutAsyncRetrySucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -251,7 +251,7 @@ export class LROsCustomHeader {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPut201CreatingSucceeded200);
+        beginPut201CreatingSucceeded200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -283,7 +283,7 @@ export class LROsCustomHeader {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPost202Retry200);
+        beginPost202Retry200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -317,7 +317,7 @@ export class LROsCustomHeader {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPostAsyncRetrySucceeded);
+        beginPostAsyncRetrySucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -680,7 +680,7 @@ export class LROsCustomHeader {
 }
 
 // Operation Specifications
-const beginPutAsyncRetrySucceeded: msRest.OperationSpec = {
+const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/customheader/putasync/retry/succeeded",
   headerParameters: [
@@ -712,7 +712,7 @@ const beginPutAsyncRetrySucceeded: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPut201CreatingSucceeded200: msRest.OperationSpec = {
+const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/customheader/put/201/creating/succeeded/200",
   headerParameters: [
@@ -746,7 +746,7 @@ const beginPut201CreatingSucceeded200: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPost202Retry200: msRest.OperationSpec = {
+const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/customheader/post/202/retry/200",
   headerParameters: [
@@ -777,7 +777,7 @@ const beginPost202Retry200: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPostAsyncRetrySucceeded: msRest.OperationSpec = {
+const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/customheader/postasync/retry/succeeded",
   headerParameters: [

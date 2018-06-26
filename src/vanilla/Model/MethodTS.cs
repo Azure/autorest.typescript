@@ -813,7 +813,7 @@ namespace AutoRest.TypeScript.Model
 
         private string GetOperationSpecVariableName()
         {
-            return Name.ToCamelCase();
+            return Name.ToCamelCase() + "OperationSpec";
         }
 
         public string CreateSerializerExpression()

@@ -39,7 +39,7 @@ export class DateModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,7 +61,7 @@ export class DateModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDate);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,7 +83,7 @@ export class DateModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowDate);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,7 +105,7 @@ export class DateModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowDate);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -135,7 +135,7 @@ export class DateModel {
             dateBody
           },
           options),
-        putMaxDate);
+        putMaxDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -157,7 +157,7 @@ export class DateModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMaxDate);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMaxDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -187,7 +187,7 @@ export class DateModel {
             dateBody
           },
           options),
-        putMinDate);
+        putMinDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -209,7 +209,7 @@ export class DateModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMinDate);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMinDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -551,7 +551,7 @@ export class DateModel {
 }
 
 // Operation Specifications
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/null",
   responses: {
@@ -570,7 +570,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalidDate: msRest.OperationSpec = {
+const getInvalidDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/invaliddate",
   responses: {
@@ -589,7 +589,7 @@ const getInvalidDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getOverflowDate: msRest.OperationSpec = {
+const getOverflowDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/overflowdate",
   responses: {
@@ -608,7 +608,7 @@ const getOverflowDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUnderflowDate: msRest.OperationSpec = {
+const getUnderflowDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/underflowdate",
   responses: {
@@ -627,7 +627,7 @@ const getUnderflowDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putMaxDate: msRest.OperationSpec = {
+const putMaxDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "date/max",
   requestBody: {
@@ -650,7 +650,7 @@ const putMaxDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMaxDate: msRest.OperationSpec = {
+const getMaxDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/max",
   responses: {
@@ -669,7 +669,7 @@ const getMaxDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putMinDate: msRest.OperationSpec = {
+const putMinDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "date/min",
   requestBody: {
@@ -692,7 +692,7 @@ const putMinDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMinDate: msRest.OperationSpec = {
+const getMinDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/min",
   responses: {

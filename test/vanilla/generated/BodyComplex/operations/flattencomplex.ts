@@ -38,7 +38,7 @@ export class Flattencomplex {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -87,7 +87,7 @@ export class Flattencomplex {
 }
 
 // Operation Specifications
-const getValid: msRest.OperationSpec = {
+const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/flatten/valid",
   responses: {

@@ -40,7 +40,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -69,7 +69,7 @@ export class String {
             stringBody
           },
           options),
-        putNull);
+        putNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -91,7 +91,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -121,7 +121,7 @@ export class String {
             stringBody
           },
           options),
-        putEmpty);
+        putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -143,7 +143,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMbcs);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMbcsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -174,7 +174,7 @@ export class String {
             stringBody
           },
           options),
-        putMbcs);
+        putMbcsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -197,7 +197,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getWhitespace);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getWhitespaceOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -229,7 +229,7 @@ export class String {
             stringBody
           },
           options),
-        putWhitespace);
+        putWhitespaceOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -251,7 +251,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvided);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -273,7 +273,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64Encoded);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64EncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -295,7 +295,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64UrlEncoded);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64UrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -325,7 +325,7 @@ export class String {
             stringBody
           },
           options),
-        putBase64UrlEncoded);
+        putBase64UrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -347,7 +347,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullBase64UrlEncoded);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullBase64UrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -902,7 +902,7 @@ export class String {
 }
 
 // Operation Specifications
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/null",
   responses: {
@@ -921,7 +921,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putNull: msRest.OperationSpec = {
+const putNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "string/null",
   requestBody: {
@@ -943,7 +943,7 @@ const putNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/empty",
   responses: {
@@ -962,7 +962,7 @@ const getEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putEmpty: msRest.OperationSpec = {
+const putEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "string/empty",
   requestBody: {
@@ -985,7 +985,7 @@ const putEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMbcs: msRest.OperationSpec = {
+const getMbcsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/mbcs",
   responses: {
@@ -1004,7 +1004,7 @@ const getMbcs: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putMbcs: msRest.OperationSpec = {
+const putMbcsOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "string/mbcs",
   requestBody: {
@@ -1027,7 +1027,7 @@ const putMbcs: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getWhitespace: msRest.OperationSpec = {
+const getWhitespaceOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/whitespace",
   responses: {
@@ -1046,7 +1046,7 @@ const getWhitespace: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putWhitespace: msRest.OperationSpec = {
+const putWhitespaceOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "string/whitespace",
   requestBody: {
@@ -1069,7 +1069,7 @@ const putWhitespace: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNotProvided: msRest.OperationSpec = {
+const getNotProvidedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/notProvided",
   responses: {
@@ -1088,7 +1088,7 @@ const getNotProvided: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBase64Encoded: msRest.OperationSpec = {
+const getBase64EncodedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/base64Encoding",
   responses: {
@@ -1107,7 +1107,7 @@ const getBase64Encoded: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBase64UrlEncoded: msRest.OperationSpec = {
+const getBase64UrlEncodedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/base64UrlEncoding",
   responses: {
@@ -1126,7 +1126,7 @@ const getBase64UrlEncoded: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBase64UrlEncoded: msRest.OperationSpec = {
+const putBase64UrlEncodedOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "string/base64UrlEncoding",
   requestBody: {
@@ -1149,7 +1149,7 @@ const putBase64UrlEncoded: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNullBase64UrlEncoded: msRest.OperationSpec = {
+const getNullBase64UrlEncodedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/nullBase64UrlEncoding",
   responses: {

@@ -59,7 +59,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             resourceArray
           },
           options),
-        putArray);
+        putArrayOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -82,7 +82,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getArray);
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -114,7 +114,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             resourceArray
           },
           options),
-        putWrappedArray);
+        putWrappedArrayOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -138,7 +138,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getWrappedArray);
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getWrappedArrayOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -169,7 +169,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             resourceDictionary
           },
           options),
-        putDictionary);
+        putDictionaryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -192,7 +192,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionary);
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -223,7 +223,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             resourceComplexObject
           },
           options),
-        putResourceCollection);
+        putResourceCollectionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -246,7 +246,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getResourceCollection);
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getResourceCollectionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -277,7 +277,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             simpleBodyProduct
           },
           options),
-        putSimpleProduct);
+        putSimpleProductOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -320,7 +320,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             odatavalue
           },
           options),
-        postFlattenedSimpleProduct);
+        postFlattenedSimpleProductOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -351,7 +351,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             flattenParameterGroup
           },
           options),
-        putSimpleProductWithGrouping);
+        putSimpleProductWithGroupingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -827,7 +827,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 }
 
 // Operation Specifications
-const putArray: msRest.OperationSpec = {
+const putArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "model-flatten/array",
   requestBody: {
@@ -856,7 +856,7 @@ const putArray: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getArray: msRest.OperationSpec = {
+const getArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/array",
   responses: {
@@ -882,7 +882,7 @@ const getArray: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putWrappedArray: msRest.OperationSpec = {
+const putWrappedArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "model-flatten/wrappedarray",
   requestBody: {
@@ -911,7 +911,7 @@ const putWrappedArray: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getWrappedArray: msRest.OperationSpec = {
+const getWrappedArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/wrappedarray",
   responses: {
@@ -937,7 +937,7 @@ const getWrappedArray: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDictionary: msRest.OperationSpec = {
+const putDictionaryOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "model-flatten/dictionary",
   requestBody: {
@@ -966,7 +966,7 @@ const putDictionary: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDictionary: msRest.OperationSpec = {
+const getDictionaryOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/dictionary",
   responses: {
@@ -992,7 +992,7 @@ const getDictionary: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putResourceCollection: msRest.OperationSpec = {
+const putResourceCollectionOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "model-flatten/resourcecollection",
   requestBody: {
@@ -1009,7 +1009,7 @@ const putResourceCollection: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getResourceCollection: msRest.OperationSpec = {
+const getResourceCollectionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/resourcecollection",
   responses: {
@@ -1023,7 +1023,7 @@ const getResourceCollection: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putSimpleProduct: msRest.OperationSpec = {
+const putSimpleProductOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "model-flatten/customFlattening",
   requestBody: {
@@ -1042,7 +1042,7 @@ const putSimpleProduct: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postFlattenedSimpleProduct: msRest.OperationSpec = {
+const postFlattenedSimpleProductOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "model-flatten/customFlattening",
   requestBody: {
@@ -1067,7 +1067,7 @@ const postFlattenedSimpleProduct: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putSimpleProductWithGrouping: msRest.OperationSpec = {
+const putSimpleProductWithGroupingOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "model-flatten/customFlattening/parametergrouping/{name}/",
   urlParameters: [

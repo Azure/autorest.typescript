@@ -65,7 +65,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
             "this.apiVersion": this.apiVersion
           },
           options),
-        validationOfMethodParameters);
+        validationOfMethodParametersOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -104,7 +104,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
             "this.apiVersion": this.apiVersion
           },
           options),
-        validationOfBody);
+        validationOfBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -132,7 +132,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
             constantParam
           },
           options),
-        getWithConstantInPath);
+        getWithConstantInPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -163,7 +163,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
             body
           },
           options),
-        postWithConstantInBody);
+        postWithConstantInBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -343,7 +343,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
 }
 
 // Operation Specifications
-const validationOfMethodParameters: msRest.OperationSpec = {
+const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
   urlParameters: [
@@ -414,7 +414,7 @@ const validationOfMethodParameters: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const validationOfBody: msRest.OperationSpec = {
+const validationOfBodyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
   urlParameters: [
@@ -490,7 +490,7 @@ const validationOfBody: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getWithConstantInPath: msRest.OperationSpec = {
+const getWithConstantInPathOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "validation/constantsInPath/{constantParam}/value",
   urlParameters: [
@@ -514,7 +514,7 @@ const getWithConstantInPath: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postWithConstantInBody: msRest.OperationSpec = {
+const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "validation/constantsInPath/{constantParam}/value",
   urlParameters: [

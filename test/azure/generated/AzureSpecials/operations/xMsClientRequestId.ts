@@ -46,7 +46,7 @@ export class XMsClientRequestId {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        get);
+        getOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -79,7 +79,7 @@ export class XMsClientRequestId {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        paramGet);
+        paramGetOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -176,7 +176,7 @@ export class XMsClientRequestId {
 }
 
 // Operation Specifications
-const get: msRest.OperationSpec = {
+const getOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/overwrite/x-ms-client-request-id/method/",
   headerParameters: [
@@ -200,7 +200,7 @@ const get: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramGet: msRest.OperationSpec = {
+const paramGetOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
   headerParameters: [

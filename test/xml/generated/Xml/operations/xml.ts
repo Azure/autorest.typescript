@@ -40,7 +40,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSimple);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSimpleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -70,7 +70,7 @@ export class Xml {
             slideshow
           },
           options),
-        putSimple);
+        putSimpleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -92,7 +92,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getWrappedLists);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getWrappedListsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -122,7 +122,7 @@ export class Xml {
             wrappedLists
           },
           options),
-        putWrappedLists);
+        putWrappedListsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -144,7 +144,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getHeaders);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getHeadersOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -166,7 +166,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyList);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -196,7 +196,7 @@ export class Xml {
             slideshow
           },
           options),
-        putEmptyList);
+        putEmptyListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -218,7 +218,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyWrappedLists);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyWrappedListsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -248,7 +248,7 @@ export class Xml {
             appleBarrel
           },
           options),
-        putEmptyWrappedLists);
+        putEmptyWrappedListsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -270,7 +270,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRootList);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRootListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -300,7 +300,7 @@ export class Xml {
             bananas
           },
           options),
-        putRootList);
+        putRootListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -322,7 +322,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRootListSingleItem);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRootListSingleItemOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -352,7 +352,7 @@ export class Xml {
             bananas
           },
           options),
-        putRootListSingleItem);
+        putRootListSingleItemOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -374,7 +374,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyRootList);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyRootListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -404,7 +404,7 @@ export class Xml {
             bananas
           },
           options),
-        putEmptyRootList);
+        putEmptyRootListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -426,7 +426,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyChildElement);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyChildElementOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -456,7 +456,7 @@ export class Xml {
             banana
           },
           options),
-        putEmptyChildElement);
+        putEmptyChildElementOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -485,7 +485,7 @@ export class Xml {
             comp
           },
           options),
-        listContainers);
+        listContainersOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -516,7 +516,7 @@ export class Xml {
             restype
           },
           options),
-        getServiceProperties);
+        getServicePropertiesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -550,7 +550,7 @@ export class Xml {
             properties
           },
           options),
-        putServiceProperties);
+        putServicePropertiesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -581,7 +581,7 @@ export class Xml {
             restype
           },
           options),
-        getAcls);
+        getAclsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -615,7 +615,7 @@ export class Xml {
             properties
           },
           options),
-        putAcls);
+        putAclsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -646,7 +646,7 @@ export class Xml {
             restype
           },
           options),
-        listBlobs);
+        listBlobsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1619,7 +1619,7 @@ export class Xml {
 }
 
 // Operation Specifications
-const getSimple: msRest.OperationSpec = {
+const getSimpleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/simple",
   responses: {
@@ -1634,7 +1634,7 @@ const getSimple: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putSimple: msRest.OperationSpec = {
+const putSimpleOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/simple",
   requestBody: {
@@ -1655,7 +1655,7 @@ const putSimple: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getWrappedLists: msRest.OperationSpec = {
+const getWrappedListsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/wrapped-lists",
   responses: {
@@ -1668,7 +1668,7 @@ const getWrappedLists: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putWrappedLists: msRest.OperationSpec = {
+const putWrappedListsOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/wrapped-lists",
   requestBody: {
@@ -1689,7 +1689,7 @@ const putWrappedLists: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getHeaders: msRest.OperationSpec = {
+const getHeadersOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/headers",
   responses: {
@@ -1702,7 +1702,7 @@ const getHeaders: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getEmptyList: msRest.OperationSpec = {
+const getEmptyListOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-list",
   responses: {
@@ -1715,7 +1715,7 @@ const getEmptyList: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putEmptyList: msRest.OperationSpec = {
+const putEmptyListOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/empty-list",
   requestBody: {
@@ -1734,7 +1734,7 @@ const putEmptyList: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getEmptyWrappedLists: msRest.OperationSpec = {
+const getEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-wrapped-lists",
   responses: {
@@ -1747,7 +1747,7 @@ const getEmptyWrappedLists: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putEmptyWrappedLists: msRest.OperationSpec = {
+const putEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/empty-wrapped-lists",
   requestBody: {
@@ -1766,7 +1766,7 @@ const putEmptyWrappedLists: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getRootList: msRest.OperationSpec = {
+const getRootListOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/root-list",
   responses: {
@@ -1792,7 +1792,7 @@ const getRootList: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putRootList: msRest.OperationSpec = {
+const putRootListOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/root-list",
   requestBody: {
@@ -1822,7 +1822,7 @@ const putRootList: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getRootListSingleItem: msRest.OperationSpec = {
+const getRootListSingleItemOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/root-list-single-item",
   responses: {
@@ -1848,7 +1848,7 @@ const getRootListSingleItem: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putRootListSingleItem: msRest.OperationSpec = {
+const putRootListSingleItemOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/root-list-single-item",
   requestBody: {
@@ -1878,7 +1878,7 @@ const putRootListSingleItem: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getEmptyRootList: msRest.OperationSpec = {
+const getEmptyRootListOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-root-list",
   responses: {
@@ -1904,7 +1904,7 @@ const getEmptyRootList: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putEmptyRootList: msRest.OperationSpec = {
+const putEmptyRootListOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/empty-root-list",
   requestBody: {
@@ -1934,7 +1934,7 @@ const putEmptyRootList: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getEmptyChildElement: msRest.OperationSpec = {
+const getEmptyChildElementOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-child-element",
   responses: {
@@ -1947,7 +1947,7 @@ const getEmptyChildElement: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putEmptyChildElement: msRest.OperationSpec = {
+const putEmptyChildElementOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/empty-child-element",
   requestBody: {
@@ -1966,7 +1966,7 @@ const putEmptyChildElement: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const listContainers: msRest.OperationSpec = {
+const listContainersOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/",
   queryParameters: [
@@ -1993,7 +1993,7 @@ const listContainers: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getServiceProperties: msRest.OperationSpec = {
+const getServicePropertiesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/",
   queryParameters: [
@@ -2032,7 +2032,7 @@ const getServiceProperties: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putServiceProperties: msRest.OperationSpec = {
+const putServicePropertiesOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/",
   queryParameters: [
@@ -2077,7 +2077,7 @@ const putServiceProperties: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const getAcls: msRest.OperationSpec = {
+const getAclsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/mycontainer",
   queryParameters: [
@@ -2129,7 +2129,7 @@ const getAcls: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const putAcls: msRest.OperationSpec = {
+const putAclsOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/mycontainer",
   queryParameters: [
@@ -2185,7 +2185,7 @@ const putAcls: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers, true)
 };
 
-const listBlobs: msRest.OperationSpec = {
+const listBlobsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/mycontainer",
   queryParameters: [

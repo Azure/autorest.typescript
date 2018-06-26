@@ -65,7 +65,7 @@ class ComplexModelClient extends ComplexModelClientContext {
             "this.apiVersion": this.apiVersion
           },
           options),
-        list);
+        listOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -104,7 +104,7 @@ class ComplexModelClient extends ComplexModelClientContext {
             productDictionaryOfArray
           },
           options),
-        create);
+        createOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -143,7 +143,7 @@ class ComplexModelClient extends ComplexModelClientContext {
             productArrayOfDictionary
           },
           options),
-        update);
+        updateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -293,7 +293,7 @@ class ComplexModelClient extends ComplexModelClientContext {
 }
 
 // Operation Specifications
-const list: msRest.OperationSpec = {
+const listOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
@@ -345,7 +345,7 @@ const list: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const create: msRest.OperationSpec = {
+const createOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
@@ -405,7 +405,7 @@ const create: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const update: msRest.OperationSpec = {
+const updateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [

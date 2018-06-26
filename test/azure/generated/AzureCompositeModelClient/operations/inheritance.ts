@@ -46,7 +46,7 @@ export class Inheritance {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getValid);
+        getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -79,7 +79,7 @@ export class Inheritance {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putValid);
+        putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -175,7 +175,7 @@ export class Inheritance {
 }
 
 // Operation Specifications
-const getValid: msRest.OperationSpec = {
+const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/inheritance/valid",
   headerParameters: [
@@ -201,7 +201,7 @@ const getValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putValid: msRest.OperationSpec = {
+const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/inheritance/valid",
   headerParameters: [

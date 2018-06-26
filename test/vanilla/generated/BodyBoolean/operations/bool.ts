@@ -39,7 +39,7 @@ export class Bool {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getTrue);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -69,7 +69,7 @@ export class Bool {
             boolBody
           },
           options),
-        putTrue);
+        putTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -91,7 +91,7 @@ export class Bool {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFalse);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -121,7 +121,7 @@ export class Bool {
             boolBody
           },
           options),
-        putFalse);
+        putFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -143,7 +143,7 @@ export class Bool {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -165,7 +165,7 @@ export class Bool {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -425,7 +425,7 @@ export class Bool {
 }
 
 // Operation Specifications
-const getTrue: msRest.OperationSpec = {
+const getTrueOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "bool/true",
   responses: {
@@ -444,7 +444,7 @@ const getTrue: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putTrue: msRest.OperationSpec = {
+const putTrueOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "bool/true",
   requestBody: {
@@ -467,7 +467,7 @@ const putTrue: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getFalse: msRest.OperationSpec = {
+const getFalseOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "bool/false",
   responses: {
@@ -486,7 +486,7 @@ const getFalse: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putFalse: msRest.OperationSpec = {
+const putFalseOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "bool/false",
   requestBody: {
@@ -509,7 +509,7 @@ const putFalse: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "bool/null",
   responses: {
@@ -528,7 +528,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalid: msRest.OperationSpec = {
+const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "bool/invalid",
   responses: {

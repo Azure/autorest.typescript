@@ -39,7 +39,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,7 +61,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,7 +83,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflow);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,7 +105,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflow);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -135,7 +135,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        putUtcMaxDateTime);
+        putUtcMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -157,7 +157,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcLowercaseMaxDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcLowercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -179,7 +179,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcUppercaseMaxDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcUppercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -209,7 +209,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        putLocalPositiveOffsetMaxDateTime);
+        putLocalPositiveOffsetMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -231,7 +231,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalPositiveOffsetLowercaseMaxDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -253,7 +253,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalPositiveOffsetUppercaseMaxDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -283,7 +283,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        putLocalNegativeOffsetMaxDateTime);
+        putLocalNegativeOffsetMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -305,7 +305,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalNegativeOffsetUppercaseMaxDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -327,7 +327,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalNegativeOffsetLowercaseMaxDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -357,7 +357,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        putUtcMinDateTime);
+        putUtcMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -379,7 +379,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcMinDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -409,7 +409,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        putLocalPositiveOffsetMinDateTime);
+        putLocalPositiveOffsetMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -431,7 +431,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalPositiveOffsetMinDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalPositiveOffsetMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -461,7 +461,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        putLocalNegativeOffsetMinDateTime);
+        putLocalNegativeOffsetMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -483,7 +483,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalNegativeOffsetMinDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalNegativeOffsetMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1284,7 +1284,7 @@ export class Datetime {
 }
 
 // Operation Specifications
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/null",
   responses: {
@@ -1303,7 +1303,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalid: msRest.OperationSpec = {
+const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/invalid",
   responses: {
@@ -1322,7 +1322,7 @@ const getInvalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getOverflow: msRest.OperationSpec = {
+const getOverflowOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/overflow",
   responses: {
@@ -1341,7 +1341,7 @@ const getOverflow: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUnderflow: msRest.OperationSpec = {
+const getUnderflowOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/underflow",
   responses: {
@@ -1360,7 +1360,7 @@ const getUnderflow: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putUtcMaxDateTime: msRest.OperationSpec = {
+const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "datetime/max/utc",
   requestBody: {
@@ -1383,7 +1383,7 @@ const putUtcMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUtcLowercaseMaxDateTime: msRest.OperationSpec = {
+const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/utc/lowercase",
   responses: {
@@ -1402,7 +1402,7 @@ const getUtcLowercaseMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUtcUppercaseMaxDateTime: msRest.OperationSpec = {
+const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/utc/uppercase",
   responses: {
@@ -1421,7 +1421,7 @@ const getUtcUppercaseMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putLocalPositiveOffsetMaxDateTime: msRest.OperationSpec = {
+const putLocalPositiveOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "datetime/max/localpositiveoffset",
   requestBody: {
@@ -1444,7 +1444,7 @@ const putLocalPositiveOffsetMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLocalPositiveOffsetLowercaseMaxDateTime: msRest.OperationSpec = {
+const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/localpositiveoffset/lowercase",
   responses: {
@@ -1463,7 +1463,7 @@ const getLocalPositiveOffsetLowercaseMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLocalPositiveOffsetUppercaseMaxDateTime: msRest.OperationSpec = {
+const getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/localpositiveoffset/uppercase",
   responses: {
@@ -1482,7 +1482,7 @@ const getLocalPositiveOffsetUppercaseMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putLocalNegativeOffsetMaxDateTime: msRest.OperationSpec = {
+const putLocalNegativeOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "datetime/max/localnegativeoffset",
   requestBody: {
@@ -1505,7 +1505,7 @@ const putLocalNegativeOffsetMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLocalNegativeOffsetUppercaseMaxDateTime: msRest.OperationSpec = {
+const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/localnegativeoffset/uppercase",
   responses: {
@@ -1524,7 +1524,7 @@ const getLocalNegativeOffsetUppercaseMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLocalNegativeOffsetLowercaseMaxDateTime: msRest.OperationSpec = {
+const getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/localnegativeoffset/lowercase",
   responses: {
@@ -1543,7 +1543,7 @@ const getLocalNegativeOffsetLowercaseMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putUtcMinDateTime: msRest.OperationSpec = {
+const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "datetime/min/utc",
   requestBody: {
@@ -1566,7 +1566,7 @@ const putUtcMinDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUtcMinDateTime: msRest.OperationSpec = {
+const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/min/utc",
   responses: {
@@ -1585,7 +1585,7 @@ const getUtcMinDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putLocalPositiveOffsetMinDateTime: msRest.OperationSpec = {
+const putLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "datetime/min/localpositiveoffset",
   requestBody: {
@@ -1608,7 +1608,7 @@ const putLocalPositiveOffsetMinDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLocalPositiveOffsetMinDateTime: msRest.OperationSpec = {
+const getLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/min/localpositiveoffset",
   responses: {
@@ -1627,7 +1627,7 @@ const getLocalPositiveOffsetMinDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putLocalNegativeOffsetMinDateTime: msRest.OperationSpec = {
+const putLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "datetime/min/localnegativeoffset",
   requestBody: {
@@ -1650,7 +1650,7 @@ const putLocalNegativeOffsetMinDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLocalNegativeOffsetMinDateTime: msRest.OperationSpec = {
+const getLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/min/localnegativeoffset",
   responses: {

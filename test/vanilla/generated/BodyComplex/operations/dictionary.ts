@@ -40,7 +40,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -69,7 +69,7 @@ export class Dictionary {
             defaultProgram
           },
           options),
-        putValid);
+        putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -91,7 +91,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -120,7 +120,7 @@ export class Dictionary {
             defaultProgram
           },
           options),
-        putEmpty);
+        putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -142,7 +142,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -164,7 +164,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvided);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -420,7 +420,7 @@ export class Dictionary {
 }
 
 // Operation Specifications
-const getValid: msRest.OperationSpec = {
+const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/valid",
   responses: {
@@ -434,7 +434,7 @@ const getValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putValid: msRest.OperationSpec = {
+const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/dictionary/typed/valid",
   requestBody: {
@@ -456,7 +456,7 @@ const putValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/empty",
   responses: {
@@ -470,7 +470,7 @@ const getEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putEmpty: msRest.OperationSpec = {
+const putEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/dictionary/typed/empty",
   requestBody: {
@@ -492,7 +492,7 @@ const putEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/null",
   responses: {
@@ -506,7 +506,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNotProvided: msRest.OperationSpec = {
+const getNotProvidedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/notprovided",
   responses: {

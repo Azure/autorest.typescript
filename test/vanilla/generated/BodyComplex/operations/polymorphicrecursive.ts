@@ -40,7 +40,7 @@ export class Polymorphicrecursive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -122,7 +122,7 @@ export class Polymorphicrecursive {
             complexBody
           },
           options),
-        putValid);
+        putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -268,7 +268,7 @@ export class Polymorphicrecursive {
 }
 
 // Operation Specifications
-const getValid: msRest.OperationSpec = {
+const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/polymorphicrecursive/valid",
   responses: {
@@ -282,7 +282,7 @@ const getValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putValid: msRest.OperationSpec = {
+const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/polymorphicrecursive/valid",
   requestBody: {

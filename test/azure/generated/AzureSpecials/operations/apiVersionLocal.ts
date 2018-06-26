@@ -48,7 +48,7 @@ export class ApiVersionLocal {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMethodLocalValid);
+        getMethodLocalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -78,7 +78,7 @@ export class ApiVersionLocal {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMethodLocalNull);
+        getMethodLocalNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -108,7 +108,7 @@ export class ApiVersionLocal {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getPathLocalValid);
+        getPathLocalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -138,7 +138,7 @@ export class ApiVersionLocal {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getSwaggerLocalValid);
+        getSwaggerLocalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -312,7 +312,7 @@ export class ApiVersionLocal {
 }
 
 // Operation Specifications
-const getMethodLocalValid: msRest.OperationSpec = {
+const getMethodLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/local/2.0",
   queryParameters: [
@@ -350,7 +350,7 @@ const getMethodLocalValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMethodLocalNull: msRest.OperationSpec = {
+const getMethodLocalNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/local/null",
   queryParameters: [
@@ -385,7 +385,7 @@ const getMethodLocalNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getPathLocalValid: msRest.OperationSpec = {
+const getPathLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/path/string/none/query/local/2.0",
   queryParameters: [
@@ -423,7 +423,7 @@ const getPathLocalValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSwaggerLocalValid: msRest.OperationSpec = {
+const getSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/swagger/string/none/query/local/2.0",
   queryParameters: [

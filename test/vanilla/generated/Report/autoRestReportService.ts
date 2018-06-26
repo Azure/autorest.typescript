@@ -58,7 +58,7 @@ class AutoRestReportService extends AutoRestReportServiceContext {
             qualifier
           },
           options),
-        getReport);
+        getReportOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -108,7 +108,7 @@ class AutoRestReportService extends AutoRestReportServiceContext {
 }
 
 // Operation Specifications
-const getReport: msRest.OperationSpec = {
+const getReportOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "report",
   queryParameters: [

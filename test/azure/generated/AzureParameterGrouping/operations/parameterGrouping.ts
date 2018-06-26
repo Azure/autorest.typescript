@@ -50,7 +50,7 @@ export class ParameterGrouping {
             parameterGroupingPostRequiredParameters
           },
           options),
-        postRequired);
+        postRequiredOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,7 +80,7 @@ export class ParameterGrouping {
             parameterGroupingPostOptionalParameters
           },
           options),
-        postOptional);
+        postOptionalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -112,7 +112,7 @@ export class ParameterGrouping {
             parameterGroupingPostMultiParamGroupsSecondParamGroup
           },
           options),
-        postMultiParamGroups);
+        postMultiParamGroupsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -143,7 +143,7 @@ export class ParameterGrouping {
             firstParameterGroup
           },
           options),
-        postSharedParameterGroupObject);
+        postSharedParameterGroupObjectOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -321,7 +321,7 @@ export class ParameterGrouping {
 }
 
 // Operation Specifications
-const postRequired: msRest.OperationSpec = {
+const postRequiredOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postRequired/{path}",
   urlParameters: [
@@ -401,7 +401,7 @@ const postRequired: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptional: msRest.OperationSpec = {
+const postOptionalOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postOptional",
   queryParameters: [
@@ -452,7 +452,7 @@ const postOptional: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postMultiParamGroups: msRest.OperationSpec = {
+const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postMultipleParameterGroups",
   queryParameters: [
@@ -528,7 +528,7 @@ const postMultiParamGroups: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postSharedParameterGroupObject: msRest.OperationSpec = {
+const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/sharedParameterGroupObject",
   queryParameters: [

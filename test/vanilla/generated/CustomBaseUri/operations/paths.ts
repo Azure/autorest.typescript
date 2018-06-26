@@ -48,7 +48,7 @@ export class Paths {
             "this.client.host": this.client.host
           },
           options),
-        getEmpty);
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -101,7 +101,7 @@ export class Paths {
 }
 
 // Operation Specifications
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "customuri",
   urlParameters: [

@@ -40,7 +40,7 @@ export class EnumModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotExpandable);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotExpandableOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -70,7 +70,7 @@ export class EnumModel {
             stringBody
           },
           options),
-        putNotExpandable);
+        putNotExpandableOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -92,7 +92,7 @@ export class EnumModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getReferenced);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getReferencedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -122,7 +122,7 @@ export class EnumModel {
             enumStringBody
           },
           options),
-        putReferenced);
+        putReferencedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -144,7 +144,7 @@ export class EnumModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getReferencedConstant);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getReferencedConstantOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -173,7 +173,7 @@ export class EnumModel {
             field1
           },
           options),
-        putReferencedConstant);
+        putReferencedConstantOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -433,7 +433,7 @@ export class EnumModel {
 }
 
 // Operation Specifications
-const getNotExpandable: msRest.OperationSpec = {
+const getNotExpandableOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/enum/notExpandable",
   responses: {
@@ -457,7 +457,7 @@ const getNotExpandable: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putNotExpandable: msRest.OperationSpec = {
+const putNotExpandableOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "string/enum/notExpandable",
   requestBody: {
@@ -485,7 +485,7 @@ const putNotExpandable: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getReferenced: msRest.OperationSpec = {
+const getReferencedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/enum/Referenced",
   responses: {
@@ -509,7 +509,7 @@ const getReferenced: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putReferenced: msRest.OperationSpec = {
+const putReferencedOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "string/enum/Referenced",
   requestBody: {
@@ -537,7 +537,7 @@ const putReferenced: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getReferencedConstant: msRest.OperationSpec = {
+const getReferencedConstantOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/enum/ReferencedConstant",
   responses: {
@@ -551,7 +551,7 @@ const getReferencedConstant: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putReferencedConstant: msRest.OperationSpec = {
+const putReferencedConstantOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "string/enum/ReferencedConstant",
   requestBody: {

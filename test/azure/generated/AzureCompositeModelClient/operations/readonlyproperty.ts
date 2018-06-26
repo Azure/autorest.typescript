@@ -46,7 +46,7 @@ export class Readonlyproperty {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getValid);
+        getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -76,7 +76,7 @@ export class Readonlyproperty {
             size
           },
           options),
-        putValid);
+        putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -168,7 +168,7 @@ export class Readonlyproperty {
 }
 
 // Operation Specifications
-const getValid: msRest.OperationSpec = {
+const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/readonlyproperty/valid",
   headerParameters: [
@@ -194,7 +194,7 @@ const getValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putValid: msRest.OperationSpec = {
+const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/readonlyproperty/valid",
   headerParameters: [

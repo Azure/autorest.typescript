@@ -40,7 +40,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError200Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError200ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -62,7 +62,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError204Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError204ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -84,7 +84,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError201Invalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError201InvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -106,7 +106,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError202None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError202NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -128,7 +128,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError400Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError400ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -150,7 +150,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model201ModelDefaultError200Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model201ModelDefaultError200ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -172,7 +172,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model201ModelDefaultError201Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model201ModelDefaultError201ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -194,7 +194,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model201ModelDefaultError400Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model201ModelDefaultError400ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -216,7 +216,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError200Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -238,7 +238,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError201Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -260,7 +260,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError404Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -282,7 +282,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError400Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -304,7 +304,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultError202None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultError202NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -326,7 +326,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultError204None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultError204NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -348,7 +348,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultError400Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultError400ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -370,7 +370,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone202Invalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone202InvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -392,7 +392,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone204None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone204NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -414,7 +414,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone400None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone400NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -436,7 +436,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone400Invalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone400InvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -458,7 +458,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA200Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA200ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -480,7 +480,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA200None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA200NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -502,7 +502,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA400Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA400ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -524,7 +524,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA400None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA400NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -546,7 +546,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone200Invalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone200InvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -568,7 +568,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone200None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone200NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -590,7 +590,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone400Invalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone400InvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -612,7 +612,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone400None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone400NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -635,7 +635,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA200None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA200NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -657,7 +657,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA200Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA200ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -679,7 +679,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA200Invalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA200InvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -701,7 +701,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA400None);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA400NoneOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -723,7 +723,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA400Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA400ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -745,7 +745,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA400Invalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA400InvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -767,7 +767,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA202Valid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA202ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2172,7 +2172,7 @@ export class MultipleResponses {
 }
 
 // Operation Specifications
-const get200Model204NoModelDefaultError200Valid: msRest.OperationSpec = {
+const get200Model204NoModelDefaultError200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/200/valid",
   responses: {
@@ -2187,7 +2187,7 @@ const get200Model204NoModelDefaultError200Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200Model204NoModelDefaultError204Valid: msRest.OperationSpec = {
+const get200Model204NoModelDefaultError204ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/204/none",
   responses: {
@@ -2202,7 +2202,7 @@ const get200Model204NoModelDefaultError204Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200Model204NoModelDefaultError201Invalid: msRest.OperationSpec = {
+const get200Model204NoModelDefaultError201InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/201/valid",
   responses: {
@@ -2217,7 +2217,7 @@ const get200Model204NoModelDefaultError201Invalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200Model204NoModelDefaultError202None: msRest.OperationSpec = {
+const get200Model204NoModelDefaultError202NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/202/none",
   responses: {
@@ -2232,7 +2232,7 @@ const get200Model204NoModelDefaultError202None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200Model204NoModelDefaultError400Valid: msRest.OperationSpec = {
+const get200Model204NoModelDefaultError400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/400/valid",
   responses: {
@@ -2247,7 +2247,7 @@ const get200Model204NoModelDefaultError400Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200Model201ModelDefaultError200Valid: msRest.OperationSpec = {
+const get200Model201ModelDefaultError200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/B/default/Error/response/200/valid",
   responses: {
@@ -2264,7 +2264,7 @@ const get200Model201ModelDefaultError200Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200Model201ModelDefaultError201Valid: msRest.OperationSpec = {
+const get200Model201ModelDefaultError201ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/B/default/Error/response/201/valid",
   responses: {
@@ -2281,7 +2281,7 @@ const get200Model201ModelDefaultError201Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200Model201ModelDefaultError400Valid: msRest.OperationSpec = {
+const get200Model201ModelDefaultError400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/B/default/Error/response/400/valid",
   responses: {
@@ -2298,7 +2298,7 @@ const get200Model201ModelDefaultError400Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA201ModelC404ModelDDefaultError200Valid: msRest.OperationSpec = {
+const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/200/valid",
   responses: {
@@ -2318,7 +2318,7 @@ const get200ModelA201ModelC404ModelDDefaultError200Valid: msRest.OperationSpec =
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA201ModelC404ModelDDefaultError201Valid: msRest.OperationSpec = {
+const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/201/valid",
   responses: {
@@ -2338,7 +2338,7 @@ const get200ModelA201ModelC404ModelDDefaultError201Valid: msRest.OperationSpec =
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA201ModelC404ModelDDefaultError404Valid: msRest.OperationSpec = {
+const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/404/valid",
   responses: {
@@ -2358,7 +2358,7 @@ const get200ModelA201ModelC404ModelDDefaultError404Valid: msRest.OperationSpec =
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA201ModelC404ModelDDefaultError400Valid: msRest.OperationSpec = {
+const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/400/valid",
   responses: {
@@ -2378,7 +2378,7 @@ const get200ModelA201ModelC404ModelDDefaultError400Valid: msRest.OperationSpec =
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get202None204NoneDefaultError202None: msRest.OperationSpec = {
+const get202None204NoneDefaultError202NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/Error/response/202/none",
   responses: {
@@ -2391,7 +2391,7 @@ const get202None204NoneDefaultError202None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get202None204NoneDefaultError204None: msRest.OperationSpec = {
+const get202None204NoneDefaultError204NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/Error/response/204/none",
   responses: {
@@ -2404,7 +2404,7 @@ const get202None204NoneDefaultError204None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get202None204NoneDefaultError400Valid: msRest.OperationSpec = {
+const get202None204NoneDefaultError400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/Error/response/400/valid",
   responses: {
@@ -2417,7 +2417,7 @@ const get202None204NoneDefaultError400Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get202None204NoneDefaultNone202Invalid: msRest.OperationSpec = {
+const get202None204NoneDefaultNone202InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/202/invalid",
   responses: {
@@ -2428,7 +2428,7 @@ const get202None204NoneDefaultNone202Invalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get202None204NoneDefaultNone204None: msRest.OperationSpec = {
+const get202None204NoneDefaultNone204NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/204/none",
   responses: {
@@ -2439,7 +2439,7 @@ const get202None204NoneDefaultNone204None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get202None204NoneDefaultNone400None: msRest.OperationSpec = {
+const get202None204NoneDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/400/none",
   responses: {
@@ -2450,7 +2450,7 @@ const get202None204NoneDefaultNone400None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get202None204NoneDefaultNone400Invalid: msRest.OperationSpec = {
+const get202None204NoneDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/400/invalid",
   responses: {
@@ -2461,7 +2461,7 @@ const get202None204NoneDefaultNone400Invalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDefaultModelA200Valid: msRest.OperationSpec = {
+const getDefaultModelA200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/200/valid",
   responses: {
@@ -2472,7 +2472,7 @@ const getDefaultModelA200Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDefaultModelA200None: msRest.OperationSpec = {
+const getDefaultModelA200NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/200/none",
   responses: {
@@ -2483,7 +2483,7 @@ const getDefaultModelA200None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDefaultModelA400Valid: msRest.OperationSpec = {
+const getDefaultModelA400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/400/valid",
   responses: {
@@ -2494,7 +2494,7 @@ const getDefaultModelA400Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDefaultModelA400None: msRest.OperationSpec = {
+const getDefaultModelA400NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/400/none",
   responses: {
@@ -2505,7 +2505,7 @@ const getDefaultModelA400None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDefaultNone200Invalid: msRest.OperationSpec = {
+const getDefaultNone200InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/200/invalid",
   responses: {
@@ -2514,7 +2514,7 @@ const getDefaultNone200Invalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDefaultNone200None: msRest.OperationSpec = {
+const getDefaultNone200NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/200/none",
   responses: {
@@ -2523,7 +2523,7 @@ const getDefaultNone200None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDefaultNone400Invalid: msRest.OperationSpec = {
+const getDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/400/invalid",
   responses: {
@@ -2532,7 +2532,7 @@ const getDefaultNone400Invalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDefaultNone400None: msRest.OperationSpec = {
+const getDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/400/none",
   responses: {
@@ -2541,7 +2541,7 @@ const getDefaultNone400None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA200None: msRest.OperationSpec = {
+const get200ModelA200NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/200/none",
   responses: {
@@ -2553,7 +2553,7 @@ const get200ModelA200None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA200Valid: msRest.OperationSpec = {
+const get200ModelA200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/200/valid",
   responses: {
@@ -2565,7 +2565,7 @@ const get200ModelA200Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA200Invalid: msRest.OperationSpec = {
+const get200ModelA200InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/200/invalid",
   responses: {
@@ -2577,7 +2577,7 @@ const get200ModelA200Invalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA400None: msRest.OperationSpec = {
+const get200ModelA400NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/400/none",
   responses: {
@@ -2589,7 +2589,7 @@ const get200ModelA400None: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA400Valid: msRest.OperationSpec = {
+const get200ModelA400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/400/valid",
   responses: {
@@ -2601,7 +2601,7 @@ const get200ModelA400Valid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA400Invalid: msRest.OperationSpec = {
+const get200ModelA400InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/400/invalid",
   responses: {
@@ -2613,7 +2613,7 @@ const get200ModelA400Invalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200ModelA202Valid: msRest.OperationSpec = {
+const get200ModelA202ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/202/valid",
   responses: {

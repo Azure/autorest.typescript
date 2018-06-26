@@ -46,7 +46,7 @@ export class ArrayModel {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getValid);
+        getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -76,7 +76,7 @@ export class ArrayModel {
             arrayProperty
           },
           options),
-        putValid);
+        putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -104,7 +104,7 @@ export class ArrayModel {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getEmpty);
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -134,7 +134,7 @@ export class ArrayModel {
             arrayProperty
           },
           options),
-        putEmpty);
+        putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -162,7 +162,7 @@ export class ArrayModel {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getNotProvided);
+        getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -377,7 +377,7 @@ export class ArrayModel {
 }
 
 // Operation Specifications
-const getValid: msRest.OperationSpec = {
+const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/array/valid",
   headerParameters: [
@@ -403,7 +403,7 @@ const getValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putValid: msRest.OperationSpec = {
+const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/array/valid",
   headerParameters: [
@@ -437,7 +437,7 @@ const putValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/array/empty",
   headerParameters: [
@@ -463,7 +463,7 @@ const getEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putEmpty: msRest.OperationSpec = {
+const putEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/array/empty",
   headerParameters: [
@@ -497,7 +497,7 @@ const putEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNotProvided: msRest.OperationSpec = {
+const getNotProvidedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/array/notprovided",
   headerParameters: [

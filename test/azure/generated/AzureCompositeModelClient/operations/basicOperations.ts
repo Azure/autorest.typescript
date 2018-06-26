@@ -46,7 +46,7 @@ export class BasicOperations {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getValid);
+        getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -79,7 +79,7 @@ export class BasicOperations {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        putValid);
+        putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -107,7 +107,7 @@ export class BasicOperations {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getInvalid);
+        getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -135,7 +135,7 @@ export class BasicOperations {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getEmpty);
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -163,7 +163,7 @@ export class BasicOperations {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getNull);
+        getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -191,7 +191,7 @@ export class BasicOperations {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getNotProvided);
+        getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -449,7 +449,7 @@ export class BasicOperations {
 }
 
 // Operation Specifications
-const getValid: msRest.OperationSpec = {
+const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/valid",
   headerParameters: [
@@ -475,7 +475,7 @@ const getValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putValid: msRest.OperationSpec = {
+const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/basic/valid",
   queryParameters: [
@@ -521,7 +521,7 @@ const putValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalid: msRest.OperationSpec = {
+const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/invalid",
   headerParameters: [
@@ -547,7 +547,7 @@ const getInvalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/empty",
   headerParameters: [
@@ -573,7 +573,7 @@ const getEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/null",
   headerParameters: [
@@ -599,7 +599,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNotProvided: msRest.OperationSpec = {
+const getNotProvidedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/notprovided",
   headerParameters: [

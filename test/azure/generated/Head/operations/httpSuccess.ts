@@ -45,7 +45,7 @@ export class HttpSuccess {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        head200);
+        head200OperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
@@ -76,7 +76,7 @@ export class HttpSuccess {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        head204);
+        head204OperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
@@ -107,7 +107,7 @@ export class HttpSuccess {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        head404);
+        head404OperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
@@ -243,7 +243,7 @@ export class HttpSuccess {
 }
 
 // Operation Specifications
-const head200: msRest.OperationSpec = {
+const head200OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/200",
   headerParameters: [
@@ -268,7 +268,7 @@ const head200: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head204: msRest.OperationSpec = {
+const head204OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/204",
   headerParameters: [
@@ -293,7 +293,7 @@ const head204: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head404: msRest.OperationSpec = {
+const head404OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/404",
   headerParameters: [

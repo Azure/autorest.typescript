@@ -40,7 +40,7 @@ export class HttpSuccess {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head200);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -62,7 +62,7 @@ export class HttpSuccess {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -91,7 +91,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        put200);
+        put200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -120,7 +120,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        patch200);
+        patch200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -149,7 +149,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        post200);
+        post200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -178,7 +178,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        delete200);
+        delete200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -207,7 +207,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        put201);
+        put201OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -236,7 +236,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        post201);
+        post201OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -265,7 +265,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        put202);
+        put202OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -294,7 +294,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        patch202);
+        patch202OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -323,7 +323,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        post202);
+        post202OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -352,7 +352,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        delete202);
+        delete202OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -374,7 +374,7 @@ export class HttpSuccess {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head204);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -403,7 +403,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        put204);
+        put204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -432,7 +432,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        patch204);
+        patch204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -461,7 +461,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        post204);
+        post204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -490,7 +490,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        delete204);
+        delete204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -512,7 +512,7 @@ export class HttpSuccess {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head404);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head404OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1260,7 +1260,7 @@ export class HttpSuccess {
 }
 
 // Operation Specifications
-const head200: msRest.OperationSpec = {
+const head200OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/200",
   responses: {
@@ -1272,7 +1272,7 @@ const head200: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get200: msRest.OperationSpec = {
+const get200OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/success/200",
   responses: {
@@ -1291,7 +1291,7 @@ const get200: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put200: msRest.OperationSpec = {
+const put200OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/success/200",
   requestBody: {
@@ -1313,7 +1313,7 @@ const put200: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch200: msRest.OperationSpec = {
+const patch200OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/success/200",
   requestBody: {
@@ -1335,7 +1335,7 @@ const patch200: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post200: msRest.OperationSpec = {
+const post200OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/success/200",
   requestBody: {
@@ -1357,7 +1357,7 @@ const post200: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const delete200: msRest.OperationSpec = {
+const delete200OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/success/200",
   requestBody: {
@@ -1379,7 +1379,7 @@ const delete200: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put201: msRest.OperationSpec = {
+const put201OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/success/201",
   requestBody: {
@@ -1401,7 +1401,7 @@ const put201: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post201: msRest.OperationSpec = {
+const post201OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/success/201",
   requestBody: {
@@ -1423,7 +1423,7 @@ const post201: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put202: msRest.OperationSpec = {
+const put202OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/success/202",
   requestBody: {
@@ -1445,7 +1445,7 @@ const put202: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch202: msRest.OperationSpec = {
+const patch202OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/success/202",
   requestBody: {
@@ -1467,7 +1467,7 @@ const patch202: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post202: msRest.OperationSpec = {
+const post202OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/success/202",
   requestBody: {
@@ -1489,7 +1489,7 @@ const post202: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const delete202: msRest.OperationSpec = {
+const delete202OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/success/202",
   requestBody: {
@@ -1511,7 +1511,7 @@ const delete202: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head204: msRest.OperationSpec = {
+const head204OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/204",
   responses: {
@@ -1523,7 +1523,7 @@ const head204: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put204: msRest.OperationSpec = {
+const put204OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/success/204",
   requestBody: {
@@ -1545,7 +1545,7 @@ const put204: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch204: msRest.OperationSpec = {
+const patch204OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/success/204",
   requestBody: {
@@ -1567,7 +1567,7 @@ const patch204: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post204: msRest.OperationSpec = {
+const post204OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/success/204",
   requestBody: {
@@ -1589,7 +1589,7 @@ const post204: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const delete204: msRest.OperationSpec = {
+const delete204OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/success/204",
   requestBody: {
@@ -1611,7 +1611,7 @@ const delete204: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head404: msRest.OperationSpec = {
+const head404OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/404",
   responses: {

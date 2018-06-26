@@ -70,7 +70,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        putArray);
+        putArrayOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -99,7 +99,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        getArray);
+        getArrayOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -131,7 +131,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        putDictionary);
+        putDictionaryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -160,7 +160,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        getDictionary);
+        getDictionaryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -192,7 +192,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        putResourceCollection);
+        putResourceCollectionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -221,7 +221,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        getResourceCollection);
+        getResourceCollectionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -479,7 +479,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 }
 
 // Operation Specifications
-const putArray: msRest.OperationSpec = {
+const putArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/array",
   headerParameters: [
@@ -520,7 +520,7 @@ const putArray: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getArray: msRest.OperationSpec = {
+const getArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azure/resource-flatten/array",
   headerParameters: [
@@ -558,7 +558,7 @@ const getArray: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDictionary: msRest.OperationSpec = {
+const putDictionaryOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/dictionary",
   headerParameters: [
@@ -599,7 +599,7 @@ const putDictionary: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDictionary: msRest.OperationSpec = {
+const getDictionaryOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azure/resource-flatten/dictionary",
   headerParameters: [
@@ -637,7 +637,7 @@ const getDictionary: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putResourceCollection: msRest.OperationSpec = {
+const putResourceCollectionOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/resourcecollection",
   headerParameters: [
@@ -666,7 +666,7 @@ const putResourceCollection: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getResourceCollection: msRest.OperationSpec = {
+const getResourceCollectionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azure/resource-flatten/resourcecollection",
   headerParameters: [

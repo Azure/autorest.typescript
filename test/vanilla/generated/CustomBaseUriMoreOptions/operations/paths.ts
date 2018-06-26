@@ -58,7 +58,7 @@ export class Paths {
             keyVersion
           },
           options),
-        getEmpty);
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -115,7 +115,7 @@ export class Paths {
 }
 
 // Operation Specifications
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "customuri/{subscriptionId}/{keyName}",
   urlParameters: [

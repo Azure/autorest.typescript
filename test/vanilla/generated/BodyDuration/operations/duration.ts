@@ -39,7 +39,7 @@ export class Duration {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -69,7 +69,7 @@ export class Duration {
             durationBody
           },
           options),
-        putPositiveDuration);
+        putPositiveDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -91,7 +91,7 @@ export class Duration {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getPositiveDuration);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getPositiveDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -113,7 +113,7 @@ export class Duration {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -289,7 +289,7 @@ export class Duration {
 }
 
 // Operation Specifications
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "duration/null",
   responses: {
@@ -308,7 +308,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putPositiveDuration: msRest.OperationSpec = {
+const putPositiveDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "duration/positiveduration",
   requestBody: {
@@ -331,7 +331,7 @@ const putPositiveDuration: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getPositiveDuration: msRest.OperationSpec = {
+const getPositiveDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "duration/positiveduration",
   responses: {
@@ -350,7 +350,7 @@ const getPositiveDuration: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalid: msRest.OperationSpec = {
+const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "duration/invalid",
   responses: {

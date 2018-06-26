@@ -46,7 +46,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getSinglePages);
+        getSinglePagesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -78,7 +78,7 @@ export class Paging {
             pagingGetMultiplePagesOptions
           },
           options),
-        getMultiplePages);
+        getMultiplePagesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -110,7 +110,7 @@ export class Paging {
             pagingGetOdataMultiplePagesOptions
           },
           options),
-        getOdataMultiplePages);
+        getOdataMultiplePagesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -144,7 +144,7 @@ export class Paging {
             pagingGetMultiplePagesWithOffsetOptions
           },
           options),
-        getMultiplePagesWithOffset);
+        getMultiplePagesWithOffsetOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -173,7 +173,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMultiplePagesRetryFirst);
+        getMultiplePagesRetryFirstOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -202,7 +202,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMultiplePagesRetrySecond);
+        getMultiplePagesRetrySecondOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -230,7 +230,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getSinglePagesFailure);
+        getSinglePagesFailureOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -258,7 +258,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMultiplePagesFailure);
+        getMultiplePagesFailureOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -286,7 +286,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMultiplePagesFailureUri);
+        getMultiplePagesFailureUriOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -320,7 +320,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMultiplePagesFragmentNextLink);
+        getMultiplePagesFragmentNextLinkOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -351,7 +351,7 @@ export class Paging {
             customParameterGroup
           },
           options),
-        getMultiplePagesFragmentWithGroupingNextLink);
+        getMultiplePagesFragmentWithGroupingNextLinkOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -433,7 +433,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        nextFragment);
+        nextFragmentOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -467,7 +467,7 @@ export class Paging {
             customParameterGroup
           },
           options),
-        nextFragmentWithGrouping);
+        nextFragmentWithGroupingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -499,7 +499,7 @@ export class Paging {
             pagingGetMultiplePagesLROOptions
           },
           options),
-        beginGetMultiplePagesLRO);
+        beginGetMultiplePagesLROOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -530,7 +530,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getSinglePagesNext);
+        getSinglePagesNextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -565,7 +565,7 @@ export class Paging {
             pagingGetMultiplePagesOptions
           },
           options),
-        getMultiplePagesNext);
+        getMultiplePagesNextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -600,7 +600,7 @@ export class Paging {
             pagingGetOdataMultiplePagesOptions
           },
           options),
-        getOdataMultiplePagesNext);
+        getOdataMultiplePagesNextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -635,7 +635,7 @@ export class Paging {
             pagingGetMultiplePagesWithOffsetNextOptions
           },
           options),
-        getMultiplePagesWithOffsetNext);
+        getMultiplePagesWithOffsetNextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -667,7 +667,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMultiplePagesRetryFirstNext);
+        getMultiplePagesRetryFirstNextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -699,7 +699,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMultiplePagesRetrySecondNext);
+        getMultiplePagesRetrySecondNextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -730,7 +730,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getSinglePagesFailureNext);
+        getSinglePagesFailureNextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -761,7 +761,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMultiplePagesFailureNext);
+        getMultiplePagesFailureNextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -792,7 +792,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMultiplePagesFailureUriNext);
+        getMultiplePagesFailureUriNextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -874,7 +874,7 @@ export class Paging {
             pagingGetMultiplePagesLROOptions
           },
           options),
-        beginGetMultiplePagesLRONext);
+        beginGetMultiplePagesLRONextOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1995,7 +1995,7 @@ export class Paging {
 }
 
 // Operation Specifications
-const getSinglePages: msRest.OperationSpec = {
+const getSinglePagesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/single",
   headerParameters: [
@@ -2021,7 +2021,7 @@ const getSinglePages: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePages: msRest.OperationSpec = {
+const getMultiplePagesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple",
   headerParameters: [
@@ -2081,7 +2081,7 @@ const getMultiplePages: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getOdataMultiplePages: msRest.OperationSpec = {
+const getOdataMultiplePagesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/odata",
   headerParameters: [
@@ -2141,7 +2141,7 @@ const getOdataMultiplePages: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesWithOffset: msRest.OperationSpec = {
+const getMultiplePagesWithOffsetOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/withpath/{offset}",
   urlParameters: [
@@ -2216,7 +2216,7 @@ const getMultiplePagesWithOffset: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesRetryFirst: msRest.OperationSpec = {
+const getMultiplePagesRetryFirstOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/retryfirst",
   headerParameters: [
@@ -2242,7 +2242,7 @@ const getMultiplePagesRetryFirst: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesRetrySecond: msRest.OperationSpec = {
+const getMultiplePagesRetrySecondOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/retrysecond",
   headerParameters: [
@@ -2268,7 +2268,7 @@ const getMultiplePagesRetrySecond: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSinglePagesFailure: msRest.OperationSpec = {
+const getSinglePagesFailureOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/single/failure",
   headerParameters: [
@@ -2294,7 +2294,7 @@ const getSinglePagesFailure: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesFailure: msRest.OperationSpec = {
+const getMultiplePagesFailureOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/failure",
   headerParameters: [
@@ -2320,7 +2320,7 @@ const getMultiplePagesFailure: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesFailureUri: msRest.OperationSpec = {
+const getMultiplePagesFailureUriOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/failureuri",
   headerParameters: [
@@ -2346,7 +2346,7 @@ const getMultiplePagesFailureUri: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesFragmentNextLink: msRest.OperationSpec = {
+const getMultiplePagesFragmentNextLinkOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/fragment/{tenant}",
   urlParameters: [
@@ -2396,7 +2396,7 @@ const getMultiplePagesFragmentNextLink: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesFragmentWithGroupingNextLink: msRest.OperationSpec = {
+const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/fragmentwithgrouping/{tenant}",
   urlParameters: [
@@ -2452,7 +2452,7 @@ const getMultiplePagesFragmentWithGroupingNextLink: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const nextFragment: msRest.OperationSpec = {
+const nextFragmentOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/fragment/{tenant}/{nextLink}",
   urlParameters: [
@@ -2513,7 +2513,7 @@ const nextFragment: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const nextFragmentWithGrouping: msRest.OperationSpec = {
+const nextFragmentWithGroupingOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
   urlParameters: [
@@ -2580,7 +2580,7 @@ const nextFragmentWithGrouping: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginGetMultiplePagesLRO: msRest.OperationSpec = {
+const beginGetMultiplePagesLROOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "paging/multiple/lro",
   headerParameters: [
@@ -2640,7 +2640,7 @@ const beginGetMultiplePagesLRO: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSinglePagesNext: msRest.OperationSpec = {
+const getSinglePagesNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
@@ -2680,7 +2680,7 @@ const getSinglePagesNext: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesNext: msRest.OperationSpec = {
+const getMultiplePagesNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
@@ -2754,7 +2754,7 @@ const getMultiplePagesNext: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getOdataMultiplePagesNext: msRest.OperationSpec = {
+const getOdataMultiplePagesNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
@@ -2828,7 +2828,7 @@ const getOdataMultiplePagesNext: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesWithOffsetNext: msRest.OperationSpec = {
+const getMultiplePagesWithOffsetNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
@@ -2902,7 +2902,7 @@ const getMultiplePagesWithOffsetNext: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesRetryFirstNext: msRest.OperationSpec = {
+const getMultiplePagesRetryFirstNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
@@ -2942,7 +2942,7 @@ const getMultiplePagesRetryFirstNext: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesRetrySecondNext: msRest.OperationSpec = {
+const getMultiplePagesRetrySecondNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
@@ -2982,7 +2982,7 @@ const getMultiplePagesRetrySecondNext: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSinglePagesFailureNext: msRest.OperationSpec = {
+const getSinglePagesFailureNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
@@ -3022,7 +3022,7 @@ const getSinglePagesFailureNext: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesFailureNext: msRest.OperationSpec = {
+const getMultiplePagesFailureNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
@@ -3062,7 +3062,7 @@ const getMultiplePagesFailureNext: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMultiplePagesFailureUriNext: msRest.OperationSpec = {
+const getMultiplePagesFailureUriNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
@@ -3102,7 +3102,7 @@ const getMultiplePagesFailureUriNext: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginGetMultiplePagesLRONext: msRest.OperationSpec = {
+const beginGetMultiplePagesLRONextOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",

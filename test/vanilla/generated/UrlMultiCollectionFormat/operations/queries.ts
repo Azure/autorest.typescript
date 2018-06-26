@@ -47,7 +47,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        arrayStringMultiNull);
+        arrayStringMultiNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -76,7 +76,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        arrayStringMultiEmpty);
+        arrayStringMultiEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -106,7 +106,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        arrayStringMultiValid);
+        arrayStringMultiValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -240,7 +240,7 @@ export class Queries {
 }
 
 // Operation Specifications
-const arrayStringMultiNull: msRest.OperationSpec = {
+const arrayStringMultiNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/null",
   queryParameters: [
@@ -270,7 +270,7 @@ const arrayStringMultiNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const arrayStringMultiEmpty: msRest.OperationSpec = {
+const arrayStringMultiEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/empty",
   queryParameters: [
@@ -300,7 +300,7 @@ const arrayStringMultiEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const arrayStringMultiValid: msRest.OperationSpec = {
+const arrayStringMultiValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/valid",
   queryParameters: [

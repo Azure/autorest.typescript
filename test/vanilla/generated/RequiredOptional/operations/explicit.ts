@@ -49,7 +49,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        postRequiredIntegerParameter);
+        postRequiredIntegerParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -78,7 +78,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        postOptionalIntegerParameter);
+        postOptionalIntegerParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -109,7 +109,7 @@ export class Explicit {
             value
           },
           options),
-        postRequiredIntegerProperty);
+        postRequiredIntegerPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -138,7 +138,7 @@ export class Explicit {
             value
           },
           options),
-        postOptionalIntegerProperty);
+        postOptionalIntegerPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -169,7 +169,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        postRequiredIntegerHeader);
+        postRequiredIntegerHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -198,7 +198,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        postOptionalIntegerHeader);
+        postOptionalIntegerHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -229,7 +229,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        postRequiredStringParameter);
+        postRequiredStringParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -258,7 +258,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        postOptionalStringParameter);
+        postOptionalStringParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -289,7 +289,7 @@ export class Explicit {
             value
           },
           options),
-        postRequiredStringProperty);
+        postRequiredStringPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -318,7 +318,7 @@ export class Explicit {
             value
           },
           options),
-        postOptionalStringProperty);
+        postOptionalStringPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -349,7 +349,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        postRequiredStringHeader);
+        postRequiredStringHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -378,7 +378,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        postOptionalStringHeader);
+        postOptionalStringHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -409,7 +409,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        postRequiredClassParameter);
+        postRequiredClassParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -438,7 +438,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        postOptionalClassParameter);
+        postOptionalClassParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -469,7 +469,7 @@ export class Explicit {
             value
           },
           options),
-        postRequiredClassProperty);
+        postRequiredClassPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -498,7 +498,7 @@ export class Explicit {
             value
           },
           options),
-        postOptionalClassProperty);
+        postOptionalClassPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -529,7 +529,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        postRequiredArrayParameter);
+        postRequiredArrayParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -558,7 +558,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        postOptionalArrayParameter);
+        postOptionalArrayParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -589,7 +589,7 @@ export class Explicit {
             value
           },
           options),
-        postRequiredArrayProperty);
+        postRequiredArrayPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -618,7 +618,7 @@ export class Explicit {
             value
           },
           options),
-        postOptionalArrayProperty);
+        postOptionalArrayPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -649,7 +649,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        postRequiredArrayHeader);
+        postRequiredArrayHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -678,7 +678,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        postOptionalArrayHeader);
+        postOptionalArrayHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1623,7 +1623,7 @@ export class Explicit {
 }
 
 // Operation Specifications
-const postRequiredIntegerParameter: msRest.OperationSpec = {
+const postRequiredIntegerParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/integer/parameter",
   requestBody: {
@@ -1645,7 +1645,7 @@ const postRequiredIntegerParameter: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalIntegerParameter: msRest.OperationSpec = {
+const postOptionalIntegerParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/integer/parameter",
   requestBody: {
@@ -1667,7 +1667,7 @@ const postOptionalIntegerParameter: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredIntegerProperty: msRest.OperationSpec = {
+const postRequiredIntegerPropertyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/integer/property",
   requestBody: {
@@ -1688,7 +1688,7 @@ const postRequiredIntegerProperty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalIntegerProperty: msRest.OperationSpec = {
+const postOptionalIntegerPropertyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/integer/property",
   requestBody: {
@@ -1707,7 +1707,7 @@ const postOptionalIntegerProperty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredIntegerHeader: msRest.OperationSpec = {
+const postRequiredIntegerHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/integer/header",
   headerParameters: [
@@ -1730,7 +1730,7 @@ const postRequiredIntegerHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalIntegerHeader: msRest.OperationSpec = {
+const postOptionalIntegerHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/integer/header",
   headerParameters: [
@@ -1753,7 +1753,7 @@ const postOptionalIntegerHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredStringParameter: msRest.OperationSpec = {
+const postRequiredStringParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/string/parameter",
   requestBody: {
@@ -1775,7 +1775,7 @@ const postRequiredStringParameter: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalStringParameter: msRest.OperationSpec = {
+const postOptionalStringParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/string/parameter",
   requestBody: {
@@ -1797,7 +1797,7 @@ const postOptionalStringParameter: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredStringProperty: msRest.OperationSpec = {
+const postRequiredStringPropertyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/string/property",
   requestBody: {
@@ -1818,7 +1818,7 @@ const postRequiredStringProperty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalStringProperty: msRest.OperationSpec = {
+const postOptionalStringPropertyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/string/property",
   requestBody: {
@@ -1837,7 +1837,7 @@ const postOptionalStringProperty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredStringHeader: msRest.OperationSpec = {
+const postRequiredStringHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/string/header",
   headerParameters: [
@@ -1860,7 +1860,7 @@ const postRequiredStringHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalStringHeader: msRest.OperationSpec = {
+const postOptionalStringHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/string/header",
   headerParameters: [
@@ -1883,7 +1883,7 @@ const postOptionalStringHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredClassParameter: msRest.OperationSpec = {
+const postRequiredClassParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/class/parameter",
   requestBody: {
@@ -1902,7 +1902,7 @@ const postRequiredClassParameter: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalClassParameter: msRest.OperationSpec = {
+const postOptionalClassParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/class/parameter",
   requestBody: {
@@ -1919,7 +1919,7 @@ const postOptionalClassParameter: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredClassProperty: msRest.OperationSpec = {
+const postRequiredClassPropertyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/class/property",
   requestBody: {
@@ -1940,7 +1940,7 @@ const postRequiredClassProperty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalClassProperty: msRest.OperationSpec = {
+const postOptionalClassPropertyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/class/property",
   requestBody: {
@@ -1959,7 +1959,7 @@ const postOptionalClassProperty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredArrayParameter: msRest.OperationSpec = {
+const postRequiredArrayParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/array/parameter",
   requestBody: {
@@ -1987,7 +1987,7 @@ const postRequiredArrayParameter: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalArrayParameter: msRest.OperationSpec = {
+const postOptionalArrayParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/array/parameter",
   requestBody: {
@@ -2015,7 +2015,7 @@ const postOptionalArrayParameter: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredArrayProperty: msRest.OperationSpec = {
+const postRequiredArrayPropertyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/array/property",
   requestBody: {
@@ -2036,7 +2036,7 @@ const postRequiredArrayProperty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalArrayProperty: msRest.OperationSpec = {
+const postOptionalArrayPropertyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/array/property",
   requestBody: {
@@ -2055,7 +2055,7 @@ const postOptionalArrayProperty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postRequiredArrayHeader: msRest.OperationSpec = {
+const postRequiredArrayHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/array/header",
   headerParameters: [
@@ -2084,7 +2084,7 @@ const postRequiredArrayHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postOptionalArrayHeader: msRest.OperationSpec = {
+const postOptionalArrayHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/array/header",
   headerParameters: [

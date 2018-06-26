@@ -39,7 +39,7 @@ export class HttpFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyError);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyErrorOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,7 +61,7 @@ export class HttpFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNoModelError);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNoModelErrorOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,7 +83,7 @@ export class HttpFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNoModelEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNoModelEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -216,7 +216,7 @@ export class HttpFailure {
 }
 
 // Operation Specifications
-const getEmptyError: msRest.OperationSpec = {
+const getEmptyErrorOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/emptybody/error",
   responses: {
@@ -235,7 +235,7 @@ const getEmptyError: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNoModelError: msRest.OperationSpec = {
+const getNoModelErrorOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/nomodel/error",
   responses: {
@@ -252,7 +252,7 @@ const getNoModelError: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNoModelEmpty: msRest.OperationSpec = {
+const getNoModelEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/nomodel/empty",
   responses: {

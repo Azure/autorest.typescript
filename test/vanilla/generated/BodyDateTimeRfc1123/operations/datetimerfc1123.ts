@@ -39,7 +39,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,7 +61,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,7 +83,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflow);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,7 +105,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflow);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -135,7 +135,7 @@ export class Datetimerfc1123 {
             datetimeBody
           },
           options),
-        putUtcMaxDateTime);
+        putUtcMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -157,7 +157,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcLowercaseMaxDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcLowercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -179,7 +179,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcUppercaseMaxDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcUppercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -209,7 +209,7 @@ export class Datetimerfc1123 {
             datetimeBody
           },
           options),
-        putUtcMinDateTime);
+        putUtcMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -231,7 +231,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcMinDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -614,7 +614,7 @@ export class Datetimerfc1123 {
 }
 
 // Operation Specifications
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/null",
   responses: {
@@ -633,7 +633,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalid: msRest.OperationSpec = {
+const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/invalid",
   responses: {
@@ -652,7 +652,7 @@ const getInvalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getOverflow: msRest.OperationSpec = {
+const getOverflowOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/overflow",
   responses: {
@@ -671,7 +671,7 @@ const getOverflow: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUnderflow: msRest.OperationSpec = {
+const getUnderflowOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/underflow",
   responses: {
@@ -690,7 +690,7 @@ const getUnderflow: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putUtcMaxDateTime: msRest.OperationSpec = {
+const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "datetimerfc1123/max",
   requestBody: {
@@ -713,7 +713,7 @@ const putUtcMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUtcLowercaseMaxDateTime: msRest.OperationSpec = {
+const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/max/lowercase",
   responses: {
@@ -732,7 +732,7 @@ const getUtcLowercaseMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUtcUppercaseMaxDateTime: msRest.OperationSpec = {
+const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/max/uppercase",
   responses: {
@@ -751,7 +751,7 @@ const getUtcUppercaseMaxDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putUtcMinDateTime: msRest.OperationSpec = {
+const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "datetimerfc1123/min",
   requestBody: {
@@ -774,7 +774,7 @@ const putUtcMinDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUtcMinDateTime: msRest.OperationSpec = {
+const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/min",
   responses: {

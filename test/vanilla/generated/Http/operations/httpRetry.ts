@@ -40,7 +40,7 @@ export class HttpRetry {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head408);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head408OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -69,7 +69,7 @@ export class HttpRetry {
             booleanValue
           },
           options),
-        put500);
+        put500OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -98,7 +98,7 @@ export class HttpRetry {
             booleanValue
           },
           options),
-        patch500);
+        patch500OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -120,7 +120,7 @@ export class HttpRetry {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get502);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get502OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -149,7 +149,7 @@ export class HttpRetry {
             booleanValue
           },
           options),
-        post503);
+        post503OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -178,7 +178,7 @@ export class HttpRetry {
             booleanValue
           },
           options),
-        delete503);
+        delete503OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -207,7 +207,7 @@ export class HttpRetry {
             booleanValue
           },
           options),
-        put504);
+        put504OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -236,7 +236,7 @@ export class HttpRetry {
             booleanValue
           },
           options),
-        patch504);
+        patch504OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -574,7 +574,7 @@ export class HttpRetry {
 }
 
 // Operation Specifications
-const head408: msRest.OperationSpec = {
+const head408OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/retry/408",
   responses: {
@@ -586,7 +586,7 @@ const head408: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put500: msRest.OperationSpec = {
+const put500OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/retry/500",
   requestBody: {
@@ -608,7 +608,7 @@ const put500: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch500: msRest.OperationSpec = {
+const patch500OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/retry/500",
   requestBody: {
@@ -630,7 +630,7 @@ const patch500: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get502: msRest.OperationSpec = {
+const get502OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/retry/502",
   responses: {
@@ -642,7 +642,7 @@ const get502: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post503: msRest.OperationSpec = {
+const post503OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/retry/503",
   requestBody: {
@@ -664,7 +664,7 @@ const post503: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const delete503: msRest.OperationSpec = {
+const delete503OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/retry/503",
   requestBody: {
@@ -686,7 +686,7 @@ const delete503: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put504: msRest.OperationSpec = {
+const put504OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/retry/504",
   requestBody: {
@@ -708,7 +708,7 @@ const put504: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch504: msRest.OperationSpec = {
+const patch504OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/retry/504",
   requestBody: {

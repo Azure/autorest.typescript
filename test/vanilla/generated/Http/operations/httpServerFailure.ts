@@ -40,7 +40,7 @@ export class HttpServerFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head501);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head501OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -62,7 +62,7 @@ export class HttpServerFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get501);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get501OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -91,7 +91,7 @@ export class HttpServerFailure {
             booleanValue
           },
           options),
-        post505);
+        post505OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -120,7 +120,7 @@ export class HttpServerFailure {
             booleanValue
           },
           options),
-        delete505);
+        delete505OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -294,7 +294,7 @@ export class HttpServerFailure {
 }
 
 // Operation Specifications
-const head501: msRest.OperationSpec = {
+const head501OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/server/501",
   responses: {
@@ -305,7 +305,7 @@ const head501: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get501: msRest.OperationSpec = {
+const get501OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/server/501",
   responses: {
@@ -316,7 +316,7 @@ const get501: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post505: msRest.OperationSpec = {
+const post505OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/failure/server/505",
   requestBody: {
@@ -337,7 +337,7 @@ const post505: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const delete505: msRest.OperationSpec = {
+const delete505OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/failure/server/505",
   requestBody: {

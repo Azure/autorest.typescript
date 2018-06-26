@@ -46,7 +46,7 @@ export class ApiVersionDefault {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMethodGlobalValid);
+        getMethodGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -75,7 +75,7 @@ export class ApiVersionDefault {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMethodGlobalNotProvidedValid);
+        getMethodGlobalNotProvidedValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -104,7 +104,7 @@ export class ApiVersionDefault {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getPathGlobalValid);
+        getPathGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -133,7 +133,7 @@ export class ApiVersionDefault {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getSwaggerGlobalValid);
+        getSwaggerGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -307,7 +307,7 @@ export class ApiVersionDefault {
 }
 
 // Operation Specifications
-const getMethodGlobalValid: msRest.OperationSpec = {
+const getMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
   queryParameters: [
@@ -343,7 +343,7 @@ const getMethodGlobalValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMethodGlobalNotProvidedValid: msRest.OperationSpec = {
+const getMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
   queryParameters: [
@@ -379,7 +379,7 @@ const getMethodGlobalNotProvidedValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getPathGlobalValid: msRest.OperationSpec = {
+const getPathGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
   queryParameters: [
@@ -415,7 +415,7 @@ const getPathGlobalValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSwaggerGlobalValid: msRest.OperationSpec = {
+const getSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
   queryParameters: [

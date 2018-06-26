@@ -49,7 +49,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMethodPathValid);
+        getMethodPathValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,7 +80,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getPathPathValid);
+        getPathPathValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -110,7 +110,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getSwaggerPathValid);
+        getSwaggerPathValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -141,7 +141,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMethodQueryValid);
+        getMethodQueryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -171,7 +171,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getMethodQueryNull);
+        getMethodQueryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -202,7 +202,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getPathQueryValid);
+        getPathQueryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -232,7 +232,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getSwaggerQueryValid);
+        getSwaggerQueryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -537,7 +537,7 @@ export class SkipUrlEncoding {
 }
 
 // Operation Specifications
-const getMethodPathValid: msRest.OperationSpec = {
+const getMethodPathValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
   urlParameters: [
@@ -574,7 +574,7 @@ const getMethodPathValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getPathPathValid: msRest.OperationSpec = {
+const getPathPathValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
   urlParameters: [
@@ -611,7 +611,7 @@ const getPathPathValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSwaggerPathValid: msRest.OperationSpec = {
+const getSwaggerPathValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
   urlParameters: [
@@ -650,7 +650,7 @@ const getSwaggerPathValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMethodQueryValid: msRest.OperationSpec = {
+const getMethodQueryValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/method/query/valid",
   queryParameters: [
@@ -687,7 +687,7 @@ const getMethodQueryValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getMethodQueryNull: msRest.OperationSpec = {
+const getMethodQueryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/method/query/null",
   queryParameters: [
@@ -723,7 +723,7 @@ const getMethodQueryNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getPathQueryValid: msRest.OperationSpec = {
+const getPathQueryValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/path/query/valid",
   queryParameters: [
@@ -760,7 +760,7 @@ const getPathQueryValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSwaggerQueryValid: msRest.OperationSpec = {
+const getSwaggerQueryValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/swagger/query/valid",
   queryParameters: [

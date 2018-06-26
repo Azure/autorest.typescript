@@ -39,7 +39,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,7 +61,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,7 +83,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowInt32);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowInt32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,7 +105,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowInt32);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowInt32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -127,7 +127,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowInt64);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowInt64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -149,7 +149,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowInt64);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowInt64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -179,7 +179,7 @@ export class IntModel {
             intBody
           },
           options),
-        putMax32);
+        putMax32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -209,7 +209,7 @@ export class IntModel {
             intBody
           },
           options),
-        putMax64);
+        putMax64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -239,7 +239,7 @@ export class IntModel {
             intBody
           },
           options),
-        putMin32);
+        putMin32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -269,7 +269,7 @@ export class IntModel {
             intBody
           },
           options),
-        putMin64);
+        putMin64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -291,7 +291,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnixTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnixTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -321,7 +321,7 @@ export class IntModel {
             intBody
           },
           options),
-        putUnixTimeDate);
+        putUnixTimeDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -343,7 +343,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidUnixTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidUnixTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -365,7 +365,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullUnixTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullUnixTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -959,7 +959,7 @@ export class IntModel {
 }
 
 // Operation Specifications
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/null",
   responses: {
@@ -978,7 +978,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalid: msRest.OperationSpec = {
+const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/invalid",
   responses: {
@@ -997,7 +997,7 @@ const getInvalid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getOverflowInt32: msRest.OperationSpec = {
+const getOverflowInt32OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/overflowint32",
   responses: {
@@ -1016,7 +1016,7 @@ const getOverflowInt32: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUnderflowInt32: msRest.OperationSpec = {
+const getUnderflowInt32OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/underflowint32",
   responses: {
@@ -1035,7 +1035,7 @@ const getUnderflowInt32: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getOverflowInt64: msRest.OperationSpec = {
+const getOverflowInt64OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/overflowint64",
   responses: {
@@ -1054,7 +1054,7 @@ const getOverflowInt64: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUnderflowInt64: msRest.OperationSpec = {
+const getUnderflowInt64OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/underflowint64",
   responses: {
@@ -1073,7 +1073,7 @@ const getUnderflowInt64: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putMax32: msRest.OperationSpec = {
+const putMax32OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "int/max/32",
   requestBody: {
@@ -1096,7 +1096,7 @@ const putMax32: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putMax64: msRest.OperationSpec = {
+const putMax64OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "int/max/64",
   requestBody: {
@@ -1119,7 +1119,7 @@ const putMax64: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putMin32: msRest.OperationSpec = {
+const putMin32OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "int/min/32",
   requestBody: {
@@ -1142,7 +1142,7 @@ const putMin32: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putMin64: msRest.OperationSpec = {
+const putMin64OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "int/min/64",
   requestBody: {
@@ -1165,7 +1165,7 @@ const putMin64: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getUnixTime: msRest.OperationSpec = {
+const getUnixTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/unixtime",
   responses: {
@@ -1184,7 +1184,7 @@ const getUnixTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putUnixTimeDate: msRest.OperationSpec = {
+const putUnixTimeDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "int/unixtime",
   requestBody: {
@@ -1207,7 +1207,7 @@ const putUnixTimeDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalidUnixTime: msRest.OperationSpec = {
+const getInvalidUnixTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/invalidunixtime",
   responses: {
@@ -1226,7 +1226,7 @@ const getInvalidUnixTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNullUnixTime: msRest.OperationSpec = {
+const getNullUnixTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/nullunixtime",
   responses: {

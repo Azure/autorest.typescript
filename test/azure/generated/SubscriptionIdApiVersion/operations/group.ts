@@ -51,7 +51,7 @@ export class Group {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getSampleResourceGroup);
+        getSampleResourceGroupOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -104,7 +104,7 @@ export class Group {
 }
 
 // Operation Specifications
-const getSampleResourceGroup: msRest.OperationSpec = {
+const getSampleResourceGroupOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   urlParameters: [

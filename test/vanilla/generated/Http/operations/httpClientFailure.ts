@@ -40,7 +40,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head400);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -62,7 +62,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get400);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -91,7 +91,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        put400);
+        put400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -120,7 +120,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        patch400);
+        patch400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -149,7 +149,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        post400);
+        post400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -178,7 +178,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        delete400);
+        delete400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -200,7 +200,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head401);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head401OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -222,7 +222,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get402);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get402OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -244,7 +244,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get403);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get403OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -273,7 +273,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        put404);
+        put404OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -302,7 +302,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        patch405);
+        patch405OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -331,7 +331,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        post406);
+        post406OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -360,7 +360,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        delete407);
+        delete407OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -389,7 +389,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        put409);
+        put409OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -411,7 +411,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head410);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head410OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -433,7 +433,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get411);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get411OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -455,7 +455,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get412);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get412OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -484,7 +484,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        put413);
+        put413OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -513,7 +513,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        patch414);
+        patch414OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -542,7 +542,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        post415);
+        post415OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -564,7 +564,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get416);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get416OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -593,7 +593,7 @@ export class HttpClientFailure {
             booleanValue
           },
           options),
-        delete417);
+        delete417OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -615,7 +615,7 @@ export class HttpClientFailure {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head429);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head429OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1568,7 +1568,7 @@ export class HttpClientFailure {
 }
 
 // Operation Specifications
-const head400: msRest.OperationSpec = {
+const head400OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/client/400",
   responses: {
@@ -1579,7 +1579,7 @@ const head400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get400: msRest.OperationSpec = {
+const get400OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/400",
   responses: {
@@ -1590,7 +1590,7 @@ const get400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put400: msRest.OperationSpec = {
+const put400OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/failure/client/400",
   requestBody: {
@@ -1611,7 +1611,7 @@ const put400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch400: msRest.OperationSpec = {
+const patch400OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/failure/client/400",
   requestBody: {
@@ -1632,7 +1632,7 @@ const patch400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post400: msRest.OperationSpec = {
+const post400OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/failure/client/400",
   requestBody: {
@@ -1653,7 +1653,7 @@ const post400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const delete400: msRest.OperationSpec = {
+const delete400OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/failure/client/400",
   requestBody: {
@@ -1674,7 +1674,7 @@ const delete400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head401: msRest.OperationSpec = {
+const head401OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/client/401",
   responses: {
@@ -1685,7 +1685,7 @@ const head401: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get402: msRest.OperationSpec = {
+const get402OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/402",
   responses: {
@@ -1696,7 +1696,7 @@ const get402: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get403: msRest.OperationSpec = {
+const get403OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/403",
   responses: {
@@ -1707,7 +1707,7 @@ const get403: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put404: msRest.OperationSpec = {
+const put404OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/failure/client/404",
   requestBody: {
@@ -1728,7 +1728,7 @@ const put404: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch405: msRest.OperationSpec = {
+const patch405OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/failure/client/405",
   requestBody: {
@@ -1749,7 +1749,7 @@ const patch405: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post406: msRest.OperationSpec = {
+const post406OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/failure/client/406",
   requestBody: {
@@ -1770,7 +1770,7 @@ const post406: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const delete407: msRest.OperationSpec = {
+const delete407OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/failure/client/407",
   requestBody: {
@@ -1791,7 +1791,7 @@ const delete407: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put409: msRest.OperationSpec = {
+const put409OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/failure/client/409",
   requestBody: {
@@ -1812,7 +1812,7 @@ const put409: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head410: msRest.OperationSpec = {
+const head410OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/client/410",
   responses: {
@@ -1823,7 +1823,7 @@ const head410: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get411: msRest.OperationSpec = {
+const get411OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/411",
   responses: {
@@ -1834,7 +1834,7 @@ const get411: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get412: msRest.OperationSpec = {
+const get412OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/412",
   responses: {
@@ -1845,7 +1845,7 @@ const get412: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put413: msRest.OperationSpec = {
+const put413OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/failure/client/413",
   requestBody: {
@@ -1866,7 +1866,7 @@ const put413: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch414: msRest.OperationSpec = {
+const patch414OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/failure/client/414",
   requestBody: {
@@ -1887,7 +1887,7 @@ const patch414: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post415: msRest.OperationSpec = {
+const post415OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/failure/client/415",
   requestBody: {
@@ -1908,7 +1908,7 @@ const post415: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get416: msRest.OperationSpec = {
+const get416OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/client/416",
   responses: {
@@ -1919,7 +1919,7 @@ const get416: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const delete417: msRest.OperationSpec = {
+const delete417OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/failure/client/417",
   requestBody: {
@@ -1940,7 +1940,7 @@ const delete417: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head429: msRest.OperationSpec = {
+const head429OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/client/429",
   responses: {

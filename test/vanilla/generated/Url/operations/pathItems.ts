@@ -59,7 +59,7 @@ export class PathItems {
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
           options),
-        getAllWithValues);
+        getAllWithValuesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -100,7 +100,7 @@ export class PathItems {
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
           options),
-        getGlobalQueryNull);
+        getGlobalQueryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -141,7 +141,7 @@ export class PathItems {
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
           options),
-        getGlobalAndLocalQueryNull);
+        getGlobalAndLocalQueryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -182,7 +182,7 @@ export class PathItems {
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
           options),
-        getLocalPathItemQueryNull);
+        getLocalPathItemQueryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -380,7 +380,7 @@ export class PathItems {
 }
 
 // Operation Specifications
-const getAllWithValues: msRest.OperationSpec = {
+const getAllWithValuesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
   urlParameters: [
@@ -453,7 +453,7 @@ const getAllWithValues: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getGlobalQueryNull: msRest.OperationSpec = {
+const getGlobalQueryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
   urlParameters: [
@@ -526,7 +526,7 @@ const getGlobalQueryNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getGlobalAndLocalQueryNull: msRest.OperationSpec = {
+const getGlobalAndLocalQueryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
   urlParameters: [
@@ -599,7 +599,7 @@ const getGlobalAndLocalQueryNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLocalPathItemQueryNull: msRest.OperationSpec = {
+const getLocalPathItemQueryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
   urlParameters: [

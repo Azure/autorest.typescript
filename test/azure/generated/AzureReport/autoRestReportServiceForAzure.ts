@@ -69,7 +69,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        getReport);
+        getReportOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -119,7 +119,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
 }
 
 // Operation Specifications
-const getReport: msRest.OperationSpec = {
+const getReportOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "report/azure",
   queryParameters: [

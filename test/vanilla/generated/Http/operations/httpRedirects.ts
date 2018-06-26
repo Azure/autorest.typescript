@@ -40,7 +40,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head300);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head300OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -62,7 +62,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get300);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get300OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -84,7 +84,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head301);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head301OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -106,7 +106,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get301);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get301OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -136,7 +136,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        put301);
+        put301OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -158,7 +158,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head302);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head302OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -180,7 +180,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get302);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get302OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -210,7 +210,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        patch302);
+        patch302OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -240,7 +240,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        post303);
+        post303OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -262,7 +262,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head307);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -284,7 +284,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get307);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -313,7 +313,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        put307);
+        put307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -342,7 +342,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        patch307);
+        patch307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -371,7 +371,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        post307);
+        post307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -400,7 +400,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        delete307);
+        delete307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1028,7 +1028,7 @@ export class HttpRedirects {
 }
 
 // Operation Specifications
-const head300: msRest.OperationSpec = {
+const head300OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/300",
   responses: {
@@ -1045,7 +1045,7 @@ const head300: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get300: msRest.OperationSpec = {
+const get300OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/300",
   responses: {
@@ -1074,7 +1074,7 @@ const get300: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head301: msRest.OperationSpec = {
+const head301OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/301",
   responses: {
@@ -1091,7 +1091,7 @@ const head301: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get301: msRest.OperationSpec = {
+const get301OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/301",
   responses: {
@@ -1108,7 +1108,7 @@ const get301: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put301: msRest.OperationSpec = {
+const put301OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/redirect/301",
   requestBody: {
@@ -1132,7 +1132,7 @@ const put301: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head302: msRest.OperationSpec = {
+const head302OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/302",
   responses: {
@@ -1149,7 +1149,7 @@ const head302: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get302: msRest.OperationSpec = {
+const get302OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/302",
   responses: {
@@ -1166,7 +1166,7 @@ const get302: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch302: msRest.OperationSpec = {
+const patch302OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/redirect/302",
   requestBody: {
@@ -1190,7 +1190,7 @@ const patch302: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post303: msRest.OperationSpec = {
+const post303OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/redirect/303",
   requestBody: {
@@ -1217,7 +1217,7 @@ const post303: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const head307: msRest.OperationSpec = {
+const head307OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/307",
   responses: {
@@ -1234,7 +1234,7 @@ const head307: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const get307: msRest.OperationSpec = {
+const get307OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/307",
   responses: {
@@ -1251,7 +1251,7 @@ const get307: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const put307: msRest.OperationSpec = {
+const put307OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/redirect/307",
   requestBody: {
@@ -1278,7 +1278,7 @@ const put307: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const patch307: msRest.OperationSpec = {
+const patch307OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/redirect/307",
   requestBody: {
@@ -1305,7 +1305,7 @@ const patch307: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const post307: msRest.OperationSpec = {
+const post307OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/redirect/307",
   requestBody: {
@@ -1332,7 +1332,7 @@ const post307: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const delete307: msRest.OperationSpec = {
+const delete307OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/redirect/307",
   requestBody: {

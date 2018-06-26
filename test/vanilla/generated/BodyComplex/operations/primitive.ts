@@ -40,7 +40,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInt);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -70,7 +70,7 @@ export class Primitive {
             complexBody
           },
           options),
-        putInt);
+        putIntOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -92,7 +92,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLong);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -122,7 +122,7 @@ export class Primitive {
             complexBody
           },
           options),
-        putLong);
+        putLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -144,7 +144,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloat);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -174,7 +174,7 @@ export class Primitive {
             complexBody
           },
           options),
-        putFloat);
+        putFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -196,7 +196,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDouble);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -227,7 +227,7 @@ export class Primitive {
             complexBody
           },
           options),
-        putDouble);
+        putDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -249,7 +249,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBool);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -279,7 +279,7 @@ export class Primitive {
             complexBody
           },
           options),
-        putBool);
+        putBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -301,7 +301,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getString);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -331,7 +331,7 @@ export class Primitive {
             complexBody
           },
           options),
-        putString);
+        putStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -353,7 +353,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDate);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -383,7 +383,7 @@ export class Primitive {
             complexBody
           },
           options),
-        putDate);
+        putDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -405,7 +405,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTime);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -436,7 +436,7 @@ export class Primitive {
             complexBody
           },
           options),
-        putDateTime);
+        putDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -458,7 +458,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeRfc1123);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -489,7 +489,7 @@ export class Primitive {
             complexBody
           },
           options),
-        putDateTimeRfc1123);
+        putDateTimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -511,7 +511,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDuration);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -540,7 +540,7 @@ export class Primitive {
             field
           },
           options),
-        putDuration);
+        putDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -562,7 +562,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByte);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -591,7 +591,7 @@ export class Primitive {
             field
           },
           options),
-        putByte);
+        putByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1524,7 +1524,7 @@ export class Primitive {
 }
 
 // Operation Specifications
-const getInt: msRest.OperationSpec = {
+const getIntOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/integer",
   responses: {
@@ -1538,7 +1538,7 @@ const getInt: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putInt: msRest.OperationSpec = {
+const putIntOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/integer",
   requestBody: {
@@ -1558,7 +1558,7 @@ const putInt: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLong: msRest.OperationSpec = {
+const getLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/long",
   responses: {
@@ -1572,7 +1572,7 @@ const getLong: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putLong: msRest.OperationSpec = {
+const putLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/long",
   requestBody: {
@@ -1592,7 +1592,7 @@ const putLong: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getFloat: msRest.OperationSpec = {
+const getFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/float",
   responses: {
@@ -1606,7 +1606,7 @@ const getFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putFloat: msRest.OperationSpec = {
+const putFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/float",
   requestBody: {
@@ -1626,7 +1626,7 @@ const putFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDouble: msRest.OperationSpec = {
+const getDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/double",
   responses: {
@@ -1640,7 +1640,7 @@ const getDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDouble: msRest.OperationSpec = {
+const putDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/double",
   requestBody: {
@@ -1660,7 +1660,7 @@ const putDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBool: msRest.OperationSpec = {
+const getBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/bool",
   responses: {
@@ -1674,7 +1674,7 @@ const getBool: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBool: msRest.OperationSpec = {
+const putBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/bool",
   requestBody: {
@@ -1694,7 +1694,7 @@ const putBool: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getString: msRest.OperationSpec = {
+const getStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/string",
   responses: {
@@ -1708,7 +1708,7 @@ const getString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putString: msRest.OperationSpec = {
+const putStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/string",
   requestBody: {
@@ -1728,7 +1728,7 @@ const putString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDate: msRest.OperationSpec = {
+const getDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/date",
   responses: {
@@ -1742,7 +1742,7 @@ const getDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDate: msRest.OperationSpec = {
+const putDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/date",
   requestBody: {
@@ -1762,7 +1762,7 @@ const putDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateTime: msRest.OperationSpec = {
+const getDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/datetime",
   responses: {
@@ -1776,7 +1776,7 @@ const getDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDateTime: msRest.OperationSpec = {
+const putDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/datetime",
   requestBody: {
@@ -1796,7 +1796,7 @@ const putDateTime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDateTimeRfc1123: msRest.OperationSpec = {
+const getDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/datetimerfc1123",
   responses: {
@@ -1810,7 +1810,7 @@ const getDateTimeRfc1123: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDateTimeRfc1123: msRest.OperationSpec = {
+const putDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/datetimerfc1123",
   requestBody: {
@@ -1830,7 +1830,7 @@ const putDateTimeRfc1123: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getDuration: msRest.OperationSpec = {
+const getDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/duration",
   responses: {
@@ -1844,7 +1844,7 @@ const getDuration: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putDuration: msRest.OperationSpec = {
+const putDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/duration",
   requestBody: {
@@ -1866,7 +1866,7 @@ const putDuration: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getByte: msRest.OperationSpec = {
+const getByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/byte",
   responses: {
@@ -1880,7 +1880,7 @@ const getByte: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putByte: msRest.OperationSpec = {
+const putByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/byte",
   requestBody: {

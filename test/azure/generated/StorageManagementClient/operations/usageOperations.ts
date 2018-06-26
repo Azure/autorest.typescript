@@ -48,7 +48,7 @@ export class UsageOperations {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        list);
+        listOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -99,7 +99,7 @@ export class UsageOperations {
 }
 
 // Operation Specifications
-const list: msRest.OperationSpec = {
+const listOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages",
   urlParameters: [

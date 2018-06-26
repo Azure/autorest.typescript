@@ -48,7 +48,7 @@ export class Implicit {
             pathParameter
           },
           options),
-        getRequiredPath);
+        getRequiredPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -77,7 +77,7 @@ export class Implicit {
             queryParameter
           },
           options),
-        putOptionalQuery);
+        putOptionalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -106,7 +106,7 @@ export class Implicit {
             queryParameter
           },
           options),
-        putOptionalHeader);
+        putOptionalHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -135,7 +135,7 @@ export class Implicit {
             bodyParameter
           },
           options),
-        putOptionalBody);
+        putOptionalBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -163,7 +163,7 @@ export class Implicit {
             "this.client.requiredGlobalPath": this.client.requiredGlobalPath
           },
           options),
-        getRequiredGlobalPath);
+        getRequiredGlobalPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -191,7 +191,7 @@ export class Implicit {
             "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery
           },
           options),
-        getRequiredGlobalQuery);
+        getRequiredGlobalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -219,7 +219,7 @@ export class Implicit {
             "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery
           },
           options),
-        getOptionalGlobalQuery);
+        getOptionalGlobalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -518,7 +518,7 @@ export class Implicit {
 }
 
 // Operation Specifications
-const getRequiredPath: msRest.OperationSpec = {
+const getRequiredPathOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "reqopt/implicit/required/path/{pathParameter}",
   urlParameters: [
@@ -541,7 +541,7 @@ const getRequiredPath: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putOptionalQuery: msRest.OperationSpec = {
+const putOptionalQueryOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "reqopt/implicit/optional/query",
   queryParameters: [
@@ -564,7 +564,7 @@ const putOptionalQuery: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putOptionalHeader: msRest.OperationSpec = {
+const putOptionalHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "reqopt/implicit/optional/header",
   headerParameters: [
@@ -587,7 +587,7 @@ const putOptionalHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putOptionalBody: msRest.OperationSpec = {
+const putOptionalBodyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "reqopt/implicit/optional/body",
   requestBody: {
@@ -609,7 +609,7 @@ const putOptionalBody: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getRequiredGlobalPath: msRest.OperationSpec = {
+const getRequiredGlobalPathOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "reqopt/global/required/path/{required-global-path}",
   urlParameters: [
@@ -632,7 +632,7 @@ const getRequiredGlobalPath: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getRequiredGlobalQuery: msRest.OperationSpec = {
+const getRequiredGlobalQueryOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "reqopt/global/required/query",
   queryParameters: [
@@ -655,7 +655,7 @@ const getRequiredGlobalQuery: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getOptionalGlobalQuery: msRest.OperationSpec = {
+const getOptionalGlobalQueryOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "reqopt/global/optional/query",
   queryParameters: [

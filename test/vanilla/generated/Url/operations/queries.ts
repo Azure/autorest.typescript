@@ -47,7 +47,7 @@ export class Queries {
             boolQuery
           },
           options),
-        getBooleanTrue);
+        getBooleanTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -76,7 +76,7 @@ export class Queries {
             boolQuery
           },
           options),
-        getBooleanFalse);
+        getBooleanFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,7 +105,7 @@ export class Queries {
             boolQuery
           },
           options),
-        getBooleanNull);
+        getBooleanNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -134,7 +134,7 @@ export class Queries {
             intQuery
           },
           options),
-        getIntOneMillion);
+        getIntOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -163,7 +163,7 @@ export class Queries {
             intQuery
           },
           options),
-        getIntNegativeOneMillion);
+        getIntNegativeOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -192,7 +192,7 @@ export class Queries {
             intQuery
           },
           options),
-        getIntNull);
+        getIntNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -221,7 +221,7 @@ export class Queries {
             longQuery
           },
           options),
-        getTenBillion);
+        getTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -250,7 +250,7 @@ export class Queries {
             longQuery
           },
           options),
-        getNegativeTenBillion);
+        getNegativeTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -279,7 +279,7 @@ export class Queries {
             longQuery
           },
           options),
-        getLongNull);
+        getLongNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -308,7 +308,7 @@ export class Queries {
             floatQuery
           },
           options),
-        floatScientificPositive);
+        floatScientificPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -337,7 +337,7 @@ export class Queries {
             floatQuery
           },
           options),
-        floatScientificNegative);
+        floatScientificNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -366,7 +366,7 @@ export class Queries {
             floatQuery
           },
           options),
-        floatNull);
+        floatNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -395,7 +395,7 @@ export class Queries {
             doubleQuery
           },
           options),
-        doubleDecimalPositive);
+        doubleDecimalPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -424,7 +424,7 @@ export class Queries {
             doubleQuery
           },
           options),
-        doubleDecimalNegative);
+        doubleDecimalNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -453,7 +453,7 @@ export class Queries {
             doubleQuery
           },
           options),
-        doubleNull);
+        doubleNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -482,7 +482,7 @@ export class Queries {
             stringQuery
           },
           options),
-        stringUnicode);
+        stringUnicodeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -511,7 +511,7 @@ export class Queries {
             stringQuery
           },
           options),
-        stringUrlEncoded);
+        stringUrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -540,7 +540,7 @@ export class Queries {
             stringQuery
           },
           options),
-        stringEmpty);
+        stringEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -569,7 +569,7 @@ export class Queries {
             stringQuery
           },
           options),
-        stringNull);
+        stringNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -598,7 +598,7 @@ export class Queries {
             enumQuery
           },
           options),
-        enumValid);
+        enumValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -627,7 +627,7 @@ export class Queries {
             enumQuery
           },
           options),
-        enumNull);
+        enumNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -656,7 +656,7 @@ export class Queries {
             byteQuery
           },
           options),
-        byteMultiByte);
+        byteMultiByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -685,7 +685,7 @@ export class Queries {
             byteQuery
           },
           options),
-        byteEmpty);
+        byteEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -714,7 +714,7 @@ export class Queries {
             byteQuery
           },
           options),
-        byteNull);
+        byteNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -743,7 +743,7 @@ export class Queries {
             dateQuery
           },
           options),
-        dateValid);
+        dateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -772,7 +772,7 @@ export class Queries {
             dateQuery
           },
           options),
-        dateNull);
+        dateNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -801,7 +801,7 @@ export class Queries {
             dateTimeQuery
           },
           options),
-        dateTimeValid);
+        dateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -830,7 +830,7 @@ export class Queries {
             dateTimeQuery
           },
           options),
-        dateTimeNull);
+        dateTimeNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -860,7 +860,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        arrayStringCsvValid);
+        arrayStringCsvValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -889,7 +889,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        arrayStringCsvNull);
+        arrayStringCsvNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -918,7 +918,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        arrayStringCsvEmpty);
+        arrayStringCsvEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -948,7 +948,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        arrayStringSsvValid);
+        arrayStringSsvValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -978,7 +978,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        arrayStringTsvValid);
+        arrayStringTsvValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1008,7 +1008,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        arrayStringPipesValid);
+        arrayStringPipesValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2416,7 +2416,7 @@ export class Queries {
 }
 
 // Operation Specifications
-const getBooleanTrue: msRest.OperationSpec = {
+const getBooleanTrueOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/bool/true",
   queryParameters: [
@@ -2442,7 +2442,7 @@ const getBooleanTrue: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBooleanFalse: msRest.OperationSpec = {
+const getBooleanFalseOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/bool/false",
   queryParameters: [
@@ -2468,7 +2468,7 @@ const getBooleanFalse: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBooleanNull: msRest.OperationSpec = {
+const getBooleanNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/bool/null",
   queryParameters: [
@@ -2491,7 +2491,7 @@ const getBooleanNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getIntOneMillion: msRest.OperationSpec = {
+const getIntOneMillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/int/1000000",
   queryParameters: [
@@ -2517,7 +2517,7 @@ const getIntOneMillion: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getIntNegativeOneMillion: msRest.OperationSpec = {
+const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/int/-1000000",
   queryParameters: [
@@ -2543,7 +2543,7 @@ const getIntNegativeOneMillion: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getIntNull: msRest.OperationSpec = {
+const getIntNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/int/null",
   queryParameters: [
@@ -2566,7 +2566,7 @@ const getIntNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getTenBillion: msRest.OperationSpec = {
+const getTenBillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/long/10000000000",
   queryParameters: [
@@ -2592,7 +2592,7 @@ const getTenBillion: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNegativeTenBillion: msRest.OperationSpec = {
+const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/long/-10000000000",
   queryParameters: [
@@ -2618,7 +2618,7 @@ const getNegativeTenBillion: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getLongNull: msRest.OperationSpec = {
+const getLongNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/long/null",
   queryParameters: [
@@ -2641,7 +2641,7 @@ const getLongNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const floatScientificPositive: msRest.OperationSpec = {
+const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/float/1.034E+20",
   queryParameters: [
@@ -2667,7 +2667,7 @@ const floatScientificPositive: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const floatScientificNegative: msRest.OperationSpec = {
+const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/float/-1.034E-20",
   queryParameters: [
@@ -2693,7 +2693,7 @@ const floatScientificNegative: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const floatNull: msRest.OperationSpec = {
+const floatNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/float/null",
   queryParameters: [
@@ -2716,7 +2716,7 @@ const floatNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const doubleDecimalPositive: msRest.OperationSpec = {
+const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/double/9999999.999",
   queryParameters: [
@@ -2742,7 +2742,7 @@ const doubleDecimalPositive: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const doubleDecimalNegative: msRest.OperationSpec = {
+const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/double/-9999999.999",
   queryParameters: [
@@ -2768,7 +2768,7 @@ const doubleDecimalNegative: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const doubleNull: msRest.OperationSpec = {
+const doubleNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/double/null",
   queryParameters: [
@@ -2791,7 +2791,7 @@ const doubleNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const stringUnicode: msRest.OperationSpec = {
+const stringUnicodeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/string/unicode/",
   queryParameters: [
@@ -2817,7 +2817,7 @@ const stringUnicode: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const stringUrlEncoded: msRest.OperationSpec = {
+const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
   queryParameters: [
@@ -2843,7 +2843,7 @@ const stringUrlEncoded: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const stringEmpty: msRest.OperationSpec = {
+const stringEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/string/empty",
   queryParameters: [
@@ -2869,7 +2869,7 @@ const stringEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const stringNull: msRest.OperationSpec = {
+const stringNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/string/null",
   queryParameters: [
@@ -2892,7 +2892,7 @@ const stringNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const enumValid: msRest.OperationSpec = {
+const enumValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/enum/green%20color",
   queryParameters: [
@@ -2920,7 +2920,7 @@ const enumValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const enumNull: msRest.OperationSpec = {
+const enumNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/enum/null",
   queryParameters: [
@@ -2948,7 +2948,7 @@ const enumNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const byteMultiByte: msRest.OperationSpec = {
+const byteMultiByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/byte/multibyte",
   queryParameters: [
@@ -2971,7 +2971,7 @@ const byteMultiByte: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const byteEmpty: msRest.OperationSpec = {
+const byteEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/byte/empty",
   queryParameters: [
@@ -2997,7 +2997,7 @@ const byteEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const byteNull: msRest.OperationSpec = {
+const byteNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/byte/null",
   queryParameters: [
@@ -3020,7 +3020,7 @@ const byteNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const dateValid: msRest.OperationSpec = {
+const dateValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/date/2012-01-01",
   queryParameters: [
@@ -3046,7 +3046,7 @@ const dateValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const dateNull: msRest.OperationSpec = {
+const dateNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/date/null",
   queryParameters: [
@@ -3069,7 +3069,7 @@ const dateNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const dateTimeValid: msRest.OperationSpec = {
+const dateTimeValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/datetime/2012-01-01T01%3A01%3A01Z",
   queryParameters: [
@@ -3095,7 +3095,7 @@ const dateTimeValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const dateTimeNull: msRest.OperationSpec = {
+const dateTimeNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/datetime/null",
   queryParameters: [
@@ -3118,7 +3118,7 @@ const dateTimeNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const arrayStringCsvValid: msRest.OperationSpec = {
+const arrayStringCsvValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/csv/string/valid",
   queryParameters: [
@@ -3148,7 +3148,7 @@ const arrayStringCsvValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const arrayStringCsvNull: msRest.OperationSpec = {
+const arrayStringCsvNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/csv/string/null",
   queryParameters: [
@@ -3178,7 +3178,7 @@ const arrayStringCsvNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const arrayStringCsvEmpty: msRest.OperationSpec = {
+const arrayStringCsvEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/csv/string/empty",
   queryParameters: [
@@ -3208,7 +3208,7 @@ const arrayStringCsvEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const arrayStringSsvValid: msRest.OperationSpec = {
+const arrayStringSsvValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/ssv/string/valid",
   queryParameters: [
@@ -3238,7 +3238,7 @@ const arrayStringSsvValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const arrayStringTsvValid: msRest.OperationSpec = {
+const arrayStringTsvValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/tsv/string/valid",
   queryParameters: [
@@ -3268,7 +3268,7 @@ const arrayStringTsvValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const arrayStringPipesValid: msRest.OperationSpec = {
+const arrayStringPipesValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/pipes/string/valid",
   queryParameters: [

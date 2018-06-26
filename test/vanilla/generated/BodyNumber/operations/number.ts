@@ -39,7 +39,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,7 +61,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidFloat);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,7 +83,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDouble);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,7 +105,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDecimal);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -135,7 +135,7 @@ export class Number {
             numberBody
           },
           options),
-        putBigFloat);
+        putBigFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -157,7 +157,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigFloat);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -187,7 +187,7 @@ export class Number {
             numberBody
           },
           options),
-        putBigDouble);
+        putBigDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -209,7 +209,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDouble);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -239,7 +239,7 @@ export class Number {
             numberBody
           },
           options),
-        putBigDoublePositiveDecimal);
+        putBigDoublePositiveDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -261,7 +261,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoublePositiveDecimal);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoublePositiveDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -291,7 +291,7 @@ export class Number {
             numberBody
           },
           options),
-        putBigDoubleNegativeDecimal);
+        putBigDoubleNegativeDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -313,7 +313,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoubleNegativeDecimal);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoubleNegativeDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -343,7 +343,7 @@ export class Number {
             numberBody
           },
           options),
-        putBigDecimal);
+        putBigDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -365,7 +365,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimal);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -395,7 +395,7 @@ export class Number {
             numberBody
           },
           options),
-        putBigDecimalPositiveDecimal);
+        putBigDecimalPositiveDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -417,7 +417,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalPositiveDecimal);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalPositiveDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -447,7 +447,7 @@ export class Number {
             numberBody
           },
           options),
-        putBigDecimalNegativeDecimal);
+        putBigDecimalNegativeDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -469,7 +469,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalNegativeDecimal);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalNegativeDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -499,7 +499,7 @@ export class Number {
             numberBody
           },
           options),
-        putSmallFloat);
+        putSmallFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -521,7 +521,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallFloat);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -551,7 +551,7 @@ export class Number {
             numberBody
           },
           options),
-        putSmallDouble);
+        putSmallDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -573,7 +573,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallDouble);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -603,7 +603,7 @@ export class Number {
             numberBody
           },
           options),
-        putSmallDecimal);
+        putSmallDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -625,7 +625,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallDecimal);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1639,7 +1639,7 @@ export class Number {
 }
 
 // Operation Specifications
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/null",
   responses: {
@@ -1658,7 +1658,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalidFloat: msRest.OperationSpec = {
+const getInvalidFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/invalidfloat",
   responses: {
@@ -1677,7 +1677,7 @@ const getInvalidFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalidDouble: msRest.OperationSpec = {
+const getInvalidDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/invaliddouble",
   responses: {
@@ -1696,7 +1696,7 @@ const getInvalidDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalidDecimal: msRest.OperationSpec = {
+const getInvalidDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/invaliddecimal",
   responses: {
@@ -1715,7 +1715,7 @@ const getInvalidDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBigFloat: msRest.OperationSpec = {
+const putBigFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/big/float/3.402823e+20",
   requestBody: {
@@ -1738,7 +1738,7 @@ const putBigFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBigFloat: msRest.OperationSpec = {
+const getBigFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/float/3.402823e+20",
   responses: {
@@ -1757,7 +1757,7 @@ const getBigFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBigDouble: msRest.OperationSpec = {
+const putBigDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/big/double/2.5976931e+101",
   requestBody: {
@@ -1780,7 +1780,7 @@ const putBigDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBigDouble: msRest.OperationSpec = {
+const getBigDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/double/2.5976931e+101",
   responses: {
@@ -1799,7 +1799,7 @@ const getBigDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBigDoublePositiveDecimal: msRest.OperationSpec = {
+const putBigDoublePositiveDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/big/double/99999999.99",
   requestBody: {
@@ -1822,7 +1822,7 @@ const putBigDoublePositiveDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBigDoublePositiveDecimal: msRest.OperationSpec = {
+const getBigDoublePositiveDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/double/99999999.99",
   responses: {
@@ -1841,7 +1841,7 @@ const getBigDoublePositiveDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBigDoubleNegativeDecimal: msRest.OperationSpec = {
+const putBigDoubleNegativeDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/big/double/-99999999.99",
   requestBody: {
@@ -1864,7 +1864,7 @@ const putBigDoubleNegativeDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBigDoubleNegativeDecimal: msRest.OperationSpec = {
+const getBigDoubleNegativeDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/double/-99999999.99",
   responses: {
@@ -1883,7 +1883,7 @@ const getBigDoubleNegativeDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBigDecimal: msRest.OperationSpec = {
+const putBigDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/big/decimal/2.5976931e+101",
   requestBody: {
@@ -1906,7 +1906,7 @@ const putBigDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBigDecimal: msRest.OperationSpec = {
+const getBigDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/decimal/2.5976931e+101",
   responses: {
@@ -1925,7 +1925,7 @@ const getBigDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBigDecimalPositiveDecimal: msRest.OperationSpec = {
+const putBigDecimalPositiveDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/big/decimal/99999999.99",
   requestBody: {
@@ -1948,7 +1948,7 @@ const putBigDecimalPositiveDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBigDecimalPositiveDecimal: msRest.OperationSpec = {
+const getBigDecimalPositiveDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/decimal/99999999.99",
   responses: {
@@ -1967,7 +1967,7 @@ const getBigDecimalPositiveDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putBigDecimalNegativeDecimal: msRest.OperationSpec = {
+const putBigDecimalNegativeDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/big/decimal/-99999999.99",
   requestBody: {
@@ -1990,7 +1990,7 @@ const putBigDecimalNegativeDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBigDecimalNegativeDecimal: msRest.OperationSpec = {
+const getBigDecimalNegativeDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/big/decimal/-99999999.99",
   responses: {
@@ -2009,7 +2009,7 @@ const getBigDecimalNegativeDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putSmallFloat: msRest.OperationSpec = {
+const putSmallFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/small/float/3.402823e-20",
   requestBody: {
@@ -2032,7 +2032,7 @@ const putSmallFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSmallFloat: msRest.OperationSpec = {
+const getSmallFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/small/float/3.402823e-20",
   responses: {
@@ -2051,7 +2051,7 @@ const getSmallFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putSmallDouble: msRest.OperationSpec = {
+const putSmallDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/small/double/2.5976931e-101",
   requestBody: {
@@ -2074,7 +2074,7 @@ const putSmallDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSmallDouble: msRest.OperationSpec = {
+const getSmallDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/small/double/2.5976931e-101",
   responses: {
@@ -2093,7 +2093,7 @@ const getSmallDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putSmallDecimal: msRest.OperationSpec = {
+const putSmallDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "number/small/decimal/2.5976931e-101",
   requestBody: {
@@ -2116,7 +2116,7 @@ const putSmallDecimal: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getSmallDecimal: msRest.OperationSpec = {
+const getSmallDecimalOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/small/decimal/2.5976931e-101",
   responses: {

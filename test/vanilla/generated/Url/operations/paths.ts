@@ -47,7 +47,7 @@ export class Paths {
             boolPath
           },
           options),
-        getBooleanTrue);
+        getBooleanTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -76,7 +76,7 @@ export class Paths {
             boolPath
           },
           options),
-        getBooleanFalse);
+        getBooleanFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,7 +105,7 @@ export class Paths {
             intPath
           },
           options),
-        getIntOneMillion);
+        getIntOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -134,7 +134,7 @@ export class Paths {
             intPath
           },
           options),
-        getIntNegativeOneMillion);
+        getIntNegativeOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -163,7 +163,7 @@ export class Paths {
             longPath
           },
           options),
-        getTenBillion);
+        getTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -192,7 +192,7 @@ export class Paths {
             longPath
           },
           options),
-        getNegativeTenBillion);
+        getNegativeTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -221,7 +221,7 @@ export class Paths {
             floatPath
           },
           options),
-        floatScientificPositive);
+        floatScientificPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -250,7 +250,7 @@ export class Paths {
             floatPath
           },
           options),
-        floatScientificNegative);
+        floatScientificNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -279,7 +279,7 @@ export class Paths {
             doublePath
           },
           options),
-        doubleDecimalPositive);
+        doubleDecimalPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -308,7 +308,7 @@ export class Paths {
             doublePath
           },
           options),
-        doubleDecimalNegative);
+        doubleDecimalNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -337,7 +337,7 @@ export class Paths {
             stringPath
           },
           options),
-        stringUnicode);
+        stringUnicodeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -366,7 +366,7 @@ export class Paths {
             stringPath
           },
           options),
-        stringUrlEncoded);
+        stringUrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -395,7 +395,7 @@ export class Paths {
             stringPath
           },
           options),
-        stringEmpty);
+        stringEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -425,7 +425,7 @@ export class Paths {
             stringPath
           },
           options),
-        stringNull);
+        stringNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -456,7 +456,7 @@ export class Paths {
             enumPath
           },
           options),
-        enumValid);
+        enumValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -487,7 +487,7 @@ export class Paths {
             enumPath
           },
           options),
-        enumNull);
+        enumNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -517,7 +517,7 @@ export class Paths {
             bytePath
           },
           options),
-        byteMultiByte);
+        byteMultiByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -546,7 +546,7 @@ export class Paths {
             bytePath
           },
           options),
-        byteEmpty);
+        byteEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -576,7 +576,7 @@ export class Paths {
             bytePath
           },
           options),
-        byteNull);
+        byteNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -605,7 +605,7 @@ export class Paths {
             datePath
           },
           options),
-        dateValid);
+        dateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -636,7 +636,7 @@ export class Paths {
             datePath
           },
           options),
-        dateNull);
+        dateNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -665,7 +665,7 @@ export class Paths {
             dateTimePath
           },
           options),
-        dateTimeValid);
+        dateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -695,7 +695,7 @@ export class Paths {
             dateTimePath
           },
           options),
-        dateTimeNull);
+        dateTimeNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -725,7 +725,7 @@ export class Paths {
             base64UrlPath
           },
           options),
-        base64Url);
+        base64UrlOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -757,7 +757,7 @@ export class Paths {
             arrayPath
           },
           options),
-        arrayCsvInPath);
+        arrayCsvInPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -787,7 +787,7 @@ export class Paths {
             unixTimeUrlPath
           },
           options),
-        unixTimeUrl);
+        unixTimeUrlOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1888,7 +1888,7 @@ export class Paths {
 }
 
 // Operation Specifications
-const getBooleanTrue: msRest.OperationSpec = {
+const getBooleanTrueOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/bool/true/{boolPath}",
   urlParameters: [
@@ -1914,7 +1914,7 @@ const getBooleanTrue: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getBooleanFalse: msRest.OperationSpec = {
+const getBooleanFalseOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/bool/false/{boolPath}",
   urlParameters: [
@@ -1940,7 +1940,7 @@ const getBooleanFalse: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getIntOneMillion: msRest.OperationSpec = {
+const getIntOneMillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/int/1000000/{intPath}",
   urlParameters: [
@@ -1966,7 +1966,7 @@ const getIntOneMillion: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getIntNegativeOneMillion: msRest.OperationSpec = {
+const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/int/-1000000/{intPath}",
   urlParameters: [
@@ -1992,7 +1992,7 @@ const getIntNegativeOneMillion: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getTenBillion: msRest.OperationSpec = {
+const getTenBillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/long/10000000000/{longPath}",
   urlParameters: [
@@ -2018,7 +2018,7 @@ const getTenBillion: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNegativeTenBillion: msRest.OperationSpec = {
+const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/long/-10000000000/{longPath}",
   urlParameters: [
@@ -2044,7 +2044,7 @@ const getNegativeTenBillion: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const floatScientificPositive: msRest.OperationSpec = {
+const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/float/1.034E+20/{floatPath}",
   urlParameters: [
@@ -2070,7 +2070,7 @@ const floatScientificPositive: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const floatScientificNegative: msRest.OperationSpec = {
+const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/float/-1.034E-20/{floatPath}",
   urlParameters: [
@@ -2096,7 +2096,7 @@ const floatScientificNegative: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const doubleDecimalPositive: msRest.OperationSpec = {
+const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/double/9999999.999/{doublePath}",
   urlParameters: [
@@ -2122,7 +2122,7 @@ const doubleDecimalPositive: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const doubleDecimalNegative: msRest.OperationSpec = {
+const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/double/-9999999.999/{doublePath}",
   urlParameters: [
@@ -2148,7 +2148,7 @@ const doubleDecimalNegative: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const stringUnicode: msRest.OperationSpec = {
+const stringUnicodeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/unicode/{stringPath}",
   urlParameters: [
@@ -2174,7 +2174,7 @@ const stringUnicode: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const stringUrlEncoded: msRest.OperationSpec = {
+const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
   urlParameters: [
@@ -2200,7 +2200,7 @@ const stringUrlEncoded: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const stringEmpty: msRest.OperationSpec = {
+const stringEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/empty/{stringPath}",
   urlParameters: [
@@ -2226,7 +2226,7 @@ const stringEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const stringNull: msRest.OperationSpec = {
+const stringNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/null/{stringPath}",
   urlParameters: [
@@ -2250,7 +2250,7 @@ const stringNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const enumValid: msRest.OperationSpec = {
+const enumValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/enum/green%20color/{enumPath}",
   urlParameters: [
@@ -2279,7 +2279,7 @@ const enumValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const enumNull: msRest.OperationSpec = {
+const enumNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/null/{enumPath}",
   urlParameters: [
@@ -2308,7 +2308,7 @@ const enumNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const byteMultiByte: msRest.OperationSpec = {
+const byteMultiByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/byte/multibyte/{bytePath}",
   urlParameters: [
@@ -2332,7 +2332,7 @@ const byteMultiByte: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const byteEmpty: msRest.OperationSpec = {
+const byteEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/byte/empty/{bytePath}",
   urlParameters: [
@@ -2358,7 +2358,7 @@ const byteEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const byteNull: msRest.OperationSpec = {
+const byteNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/byte/null/{bytePath}",
   urlParameters: [
@@ -2382,7 +2382,7 @@ const byteNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const dateValid: msRest.OperationSpec = {
+const dateValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/date/2012-01-01/{datePath}",
   urlParameters: [
@@ -2408,7 +2408,7 @@ const dateValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const dateNull: msRest.OperationSpec = {
+const dateNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/date/null/{datePath}",
   urlParameters: [
@@ -2432,7 +2432,7 @@ const dateNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const dateTimeValid: msRest.OperationSpec = {
+const dateTimeValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
   urlParameters: [
@@ -2458,7 +2458,7 @@ const dateTimeValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const dateTimeNull: msRest.OperationSpec = {
+const dateTimeNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/datetime/null/{dateTimePath}",
   urlParameters: [
@@ -2482,7 +2482,7 @@ const dateTimeNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const base64Url: msRest.OperationSpec = {
+const base64UrlOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/bG9yZW0/{base64UrlPath}",
   urlParameters: [
@@ -2506,7 +2506,7 @@ const base64Url: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const arrayCsvInPath: msRest.OperationSpec = {
+const arrayCsvInPathOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
   urlParameters: [
@@ -2536,7 +2536,7 @@ const arrayCsvInPath: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const unixTimeUrl: msRest.OperationSpec = {
+const unixTimeUrlOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/int/1460505600/{unixTimeUrlPath}",
   urlParameters: [

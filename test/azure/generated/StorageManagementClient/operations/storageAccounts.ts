@@ -53,7 +53,7 @@ export class StorageAccounts {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        checkNameAvailability);
+        checkNameAvailabilityOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -148,7 +148,7 @@ export class StorageAccounts {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        deleteMethod);
+        deleteMethodOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -188,7 +188,7 @@ export class StorageAccounts {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getProperties);
+        getPropertiesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -236,7 +236,7 @@ export class StorageAccounts {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        update);
+        updateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -272,7 +272,7 @@ export class StorageAccounts {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        listKeys);
+        listKeysOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -303,7 +303,7 @@ export class StorageAccounts {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        list);
+        listOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -337,7 +337,7 @@ export class StorageAccounts {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        listByResourceGroup);
+        listByResourceGroupOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -377,7 +377,7 @@ export class StorageAccounts {
             keyName
           },
           options),
-        regenerateKey);
+        regenerateKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -422,7 +422,7 @@ export class StorageAccounts {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginCreate);
+        beginCreateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -913,7 +913,7 @@ export class StorageAccounts {
 }
 
 // Operation Specifications
-const checkNameAvailability: msRest.OperationSpec = {
+const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
   urlParameters: [
@@ -971,7 +971,7 @@ const checkNameAvailability: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const deleteMethod: msRest.OperationSpec = {
+const deleteMethodOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
@@ -1040,7 +1040,7 @@ const deleteMethod: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getProperties: msRest.OperationSpec = {
+const getPropertiesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
@@ -1110,7 +1110,7 @@ const getProperties: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const update: msRest.OperationSpec = {
+const updateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
@@ -1188,7 +1188,7 @@ const update: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const listKeys: msRest.OperationSpec = {
+const listKeysOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
   urlParameters: [
@@ -1258,7 +1258,7 @@ const listKeys: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const list: msRest.OperationSpec = {
+const listOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
   urlParameters: [
@@ -1308,7 +1308,7 @@ const list: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const listByResourceGroup: msRest.OperationSpec = {
+const listByResourceGroupOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
   urlParameters: [
@@ -1368,7 +1368,7 @@ const listByResourceGroup: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const regenerateKey: msRest.OperationSpec = {
+const regenerateKeyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
   urlParameters: [
@@ -1448,7 +1448,7 @@ const regenerateKey: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginCreate: msRest.OperationSpec = {
+const beginCreateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [

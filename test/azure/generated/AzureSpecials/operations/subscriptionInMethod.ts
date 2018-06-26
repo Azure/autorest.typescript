@@ -50,7 +50,7 @@ export class SubscriptionInMethod {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        postMethodLocalValid);
+        postMethodLocalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,7 +83,7 @@ export class SubscriptionInMethod {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        postMethodLocalNull);
+        postMethodLocalNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -116,7 +116,7 @@ export class SubscriptionInMethod {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        postPathLocalValid);
+        postPathLocalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -149,7 +149,7 @@ export class SubscriptionInMethod {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        postSwaggerLocalValid);
+        postSwaggerLocalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -339,7 +339,7 @@ export class SubscriptionInMethod {
 }
 
 // Operation Specifications
-const postMethodLocalValid: msRest.OperationSpec = {
+const postMethodLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
@@ -375,7 +375,7 @@ const postMethodLocalValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postMethodLocalNull: msRest.OperationSpec = {
+const postMethodLocalNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
   urlParameters: [
@@ -411,7 +411,7 @@ const postMethodLocalNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postPathLocalValid: msRest.OperationSpec = {
+const postPathLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
@@ -447,7 +447,7 @@ const postPathLocalValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const postSwaggerLocalValid: msRest.OperationSpec = {
+const postSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [

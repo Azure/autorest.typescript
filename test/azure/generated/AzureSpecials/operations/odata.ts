@@ -52,7 +52,7 @@ export class Odata {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getWithFilter);
+        getWithFilterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -103,7 +103,7 @@ export class Odata {
 }
 
 // Operation Specifications
-const getWithFilter: msRest.OperationSpec = {
+const getWithFilterOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/odata/filter",
   queryParameters: [

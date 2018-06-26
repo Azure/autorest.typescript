@@ -48,7 +48,7 @@ export class Header {
             userAgent
           },
           options),
-        paramExistingKey);
+        paramExistingKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -70,7 +70,7 @@ export class Header {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), responseExistingKey);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), responseExistingKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -100,7 +100,7 @@ export class Header {
             contentType
           },
           options),
-        paramProtectedKey);
+        paramProtectedKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -122,7 +122,7 @@ export class Header {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), responseProtectedKey);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), responseProtectedKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -157,7 +157,7 @@ export class Header {
             value
           },
           options),
-        paramInteger);
+        paramIntegerOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -188,7 +188,7 @@ export class Header {
             scenario
           },
           options),
-        responseInteger);
+        responseIntegerOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -223,7 +223,7 @@ export class Header {
             value
           },
           options),
-        paramLong);
+        paramLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -254,7 +254,7 @@ export class Header {
             scenario
           },
           options),
-        responseLong);
+        responseLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -289,7 +289,7 @@ export class Header {
             value
           },
           options),
-        paramFloat);
+        paramFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -320,7 +320,7 @@ export class Header {
             scenario
           },
           options),
-        responseFloat);
+        responseFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -355,7 +355,7 @@ export class Header {
             value
           },
           options),
-        paramDouble);
+        paramDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -386,7 +386,7 @@ export class Header {
             scenario
           },
           options),
-        responseDouble);
+        responseDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -420,7 +420,7 @@ export class Header {
             value
           },
           options),
-        paramBool);
+        paramBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -450,7 +450,7 @@ export class Header {
             scenario
           },
           options),
-        responseBool);
+        responseBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -484,7 +484,7 @@ export class Header {
             value
           },
           options),
-        paramString);
+        paramStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -515,7 +515,7 @@ export class Header {
             scenario
           },
           options),
-        responseString);
+        responseStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -549,7 +549,7 @@ export class Header {
             value
           },
           options),
-        paramDate);
+        paramDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -579,7 +579,7 @@ export class Header {
             scenario
           },
           options),
-        responseDate);
+        responseDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -614,7 +614,7 @@ export class Header {
             value
           },
           options),
-        paramDatetime);
+        paramDatetimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -644,7 +644,7 @@ export class Header {
             scenario
           },
           options),
-        responseDatetime);
+        responseDatetimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -677,7 +677,7 @@ export class Header {
             value
           },
           options),
-        paramDatetimeRfc1123);
+        paramDatetimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -708,7 +708,7 @@ export class Header {
             scenario
           },
           options),
-        responseDatetimeRfc1123);
+        responseDatetimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -741,7 +741,7 @@ export class Header {
             value
           },
           options),
-        paramDuration);
+        paramDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -771,7 +771,7 @@ export class Header {
             scenario
           },
           options),
-        responseDuration);
+        responseDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -804,7 +804,7 @@ export class Header {
             value
           },
           options),
-        paramByte);
+        paramByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -834,7 +834,7 @@ export class Header {
             scenario
           },
           options),
-        responseByte);
+        responseByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -868,7 +868,7 @@ export class Header {
             value
           },
           options),
-        paramEnum);
+        paramEnumOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -899,7 +899,7 @@ export class Header {
             scenario
           },
           options),
-        responseEnum);
+        responseEnumOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -921,7 +921,7 @@ export class Header {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), customRequestId);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), customRequestIdOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2214,7 +2214,7 @@ export class Header {
 }
 
 // Operation Specifications
-const paramExistingKey: msRest.OperationSpec = {
+const paramExistingKeyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/existingkey",
   headerParameters: [
@@ -2238,7 +2238,7 @@ const paramExistingKey: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseExistingKey: msRest.OperationSpec = {
+const responseExistingKeyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/existingkey",
   responses: {
@@ -2252,7 +2252,7 @@ const responseExistingKey: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramProtectedKey: msRest.OperationSpec = {
+const paramProtectedKeyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/protectedkey",
   headerParameters: [
@@ -2276,7 +2276,7 @@ const paramProtectedKey: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseProtectedKey: msRest.OperationSpec = {
+const responseProtectedKeyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/protectedkey",
   responses: {
@@ -2290,7 +2290,7 @@ const responseProtectedKey: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramInteger: msRest.OperationSpec = {
+const paramIntegerOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/integer",
   headerParameters: [
@@ -2324,7 +2324,7 @@ const paramInteger: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseInteger: msRest.OperationSpec = {
+const responseIntegerOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/integer",
   headerParameters: [
@@ -2350,7 +2350,7 @@ const responseInteger: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramLong: msRest.OperationSpec = {
+const paramLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/long",
   headerParameters: [
@@ -2384,7 +2384,7 @@ const paramLong: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseLong: msRest.OperationSpec = {
+const responseLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/long",
   headerParameters: [
@@ -2410,7 +2410,7 @@ const responseLong: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramFloat: msRest.OperationSpec = {
+const paramFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/float",
   headerParameters: [
@@ -2444,7 +2444,7 @@ const paramFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseFloat: msRest.OperationSpec = {
+const responseFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/float",
   headerParameters: [
@@ -2470,7 +2470,7 @@ const responseFloat: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramDouble: msRest.OperationSpec = {
+const paramDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/double",
   headerParameters: [
@@ -2504,7 +2504,7 @@ const paramDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseDouble: msRest.OperationSpec = {
+const responseDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/double",
   headerParameters: [
@@ -2530,7 +2530,7 @@ const responseDouble: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramBool: msRest.OperationSpec = {
+const paramBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/bool",
   headerParameters: [
@@ -2564,7 +2564,7 @@ const paramBool: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseBool: msRest.OperationSpec = {
+const responseBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/bool",
   headerParameters: [
@@ -2590,7 +2590,7 @@ const responseBool: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramString: msRest.OperationSpec = {
+const paramStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/string",
   headerParameters: [
@@ -2623,7 +2623,7 @@ const paramString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseString: msRest.OperationSpec = {
+const responseStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/string",
   headerParameters: [
@@ -2649,7 +2649,7 @@ const responseString: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramDate: msRest.OperationSpec = {
+const paramDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/date",
   headerParameters: [
@@ -2683,7 +2683,7 @@ const paramDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseDate: msRest.OperationSpec = {
+const responseDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/date",
   headerParameters: [
@@ -2709,7 +2709,7 @@ const responseDate: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramDatetime: msRest.OperationSpec = {
+const paramDatetimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/datetime",
   headerParameters: [
@@ -2743,7 +2743,7 @@ const paramDatetime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseDatetime: msRest.OperationSpec = {
+const responseDatetimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/datetime",
   headerParameters: [
@@ -2769,7 +2769,7 @@ const responseDatetime: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramDatetimeRfc1123: msRest.OperationSpec = {
+const paramDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/datetimerfc1123",
   headerParameters: [
@@ -2802,7 +2802,7 @@ const paramDatetimeRfc1123: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseDatetimeRfc1123: msRest.OperationSpec = {
+const responseDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/datetimerfc1123",
   headerParameters: [
@@ -2828,7 +2828,7 @@ const responseDatetimeRfc1123: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramDuration: msRest.OperationSpec = {
+const paramDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/duration",
   headerParameters: [
@@ -2862,7 +2862,7 @@ const paramDuration: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseDuration: msRest.OperationSpec = {
+const responseDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/duration",
   headerParameters: [
@@ -2888,7 +2888,7 @@ const responseDuration: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramByte: msRest.OperationSpec = {
+const paramByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/byte",
   headerParameters: [
@@ -2922,7 +2922,7 @@ const paramByte: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseByte: msRest.OperationSpec = {
+const responseByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/byte",
   headerParameters: [
@@ -2948,7 +2948,7 @@ const responseByte: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const paramEnum: msRest.OperationSpec = {
+const paramEnumOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/enum",
   headerParameters: [
@@ -2986,7 +2986,7 @@ const paramEnum: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const responseEnum: msRest.OperationSpec = {
+const responseEnumOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/enum",
   headerParameters: [
@@ -3012,7 +3012,7 @@ const responseEnum: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const customRequestId: msRest.OperationSpec = {
+const customRequestIdOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0",
   responses: {

@@ -49,7 +49,7 @@ export class Paths {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getEmpty);
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -102,7 +102,7 @@ export class Paths {
 }
 
 // Operation Specifications
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "customuri",
   urlParameters: [

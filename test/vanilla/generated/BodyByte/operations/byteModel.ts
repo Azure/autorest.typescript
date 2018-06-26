@@ -39,7 +39,7 @@ export class ByteModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,7 +61,7 @@ export class ByteModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmpty);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,7 +83,7 @@ export class ByteModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNonAscii);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNonAsciiOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -114,7 +114,7 @@ export class ByteModel {
             byteBody
           },
           options),
-        putNonAscii);
+        putNonAsciiOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -136,7 +136,7 @@ export class ByteModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -354,7 +354,7 @@ export class ByteModel {
 }
 
 // Operation Specifications
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "byte/null",
   responses: {
@@ -373,7 +373,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "byte/empty",
   responses: {
@@ -392,7 +392,7 @@ const getEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNonAscii: msRest.OperationSpec = {
+const getNonAsciiOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "byte/nonAscii",
   responses: {
@@ -411,7 +411,7 @@ const getNonAscii: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putNonAscii: msRest.OperationSpec = {
+const putNonAsciiOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "byte/nonAscii",
   requestBody: {
@@ -434,7 +434,7 @@ const putNonAscii: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getInvalid: msRest.OperationSpec = {
+const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "byte/invalid",
   responses: {

@@ -46,7 +46,7 @@ export class Dictionary {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getValid);
+        getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -76,7 +76,7 @@ export class Dictionary {
             defaultProgram
           },
           options),
-        putValid);
+        putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -104,7 +104,7 @@ export class Dictionary {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getEmpty);
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -134,7 +134,7 @@ export class Dictionary {
             defaultProgram
           },
           options),
-        putEmpty);
+        putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -162,7 +162,7 @@ export class Dictionary {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getNull);
+        getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -190,7 +190,7 @@ export class Dictionary {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        getNotProvided);
+        getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -446,7 +446,7 @@ export class Dictionary {
 }
 
 // Operation Specifications
-const getValid: msRest.OperationSpec = {
+const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/valid",
   headerParameters: [
@@ -472,7 +472,7 @@ const getValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putValid: msRest.OperationSpec = {
+const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/dictionary/typed/valid",
   headerParameters: [
@@ -506,7 +506,7 @@ const putValid: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getEmpty: msRest.OperationSpec = {
+const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/empty",
   headerParameters: [
@@ -532,7 +532,7 @@ const getEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const putEmpty: msRest.OperationSpec = {
+const putEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/dictionary/typed/empty",
   headerParameters: [
@@ -566,7 +566,7 @@ const putEmpty: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNull: msRest.OperationSpec = {
+const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/null",
   headerParameters: [
@@ -592,7 +592,7 @@ const getNull: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getNotProvided: msRest.OperationSpec = {
+const getNotProvidedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/notprovided",
   headerParameters: [

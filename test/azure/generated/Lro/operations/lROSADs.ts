@@ -1041,7 +1041,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutNonRetry400);
+        beginPutNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1072,7 +1072,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutNonRetry201Creating400);
+        beginPutNonRetry201Creating400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1104,7 +1104,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutNonRetry201Creating400InvalidJson);
+        beginPutNonRetry201Creating400InvalidJsonOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1135,7 +1135,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutAsyncRelativeRetry400);
+        beginPutAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1163,7 +1163,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginDeleteNonRetry400);
+        beginDeleteNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1191,7 +1191,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginDelete202NonRetry400);
+        beginDelete202NonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1220,7 +1220,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginDeleteAsyncRelativeRetry400);
+        beginDeleteAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1250,7 +1250,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPostNonRetry400);
+        beginPostNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1280,7 +1280,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPost202NonRetry400);
+        beginPost202NonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1311,7 +1311,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPostAsyncRelativeRetry400);
+        beginPostAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1342,7 +1342,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutError201NoProvisioningStatePayload);
+        beginPutError201NoProvisioningStatePayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1374,7 +1374,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutAsyncRelativeRetryNoStatus);
+        beginPutAsyncRelativeRetryNoStatusOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1407,7 +1407,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutAsyncRelativeRetryNoStatusPayload);
+        beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1435,7 +1435,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginDelete204Succeeded);
+        beginDelete204SucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1464,7 +1464,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginDeleteAsyncRelativeRetryNoStatus);
+        beginDeleteAsyncRelativeRetryNoStatusOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1495,7 +1495,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPost202NoLocation);
+        beginPost202NoLocationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1528,7 +1528,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPostAsyncRelativeRetryNoPayload);
+        beginPostAsyncRelativeRetryNoPayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1559,7 +1559,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPut200InvalidJson);
+        beginPut200InvalidJsonOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1592,7 +1592,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutAsyncRelativeRetryInvalidHeader);
+        beginPutAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1625,7 +1625,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPutAsyncRelativeRetryInvalidJsonPolling);
+        beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1654,7 +1654,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginDelete202RetryInvalidHeader);
+        beginDelete202RetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1683,7 +1683,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginDeleteAsyncRelativeRetryInvalidHeader);
+        beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1712,7 +1712,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginDeleteAsyncRelativeRetryInvalidJsonPolling);
+        beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1743,7 +1743,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPost202RetryInvalidHeader);
+        beginPost202RetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1776,7 +1776,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPostAsyncRelativeRetryInvalidHeader);
+        beginPostAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1809,7 +1809,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        beginPostAsyncRelativeRetryInvalidJsonPolling);
+        beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -4016,7 +4016,7 @@ export class LROSADs {
 }
 
 // Operation Specifications
-const beginPutNonRetry400: msRest.OperationSpec = {
+const beginPutNonRetry400OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/nonretryerror/put/400",
   headerParameters: [
@@ -4050,7 +4050,7 @@ const beginPutNonRetry400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPutNonRetry201Creating400: msRest.OperationSpec = {
+const beginPutNonRetry201Creating400OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/nonretryerror/put/201/creating/400",
   headerParameters: [
@@ -4084,7 +4084,7 @@ const beginPutNonRetry201Creating400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPutNonRetry201Creating400InvalidJson: msRest.OperationSpec = {
+const beginPutNonRetry201Creating400InvalidJsonOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/nonretryerror/put/201/creating/400/invalidjson",
   headerParameters: [
@@ -4118,7 +4118,7 @@ const beginPutNonRetry201Creating400InvalidJson: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPutAsyncRelativeRetry400: msRest.OperationSpec = {
+const beginPutAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/nonretryerror/putasync/retry/400",
   headerParameters: [
@@ -4150,7 +4150,7 @@ const beginPutAsyncRelativeRetry400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginDeleteNonRetry400: msRest.OperationSpec = {
+const beginDeleteNonRetry400OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/nonretryerror/delete/400",
   headerParameters: [
@@ -4176,7 +4176,7 @@ const beginDeleteNonRetry400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginDelete202NonRetry400: msRest.OperationSpec = {
+const beginDelete202NonRetry400OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/nonretryerror/delete/202/retry/400",
   headerParameters: [
@@ -4202,7 +4202,7 @@ const beginDelete202NonRetry400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginDeleteAsyncRelativeRetry400: msRest.OperationSpec = {
+const beginDeleteAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/nonretryerror/deleteasync/retry/400",
   headerParameters: [
@@ -4228,7 +4228,7 @@ const beginDeleteAsyncRelativeRetry400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPostNonRetry400: msRest.OperationSpec = {
+const beginPostNonRetry400OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/nonretryerror/post/400",
   headerParameters: [
@@ -4259,7 +4259,7 @@ const beginPostNonRetry400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPost202NonRetry400: msRest.OperationSpec = {
+const beginPost202NonRetry400OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/nonretryerror/post/202/retry/400",
   headerParameters: [
@@ -4290,7 +4290,7 @@ const beginPost202NonRetry400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPostAsyncRelativeRetry400: msRest.OperationSpec = {
+const beginPostAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/nonretryerror/postasync/retry/400",
   headerParameters: [
@@ -4321,7 +4321,7 @@ const beginPostAsyncRelativeRetry400: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPutError201NoProvisioningStatePayload: msRest.OperationSpec = {
+const beginPutError201NoProvisioningStatePayloadOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/error/put/201/noprovisioningstatepayload",
   headerParameters: [
@@ -4355,7 +4355,7 @@ const beginPutError201NoProvisioningStatePayload: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPutAsyncRelativeRetryNoStatus: msRest.OperationSpec = {
+const beginPutAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/error/putasync/retry/nostatus",
   headerParameters: [
@@ -4387,7 +4387,7 @@ const beginPutAsyncRelativeRetryNoStatus: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPutAsyncRelativeRetryNoStatusPayload: msRest.OperationSpec = {
+const beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/error/putasync/retry/nostatuspayload",
   headerParameters: [
@@ -4419,7 +4419,7 @@ const beginPutAsyncRelativeRetryNoStatusPayload: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginDelete204Succeeded: msRest.OperationSpec = {
+const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/error/delete/204/nolocation",
   headerParameters: [
@@ -4443,7 +4443,7 @@ const beginDelete204Succeeded: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginDeleteAsyncRelativeRetryNoStatus: msRest.OperationSpec = {
+const beginDeleteAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/error/deleteasync/retry/nostatus",
   headerParameters: [
@@ -4469,7 +4469,7 @@ const beginDeleteAsyncRelativeRetryNoStatus: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPost202NoLocation: msRest.OperationSpec = {
+const beginPost202NoLocationOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/error/post/202/nolocation",
   headerParameters: [
@@ -4500,7 +4500,7 @@ const beginPost202NoLocation: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPostAsyncRelativeRetryNoPayload: msRest.OperationSpec = {
+const beginPostAsyncRelativeRetryNoPayloadOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/error/postasync/retry/nopayload",
   headerParameters: [
@@ -4531,7 +4531,7 @@ const beginPostAsyncRelativeRetryNoPayload: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPut200InvalidJson: msRest.OperationSpec = {
+const beginPut200InvalidJsonOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/error/put/200/invalidjson",
   headerParameters: [
@@ -4563,7 +4563,7 @@ const beginPut200InvalidJson: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPutAsyncRelativeRetryInvalidHeader: msRest.OperationSpec = {
+const beginPutAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/error/putasync/retry/invalidheader",
   headerParameters: [
@@ -4595,7 +4595,7 @@ const beginPutAsyncRelativeRetryInvalidHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPutAsyncRelativeRetryInvalidJsonPolling: msRest.OperationSpec = {
+const beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/error/putasync/retry/invalidjsonpolling",
   headerParameters: [
@@ -4627,7 +4627,7 @@ const beginPutAsyncRelativeRetryInvalidJsonPolling: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginDelete202RetryInvalidHeader: msRest.OperationSpec = {
+const beginDelete202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/error/delete/202/retry/invalidheader",
   headerParameters: [
@@ -4653,7 +4653,7 @@ const beginDelete202RetryInvalidHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginDeleteAsyncRelativeRetryInvalidHeader: msRest.OperationSpec = {
+const beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/error/deleteasync/retry/invalidheader",
   headerParameters: [
@@ -4679,7 +4679,7 @@ const beginDeleteAsyncRelativeRetryInvalidHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginDeleteAsyncRelativeRetryInvalidJsonPolling: msRest.OperationSpec = {
+const beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/error/deleteasync/retry/invalidjsonpolling",
   headerParameters: [
@@ -4705,7 +4705,7 @@ const beginDeleteAsyncRelativeRetryInvalidJsonPolling: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPost202RetryInvalidHeader: msRest.OperationSpec = {
+const beginPost202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/error/post/202/retry/invalidheader",
   headerParameters: [
@@ -4736,7 +4736,7 @@ const beginPost202RetryInvalidHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPostAsyncRelativeRetryInvalidHeader: msRest.OperationSpec = {
+const beginPostAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/error/postasync/retry/invalidheader",
   headerParameters: [
@@ -4767,7 +4767,7 @@ const beginPostAsyncRelativeRetryInvalidHeader: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const beginPostAsyncRelativeRetryInvalidJsonPolling: msRest.OperationSpec = {
+const beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/error/postasync/retry/invalidjsonpolling",
   headerParameters: [

@@ -39,7 +39,7 @@ export class Files {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFile);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFileOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,7 +61,7 @@ export class Files {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFileLarge);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFileLargeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,7 +83,7 @@ export class Files {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyFile);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyFileOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -93,7 +93,7 @@ export class Files {
 }
 
 // Operation Specifications
-const getFile: msRest.OperationSpec = {
+const getFileOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/nonempty",
   responses: {
@@ -112,7 +112,7 @@ const getFile: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getFileLarge: msRest.OperationSpec = {
+const getFileLargeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/verylarge",
   responses: {
@@ -131,7 +131,7 @@ const getFileLarge: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const getEmptyFile: msRest.OperationSpec = {
+const getEmptyFileOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/empty",
   responses: {

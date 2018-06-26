@@ -50,7 +50,7 @@ export class Formdata {
             fileName
           },
           options),
-        uploadFile);
+        uploadFileOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,7 +80,7 @@ export class Formdata {
             fileContent
           },
           options),
-        uploadFileViaBody);
+        uploadFileViaBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -90,7 +90,7 @@ export class Formdata {
 }
 
 // Operation Specifications
-const uploadFile: msRest.OperationSpec = {
+const uploadFileOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "formdata/stream/uploadfile",
   formDataParameters: [
@@ -132,7 +132,7 @@ const uploadFile: msRest.OperationSpec = {
   serializer: new msRest.Serializer(Mappers)
 };
 
-const uploadFileViaBody: msRest.OperationSpec = {
+const uploadFileViaBodyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "formdata/stream/uploadfile",
   requestBody: {
