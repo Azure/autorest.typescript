@@ -9,12 +9,15 @@ using System.Text;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
+using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
 
 namespace AutoRest.TypeScript.Model
 {
     public class CodeModelTS : CodeModel
     {
+        private const string ServiceClientOptions = "ServiceClientOptions";
+
         public CodeModelTS()
         {
         }
@@ -282,7 +285,7 @@ namespace AutoRest.TypeScript.Model
         {
             get
             {
-                return _optionalParameterTypeForClientConstructor ?? "ServiceClientOptions";
+                return _optionalParameterTypeForClientConstructor ?? ServiceClientOptions;
             }
 
             set
@@ -319,17 +322,17 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string ConstructRuntimeImportForModelIndex()
         {
-            var builder = new IndentedStringBuilder("  ");
-            if (OptionalParameterTypeForClientConstructor != "ServiceClientOptions")
+            TSBuilder builder = new TSBuilder();
+            if (OptionalParameterTypeForClientConstructor != ServiceClientOptions)
             {
-                builder.Append("import { ServiceClientOptions } from \"ms-rest-js\";");
+                builder.Import(new string[] { ServiceClientOptions }, "ms-rest-js");
             }
             return builder.ToString();
         }
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.14.320\"";
+            return "\"ms-rest-js\": \"~0.14.323\"";
         }
 
         public virtual Method GetSampleMethod()
@@ -399,6 +402,50 @@ namespace AutoRest.TypeScript.Model
                 paramDeclaration += $" = {paramValue};";
                 builder.AppendLine(paramDeclaration);
             }
+            return builder.ToString();
+        }
+
+        public string GenerateOperationSpecDefinitions(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.LineComment("Operation Specifications");
+            bool addedFirstValue = false;
+            foreach (MethodTS method in MethodTemplateModels)
+            {
+                if (!method.IsLongRunningOperation)
+                {
+                    if (addedFirstValue)
+                    {
+                        builder.Line(emptyLine);
+                    }
+                    else
+                    {
+                        addedFirstValue = true;
+                    }
+                    method.GenerateOperationSpecDefinition(builder);
+                }
+            }
+
+            return builder.ToString();
+        }
+
+        public string GenerateServiceClientImports()
+        {
+            TSBuilder builder = new TSBuilder();
+
+            if (MethodTemplateModels.Any() || OptionalParameterTypeForClientConstructor == ServiceClientOptions)
+            {
+                builder.ImportAllAs("msRest", "ms-rest-js");
+            }
+            builder.ImportAllAs("Models", "./models");
+            builder.ImportAllAs("Mappers", "./models/mappers");
+            if (MethodGroupModels.Any())
+            {
+                builder.ImportAllAs("operations", "./operations");
+            }
+            builder.Import(new string[] { ContextName }, $"./{ContextName.ToCamelCase()}");
+
             return builder.ToString();
         }
     }

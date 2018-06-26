@@ -16,7 +16,7 @@ import { AutoRestSwaggerBATServiceContext } from "../autoRestSwaggerBATServiceCo
 /** Class representing a String. */
 export class String {
   private readonly client: AutoRestSwaggerBATServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a String.
    * @param {AutoRestSwaggerBATServiceContext} client Reference to the service client.
@@ -40,27 +40,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -89,28 +69,7 @@ export class String {
             stringBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "string/null",
-          requestBody: {
-            parameterPath: "stringBody",
-            mapper: {
-              serializedName: "stringBody",
-              type: {
-                name: "String"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -132,27 +91,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/empty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmpty);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -182,29 +121,7 @@ export class String {
             stringBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "string/empty",
-          requestBody: {
-            parameterPath: "stringBody",
-            mapper: {
-              required: true,
-              serializedName: "stringBody",
-              type: {
-                name: "String"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putEmpty);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -226,27 +143,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/mbcs",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMbcs);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -277,29 +174,7 @@ export class String {
             stringBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "string/mbcs",
-          requestBody: {
-            parameterPath: "stringBody",
-            mapper: {
-              required: true,
-              serializedName: "stringBody",
-              type: {
-                name: "String"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putMbcs);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -322,27 +197,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/whitespace",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getWhitespace);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -374,29 +229,7 @@ export class String {
             stringBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "string/whitespace",
-          requestBody: {
-            parameterPath: "stringBody",
-            mapper: {
-              required: true,
-              serializedName: "stringBody",
-              type: {
-                name: "String"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putWhitespace);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -418,27 +251,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/notProvided",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvided);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -460,27 +273,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/base64Encoding",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Base64Url"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64Encoded);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -502,27 +295,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/base64UrlEncoding",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Base64Url"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64UrlEncoded);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -552,29 +325,7 @@ export class String {
             stringBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "string/base64UrlEncoding",
-          requestBody: {
-            parameterPath: "stringBody",
-            mapper: {
-              required: true,
-              serializedName: "stringBody",
-              type: {
-                name: "Base64Url"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBase64UrlEncoded);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -596,27 +347,7 @@ export class String {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/nullBase64UrlEncoding",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Base64Url"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullBase64UrlEncoded);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1169,3 +900,270 @@ export class String {
   }
 
 }
+
+// Operation Specifications
+const getNull: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putNull: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "string/null",
+  requestBody: {
+    parameterPath: "stringBody",
+    mapper: {
+      serializedName: "stringBody",
+      type: {
+        name: "String"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getEmpty: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/empty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putEmpty: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "string/empty",
+  requestBody: {
+    parameterPath: "stringBody",
+    mapper: {
+      required: true,
+      serializedName: "stringBody",
+      type: {
+        name: "String"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMbcs: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/mbcs",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putMbcs: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "string/mbcs",
+  requestBody: {
+    parameterPath: "stringBody",
+    mapper: {
+      required: true,
+      serializedName: "stringBody",
+      type: {
+        name: "String"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getWhitespace: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/whitespace",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putWhitespace: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "string/whitespace",
+  requestBody: {
+    parameterPath: "stringBody",
+    mapper: {
+      required: true,
+      serializedName: "stringBody",
+      type: {
+        name: "String"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNotProvided: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/notProvided",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBase64Encoded: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/base64Encoding",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Base64Url"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBase64UrlEncoded: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/base64UrlEncoding",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Base64Url"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBase64UrlEncoded: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "string/base64UrlEncoding",
+  requestBody: {
+    parameterPath: "stringBody",
+    mapper: {
+      required: true,
+      serializedName: "stringBody",
+      type: {
+        name: "Base64Url"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNullBase64UrlEncoded: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/nullBase64UrlEncoding",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Base64Url"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

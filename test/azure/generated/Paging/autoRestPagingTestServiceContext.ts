@@ -21,7 +21,6 @@ export class AutoRestPagingTestServiceContext extends msRestAzure.AzureServiceCl
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

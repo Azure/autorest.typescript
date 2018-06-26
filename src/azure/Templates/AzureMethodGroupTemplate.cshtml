@@ -18,7 +18,7 @@ import { @(Model.CodeModelTS.ContextName) } from "../@(Model.CodeModelTS.Context
 /** Class representing a @(Model.TypeName). */
 export class @(Model.TypeName) {
   private readonly client: @(Model.CodeModelTS.ContextName);
-  @Model.SerializerPropertyDeclaration
+@EmptyLine
   /**
    * Create a @Model.TypeName.
    * @@param {@Model.CodeModelTS.ContextName} client Reference to the service client.
@@ -38,3 +38,5 @@ export class @(Model.TypeName) {
   @EmptyLine
 }
 }
+@EmptyLine
+@(Model.GenerateOperationSpecDefinitions(EmptyLine))

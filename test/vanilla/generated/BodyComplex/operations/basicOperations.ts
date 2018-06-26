@@ -16,7 +16,7 @@ import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestService
 /** Class representing a BasicOperations. */
 export class BasicOperations {
   private readonly client: AutoRestComplexTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a BasicOperations.
    * @param {AutoRestComplexTestServiceContext} client Reference to the service client.
@@ -40,22 +40,7 @@ export class BasicOperations {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/basic/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Basic
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -86,40 +71,7 @@ export class BasicOperations {
             "this.client.apiVersion": this.client.apiVersion
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/basic/valid",
-          queryParameters: [
-            {
-              parameterPath: "this.client.apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2014-04-01-preview',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.Basic,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -141,22 +93,7 @@ export class BasicOperations {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/basic/invalid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Basic
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -178,22 +115,7 @@ export class BasicOperations {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/basic/empty",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Basic
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmpty);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -215,22 +137,7 @@ export class BasicOperations {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/basic/null",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Basic
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -252,22 +159,7 @@ export class BasicOperations {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/basic/notprovided",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Basic
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvided);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -523,3 +415,108 @@ export class BasicOperations {
   }
 
 }
+
+// Operation Specifications
+const getValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/basic/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Basic
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putValid: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/basic/valid",
+  queryParameters: [
+    {
+      parameterPath: "this.client.apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2014-04-01-preview',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.Basic,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/basic/invalid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Basic
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getEmpty: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/basic/empty",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Basic
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNull: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/basic/null",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Basic
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNotProvided: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/basic/notprovided",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Basic
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

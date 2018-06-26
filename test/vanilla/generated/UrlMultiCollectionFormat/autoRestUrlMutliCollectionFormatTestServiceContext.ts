@@ -14,7 +14,6 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestUrlMutliCollectionFormatTestServiceContext extends msRest.ServiceClient {
-  baseUri: string;
 
   /**
    * @class

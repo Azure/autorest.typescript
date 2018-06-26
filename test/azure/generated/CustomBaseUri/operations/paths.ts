@@ -15,7 +15,7 @@ import { AutoRestParameterizedHostTestClientContext } from "../autoRestParameter
 /** Class representing a Paths. */
 export class Paths {
   private readonly client: AutoRestParameterizedHostTestClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Paths.
    * @param {AutoRestParameterizedHostTestClientContext} client Reference to the service client.
@@ -49,55 +49,7 @@ export class Paths {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "customuri",
-          urlParameters: [
-            {
-              parameterPath: "accountName",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "accountName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.host",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "host",
-                defaultValue: 'host',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getEmpty);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -148,3 +100,53 @@ export class Paths {
   }
 
 }
+
+// Operation Specifications
+const getEmpty: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "customuri",
+  urlParameters: [
+    {
+      parameterPath: "accountName",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "accountName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.host",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "host",
+        defaultValue: 'host',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -14,8 +14,6 @@ import * as Mappers from "./models/mappers";
 import { AutoRestResourceFlatteningTestServiceContext } from "./autoRestResourceFlatteningTestServiceContext";
 
 class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTestServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   /**
    * @class
    * Initializes a new instance of the AutoRestResourceFlatteningTestService class.
@@ -61,35 +59,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             resourceArray
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "model-flatten/array",
-          requestBody: {
-            parameterPath: "resourceArray",
-            mapper: {
-              serializedName: "ResourceArray",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "ResourceElementType",
-                  type: {
-                    name: "Composite",
-                    className: "Resource"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putArray);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -112,34 +82,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "model-flatten/array",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "FlattenedProductElementType",
-                    type: {
-                      name: "Composite",
-                      className: "FlattenedProduct"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getArray);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -171,35 +114,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             resourceArray
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "model-flatten/wrappedarray",
-          requestBody: {
-            parameterPath: "resourceArray",
-            mapper: {
-              serializedName: "ResourceArray",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "WrappedProductElementType",
-                  type: {
-                    name: "Composite",
-                    className: "WrappedProduct"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putWrappedArray);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -223,34 +138,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "model-flatten/wrappedarray",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "ProductWrapperElementType",
-                    type: {
-                      name: "Composite",
-                      className: "ProductWrapper"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getWrappedArray);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -281,35 +169,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             resourceDictionary
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "model-flatten/dictionary",
-          requestBody: {
-            parameterPath: "resourceDictionary",
-            mapper: {
-              serializedName: "ResourceDictionary",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "FlattenedProductElementType",
-                  type: {
-                    name: "Composite",
-                    className: "FlattenedProduct"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDictionary);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -332,34 +192,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "model-flatten/dictionary",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "FlattenedProductElementType",
-                    type: {
-                      name: "Composite",
-                      className: "FlattenedProduct"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionary);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -390,23 +223,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             resourceComplexObject
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "model-flatten/resourcecollection",
-          requestBody: {
-            parameterPath: "resourceComplexObject",
-            mapper: Mappers.ResourceCollection
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putResourceCollection);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -429,22 +246,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "model-flatten/resourcecollection",
-          responses: {
-            200: {
-              bodyMapper: Mappers.ResourceCollection
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getResourceCollection);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -475,25 +277,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             simpleBodyProduct
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "model-flatten/customFlattening",
-          requestBody: {
-            parameterPath: "simpleBodyProduct",
-            mapper: Mappers.SimpleProduct
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.SimpleProduct
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putSimpleProduct);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -536,31 +320,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             odatavalue
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.baseUri,
-          path: "model-flatten/customFlattening",
-          requestBody: {
-            parameterPath: {
-              productId: "productId",
-              description: "description",
-              maxProductDisplayName: "maxProductDisplayName",
-              genericValue: "genericValue",
-              odatavalue: "odatavalue"
-            },
-            mapper: Mappers.SimpleProduct
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.SimpleProduct
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postFlattenedSimpleProduct);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -591,61 +351,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             flattenParameterGroup
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "model-flatten/customFlattening/parametergrouping/{name}/",
-          urlParameters: [
-            {
-              parameterPath: [
-                "flattenParameterGroup",
-                "name"
-              ],
-              mapper: {
-                required: true,
-                serializedName: "name",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: {
-              productId: [
-                "flattenParameterGroup",
-                "productId"
-              ],
-              description: [
-                "flattenParameterGroup",
-                "description"
-              ],
-              maxProductDisplayName: [
-                "flattenParameterGroup",
-                "maxProductDisplayName"
-              ],
-              genericValue: [
-                "flattenParameterGroup",
-                "genericValue"
-              ],
-              odatavalue: [
-                "flattenParameterGroup",
-                "odatavalue"
-              ]
-            },
-            mapper: Mappers.SimpleProduct
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.SimpleProduct
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putSimpleProductWithGrouping);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1119,5 +825,301 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     }
   }
 }
+
+// Operation Specifications
+const putArray: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "model-flatten/array",
+  requestBody: {
+    parameterPath: "resourceArray",
+    mapper: {
+      serializedName: "ResourceArray",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "ResourceElementType",
+          type: {
+            name: "Composite",
+            className: "Resource"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getArray: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "model-flatten/array",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putWrappedArray: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "model-flatten/wrappedarray",
+  requestBody: {
+    parameterPath: "resourceArray",
+    mapper: {
+      serializedName: "ResourceArray",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "WrappedProductElementType",
+          type: {
+            name: "Composite",
+            className: "WrappedProduct"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getWrappedArray: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "model-flatten/wrappedarray",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "ProductWrapperElementType",
+            type: {
+              name: "Composite",
+              className: "ProductWrapper"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDictionary: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "model-flatten/dictionary",
+  requestBody: {
+    parameterPath: "resourceDictionary",
+    mapper: {
+      serializedName: "ResourceDictionary",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "FlattenedProductElementType",
+          type: {
+            name: "Composite",
+            className: "FlattenedProduct"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDictionary: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "model-flatten/dictionary",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putResourceCollection: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "model-flatten/resourcecollection",
+  requestBody: {
+    parameterPath: "resourceComplexObject",
+    mapper: Mappers.ResourceCollection
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getResourceCollection: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "model-flatten/resourcecollection",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ResourceCollection
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putSimpleProduct: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "model-flatten/customFlattening",
+  requestBody: {
+    parameterPath: "simpleBodyProduct",
+    mapper: Mappers.SimpleProduct
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SimpleProduct
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postFlattenedSimpleProduct: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "model-flatten/customFlattening",
+  requestBody: {
+    parameterPath: {
+      productId: "productId",
+      description: "description",
+      maxProductDisplayName: "maxProductDisplayName",
+      genericValue: "genericValue",
+      odatavalue: "odatavalue"
+    },
+    mapper: Mappers.SimpleProduct
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SimpleProduct
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putSimpleProductWithGrouping: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "model-flatten/customFlattening/parametergrouping/{name}/",
+  urlParameters: [
+    {
+      parameterPath: [
+        "flattenParameterGroup",
+        "name"
+      ],
+      mapper: {
+        required: true,
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: {
+      productId: [
+        "flattenParameterGroup",
+        "productId"
+      ],
+      description: [
+        "flattenParameterGroup",
+        "description"
+      ],
+      maxProductDisplayName: [
+        "flattenParameterGroup",
+        "maxProductDisplayName"
+      ],
+      genericValue: [
+        "flattenParameterGroup",
+        "genericValue"
+      ],
+      odatavalue: [
+        "flattenParameterGroup",
+        "odatavalue"
+      ]
+    },
+    mapper: Mappers.SimpleProduct
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SimpleProduct
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
 
 export { AutoRestResourceFlatteningTestService, Models as AutoRestResourceFlatteningTestServiceModels, Mappers as AutoRestResourceFlatteningTestServiceMappers };

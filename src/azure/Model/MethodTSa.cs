@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using System.Linq;
 using System.Net;
 using AutoRest.Core.Model;
-using AutoRest.Core.Utilities;
 using AutoRest.Extensions.Azure;
+using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript.Model;
 using Newtonsoft.Json;
 
@@ -29,7 +28,7 @@ namespace AutoRest.TypeScript.Azure.Model
         /// Returns true if method has x-ms-long-running-operation extension.
         /// </summary>
         [JsonIgnore]
-        public bool IsLongRunningOperation => Extensions.ContainsKey(AzureExtensions.LongRunningExtension);
+        public override bool IsLongRunningOperation => Extensions.ContainsKey(AzureExtensions.LongRunningExtension);
 
 
         [JsonIgnore]
@@ -59,6 +58,16 @@ namespace AutoRest.TypeScript.Azure.Model
                 }
                 return result;
             }
+        }
+
+        public string DeserializeResponse(IModelType type)
+        {
+            TSBuilder builder = new TSBuilder();
+            using (TSBlock block = new TSBlock(builder))
+            {
+                DeserializeResponse(block, type);
+            }
+            return builder.ToString();
         }
     }
 }

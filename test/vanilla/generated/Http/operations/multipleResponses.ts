@@ -16,7 +16,7 @@ import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInf
 /** Class representing a MultipleResponses. */
 export class MultipleResponses {
   private readonly client: AutoRestHttpInfrastructureTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a MultipleResponses.
    * @param {AutoRestHttpInfrastructureTestServiceContext} client Reference to the service client.
@@ -40,23 +40,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/204/none/default/Error/response/200/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError200Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -78,23 +62,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/204/none/default/Error/response/204/none",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError204Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -116,23 +84,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/204/none/default/Error/response/201/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError201Invalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -154,23 +106,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/204/none/default/Error/response/202/none",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError202None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -192,23 +128,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/204/none/default/Error/response/400/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model204NoModelDefaultError400Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -230,25 +150,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/201/B/default/Error/response/200/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            201: {
-              bodyMapper: Mappers.B
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model201ModelDefaultError200Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -270,25 +172,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/201/B/default/Error/response/201/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            201: {
-              bodyMapper: Mappers.B
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model201ModelDefaultError201Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -310,25 +194,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/201/B/default/Error/response/400/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            201: {
-              bodyMapper: Mappers.B
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200Model201ModelDefaultError400Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -350,28 +216,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/201/C/404/D/default/Error/response/200/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            201: {
-              bodyMapper: Mappers.C
-            },
-            404: {
-              bodyMapper: Mappers.D
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError200Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -393,28 +238,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/201/C/404/D/default/Error/response/201/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            201: {
-              bodyMapper: Mappers.C
-            },
-            404: {
-              bodyMapper: Mappers.D
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError201Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -436,28 +260,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/201/C/404/D/default/Error/response/404/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            201: {
-              bodyMapper: Mappers.C
-            },
-            404: {
-              bodyMapper: Mappers.D
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError404Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -479,28 +282,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/201/C/404/D/default/Error/response/400/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            201: {
-              bodyMapper: Mappers.C
-            },
-            404: {
-              bodyMapper: Mappers.D
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA201ModelC404ModelDDefaultError400Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -522,21 +304,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/202/none/204/none/default/Error/response/202/none",
-          responses: {
-            202: {},
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultError202None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -558,21 +326,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/202/none/204/none/default/Error/response/204/none",
-          responses: {
-            202: {},
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultError204None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -594,21 +348,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/202/none/204/none/default/Error/response/400/valid",
-          responses: {
-            202: {},
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultError400Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -630,19 +370,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/202/none/204/none/default/none/response/202/invalid",
-          responses: {
-            202: {},
-            204: {},
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone202Invalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -664,19 +392,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/202/none/204/none/default/none/response/204/none",
-          responses: {
-            202: {},
-            204: {},
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone204None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -698,19 +414,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/202/none/204/none/default/none/response/400/none",
-          responses: {
-            202: {},
-            204: {},
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone400None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -732,19 +436,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/202/none/204/none/default/none/response/400/invalid",
-          responses: {
-            202: {},
-            204: {},
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get202None204NoneDefaultNone400Invalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -766,19 +458,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/default/A/response/200/valid",
-          responses: {
-            default: {
-              bodyMapper: Mappers.A
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA200Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -800,19 +480,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/default/A/response/200/none",
-          responses: {
-            default: {
-              bodyMapper: Mappers.A
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA200None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -834,19 +502,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/default/A/response/400/valid",
-          responses: {
-            default: {
-              bodyMapper: Mappers.A
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA400Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -868,19 +524,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/default/A/response/400/none",
-          responses: {
-            default: {
-              bodyMapper: Mappers.A
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultModelA400None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -902,17 +546,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/default/none/response/200/invalid",
-          responses: {
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone200Invalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -934,17 +568,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/default/none/response/200/none",
-          responses: {
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone200None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -966,17 +590,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/default/none/response/400/invalid",
-          responses: {
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone400Invalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -998,17 +612,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/default/none/response/400/none",
-          responses: {
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDefaultNone400None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1031,20 +635,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/response/200/none",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA200None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1066,20 +657,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/response/200/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA200Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1101,20 +679,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/response/200/invalid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA200Invalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1136,20 +701,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/response/400/none",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA400None);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1171,20 +723,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/response/400/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA400Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1206,20 +745,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/response/400/invalid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA400Invalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1241,20 +767,7 @@ export class MultipleResponses {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/payloads/200/A/response/202/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.A
-            },
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200ModelA202Valid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2657,3 +2170,457 @@ export class MultipleResponses {
   }
 
 }
+
+// Operation Specifications
+const get200Model204NoModelDefaultError200Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/204/none/default/Error/response/200/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200Model204NoModelDefaultError204Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/204/none/default/Error/response/204/none",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200Model204NoModelDefaultError201Invalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/204/none/default/Error/response/201/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200Model204NoModelDefaultError202None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/204/none/default/Error/response/202/none",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200Model204NoModelDefaultError400Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/204/none/default/Error/response/400/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200Model201ModelDefaultError200Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/201/B/default/Error/response/200/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    201: {
+      bodyMapper: Mappers.B
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200Model201ModelDefaultError201Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/201/B/default/Error/response/201/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    201: {
+      bodyMapper: Mappers.B
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200Model201ModelDefaultError400Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/201/B/default/Error/response/400/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    201: {
+      bodyMapper: Mappers.B
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA201ModelC404ModelDDefaultError200Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/201/C/404/D/default/Error/response/200/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    201: {
+      bodyMapper: Mappers.C
+    },
+    404: {
+      bodyMapper: Mappers.D
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA201ModelC404ModelDDefaultError201Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/201/C/404/D/default/Error/response/201/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    201: {
+      bodyMapper: Mappers.C
+    },
+    404: {
+      bodyMapper: Mappers.D
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA201ModelC404ModelDDefaultError404Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/201/C/404/D/default/Error/response/404/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    201: {
+      bodyMapper: Mappers.C
+    },
+    404: {
+      bodyMapper: Mappers.D
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA201ModelC404ModelDDefaultError400Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/201/C/404/D/default/Error/response/400/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    201: {
+      bodyMapper: Mappers.C
+    },
+    404: {
+      bodyMapper: Mappers.D
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get202None204NoneDefaultError202None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/202/none/204/none/default/Error/response/202/none",
+  responses: {
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get202None204NoneDefaultError204None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/202/none/204/none/default/Error/response/204/none",
+  responses: {
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get202None204NoneDefaultError400Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/202/none/204/none/default/Error/response/400/valid",
+  responses: {
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get202None204NoneDefaultNone202Invalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/202/none/204/none/default/none/response/202/invalid",
+  responses: {
+    202: {},
+    204: {},
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get202None204NoneDefaultNone204None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/202/none/204/none/default/none/response/204/none",
+  responses: {
+    202: {},
+    204: {},
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get202None204NoneDefaultNone400None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/202/none/204/none/default/none/response/400/none",
+  responses: {
+    202: {},
+    204: {},
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get202None204NoneDefaultNone400Invalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/202/none/204/none/default/none/response/400/invalid",
+  responses: {
+    202: {},
+    204: {},
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDefaultModelA200Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/default/A/response/200/valid",
+  responses: {
+    default: {
+      bodyMapper: Mappers.A
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDefaultModelA200None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/default/A/response/200/none",
+  responses: {
+    default: {
+      bodyMapper: Mappers.A
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDefaultModelA400Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/default/A/response/400/valid",
+  responses: {
+    default: {
+      bodyMapper: Mappers.A
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDefaultModelA400None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/default/A/response/400/none",
+  responses: {
+    default: {
+      bodyMapper: Mappers.A
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDefaultNone200Invalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/default/none/response/200/invalid",
+  responses: {
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDefaultNone200None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/default/none/response/200/none",
+  responses: {
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDefaultNone400Invalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/default/none/response/400/invalid",
+  responses: {
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDefaultNone400None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/default/none/response/400/none",
+  responses: {
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA200None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/response/200/none",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA200Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/response/200/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA200Invalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/response/200/invalid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA400None: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/response/400/none",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA400Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/response/400/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA400Invalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/response/400/invalid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200ModelA202Valid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/payloads/200/A/response/202/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.A
+    },
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -6,6 +6,7 @@ using System.Linq;
 using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
+using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
 
 namespace AutoRest.TypeScript.Model
@@ -27,15 +28,6 @@ namespace AutoRest.TypeScript.Model
         public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>();
 
         public string MappersModuleName => TypeName.ToCamelCase() + "Mappers";
-
-        public string SerializerPropertyDeclaration
-        {
-            get
-            {
-                var serializerParams = CodeModel.ShouldGenerateXmlSerialization ? "Mappers, true" : "Mappers";
-                return $"private readonly serializer = new msRest.Serializer({serializerParams});";
-            }
-        }
 
         public ISet<string> OperationModelNames
         {
@@ -138,6 +130,31 @@ namespace AutoRest.TypeScript.Model
             if (!result)
                 result = MethodTemplateModels.Any(m => m.ReturnType.Body.IsCompositeOrEnumType());
             return result;
+        }
+
+        public string GenerateOperationSpecDefinitions(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.LineComment("Operation Specifications");
+            bool addedFirstValue = false;
+            foreach (MethodTS method in MethodTemplateModels)
+            {
+                if (!method.IsLongRunningOperation)
+                {
+                    if (addedFirstValue)
+                    {
+                        builder.Line(emptyLine);
+                    }
+                    else
+                    {
+                        addedFirstValue = true;
+                    }
+                    method.GenerateOperationSpecDefinition(builder);
+                }
+            }
+
+            return builder.ToString();
         }
     }
 }

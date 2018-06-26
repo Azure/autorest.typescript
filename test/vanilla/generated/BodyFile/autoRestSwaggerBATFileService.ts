@@ -15,8 +15,6 @@ import * as operations from "./operations";
 import { AutoRestSwaggerBATFileServiceContext } from "./autoRestSwaggerBATFileServiceContext";
 
 class AutoRestSwaggerBATFileService extends AutoRestSwaggerBATFileServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   files: operations.Files;
 
@@ -42,5 +40,7 @@ class AutoRestSwaggerBATFileService extends AutoRestSwaggerBATFileServiceContext
     this.files = new operations.Files(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestSwaggerBATFileService, Models as AutoRestSwaggerBATFileServiceModels, Mappers as AutoRestSwaggerBATFileServiceMappers };

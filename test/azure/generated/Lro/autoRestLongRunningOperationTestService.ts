@@ -17,8 +17,6 @@ import * as operations from "./operations";
 
 
 class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperationTestServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   lROs: operations.LROs;
   lRORetrys: operations.LRORetrys;
@@ -58,5 +56,7 @@ class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperati
     this.lROsCustomHeader = new operations.LROsCustomHeader(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestLongRunningOperationTestService, Models as AutoRestLongRunningOperationTestServiceModels, Mappers as AutoRestLongRunningOperationTestServiceMappers };

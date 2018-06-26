@@ -16,7 +16,7 @@ import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzur
 /** Class representing a Odata. */
 export class Odata {
   private readonly client: AutoRestAzureSpecialParametersTestClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Odata.
    * @param {AutoRestAzureSpecialParametersTestClientContext} client Reference to the service client.
@@ -52,59 +52,7 @@ export class Odata {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/odata/filter",
-          queryParameters: [
-            {
-              parameterPath: "filter",
-              mapper: {
-                serializedName: "$filter",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "top",
-              mapper: {
-                serializedName: "$top",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: "orderby",
-              mapper: {
-                serializedName: "$orderby",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getWithFilter);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -153,3 +101,57 @@ export class Odata {
   }
 
 }
+
+// Operation Specifications
+const getWithFilter: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/odata/filter",
+  queryParameters: [
+    {
+      parameterPath: "filter",
+      mapper: {
+        serializedName: "$filter",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "top",
+      mapper: {
+        serializedName: "$top",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: "orderby",
+      mapper: {
+        serializedName: "$orderby",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

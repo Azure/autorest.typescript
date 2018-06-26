@@ -14,7 +14,6 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestReportServiceContext extends msRest.ServiceClient {
-  baseUri: string;
 
   /**
    * @class

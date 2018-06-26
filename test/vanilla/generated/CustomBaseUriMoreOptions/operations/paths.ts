@@ -16,7 +16,7 @@ import { AutoRestParameterizedCustomHostTestClientContext } from "../autoRestPar
 /** Class representing a Paths. */
 export class Paths {
   private readonly client: AutoRestParameterizedCustomHostTestClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Paths.
    * @param {AutoRestParameterizedCustomHostTestClientContext} client Reference to the service client.
@@ -58,86 +58,7 @@ export class Paths {
             keyVersion
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "customuri/{subscriptionId}/{keyName}",
-          urlParameters: [
-            {
-              parameterPath: "vault",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "vault",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "secret",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "secret",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.dnsSuffix",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "dnsSuffix",
-                defaultValue: 'host',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "keyName",
-              mapper: {
-                required: true,
-                serializedName: "keyName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "keyVersion",
-              mapper: {
-                serializedName: "keyVersion",
-                defaultValue: 'v1',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getEmpty);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -192,3 +113,84 @@ export class Paths {
   }
 
 }
+
+// Operation Specifications
+const getEmpty: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "customuri/{subscriptionId}/{keyName}",
+  urlParameters: [
+    {
+      parameterPath: "vault",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "vault",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "secret",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "secret",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.dnsSuffix",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "dnsSuffix",
+        defaultValue: 'host',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "keyName",
+      mapper: {
+        required: true,
+        serializedName: "keyName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "keyVersion",
+      mapper: {
+        serializedName: "keyVersion",
+        defaultValue: 'v1',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

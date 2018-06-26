@@ -14,8 +14,6 @@ import * as Mappers from "./models/mappers";
 import { ComplexModelClientContext } from "./complexModelClientContext";
 
 class ComplexModelClient extends ComplexModelClientContext {
-  serializer = new msRest.Serializer(Mappers);
-
   /**
    * @class
    * Initializes a new instance of the ComplexModelClient class.
@@ -67,58 +65,7 @@ class ComplexModelClient extends ComplexModelClientContext {
             "this.apiVersion": this.apiVersion
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
-          urlParameters: [
-            {
-              parameterPath: "this.subscriptionId",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "subscriptionId",
-                defaultValue: '123456',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "this.apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2014-04-01-preview',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.CatalogArray
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        list);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -157,66 +104,7 @@ class ComplexModelClient extends ComplexModelClientContext {
             productDictionaryOfArray
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.baseUri,
-          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
-          urlParameters: [
-            {
-              parameterPath: "subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "this.apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2014-04-01-preview',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: {
-              productDictionaryOfArray: "productDictionaryOfArray"
-            },
-            mapper: {
-              ...Mappers.CatalogDictionaryOfArray,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.CatalogDictionary
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        create);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -255,66 +143,7 @@ class ComplexModelClient extends ComplexModelClientContext {
             productArrayOfDictionary
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
-          urlParameters: [
-            {
-              parameterPath: "subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "this.apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2014-04-01-preview',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: {
-              productArrayOfDictionary: "productArrayOfDictionary"
-            },
-            mapper: {
-              ...Mappers.CatalogArrayOfDictionary,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.CatalogArray
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        update);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -462,5 +291,178 @@ class ComplexModelClient extends ComplexModelClientContext {
     }
   }
 }
+
+// Operation Specifications
+const list: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+  urlParameters: [
+    {
+      parameterPath: "this.subscriptionId",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "subscriptionId",
+        defaultValue: '123456',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "this.apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2014-04-01-preview',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.CatalogArray
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const create: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+  urlParameters: [
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "this.apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2014-04-01-preview',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: {
+      productDictionaryOfArray: "productDictionaryOfArray"
+    },
+    mapper: {
+      ...Mappers.CatalogDictionaryOfArray,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CatalogDictionary
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const update: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+  urlParameters: [
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "this.apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2014-04-01-preview',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: {
+      productArrayOfDictionary: "productArrayOfDictionary"
+    },
+    mapper: {
+      ...Mappers.CatalogArrayOfDictionary,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CatalogArray
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
 
 export { ComplexModelClient, Models as ComplexModelModels, Mappers as ComplexModelMappers };

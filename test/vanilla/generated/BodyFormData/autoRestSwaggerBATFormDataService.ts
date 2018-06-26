@@ -15,8 +15,6 @@ import * as operations from "./operations";
 import { AutoRestSwaggerBATFormDataServiceContext } from "./autoRestSwaggerBATFormDataServiceContext";
 
 class AutoRestSwaggerBATFormDataService extends AutoRestSwaggerBATFormDataServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   formdata: operations.Formdata;
 
@@ -42,5 +40,7 @@ class AutoRestSwaggerBATFormDataService extends AutoRestSwaggerBATFormDataServic
     this.formdata = new operations.Formdata(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestSwaggerBATFormDataService, Models as AutoRestSwaggerBATFormDataServiceModels, Mappers as AutoRestSwaggerBATFormDataServiceMappers };

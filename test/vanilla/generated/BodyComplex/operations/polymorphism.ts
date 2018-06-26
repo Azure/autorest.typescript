@@ -16,7 +16,7 @@ import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestService
 /** Class representing a Polymorphism. */
 export class Polymorphism {
   private readonly client: AutoRestComplexTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Polymorphism.
    * @param {AutoRestComplexTestServiceContext} client Reference to the service client.
@@ -40,22 +40,7 @@ export class Polymorphism {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/polymorphism/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Fish
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -117,26 +102,7 @@ export class Polymorphism {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/polymorphism/valid",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.Fish,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -159,22 +125,7 @@ export class Polymorphism {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/polymorphism/complicated",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Salmon
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplicated);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -205,26 +156,7 @@ export class Polymorphism {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/polymorphism/complicated",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.Salmon,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putComplicated);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -254,28 +186,7 @@ export class Polymorphism {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/polymorphism/missingdiscriminator",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.Salmon,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Salmon
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putMissingDiscriminator);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -332,26 +243,7 @@ export class Polymorphism {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/polymorphism/missingrequired/invalid",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.Fish,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putValidMissingRequired);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -674,3 +566,114 @@ export class Polymorphism {
   }
 
 }
+
+// Operation Specifications
+const getValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/polymorphism/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Fish
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putValid: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/polymorphism/valid",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.Fish,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getComplicated: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/polymorphism/complicated",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Salmon
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putComplicated: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/polymorphism/complicated",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.Salmon,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putMissingDiscriminator: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/polymorphism/missingdiscriminator",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.Salmon,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Salmon
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putValidMissingRequired: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/polymorphism/missingrequired/invalid",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.Fish,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

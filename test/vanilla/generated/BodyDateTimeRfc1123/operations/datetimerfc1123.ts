@@ -15,7 +15,7 @@ import { AutoRestRFC1123DateTimeTestServiceContext } from "../autoRestRFC1123Dat
 /** Class representing a Datetimerfc1123. */
 export class Datetimerfc1123 {
   private readonly client: AutoRestRFC1123DateTimeTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Datetimerfc1123.
    * @param {AutoRestRFC1123DateTimeTestServiceContext} client Reference to the service client.
@@ -39,27 +39,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetimerfc1123/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTimeRfc1123"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -81,27 +61,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetimerfc1123/invalid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTimeRfc1123"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -123,27 +83,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetimerfc1123/overflow",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTimeRfc1123"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflow);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -165,27 +105,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetimerfc1123/underflow",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTimeRfc1123"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflow);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -215,29 +135,7 @@ export class Datetimerfc1123 {
             datetimeBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "datetimerfc1123/max",
-          requestBody: {
-            parameterPath: "datetimeBody",
-            mapper: {
-              required: true,
-              serializedName: "datetimeBody",
-              type: {
-                name: "DateTimeRfc1123"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putUtcMaxDateTime);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -259,27 +157,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetimerfc1123/max/lowercase",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTimeRfc1123"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcLowercaseMaxDateTime);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -301,27 +179,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetimerfc1123/max/uppercase",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTimeRfc1123"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcUppercaseMaxDateTime);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -351,29 +209,7 @@ export class Datetimerfc1123 {
             datetimeBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "datetimerfc1123/min",
-          requestBody: {
-            parameterPath: "datetimeBody",
-            mapper: {
-              required: true,
-              serializedName: "datetimeBody",
-              type: {
-                name: "DateTimeRfc1123"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putUtcMinDateTime);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -395,27 +231,7 @@ export class Datetimerfc1123 {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetimerfc1123/min",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTimeRfc1123"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcMinDateTime);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -796,3 +612,183 @@ export class Datetimerfc1123 {
   }
 
 }
+
+// Operation Specifications
+const getNull: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetimerfc1123/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetimerfc1123/invalid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getOverflow: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetimerfc1123/overflow",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUnderflow: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetimerfc1123/underflow",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putUtcMaxDateTime: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "datetimerfc1123/max",
+  requestBody: {
+    parameterPath: "datetimeBody",
+    mapper: {
+      required: true,
+      serializedName: "datetimeBody",
+      type: {
+        name: "DateTimeRfc1123"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUtcLowercaseMaxDateTime: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetimerfc1123/max/lowercase",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUtcUppercaseMaxDateTime: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetimerfc1123/max/uppercase",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putUtcMinDateTime: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "datetimerfc1123/min",
+  requestBody: {
+    parameterPath: "datetimeBody",
+    mapper: {
+      required: true,
+      serializedName: "datetimeBody",
+      type: {
+        name: "DateTimeRfc1123"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUtcMinDateTime: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetimerfc1123/min",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

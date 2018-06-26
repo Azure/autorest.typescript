@@ -18,7 +18,6 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
   requiredGlobalPath: string;
   requiredGlobalQuery: string;
   optionalGlobalQuery?: number;
-  baseUri: string;
 
   /**
    * @class

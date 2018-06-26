@@ -16,7 +16,7 @@ import { AzureCompositeModelContext } from "../azureCompositeModelContext";
 /** Class representing a Flattencomplex. */
 export class Flattencomplex {
   private readonly client: AzureCompositeModelContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Flattencomplex.
    * @param {AzureCompositeModelContext} client Reference to the service client.
@@ -44,32 +44,7 @@ export class Flattencomplex {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/flatten/valid",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.MyBaseType
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -116,3 +91,30 @@ export class Flattencomplex {
   }
 
 }
+
+// Operation Specifications
+const getValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/flatten/valid",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.MyBaseType
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

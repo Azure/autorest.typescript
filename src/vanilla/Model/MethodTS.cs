@@ -27,6 +27,12 @@ namespace AutoRest.TypeScript.Model
             };
         }
 
+        /// <summary>
+        /// Returns true if method has x-ms-long-running-operation extension.
+        /// </summary>
+        [JsonIgnore]
+        public virtual bool IsLongRunningOperation => false;
+
         public override void Remove(Parameter item)
         {
             base.Remove(item);
@@ -317,8 +323,9 @@ namespace AutoRest.TypeScript.Model
             {
                 ifBlock.Try(tryBlock =>
                 {
-                    ifBlock.Text($"{valueReference} = ");
-                    ifBlock.FunctionCall("this.serializer.deserialize", argumentList =>
+                    tryBlock.ConstObjectVariable("serializer", CreateSerializerExpression());
+                    tryBlock.Text($"{valueReference} = ");
+                    tryBlock.FunctionCall("serializer.deserialize", argumentList =>
                     {
                         string expressionToDeserialize = responseVariable;
 
@@ -351,16 +358,6 @@ namespace AutoRest.TypeScript.Model
                     catchBlock.Return($"Promise.reject({errorVariable})");
                 });
             });
-        }
-
-        public string DeserializeResponse(IModelType type)
-        {
-            TSBuilder builder = new TSBuilder();
-            using (TSBlock block = new TSBlock(builder))
-            {
-                DeserializeResponse(block, type);
-            }
-            return builder.ToString();
         }
 
         /// <summary>
@@ -577,7 +574,7 @@ namespace AutoRest.TypeScript.Model
                     tryBlock.FunctionCall($"operationRes = await {ClientReference}.sendOperationRequest", argumentList =>
                     {
                         argumentList.FunctionCall("msRest.createOperationArguments", GenerateOperationArguments);
-                        argumentList.Object(GenerateOperationSpec);
+                        argumentList.Text(GetOperationSpecVariableName());
                     });
                     tryBlock.Line(";");
 
@@ -649,10 +646,6 @@ namespace AutoRest.TypeScript.Model
             if (IsAbsoluteUrl)
             {
                 operationSpec.QuotedStringProperty("baseUrl", CodeModelTS.SchemeHostAndPort);
-            }
-            else
-            {
-                operationSpec.TextProperty("baseUrl", $"{ClientReference}.baseUri");
             }
 
             string path = Path;
@@ -732,7 +725,7 @@ namespace AutoRest.TypeScript.Model
                 operationSpec.BooleanProperty("isXML", true);
             }
 
-            operationSpec.TextProperty("serializer", "this.serializer");
+            operationSpec.TextProperty("serializer", CreateSerializerExpression());
         }
 
         private static void AddSkipEncodingProperty(TSObject parameterObject, Parameter parameter)
@@ -811,6 +804,21 @@ namespace AutoRest.TypeScript.Model
         public bool HasStreamResponseType()
         {
             return Responses.Values.Any((Response r) => r.Body.IsPrimaryType(KnownPrimaryType.Stream));
+        }
+
+        public void GenerateOperationSpecDefinition(TSBuilder builder)
+        {
+            builder.ConstObjectVariable(GetOperationSpecVariableName(), "msRest.OperationSpec", GenerateOperationSpec);
+        }
+
+        private string GetOperationSpecVariableName()
+        {
+            return Name.ToCamelCase();
+        }
+
+        public string CreateSerializerExpression()
+        {
+            return $"new msRest.Serializer(Mappers{(CodeModel.ShouldGenerateXmlSerialization == true ? ", true" : "")})";
         }
     }
 }

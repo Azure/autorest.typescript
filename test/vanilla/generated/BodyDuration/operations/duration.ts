@@ -15,7 +15,7 @@ import { AutoRestDurationTestServiceContext } from "../autoRestDurationTestServi
 /** Class representing a Duration. */
 export class Duration {
   private readonly client: AutoRestDurationTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Duration.
    * @param {AutoRestDurationTestServiceContext} client Reference to the service client.
@@ -39,27 +39,7 @@ export class Duration {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "duration/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "TimeSpan"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -89,29 +69,7 @@ export class Duration {
             durationBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "duration/positiveduration",
-          requestBody: {
-            parameterPath: "durationBody",
-            mapper: {
-              required: true,
-              serializedName: "durationBody",
-              type: {
-                name: "TimeSpan"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putPositiveDuration);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -133,27 +91,7 @@ export class Duration {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "duration/positiveduration",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "TimeSpan"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getPositiveDuration);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -175,27 +113,7 @@ export class Duration {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "duration/invalid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "TimeSpan"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -369,3 +287,84 @@ export class Duration {
   }
 
 }
+
+// Operation Specifications
+const getNull: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "duration/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "TimeSpan"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putPositiveDuration: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "duration/positiveduration",
+  requestBody: {
+    parameterPath: "durationBody",
+    mapper: {
+      required: true,
+      serializedName: "durationBody",
+      type: {
+        name: "TimeSpan"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getPositiveDuration: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "duration/positiveduration",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "TimeSpan"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "duration/invalid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "TimeSpan"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -21,7 +21,6 @@ export class AutoRestParameterGroupingTestServiceContext extends msRestAzure.Azu
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

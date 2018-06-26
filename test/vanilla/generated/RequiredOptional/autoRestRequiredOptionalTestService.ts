@@ -8,15 +8,12 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestRequiredOptionalTestServiceContext } from "./autoRestRequiredOptionalTestServiceContext";
 
 class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   implicit: operations.Implicit;
   explicit: operations.Explicit;
@@ -46,5 +43,7 @@ class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestSe
     this.explicit = new operations.Explicit(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestRequiredOptionalTestService, Models as AutoRestRequiredOptionalTestServiceModels, Mappers as AutoRestRequiredOptionalTestServiceMappers };

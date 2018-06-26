@@ -16,7 +16,7 @@ import { AutoRestPagingTestServiceContext } from "../autoRestPagingTestServiceCo
 /** Class representing a Paging. */
 export class Paging {
   private readonly client: AutoRestPagingTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Paging.
    * @param {AutoRestPagingTestServiceContext} client Reference to the service client.
@@ -46,32 +46,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/single",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getSinglePages);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -103,66 +78,7 @@ export class Paging {
             pagingGetMultiplePagesOptions
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple",
-          headerParameters: [
-            {
-              parameterPath: "clientRequestId",
-              mapper: {
-                serializedName: "client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesOptions",
-                "maxresults"
-              ],
-              mapper: {
-                serializedName: "maxresults",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesOptions",
-                "timeout"
-              ],
-              mapper: {
-                serializedName: "timeout",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePages);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -194,66 +110,7 @@ export class Paging {
             pagingGetOdataMultiplePagesOptions
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/odata",
-          headerParameters: [
-            {
-              parameterPath: "clientRequestId",
-              mapper: {
-                serializedName: "client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetOdataMultiplePagesOptions",
-                "maxresults"
-              ],
-              mapper: {
-                serializedName: "maxresults",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetOdataMultiplePagesOptions",
-                "timeout"
-              ],
-              mapper: {
-                serializedName: "timeout",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.OdataProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getOdataMultiplePages);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -287,81 +144,7 @@ export class Paging {
             pagingGetMultiplePagesWithOffsetOptions
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/withpath/{offset}",
-          urlParameters: [
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesWithOffsetOptions",
-                "offset"
-              ],
-              mapper: {
-                required: true,
-                serializedName: "offset",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "clientRequestId",
-              mapper: {
-                serializedName: "client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesWithOffsetOptions",
-                "maxresults"
-              ],
-              mapper: {
-                serializedName: "maxresults",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesWithOffsetOptions",
-                "timeout"
-              ],
-              mapper: {
-                serializedName: "timeout",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesWithOffset);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -390,32 +173,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/retryfirst",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesRetryFirst);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -444,32 +202,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/retrysecond",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesRetrySecond);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -497,32 +230,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/single/failure",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getSinglePagesFailure);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -550,32 +258,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/failure",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesFailure);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -603,32 +286,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/failureuri",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesFailureUri);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -662,56 +320,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/fragment/{tenant}",
-          urlParameters: [
-            {
-              parameterPath: "tenant",
-              mapper: {
-                required: true,
-                serializedName: "tenant",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                serializedName: "api_version",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.OdataProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesFragmentNextLink);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -742,62 +351,7 @@ export class Paging {
             customParameterGroup
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/fragmentwithgrouping/{tenant}",
-          urlParameters: [
-            {
-              parameterPath: [
-                "customParameterGroup",
-                "tenant"
-              ],
-              mapper: {
-                required: true,
-                serializedName: "tenant",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: [
-                "customParameterGroup",
-                "apiVersion"
-              ],
-              mapper: {
-                required: true,
-                serializedName: "api_version",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.OdataProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesFragmentWithGroupingNextLink);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -834,7 +388,8 @@ export class Paging {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.ProductResult, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.ProductResult, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -878,67 +433,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/fragment/{tenant}/{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "tenant",
-              mapper: {
-                required: true,
-                serializedName: "tenant",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "nextLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                serializedName: "api_version",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.OdataProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        nextFragment);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -972,73 +467,7 @@ export class Paging {
             customParameterGroup
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "customParameterGroup",
-                "tenant"
-              ],
-              mapper: {
-                required: true,
-                serializedName: "tenant",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: [
-                "customParameterGroup",
-                "apiVersion"
-              ],
-              mapper: {
-                required: true,
-                serializedName: "api_version",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.OdataProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        nextFragmentWithGrouping);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1070,66 +499,7 @@ export class Paging {
             pagingGetMultiplePagesLROOptions
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "paging/multiple/lro",
-          headerParameters: [
-            {
-              parameterPath: "clientRequestId",
-              mapper: {
-                serializedName: "client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesLROOptions",
-                "maxresults"
-              ],
-              mapper: {
-                serializedName: "maxresults",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesLROOptions",
-                "timeout"
-              ],
-              mapper: {
-                serializedName: "timeout",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginGetMultiplePagesLRO);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1160,45 +530,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getSinglePagesNext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1233,79 +565,7 @@ export class Paging {
             pagingGetMultiplePagesOptions
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "clientRequestId",
-              mapper: {
-                serializedName: "client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesOptions",
-                "maxresults"
-              ],
-              mapper: {
-                serializedName: "maxresults",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesOptions",
-                "timeout"
-              ],
-              mapper: {
-                serializedName: "timeout",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesNext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1340,79 +600,7 @@ export class Paging {
             pagingGetOdataMultiplePagesOptions
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "clientRequestId",
-              mapper: {
-                serializedName: "client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetOdataMultiplePagesOptions",
-                "maxresults"
-              ],
-              mapper: {
-                serializedName: "maxresults",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetOdataMultiplePagesOptions",
-                "timeout"
-              ],
-              mapper: {
-                serializedName: "timeout",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.OdataProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getOdataMultiplePagesNext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1447,79 +635,7 @@ export class Paging {
             pagingGetMultiplePagesWithOffsetNextOptions
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "clientRequestId",
-              mapper: {
-                serializedName: "client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesWithOffsetNextOptions",
-                "maxresults"
-              ],
-              mapper: {
-                serializedName: "maxresults",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesWithOffsetNextOptions",
-                "timeout"
-              ],
-              mapper: {
-                serializedName: "timeout",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesWithOffsetNext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1551,45 +667,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesRetryFirstNext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1621,45 +699,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesRetrySecondNext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1690,45 +730,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getSinglePagesFailureNext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1759,45 +761,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesFailureNext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1828,45 +792,7 @@ export class Paging {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        getMultiplePagesFailureUriNext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1905,7 +831,8 @@ export class Paging {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.ProductResult, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.ProductResult, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -1947,79 +874,7 @@ export class Paging {
             pagingGetMultiplePagesLROOptions
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: "http://localhost:3000",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "clientRequestId",
-              mapper: {
-                serializedName: "client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesLROOptions",
-                "maxresults"
-              ],
-              mapper: {
-                serializedName: "maxresults",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "pagingGetMultiplePagesLROOptions",
-                "timeout"
-              ],
-              mapper: {
-                serializedName: "timeout",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {
-              bodyMapper: Mappers.ProductResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginGetMultiplePagesLRONext);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -3138,3 +1993,1185 @@ export class Paging {
   }
 
 }
+
+// Operation Specifications
+const getSinglePages: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/single",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePages: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple",
+  headerParameters: [
+    {
+      parameterPath: "clientRequestId",
+      mapper: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesOptions",
+        "maxresults"
+      ],
+      mapper: {
+        serializedName: "maxresults",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesOptions",
+        "timeout"
+      ],
+      mapper: {
+        serializedName: "timeout",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getOdataMultiplePages: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/odata",
+  headerParameters: [
+    {
+      parameterPath: "clientRequestId",
+      mapper: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetOdataMultiplePagesOptions",
+        "maxresults"
+      ],
+      mapper: {
+        serializedName: "maxresults",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetOdataMultiplePagesOptions",
+        "timeout"
+      ],
+      mapper: {
+        serializedName: "timeout",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.OdataProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesWithOffset: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/withpath/{offset}",
+  urlParameters: [
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesWithOffsetOptions",
+        "offset"
+      ],
+      mapper: {
+        required: true,
+        serializedName: "offset",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "clientRequestId",
+      mapper: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesWithOffsetOptions",
+        "maxresults"
+      ],
+      mapper: {
+        serializedName: "maxresults",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesWithOffsetOptions",
+        "timeout"
+      ],
+      mapper: {
+        serializedName: "timeout",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesRetryFirst: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/retryfirst",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesRetrySecond: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/retrysecond",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSinglePagesFailure: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/single/failure",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesFailure: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/failure",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesFailureUri: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/failureuri",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesFragmentNextLink: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/fragment/{tenant}",
+  urlParameters: [
+    {
+      parameterPath: "tenant",
+      mapper: {
+        required: true,
+        serializedName: "tenant",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        serializedName: "api_version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.OdataProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesFragmentWithGroupingNextLink: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/fragmentwithgrouping/{tenant}",
+  urlParameters: [
+    {
+      parameterPath: [
+        "customParameterGroup",
+        "tenant"
+      ],
+      mapper: {
+        required: true,
+        serializedName: "tenant",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: [
+        "customParameterGroup",
+        "apiVersion"
+      ],
+      mapper: {
+        required: true,
+        serializedName: "api_version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.OdataProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const nextFragment: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/fragment/{tenant}/{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "tenant",
+      mapper: {
+        required: true,
+        serializedName: "tenant",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "nextLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        serializedName: "api_version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.OdataProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const nextFragmentWithGrouping: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "customParameterGroup",
+        "tenant"
+      ],
+      mapper: {
+        required: true,
+        serializedName: "tenant",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: [
+        "customParameterGroup",
+        "apiVersion"
+      ],
+      mapper: {
+        required: true,
+        serializedName: "api_version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.OdataProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginGetMultiplePagesLRO: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "paging/multiple/lro",
+  headerParameters: [
+    {
+      parameterPath: "clientRequestId",
+      mapper: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesLROOptions",
+        "maxresults"
+      ],
+      mapper: {
+        serializedName: "maxresults",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesLROOptions",
+        "timeout"
+      ],
+      mapper: {
+        serializedName: "timeout",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSinglePagesNext: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesNext: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "clientRequestId",
+      mapper: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesOptions",
+        "maxresults"
+      ],
+      mapper: {
+        serializedName: "maxresults",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesOptions",
+        "timeout"
+      ],
+      mapper: {
+        serializedName: "timeout",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getOdataMultiplePagesNext: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "clientRequestId",
+      mapper: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetOdataMultiplePagesOptions",
+        "maxresults"
+      ],
+      mapper: {
+        serializedName: "maxresults",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetOdataMultiplePagesOptions",
+        "timeout"
+      ],
+      mapper: {
+        serializedName: "timeout",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.OdataProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesWithOffsetNext: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "clientRequestId",
+      mapper: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesWithOffsetNextOptions",
+        "maxresults"
+      ],
+      mapper: {
+        serializedName: "maxresults",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesWithOffsetNextOptions",
+        "timeout"
+      ],
+      mapper: {
+        serializedName: "timeout",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesRetryFirstNext: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesRetrySecondNext: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSinglePagesFailureNext: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesFailureNext: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMultiplePagesFailureUriNext: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginGetMultiplePagesLRONext: msRest.OperationSpec = {
+  httpMethod: "POST",
+  baseUrl: "http://localhost:3000",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "clientRequestId",
+      mapper: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesLROOptions",
+        "maxresults"
+      ],
+      mapper: {
+        serializedName: "maxresults",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "pagingGetMultiplePagesLROOptions",
+        "timeout"
+      ],
+      mapper: {
+        serializedName: "timeout",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

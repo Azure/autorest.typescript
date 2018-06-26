@@ -16,8 +16,6 @@ import { AutoRestResourceFlatteningTestServiceContext } from "./autoRestResource
 
 
 class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTestServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   /**
    * @class
    * Initializes a new instance of the AutoRestResourceFlatteningTestService class.
@@ -72,47 +70,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "azure/resource-flatten/array",
-          headerParameters: [
-            {
-              parameterPath: "this.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "resourceArray",
-            mapper: {
-              serializedName: "ResourceArray",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "ResourceElementType",
-                  type: {
-                    name: "Composite",
-                    className: "Resource"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putArray);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -141,44 +99,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "azure/resource-flatten/array",
-          headerParameters: [
-            {
-              parameterPath: "this.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "FlattenedProductElementType",
-                    type: {
-                      name: "Composite",
-                      className: "FlattenedProduct"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getArray);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -210,47 +131,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "azure/resource-flatten/dictionary",
-          headerParameters: [
-            {
-              parameterPath: "this.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "resourceDictionary",
-            mapper: {
-              serializedName: "ResourceDictionary",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "FlattenedProductElementType",
-                  type: {
-                    name: "Composite",
-                    className: "FlattenedProduct"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDictionary);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -279,44 +160,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "azure/resource-flatten/dictionary",
-          headerParameters: [
-            {
-              parameterPath: "this.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "FlattenedProductElementType",
-                    type: {
-                      name: "Composite",
-                      className: "FlattenedProduct"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getDictionary);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -348,35 +192,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "azure/resource-flatten/resourcecollection",
-          headerParameters: [
-            {
-              parameterPath: "this.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "resourceComplexObject",
-            mapper: Mappers.ResourceCollection
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putResourceCollection);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -405,32 +221,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "azure/resource-flatten/resourcecollection",
-          headerParameters: [
-            {
-              parameterPath: "this.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ResourceCollection
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getResourceCollection);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -686,5 +477,219 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     }
   }
 }
+
+// Operation Specifications
+const putArray: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "azure/resource-flatten/array",
+  headerParameters: [
+    {
+      parameterPath: "this.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "resourceArray",
+    mapper: {
+      serializedName: "ResourceArray",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "ResourceElementType",
+          type: {
+            name: "Composite",
+            className: "Resource"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getArray: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azure/resource-flatten/array",
+  headerParameters: [
+    {
+      parameterPath: "this.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDictionary: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "azure/resource-flatten/dictionary",
+  headerParameters: [
+    {
+      parameterPath: "this.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "resourceDictionary",
+    mapper: {
+      serializedName: "ResourceDictionary",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "FlattenedProductElementType",
+          type: {
+            name: "Composite",
+            className: "FlattenedProduct"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDictionary: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azure/resource-flatten/dictionary",
+  headerParameters: [
+    {
+      parameterPath: "this.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putResourceCollection: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "azure/resource-flatten/resourcecollection",
+  headerParameters: [
+    {
+      parameterPath: "this.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "resourceComplexObject",
+    mapper: Mappers.ResourceCollection
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getResourceCollection: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azure/resource-flatten/resourcecollection",
+  headerParameters: [
+    {
+      parameterPath: "this.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ResourceCollection
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
 
 export { AutoRestResourceFlatteningTestService, Models as AutoRestResourceFlatteningTestServiceModels, Mappers as AutoRestResourceFlatteningTestServiceMappers };

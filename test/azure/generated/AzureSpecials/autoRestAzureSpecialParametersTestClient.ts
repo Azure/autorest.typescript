@@ -17,8 +17,6 @@ import * as operations from "./operations";
 
 
 class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParametersTestClientContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   xMsClientRequestId: operations.XMsClientRequestId;
   subscriptionInCredentials: operations.SubscriptionInCredentials;
@@ -68,5 +66,7 @@ class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParam
     this.header = new operations.Header(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestAzureSpecialParametersTestClient, Models as AutoRestAzureSpecialParametersTestModels, Mappers as AutoRestAzureSpecialParametersTestMappers };

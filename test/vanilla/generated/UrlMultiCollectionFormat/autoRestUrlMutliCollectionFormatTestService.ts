@@ -15,8 +15,6 @@ import * as operations from "./operations";
 import { AutoRestUrlMutliCollectionFormatTestServiceContext } from "./autoRestUrlMutliCollectionFormatTestServiceContext";
 
 class AutoRestUrlMutliCollectionFormatTestService extends AutoRestUrlMutliCollectionFormatTestServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   queries: operations.Queries;
 
@@ -42,5 +40,7 @@ class AutoRestUrlMutliCollectionFormatTestService extends AutoRestUrlMutliCollec
     this.queries = new operations.Queries(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestUrlMutliCollectionFormatTestService, Models as AutoRestUrlMutliCollectionFormatTestServiceModels, Mappers as AutoRestUrlMutliCollectionFormatTestServiceMappers };

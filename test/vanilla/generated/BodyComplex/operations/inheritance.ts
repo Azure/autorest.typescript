@@ -16,7 +16,7 @@ import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestService
 /** Class representing a Inheritance. */
 export class Inheritance {
   private readonly client: AutoRestComplexTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Inheritance.
    * @param {AutoRestComplexTestServiceContext} client Reference to the service client.
@@ -40,22 +40,7 @@ export class Inheritance {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/inheritance/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Siamese
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -87,26 +72,7 @@ export class Inheritance {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/inheritance/valid",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.Siamese,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -200,3 +166,38 @@ export class Inheritance {
   }
 
 }
+
+// Operation Specifications
+const getValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/inheritance/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Siamese
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putValid: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/inheritance/valid",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.Siamese,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -21,7 +21,6 @@ export class AutoRestResourceFlatteningTestServiceContext extends msRestAzure.Az
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

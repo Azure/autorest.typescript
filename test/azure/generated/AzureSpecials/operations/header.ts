@@ -16,7 +16,7 @@ import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzur
 /** Class representing a Header. */
 export class Header {
   private readonly client: AutoRestAzureSpecialParametersTestClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Header.
    * @param {AutoRestAzureSpecialParametersTestClientContext} client Reference to the service client.
@@ -49,42 +49,7 @@ export class Header {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/customNamedRequestId",
-          headerParameters: [
-            {
-              parameterPath: "fooClientRequestId",
-              mapper: {
-                required: true,
-                serializedName: "foo-client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        customNamedRequestId);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -117,45 +82,7 @@ export class Header {
             headerCustomNamedRequestIdParamGroupingParameters
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/customNamedRequestIdParamGrouping",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "headerCustomNamedRequestIdParamGroupingParameters",
-                "fooClientRequestId"
-              ],
-              mapper: {
-                required: true,
-                serializedName: "foo-client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        customNamedRequestIdParamGrouping);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -186,45 +113,7 @@ export class Header {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/customNamedRequestIdHead",
-          headerParameters: [
-            {
-              parameterPath: "fooClientRequestId",
-              mapper: {
-                required: true,
-                serializedName: "foo-client-request-id",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
-            },
-            404: {
-              headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        customNamedRequestIdHead);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
@@ -366,3 +255,118 @@ export class Header {
   }
 
 }
+
+// Operation Specifications
+const customNamedRequestId: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "azurespecials/customNamedRequestId",
+  headerParameters: [
+    {
+      parameterPath: "fooClientRequestId",
+      mapper: {
+        required: true,
+        serializedName: "foo-client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const customNamedRequestIdParamGrouping: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "azurespecials/customNamedRequestIdParamGrouping",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "headerCustomNamedRequestIdParamGroupingParameters",
+        "fooClientRequestId"
+      ],
+      mapper: {
+        required: true,
+        serializedName: "foo-client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const customNamedRequestIdHead: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "azurespecials/customNamedRequestIdHead",
+  headerParameters: [
+    {
+      parameterPath: "fooClientRequestId",
+      mapper: {
+        required: true,
+        serializedName: "foo-client-request-id",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
+    },
+    404: {
+      headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -16,7 +16,7 @@ import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInf
 /** Class representing a HttpRedirects. */
 export class HttpRedirects {
   private readonly client: AutoRestHttpInfrastructureTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a HttpRedirects.
    * @param {AutoRestHttpInfrastructureTestServiceContext} client Reference to the service client.
@@ -40,25 +40,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/300",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsHead300Headers
-            },
-            300: {
-              headersMapper: Mappers.HttpRedirectsHead300Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head300);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,37 +62,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/300",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsGet300Headers
-            },
-            300: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              },
-              headersMapper: Mappers.HttpRedirectsGet300Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get300);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -132,25 +84,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/301",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsHead301Headers
-            },
-            301: {
-              headersMapper: Mappers.HttpRedirectsHead301Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head301);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -172,25 +106,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/301",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsGet301Headers
-            },
-            301: {
-              headersMapper: Mappers.HttpRedirectsGet301Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get301);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -220,30 +136,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/301",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            301: {
-              headersMapper: Mappers.HttpRedirectsPut301Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        put301);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -265,25 +158,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/302",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsHead302Headers
-            },
-            302: {
-              headersMapper: Mappers.HttpRedirectsHead302Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head302);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -305,25 +180,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/302",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsGet302Headers
-            },
-            302: {
-              headersMapper: Mappers.HttpRedirectsGet302Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get302);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -353,30 +210,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/302",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            302: {
-              headersMapper: Mappers.HttpRedirectsPatch302Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        patch302);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -406,33 +240,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/303",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsPost303Headers
-            },
-            303: {
-              headersMapper: Mappers.HttpRedirectsPost303Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        post303);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -454,25 +262,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/307",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsHead307Headers
-            },
-            307: {
-              headersMapper: Mappers.HttpRedirectsHead307Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head307);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -494,25 +284,7 @@ export class HttpRedirects {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/307",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsGet307Headers
-            },
-            307: {
-              headersMapper: Mappers.HttpRedirectsGet307Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get307);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -541,33 +313,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/307",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsPut307Headers
-            },
-            307: {
-              headersMapper: Mappers.HttpRedirectsPut307Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        put307);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -596,33 +342,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/307",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsPatch307Headers
-            },
-            307: {
-              headersMapper: Mappers.HttpRedirectsPatch307Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        patch307);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -651,33 +371,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/307",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsPost307Headers
-            },
-            307: {
-              headersMapper: Mappers.HttpRedirectsPost307Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        post307);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -706,33 +400,7 @@ export class HttpRedirects {
             booleanValue
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "http/redirect/307",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              headersMapper: Mappers.HttpRedirectsDelete307Headers
-            },
-            307: {
-              headersMapper: Mappers.HttpRedirectsDelete307Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        delete307);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1358,3 +1026,335 @@ export class HttpRedirects {
   }
 
 }
+
+// Operation Specifications
+const head300: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/redirect/300",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsHead300Headers
+    },
+    300: {
+      headersMapper: Mappers.HttpRedirectsHead300Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get300: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/redirect/300",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsGet300Headers
+    },
+    300: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      },
+      headersMapper: Mappers.HttpRedirectsGet300Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const head301: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/redirect/301",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsHead301Headers
+    },
+    301: {
+      headersMapper: Mappers.HttpRedirectsHead301Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get301: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/redirect/301",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsGet301Headers
+    },
+    301: {
+      headersMapper: Mappers.HttpRedirectsGet301Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const put301: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "http/redirect/301",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    301: {
+      headersMapper: Mappers.HttpRedirectsPut301Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const head302: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/redirect/302",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsHead302Headers
+    },
+    302: {
+      headersMapper: Mappers.HttpRedirectsHead302Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get302: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/redirect/302",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsGet302Headers
+    },
+    302: {
+      headersMapper: Mappers.HttpRedirectsGet302Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const patch302: msRest.OperationSpec = {
+  httpMethod: "PATCH",
+  path: "http/redirect/302",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    302: {
+      headersMapper: Mappers.HttpRedirectsPatch302Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const post303: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "http/redirect/303",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsPost303Headers
+    },
+    303: {
+      headersMapper: Mappers.HttpRedirectsPost303Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const head307: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/redirect/307",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsHead307Headers
+    },
+    307: {
+      headersMapper: Mappers.HttpRedirectsHead307Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get307: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/redirect/307",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsGet307Headers
+    },
+    307: {
+      headersMapper: Mappers.HttpRedirectsGet307Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const put307: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "http/redirect/307",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsPut307Headers
+    },
+    307: {
+      headersMapper: Mappers.HttpRedirectsPut307Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const patch307: msRest.OperationSpec = {
+  httpMethod: "PATCH",
+  path: "http/redirect/307",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsPatch307Headers
+    },
+    307: {
+      headersMapper: Mappers.HttpRedirectsPatch307Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const post307: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "http/redirect/307",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsPost307Headers
+    },
+    307: {
+      headersMapper: Mappers.HttpRedirectsPost307Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const delete307: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "http/redirect/307",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      headersMapper: Mappers.HttpRedirectsDelete307Headers
+    },
+    307: {
+      headersMapper: Mappers.HttpRedirectsDelete307Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

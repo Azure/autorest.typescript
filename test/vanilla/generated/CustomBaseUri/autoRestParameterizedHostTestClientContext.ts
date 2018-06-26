@@ -16,7 +16,6 @@ const packageVersion = "";
 
 export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceClient {
   host?: string;
-  baseUri: string;
 
   /**
    * @class

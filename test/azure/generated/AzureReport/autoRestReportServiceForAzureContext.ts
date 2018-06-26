@@ -21,7 +21,6 @@ export class AutoRestReportServiceForAzureContext extends msRestAzure.AzureServi
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

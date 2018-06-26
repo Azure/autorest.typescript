@@ -15,7 +15,7 @@ import { AutoRestNumberTestServiceContext } from "../autoRestNumberTestServiceCo
 /** Class representing a Number. */
 export class Number {
   private readonly client: AutoRestNumberTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Number.
    * @param {AutoRestNumberTestServiceContext} client Reference to the service client.
@@ -39,27 +39,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -81,27 +61,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/invalidfloat",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidFloat);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -123,27 +83,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/invaliddouble",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDouble);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -165,27 +105,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/invaliddecimal",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -215,29 +135,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/big/float/3.402823e+20",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBigFloat);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -259,27 +157,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/big/float/3.402823e+20",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigFloat);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -309,29 +187,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/big/double/2.5976931e+101",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBigDouble);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -353,27 +209,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/big/double/2.5976931e+101",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDouble);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -403,29 +239,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/big/double/99999999.99",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBigDoublePositiveDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -447,27 +261,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/big/double/99999999.99",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoublePositiveDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -497,29 +291,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/big/double/-99999999.99",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBigDoubleNegativeDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -541,27 +313,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/big/double/-99999999.99",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoubleNegativeDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -591,29 +343,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/big/decimal/2.5976931e+101",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBigDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -635,27 +365,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/big/decimal/2.5976931e+101",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -685,29 +395,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/big/decimal/99999999.99",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBigDecimalPositiveDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -729,27 +417,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/big/decimal/99999999.99",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalPositiveDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -779,29 +447,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/big/decimal/-99999999.99",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBigDecimalNegativeDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -823,27 +469,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/big/decimal/-99999999.99",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalNegativeDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -873,29 +499,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/small/float/3.402823e-20",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putSmallFloat);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -917,27 +521,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/small/float/3.402823e-20",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallFloat);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -967,29 +551,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/small/double/2.5976931e-101",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putSmallDouble);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1011,27 +573,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/small/double/2.5976931e-101",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallDouble);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1061,29 +603,7 @@ export class Number {
             numberBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "number/small/decimal/2.5976931e-101",
-          requestBody: {
-            parameterPath: "numberBody",
-            mapper: {
-              required: true,
-              serializedName: "numberBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putSmallDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1105,27 +625,7 @@ export class Number {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "number/small/decimal/2.5976931e-101",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallDecimal);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2137,3 +1637,500 @@ export class Number {
   }
 
 }
+
+// Operation Specifications
+const getNull: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalidFloat: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/invalidfloat",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalidDouble: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/invaliddouble",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalidDecimal: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/invaliddecimal",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBigFloat: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/big/float/3.402823e+20",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBigFloat: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/big/float/3.402823e+20",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBigDouble: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/big/double/2.5976931e+101",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBigDouble: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/big/double/2.5976931e+101",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBigDoublePositiveDecimal: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/big/double/99999999.99",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBigDoublePositiveDecimal: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/big/double/99999999.99",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBigDoubleNegativeDecimal: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/big/double/-99999999.99",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBigDoubleNegativeDecimal: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/big/double/-99999999.99",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBigDecimal: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/big/decimal/2.5976931e+101",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBigDecimal: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/big/decimal/2.5976931e+101",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBigDecimalPositiveDecimal: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/big/decimal/99999999.99",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBigDecimalPositiveDecimal: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/big/decimal/99999999.99",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBigDecimalNegativeDecimal: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/big/decimal/-99999999.99",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBigDecimalNegativeDecimal: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/big/decimal/-99999999.99",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putSmallFloat: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/small/float/3.402823e-20",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSmallFloat: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/small/float/3.402823e-20",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putSmallDouble: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/small/double/2.5976931e-101",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSmallDouble: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/small/double/2.5976931e-101",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putSmallDecimal: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "number/small/decimal/2.5976931e-101",
+  requestBody: {
+    parameterPath: "numberBody",
+    mapper: {
+      required: true,
+      serializedName: "numberBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSmallDecimal: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "number/small/decimal/2.5976931e-101",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

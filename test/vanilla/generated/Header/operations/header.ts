@@ -16,7 +16,7 @@ import { AutoRestSwaggerBATHeaderServiceContext } from "../autoRestSwaggerBATHea
 /** Class representing a Header. */
 export class Header {
   private readonly client: AutoRestSwaggerBATHeaderServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Header.
    * @param {AutoRestSwaggerBATHeaderServiceContext} client Reference to the service client.
@@ -48,30 +48,7 @@ export class Header {
             userAgent
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/existingkey",
-          headerParameters: [
-            {
-              parameterPath: "userAgent",
-              mapper: {
-                required: true,
-                serializedName: "User-Agent",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramExistingKey);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -93,22 +70,7 @@ export class Header {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/existingkey",
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseExistingKeyHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), responseExistingKey);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -138,30 +100,7 @@ export class Header {
             contentType
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/protectedkey",
-          headerParameters: [
-            {
-              parameterPath: "contentType",
-              mapper: {
-                required: true,
-                serializedName: "Content-Type",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramProtectedKey);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -183,22 +122,7 @@ export class Header {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/protectedkey",
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseProtectedKeyHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), responseProtectedKey);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -233,40 +157,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/integer",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                required: true,
-                serializedName: "value",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramInteger);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -297,32 +188,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/integer",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseIntegerHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseInteger);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -357,40 +223,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/long",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                required: true,
-                serializedName: "value",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramLong);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -421,32 +254,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/long",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseLongHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseLong);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -481,40 +289,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/float",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                required: true,
-                serializedName: "value",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramFloat);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -545,32 +320,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/float",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseFloatHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseFloat);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -605,40 +355,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/double",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                required: true,
-                serializedName: "value",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramDouble);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -669,32 +386,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/double",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseDoubleHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseDouble);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -728,40 +420,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/bool",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                required: true,
-                serializedName: "value",
-                type: {
-                  name: "Boolean"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramBool);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -791,32 +450,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/bool",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseBoolHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseBool);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -850,39 +484,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/string",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                serializedName: "value",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramString);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -913,32 +515,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/string",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseStringHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseString);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -972,40 +549,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/date",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                required: true,
-                serializedName: "value",
-                type: {
-                  name: "Date"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramDate);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1035,32 +579,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/date",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseDateHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseDate);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1095,40 +614,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/datetime",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                required: true,
-                serializedName: "value",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramDatetime);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1158,32 +644,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/datetime",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseDatetimeHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseDatetime);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1216,39 +677,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/datetimerfc1123",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                serializedName: "value",
-                type: {
-                  name: "DateTimeRfc1123"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramDatetimeRfc1123);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1279,32 +708,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/datetimerfc1123",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseDatetimeRfc1123Headers
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseDatetimeRfc1123);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1337,40 +741,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/duration",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                required: true,
-                serializedName: "value",
-                type: {
-                  name: "TimeSpan"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramDuration);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1400,32 +771,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/duration",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseDurationHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseDuration);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1458,40 +804,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/byte",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                required: true,
-                serializedName: "value",
-                type: {
-                  name: "ByteArray"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramByte);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1521,32 +834,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/byte",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseByteHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseByte);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1580,44 +868,7 @@ export class Header {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/param/prim/enum",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "value",
-              mapper: {
-                serializedName: "value",
-                type: {
-                  name: "Enum",
-                  allowedValues: [
-                    "White",
-                    "black",
-                    "GREY"
-                  ]
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        paramEnum);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1648,32 +899,7 @@ export class Header {
             scenario
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/response/prim/enum",
-          headerParameters: [
-            {
-              parameterPath: "scenario",
-              mapper: {
-                required: true,
-                serializedName: "scenario",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              headersMapper: Mappers.HeaderResponseEnumHeaders
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        responseEnum);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1695,20 +921,7 @@ export class Header {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), customRequestId);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2999,3 +2212,814 @@ export class Header {
   }
 
 }
+
+// Operation Specifications
+const paramExistingKey: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/existingkey",
+  headerParameters: [
+    {
+      parameterPath: "userAgent",
+      mapper: {
+        required: true,
+        serializedName: "User-Agent",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseExistingKey: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/existingkey",
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseExistingKeyHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramProtectedKey: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/protectedkey",
+  headerParameters: [
+    {
+      parameterPath: "contentType",
+      mapper: {
+        required: true,
+        serializedName: "Content-Type",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseProtectedKey: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/protectedkey",
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseProtectedKeyHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramInteger: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/integer",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseInteger: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/integer",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseIntegerHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramLong: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/long",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseLong: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/long",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseLongHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramFloat: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/float",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseFloat: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/float",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseFloatHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramDouble: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/double",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseDouble: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/double",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDoubleHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramBool: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/bool",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseBool: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/bool",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseBoolHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramString: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/string",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseString: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/string",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseStringHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramDate: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/date",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "Date"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseDate: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/date",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDateHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramDatetime: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/datetime",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "DateTime"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseDatetime: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/datetime",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDatetimeHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramDatetimeRfc1123: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/datetimerfc1123",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        serializedName: "value",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseDatetimeRfc1123: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/datetimerfc1123",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDatetimeRfc1123Headers
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramDuration: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/duration",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "TimeSpan"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseDuration: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/duration",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDurationHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramByte: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/byte",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "ByteArray"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseByte: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/byte",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseByteHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const paramEnum: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/param/prim/enum",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "value",
+      mapper: {
+        serializedName: "value",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "White",
+            "black",
+            "GREY"
+          ]
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const responseEnum: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/response/prim/enum",
+  headerParameters: [
+    {
+      parameterPath: "scenario",
+      mapper: {
+        required: true,
+        serializedName: "scenario",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseEnumHeaders
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const customRequestId: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

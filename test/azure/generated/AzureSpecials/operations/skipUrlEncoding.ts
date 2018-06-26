@@ -16,7 +16,7 @@ import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzur
 /** Class representing a SkipUrlEncoding. */
 export class SkipUrlEncoding {
   private readonly client: AutoRestAzureSpecialParametersTestClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a SkipUrlEncoding.
    * @param {AutoRestAzureSpecialParametersTestClientContext} client Reference to the service client.
@@ -49,43 +49,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
-          urlParameters: [
-            {
-              parameterPath: "unencodedPathParam",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "unencodedPathParam",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getMethodPathValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -116,43 +80,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
-          urlParameters: [
-            {
-              parameterPath: "unencodedPathParam",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "unencodedPathParam",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getPathPathValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -182,45 +110,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
-          urlParameters: [
-            {
-              parameterPath: "unencodedPathParam",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "unencodedPathParam",
-                defaultValue: 'path1/path2/path3',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getSwaggerPathValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -251,43 +141,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/skipUrlEncoding/method/query/valid",
-          queryParameters: [
-            {
-              parameterPath: "q1",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "q1",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getMethodQueryValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -317,42 +171,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/skipUrlEncoding/method/query/null",
-          queryParameters: [
-            {
-              parameterPath: "q1",
-              skipEncoding: true,
-              mapper: {
-                serializedName: "q1",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getMethodQueryNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -383,43 +202,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/skipUrlEncoding/path/query/valid",
-          queryParameters: [
-            {
-              parameterPath: "q1",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "q1",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getPathQueryValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -449,45 +232,7 @@ export class SkipUrlEncoding {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/skipUrlEncoding/swagger/query/valid",
-          queryParameters: [
-            {
-              parameterPath: "q1",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "q1",
-                defaultValue: 'value1&q2=value2&q3=value3',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getSwaggerQueryValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -790,3 +535,266 @@ export class SkipUrlEncoding {
   }
 
 }
+
+// Operation Specifications
+const getMethodPathValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
+  urlParameters: [
+    {
+      parameterPath: "unencodedPathParam",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "unencodedPathParam",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getPathPathValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
+  urlParameters: [
+    {
+      parameterPath: "unencodedPathParam",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "unencodedPathParam",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSwaggerPathValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
+  urlParameters: [
+    {
+      parameterPath: "unencodedPathParam",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "unencodedPathParam",
+        defaultValue: 'path1/path2/path3',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMethodQueryValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/skipUrlEncoding/method/query/valid",
+  queryParameters: [
+    {
+      parameterPath: "q1",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "q1",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMethodQueryNull: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/skipUrlEncoding/method/query/null",
+  queryParameters: [
+    {
+      parameterPath: "q1",
+      skipEncoding: true,
+      mapper: {
+        serializedName: "q1",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getPathQueryValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/skipUrlEncoding/path/query/valid",
+  queryParameters: [
+    {
+      parameterPath: "q1",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "q1",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSwaggerQueryValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/skipUrlEncoding/swagger/query/valid",
+  queryParameters: [
+    {
+      parameterPath: "q1",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "q1",
+        defaultValue: 'value1&q2=value2&q3=value3',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

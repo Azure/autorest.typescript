@@ -15,8 +15,6 @@ import * as operations from "./operations";
 import { AutoRestDateTimeTestServiceContext } from "./autoRestDateTimeTestServiceContext";
 
 class AutoRestDateTimeTestService extends AutoRestDateTimeTestServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   datetime: operations.Datetime;
 
@@ -42,5 +40,7 @@ class AutoRestDateTimeTestService extends AutoRestDateTimeTestServiceContext {
     this.datetime = new operations.Datetime(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestDateTimeTestService, Models as AutoRestDateTimeTestServiceModels, Mappers as AutoRestDateTimeTestServiceMappers };

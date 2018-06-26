@@ -16,8 +16,6 @@ import { AutoRestReportServiceForAzureContext } from "./autoRestReportServiceFor
 
 
 class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext {
-  serializer = new msRest.Serializer(Mappers);
-
   /**
    * @class
    * Initializes a new instance of the AutoRestReportServiceForAzure class.
@@ -71,54 +69,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "report/azure",
-          queryParameters: [
-            {
-              parameterPath: "qualifier",
-              mapper: {
-                serializedName: "qualifier",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getReport);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -166,5 +117,54 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
     }
   }
 }
+
+// Operation Specifications
+const getReport: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "report/azure",
+  queryParameters: [
+    {
+      parameterPath: "qualifier",
+      mapper: {
+        serializedName: "qualifier",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
 
 export { AutoRestReportServiceForAzure, Models as AutoRestReportServiceForAzureModels, Mappers as AutoRestReportServiceForAzureMappers };

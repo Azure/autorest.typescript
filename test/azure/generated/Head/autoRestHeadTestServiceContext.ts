@@ -21,7 +21,6 @@ export class AutoRestHeadTestServiceContext extends msRestAzure.AzureServiceClie
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

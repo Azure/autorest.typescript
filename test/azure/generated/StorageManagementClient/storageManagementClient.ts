@@ -17,8 +17,6 @@ import * as operations from "./operations";
 
 
 class StorageManagementClient extends StorageManagementClientContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   storageAccounts: operations.StorageAccounts;
   usage: operations.UsageOperations;
@@ -56,5 +54,7 @@ class StorageManagementClient extends StorageManagementClientContext {
     this.usage = new operations.UsageOperations(this);
   }
 }
+
+// Operation Specifications
 
 export { StorageManagementClient, Models as StorageManagementModels, Mappers as StorageManagementMappers };

@@ -14,7 +14,6 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestSwaggerBATByteServiceContext extends msRest.ServiceClient {
-  baseUri: string;
 
   /**
    * @class

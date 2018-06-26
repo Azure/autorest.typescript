@@ -16,7 +16,7 @@ import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestService
 /** Class representing a Primitive. */
 export class Primitive {
   private readonly client: AutoRestComplexTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Primitive.
    * @param {AutoRestComplexTestServiceContext} client Reference to the service client.
@@ -40,22 +40,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/integer",
-          responses: {
-            200: {
-              bodyMapper: Mappers.IntWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInt);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -85,26 +70,7 @@ export class Primitive {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/integer",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.IntWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putInt);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -126,22 +92,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/long",
-          responses: {
-            200: {
-              bodyMapper: Mappers.LongWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLong);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -171,26 +122,7 @@ export class Primitive {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/long",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.LongWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putLong);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -212,22 +144,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/float",
-          responses: {
-            200: {
-              bodyMapper: Mappers.FloatWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloat);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -257,26 +174,7 @@ export class Primitive {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/float",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.FloatWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putFloat);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -298,22 +196,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/double",
-          responses: {
-            200: {
-              bodyMapper: Mappers.DoubleWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDouble);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -344,26 +227,7 @@ export class Primitive {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/double",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.DoubleWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDouble);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -385,22 +249,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/bool",
-          responses: {
-            200: {
-              bodyMapper: Mappers.BooleanWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBool);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -430,26 +279,7 @@ export class Primitive {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/bool",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.BooleanWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBool);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -471,22 +301,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/string",
-          responses: {
-            200: {
-              bodyMapper: Mappers.StringWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getString);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -516,26 +331,7 @@ export class Primitive {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/string",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.StringWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putString);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -557,22 +353,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/date",
-          responses: {
-            200: {
-              bodyMapper: Mappers.DateWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDate);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -602,26 +383,7 @@ export class Primitive {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/date",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.DateWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDate);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -643,22 +405,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/datetime",
-          responses: {
-            200: {
-              bodyMapper: Mappers.DatetimeWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTime);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -689,26 +436,7 @@ export class Primitive {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/datetime",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.DatetimeWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDateTime);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -730,22 +458,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/datetimerfc1123",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Datetimerfc1123Wrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeRfc1123);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -776,26 +489,7 @@ export class Primitive {
             complexBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/datetimerfc1123",
-          requestBody: {
-            parameterPath: "complexBody",
-            mapper: {
-              ...Mappers.Datetimerfc1123Wrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDateTimeRfc1123);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -817,22 +511,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/duration",
-          responses: {
-            200: {
-              bodyMapper: Mappers.DurationWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDuration);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -861,28 +540,7 @@ export class Primitive {
             field
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/duration",
-          requestBody: {
-            parameterPath: {
-              field: "field"
-            },
-            mapper: {
-              ...Mappers.DurationWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDuration);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -904,22 +562,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/byte",
-          responses: {
-            200: {
-              bodyMapper: Mappers.ByteWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByte);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -948,28 +591,7 @@ export class Primitive {
             field
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/primitive/byte",
-          requestBody: {
-            parameterPath: {
-              field: "field"
-            },
-            mapper: {
-              ...Mappers.ByteWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putByte);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1900,3 +1522,382 @@ export class Primitive {
   }
 
 }
+
+// Operation Specifications
+const getInt: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/integer",
+  responses: {
+    200: {
+      bodyMapper: Mappers.IntWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putInt: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/integer",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.IntWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLong: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/long",
+  responses: {
+    200: {
+      bodyMapper: Mappers.LongWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putLong: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/long",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.LongWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getFloat: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/float",
+  responses: {
+    200: {
+      bodyMapper: Mappers.FloatWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putFloat: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/float",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.FloatWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDouble: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/double",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DoubleWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDouble: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/double",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.DoubleWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBool: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/bool",
+  responses: {
+    200: {
+      bodyMapper: Mappers.BooleanWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBool: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/bool",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.BooleanWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getString: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/string",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StringWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putString: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/string",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.StringWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDate: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/date",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DateWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDate: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/date",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.DateWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDateTime: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/datetime",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DatetimeWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDateTime: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/datetime",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.DatetimeWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDateTimeRfc1123: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/datetimerfc1123",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Datetimerfc1123Wrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDateTimeRfc1123: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/datetimerfc1123",
+  requestBody: {
+    parameterPath: "complexBody",
+    mapper: {
+      ...Mappers.Datetimerfc1123Wrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDuration: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/duration",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DurationWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDuration: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/duration",
+  requestBody: {
+    parameterPath: {
+      field: "field"
+    },
+    mapper: {
+      ...Mappers.DurationWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getByte: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/primitive/byte",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ByteWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putByte: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/primitive/byte",
+  requestBody: {
+    parameterPath: {
+      field: "field"
+    },
+    mapper: {
+      ...Mappers.ByteWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -24,7 +24,6 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

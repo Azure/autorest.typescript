@@ -16,7 +16,7 @@ import { AutoRestUrlTestServiceContext } from "../autoRestUrlTestServiceContext"
 /** Class representing a PathItems. */
 export class PathItems {
   private readonly client: AutoRestUrlTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a PathItems.
    * @param {AutoRestUrlTestServiceContext} client Reference to the service client.
@@ -59,79 +59,7 @@ export class PathItems {
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
-          urlParameters: [
-            {
-              parameterPath: "localStringPath",
-              mapper: {
-                required: true,
-                serializedName: "localStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "pathItemStringPath",
-              mapper: {
-                required: true,
-                serializedName: "pathItemStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.globalStringPath",
-              mapper: {
-                required: true,
-                serializedName: "globalStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "localStringQuery",
-              mapper: {
-                serializedName: "localStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "pathItemStringQuery",
-              mapper: {
-                serializedName: "pathItemStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.globalStringQuery",
-              mapper: {
-                serializedName: "globalStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getAllWithValues);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -172,79 +100,7 @@ export class PathItems {
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
-          urlParameters: [
-            {
-              parameterPath: "localStringPath",
-              mapper: {
-                required: true,
-                serializedName: "localStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "pathItemStringPath",
-              mapper: {
-                required: true,
-                serializedName: "pathItemStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.globalStringPath",
-              mapper: {
-                required: true,
-                serializedName: "globalStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "localStringQuery",
-              mapper: {
-                serializedName: "localStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "pathItemStringQuery",
-              mapper: {
-                serializedName: "pathItemStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.globalStringQuery",
-              mapper: {
-                serializedName: "globalStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getGlobalQueryNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -285,79 +141,7 @@ export class PathItems {
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
-          urlParameters: [
-            {
-              parameterPath: "localStringPath",
-              mapper: {
-                required: true,
-                serializedName: "localStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "pathItemStringPath",
-              mapper: {
-                required: true,
-                serializedName: "pathItemStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.globalStringPath",
-              mapper: {
-                required: true,
-                serializedName: "globalStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "localStringQuery",
-              mapper: {
-                serializedName: "localStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "pathItemStringQuery",
-              mapper: {
-                serializedName: "pathItemStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.globalStringQuery",
-              mapper: {
-                serializedName: "globalStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getGlobalAndLocalQueryNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -398,79 +182,7 @@ export class PathItems {
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
-          urlParameters: [
-            {
-              parameterPath: "localStringPath",
-              mapper: {
-                required: true,
-                serializedName: "localStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "pathItemStringPath",
-              mapper: {
-                required: true,
-                serializedName: "pathItemStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.globalStringPath",
-              mapper: {
-                required: true,
-                serializedName: "globalStringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "localStringQuery",
-              mapper: {
-                serializedName: "localStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "pathItemStringQuery",
-              mapper: {
-                serializedName: "pathItemStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.globalStringQuery",
-              mapper: {
-                serializedName: "globalStringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getLocalPathItemQueryNull);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -666,3 +378,296 @@ export class PathItems {
   }
 
 }
+
+// Operation Specifications
+const getAllWithValues: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
+  urlParameters: [
+    {
+      parameterPath: "localStringPath",
+      mapper: {
+        required: true,
+        serializedName: "localStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "pathItemStringPath",
+      mapper: {
+        required: true,
+        serializedName: "pathItemStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.globalStringPath",
+      mapper: {
+        required: true,
+        serializedName: "globalStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "localStringQuery",
+      mapper: {
+        serializedName: "localStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "pathItemStringQuery",
+      mapper: {
+        serializedName: "pathItemStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.globalStringQuery",
+      mapper: {
+        serializedName: "globalStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getGlobalQueryNull: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
+  urlParameters: [
+    {
+      parameterPath: "localStringPath",
+      mapper: {
+        required: true,
+        serializedName: "localStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "pathItemStringPath",
+      mapper: {
+        required: true,
+        serializedName: "pathItemStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.globalStringPath",
+      mapper: {
+        required: true,
+        serializedName: "globalStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "localStringQuery",
+      mapper: {
+        serializedName: "localStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "pathItemStringQuery",
+      mapper: {
+        serializedName: "pathItemStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.globalStringQuery",
+      mapper: {
+        serializedName: "globalStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getGlobalAndLocalQueryNull: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
+  urlParameters: [
+    {
+      parameterPath: "localStringPath",
+      mapper: {
+        required: true,
+        serializedName: "localStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "pathItemStringPath",
+      mapper: {
+        required: true,
+        serializedName: "pathItemStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.globalStringPath",
+      mapper: {
+        required: true,
+        serializedName: "globalStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "localStringQuery",
+      mapper: {
+        serializedName: "localStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "pathItemStringQuery",
+      mapper: {
+        serializedName: "pathItemStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.globalStringQuery",
+      mapper: {
+        serializedName: "globalStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLocalPathItemQueryNull: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
+  urlParameters: [
+    {
+      parameterPath: "localStringPath",
+      mapper: {
+        required: true,
+        serializedName: "localStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "pathItemStringPath",
+      mapper: {
+        required: true,
+        serializedName: "pathItemStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.globalStringPath",
+      mapper: {
+        required: true,
+        serializedName: "globalStringPath",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "localStringQuery",
+      mapper: {
+        serializedName: "localStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "pathItemStringQuery",
+      mapper: {
+        serializedName: "pathItemStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.globalStringQuery",
+      mapper: {
+        serializedName: "globalStringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

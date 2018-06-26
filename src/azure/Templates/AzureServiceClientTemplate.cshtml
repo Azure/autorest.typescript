@@ -27,18 +27,15 @@ import { @(Model.ContextName) } from "./@(Model.ContextName.ToCamelCase())";
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant && !p.Name.EqualsIgnoreCase("apiVersion"));}
 @EmptyLine
 class @(Model.Name) extends @(Model.ContextName) {
-@{ var serializerArgs = Model.ShouldGenerateXmlSerialization ? "Mappers, true" : "Mappers"; }
-  serializer = new msRest.Serializer(@serializerArgs);
 @if (Model.MethodGroupModels.Any())
 {
-  @EmptyLine
   @:// Operation groups
 foreach (var methodGroup in Model.MethodGroupModels)
 {
   @:@(methodGroup.NameForProperty): operations.@(methodGroup.TypeName);
 }
+@EmptyLine
 }
-  @EmptyLine
   /**
    * @@class
    * Initializes a new instance of the @Model.Name class.
@@ -89,5 +86,7 @@ foreach (var methodGroup in Model.MethodGroupModels)
   @:@(Include(new MethodCallbackWrapperTemplate(), method))
 }
 }
+@EmptyLine
+@(Model.GenerateOperationSpecDefinitions(EmptyLine))
 @EmptyLine
 export { @(Model.Name), Models as @(Model.ClientPrefix)Models, Mappers as @(Model.ClientPrefix)Mappers };

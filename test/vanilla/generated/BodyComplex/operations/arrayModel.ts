@@ -16,7 +16,7 @@ import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestService
 /** Class representing a ArrayModel. */
 export class ArrayModel {
   private readonly client: AutoRestComplexTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a ArrayModel.
    * @param {AutoRestComplexTestServiceContext} client Reference to the service client.
@@ -40,22 +40,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/array/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.ArrayWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -84,28 +69,7 @@ export class ArrayModel {
             arrayProperty
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/array/valid",
-          requestBody: {
-            parameterPath: {
-              arrayProperty: "arrayProperty"
-            },
-            mapper: {
-              ...Mappers.ArrayWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putValid);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -127,22 +91,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/array/empty",
-          responses: {
-            200: {
-              bodyMapper: Mappers.ArrayWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmpty);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -171,28 +120,7 @@ export class ArrayModel {
             arrayProperty
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/array/empty",
-          requestBody: {
-            parameterPath: {
-              arrayProperty: "arrayProperty"
-            },
-            mapper: {
-              ...Mappers.ArrayWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putEmpty);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -214,22 +142,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/array/notprovided",
-          responses: {
-            200: {
-              bodyMapper: Mappers.ArrayWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvided);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -442,3 +355,90 @@ export class ArrayModel {
   }
 
 }
+
+// Operation Specifications
+const getValid: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/array/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ArrayWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putValid: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/array/valid",
+  requestBody: {
+    parameterPath: {
+      arrayProperty: "arrayProperty"
+    },
+    mapper: {
+      ...Mappers.ArrayWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getEmpty: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/array/empty",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ArrayWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putEmpty: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/array/empty",
+  requestBody: {
+    parameterPath: {
+      arrayProperty: "arrayProperty"
+    },
+    mapper: {
+      ...Mappers.ArrayWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNotProvided: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/array/notprovided",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ArrayWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

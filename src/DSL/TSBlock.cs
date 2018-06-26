@@ -90,9 +90,19 @@ namespace AutoRest.TypeScript.DSL
         public void ConstObjectVariable(string variableName, string variableType, Action<TSObject> valueAction)
         {
             SetCurrentState(State.Statement);
-            builder.Text($"const {variableName}: {variableType} = ");
-            builder.Object(valueAction);
-            builder.Line($";");
+            builder.ConstObjectVariable(variableName, variableType, valueAction);
+        }
+
+        public void ConstObjectVariable(string variableName, Action<TSObject> valueAction)
+        {
+            SetCurrentState(State.Statement);
+            builder.ConstObjectVariable(variableName, valueAction);
+        }
+
+        public void ConstObjectVariable(string variableName, string value)
+        {
+            SetCurrentState(State.Statement);
+            builder.ConstObjectVariable(variableName, value);
         }
 
         public TSIfBlock If(string condition, Action<TSBlock> thenAction)

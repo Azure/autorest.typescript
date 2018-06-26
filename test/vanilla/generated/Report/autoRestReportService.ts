@@ -14,8 +14,6 @@ import * as Mappers from "./models/mappers";
 import { AutoRestReportServiceContext } from "./autoRestReportServiceContext";
 
 class AutoRestReportService extends AutoRestReportServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   /**
    * @class
    * Initializes a new instance of the AutoRestReportService class.
@@ -60,42 +58,7 @@ class AutoRestReportService extends AutoRestReportServiceContext {
             qualifier
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "report",
-          queryParameters: [
-            {
-              parameterPath: "qualifier",
-              mapper: {
-                serializedName: "qualifier",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getReport);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -143,5 +106,42 @@ class AutoRestReportService extends AutoRestReportServiceContext {
     }
   }
 }
+
+// Operation Specifications
+const getReport: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "report",
+  queryParameters: [
+    {
+      parameterPath: "qualifier",
+      mapper: {
+        serializedName: "qualifier",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
 
 export { AutoRestReportService, Models as AutoRestReportServiceModels, Mappers as AutoRestReportServiceMappers };
