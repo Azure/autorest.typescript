@@ -16,7 +16,7 @@ import { AutoRestLongRunningOperationTestServiceContext } from "../autoRestLongR
 /** Class representing a LROSADs. */
 export class LROSADs {
   private readonly client: AutoRestLongRunningOperationTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a LROSADs.
    * @param {AutoRestLongRunningOperationTestServiceContext} client Reference to the service client.
@@ -55,7 +55,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -100,7 +101,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -146,7 +148,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -191,7 +194,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -430,7 +434,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -476,7 +481,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -523,7 +529,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -700,7 +707,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -746,7 +754,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -793,7 +802,8 @@ export class LROSADs {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       if (parsedResponse != undefined) {
         try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
+          const serializer = new msRest.Serializer(Mappers);
+          operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
         } catch (error) {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
@@ -1031,40 +1041,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/put/400",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product
-            },
-            201: {
-              bodyMapper: Mappers.Product
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPutNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1095,40 +1072,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/put/201/creating/400",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product
-            },
-            201: {
-              bodyMapper: Mappers.Product
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPutNonRetry201Creating400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1160,40 +1104,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/put/201/creating/400/invalidjson",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product
-            },
-            201: {
-              bodyMapper: Mappers.Product
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPutNonRetry201Creating400InvalidJsonOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1224,38 +1135,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/putasync/retry/400",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product,
-              headersMapper: Mappers.LROSADsPutAsyncRelativeRetry400Headers
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPutAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1283,32 +1163,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/delete/400",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsDeleteNonRetry400Headers
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginDeleteNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1336,32 +1191,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/delete/202/retry/400",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsDelete202NonRetry400Headers
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginDelete202NonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1390,32 +1220,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/deleteasync/retry/400",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetry400Headers
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginDeleteAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1445,37 +1250,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/post/400",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsPostNonRetry400Headers
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPostNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1505,37 +1280,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/post/202/retry/400",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsPost202NonRetry400Headers
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPost202NonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1566,37 +1311,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "lro/nonretryerror/postasync/retry/400",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsPostAsyncRelativeRetry400Headers
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPostAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1627,40 +1342,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/put/201/noprovisioningstatepayload",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product
-            },
-            201: {
-              bodyMapper: Mappers.Product
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPutError201NoProvisioningStatePayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1692,38 +1374,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/putasync/retry/nostatus",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product,
-              headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPutAsyncRelativeRetryNoStatusOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1756,38 +1407,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/putasync/retry/nostatuspayload",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product,
-              headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1815,30 +1435,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/delete/204/nolocation",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            204: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginDelete204SucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1867,32 +1464,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/deleteasync/retry/nostatus",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryNoStatusHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginDeleteAsyncRelativeRetryNoStatusOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1923,37 +1495,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/post/202/nolocation",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsPost202NoLocationHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPost202NoLocationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1986,37 +1528,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/postasync/retry/nopayload",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPostAsyncRelativeRetryNoPayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2047,38 +1559,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/put/200/invalidjson",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product
-            },
-            204: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPut200InvalidJsonOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2111,38 +1592,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/putasync/retry/invalidheader",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product,
-              headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPutAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2175,38 +1625,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/putasync/retry/invalidjsonpolling",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product,
-              headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2235,32 +1654,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/delete/202/retry/invalidheader",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsDelete202RetryInvalidHeaderHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginDelete202RetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2289,32 +1683,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/deleteasync/retry/invalidheader",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2343,32 +1712,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/deleteasync/retry/invalidjsonpolling",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2399,37 +1743,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/post/202/retry/invalidheader",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsPost202RetryInvalidHeaderHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPost202RetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2462,37 +1776,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/postasync/retry/invalidheader",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPostAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2525,37 +1809,7 @@ export class LROSADs {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "lro/error/postasync/retry/invalidjsonpolling",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "product",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {
-              headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -4760,3 +4014,786 @@ export class LROSADs {
   }
 
 }
+
+// Operation Specifications
+const beginPutNonRetry400OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/nonretryerror/put/400",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPutNonRetry201Creating400OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/nonretryerror/put/201/creating/400",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPutNonRetry201Creating400InvalidJsonOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/nonretryerror/put/201/creating/400/invalidjson",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPutAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/nonretryerror/putasync/retry/400",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetry400Headers
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteNonRetry400OperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "lro/nonretryerror/delete/400",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsDeleteNonRetry400Headers
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDelete202NonRetry400OperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "lro/nonretryerror/delete/202/retry/400",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsDelete202NonRetry400Headers
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "lro/nonretryerror/deleteasync/retry/400",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetry400Headers
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPostNonRetry400OperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "lro/nonretryerror/post/400",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsPostNonRetry400Headers
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPost202NonRetry400OperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "lro/nonretryerror/post/202/retry/400",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsPost202NonRetry400Headers
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPostAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "lro/nonretryerror/postasync/retry/400",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsPostAsyncRelativeRetry400Headers
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPutError201NoProvisioningStatePayloadOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/error/put/201/noprovisioningstatepayload",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPutAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/error/putasync/retry/nostatus",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/error/putasync/retry/nostatuspayload",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "lro/error/delete/204/nolocation",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "lro/error/deleteasync/retry/nostatus",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryNoStatusHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPost202NoLocationOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "lro/error/post/202/nolocation",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsPost202NoLocationHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPostAsyncRelativeRetryNoPayloadOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "lro/error/postasync/retry/nopayload",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPut200InvalidJsonOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/error/put/200/invalidjson",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPutAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/error/putasync/retry/invalidheader",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "lro/error/putasync/retry/invalidjsonpolling",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDelete202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "lro/error/delete/202/retry/invalidheader",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsDelete202RetryInvalidHeaderHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "lro/error/deleteasync/retry/invalidheader",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "lro/error/deleteasync/retry/invalidjsonpolling",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPost202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "lro/error/post/202/retry/invalidheader",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsPost202RetryInvalidHeaderHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPostAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "lro/error/postasync/retry/invalidheader",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "lro/error/postasync/retry/invalidjsonpolling",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "product",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {
+      headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

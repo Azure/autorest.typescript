@@ -15,8 +15,6 @@ import * as operations from "./operations";
 import { AutoRestBoolTestServiceContext } from "./autoRestBoolTestServiceContext";
 
 class AutoRestBoolTestService extends AutoRestBoolTestServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   bool: operations.Bool;
 
@@ -42,5 +40,7 @@ class AutoRestBoolTestService extends AutoRestBoolTestServiceContext {
     this.bool = new operations.Bool(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestBoolTestService, Models as AutoRestBoolTestServiceModels, Mappers as AutoRestBoolTestServiceMappers };

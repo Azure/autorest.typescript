@@ -16,7 +16,7 @@ import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInf
 /** Class representing a HttpSuccess. */
 export class HttpSuccess {
   private readonly client: AutoRestHttpInfrastructureTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a HttpSuccess.
    * @param {AutoRestHttpInfrastructureTestServiceContext} client Reference to the service client.
@@ -40,20 +40,7 @@ export class HttpSuccess {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/success/200",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -75,27 +62,7 @@ export class HttpSuccess {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "http/success/200",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Boolean"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -124,28 +91,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "http/success/200",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        put200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -174,28 +120,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
-          path: "http/success/200",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        patch200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -224,28 +149,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "http/success/200",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        post200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -274,28 +178,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "http/success/200",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        delete200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -324,28 +207,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "http/success/201",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            201: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        put201OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -374,28 +236,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "http/success/201",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            201: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        post201OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -424,28 +265,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "http/success/202",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        put202OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -474,28 +294,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
-          path: "http/success/202",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        patch202OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -524,28 +323,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "http/success/202",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        post202OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -574,28 +352,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "http/success/202",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            202: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        delete202OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -617,20 +374,7 @@ export class HttpSuccess {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/success/204",
-          responses: {
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -659,28 +403,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "http/success/204",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        put204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -709,28 +432,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
-          path: "http/success/204",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        patch204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -759,28 +461,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "http/success/204",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        post204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -809,28 +490,7 @@ export class HttpSuccess {
             booleanValue
           },
           options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "http/success/204",
-          requestBody: {
-            parameterPath: "booleanValue",
-            mapper: {
-              serializedName: "booleanValue",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            204: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        delete204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -852,21 +512,7 @@ export class HttpSuccess {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/success/404",
-          responses: {
-            204: {},
-            404: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head404OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1612,3 +1258,368 @@ export class HttpSuccess {
   }
 
 }
+
+// Operation Specifications
+const head200OperationSpec: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/success/200",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const get200OperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "http/success/200",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Boolean"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const put200OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "http/success/200",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const patch200OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PATCH",
+  path: "http/success/200",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const post200OperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "http/success/200",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const delete200OperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "http/success/200",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const put201OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "http/success/201",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    201: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const post201OperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "http/success/201",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    201: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const put202OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "http/success/202",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const patch202OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PATCH",
+  path: "http/success/202",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const post202OperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "http/success/202",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const delete202OperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "http/success/202",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    202: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const head204OperationSpec: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/success/204",
+  responses: {
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const put204OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "http/success/204",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const patch204OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PATCH",
+  path: "http/success/204",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const post204OperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "http/success/204",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const delete204OperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "http/success/204",
+  requestBody: {
+    parameterPath: "booleanValue",
+    mapper: {
+      serializedName: "booleanValue",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const head404OperationSpec: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/success/404",
+  responses: {
+    204: {},
+    404: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

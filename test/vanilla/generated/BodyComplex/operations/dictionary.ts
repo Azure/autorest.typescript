@@ -16,7 +16,7 @@ import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestService
 /** Class representing a Dictionary. */
 export class Dictionary {
   private readonly client: AutoRestComplexTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Dictionary.
    * @param {AutoRestComplexTestServiceContext} client Reference to the service client.
@@ -40,22 +40,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/dictionary/typed/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.DictionaryWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -84,28 +69,7 @@ export class Dictionary {
             defaultProgram
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/dictionary/typed/valid",
-          requestBody: {
-            parameterPath: {
-              defaultProgram: "defaultProgram"
-            },
-            mapper: {
-              ...Mappers.DictionaryWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -127,22 +91,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/dictionary/typed/empty",
-          responses: {
-            200: {
-              bodyMapper: Mappers.DictionaryWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -171,28 +120,7 @@ export class Dictionary {
             defaultProgram
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "complex/dictionary/typed/empty",
-          requestBody: {
-            parameterPath: {
-              defaultProgram: "defaultProgram"
-            },
-            mapper: {
-              ...Mappers.DictionaryWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -214,22 +142,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/dictionary/typed/null",
-          responses: {
-            200: {
-              bodyMapper: Mappers.DictionaryWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -251,22 +164,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/dictionary/typed/notprovided",
-          responses: {
-            200: {
-              bodyMapper: Mappers.DictionaryWrapper
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -520,3 +418,104 @@ export class Dictionary {
   }
 
 }
+
+// Operation Specifications
+const getValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/dictionary/typed/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DictionaryWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/dictionary/typed/valid",
+  requestBody: {
+    parameterPath: {
+      defaultProgram: "defaultProgram"
+    },
+    mapper: {
+      ...Mappers.DictionaryWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/dictionary/typed/empty",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DictionaryWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "complex/dictionary/typed/empty",
+  requestBody: {
+    parameterPath: {
+      defaultProgram: "defaultProgram"
+    },
+    mapper: {
+      ...Mappers.DictionaryWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/dictionary/typed/null",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DictionaryWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNotProvidedOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/dictionary/typed/notprovided",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DictionaryWrapper
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

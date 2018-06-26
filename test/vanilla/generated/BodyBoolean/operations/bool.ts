@@ -15,7 +15,7 @@ import { AutoRestBoolTestServiceContext } from "../autoRestBoolTestServiceContex
 /** Class representing a Bool. */
 export class Bool {
   private readonly client: AutoRestBoolTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Bool.
    * @param {AutoRestBoolTestServiceContext} client Reference to the service client.
@@ -39,27 +39,7 @@ export class Bool {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "bool/true",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Boolean"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -89,29 +69,7 @@ export class Bool {
             boolBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "bool/true",
-          requestBody: {
-            parameterPath: "boolBody",
-            mapper: {
-              required: true,
-              serializedName: "boolBody",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -133,27 +91,7 @@ export class Bool {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "bool/false",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Boolean"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -183,29 +121,7 @@ export class Bool {
             boolBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "bool/false",
-          requestBody: {
-            parameterPath: "boolBody",
-            mapper: {
-              required: true,
-              serializedName: "boolBody",
-              type: {
-                name: "Boolean"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -227,27 +143,7 @@ export class Bool {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "bool/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Boolean"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -269,27 +165,7 @@ export class Bool {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "bool/invalid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Boolean"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -547,3 +423,126 @@ export class Bool {
   }
 
 }
+
+// Operation Specifications
+const getTrueOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "bool/true",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Boolean"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putTrueOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "bool/true",
+  requestBody: {
+    parameterPath: "boolBody",
+    mapper: {
+      required: true,
+      serializedName: "boolBody",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getFalseOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "bool/false",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Boolean"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putFalseOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "bool/false",
+  requestBody: {
+    parameterPath: "boolBody",
+    mapper: {
+      required: true,
+      serializedName: "boolBody",
+      type: {
+        name: "Boolean"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "bool/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Boolean"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "bool/invalid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Boolean"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

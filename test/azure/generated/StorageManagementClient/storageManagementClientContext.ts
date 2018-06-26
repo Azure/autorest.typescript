@@ -25,7 +25,6 @@ export class StorageManagementClientContext extends msRestAzure.AzureServiceClie
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

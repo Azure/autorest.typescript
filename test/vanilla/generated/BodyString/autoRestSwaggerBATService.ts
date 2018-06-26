@@ -15,8 +15,6 @@ import * as operations from "./operations";
 import { AutoRestSwaggerBATServiceContext } from "./autoRestSwaggerBATServiceContext";
 
 class AutoRestSwaggerBATService extends AutoRestSwaggerBATServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   string: operations.String;
   enumModel: operations.EnumModel;
@@ -44,5 +42,7 @@ class AutoRestSwaggerBATService extends AutoRestSwaggerBATServiceContext {
     this.enumModel = new operations.EnumModel(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestSwaggerBATService, Models as AutoRestSwaggerBATServiceModels, Mappers as AutoRestSwaggerBATServiceMappers };

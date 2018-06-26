@@ -15,7 +15,7 @@ import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzur
 /** Class representing a SubscriptionInMethod. */
 export class SubscriptionInMethod {
   private readonly client: AutoRestAzureSpecialParametersTestClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a SubscriptionInMethod.
    * @param {AutoRestAzureSpecialParametersTestClientContext} client Reference to the service client.
@@ -50,42 +50,7 @@ export class SubscriptionInMethod {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-          urlParameters: [
-            {
-              parameterPath: "subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postMethodLocalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -118,42 +83,7 @@ export class SubscriptionInMethod {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
-          urlParameters: [
-            {
-              parameterPath: "subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postMethodLocalNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -186,42 +116,7 @@ export class SubscriptionInMethod {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-          urlParameters: [
-            {
-              parameterPath: "subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postPathLocalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -254,42 +149,7 @@ export class SubscriptionInMethod {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-          urlParameters: [
-            {
-              parameterPath: "subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postSwaggerLocalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -477,3 +337,148 @@ export class SubscriptionInMethod {
   }
 
 }
+
+// Operation Specifications
+const postMethodLocalValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+  urlParameters: [
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postMethodLocalNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
+  urlParameters: [
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postPathLocalValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+  urlParameters: [
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+  urlParameters: [
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

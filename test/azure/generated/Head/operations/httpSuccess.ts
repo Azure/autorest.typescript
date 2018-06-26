@@ -15,7 +15,7 @@ import { AutoRestHeadTestServiceContext } from "../autoRestHeadTestServiceContex
 /** Class representing a HttpSuccess. */
 export class HttpSuccess {
   private readonly client: AutoRestHeadTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a HttpSuccess.
    * @param {AutoRestHeadTestServiceContext} client Reference to the service client.
@@ -45,31 +45,7 @@ export class HttpSuccess {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/success/200",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            404: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        head200OperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
@@ -100,31 +76,7 @@ export class HttpSuccess {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/success/204",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            204: {},
-            404: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        head204OperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
@@ -155,31 +107,7 @@ export class HttpSuccess {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
-          path: "http/success/404",
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            204: {},
-            404: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
+        head404OperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
@@ -313,3 +241,79 @@ export class HttpSuccess {
   }
 
 }
+
+// Operation Specifications
+const head200OperationSpec: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/success/200",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    404: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const head204OperationSpec: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/success/204",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    204: {},
+    404: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const head404OperationSpec: msRest.OperationSpec = {
+  httpMethod: "HEAD",
+  path: "http/success/404",
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    204: {},
+    404: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -15,7 +15,7 @@ import { AutoRestSwaggerBATFileServiceContext } from "../autoRestSwaggerBATFileS
 /** Class representing a Files. */
 export class Files {
   private readonly client: AutoRestSwaggerBATFileServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Files.
    * @param {AutoRestSwaggerBATFileServiceContext} client Reference to the service client.
@@ -39,27 +39,7 @@ export class Files {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "files/stream/nonempty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Stream"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFileOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -81,27 +61,7 @@ export class Files {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "files/stream/verylarge",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Stream"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFileLargeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -123,27 +83,7 @@ export class Files {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "files/stream/empty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Stream"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyFileOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -151,3 +91,61 @@ export class Files {
   }
 
 }
+
+// Operation Specifications
+const getFileOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "files/stream/nonempty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Stream"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getFileLargeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "files/stream/verylarge",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Stream"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getEmptyFileOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "files/stream/empty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Stream"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

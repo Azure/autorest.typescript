@@ -16,7 +16,7 @@ import { AutoRestSwaggerBATXMLServiceContext } from "../autoRestSwaggerBATXMLSer
 /** Class representing a Xml. */
 export class Xml {
   private readonly client: AutoRestSwaggerBATXMLServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers, true);
+
   /**
    * Create a Xml.
    * @param {AutoRestSwaggerBATXMLServiceContext} client Reference to the service client.
@@ -40,23 +40,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/simple",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Slideshow
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSimpleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -86,27 +70,7 @@ export class Xml {
             slideshow
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/simple",
-          requestBody: {
-            parameterPath: "slideshow",
-            mapper: {
-              ...Mappers.Slideshow,
-              required: true
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putSimpleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -128,21 +92,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/wrapped-lists",
-          responses: {
-            200: {
-              bodyMapper: Mappers.AppleBarrel
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getWrappedListsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -172,27 +122,7 @@ export class Xml {
             wrappedLists
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/wrapped-lists",
-          requestBody: {
-            parameterPath: "wrappedLists",
-            mapper: {
-              ...Mappers.AppleBarrel,
-              required: true
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putWrappedListsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -214,21 +144,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/headers",
-          responses: {
-            200: {
-              headersMapper: Mappers.XmlGetHeadersHeaders
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getHeadersOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -250,21 +166,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/empty-list",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Slideshow
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -294,25 +196,7 @@ export class Xml {
             slideshow
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/empty-list",
-          requestBody: {
-            parameterPath: "slideshow",
-            mapper: {
-              ...Mappers.Slideshow,
-              required: true
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putEmptyListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -334,21 +218,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/empty-wrapped-lists",
-          responses: {
-            200: {
-              bodyMapper: Mappers.AppleBarrel
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyWrappedListsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -378,25 +248,7 @@ export class Xml {
             appleBarrel
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/empty-wrapped-lists",
-          requestBody: {
-            parameterPath: "appleBarrel",
-            mapper: {
-              ...Mappers.AppleBarrel,
-              required: true
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putEmptyWrappedListsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -418,34 +270,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/root-list",
-          responses: {
-            200: {
-              bodyMapper: {
-                xmlElementName: "banana",
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "BananaElementType",
-                    type: {
-                      name: "Composite",
-                      className: "Banana"
-                    }
-                  }
-                }
-              }
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRootListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -475,36 +300,7 @@ export class Xml {
             bananas
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/root-list",
-          requestBody: {
-            parameterPath: "bananas",
-            mapper: {
-              xmlElementName: "banana",
-              required: true,
-              serializedName: "bananas",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "BananaElementType",
-                  type: {
-                    name: "Composite",
-                    className: "Banana"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putRootListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -526,34 +322,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/root-list-single-item",
-          responses: {
-            200: {
-              bodyMapper: {
-                xmlElementName: "banana",
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "BananaElementType",
-                    type: {
-                      name: "Composite",
-                      className: "Banana"
-                    }
-                  }
-                }
-              }
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRootListSingleItemOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -583,36 +352,7 @@ export class Xml {
             bananas
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/root-list-single-item",
-          requestBody: {
-            parameterPath: "bananas",
-            mapper: {
-              xmlElementName: "banana",
-              required: true,
-              serializedName: "bananas",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "BananaElementType",
-                  type: {
-                    name: "Composite",
-                    className: "Banana"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putRootListSingleItemOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -634,34 +374,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/empty-root-list",
-          responses: {
-            200: {
-              bodyMapper: {
-                xmlElementName: "banana",
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "BananaElementType",
-                    type: {
-                      name: "Composite",
-                      className: "Banana"
-                    }
-                  }
-                }
-              }
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyRootListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -691,36 +404,7 @@ export class Xml {
             bananas
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/empty-root-list",
-          requestBody: {
-            parameterPath: "bananas",
-            mapper: {
-              xmlElementName: "banana",
-              required: true,
-              serializedName: "bananas",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "BananaElementType",
-                  type: {
-                    name: "Composite",
-                    className: "Banana"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putEmptyRootListOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -742,21 +426,7 @@ export class Xml {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/empty-child-element",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Banana
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyChildElementOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -786,25 +456,7 @@ export class Xml {
             banana
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/empty-child-element",
-          requestBody: {
-            parameterPath: "banana",
-            mapper: {
-              ...Mappers.Banana,
-              required: true
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putEmptyChildElementOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -833,33 +485,7 @@ export class Xml {
             comp
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/",
-          queryParameters: [
-            {
-              parameterPath: "comp",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "comp",
-                defaultValue: 'list',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ListContainersResponse
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        listContainersOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -890,45 +516,7 @@ export class Xml {
             restype
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/",
-          queryParameters: [
-            {
-              parameterPath: "comp",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "comp",
-                defaultValue: 'properties',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "restype",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "restype",
-                defaultValue: 'service',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.StorageServiceProperties
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        getServicePropertiesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -962,51 +550,7 @@ export class Xml {
             properties
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/",
-          queryParameters: [
-            {
-              parameterPath: "comp",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "comp",
-                defaultValue: 'properties',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "restype",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "restype",
-                defaultValue: 'service',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "properties",
-            mapper: {
-              ...Mappers.StorageServiceProperties,
-              required: true
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putServicePropertiesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1037,58 +581,7 @@ export class Xml {
             restype
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/mycontainer",
-          queryParameters: [
-            {
-              parameterPath: "comp",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "comp",
-                defaultValue: 'acl',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "restype",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "restype",
-                defaultValue: 'container',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: {
-                xmlElementName: "SignedIdentifier",
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "SignedIdentifierElementType",
-                    type: {
-                      name: "Composite",
-                      className: "SignedIdentifier"
-                    }
-                  }
-                }
-              }
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        getAclsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1122,62 +615,7 @@ export class Xml {
             properties
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "xml/mycontainer",
-          queryParameters: [
-            {
-              parameterPath: "comp",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "comp",
-                defaultValue: 'acl',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "restype",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "restype",
-                defaultValue: 'container',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "properties",
-            mapper: {
-              xmlElementName: "SignedIdentifier",
-              required: true,
-              serializedName: "properties",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "SignedIdentifierElementType",
-                  type: {
-                    name: "Composite",
-                    className: "SignedIdentifier"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/xml; charset=utf-8",
-          responses: {
-            201: {},
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        putAclsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1208,45 +646,7 @@ export class Xml {
             restype
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "xml/mycontainer",
-          queryParameters: [
-            {
-              parameterPath: "comp",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "comp",
-                defaultValue: 'list',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "restype",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "restype",
-                defaultValue: 'container',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ListBlobsResponse
-            },
-            default: {}
-          },
-          isXML: true,
-          serializer: this.serializer
-        });
+        listBlobsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2217,3 +1617,609 @@ export class Xml {
   }
 
 }
+
+// Operation Specifications
+const getSimpleOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/simple",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Slideshow
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putSimpleOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/simple",
+  requestBody: {
+    parameterPath: "slideshow",
+    mapper: {
+      ...Mappers.Slideshow,
+      required: true
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getWrappedListsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/wrapped-lists",
+  responses: {
+    200: {
+      bodyMapper: Mappers.AppleBarrel
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putWrappedListsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/wrapped-lists",
+  requestBody: {
+    parameterPath: "wrappedLists",
+    mapper: {
+      ...Mappers.AppleBarrel,
+      required: true
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getHeadersOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/headers",
+  responses: {
+    200: {
+      headersMapper: Mappers.XmlGetHeadersHeaders
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getEmptyListOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/empty-list",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Slideshow
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putEmptyListOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/empty-list",
+  requestBody: {
+    parameterPath: "slideshow",
+    mapper: {
+      ...Mappers.Slideshow,
+      required: true
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/empty-wrapped-lists",
+  responses: {
+    200: {
+      bodyMapper: Mappers.AppleBarrel
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/empty-wrapped-lists",
+  requestBody: {
+    parameterPath: "appleBarrel",
+    mapper: {
+      ...Mappers.AppleBarrel,
+      required: true
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getRootListOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/root-list",
+  responses: {
+    200: {
+      bodyMapper: {
+        xmlElementName: "banana",
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "BananaElementType",
+            type: {
+              name: "Composite",
+              className: "Banana"
+            }
+          }
+        }
+      }
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putRootListOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/root-list",
+  requestBody: {
+    parameterPath: "bananas",
+    mapper: {
+      xmlElementName: "banana",
+      required: true,
+      serializedName: "bananas",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "BananaElementType",
+          type: {
+            name: "Composite",
+            className: "Banana"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getRootListSingleItemOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/root-list-single-item",
+  responses: {
+    200: {
+      bodyMapper: {
+        xmlElementName: "banana",
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "BananaElementType",
+            type: {
+              name: "Composite",
+              className: "Banana"
+            }
+          }
+        }
+      }
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putRootListSingleItemOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/root-list-single-item",
+  requestBody: {
+    parameterPath: "bananas",
+    mapper: {
+      xmlElementName: "banana",
+      required: true,
+      serializedName: "bananas",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "BananaElementType",
+          type: {
+            name: "Composite",
+            className: "Banana"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getEmptyRootListOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/empty-root-list",
+  responses: {
+    200: {
+      bodyMapper: {
+        xmlElementName: "banana",
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "BananaElementType",
+            type: {
+              name: "Composite",
+              className: "Banana"
+            }
+          }
+        }
+      }
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putEmptyRootListOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/empty-root-list",
+  requestBody: {
+    parameterPath: "bananas",
+    mapper: {
+      xmlElementName: "banana",
+      required: true,
+      serializedName: "bananas",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "BananaElementType",
+          type: {
+            name: "Composite",
+            className: "Banana"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getEmptyChildElementOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/empty-child-element",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Banana
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putEmptyChildElementOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/empty-child-element",
+  requestBody: {
+    parameterPath: "banana",
+    mapper: {
+      ...Mappers.Banana,
+      required: true
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const listContainersOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/",
+  queryParameters: [
+    {
+      parameterPath: "comp",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "comp",
+        defaultValue: 'list',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ListContainersResponse
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getServicePropertiesOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/",
+  queryParameters: [
+    {
+      parameterPath: "comp",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "comp",
+        defaultValue: 'properties',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "restype",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "restype",
+        defaultValue: 'service',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.StorageServiceProperties
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putServicePropertiesOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/",
+  queryParameters: [
+    {
+      parameterPath: "comp",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "comp",
+        defaultValue: 'properties',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "restype",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "restype",
+        defaultValue: 'service',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "properties",
+    mapper: {
+      ...Mappers.StorageServiceProperties,
+      required: true
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getAclsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/mycontainer",
+  queryParameters: [
+    {
+      parameterPath: "comp",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "comp",
+        defaultValue: 'acl',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "restype",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "restype",
+        defaultValue: 'container',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: {
+        xmlElementName: "SignedIdentifier",
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "SignedIdentifierElementType",
+            type: {
+              name: "Composite",
+              className: "SignedIdentifier"
+            }
+          }
+        }
+      }
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putAclsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/mycontainer",
+  queryParameters: [
+    {
+      parameterPath: "comp",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "comp",
+        defaultValue: 'acl',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "restype",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "restype",
+        defaultValue: 'container',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "properties",
+    mapper: {
+      xmlElementName: "SignedIdentifier",
+      required: true,
+      serializedName: "properties",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "SignedIdentifierElementType",
+          type: {
+            name: "Composite",
+            className: "SignedIdentifier"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const listBlobsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/mycontainer",
+  queryParameters: [
+    {
+      parameterPath: "comp",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "comp",
+        defaultValue: 'list',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "restype",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "restype",
+        defaultValue: 'container',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ListBlobsResponse
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};

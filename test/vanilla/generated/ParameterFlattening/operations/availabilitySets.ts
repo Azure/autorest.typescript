@@ -15,7 +15,7 @@ import { AutoRestParameterFlatteningContext } from "../autoRestParameterFlatteni
 /** Class representing a AvailabilitySets. */
 export class AvailabilitySets {
   private readonly client: AutoRestParameterFlatteningContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a AvailabilitySets.
    * @param {AutoRestParameterFlatteningContext} client Reference to the service client.
@@ -54,51 +54,7 @@ export class AvailabilitySets {
             tags
           },
           options),
-        {
-          httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
-          path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "avset",
-              mapper: {
-                required: true,
-                serializedName: "availabilitySetName",
-                constraints: {
-                  MaxLength: 80
-                },
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: {
-              tags: "tags"
-            },
-            mapper: {
-              ...Mappers.AvailabilitySetUpdateParameters,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {}
-          },
-          serializer: this.serializer
-        });
+        updateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -154,3 +110,49 @@ export class AvailabilitySets {
   }
 
 }
+
+// Operation Specifications
+const updateOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PATCH",
+  path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "avset",
+      mapper: {
+        required: true,
+        serializedName: "availabilitySetName",
+        constraints: {
+          MaxLength: 80
+        },
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: {
+      tags: "tags"
+    },
+    mapper: {
+      ...Mappers.AvailabilitySetUpdateParameters,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

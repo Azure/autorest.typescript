@@ -16,7 +16,7 @@ import { AutoRestRequiredOptionalTestServiceContext } from "../autoRestRequiredO
 /** Class representing a Implicit. */
 export class Implicit {
   private readonly client: AutoRestRequiredOptionalTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Implicit.
    * @param {AutoRestRequiredOptionalTestServiceContext} client Reference to the service client.
@@ -48,29 +48,7 @@ export class Implicit {
             pathParameter
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/implicit/required/path/{pathParameter}",
-          urlParameters: [
-            {
-              parameterPath: "pathParameter",
-              mapper: {
-                required: true,
-                serializedName: "pathParameter",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getRequiredPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -99,29 +77,7 @@ export class Implicit {
             queryParameter
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/implicit/optional/query",
-          queryParameters: [
-            {
-              parameterPath: "queryParameter",
-              mapper: {
-                serializedName: "queryParameter",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putOptionalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -150,29 +106,7 @@ export class Implicit {
             queryParameter
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/implicit/optional/header",
-          headerParameters: [
-            {
-              parameterPath: "queryParameter",
-              mapper: {
-                serializedName: "queryParameter",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putOptionalHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -201,28 +135,7 @@ export class Implicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/implicit/optional/body",
-          requestBody: {
-            parameterPath: "bodyParameter",
-            mapper: {
-              serializedName: "bodyParameter",
-              type: {
-                name: "String"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putOptionalBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -250,29 +163,7 @@ export class Implicit {
             "this.client.requiredGlobalPath": this.client.requiredGlobalPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/global/required/path/{required-global-path}",
-          urlParameters: [
-            {
-              parameterPath: "this.client.requiredGlobalPath",
-              mapper: {
-                required: true,
-                serializedName: "required-global-path",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getRequiredGlobalPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -300,29 +191,7 @@ export class Implicit {
             "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/global/required/query",
-          queryParameters: [
-            {
-              parameterPath: "this.client.requiredGlobalQuery",
-              mapper: {
-                required: true,
-                serializedName: "required-global-query",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getRequiredGlobalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -350,28 +219,7 @@ export class Implicit {
             "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/global/optional/query",
-          queryParameters: [
-            {
-              parameterPath: "this.client.optionalGlobalQuery",
-              mapper: {
-                serializedName: "optional-global-query",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getOptionalGlobalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -668,3 +516,163 @@ export class Implicit {
   }
 
 }
+
+// Operation Specifications
+const getRequiredPathOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "reqopt/implicit/required/path/{pathParameter}",
+  urlParameters: [
+    {
+      parameterPath: "pathParameter",
+      mapper: {
+        required: true,
+        serializedName: "pathParameter",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putOptionalQueryOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "reqopt/implicit/optional/query",
+  queryParameters: [
+    {
+      parameterPath: "queryParameter",
+      mapper: {
+        serializedName: "queryParameter",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putOptionalHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "reqopt/implicit/optional/header",
+  headerParameters: [
+    {
+      parameterPath: "queryParameter",
+      mapper: {
+        serializedName: "queryParameter",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putOptionalBodyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "reqopt/implicit/optional/body",
+  requestBody: {
+    parameterPath: "bodyParameter",
+    mapper: {
+      serializedName: "bodyParameter",
+      type: {
+        name: "String"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getRequiredGlobalPathOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "reqopt/global/required/path/{required-global-path}",
+  urlParameters: [
+    {
+      parameterPath: "this.client.requiredGlobalPath",
+      mapper: {
+        required: true,
+        serializedName: "required-global-path",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getRequiredGlobalQueryOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "reqopt/global/required/query",
+  queryParameters: [
+    {
+      parameterPath: "this.client.requiredGlobalQuery",
+      mapper: {
+        required: true,
+        serializedName: "required-global-query",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getOptionalGlobalQueryOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "reqopt/global/optional/query",
+  queryParameters: [
+    {
+      parameterPath: "this.client.optionalGlobalQuery",
+      mapper: {
+        serializedName: "optional-global-query",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

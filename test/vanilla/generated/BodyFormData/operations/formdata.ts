@@ -15,7 +15,7 @@ import { AutoRestSwaggerBATFormDataServiceContext } from "../autoRestSwaggerBATF
 /** Class representing a Formdata. */
 export class Formdata {
   private readonly client: AutoRestSwaggerBATFormDataServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Formdata.
    * @param {AutoRestSwaggerBATFormDataServiceContext} client Reference to the service client.
@@ -50,48 +50,7 @@ export class Formdata {
             fileName
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "formdata/stream/uploadfile",
-          formDataParameters: [
-            {
-              parameterPath: "fileContent",
-              mapper: {
-                required: true,
-                serializedName: "fileContent",
-                type: {
-                  name: "Stream"
-                }
-              }
-            },
-            {
-              parameterPath: "fileName",
-              mapper: {
-                required: true,
-                serializedName: "fileName",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          contentType: "multipart/form-data",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Stream"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        uploadFileOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -121,36 +80,7 @@ export class Formdata {
             fileContent
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "formdata/stream/uploadfile",
-          requestBody: {
-            parameterPath: "fileContent",
-            mapper: {
-              required: true,
-              serializedName: "fileContent",
-              type: {
-                name: "Stream"
-              }
-            }
-          },
-          contentType: "application/octet-stream",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Stream"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        uploadFileViaBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -158,3 +88,76 @@ export class Formdata {
   }
 
 }
+
+// Operation Specifications
+const uploadFileOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "formdata/stream/uploadfile",
+  formDataParameters: [
+    {
+      parameterPath: "fileContent",
+      mapper: {
+        required: true,
+        serializedName: "fileContent",
+        type: {
+          name: "Stream"
+        }
+      }
+    },
+    {
+      parameterPath: "fileName",
+      mapper: {
+        required: true,
+        serializedName: "fileName",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  contentType: "multipart/form-data",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Stream"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const uploadFileViaBodyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "formdata/stream/uploadfile",
+  requestBody: {
+    parameterPath: "fileContent",
+    mapper: {
+      required: true,
+      serializedName: "fileContent",
+      type: {
+        name: "Stream"
+      }
+    }
+  },
+  contentType: "application/octet-stream",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Stream"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -15,8 +15,6 @@ import * as operations from "./operations";
 import { AutoRestHttpInfrastructureTestServiceContext } from "./autoRestHttpInfrastructureTestServiceContext";
 
 class AutoRestHttpInfrastructureTestService extends AutoRestHttpInfrastructureTestServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   httpFailure: operations.HttpFailure;
   httpSuccess: operations.HttpSuccess;
@@ -54,5 +52,7 @@ class AutoRestHttpInfrastructureTestService extends AutoRestHttpInfrastructureTe
     this.multipleResponses = new operations.MultipleResponses(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestHttpInfrastructureTestService, Models as AutoRestHttpInfrastructureTestServiceModels, Mappers as AutoRestHttpInfrastructureTestServiceMappers };

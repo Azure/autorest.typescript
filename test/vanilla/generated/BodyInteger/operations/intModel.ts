@@ -15,7 +15,7 @@ import { AutoRestIntegerTestServiceContext } from "../autoRestIntegerTestService
 /** Class representing a IntModel. */
 export class IntModel {
   private readonly client: AutoRestIntegerTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a IntModel.
    * @param {AutoRestIntegerTestServiceContext} client Reference to the service client.
@@ -39,27 +39,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "int/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -81,27 +61,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "int/invalid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -123,27 +83,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "int/overflowint32",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowInt32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -165,27 +105,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "int/underflowint32",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowInt32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -207,27 +127,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "int/overflowint64",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowInt64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -249,27 +149,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "int/underflowint64",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowInt64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -299,29 +179,7 @@ export class IntModel {
             intBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "int/max/32",
-          requestBody: {
-            parameterPath: "intBody",
-            mapper: {
-              required: true,
-              serializedName: "intBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putMax32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -351,29 +209,7 @@ export class IntModel {
             intBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "int/max/64",
-          requestBody: {
-            parameterPath: "intBody",
-            mapper: {
-              required: true,
-              serializedName: "intBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putMax64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -403,29 +239,7 @@ export class IntModel {
             intBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "int/min/32",
-          requestBody: {
-            parameterPath: "intBody",
-            mapper: {
-              required: true,
-              serializedName: "intBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putMin32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -455,29 +269,7 @@ export class IntModel {
             intBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "int/min/64",
-          requestBody: {
-            parameterPath: "intBody",
-            mapper: {
-              required: true,
-              serializedName: "intBody",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putMin64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -499,27 +291,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "int/unixtime",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "UnixTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnixTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -549,29 +321,7 @@ export class IntModel {
             intBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "int/unixtime",
-          requestBody: {
-            parameterPath: "intBody",
-            mapper: {
-              required: true,
-              serializedName: "intBody",
-              type: {
-                name: "UnixTime"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putUnixTimeDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -593,27 +343,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "int/invalidunixtime",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "UnixTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidUnixTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -635,27 +365,7 @@ export class IntModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "int/nullunixtime",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "UnixTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullUnixTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1247,3 +957,290 @@ export class IntModel {
   }
 
 }
+
+// Operation Specifications
+const getNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "int/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "int/invalid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getOverflowInt32OperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "int/overflowint32",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUnderflowInt32OperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "int/underflowint32",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getOverflowInt64OperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "int/overflowint64",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUnderflowInt64OperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "int/underflowint64",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putMax32OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "int/max/32",
+  requestBody: {
+    parameterPath: "intBody",
+    mapper: {
+      required: true,
+      serializedName: "intBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putMax64OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "int/max/64",
+  requestBody: {
+    parameterPath: "intBody",
+    mapper: {
+      required: true,
+      serializedName: "intBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putMin32OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "int/min/32",
+  requestBody: {
+    parameterPath: "intBody",
+    mapper: {
+      required: true,
+      serializedName: "intBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putMin64OperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "int/min/64",
+  requestBody: {
+    parameterPath: "intBody",
+    mapper: {
+      required: true,
+      serializedName: "intBody",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUnixTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "int/unixtime",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "UnixTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putUnixTimeDateOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "int/unixtime",
+  requestBody: {
+    parameterPath: "intBody",
+    mapper: {
+      required: true,
+      serializedName: "intBody",
+      type: {
+        name: "UnixTime"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalidUnixTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "int/invalidunixtime",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "UnixTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNullUnixTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "int/nullunixtime",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "UnixTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

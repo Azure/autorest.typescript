@@ -8,15 +8,12 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestParameterizedHostTestClientContext } from "./autoRestParameterizedHostTestClientContext";
 
 class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestClientContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   paths: operations.Paths;
 
@@ -42,5 +39,7 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
     this.paths = new operations.Paths(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestParameterizedHostTestClient, Models as AutoRestParameterizedHostTestModels, Mappers as AutoRestParameterizedHostTestMappers };

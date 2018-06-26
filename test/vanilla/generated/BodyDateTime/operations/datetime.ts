@@ -15,7 +15,7 @@ import { AutoRestDateTimeTestServiceContext } from "../autoRestDateTimeTestServi
 /** Class representing a Datetime. */
 export class Datetime {
   private readonly client: AutoRestDateTimeTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Datetime.
    * @param {AutoRestDateTimeTestServiceContext} client Reference to the service client.
@@ -39,27 +39,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -81,27 +61,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/invalid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -123,27 +83,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/overflow",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -165,27 +105,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/underflow",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -215,29 +135,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "datetime/max/utc",
-          requestBody: {
-            parameterPath: "datetimeBody",
-            mapper: {
-              required: true,
-              serializedName: "datetimeBody",
-              type: {
-                name: "DateTime"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putUtcMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -259,27 +157,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/max/utc/lowercase",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcLowercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -301,27 +179,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/max/utc/uppercase",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcUppercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -351,29 +209,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "datetime/max/localpositiveoffset",
-          requestBody: {
-            parameterPath: "datetimeBody",
-            mapper: {
-              required: true,
-              serializedName: "datetimeBody",
-              type: {
-                name: "DateTime"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putLocalPositiveOffsetMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -395,27 +231,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/max/localpositiveoffset/lowercase",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -437,27 +253,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/max/localpositiveoffset/uppercase",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -487,29 +283,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "datetime/max/localnegativeoffset",
-          requestBody: {
-            parameterPath: "datetimeBody",
-            mapper: {
-              required: true,
-              serializedName: "datetimeBody",
-              type: {
-                name: "DateTime"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putLocalNegativeOffsetMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -531,27 +305,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/max/localnegativeoffset/uppercase",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -573,27 +327,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/max/localnegativeoffset/lowercase",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -623,29 +357,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "datetime/min/utc",
-          requestBody: {
-            parameterPath: "datetimeBody",
-            mapper: {
-              required: true,
-              serializedName: "datetimeBody",
-              type: {
-                name: "DateTime"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putUtcMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -667,27 +379,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/min/utc",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUtcMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -717,29 +409,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "datetime/min/localpositiveoffset",
-          requestBody: {
-            parameterPath: "datetimeBody",
-            mapper: {
-              required: true,
-              serializedName: "datetimeBody",
-              type: {
-                name: "DateTime"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putLocalPositiveOffsetMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -761,27 +431,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/min/localpositiveoffset",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalPositiveOffsetMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -811,29 +461,7 @@ export class Datetime {
             datetimeBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "datetime/min/localnegativeoffset",
-          requestBody: {
-            parameterPath: "datetimeBody",
-            mapper: {
-              required: true,
-              serializedName: "datetimeBody",
-              type: {
-                name: "DateTime"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putLocalNegativeOffsetMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -855,27 +483,7 @@ export class Datetime {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "datetime/min/localnegativeoffset",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLocalNegativeOffsetMinDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1674,3 +1282,389 @@ export class Datetime {
   }
 
 }
+
+// Operation Specifications
+const getNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/invalid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getOverflowOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/overflow",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUnderflowOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/underflow",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "datetime/max/utc",
+  requestBody: {
+    parameterPath: "datetimeBody",
+    mapper: {
+      required: true,
+      serializedName: "datetimeBody",
+      type: {
+        name: "DateTime"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/max/utc/lowercase",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/max/utc/uppercase",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putLocalPositiveOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "datetime/max/localpositiveoffset",
+  requestBody: {
+    parameterPath: "datetimeBody",
+    mapper: {
+      required: true,
+      serializedName: "datetimeBody",
+      type: {
+        name: "DateTime"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/max/localpositiveoffset/lowercase",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/max/localpositiveoffset/uppercase",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putLocalNegativeOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "datetime/max/localnegativeoffset",
+  requestBody: {
+    parameterPath: "datetimeBody",
+    mapper: {
+      required: true,
+      serializedName: "datetimeBody",
+      type: {
+        name: "DateTime"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/max/localnegativeoffset/uppercase",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/max/localnegativeoffset/lowercase",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "datetime/min/utc",
+  requestBody: {
+    parameterPath: "datetimeBody",
+    mapper: {
+      required: true,
+      serializedName: "datetimeBody",
+      type: {
+        name: "DateTime"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/min/utc",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "datetime/min/localpositiveoffset",
+  requestBody: {
+    parameterPath: "datetimeBody",
+    mapper: {
+      required: true,
+      serializedName: "datetimeBody",
+      type: {
+        name: "DateTime"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/min/localpositiveoffset",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "datetime/min/localnegativeoffset",
+  requestBody: {
+    parameterPath: "datetimeBody",
+    mapper: {
+      required: true,
+      serializedName: "datetimeBody",
+      type: {
+        name: "DateTime"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "datetime/min/localnegativeoffset",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "DateTime"
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -571,11 +571,46 @@ namespace AutoRest.TypeScript.DSL
             Line($"throw {valueToThrow};");
         }
 
-        public void ThrowNew(Action<TSValue> valueAction)
+        public void ConstObjectVariable(string variableName, string variableType, Action<TSObject> valueAction)
         {
-            Text($"throw new ");
-            Value(valueAction);
-            Line(";");
+            Text($"const {variableName}");
+            if (!string.IsNullOrEmpty(variableType))
+            {
+                Text($": {variableType}");
+            }
+            Text(" = ");
+            Object(valueAction);
+            Line($";");
+        }
+
+        public void ConstObjectVariable(string variableName, string variableType, string value)
+        {
+            Text($"const {variableName}");
+            if (!string.IsNullOrEmpty(variableType))
+            {
+                Text($": {variableType}");
+            }
+            Line($" = {value};");
+        }
+
+        public void ConstObjectVariable(string variableName, Action<TSObject> valueAction)
+        {
+            ConstObjectVariable(variableName, null, valueAction);
+        }
+
+        public void ConstObjectVariable(string variableName, string value)
+        {
+            ConstObjectVariable(variableName, null, value);
+        }
+
+        public void ImportAllAs(string importAs, string importSource)
+        {
+            Line($"import * as {importAs} from \"{importSource}\";");
+        }
+
+        public void Import(IEnumerable<string> importedTypeNames, string importSource)
+        {
+            Line($"import {{ {string.Join(", ", importedTypeNames)} }} from \"{importSource}\";");
         }
     }
 }

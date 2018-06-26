@@ -16,7 +16,7 @@ import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestService
 /** Class representing a Flattencomplex. */
 export class Flattencomplex {
   private readonly client: AutoRestComplexTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Flattencomplex.
    * @param {AutoRestComplexTestServiceContext} client Reference to the service client.
@@ -38,20 +38,7 @@ export class Flattencomplex {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "complex/flatten/valid",
-          responses: {
-            200: {
-              bodyMapper: Mappers.MyBaseType
-            },
-            default: {}
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -98,3 +85,16 @@ export class Flattencomplex {
   }
 
 }
+
+// Operation Specifications
+const getValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/flatten/valid",
+  responses: {
+    200: {
+      bodyMapper: Mappers.MyBaseType
+    },
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

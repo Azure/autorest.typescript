@@ -16,7 +16,7 @@ import { AutoRestParameterGroupingTestServiceContext } from "../autoRestParamete
 /** Class representing a ParameterGrouping. */
 export class ParameterGrouping {
   private readonly client: AutoRestParameterGroupingTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a ParameterGrouping.
    * @param {AutoRestParameterGroupingTestServiceContext} client Reference to the service client.
@@ -50,86 +50,7 @@ export class ParameterGrouping {
             parameterGroupingPostRequiredParameters
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "parameterGrouping/postRequired/{path}",
-          urlParameters: [
-            {
-              parameterPath: [
-                "parameterGroupingPostRequiredParameters",
-                "path"
-              ],
-              mapper: {
-                required: true,
-                serializedName: "path",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: [
-                "parameterGroupingPostRequiredParameters",
-                "query"
-              ],
-              mapper: {
-                serializedName: "query",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "parameterGroupingPostRequiredParameters",
-                "customHeader"
-              ],
-              mapper: {
-                serializedName: "customHeader",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: [
-              "parameterGroupingPostRequiredParameters",
-              "body"
-            ],
-            mapper: {
-              required: true,
-              serializedName: "body",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -159,57 +80,7 @@ export class ParameterGrouping {
             parameterGroupingPostOptionalParameters
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "parameterGrouping/postOptional",
-          queryParameters: [
-            {
-              parameterPath: [
-                "parameterGroupingPostOptionalParameters",
-                "query"
-              ],
-              mapper: {
-                serializedName: "query",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "parameterGroupingPostOptionalParameters",
-                "customHeader"
-              ],
-              mapper: {
-                serializedName: "customHeader",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -241,82 +112,7 @@ export class ParameterGrouping {
             parameterGroupingPostMultiParamGroupsSecondParamGroup
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "parameterGrouping/postMultipleParameterGroups",
-          queryParameters: [
-            {
-              parameterPath: [
-                "firstParameterGroup",
-                "queryOne"
-              ],
-              mapper: {
-                serializedName: "query-one",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-                "queryTwo"
-              ],
-              mapper: {
-                serializedName: "query-two",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "firstParameterGroup",
-                "headerOne"
-              ],
-              mapper: {
-                serializedName: "header-one",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-                "headerTwo"
-              ],
-              mapper: {
-                serializedName: "header-two",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postMultiParamGroupsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -347,57 +143,7 @@ export class ParameterGrouping {
             firstParameterGroup
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "parameterGrouping/sharedParameterGroupObject",
-          queryParameters: [
-            {
-              parameterPath: [
-                "firstParameterGroup",
-                "queryOne"
-              ],
-              mapper: {
-                serializedName: "query-one",
-                defaultValue: 30,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: [
-                "firstParameterGroup",
-                "headerOne"
-              ],
-              mapper: {
-                serializedName: "header-one",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postSharedParameterGroupObjectOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -573,3 +319,262 @@ export class ParameterGrouping {
   }
 
 }
+
+// Operation Specifications
+const postRequiredOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "parameterGrouping/postRequired/{path}",
+  urlParameters: [
+    {
+      parameterPath: [
+        "parameterGroupingPostRequiredParameters",
+        "path"
+      ],
+      mapper: {
+        required: true,
+        serializedName: "path",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: [
+        "parameterGroupingPostRequiredParameters",
+        "query"
+      ],
+      mapper: {
+        serializedName: "query",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "parameterGroupingPostRequiredParameters",
+        "customHeader"
+      ],
+      mapper: {
+        serializedName: "customHeader",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: [
+      "parameterGroupingPostRequiredParameters",
+      "body"
+    ],
+    mapper: {
+      required: true,
+      serializedName: "body",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "parameterGrouping/postOptional",
+  queryParameters: [
+    {
+      parameterPath: [
+        "parameterGroupingPostOptionalParameters",
+        "query"
+      ],
+      mapper: {
+        serializedName: "query",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "parameterGroupingPostOptionalParameters",
+        "customHeader"
+      ],
+      mapper: {
+        serializedName: "customHeader",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "parameterGrouping/postMultipleParameterGroups",
+  queryParameters: [
+    {
+      parameterPath: [
+        "firstParameterGroup",
+        "queryOne"
+      ],
+      mapper: {
+        serializedName: "query-one",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+        "queryTwo"
+      ],
+      mapper: {
+        serializedName: "query-two",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "firstParameterGroup",
+        "headerOne"
+      ],
+      mapper: {
+        serializedName: "header-one",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+        "headerTwo"
+      ],
+      mapper: {
+        serializedName: "header-two",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "parameterGrouping/sharedParameterGroupObject",
+  queryParameters: [
+    {
+      parameterPath: [
+        "firstParameterGroup",
+        "queryOne"
+      ],
+      mapper: {
+        serializedName: "query-one",
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: [
+        "firstParameterGroup",
+        "headerOne"
+      ],
+      mapper: {
+        serializedName: "header-one",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

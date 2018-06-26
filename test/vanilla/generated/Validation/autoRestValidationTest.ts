@@ -14,8 +14,6 @@ import * as Mappers from "./models/mappers";
 import { AutoRestValidationTestContext } from "./autoRestValidationTestContext";
 
 class AutoRestValidationTest extends AutoRestValidationTestContext {
-  serializer = new msRest.Serializer(Mappers);
-
   /**
    * @class
    * Initializes a new instance of the AutoRestValidationTest class.
@@ -67,77 +65,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
             "this.apiVersion": this.apiVersion
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
-          urlParameters: [
-            {
-              parameterPath: "this.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                constraints: {
-                  MaxLength: 10,
-                  MinLength: 3,
-                  Pattern: /[a-zA-Z0-9]+/
-                },
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "id",
-              mapper: {
-                required: true,
-                serializedName: "id",
-                constraints: {
-                  InclusiveMaximum: 1000,
-                  InclusiveMinimum: 100,
-                  MultipleOf: 10
-                },
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "this.apiVersion",
-              mapper: {
-                required: true,
-                serializedName: "apiVersion",
-                constraints: {
-                  Pattern: /\d{2}-\d{2}-\d{4}/
-                },
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        validationOfMethodParametersOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -176,82 +104,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
             "this.apiVersion": this.apiVersion
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.baseUri,
-          path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
-          urlParameters: [
-            {
-              parameterPath: "this.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                constraints: {
-                  MaxLength: 10,
-                  MinLength: 3,
-                  Pattern: /[a-zA-Z0-9]+/
-                },
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "id",
-              mapper: {
-                required: true,
-                serializedName: "id",
-                constraints: {
-                  InclusiveMaximum: 1000,
-                  InclusiveMinimum: 100,
-                  MultipleOf: 10
-                },
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "this.apiVersion",
-              mapper: {
-                required: true,
-                serializedName: "apiVersion",
-                constraints: {
-                  Pattern: /\d{2}-\d{2}-\d{4}/
-                },
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "body",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        validationOfBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -279,30 +132,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
             constantParam
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "validation/constantsInPath/{constantParam}/value",
-          urlParameters: [
-            {
-              parameterPath: "constantParam",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "constantParam",
-                defaultValue: 'constant',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {}
-          },
-          serializer: this.serializer
-        });
+        getWithConstantInPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -333,37 +163,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
             body
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.baseUri,
-          path: "validation/constantsInPath/{constantParam}/value",
-          urlParameters: [
-            {
-              parameterPath: "constantParam",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "constantParam",
-                defaultValue: 'constant',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "body",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.Product
-            },
-            default: {}
-          },
-          serializer: this.serializer
-        });
+        postWithConstantInBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -541,5 +341,208 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
     }
   }
 }
+
+// Operation Specifications
+const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+  urlParameters: [
+    {
+      parameterPath: "this.subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        constraints: {
+          MaxLength: 10,
+          MinLength: 3,
+          Pattern: /[a-zA-Z0-9]+/
+        },
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "id",
+      mapper: {
+        required: true,
+        serializedName: "id",
+        constraints: {
+          InclusiveMaximum: 1000,
+          InclusiveMinimum: 100,
+          MultipleOf: 10
+        },
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "this.apiVersion",
+      mapper: {
+        required: true,
+        serializedName: "apiVersion",
+        constraints: {
+          Pattern: /\d{2}-\d{2}-\d{4}/
+        },
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const validationOfBodyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+  urlParameters: [
+    {
+      parameterPath: "this.subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        constraints: {
+          MaxLength: 10,
+          MinLength: 3,
+          Pattern: /[a-zA-Z0-9]+/
+        },
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "id",
+      mapper: {
+        required: true,
+        serializedName: "id",
+        constraints: {
+          InclusiveMaximum: 1000,
+          InclusiveMinimum: 100,
+          MultipleOf: 10
+        },
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "this.apiVersion",
+      mapper: {
+        required: true,
+        serializedName: "apiVersion",
+        constraints: {
+          Pattern: /\d{2}-\d{2}-\d{4}/
+        },
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "body",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getWithConstantInPathOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "validation/constantsInPath/{constantParam}/value",
+  urlParameters: [
+    {
+      parameterPath: "constantParam",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "constantParam",
+        defaultValue: 'constant',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "validation/constantsInPath/{constantParam}/value",
+  urlParameters: [
+    {
+      parameterPath: "constantParam",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "constantParam",
+        defaultValue: 'constant',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "body",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    default: {}
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
 
 export { AutoRestValidationTest, Models as AutoRestValidationTestModels, Mappers as AutoRestValidationTestMappers };

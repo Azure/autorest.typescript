@@ -16,7 +16,7 @@ import { AutoRestUrlMutliCollectionFormatTestServiceContext } from "../autoRestU
 /** Class representing a Queries. */
 export class Queries {
   private readonly client: AutoRestUrlMutliCollectionFormatTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Queries.
    * @param {AutoRestUrlMutliCollectionFormatTestServiceContext} client Reference to the service client.
@@ -47,36 +47,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/array/multi/string/null",
-          queryParameters: [
-            {
-              parameterPath: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Multi,
-              mapper: {
-                serializedName: "arrayQuery",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayStringMultiNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,36 +76,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/array/multi/string/empty",
-          queryParameters: [
-            {
-              parameterPath: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Multi,
-              mapper: {
-                serializedName: "arrayQuery",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayStringMultiEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -164,36 +106,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/array/multi/string/valid",
-          queryParameters: [
-            {
-              parameterPath: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Multi,
-              mapper: {
-                serializedName: "arrayQuery",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayStringMultiValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -325,3 +238,94 @@ export class Queries {
   }
 
 }
+
+// Operation Specifications
+const arrayStringMultiNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/array/multi/string/null",
+  queryParameters: [
+    {
+      parameterPath: "arrayQuery",
+      collectionFormat: msRest.QueryCollectionFormat.Multi,
+      mapper: {
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const arrayStringMultiEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/array/multi/string/empty",
+  queryParameters: [
+    {
+      parameterPath: "arrayQuery",
+      collectionFormat: msRest.QueryCollectionFormat.Multi,
+      mapper: {
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const arrayStringMultiValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/array/multi/string/valid",
+  queryParameters: [
+    {
+      parameterPath: "arrayQuery",
+      collectionFormat: msRest.QueryCollectionFormat.Multi,
+      mapper: {
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

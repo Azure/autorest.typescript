@@ -21,7 +21,6 @@ export class AutoRestHeadExceptionTestServiceContext extends msRestAzure.AzureSe
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

@@ -16,7 +16,7 @@ import { AutoRestUrlTestServiceContext } from "../autoRestUrlTestServiceContext"
 /** Class representing a Paths. */
 export class Paths {
   private readonly client: AutoRestUrlTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Paths.
    * @param {AutoRestUrlTestServiceContext} client Reference to the service client.
@@ -47,32 +47,7 @@ export class Paths {
             boolPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/bool/true/{boolPath}",
-          urlParameters: [
-            {
-              parameterPath: "boolPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "boolPath",
-                defaultValue: true,
-                type: {
-                  name: "Boolean"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getBooleanTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -101,32 +76,7 @@ export class Paths {
             boolPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/bool/false/{boolPath}",
-          urlParameters: [
-            {
-              parameterPath: "boolPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "boolPath",
-                defaultValue: false,
-                type: {
-                  name: "Boolean"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getBooleanFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -155,32 +105,7 @@ export class Paths {
             intPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/int/1000000/{intPath}",
-          urlParameters: [
-            {
-              parameterPath: "intPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "intPath",
-                defaultValue: 1000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getIntOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -209,32 +134,7 @@ export class Paths {
             intPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/int/-1000000/{intPath}",
-          urlParameters: [
-            {
-              parameterPath: "intPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "intPath",
-                defaultValue: -1000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getIntNegativeOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -263,32 +163,7 @@ export class Paths {
             longPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/long/10000000000/{longPath}",
-          urlParameters: [
-            {
-              parameterPath: "longPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "longPath",
-                defaultValue: 10000000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -317,32 +192,7 @@ export class Paths {
             longPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/long/-10000000000/{longPath}",
-          urlParameters: [
-            {
-              parameterPath: "longPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "longPath",
-                defaultValue: -10000000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getNegativeTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -371,32 +221,7 @@ export class Paths {
             floatPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/float/1.034E+20/{floatPath}",
-          urlParameters: [
-            {
-              parameterPath: "floatPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "floatPath",
-                defaultValue: 103400000000000000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        floatScientificPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -425,32 +250,7 @@ export class Paths {
             floatPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/float/-1.034E-20/{floatPath}",
-          urlParameters: [
-            {
-              parameterPath: "floatPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "floatPath",
-                defaultValue: -1.034e-20,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        floatScientificNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -479,32 +279,7 @@ export class Paths {
             doublePath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/double/9999999.999/{doublePath}",
-          urlParameters: [
-            {
-              parameterPath: "doublePath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "doublePath",
-                defaultValue: 9999999.999,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        doubleDecimalPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -533,32 +308,7 @@ export class Paths {
             doublePath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/double/-9999999.999/{doublePath}",
-          urlParameters: [
-            {
-              parameterPath: "doublePath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "doublePath",
-                defaultValue: -9999999.999,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        doubleDecimalNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -587,32 +337,7 @@ export class Paths {
             stringPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/string/unicode/{stringPath}",
-          urlParameters: [
-            {
-              parameterPath: "stringPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "stringPath",
-                defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        stringUnicodeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -641,32 +366,7 @@ export class Paths {
             stringPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
-          urlParameters: [
-            {
-              parameterPath: "stringPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "stringPath",
-                defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        stringUrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -695,32 +395,7 @@ export class Paths {
             stringPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/string/empty/{stringPath}",
-          urlParameters: [
-            {
-              parameterPath: "stringPath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "stringPath",
-                defaultValue: '',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        stringEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -750,30 +425,7 @@ export class Paths {
             stringPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/string/null/{stringPath}",
-          urlParameters: [
-            {
-              parameterPath: "stringPath",
-              mapper: {
-                required: true,
-                serializedName: "stringPath",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            400: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        stringNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -804,35 +456,7 @@ export class Paths {
             enumPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/enum/green%20color/{enumPath}",
-          urlParameters: [
-            {
-              parameterPath: "enumPath",
-              mapper: {
-                required: true,
-                serializedName: "enumPath",
-                type: {
-                  name: "Enum",
-                  allowedValues: [
-                    "red color",
-                    "green color",
-                    "blue color"
-                  ]
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        enumValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -863,35 +487,7 @@ export class Paths {
             enumPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/string/null/{enumPath}",
-          urlParameters: [
-            {
-              parameterPath: "enumPath",
-              mapper: {
-                required: true,
-                serializedName: "enumPath",
-                type: {
-                  name: "Enum",
-                  allowedValues: [
-                    "red color",
-                    "green color",
-                    "blue color"
-                  ]
-                }
-              }
-            }
-          ],
-          responses: {
-            400: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        enumNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -921,30 +517,7 @@ export class Paths {
             bytePath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/byte/multibyte/{bytePath}",
-          urlParameters: [
-            {
-              parameterPath: "bytePath",
-              mapper: {
-                required: true,
-                serializedName: "bytePath",
-                type: {
-                  name: "ByteArray"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        byteMultiByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -973,32 +546,7 @@ export class Paths {
             bytePath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/byte/empty/{bytePath}",
-          urlParameters: [
-            {
-              parameterPath: "bytePath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "bytePath",
-                defaultValue: new Uint8Array(0),
-                type: {
-                  name: "ByteArray"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        byteEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1028,30 +576,7 @@ export class Paths {
             bytePath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/byte/null/{bytePath}",
-          urlParameters: [
-            {
-              parameterPath: "bytePath",
-              mapper: {
-                required: true,
-                serializedName: "bytePath",
-                type: {
-                  name: "ByteArray"
-                }
-              }
-            }
-          ],
-          responses: {
-            400: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        byteNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1080,32 +605,7 @@ export class Paths {
             datePath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/date/2012-01-01/{datePath}",
-          urlParameters: [
-            {
-              parameterPath: "datePath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "datePath",
-                defaultValue: new Date('2012-01-01'),
-                type: {
-                  name: "Date"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        dateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1136,30 +636,7 @@ export class Paths {
             datePath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/date/null/{datePath}",
-          urlParameters: [
-            {
-              parameterPath: "datePath",
-              mapper: {
-                required: true,
-                serializedName: "datePath",
-                type: {
-                  name: "Date"
-                }
-              }
-            }
-          ],
-          responses: {
-            400: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        dateNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1188,32 +665,7 @@ export class Paths {
             dateTimePath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
-          urlParameters: [
-            {
-              parameterPath: "dateTimePath",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "dateTimePath",
-                defaultValue: new Date('2012-01-01T01:01:01Z'),
-                type: {
-                  name: "DateTime"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        dateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1243,30 +695,7 @@ export class Paths {
             dateTimePath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/datetime/null/{dateTimePath}",
-          urlParameters: [
-            {
-              parameterPath: "dateTimePath",
-              mapper: {
-                required: true,
-                serializedName: "dateTimePath",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            }
-          ],
-          responses: {
-            400: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        dateTimeNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1296,30 +725,7 @@ export class Paths {
             base64UrlPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/string/bG9yZW0/{base64UrlPath}",
-          urlParameters: [
-            {
-              parameterPath: "base64UrlPath",
-              mapper: {
-                required: true,
-                serializedName: "base64UrlPath",
-                type: {
-                  name: "Base64Url"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        base64UrlOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1351,36 +757,7 @@ export class Paths {
             arrayPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
-          urlParameters: [
-            {
-              parameterPath: "arrayPath",
-              mapper: {
-                required: true,
-                serializedName: "arrayPath",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayCsvInPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1410,30 +787,7 @@ export class Paths {
             unixTimeUrlPath
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "paths/int/1460505600/{unixTimeUrlPath}",
-          urlParameters: [
-            {
-              parameterPath: "unixTimeUrlPath",
-              mapper: {
-                required: true,
-                serializedName: "unixTimeUrlPath",
-                type: {
-                  name: "UnixTime"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        unixTimeUrlOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2532,3 +1886,676 @@ export class Paths {
   }
 
 }
+
+// Operation Specifications
+const getBooleanTrueOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/bool/true/{boolPath}",
+  urlParameters: [
+    {
+      parameterPath: "boolPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "boolPath",
+        defaultValue: true,
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBooleanFalseOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/bool/false/{boolPath}",
+  urlParameters: [
+    {
+      parameterPath: "boolPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "boolPath",
+        defaultValue: false,
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getIntOneMillionOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/int/1000000/{intPath}",
+  urlParameters: [
+    {
+      parameterPath: "intPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "intPath",
+        defaultValue: 1000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/int/-1000000/{intPath}",
+  urlParameters: [
+    {
+      parameterPath: "intPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "intPath",
+        defaultValue: -1000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getTenBillionOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/long/10000000000/{longPath}",
+  urlParameters: [
+    {
+      parameterPath: "longPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "longPath",
+        defaultValue: 10000000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/long/-10000000000/{longPath}",
+  urlParameters: [
+    {
+      parameterPath: "longPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "longPath",
+        defaultValue: -10000000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/float/1.034E+20/{floatPath}",
+  urlParameters: [
+    {
+      parameterPath: "floatPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "floatPath",
+        defaultValue: 103400000000000000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/float/-1.034E-20/{floatPath}",
+  urlParameters: [
+    {
+      parameterPath: "floatPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "floatPath",
+        defaultValue: -1.034e-20,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/double/9999999.999/{doublePath}",
+  urlParameters: [
+    {
+      parameterPath: "doublePath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "doublePath",
+        defaultValue: 9999999.999,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/double/-9999999.999/{doublePath}",
+  urlParameters: [
+    {
+      parameterPath: "doublePath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "doublePath",
+        defaultValue: -9999999.999,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const stringUnicodeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/string/unicode/{stringPath}",
+  urlParameters: [
+    {
+      parameterPath: "stringPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "stringPath",
+        defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
+  urlParameters: [
+    {
+      parameterPath: "stringPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "stringPath",
+        defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const stringEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/string/empty/{stringPath}",
+  urlParameters: [
+    {
+      parameterPath: "stringPath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "stringPath",
+        defaultValue: '',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const stringNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/string/null/{stringPath}",
+  urlParameters: [
+    {
+      parameterPath: "stringPath",
+      mapper: {
+        required: true,
+        serializedName: "stringPath",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    400: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const enumValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/enum/green%20color/{enumPath}",
+  urlParameters: [
+    {
+      parameterPath: "enumPath",
+      mapper: {
+        required: true,
+        serializedName: "enumPath",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green color",
+            "blue color"
+          ]
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const enumNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/string/null/{enumPath}",
+  urlParameters: [
+    {
+      parameterPath: "enumPath",
+      mapper: {
+        required: true,
+        serializedName: "enumPath",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green color",
+            "blue color"
+          ]
+        }
+      }
+    }
+  ],
+  responses: {
+    400: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const byteMultiByteOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/byte/multibyte/{bytePath}",
+  urlParameters: [
+    {
+      parameterPath: "bytePath",
+      mapper: {
+        required: true,
+        serializedName: "bytePath",
+        type: {
+          name: "ByteArray"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const byteEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/byte/empty/{bytePath}",
+  urlParameters: [
+    {
+      parameterPath: "bytePath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "bytePath",
+        defaultValue: new Uint8Array(0),
+        type: {
+          name: "ByteArray"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const byteNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/byte/null/{bytePath}",
+  urlParameters: [
+    {
+      parameterPath: "bytePath",
+      mapper: {
+        required: true,
+        serializedName: "bytePath",
+        type: {
+          name: "ByteArray"
+        }
+      }
+    }
+  ],
+  responses: {
+    400: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const dateValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/date/2012-01-01/{datePath}",
+  urlParameters: [
+    {
+      parameterPath: "datePath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "datePath",
+        defaultValue: new Date('2012-01-01'),
+        type: {
+          name: "Date"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const dateNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/date/null/{datePath}",
+  urlParameters: [
+    {
+      parameterPath: "datePath",
+      mapper: {
+        required: true,
+        serializedName: "datePath",
+        type: {
+          name: "Date"
+        }
+      }
+    }
+  ],
+  responses: {
+    400: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const dateTimeValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
+  urlParameters: [
+    {
+      parameterPath: "dateTimePath",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "dateTimePath",
+        defaultValue: new Date('2012-01-01T01:01:01Z'),
+        type: {
+          name: "DateTime"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const dateTimeNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/datetime/null/{dateTimePath}",
+  urlParameters: [
+    {
+      parameterPath: "dateTimePath",
+      mapper: {
+        required: true,
+        serializedName: "dateTimePath",
+        type: {
+          name: "DateTime"
+        }
+      }
+    }
+  ],
+  responses: {
+    400: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const base64UrlOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/string/bG9yZW0/{base64UrlPath}",
+  urlParameters: [
+    {
+      parameterPath: "base64UrlPath",
+      mapper: {
+        required: true,
+        serializedName: "base64UrlPath",
+        type: {
+          name: "Base64Url"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const arrayCsvInPathOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
+  urlParameters: [
+    {
+      parameterPath: "arrayPath",
+      mapper: {
+        required: true,
+        serializedName: "arrayPath",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const unixTimeUrlOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "paths/int/1460505600/{unixTimeUrlPath}",
+  urlParameters: [
+    {
+      parameterPath: "unixTimeUrlPath",
+      mapper: {
+        required: true,
+        serializedName: "unixTimeUrlPath",
+        type: {
+          name: "UnixTime"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

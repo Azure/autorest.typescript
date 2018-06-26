@@ -25,7 +25,6 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

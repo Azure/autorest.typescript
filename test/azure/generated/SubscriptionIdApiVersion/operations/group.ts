@@ -16,7 +16,7 @@ import { MicrosoftAzureTestUrlContext } from "../microsoftAzureTestUrlContext";
 /** Class representing a Group. */
 export class Group {
   private readonly client: MicrosoftAzureTestUrlContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Group.
    * @param {MicrosoftAzureTestUrlContext} client Reference to the service client.
@@ -51,66 +51,7 @@ export class Group {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
-          urlParameters: [
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "this.client.apiVersion",
-              mapper: {
-                required: true,
-                serializedName: "api-version",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.SampleResourceGroup
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getSampleResourceGroupOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -161,3 +102,64 @@ export class Group {
   }
 
 }
+
+// Operation Specifications
+const getSampleResourceGroupOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
+  urlParameters: [
+    {
+      parameterPath: "this.client.subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "this.client.apiVersion",
+      mapper: {
+        required: true,
+        serializedName: "api-version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.SampleResourceGroup
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

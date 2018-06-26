@@ -16,7 +16,7 @@ import { AutoRestSwaggerBATServiceContext } from "../autoRestSwaggerBATServiceCo
 /** Class representing a EnumModel. */
 export class EnumModel {
   private readonly client: AutoRestSwaggerBATServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a EnumModel.
    * @param {AutoRestSwaggerBATServiceContext} client Reference to the service client.
@@ -40,32 +40,7 @@ export class EnumModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/enum/notExpandable",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Enum",
-                  allowedValues: [
-                    "red color",
-                    "green-color",
-                    "blue_color"
-                  ]
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotExpandableOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -95,34 +70,7 @@ export class EnumModel {
             stringBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "string/enum/notExpandable",
-          requestBody: {
-            parameterPath: "stringBody",
-            mapper: {
-              required: true,
-              serializedName: "stringBody",
-              type: {
-                name: "Enum",
-                allowedValues: [
-                  "red color",
-                  "green-color",
-                  "blue_color"
-                ]
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putNotExpandableOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -144,32 +92,7 @@ export class EnumModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/enum/Referenced",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Enum",
-                  allowedValues: [
-                    "red color",
-                    "green-color",
-                    "blue_color"
-                  ]
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getReferencedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -199,34 +122,7 @@ export class EnumModel {
             enumStringBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "string/enum/Referenced",
-          requestBody: {
-            parameterPath: "enumStringBody",
-            mapper: {
-              required: true,
-              serializedName: "enumStringBody",
-              type: {
-                name: "Enum",
-                allowedValues: [
-                  "red color",
-                  "green-color",
-                  "blue_color"
-                ]
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putReferencedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -248,22 +144,7 @@ export class EnumModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "string/enum/ReferencedConstant",
-          responses: {
-            200: {
-              bodyMapper: Mappers.RefColorConstant
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getReferencedConstantOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -292,28 +173,7 @@ export class EnumModel {
             field1
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "string/enum/ReferencedConstant",
-          requestBody: {
-            parameterPath: {
-              field1: "field1"
-            },
-            mapper: {
-              ...Mappers.RefColorConstant,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putReferencedConstantOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -571,3 +431,144 @@ export class EnumModel {
   }
 
 }
+
+// Operation Specifications
+const getNotExpandableOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/enum/notExpandable",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green-color",
+            "blue_color"
+          ]
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putNotExpandableOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "string/enum/notExpandable",
+  requestBody: {
+    parameterPath: "stringBody",
+    mapper: {
+      required: true,
+      serializedName: "stringBody",
+      type: {
+        name: "Enum",
+        allowedValues: [
+          "red color",
+          "green-color",
+          "blue_color"
+        ]
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getReferencedOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/enum/Referenced",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green-color",
+            "blue_color"
+          ]
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putReferencedOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "string/enum/Referenced",
+  requestBody: {
+    parameterPath: "enumStringBody",
+    mapper: {
+      required: true,
+      serializedName: "enumStringBody",
+      type: {
+        name: "Enum",
+        allowedValues: [
+          "red color",
+          "green-color",
+          "blue_color"
+        ]
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getReferencedConstantOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "string/enum/ReferencedConstant",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RefColorConstant
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putReferencedConstantOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "string/enum/ReferencedConstant",
+  requestBody: {
+    parameterPath: {
+      field1: "field1"
+    },
+    mapper: {
+      ...Mappers.RefColorConstant,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

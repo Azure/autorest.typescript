@@ -15,8 +15,6 @@ import * as operations from "./operations";
 import { AutoRestDurationTestServiceContext } from "./autoRestDurationTestServiceContext";
 
 class AutoRestDurationTestService extends AutoRestDurationTestServiceContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   duration: operations.Duration;
 
@@ -42,5 +40,7 @@ class AutoRestDurationTestService extends AutoRestDurationTestServiceContext {
     this.duration = new operations.Duration(this);
   }
 }
+
+// Operation Specifications
 
 export { AutoRestDurationTestService, Models as AutoRestDurationTestServiceModels, Mappers as AutoRestDurationTestServiceMappers };

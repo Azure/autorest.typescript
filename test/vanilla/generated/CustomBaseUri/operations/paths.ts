@@ -15,7 +15,7 @@ import { AutoRestParameterizedHostTestClientContext } from "../autoRestParameter
 /** Class representing a Paths. */
 export class Paths {
   private readonly client: AutoRestParameterizedHostTestClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Paths.
    * @param {AutoRestParameterizedHostTestClientContext} client Reference to the service client.
@@ -48,43 +48,7 @@ export class Paths {
             "this.client.host": this.client.host
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "customuri",
-          urlParameters: [
-            {
-              parameterPath: "accountName",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "accountName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.host",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "host",
-                defaultValue: 'host',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -135,3 +99,41 @@ export class Paths {
   }
 
 }
+
+// Operation Specifications
+const getEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "customuri",
+  urlParameters: [
+    {
+      parameterPath: "accountName",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "accountName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "this.client.host",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "host",
+        defaultValue: 'host',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

@@ -16,7 +16,6 @@ const packageVersion = "";
 export class ComplexModelClientContext extends msRest.ServiceClient {
   subscriptionId: string;
   apiVersion: string;
-  baseUri: string;
 
   /**
    * @class

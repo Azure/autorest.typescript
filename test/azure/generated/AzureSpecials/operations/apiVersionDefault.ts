@@ -15,7 +15,7 @@ import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzur
 /** Class representing a ApiVersionDefault. */
 export class ApiVersionDefault {
   private readonly client: AutoRestAzureSpecialParametersTestClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a ApiVersionDefault.
    * @param {AutoRestAzureSpecialParametersTestClientContext} client Reference to the service client.
@@ -46,42 +46,7 @@ export class ApiVersionDefault {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
-          queryParameters: [
-            {
-              parameterPath: "this.client.apiVersion",
-              mapper: {
-                required: true,
-                serializedName: "api-version",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getMethodGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -110,42 +75,7 @@ export class ApiVersionDefault {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
-          queryParameters: [
-            {
-              parameterPath: "this.client.apiVersion",
-              mapper: {
-                required: true,
-                serializedName: "api-version",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getMethodGlobalNotProvidedValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -174,42 +104,7 @@ export class ApiVersionDefault {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
-          queryParameters: [
-            {
-              parameterPath: "this.client.apiVersion",
-              mapper: {
-                required: true,
-                serializedName: "api-version",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getPathGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -238,42 +133,7 @@ export class ApiVersionDefault {
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
-          queryParameters: [
-            {
-              parameterPath: "this.client.apiVersion",
-              mapper: {
-                required: true,
-                serializedName: "api-version",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getSwaggerGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -445,3 +305,148 @@ export class ApiVersionDefault {
   }
 
 }
+
+// Operation Specifications
+const getMethodGlobalValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
+  queryParameters: [
+    {
+      parameterPath: "this.client.apiVersion",
+      mapper: {
+        required: true,
+        serializedName: "api-version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
+  queryParameters: [
+    {
+      parameterPath: "this.client.apiVersion",
+      mapper: {
+        required: true,
+        serializedName: "api-version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getPathGlobalValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
+  queryParameters: [
+    {
+      parameterPath: "this.client.apiVersion",
+      mapper: {
+        required: true,
+        serializedName: "api-version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
+  queryParameters: [
+    {
+      parameterPath: "this.client.apiVersion",
+      mapper: {
+        required: true,
+        serializedName: "api-version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "this.client.acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

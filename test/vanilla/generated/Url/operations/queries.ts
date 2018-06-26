@@ -16,7 +16,7 @@ import { AutoRestUrlTestServiceContext } from "../autoRestUrlTestServiceContext"
 /** Class representing a Queries. */
 export class Queries {
   private readonly client: AutoRestUrlTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Queries.
    * @param {AutoRestUrlTestServiceContext} client Reference to the service client.
@@ -47,32 +47,7 @@ export class Queries {
             boolQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/bool/true",
-          queryParameters: [
-            {
-              parameterPath: "boolQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "boolQuery",
-                defaultValue: true,
-                type: {
-                  name: "Boolean"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getBooleanTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -101,32 +76,7 @@ export class Queries {
             boolQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/bool/false",
-          queryParameters: [
-            {
-              parameterPath: "boolQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "boolQuery",
-                defaultValue: false,
-                type: {
-                  name: "Boolean"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getBooleanFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -155,29 +105,7 @@ export class Queries {
             boolQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/bool/null",
-          queryParameters: [
-            {
-              parameterPath: "boolQuery",
-              mapper: {
-                serializedName: "boolQuery",
-                type: {
-                  name: "Boolean"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getBooleanNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -206,32 +134,7 @@ export class Queries {
             intQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/int/1000000",
-          queryParameters: [
-            {
-              parameterPath: "intQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "intQuery",
-                defaultValue: 1000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getIntOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -260,32 +163,7 @@ export class Queries {
             intQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/int/-1000000",
-          queryParameters: [
-            {
-              parameterPath: "intQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "intQuery",
-                defaultValue: -1000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getIntNegativeOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -314,29 +192,7 @@ export class Queries {
             intQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/int/null",
-          queryParameters: [
-            {
-              parameterPath: "intQuery",
-              mapper: {
-                serializedName: "intQuery",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getIntNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -365,32 +221,7 @@ export class Queries {
             longQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/long/10000000000",
-          queryParameters: [
-            {
-              parameterPath: "longQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "longQuery",
-                defaultValue: 10000000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -419,32 +250,7 @@ export class Queries {
             longQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/long/-10000000000",
-          queryParameters: [
-            {
-              parameterPath: "longQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "longQuery",
-                defaultValue: -10000000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getNegativeTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -473,29 +279,7 @@ export class Queries {
             longQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/long/null",
-          queryParameters: [
-            {
-              parameterPath: "longQuery",
-              mapper: {
-                serializedName: "longQuery",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        getLongNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -524,32 +308,7 @@ export class Queries {
             floatQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/float/1.034E+20",
-          queryParameters: [
-            {
-              parameterPath: "floatQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "floatQuery",
-                defaultValue: 103400000000000000000,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        floatScientificPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -578,32 +337,7 @@ export class Queries {
             floatQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/float/-1.034E-20",
-          queryParameters: [
-            {
-              parameterPath: "floatQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "floatQuery",
-                defaultValue: -1.034e-20,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        floatScientificNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -632,29 +366,7 @@ export class Queries {
             floatQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/float/null",
-          queryParameters: [
-            {
-              parameterPath: "floatQuery",
-              mapper: {
-                serializedName: "floatQuery",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        floatNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -683,32 +395,7 @@ export class Queries {
             doubleQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/double/9999999.999",
-          queryParameters: [
-            {
-              parameterPath: "doubleQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "doubleQuery",
-                defaultValue: 9999999.999,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        doubleDecimalPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -737,32 +424,7 @@ export class Queries {
             doubleQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/double/-9999999.999",
-          queryParameters: [
-            {
-              parameterPath: "doubleQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "doubleQuery",
-                defaultValue: -9999999.999,
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        doubleDecimalNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -791,29 +453,7 @@ export class Queries {
             doubleQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/double/null",
-          queryParameters: [
-            {
-              parameterPath: "doubleQuery",
-              mapper: {
-                serializedName: "doubleQuery",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        doubleNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -842,32 +482,7 @@ export class Queries {
             stringQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/string/unicode/",
-          queryParameters: [
-            {
-              parameterPath: "stringQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "stringQuery",
-                defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        stringUnicodeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -896,32 +511,7 @@ export class Queries {
             stringQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
-          queryParameters: [
-            {
-              parameterPath: "stringQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "stringQuery",
-                defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        stringUrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -950,32 +540,7 @@ export class Queries {
             stringQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/string/empty",
-          queryParameters: [
-            {
-              parameterPath: "stringQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "stringQuery",
-                defaultValue: '',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        stringEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1004,29 +569,7 @@ export class Queries {
             stringQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/string/null",
-          queryParameters: [
-            {
-              parameterPath: "stringQuery",
-              mapper: {
-                serializedName: "stringQuery",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        stringNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1055,34 +598,7 @@ export class Queries {
             enumQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/enum/green%20color",
-          queryParameters: [
-            {
-              parameterPath: "enumQuery",
-              mapper: {
-                serializedName: "enumQuery",
-                type: {
-                  name: "Enum",
-                  allowedValues: [
-                    "red color",
-                    "green color",
-                    "blue color"
-                  ]
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        enumValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1111,34 +627,7 @@ export class Queries {
             enumQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/enum/null",
-          queryParameters: [
-            {
-              parameterPath: "enumQuery",
-              mapper: {
-                serializedName: "enumQuery",
-                type: {
-                  name: "Enum",
-                  allowedValues: [
-                    "red color",
-                    "green color",
-                    "blue color"
-                  ]
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        enumNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1167,29 +656,7 @@ export class Queries {
             byteQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/byte/multibyte",
-          queryParameters: [
-            {
-              parameterPath: "byteQuery",
-              mapper: {
-                serializedName: "byteQuery",
-                type: {
-                  name: "ByteArray"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        byteMultiByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1218,32 +685,7 @@ export class Queries {
             byteQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/byte/empty",
-          queryParameters: [
-            {
-              parameterPath: "byteQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "byteQuery",
-                defaultValue: new Uint8Array(0),
-                type: {
-                  name: "ByteArray"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        byteEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1272,29 +714,7 @@ export class Queries {
             byteQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/byte/null",
-          queryParameters: [
-            {
-              parameterPath: "byteQuery",
-              mapper: {
-                serializedName: "byteQuery",
-                type: {
-                  name: "ByteArray"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        byteNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1323,32 +743,7 @@ export class Queries {
             dateQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/date/2012-01-01",
-          queryParameters: [
-            {
-              parameterPath: "dateQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "dateQuery",
-                defaultValue: new Date('2012-01-01'),
-                type: {
-                  name: "Date"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        dateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1377,29 +772,7 @@ export class Queries {
             dateQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/date/null",
-          queryParameters: [
-            {
-              parameterPath: "dateQuery",
-              mapper: {
-                serializedName: "dateQuery",
-                type: {
-                  name: "Date"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        dateNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1428,32 +801,7 @@ export class Queries {
             dateTimeQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/datetime/2012-01-01T01%3A01%3A01Z",
-          queryParameters: [
-            {
-              parameterPath: "dateTimeQuery",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "dateTimeQuery",
-                defaultValue: new Date('2012-01-01T01:01:01Z'),
-                type: {
-                  name: "DateTime"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        dateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1482,29 +830,7 @@ export class Queries {
             dateTimeQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/datetime/null",
-          queryParameters: [
-            {
-              parameterPath: "dateTimeQuery",
-              mapper: {
-                serializedName: "dateTimeQuery",
-                type: {
-                  name: "DateTime"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        dateTimeNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1534,36 +860,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/array/csv/string/valid",
-          queryParameters: [
-            {
-              parameterPath: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Csv,
-              mapper: {
-                serializedName: "arrayQuery",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayStringCsvValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1592,36 +889,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/array/csv/string/null",
-          queryParameters: [
-            {
-              parameterPath: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Csv,
-              mapper: {
-                serializedName: "arrayQuery",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayStringCsvNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1650,36 +918,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/array/csv/string/empty",
-          queryParameters: [
-            {
-              parameterPath: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Csv,
-              mapper: {
-                serializedName: "arrayQuery",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayStringCsvEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1709,36 +948,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/array/ssv/string/valid",
-          queryParameters: [
-            {
-              parameterPath: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Ssv,
-              mapper: {
-                serializedName: "arrayQuery",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayStringSsvValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1768,36 +978,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/array/tsv/string/valid",
-          queryParameters: [
-            {
-              parameterPath: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Tsv,
-              mapper: {
-                serializedName: "arrayQuery",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayStringTsvValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1827,36 +1008,7 @@ export class Queries {
             arrayQuery
           },
           options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "queries/array/pipes/string/valid",
-          queryParameters: [
-            {
-              parameterPath: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Pipes,
-              mapper: {
-                serializedName: "arrayQuery",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        arrayStringPipesValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -3262,3 +2414,886 @@ export class Queries {
   }
 
 }
+
+// Operation Specifications
+const getBooleanTrueOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/bool/true",
+  queryParameters: [
+    {
+      parameterPath: "boolQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "boolQuery",
+        defaultValue: true,
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBooleanFalseOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/bool/false",
+  queryParameters: [
+    {
+      parameterPath: "boolQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "boolQuery",
+        defaultValue: false,
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBooleanNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/bool/null",
+  queryParameters: [
+    {
+      parameterPath: "boolQuery",
+      mapper: {
+        serializedName: "boolQuery",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getIntOneMillionOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/int/1000000",
+  queryParameters: [
+    {
+      parameterPath: "intQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "intQuery",
+        defaultValue: 1000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/int/-1000000",
+  queryParameters: [
+    {
+      parameterPath: "intQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "intQuery",
+        defaultValue: -1000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getIntNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/int/null",
+  queryParameters: [
+    {
+      parameterPath: "intQuery",
+      mapper: {
+        serializedName: "intQuery",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getTenBillionOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/long/10000000000",
+  queryParameters: [
+    {
+      parameterPath: "longQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "longQuery",
+        defaultValue: 10000000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/long/-10000000000",
+  queryParameters: [
+    {
+      parameterPath: "longQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "longQuery",
+        defaultValue: -10000000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLongNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/long/null",
+  queryParameters: [
+    {
+      parameterPath: "longQuery",
+      mapper: {
+        serializedName: "longQuery",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/float/1.034E+20",
+  queryParameters: [
+    {
+      parameterPath: "floatQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "floatQuery",
+        defaultValue: 103400000000000000000,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/float/-1.034E-20",
+  queryParameters: [
+    {
+      parameterPath: "floatQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "floatQuery",
+        defaultValue: -1.034e-20,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const floatNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/float/null",
+  queryParameters: [
+    {
+      parameterPath: "floatQuery",
+      mapper: {
+        serializedName: "floatQuery",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/double/9999999.999",
+  queryParameters: [
+    {
+      parameterPath: "doubleQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "doubleQuery",
+        defaultValue: 9999999.999,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/double/-9999999.999",
+  queryParameters: [
+    {
+      parameterPath: "doubleQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "doubleQuery",
+        defaultValue: -9999999.999,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const doubleNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/double/null",
+  queryParameters: [
+    {
+      parameterPath: "doubleQuery",
+      mapper: {
+        serializedName: "doubleQuery",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const stringUnicodeOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/string/unicode/",
+  queryParameters: [
+    {
+      parameterPath: "stringQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "stringQuery",
+        defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
+  queryParameters: [
+    {
+      parameterPath: "stringQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "stringQuery",
+        defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const stringEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/string/empty",
+  queryParameters: [
+    {
+      parameterPath: "stringQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "stringQuery",
+        defaultValue: '',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const stringNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/string/null",
+  queryParameters: [
+    {
+      parameterPath: "stringQuery",
+      mapper: {
+        serializedName: "stringQuery",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const enumValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/enum/green%20color",
+  queryParameters: [
+    {
+      parameterPath: "enumQuery",
+      mapper: {
+        serializedName: "enumQuery",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green color",
+            "blue color"
+          ]
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const enumNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/enum/null",
+  queryParameters: [
+    {
+      parameterPath: "enumQuery",
+      mapper: {
+        serializedName: "enumQuery",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green color",
+            "blue color"
+          ]
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const byteMultiByteOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/byte/multibyte",
+  queryParameters: [
+    {
+      parameterPath: "byteQuery",
+      mapper: {
+        serializedName: "byteQuery",
+        type: {
+          name: "ByteArray"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const byteEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/byte/empty",
+  queryParameters: [
+    {
+      parameterPath: "byteQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "byteQuery",
+        defaultValue: new Uint8Array(0),
+        type: {
+          name: "ByteArray"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const byteNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/byte/null",
+  queryParameters: [
+    {
+      parameterPath: "byteQuery",
+      mapper: {
+        serializedName: "byteQuery",
+        type: {
+          name: "ByteArray"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const dateValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/date/2012-01-01",
+  queryParameters: [
+    {
+      parameterPath: "dateQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "dateQuery",
+        defaultValue: new Date('2012-01-01'),
+        type: {
+          name: "Date"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const dateNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/date/null",
+  queryParameters: [
+    {
+      parameterPath: "dateQuery",
+      mapper: {
+        serializedName: "dateQuery",
+        type: {
+          name: "Date"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const dateTimeValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/datetime/2012-01-01T01%3A01%3A01Z",
+  queryParameters: [
+    {
+      parameterPath: "dateTimeQuery",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "dateTimeQuery",
+        defaultValue: new Date('2012-01-01T01:01:01Z'),
+        type: {
+          name: "DateTime"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const dateTimeNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/datetime/null",
+  queryParameters: [
+    {
+      parameterPath: "dateTimeQuery",
+      mapper: {
+        serializedName: "dateTimeQuery",
+        type: {
+          name: "DateTime"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const arrayStringCsvValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/array/csv/string/valid",
+  queryParameters: [
+    {
+      parameterPath: "arrayQuery",
+      collectionFormat: msRest.QueryCollectionFormat.Csv,
+      mapper: {
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const arrayStringCsvNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/array/csv/string/null",
+  queryParameters: [
+    {
+      parameterPath: "arrayQuery",
+      collectionFormat: msRest.QueryCollectionFormat.Csv,
+      mapper: {
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const arrayStringCsvEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/array/csv/string/empty",
+  queryParameters: [
+    {
+      parameterPath: "arrayQuery",
+      collectionFormat: msRest.QueryCollectionFormat.Csv,
+      mapper: {
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const arrayStringSsvValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/array/ssv/string/valid",
+  queryParameters: [
+    {
+      parameterPath: "arrayQuery",
+      collectionFormat: msRest.QueryCollectionFormat.Ssv,
+      mapper: {
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const arrayStringTsvValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/array/tsv/string/valid",
+  queryParameters: [
+    {
+      parameterPath: "arrayQuery",
+      collectionFormat: msRest.QueryCollectionFormat.Tsv,
+      mapper: {
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const arrayStringPipesValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "queries/array/pipes/string/valid",
+  queryParameters: [
+    {
+      parameterPath: "arrayQuery",
+      collectionFormat: msRest.QueryCollectionFormat.Pipes,
+      mapper: {
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

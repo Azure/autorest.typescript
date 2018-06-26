@@ -14,7 +14,6 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestDateTestServiceContext extends msRest.ServiceClient {
-  baseUri: string;
 
   /**
    * @class

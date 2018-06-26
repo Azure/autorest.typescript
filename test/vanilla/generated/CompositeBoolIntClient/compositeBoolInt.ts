@@ -15,8 +15,6 @@ import * as operations from "./operations";
 import { CompositeBoolIntContext } from "./compositeBoolIntContext";
 
 class CompositeBoolInt extends CompositeBoolIntContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   bool: operations.Bool;
   intModel: operations.IntModel;
@@ -44,5 +42,7 @@ class CompositeBoolInt extends CompositeBoolIntContext {
     this.intModel = new operations.IntModel(this);
   }
 }
+
+// Operation Specifications
 
 export { CompositeBoolInt, Models as CompositeBoolIntModels, Mappers as CompositeBoolIntMappers };

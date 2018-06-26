@@ -16,7 +16,7 @@ import { AutoRestSwaggerBATdictionaryServiceContext } from "../autoRestSwaggerBA
 /** Class representing a Dictionary. */
 export class Dictionary {
   private readonly client: AutoRestSwaggerBATdictionaryServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Dictionary.
    * @param {AutoRestSwaggerBATdictionaryServiceContext} client Reference to the service client.
@@ -40,33 +40,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -88,33 +62,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/empty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -144,35 +92,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/empty",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "stringElementType",
-                  type: {
-                    name: "String"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -194,33 +114,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/nullvalue",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullValueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -242,33 +136,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/nullkey",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -290,33 +158,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/keyemptystring",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyStringKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -338,33 +180,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/invalid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -386,33 +202,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/boolean/tfft",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "booleanElementType",
-                    type: {
-                      name: "Boolean"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanTfftOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -442,35 +232,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/boolean/tfft",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "booleanElementType",
-                  type: {
-                    name: "Boolean"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putBooleanTfftOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -492,33 +254,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/boolean/true.null.false",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "booleanElementType",
-                    type: {
-                      name: "Boolean"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -540,33 +276,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/boolean/true.boolean.false",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "booleanElementType",
-                    type: {
-                      name: "Boolean"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -588,33 +298,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/integer/1.-1.3.300",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntegerValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -644,35 +328,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/integer/1.-1.3.300",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "numberElementType",
-                  type: {
-                    name: "Number"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putIntegerValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -694,33 +350,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/integer/1.null.zero",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -742,33 +372,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/integer/1.integer.0",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -790,33 +394,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/long/1.-1.3.300",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -846,35 +424,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/long/1.-1.3.300",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "numberElementType",
-                  type: {
-                    name: "Number"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putLongValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -896,33 +446,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/long/1.null.zero",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -944,33 +468,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/long/1.integer.0",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -992,33 +490,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/float/0--0.01-1.2e20",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1048,35 +520,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/float/0--0.01-1.2e20",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "numberElementType",
-                  type: {
-                    name: "Number"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putFloatValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1098,33 +542,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/float/0.0-null-1.2e20",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1146,33 +564,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/float/1.number.0",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1194,33 +586,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/double/0--0.01-1.2e20",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1250,35 +616,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/double/0--0.01-1.2e20",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "numberElementType",
-                  type: {
-                    name: "Number"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDoubleValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1300,33 +638,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/double/0.0-null-1.2e20",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1348,33 +660,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/double/1.number.0",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "numberElementType",
-                    type: {
-                      name: "Number"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1396,33 +682,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/string/foo1.foo2.foo3",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1452,35 +712,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/string/foo1.foo2.foo3",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "stringElementType",
-                  type: {
-                    name: "String"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putStringValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1502,33 +734,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/string/foo.null.foo2",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringWithNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1550,33 +756,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/string/foo.123.foo2",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringWithInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1598,33 +778,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date/valid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "DateElementType",
-                    type: {
-                      name: "Date"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1654,35 +808,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date/valid",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "DateElementType",
-                  type: {
-                    name: "Date"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1704,33 +830,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date/invalidnull",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "DateElementType",
-                    type: {
-                      name: "Date"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1752,33 +852,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date/invalidchars",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "DateElementType",
-                    type: {
-                      name: "Date"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateInvalidCharsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1801,33 +875,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date-time/valid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "DateElementType",
-                    type: {
-                      name: "DateTime"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1858,35 +906,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date-time/valid",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "DateElementType",
-                  type: {
-                    name: "DateTime"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1908,33 +928,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date-time/invalidnull",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "DateElementType",
-                    type: {
-                      name: "DateTime"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1956,33 +950,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date-time/invalidchars",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "DateElementType",
-                    type: {
-                      name: "DateTime"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeInvalidCharsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2005,33 +973,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date-time-rfc1123/valid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "DateElementType",
-                    type: {
-                      name: "DateTimeRfc1123"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeRfc1123ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2062,35 +1004,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/date-time-rfc1123/valid",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "DateElementType",
-                  type: {
-                    name: "DateTimeRfc1123"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDateTimeRfc1123ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2112,33 +1026,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/duration/valid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "TimeSpan"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDurationValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2168,35 +1056,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/duration/valid",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "stringElementType",
-                  type: {
-                    name: "TimeSpan"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDurationValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2219,33 +1079,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/byte/valid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "Uint8ArrayElementType",
-                    type: {
-                      name: "ByteArray"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2276,35 +1110,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/byte/valid",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "Uint8ArrayElementType",
-                  type: {
-                    name: "ByteArray"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putByteValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2326,33 +1132,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/byte/invalidnull",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "Uint8ArrayElementType",
-                    type: {
-                      name: "ByteArray"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2375,33 +1155,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/prim/base64url/valid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "Uint8ArrayElementType",
-                    type: {
-                      name: "Base64Url"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64UrlOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2423,34 +1177,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/complex/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "WidgetElementType",
-                    type: {
-                      name: "Composite",
-                      className: "Widget"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2472,34 +1199,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/complex/empty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "WidgetElementType",
-                    type: {
-                      name: "Composite",
-                      className: "Widget"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2522,34 +1222,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/complex/itemnull",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "WidgetElementType",
-                    type: {
-                      name: "Composite",
-                      className: "Widget"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexItemNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2572,34 +1245,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/complex/itemempty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "WidgetElementType",
-                    type: {
-                      name: "Composite",
-                      className: "Widget"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexItemEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2622,34 +1268,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/complex/valid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "WidgetElementType",
-                    type: {
-                      name: "Composite",
-                      className: "Widget"
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2680,36 +1299,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/complex/valid",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "WidgetElementType",
-                  type: {
-                    name: "Composite",
-                    className: "Widget"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putComplexValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2731,39 +1321,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/array/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ArrayElementType",
-                    type: {
-                      name: "Sequence",
-                      element: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2785,39 +1343,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/array/empty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ArrayElementType",
-                    type: {
-                      name: "Sequence",
-                      element: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2839,39 +1365,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/array/itemnull",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ArrayElementType",
-                    type: {
-                      name: "Sequence",
-                      element: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayItemNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2893,39 +1387,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/array/itemempty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ArrayElementType",
-                    type: {
-                      name: "Sequence",
-                      element: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayItemEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2948,39 +1410,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/array/valid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ArrayElementType",
-                    type: {
-                      name: "Sequence",
-                      element: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -3011,41 +1441,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/array/valid",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "ArrayElementType",
-                  type: {
-                    name: "Sequence",
-                    element: {
-                      serializedName: "stringElementType",
-                      type: {
-                        name: "String"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putArrayValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -3067,39 +1463,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/dictionary/null",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ObjectElementType",
-                    type: {
-                      name: "Dictionary",
-                      value: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -3121,39 +1485,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/dictionary/empty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ObjectElementType",
-                    type: {
-                      name: "Dictionary",
-                      value: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -3176,39 +1508,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/dictionary/itemnull",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ObjectElementType",
-                    type: {
-                      name: "Dictionary",
-                      value: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryItemNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -3231,39 +1531,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/dictionary/itemempty",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ObjectElementType",
-                    type: {
-                      name: "Dictionary",
-                      value: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryItemEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -3287,39 +1555,7 @@ export class Dictionary {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments({}, options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/dictionary/valid",
-          responses: {
-            200: {
-              bodyMapper: {
-                serializedName: "parsedResponse",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "ObjectElementType",
-                    type: {
-                      name: "Dictionary",
-                      value: {
-                        serializedName: "stringElementType",
-                        type: {
-                          name: "String"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -3351,41 +1587,7 @@ export class Dictionary {
             arrayBody
           },
           options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "dictionary/dictionary/valid",
-          requestBody: {
-            parameterPath: "arrayBody",
-            mapper: {
-              required: true,
-              serializedName: "arrayBody",
-              type: {
-                name: "Dictionary",
-                value: {
-                  serializedName: "ObjectElementType",
-                  type: {
-                    name: "Dictionary",
-                    value: {
-                      serializedName: "stringElementType",
-                      type: {
-                        name: "String"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        putDictionaryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -6107,3 +4309,1767 @@ export class Dictionary {
   }
 
 }
+
+// Operation Specifications
+const getNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/empty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/empty",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNullValueOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/nullvalue",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getNullKeyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/nullkey",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getEmptyStringKeyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/keyemptystring",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getInvalidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/invalid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBooleanTfftOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/boolean/tfft",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "booleanElementType",
+            type: {
+              name: "Boolean"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putBooleanTfftOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/boolean/tfft",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "booleanElementType",
+          type: {
+            name: "Boolean"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBooleanInvalidNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/boolean/true.null.false",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "booleanElementType",
+            type: {
+              name: "Boolean"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBooleanInvalidStringOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/boolean/true.boolean.false",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "booleanElementType",
+            type: {
+              name: "Boolean"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getIntegerValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/integer/1.-1.3.300",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putIntegerValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/integer/1.-1.3.300",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "numberElementType",
+          type: {
+            name: "Number"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getIntInvalidNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/integer/1.null.zero",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getIntInvalidStringOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/integer/1.integer.0",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLongValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/long/1.-1.3.300",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putLongValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/long/1.-1.3.300",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "numberElementType",
+          type: {
+            name: "Number"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLongInvalidNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/long/1.null.zero",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getLongInvalidStringOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/long/1.integer.0",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getFloatValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/float/0--0.01-1.2e20",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putFloatValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/float/0--0.01-1.2e20",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "numberElementType",
+          type: {
+            name: "Number"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getFloatInvalidNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/float/0.0-null-1.2e20",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getFloatInvalidStringOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/float/1.number.0",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDoubleValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/double/0--0.01-1.2e20",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDoubleValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/double/0--0.01-1.2e20",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "numberElementType",
+          type: {
+            name: "Number"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDoubleInvalidNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/double/0.0-null-1.2e20",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDoubleInvalidStringOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/double/1.number.0",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "numberElementType",
+            type: {
+              name: "Number"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getStringValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/string/foo1.foo2.foo3",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putStringValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/string/foo1.foo2.foo3",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getStringWithNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/string/foo.null.foo2",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getStringWithInvalidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/string/foo.123.foo2",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDateValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/date/valid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "DateElementType",
+            type: {
+              name: "Date"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDateValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/date/valid",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "DateElementType",
+          type: {
+            name: "Date"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDateInvalidNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/date/invalidnull",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "DateElementType",
+            type: {
+              name: "Date"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDateInvalidCharsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/date/invalidchars",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "DateElementType",
+            type: {
+              name: "Date"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDateTimeValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/date-time/valid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "DateElementType",
+            type: {
+              name: "DateTime"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDateTimeValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/date-time/valid",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "DateElementType",
+          type: {
+            name: "DateTime"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDateTimeInvalidNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/date-time/invalidnull",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "DateElementType",
+            type: {
+              name: "DateTime"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDateTimeInvalidCharsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/date-time/invalidchars",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "DateElementType",
+            type: {
+              name: "DateTime"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/date-time-rfc1123/valid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "DateElementType",
+            type: {
+              name: "DateTimeRfc1123"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/date-time-rfc1123/valid",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "DateElementType",
+          type: {
+            name: "DateTimeRfc1123"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDurationValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/duration/valid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "TimeSpan"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDurationValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/duration/valid",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "stringElementType",
+          type: {
+            name: "TimeSpan"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getByteValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/byte/valid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "Uint8ArrayElementType",
+            type: {
+              name: "ByteArray"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putByteValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/prim/byte/valid",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "Uint8ArrayElementType",
+          type: {
+            name: "ByteArray"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getByteInvalidNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/byte/invalidnull",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "Uint8ArrayElementType",
+            type: {
+              name: "ByteArray"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getBase64UrlOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/prim/base64url/valid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "Uint8ArrayElementType",
+            type: {
+              name: "Base64Url"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getComplexNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/complex/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "WidgetElementType",
+            type: {
+              name: "Composite",
+              className: "Widget"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getComplexEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/complex/empty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "WidgetElementType",
+            type: {
+              name: "Composite",
+              className: "Widget"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getComplexItemNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/complex/itemnull",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "WidgetElementType",
+            type: {
+              name: "Composite",
+              className: "Widget"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getComplexItemEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/complex/itemempty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "WidgetElementType",
+            type: {
+              name: "Composite",
+              className: "Widget"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getComplexValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/complex/valid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "WidgetElementType",
+            type: {
+              name: "Composite",
+              className: "Widget"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putComplexValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/complex/valid",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "WidgetElementType",
+          type: {
+            name: "Composite",
+            className: "Widget"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getArrayNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/array/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ArrayElementType",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getArrayEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/array/empty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ArrayElementType",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getArrayItemNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/array/itemnull",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ArrayElementType",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getArrayItemEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/array/itemempty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ArrayElementType",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getArrayValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/array/valid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ArrayElementType",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putArrayValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/array/valid",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "ArrayElementType",
+          type: {
+            name: "Sequence",
+            element: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDictionaryNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/dictionary/null",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ObjectElementType",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDictionaryEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/dictionary/empty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ObjectElementType",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDictionaryItemNullOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/dictionary/itemnull",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ObjectElementType",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDictionaryItemEmptyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/dictionary/itemempty",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ObjectElementType",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getDictionaryValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "dictionary/dictionary/valid",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "ObjectElementType",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putDictionaryValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "dictionary/dictionary/valid",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Dictionary",
+        value: {
+          serializedName: "ObjectElementType",
+          type: {
+            name: "Dictionary",
+            value: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

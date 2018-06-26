@@ -16,7 +16,7 @@ import { AutoRestRequiredOptionalTestServiceContext } from "../autoRestRequiredO
 /** Class representing a Explicit. */
 export class Explicit {
   private readonly client: AutoRestRequiredOptionalTestServiceContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a Explicit.
    * @param {AutoRestRequiredOptionalTestServiceContext} client Reference to the service client.
@@ -49,28 +49,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/integer/parameter",
-          requestBody: {
-            parameterPath: "bodyParameter",
-            mapper: {
-              required: true,
-              serializedName: "bodyParameter",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredIntegerParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -99,28 +78,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/integer/parameter",
-          requestBody: {
-            parameterPath: "bodyParameter",
-            mapper: {
-              serializedName: "bodyParameter",
-              type: {
-                name: "Number"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalIntegerParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -151,27 +109,7 @@ export class Explicit {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/integer/property",
-          requestBody: {
-            parameterPath: {
-              value: "value"
-            },
-            mapper: {
-              ...Mappers.IntWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredIntegerPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -200,25 +138,7 @@ export class Explicit {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/integer/property",
-          requestBody: {
-            parameterPath: {
-              value: "value"
-            },
-            mapper: Mappers.IntOptionalWrapper
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalIntegerPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -249,29 +169,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/integer/header",
-          headerParameters: [
-            {
-              parameterPath: "headerParameter",
-              mapper: {
-                required: true,
-                serializedName: "headerParameter",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredIntegerHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -300,29 +198,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/integer/header",
-          headerParameters: [
-            {
-              parameterPath: "headerParameter",
-              mapper: {
-                serializedName: "headerParameter",
-                type: {
-                  name: "Number"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalIntegerHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -353,28 +229,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/string/parameter",
-          requestBody: {
-            parameterPath: "bodyParameter",
-            mapper: {
-              required: true,
-              serializedName: "bodyParameter",
-              type: {
-                name: "String"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredStringParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -403,28 +258,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/string/parameter",
-          requestBody: {
-            parameterPath: "bodyParameter",
-            mapper: {
-              serializedName: "bodyParameter",
-              type: {
-                name: "String"
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalStringParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -455,27 +289,7 @@ export class Explicit {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/string/property",
-          requestBody: {
-            parameterPath: {
-              value: "value"
-            },
-            mapper: {
-              ...Mappers.StringWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredStringPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -504,25 +318,7 @@ export class Explicit {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/string/property",
-          requestBody: {
-            parameterPath: {
-              value: "value"
-            },
-            mapper: Mappers.StringOptionalWrapper
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalStringPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -553,29 +349,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/string/header",
-          headerParameters: [
-            {
-              parameterPath: "headerParameter",
-              mapper: {
-                required: true,
-                serializedName: "headerParameter",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredStringHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -604,29 +378,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/string/header",
-          headerParameters: [
-            {
-              parameterPath: "bodyParameter",
-              mapper: {
-                serializedName: "bodyParameter",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalStringHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -657,25 +409,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/class/parameter",
-          requestBody: {
-            parameterPath: "bodyParameter",
-            mapper: {
-              ...Mappers.Product,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredClassParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -704,23 +438,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/class/parameter",
-          requestBody: {
-            parameterPath: "bodyParameter",
-            mapper: Mappers.Product
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalClassParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -751,27 +469,7 @@ export class Explicit {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/class/property",
-          requestBody: {
-            parameterPath: {
-              value: "value"
-            },
-            mapper: {
-              ...Mappers.ClassWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredClassPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -800,25 +498,7 @@ export class Explicit {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/class/property",
-          requestBody: {
-            parameterPath: {
-              value: "value"
-            },
-            mapper: Mappers.ClassOptionalWrapper
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalClassPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -849,34 +529,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/array/parameter",
-          requestBody: {
-            parameterPath: "bodyParameter",
-            mapper: {
-              required: true,
-              serializedName: "bodyParameter",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "stringElementType",
-                  type: {
-                    name: "String"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredArrayParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -905,34 +558,7 @@ export class Explicit {
             bodyParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/array/parameter",
-          requestBody: {
-            parameterPath: "bodyParameter",
-            mapper: {
-              serializedName: "bodyParameter",
-              type: {
-                name: "Sequence",
-                element: {
-                  serializedName: "stringElementType",
-                  type: {
-                    name: "String"
-                  }
-                }
-              }
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalArrayParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -963,27 +589,7 @@ export class Explicit {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/array/property",
-          requestBody: {
-            parameterPath: {
-              value: "value"
-            },
-            mapper: {
-              ...Mappers.ArrayWrapper,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredArrayPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1012,25 +618,7 @@ export class Explicit {
             value
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/array/property",
-          requestBody: {
-            parameterPath: {
-              value: "value"
-            },
-            mapper: Mappers.ArrayOptionalWrapper
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalArrayPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1061,35 +649,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/requied/array/header",
-          headerParameters: [
-            {
-              parameterPath: "headerParameter",
-              mapper: {
-                required: true,
-                serializedName: "headerParameter",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postRequiredArrayHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1118,35 +678,7 @@ export class Explicit {
             headerParameter
           },
           options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "reqopt/optional/array/header",
-          headerParameters: [
-            {
-              parameterPath: "headerParameter",
-              mapper: {
-                serializedName: "headerParameter",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          serializer: this.serializer
-        });
+        postOptionalArrayHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2089,3 +1621,494 @@ export class Explicit {
   }
 
 }
+
+// Operation Specifications
+const postRequiredIntegerParameterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/integer/parameter",
+  requestBody: {
+    parameterPath: "bodyParameter",
+    mapper: {
+      required: true,
+      serializedName: "bodyParameter",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalIntegerParameterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/integer/parameter",
+  requestBody: {
+    parameterPath: "bodyParameter",
+    mapper: {
+      serializedName: "bodyParameter",
+      type: {
+        name: "Number"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredIntegerPropertyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/integer/property",
+  requestBody: {
+    parameterPath: {
+      value: "value"
+    },
+    mapper: {
+      ...Mappers.IntWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalIntegerPropertyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/integer/property",
+  requestBody: {
+    parameterPath: {
+      value: "value"
+    },
+    mapper: Mappers.IntOptionalWrapper
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredIntegerHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/integer/header",
+  headerParameters: [
+    {
+      parameterPath: "headerParameter",
+      mapper: {
+        required: true,
+        serializedName: "headerParameter",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalIntegerHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/integer/header",
+  headerParameters: [
+    {
+      parameterPath: "headerParameter",
+      mapper: {
+        serializedName: "headerParameter",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredStringParameterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/string/parameter",
+  requestBody: {
+    parameterPath: "bodyParameter",
+    mapper: {
+      required: true,
+      serializedName: "bodyParameter",
+      type: {
+        name: "String"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalStringParameterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/string/parameter",
+  requestBody: {
+    parameterPath: "bodyParameter",
+    mapper: {
+      serializedName: "bodyParameter",
+      type: {
+        name: "String"
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredStringPropertyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/string/property",
+  requestBody: {
+    parameterPath: {
+      value: "value"
+    },
+    mapper: {
+      ...Mappers.StringWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalStringPropertyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/string/property",
+  requestBody: {
+    parameterPath: {
+      value: "value"
+    },
+    mapper: Mappers.StringOptionalWrapper
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredStringHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/string/header",
+  headerParameters: [
+    {
+      parameterPath: "headerParameter",
+      mapper: {
+        required: true,
+        serializedName: "headerParameter",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalStringHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/string/header",
+  headerParameters: [
+    {
+      parameterPath: "bodyParameter",
+      mapper: {
+        serializedName: "bodyParameter",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredClassParameterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/class/parameter",
+  requestBody: {
+    parameterPath: "bodyParameter",
+    mapper: {
+      ...Mappers.Product,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalClassParameterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/class/parameter",
+  requestBody: {
+    parameterPath: "bodyParameter",
+    mapper: Mappers.Product
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredClassPropertyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/class/property",
+  requestBody: {
+    parameterPath: {
+      value: "value"
+    },
+    mapper: {
+      ...Mappers.ClassWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalClassPropertyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/class/property",
+  requestBody: {
+    parameterPath: {
+      value: "value"
+    },
+    mapper: Mappers.ClassOptionalWrapper
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredArrayParameterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/array/parameter",
+  requestBody: {
+    parameterPath: "bodyParameter",
+    mapper: {
+      required: true,
+      serializedName: "bodyParameter",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalArrayParameterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/array/parameter",
+  requestBody: {
+    parameterPath: "bodyParameter",
+    mapper: {
+      serializedName: "bodyParameter",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredArrayPropertyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/array/property",
+  requestBody: {
+    parameterPath: {
+      value: "value"
+    },
+    mapper: {
+      ...Mappers.ArrayWrapper,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalArrayPropertyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/array/property",
+  requestBody: {
+    parameterPath: {
+      value: "value"
+    },
+    mapper: Mappers.ArrayOptionalWrapper
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postRequiredArrayHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/requied/array/header",
+  headerParameters: [
+    {
+      parameterPath: "headerParameter",
+      mapper: {
+        required: true,
+        serializedName: "headerParameter",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const postOptionalArrayHeaderOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "reqopt/optional/array/header",
+  headerParameters: [
+    {
+      parameterPath: "headerParameter",
+      mapper: {
+        serializedName: "headerParameter",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
