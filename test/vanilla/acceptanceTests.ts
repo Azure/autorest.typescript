@@ -2291,7 +2291,7 @@ describe('typescript', function () {
       testOptions.requestPolicyCreators = [
         msRest.redirectPolicy(),
         msRest.exponentialRetryPolicy(3, 0, 0, 0),
-        msRest.serializationPolicy()
+        msRest.deserializationPolicy()
       ];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHttpInfrastructureTestService(baseUri, testOptions);
