@@ -52,7 +52,7 @@ describe('typescript', function () {
       var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
       testOptions.requestOptions = { jar: true } as any;
       testOptions.requestPolicyCreators = [
-        msRest.serializationPolicy()
+        msRest.deserializationPolicy()
       ];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHeadExceptionTestService(credentials, baseUri, clientOptions);

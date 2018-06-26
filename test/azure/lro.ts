@@ -16,7 +16,7 @@ var clientOptions: msRestAzure.AzureServiceClientOptions = {
   requestOptions: { jar: true } as any,
   requestPolicyCreators: [
     msRest.exponentialRetryPolicy(3, 0, 0, 0),
-    msRest.serializationPolicy()
+    msRest.deserializationPolicy()
   ],
   noRetryPolicy: true,
   longRunningOperationRetryTimeout: 0

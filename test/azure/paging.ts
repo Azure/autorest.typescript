@@ -4,7 +4,6 @@
 'use strict';
 
 import * as should from 'should';
-import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
 import * as msRest from 'ms-rest-js';
 import * as msRestAzure from 'ms-rest-azure-js';
@@ -26,7 +25,7 @@ describe('typescript', function () {
       clientOptions.requestOptions = { jar: true } as any;
       clientOptions.requestPolicyCreators = [
         msRest.exponentialRetryPolicy(3, 0, 0, 0),
-        msRest.serializationPolicy()
+        msRest.deserializationPolicy()
       ];
       clientOptions.noRetryPolicy = true;
       var testClient = new AutoRestPagingTestService(credentials, baseUri, clientOptions);
