@@ -545,26 +545,6 @@ namespace AutoRest.TypeScript.Model
 
                 IEnumerable<Parameter> parameterTemplateModels = ParameterTemplateModels;
 
-                if (parameterTemplateModels.Any())
-                {
-                    foreach (Parameter parameter in parameterTemplateModels.Where(p => !p.IsClientProperty))
-                    {
-                        if (parameter.IsConstant)
-                        {
-                            methodBody.Line($"let {parameter.Name} = {parameter.DefaultValue};");
-                        }
-                        else if (parameter.IsRequired &&
-                            parameter.ModelType is CompositeType parameterCompositeModelType &&
-                            parameterCompositeModelType.ContainsConstantProperties)
-                        {
-                            methodBody.If($"{parameter.Name} === null || {parameter.Name} === undefined", ifBlock =>
-                            {
-                                ifBlock.Line($"{parameter.Name} = {{}} as any;");
-                            });
-                        }
-                    }
-                }
-
                 methodBody.Line(emptyLine);
 
                 methodBody.Line("let operationRes: msRest.HttpOperationResponse;");
@@ -609,32 +589,32 @@ namespace AutoRest.TypeScript.Model
         {
             operationArguments.Object(obj =>
             {
-                List<string> operationArgumentNames = new List<string>();
-                foreach (Parameter parameter in LogicalParameters)
-                {
-                    operationArgumentNames.Add(parameter.Name);
-                }
-
-                foreach (Parameter parameter in ParameterTemplateModels)
-                {
-                    operationArgumentNames.Add(parameter.Name);
-                }
-
-                foreach (Property optionsProperty in OptionsParameterProperties)
-                {
-                    operationArgumentNames.Add(optionsProperty.Name);
-                }
-
                 ParameterTransformations transformations = GetParameterTransformations();
-
-                foreach (string operationArgumentName in operationArgumentNames)
+                Action<string, string> addArgument = (string operationArgumentName, string operationArgumentValue) =>
                 {
                     if (!obj.ContainsProperty(operationArgumentName) &&
                         !transformations.IsCreatedFromTransformation(operationArgumentName) &&
                         operationArgumentName != "options")
                     {
-                        obj.TextProperty(operationArgumentName, operationArgumentName);
+                        obj.TextProperty(operationArgumentName, operationArgumentValue);
                     }
+                };
+
+                foreach (Parameter parameter in ParameterTemplateModels)
+                {
+                    if (parameter.IsConstant)
+                    {
+                        addArgument(parameter.Name, parameter.DefaultValue);
+                    }
+                    else
+                    {
+                        addArgument(parameter.Name, parameter.Name);
+                    }
+                }
+
+                foreach (Property optionsProperty in OptionsParameterProperties)
+                {
+                    addArgument(optionsProperty.Name, optionsProperty.Name);
                 }
             });
             operationArguments.Text("options");

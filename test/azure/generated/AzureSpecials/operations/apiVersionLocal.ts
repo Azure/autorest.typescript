@@ -37,14 +37,13 @@ export class ApiVersionLocal {
    * @reject {Error|ServiceError} The error object.
    */
   async getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2.0';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            apiVersion,
+            apiVersion: '2.0',
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
@@ -97,14 +96,13 @@ export class ApiVersionLocal {
    * @reject {Error|ServiceError} The error object.
    */
   async getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2.0';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            apiVersion,
+            apiVersion: '2.0',
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
@@ -127,14 +125,13 @@ export class ApiVersionLocal {
    * @reject {Error|ServiceError} The error object.
    */
   async getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2.0';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            apiVersion,
+            apiVersion: '2.0',
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),

@@ -373,8 +373,8 @@ export class StorageAccounts {
             accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            keyName
+            keyName,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         regenerateKeyOperationSpec);

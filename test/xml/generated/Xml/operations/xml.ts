@@ -475,14 +475,13 @@ export class Xml {
    * @reject {Error|ServiceError} The error object.
    */
   async listContainersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ListContainersResponse>> {
-    let comp = 'list';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            comp
+            comp: 'list'
           },
           options),
         listContainersOperationSpec);
@@ -504,16 +503,14 @@ export class Xml {
    * @reject {Error|ServiceError} The error object.
    */
   async getServicePropertiesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageServiceProperties>> {
-    let comp = 'properties';
-    let restype = 'service';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            comp,
-            restype
+            comp: 'properties',
+            restype: 'service'
           },
           options),
         getServicePropertiesOperationSpec);
@@ -537,16 +534,14 @@ export class Xml {
    * @reject {Error|ServiceError} The error object.
    */
   async putServicePropertiesWithHttpOperationResponse(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let comp = 'properties';
-    let restype = 'service';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            comp,
-            restype,
+            comp: 'properties',
+            restype: 'service',
             properties
           },
           options),
@@ -569,16 +564,14 @@ export class Xml {
    * @reject {Error|ServiceError} The error object.
    */
   async getAclsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SignedIdentifier[]>> {
-    let comp = 'acl';
-    let restype = 'container';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            comp,
-            restype
+            comp: 'acl',
+            restype: 'container'
           },
           options),
         getAclsOperationSpec);
@@ -602,16 +595,14 @@ export class Xml {
    * @reject {Error|ServiceError} The error object.
    */
   async putAclsWithHttpOperationResponse(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let comp = 'acl';
-    let restype = 'container';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            comp,
-            restype,
+            comp: 'acl',
+            restype: 'container',
             properties
           },
           options),
@@ -634,16 +625,14 @@ export class Xml {
    * @reject {Error|ServiceError} The error object.
    */
   async listBlobsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ListBlobsResponse>> {
-    let comp = 'list';
-    let restype = 'container';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            comp,
-            restype
+            comp: 'list',
+            restype: 'container'
           },
           options),
         listBlobsOperationSpec);

@@ -606,8 +606,8 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            field
+            field,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         putDurationOperationSpec);
@@ -664,8 +664,8 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            field
+            field,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         putByteOperationSpec);

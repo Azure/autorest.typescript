@@ -37,14 +37,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let boolQuery = true;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            boolQuery
+            boolQuery: true
           },
           options),
         getBooleanTrueOperationSpec);
@@ -66,14 +65,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let boolQuery = false;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            boolQuery
+            boolQuery: false
           },
           options),
         getBooleanFalseOperationSpec);
@@ -124,14 +122,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let intQuery = 1000000;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            intQuery
+            intQuery: 1000000
           },
           options),
         getIntOneMillionOperationSpec);
@@ -153,14 +150,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let intQuery = -1000000;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            intQuery
+            intQuery: -1000000
           },
           options),
         getIntNegativeOneMillionOperationSpec);
@@ -211,14 +207,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let longQuery = 10000000000;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            longQuery
+            longQuery: 10000000000
           },
           options),
         getTenBillionOperationSpec);
@@ -240,14 +235,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let longQuery = -10000000000;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            longQuery
+            longQuery: -10000000000
           },
           options),
         getNegativeTenBillionOperationSpec);
@@ -298,14 +292,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let floatQuery = 103400000000000000000;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            floatQuery
+            floatQuery: 103400000000000000000
           },
           options),
         floatScientificPositiveOperationSpec);
@@ -327,14 +320,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let floatQuery = -1.034e-20;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            floatQuery
+            floatQuery: -1.034e-20
           },
           options),
         floatScientificNegativeOperationSpec);
@@ -385,14 +377,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let doubleQuery = 9999999.999;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            doubleQuery
+            doubleQuery: 9999999.999
           },
           options),
         doubleDecimalPositiveOperationSpec);
@@ -414,14 +405,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let doubleQuery = -9999999.999;
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            doubleQuery
+            doubleQuery: -9999999.999
           },
           options),
         doubleDecimalNegativeOperationSpec);
@@ -472,14 +462,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let stringQuery = '啊齄丂狛狜隣郎隣兀﨩';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            stringQuery
+            stringQuery: '啊齄丂狛狜隣郎隣兀﨩'
           },
           options),
         stringUnicodeOperationSpec);
@@ -501,14 +490,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let stringQuery = 'begin!*\'();:@ &=+$,/?#[]end';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            stringQuery
+            stringQuery: 'begin!*\'();:@ &=+$,/?#[]end'
           },
           options),
         stringUrlEncodedOperationSpec);
@@ -530,14 +518,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let stringQuery = '';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            stringQuery
+            stringQuery: ''
           },
           options),
         stringEmptyOperationSpec);
@@ -675,14 +662,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let byteQuery = new Uint8Array(0);
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            byteQuery
+            byteQuery: new Uint8Array(0)
           },
           options),
         byteEmptyOperationSpec);
@@ -733,14 +719,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let dateQuery = new Date('2012-01-01');
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            dateQuery
+            dateQuery: new Date('2012-01-01')
           },
           options),
         dateValidOperationSpec);
@@ -791,14 +776,13 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let dateTimeQuery = new Date('2012-01-01T01:01:01Z');
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            dateTimeQuery
+            dateTimeQuery: new Date('2012-01-01T01:01:01Z')
           },
           options),
         dateTimeValidOperationSpec);

@@ -78,8 +78,8 @@ export class Header {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            headerCustomNamedRequestIdParamGroupingParameters
+            headerCustomNamedRequestIdParamGroupingParameters,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         customNamedRequestIdParamGroupingOperationSpec);
