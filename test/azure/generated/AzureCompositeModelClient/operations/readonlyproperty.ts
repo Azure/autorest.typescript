@@ -72,8 +72,8 @@ export class Readonlyproperty {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            size
+            size,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         putValidOperationSpec);

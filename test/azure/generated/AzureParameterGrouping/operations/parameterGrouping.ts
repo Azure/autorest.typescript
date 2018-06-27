@@ -46,8 +46,8 @@ export class ParameterGrouping {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            parameterGroupingPostRequiredParameters
+            parameterGroupingPostRequiredParameters,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         postRequiredOperationSpec);
@@ -76,8 +76,8 @@ export class ParameterGrouping {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            parameterGroupingPostOptionalParameters
+            parameterGroupingPostOptionalParameters,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         postOptionalOperationSpec);
@@ -107,9 +107,9 @@ export class ParameterGrouping {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
             firstParameterGroup,
-            parameterGroupingPostMultiParamGroupsSecondParamGroup
+            parameterGroupingPostMultiParamGroupsSecondParamGroup,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         postMultiParamGroupsOperationSpec);
@@ -139,8 +139,8 @@ export class ParameterGrouping {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            firstParameterGroup
+            firstParameterGroup,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         postSharedParameterGroupObjectOperationSpec);

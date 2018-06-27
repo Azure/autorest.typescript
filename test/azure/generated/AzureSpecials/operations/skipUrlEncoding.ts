@@ -99,14 +99,13 @@ export class SkipUrlEncoding {
    * @reject {Error|ServiceError} The error object.
    */
   async getSwaggerPathValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let unencodedPathParam = 'path1/path2/path3';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            unencodedPathParam,
+            unencodedPathParam: 'path1/path2/path3',
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
@@ -221,14 +220,13 @@ export class SkipUrlEncoding {
    * @reject {Error|ServiceError} The error object.
    */
   async getSwaggerQueryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let q1 = 'value1&q2=value2&q3=value3';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            q1,
+            q1: 'value1&q2=value2&q3=value3',
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),

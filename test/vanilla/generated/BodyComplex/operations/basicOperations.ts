@@ -68,7 +68,7 @@ export class BasicOperations {
         msRest.createOperationArguments(
           {
             complexBody,
-            "this.client.apiVersion": this.client.apiVersion
+            "this.client.apiVersion": '2014-04-01-preview'
           },
           options),
         putValidOperationSpec);

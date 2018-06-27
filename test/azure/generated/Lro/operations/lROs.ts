@@ -2194,8 +2194,8 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            provisioningState
+            provisioningState,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         beginPutSubResourceOperationSpec);
@@ -2224,8 +2224,8 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            provisioningState
+            provisioningState,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         beginPutAsyncSubResourceOperationSpec);

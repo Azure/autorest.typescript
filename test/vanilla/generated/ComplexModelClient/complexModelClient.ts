@@ -60,9 +60,9 @@ class ComplexModelClient extends ComplexModelClientContext {
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.subscriptionId": this.subscriptionId,
+            "this.subscriptionId": '123456',
             resourceGroupName,
-            "this.apiVersion": this.apiVersion
+            "this.apiVersion": '2014-04-01-preview'
           },
           options),
         listOperationSpec);
@@ -100,7 +100,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           {
             subscriptionId,
             resourceGroupName,
-            "this.apiVersion": this.apiVersion,
+            "this.apiVersion": '2014-04-01-preview',
             productDictionaryOfArray
           },
           options),
@@ -139,7 +139,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           {
             subscriptionId,
             resourceGroupName,
-            "this.apiVersion": this.apiVersion,
+            "this.apiVersion": '2014-04-01-preview',
             productArrayOfDictionary
           },
           options),

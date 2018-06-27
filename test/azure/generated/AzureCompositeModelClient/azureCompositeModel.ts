@@ -85,16 +85,15 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
-    let apiVersion = '2014-04-01-preview';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.subscriptionId": this.subscriptionId,
+            "this.subscriptionId": '123456',
             resourceGroupName,
-            apiVersion,
+            apiVersion: '2014-04-01-preview',
             "this.acceptLanguage": this.acceptLanguage
           },
           options),
@@ -125,7 +124,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    */
   async createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
     let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
-    let apiVersion = '2014-04-01-preview';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -134,9 +132,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           {
             subscriptionId,
             resourceGroupName,
-            apiVersion,
-            "this.acceptLanguage": this.acceptLanguage,
-            productDictionaryOfArray
+            apiVersion: '2014-04-01-preview',
+            productDictionaryOfArray,
+            "this.acceptLanguage": this.acceptLanguage
           },
           options),
         createOperationSpec);
@@ -166,7 +164,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    */
   async updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
-    let apiVersion = '2014-04-01-preview';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -175,9 +172,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           {
             subscriptionId,
             resourceGroupName,
-            apiVersion,
-            "this.acceptLanguage": this.acceptLanguage,
-            productArrayOfDictionary
+            apiVersion: '2014-04-01-preview',
+            productArrayOfDictionary,
+            "this.acceptLanguage": this.acceptLanguage
           },
           options),
         updateOperationSpec);

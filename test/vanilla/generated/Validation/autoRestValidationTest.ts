@@ -122,14 +122,13 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @reject {Error|ServiceError} The error object.
    */
   async getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let constantParam = 'constant';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            constantParam
+            constantParam: 'constant'
           },
           options),
         getWithConstantInPathOperationSpec);
@@ -152,14 +151,13 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    */
   async postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let body = (options && options.body !== undefined) ? options.body : undefined;
-    let constantParam = 'constant';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            constantParam,
+            constantParam: 'constant',
             body
           },
           options),

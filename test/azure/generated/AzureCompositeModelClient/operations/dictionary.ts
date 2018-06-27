@@ -72,8 +72,8 @@ export class Dictionary {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            defaultProgram
+            defaultProgram,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         putValidOperationSpec);
@@ -130,8 +130,8 @@ export class Dictionary {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            defaultProgram
+            defaultProgram,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         putEmptyOperationSpec);

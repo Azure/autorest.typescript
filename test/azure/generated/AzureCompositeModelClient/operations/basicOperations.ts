@@ -67,7 +67,6 @@ export class BasicOperations {
    * @reject {Error|ServiceError} The error object.
    */
   async putValidWithHttpOperationResponse(complexBody: Models.Basic, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2016-02-29';
 
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -75,7 +74,7 @@ export class BasicOperations {
         msRest.createOperationArguments(
           {
             complexBody,
-            apiVersion,
+            apiVersion: '2016-02-29',
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),

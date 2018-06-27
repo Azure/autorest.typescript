@@ -74,8 +74,8 @@ export class Paging {
         msRest.createOperationArguments(
           {
             clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            pagingGetMultiplePagesOptions
+            pagingGetMultiplePagesOptions,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         getMultiplePagesOperationSpec);
@@ -106,8 +106,8 @@ export class Paging {
         msRest.createOperationArguments(
           {
             clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            pagingGetOdataMultiplePagesOptions
+            pagingGetOdataMultiplePagesOptions,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         getOdataMultiplePagesOperationSpec);
@@ -140,8 +140,8 @@ export class Paging {
         msRest.createOperationArguments(
           {
             clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            pagingGetMultiplePagesWithOffsetOptions
+            pagingGetMultiplePagesWithOffsetOptions,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         getMultiplePagesWithOffsetOperationSpec);
@@ -347,8 +347,8 @@ export class Paging {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            customParameterGroup
+            customParameterGroup,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         getMultiplePagesFragmentWithGroupingNextLinkOperationSpec);
@@ -463,8 +463,8 @@ export class Paging {
         msRest.createOperationArguments(
           {
             nextLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            customParameterGroup
+            customParameterGroup,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         nextFragmentWithGroupingOperationSpec);
@@ -495,8 +495,8 @@ export class Paging {
         msRest.createOperationArguments(
           {
             clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            pagingGetMultiplePagesLROOptions
+            pagingGetMultiplePagesLROOptions,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           options),
         beginGetMultiplePagesLROOperationSpec);
