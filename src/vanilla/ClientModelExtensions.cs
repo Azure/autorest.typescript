@@ -682,6 +682,18 @@ namespace AutoRest.TypeScript
                 mapper.BooleanProperty("required", true);
             }
 
+            if (parameter?.IsXNullable != null)
+            {
+                if (parameter.IsXNullable.Value)
+                {
+                    mapper.BooleanProperty("nullable", true);
+                }
+                else
+                {
+                    mapper.BooleanProperty("nullable", false);
+                }
+            }
+
             if (isReadOnly)
             {
                 mapper.BooleanProperty("readOnly", true);
