@@ -1980,6 +1980,9 @@ describe('typescript', function () {
               ev.loadedBytes.should.be.a.Number;
             }
           });
+          if (response.blobBody) {
+            await response.blobBody();
+          }
           assert(uploadNotified);
           assert(downloadNotified);
         });
@@ -2352,6 +2355,9 @@ describe('typescript', function () {
         });
       });
       it('should work for all http redirect status codes with different verbs', function (done) {
+        // For whatever reason, Chrome's redirect caching seems to break this.
+        // Be sure to run tests either with inspector open/cache disabled, or in a fresh incognito window.
+        this.timeout(2000);
         testClient.httpRedirects.head300(function (error, result, request, response) {
           should.not.exist(error);
           response.status.should.equal(200);
