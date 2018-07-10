@@ -235,8 +235,9 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
             builder.Text($"export const {Name} = ");
-            bool isXML = CodeModel?.ShouldGenerateXmlSerialization == true;
-            ClientModelExtensions.ConstructMapper(builder, this, SerializedName, null, isPageable: false, expandComposite: true, isXML: isXML, isCaseSensitive: CodeModel?.HeaderTypes.Contains(this) != true, xmlName: isXML ? XmlName : null);
+            bool isHeaders = CodeModel.HeaderTypes.Contains(this) == true;
+            bool isXML = !isHeaders && CodeModel.ShouldGenerateXmlSerialization == true;
+            ClientModelExtensions.ConstructMapper(builder, this, SerializedName, null, isPageable: false, expandComposite: true, isXML: isXML, isCaseSensitive: !isHeaders, xmlName: isXML ? XmlName : null);
             builder.Line(";");
             return builder.ToString();
         }
