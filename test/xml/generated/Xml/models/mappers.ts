@@ -1187,7 +1187,6 @@ export const XmlGetHeadersHeaders = {
     className: "XmlGetHeadersHeaders",
     modelProperties: {
       customHeader: {
-        xmlName: "Custom-Header",
         serializedName: "custom-header",
         type: {
           name: "String"

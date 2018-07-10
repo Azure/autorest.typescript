@@ -364,5 +364,10 @@ describe('typescript', function () {
 
       // We could test every last bit of the blob list, but it's a lot of repetitive, slightly variant code.
     });
+
+    it('should deserialize custom headers in an XML client', async function () {
+      const headersResponse = await testClient.xml.getHeadersWithHttpOperationResponse();
+      headersResponse.parsedHeaders.customHeader.should.equal('custom-value');
+    });
   });
 });

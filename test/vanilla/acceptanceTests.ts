@@ -2287,7 +2287,6 @@ describe('typescript', function () {
     describe('Http infrastructure Client', function () {
       const serializer = new msRest.Serializer(AutoRestHttpInfrastructureTestServiceMappers);
       var testOptions: msRest.ServiceClientOptions = { ...clientOptions };
-      //testOptions.requestOptions = { jar: true };
       testOptions.requestPolicyCreators = [
         msRest.redirectPolicy(),
         msRest.exponentialRetryPolicy(3, 0, 0, 0),
