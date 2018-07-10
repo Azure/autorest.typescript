@@ -10,7 +10,7 @@ npm install -g autorest
 This AutoRest extension generates TypeScript code that is compatible with:
 ```
 "ms-rest-azure-js": "~0.10.99",
-"ms-rest-js": "~0.15.352"
+"ms-rest-js": "~0.15.354"
 ```
 
 # Usage
