@@ -1,6 +1,4 @@
-﻿@using System.Linq
-@using AutoRest.Core.Utilities;
-@using AutoRest.TypeScript.vanilla.Templates
+﻿@using AutoRest.Core.Utilities;
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 {
   "name": "@(Model.PackageName)",
@@ -22,13 +20,13 @@
     "webpack": "^3.6.0",
     "uglify-es": "^3.1.0"
   },
-  "homepage": "http://github.com/azure/azure-sdk-for-javascript",
+  "homepage": "@(Model.HomePageUrl)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/azure/azure-sdk-for-javascript.git"
+    "url": "@(Model.RepositoryUrl)",
   },
   "bugs": {
-    "url": "http://github.com/Azure/azure-sdk-for-javascript/issues"
+    "url": "@(Model.BugsUrl)"
   },
   "scripts": {
     "tsc": "tsc -p tsconfig.json",

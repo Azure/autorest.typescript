@@ -26,6 +26,110 @@ export class Xml {
   }
 
   /**
+   * Get a complex type that has a ref to a complex type with no XML node
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
+   */
+  async getComplexTypeRefNoMetaWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RootWithRefAndNoMeta>> {
+
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexTypeRefNoMetaOperationSpec);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Puts a complex type that has a ref to a complex type with no XML node
+   *
+   * @param {RootWithRefAndNoMeta} model
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
+   */
+  async putComplexTypeRefNoMetaWithHttpOperationResponse(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await this.client.sendOperationRequest(
+        msRest.createOperationArguments(
+          {
+            model
+          },
+          options),
+        putComplexTypeRefNoMetaOperationSpec);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Get a complex type that has a ref to a complex type with XML node
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
+   */
+  async getComplexTypeRefWithMetaWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RootWithRefAndMeta>> {
+
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexTypeRefWithMetaOperationSpec);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Puts a complex type that has a ref to a complex type with XML node
+   *
+   * @param {RootWithRefAndMeta} model
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
+   */
+  async putComplexTypeRefWithMetaWithHttpOperationResponse(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await this.client.sendOperationRequest(
+        msRest.createOperationArguments(
+          {
+            model
+          },
+          options),
+        putComplexTypeRefWithMetaOperationSpec);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+  /**
    * Get a simple XML document
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
@@ -640,6 +744,174 @@ export class Xml {
       return Promise.reject(err);
     }
     return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Get a complex type that has a ref to a complex type with no XML node
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *                      {Models.RootWithRefAndNoMeta} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.RootWithRefAndNoMeta} for more information.
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getComplexTypeRefNoMeta(): Promise<Models.RootWithRefAndNoMeta>;
+  getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase): Promise<Models.RootWithRefAndNoMeta>;
+  getComplexTypeRefNoMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
+  getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
+  getComplexTypeRefNoMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.RootWithRefAndNoMeta>;
+    if (!callback) {
+      return this.getComplexTypeRefNoMetaWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.RootWithRefAndNoMeta);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getComplexTypeRefNoMetaWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.RootWithRefAndNoMeta;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Puts a complex type that has a ref to a complex type with no XML node
+   *
+   * @param {RootWithRefAndNoMeta} model
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta): Promise<void>;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase): Promise<void>;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<void>;
+    if (!callback) {
+      return this.putComplexTypeRefNoMetaWithHttpOperationResponse(model, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as void);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.putComplexTypeRefNoMetaWithHttpOperationResponse(model, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as void;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Get a complex type that has a ref to a complex type with XML node
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *                      {Models.RootWithRefAndMeta} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.RootWithRefAndMeta} for more information.
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getComplexTypeRefWithMeta(): Promise<Models.RootWithRefAndMeta>;
+  getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase): Promise<Models.RootWithRefAndMeta>;
+  getComplexTypeRefWithMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
+  getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
+  getComplexTypeRefWithMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndMeta>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.RootWithRefAndMeta>;
+    if (!callback) {
+      return this.getComplexTypeRefWithMetaWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.RootWithRefAndMeta);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getComplexTypeRefWithMetaWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.RootWithRefAndMeta;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Puts a complex type that has a ref to a complex type with XML node
+   *
+   * @param {RootWithRefAndMeta} model
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta): Promise<void>;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase): Promise<void>;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<void>;
+    if (!callback) {
+      return this.putComplexTypeRefWithMetaWithHttpOperationResponse(model, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as void);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.putComplexTypeRefWithMetaWithHttpOperationResponse(model, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as void;
+        return cb(err, result, data.request, data);
+      });
+    }
   }
 
   /**
@@ -1608,6 +1880,70 @@ export class Xml {
 }
 
 // Operation Specifications
+const getComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/complex-type-ref-no-meta",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RootWithRefAndNoMeta
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/complex-type-ref-no-meta",
+  requestBody: {
+    parameterPath: "model",
+    mapper: {
+      ...Mappers.RootWithRefAndNoMeta,
+      required: true
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const getComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/complex-type-ref-with-meta",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RootWithRefAndMeta
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
+const putComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/complex-type-ref-with-meta",
+  requestBody: {
+    parameterPath: "model",
+    mapper: {
+      ...Mappers.RootWithRefAndMeta,
+      required: true
+    }
+  },
+  contentType: "application/xml; charset=utf-8",
+  responses: {
+    201: {},
+    default: {}
+  },
+  isXML: true,
+  serializer: new msRest.Serializer(Mappers, true)
+};
+
 const getSimpleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/simple",

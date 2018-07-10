@@ -9,6 +9,10 @@
  */
 
 export {
+  RootWithRefAndNoMeta,
+  ComplexTypeNoMeta,
+  RootWithRefAndMeta,
+  ComplexTypeWithMeta,
   Slideshow,
   Slide,
   ErrorModel,

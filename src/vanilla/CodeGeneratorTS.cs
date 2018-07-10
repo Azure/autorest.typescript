@@ -38,8 +38,11 @@ namespace AutoRest.TypeScript
                 throw new InvalidCastException("CodeModel is not a TypeScript code model.");
             }
 
+            GeneratorSettingsTS generatorSettings = Singleton<GeneratorSettingsTS>.Instance;
+
             codeModel.PackageName = Settings.Instance.PackageName;
             codeModel.PackageVersion = Settings.Instance.PackageVersion;
+            codeModel.OutputFolder = generatorSettings.OutputFolder;
 
             // Service client
             var serviceClientTemplate = new ServiceClientTemplate {Model = codeModel};
@@ -70,8 +73,7 @@ namespace AutoRest.TypeScript
                 }
             }
 
-            var generateMetadata = Singleton<GeneratorSettingsTS>.Instance.GenerateMetadata;
-            if (generateMetadata)
+            if (generatorSettings.GenerateMetadata)
             {
                 // package.json
                 var packageJson = new PackageJson { Model = codeModel };

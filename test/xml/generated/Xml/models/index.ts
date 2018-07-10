@@ -625,6 +625,67 @@ export interface StorageServiceProperties {
 
 /**
  * @interface
+ * An interface representing ComplexTypeNoMeta.
+ * I am a complex type with no XML node
+ *
+ */
+export interface ComplexTypeNoMeta {
+  /**
+   * @member {string} [id] The id of the res
+   */
+  id?: string;
+}
+
+/**
+ * @interface
+ * An interface representing ComplexTypeWithMeta.
+ * I am a complex type with XML node
+ *
+ */
+export interface ComplexTypeWithMeta {
+  /**
+   * @member {string} [id] The id of the res
+   */
+  id?: string;
+}
+
+/**
+ * @interface
+ * An interface representing RootWithRefAndNoMeta.
+ * I am root, and I ref a model with no meta
+ *
+ */
+export interface RootWithRefAndNoMeta {
+  /**
+   * @member {ComplexTypeNoMeta} [refToModel] XML will use RefToModel
+   */
+  refToModel?: ComplexTypeNoMeta;
+  /**
+   * @member {string} [something] Something else (just to avoid flattening)
+   */
+  something?: string;
+}
+
+/**
+ * @interface
+ * An interface representing RootWithRefAndMeta.
+ * I am root, and I ref a model WITH meta
+ *
+ */
+export interface RootWithRefAndMeta {
+  /**
+   * @member {ComplexTypeWithMeta} [refToModel] XML will use
+   * XMLComplexTypeWithMeta
+   */
+  refToModel?: ComplexTypeWithMeta;
+  /**
+   * @member {string} [something] Something else (just to avoid flattening)
+   */
+  something?: string;
+}
+
+/**
+ * @interface
  * An interface representing XmlGetHeadersHeaders.
  * Defines headers for getHeaders operation.
  *

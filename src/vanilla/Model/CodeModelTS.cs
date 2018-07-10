@@ -18,6 +18,11 @@ namespace AutoRest.TypeScript.Model
     {
         private const string ServiceClientOptions = "ServiceClientOptions";
 
+        private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
+        private const string defaultGitHubUrl = "https://github.com/azure/" + defaultGitHubRepositoryName;
+        private const string searchStringSuffix = "/lib/services/";
+        private const string outputFolderSearchString = "/" + defaultGitHubRepositoryName + searchStringSuffix;
+
         public CodeModelTS()
         {
         }
@@ -114,6 +119,30 @@ namespace AutoRest.TypeScript.Model
         public virtual string PackageName { get; set; }
 
         public virtual string PackageVersion { get; set; }
+
+        public string OutputFolder { get; set; }
+
+        public string HomePageUrl
+        {
+            get
+            {
+                string result = defaultGitHubUrl;
+                if (!string.IsNullOrEmpty(OutputFolder))
+                {
+                    string outputFolder = OutputFolder.Replace('\\', '/');
+                    int searchStringIndex = outputFolder.IndexOf(outputFolderSearchString, StringComparison.OrdinalIgnoreCase);
+                    if (0 <= searchStringIndex)
+                    {
+                        result += searchStringSuffix + outputFolder.Substring(searchStringIndex + outputFolderSearchString.Length);
+                    }
+                }
+                return result;
+            }
+        }
+
+        public string RepositoryUrl => $"{defaultGitHubUrl}.git";
+
+        public string BugsUrl => $"{defaultGitHubUrl}/issues";
 
         public string ClientPrefix
         {
@@ -332,7 +361,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.14.323\"";
+            return "\"ms-rest-js\": \"~0.15.354\"";
         }
 
         public virtual Method GetSampleMethod()

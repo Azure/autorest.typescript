@@ -1095,6 +1095,91 @@ export const StorageServiceProperties = {
   }
 };
 
+export const ComplexTypeNoMeta = {
+  serializedName: "ComplexTypeNoMeta",
+  type: {
+    name: "Composite",
+    className: "ComplexTypeNoMeta",
+    modelProperties: {
+      id: {
+        xmlName: "ID",
+        serializedName: "ID",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ComplexTypeWithMeta = {
+  xmlName: "XMLComplexTypeWithMeta",
+  serializedName: "ComplexTypeWithMeta",
+  type: {
+    name: "Composite",
+    className: "ComplexTypeWithMeta",
+    modelProperties: {
+      id: {
+        xmlName: "ID",
+        serializedName: "ID",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const RootWithRefAndNoMeta = {
+  serializedName: "RootWithRefAndNoMeta",
+  type: {
+    name: "Composite",
+    className: "RootWithRefAndNoMeta",
+    modelProperties: {
+      refToModel: {
+        xmlName: "RefToModel",
+        serializedName: "RefToModel",
+        type: {
+          name: "Composite",
+          className: "ComplexTypeNoMeta"
+        }
+      },
+      something: {
+        xmlName: "Something",
+        serializedName: "Something",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const RootWithRefAndMeta = {
+  serializedName: "RootWithRefAndMeta",
+  type: {
+    name: "Composite",
+    className: "RootWithRefAndMeta",
+    modelProperties: {
+      refToModel: {
+        xmlName: "RefToModel",
+        serializedName: "RefToModel",
+        type: {
+          name: "Composite",
+          className: "ComplexTypeWithMeta"
+        }
+      },
+      something: {
+        xmlName: "Something",
+        serializedName: "Something",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const XmlGetHeadersHeaders = {
   serializedName: "xml-getheaders-headers",
   type: {

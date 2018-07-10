@@ -2,7 +2,6 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 // 
 
-using AutoRest.Core;
 using AutoRest.Core.Extensibility;
 
 namespace AutoRest.TypeScript
@@ -14,5 +13,9 @@ namespace AutoRest.TypeScript
         /// </summary>
         public bool GenerateMetadata { get; set; }
 
+        /// <summary>
+        /// The folder where the generated files will be output to.
+        /// </summary>
+        public string OutputFolder { get; set; }
     }
 }
