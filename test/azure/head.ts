@@ -24,7 +24,6 @@ describe('typescript', function () {
 
     describe('Head Operations', function () {
       var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
-      testOptions.requestOptions = { jar: true } as any;
       testOptions.requestPolicyCreators = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHeadTestService(credentials, baseUri, clientOptions);
@@ -50,7 +49,6 @@ describe('typescript', function () {
 
     describe('Head Exception Operations', function () {
       var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
-      testOptions.requestOptions = { jar: true } as any;
       testOptions.requestPolicyCreators = [
         msRest.deserializationPolicy()
       ];
