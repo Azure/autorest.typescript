@@ -13,7 +13,7 @@ namespace AutoRest.TypeScript.Model
         {
             CodeModelTS codeModel = new CodeModelTS();
             codeModel.OutputFolder = null;
-            Assert.Equal("http://github.com/azure/azure-sdk-for-javascript", codeModel.HomePageUrl);
+            Assert.Equal("http://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
         }
 
         [Fact]
@@ -21,31 +21,31 @@ namespace AutoRest.TypeScript.Model
         {
             CodeModelTS codeModel = new CodeModelTS();
             codeModel.OutputFolder = "";
-            Assert.Equal("http://github.com/azure/azure-sdk-for-javascript", codeModel.HomePageUrl);
+            Assert.Equal("http://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
         }
 
         [Fact]
-        public void HomePageUrlWithOutputFolderThatDoesntContainAzureSdkForJavascript()
+        public void HomePageUrlWithOutputFolderThatDoesntContainAzureSdkForJs()
         {
             CodeModelTS codeModel = new CodeModelTS();
             codeModel.OutputFolder = "test/azure/generated/StorageManagementClient";
-            Assert.Equal("http://github.com/azure/azure-sdk-for-javascript", codeModel.HomePageUrl);
+            Assert.Equal("http://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
         }
 
         [Fact]
-        public void HomePageUrlWithBackslashOutputFolderThatContainsAzureSdkForJavascript()
+        public void HomePageUrlWithBackslashOutputFolderThatContainsAzureSdkForJs()
         {
             CodeModelTS codeModel = new CodeModelTS();
-            codeModel.OutputFolder = "C:\\Users\\daschult\\Sources\\azure-sdk-for-javascript\\lib\\services\\batchManagement";
-            Assert.Equal("http://github.com/azure/azure-sdk-for-javascript/lib/services/batchManagement", codeModel.HomePageUrl);
+            codeModel.OutputFolder = "C:\\Users\\daschult\\Sources\\azure-sdk-for-js\\lib\\services\\batchManagement";
+            Assert.Equal("http://github.com/azure/azure-sdk-for-js/lib/services/batchManagement", codeModel.HomePageUrl);
         }
 
         [Fact]
-        public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJavascript()
+        public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJs()
         {
             CodeModelTS codeModel = new CodeModelTS();
-            codeModel.OutputFolder = "C:/Users/daschult/Sources/azure-sdk-for-javascript/lib/services/batchManagement";
-            Assert.Equal("http://github.com/azure/azure-sdk-for-javascript/lib/services/batchManagement", codeModel.HomePageUrl);
+            codeModel.OutputFolder = "C:/Users/daschult/Sources/azure-sdk-for-js/lib/services/batchManagement";
+            Assert.Equal("http://github.com/azure/azure-sdk-for-js/lib/services/batchManagement", codeModel.HomePageUrl);
         }
     }
 }

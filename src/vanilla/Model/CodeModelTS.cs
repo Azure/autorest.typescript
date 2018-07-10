@@ -18,7 +18,7 @@ namespace AutoRest.TypeScript.Model
     {
         private const string ServiceClientOptions = "ServiceClientOptions";
 
-        private const string defaultGitHubRepositoryName = "azure-sdk-for-javascript";
+        private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
         private const string defaultGitHubUrl = "http://github.com/azure/" + defaultGitHubRepositoryName;
         private const string searchStringSuffix = "/lib/services/";
         private const string outputFolderSearchString = "/" + defaultGitHubRepositoryName + searchStringSuffix;
