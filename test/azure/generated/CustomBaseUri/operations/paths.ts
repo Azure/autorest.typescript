@@ -44,9 +44,7 @@ export class Paths {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            accountName,
-            "this.client.host": this.client.host,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            accountName
           },
           options),
         getEmptyOperationSpec);
@@ -118,7 +116,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.host",
+      parameterPath: "host",
       skipEncoding: true,
       mapper: {
         required: true,
@@ -132,7 +130,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

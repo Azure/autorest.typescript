@@ -44,8 +44,7 @@ export class Paths {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            accountName,
-            "this.client.host": this.client.host
+            accountName
           },
           options),
         getEmptyOperationSpec);
@@ -117,7 +116,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.host",
+      parameterPath: "host",
       skipEncoding: true,
       mapper: {
         required: true,

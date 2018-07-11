@@ -65,8 +65,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            qualifier,
-            "this.acceptLanguage": this.acceptLanguage
+            qualifier
           },
           options),
         getReportOperationSpec);
@@ -135,7 +134,7 @@ const getReportOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

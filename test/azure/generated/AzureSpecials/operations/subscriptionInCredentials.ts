@@ -40,14 +40,7 @@ export class SubscriptionInCredentials {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        postMethodGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postMethodGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -70,14 +63,7 @@ export class SubscriptionInCredentials {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        postMethodGlobalNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postMethodGlobalNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -100,15 +86,7 @@ export class SubscriptionInCredentials {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        postMethodGlobalNotProvidedValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postMethodGlobalNotProvidedValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -131,14 +109,7 @@ export class SubscriptionInCredentials {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        postPathGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postPathGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -161,14 +132,7 @@ export class SubscriptionInCredentials {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        postSwaggerGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postSwaggerGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -393,7 +357,7 @@ const postMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -405,7 +369,7 @@ const postMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -429,7 +393,7 @@ const postMethodGlobalNullOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}",
   urlParameters: [
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -441,7 +405,7 @@ const postMethodGlobalNullOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -465,7 +429,7 @@ const postMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -477,7 +441,7 @@ const postMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -489,7 +453,7 @@ const postMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -513,7 +477,7 @@ const postPathGlobalValidOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -525,7 +489,7 @@ const postPathGlobalValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -549,7 +513,7 @@ const postSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -561,7 +525,7 @@ const postSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

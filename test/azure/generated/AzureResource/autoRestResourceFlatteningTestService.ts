@@ -66,8 +66,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            resourceArray,
-            "this.acceptLanguage": this.acceptLanguage
+            resourceArray
           },
           options),
         putArrayOperationSpec);
@@ -93,13 +92,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.acceptLanguage": this.acceptLanguage
-          },
-          options),
-        getArrayOperationSpec);
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -127,8 +120,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            resourceDictionary,
-            "this.acceptLanguage": this.acceptLanguage
+            resourceDictionary
           },
           options),
         putDictionaryOperationSpec);
@@ -154,13 +146,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.acceptLanguage": this.acceptLanguage
-          },
-          options),
-        getDictionaryOperationSpec);
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -188,8 +174,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            resourceComplexObject,
-            "this.acceptLanguage": this.acceptLanguage
+            resourceComplexObject
           },
           options),
         putResourceCollectionOperationSpec);
@@ -215,13 +200,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.acceptLanguage": this.acceptLanguage
-          },
-          options),
-        getResourceCollectionOperationSpec);
+      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getResourceCollectionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -484,7 +463,7 @@ const putArrayOperationSpec: msRest.OperationSpec = {
   path: "azure/resource-flatten/array",
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -525,7 +504,7 @@ const getArrayOperationSpec: msRest.OperationSpec = {
   path: "azure/resource-flatten/array",
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -563,7 +542,7 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
   path: "azure/resource-flatten/dictionary",
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -604,7 +583,7 @@ const getDictionaryOperationSpec: msRest.OperationSpec = {
   path: "azure/resource-flatten/dictionary",
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -642,7 +621,7 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
   path: "azure/resource-flatten/resourcecollection",
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -671,7 +650,7 @@ const getResourceCollectionOperationSpec: msRest.OperationSpec = {
   path: "azure/resource-flatten/resourcecollection",
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

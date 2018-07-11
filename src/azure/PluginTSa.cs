@@ -1,4 +1,3 @@
-using AutoRest.Core;
 using AutoRest.Core.Extensibility;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
@@ -22,7 +21,6 @@ namespace AutoRest.TypeScript.Azure
                 new Factory<Method, MethodTSa>(),
                 new Factory<CompositeType, CompositeTypeTS>(),
                 new Factory<Property, PropertyTS>(),
-                new Factory<Parameter, ParameterTS>(),
                 new Factory<DictionaryType, DictionaryTypeTS>(),
                 new Factory<SequenceType, SequenceTypeTS>(),
                 new Factory<MethodGroup, MethodGroupTS>(),

@@ -39,13 +39,7 @@ export class HeadException {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        head200OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -67,13 +61,7 @@ export class HeadException {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        head204OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -95,13 +83,7 @@ export class HeadException {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        head404OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head404OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -239,7 +221,7 @@ const head200OperationSpec: msRest.OperationSpec = {
   path: "http/success/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -263,7 +245,7 @@ const head204OperationSpec: msRest.OperationSpec = {
   path: "http/success/204",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -287,7 +269,7 @@ const head404OperationSpec: msRest.OperationSpec = {
   path: "http/success/404",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

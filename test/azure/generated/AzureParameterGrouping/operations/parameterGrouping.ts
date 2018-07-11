@@ -46,8 +46,7 @@ export class ParameterGrouping {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            parameterGroupingPostRequiredParameters,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            parameterGroupingPostRequiredParameters
           },
           options),
         postRequiredOperationSpec);
@@ -76,8 +75,7 @@ export class ParameterGrouping {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            parameterGroupingPostOptionalParameters,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            parameterGroupingPostOptionalParameters
           },
           options),
         postOptionalOperationSpec);
@@ -108,8 +106,7 @@ export class ParameterGrouping {
         msRest.createOperationArguments(
           {
             firstParameterGroup,
-            parameterGroupingPostMultiParamGroupsSecondParamGroup,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            parameterGroupingPostMultiParamGroupsSecondParamGroup
           },
           options),
         postMultiParamGroupsOperationSpec);
@@ -139,8 +136,7 @@ export class ParameterGrouping {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            firstParameterGroup,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            firstParameterGroup
           },
           options),
         postSharedParameterGroupObjectOperationSpec);
@@ -356,7 +352,7 @@ const postRequiredOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -421,7 +417,7 @@ const postOptionalOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -485,7 +481,7 @@ const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -548,7 +544,7 @@ const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

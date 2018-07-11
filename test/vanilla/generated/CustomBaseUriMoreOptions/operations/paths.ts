@@ -52,9 +52,7 @@ export class Paths {
           {
             vault,
             secret,
-            "this.client.dnsSuffix": this.client.dnsSuffix,
             keyName,
-            "this.client.subscriptionId": this.client.subscriptionId,
             keyVersion
           },
           options),
@@ -142,7 +140,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.dnsSuffix",
+      parameterPath: "dnsSuffix",
       skipEncoding: true,
       mapper: {
         required: true,
@@ -164,7 +162,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",

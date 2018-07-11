@@ -212,7 +212,7 @@ describe('typescript', function () {
         testClient.requiredGlobalPath = null;
         testClient.implicit.getRequiredGlobalPath(function (error, result) {
           should.exist(error);
-          error.message.should.containEql('this.client.requiredGlobalPath cannot be null or undefined.');
+          error.message.should.containEql('requiredGlobalPath cannot be null or undefined.');
           done();
         });
       });
@@ -220,7 +220,7 @@ describe('typescript', function () {
         testClient.requiredGlobalQuery = null;
         testClient.implicit.getRequiredGlobalQuery(function (error, result) {
           should.exist(error);
-          error.message.should.containEql('this.client.requiredGlobalQuery cannot be null or undefined.');
+          error.message.should.containEql('requiredGlobalQuery cannot be null or undefined.');
           done();
         });
       });

@@ -59,10 +59,8 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.subscriptionId": this.subscriptionId,
             resourceGroupName,
-            id,
-            "this.apiVersion": this.apiVersion
+            id
           },
           options),
         validationOfMethodParametersOperationSpec);
@@ -97,11 +95,9 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.subscriptionId": this.subscriptionId,
             resourceGroupName,
             id,
-            body,
-            "this.apiVersion": this.apiVersion
+            body
           },
           options),
         validationOfBodyOperationSpec);
@@ -346,7 +342,7 @@ const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
   path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
   urlParameters: [
     {
-      parameterPath: "this.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -388,7 +384,7 @@ const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "apiVersion",
@@ -417,7 +413,7 @@ const validationOfBodyOperationSpec: msRest.OperationSpec = {
   path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
   urlParameters: [
     {
-      parameterPath: "this.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -459,7 +455,7 @@ const validationOfBodyOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "apiVersion",

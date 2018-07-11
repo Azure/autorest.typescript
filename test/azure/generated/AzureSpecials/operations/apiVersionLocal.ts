@@ -43,8 +43,7 @@ export class ApiVersionLocal {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            apiVersion: '2.0',
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            apiVersion: '2.0'
           },
           options),
         getMethodLocalValidOperationSpec);
@@ -73,8 +72,7 @@ export class ApiVersionLocal {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            apiVersion
           },
           options),
         getMethodLocalNullOperationSpec);
@@ -102,8 +100,7 @@ export class ApiVersionLocal {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            apiVersion: '2.0',
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            apiVersion: '2.0'
           },
           options),
         getPathLocalValidOperationSpec);
@@ -131,8 +128,7 @@ export class ApiVersionLocal {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            apiVersion: '2.0',
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            apiVersion: '2.0'
           },
           options),
         getSwaggerLocalValidOperationSpec);
@@ -328,7 +324,7 @@ const getMethodLocalValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -363,7 +359,7 @@ const getMethodLocalNullOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -401,7 +397,7 @@ const getPathLocalValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -439,7 +435,7 @@ const getSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

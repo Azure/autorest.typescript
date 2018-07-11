@@ -60,9 +60,9 @@ class ComplexModelClient extends ComplexModelClientContext {
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.subscriptionId": '123456',
+            subscriptionId: '123456',
             resourceGroupName,
-            "this.apiVersion": '2014-04-01-preview'
+            apiVersion: '2014-04-01-preview'
           },
           options),
         listOperationSpec);
@@ -100,7 +100,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           {
             subscriptionId,
             resourceGroupName,
-            "this.apiVersion": '2014-04-01-preview',
+            apiVersion: '2014-04-01-preview',
             productDictionaryOfArray
           },
           options),
@@ -139,7 +139,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           {
             subscriptionId,
             resourceGroupName,
-            "this.apiVersion": '2014-04-01-preview',
+            apiVersion: '2014-04-01-preview',
             productArrayOfDictionary
           },
           options),
@@ -298,7 +298,7 @@ const listOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
     {
-      parameterPath: "this.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         isConstant: true,
@@ -322,7 +322,7 @@ const listOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         isConstant: true,
@@ -372,7 +372,7 @@ const createOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         isConstant: true,
@@ -432,7 +432,7 @@ const updateOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         isConstant: true,

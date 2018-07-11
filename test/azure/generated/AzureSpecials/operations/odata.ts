@@ -48,8 +48,7 @@ export class Odata {
           {
             filter,
             top,
-            orderby,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            orderby
           },
           options),
         getWithFilterOperationSpec);
@@ -137,7 +136,7 @@ const getWithFilterOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

@@ -91,10 +91,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
       operationRes = await this.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.subscriptionId": '123456',
+            subscriptionId: '123456',
             resourceGroupName,
-            apiVersion: '2014-04-01-preview',
-            "this.acceptLanguage": this.acceptLanguage
+            apiVersion: '2014-04-01-preview'
           },
           options),
         listOperationSpec);
@@ -133,8 +132,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
             subscriptionId,
             resourceGroupName,
             apiVersion: '2014-04-01-preview',
-            productDictionaryOfArray,
-            "this.acceptLanguage": this.acceptLanguage
+            productDictionaryOfArray
           },
           options),
         createOperationSpec);
@@ -173,8 +171,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
             subscriptionId,
             resourceGroupName,
             apiVersion: '2014-04-01-preview',
-            productArrayOfDictionary,
-            "this.acceptLanguage": this.acceptLanguage
+            productArrayOfDictionary
           },
           options),
         updateOperationSpec);
@@ -332,7 +329,7 @@ const listOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
     {
-      parameterPath: "this.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         isConstant: true,
@@ -370,7 +367,7 @@ const listOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -432,7 +429,7 @@ const createOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -504,7 +501,7 @@ const updateOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

@@ -45,8 +45,7 @@ export class SkipUrlEncoding {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            unencodedPathParam,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            unencodedPathParam
           },
           options),
         getMethodPathValidOperationSpec);
@@ -76,8 +75,7 @@ export class SkipUrlEncoding {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            unencodedPathParam,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            unencodedPathParam
           },
           options),
         getPathPathValidOperationSpec);
@@ -105,8 +103,7 @@ export class SkipUrlEncoding {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            unencodedPathParam: 'path1/path2/path3',
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            unencodedPathParam: 'path1/path2/path3'
           },
           options),
         getSwaggerPathValidOperationSpec);
@@ -136,8 +133,7 @@ export class SkipUrlEncoding {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            q1,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            q1
           },
           options),
         getMethodQueryValidOperationSpec);
@@ -166,8 +162,7 @@ export class SkipUrlEncoding {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            q1,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            q1
           },
           options),
         getMethodQueryNullOperationSpec);
@@ -197,8 +192,7 @@ export class SkipUrlEncoding {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            q1,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            q1
           },
           options),
         getPathQueryValidOperationSpec);
@@ -226,8 +220,7 @@ export class SkipUrlEncoding {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            q1: 'value1&q2=value2&q3=value3',
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            q1: 'value1&q2=value2&q3=value3'
           },
           options),
         getSwaggerQueryValidOperationSpec);
@@ -553,7 +546,7 @@ const getMethodPathValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -590,7 +583,7 @@ const getPathPathValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -629,7 +622,7 @@ const getSwaggerPathValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -666,7 +659,7 @@ const getMethodQueryValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -702,7 +695,7 @@ const getMethodQueryNullOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -739,7 +732,7 @@ const getPathQueryValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -778,7 +771,7 @@ const getSwaggerQueryValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
