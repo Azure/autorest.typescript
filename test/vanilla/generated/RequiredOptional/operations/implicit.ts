@@ -157,13 +157,7 @@ export class Implicit {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.requiredGlobalPath": this.client.requiredGlobalPath
-          },
-          options),
-        getRequiredGlobalPathOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRequiredGlobalPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -185,13 +179,7 @@ export class Implicit {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery
-          },
-          options),
-        getRequiredGlobalQueryOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRequiredGlobalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -213,13 +201,7 @@ export class Implicit {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery
-          },
-          options),
-        getOptionalGlobalQueryOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOptionalGlobalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -614,7 +596,7 @@ const getRequiredGlobalPathOperationSpec: msRest.OperationSpec = {
   path: "reqopt/global/required/path/{required-global-path}",
   urlParameters: [
     {
-      parameterPath: "this.client.requiredGlobalPath",
+      parameterPath: "requiredGlobalPath",
       mapper: {
         required: true,
         serializedName: "required-global-path",
@@ -637,7 +619,7 @@ const getRequiredGlobalQueryOperationSpec: msRest.OperationSpec = {
   path: "reqopt/global/required/query",
   queryParameters: [
     {
-      parameterPath: "this.client.requiredGlobalQuery",
+      parameterPath: "requiredGlobalQuery",
       mapper: {
         required: true,
         serializedName: "required-global-query",
@@ -660,7 +642,7 @@ const getOptionalGlobalQueryOperationSpec: msRest.OperationSpec = {
   path: "reqopt/global/optional/query",
   queryParameters: [
     {
-      parameterPath: "this.client.optionalGlobalQuery",
+      parameterPath: "optionalGlobalQuery",
       mapper: {
         serializedName: "optional-global-query",
         type: {

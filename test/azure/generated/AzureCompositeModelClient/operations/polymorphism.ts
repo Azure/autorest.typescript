@@ -40,13 +40,7 @@ export class Polymorphism {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,8 +99,7 @@ export class Polymorphism {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putValidOperationSpec);
@@ -132,13 +125,7 @@ export class Polymorphism {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getComplicatedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplicatedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -166,8 +153,7 @@ export class Polymorphism {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putComplicatedOperationSpec);
@@ -197,8 +183,7 @@ export class Polymorphism {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putMissingDiscriminatorOperationSpec);
@@ -255,8 +240,7 @@ export class Polymorphism {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putValidMissingRequiredOperationSpec);
@@ -589,7 +573,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   path: "complex/polymorphism/valid",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -615,7 +599,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   path: "complex/polymorphism/valid",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -647,7 +631,7 @@ const getComplicatedOperationSpec: msRest.OperationSpec = {
   path: "complex/polymorphism/complicated",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -673,7 +657,7 @@ const putComplicatedOperationSpec: msRest.OperationSpec = {
   path: "complex/polymorphism/complicated",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -705,7 +689,7 @@ const putMissingDiscriminatorOperationSpec: msRest.OperationSpec = {
   path: "complex/polymorphism/missingdiscriminator",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -739,7 +723,7 @@ const putValidMissingRequiredOperationSpec: msRest.OperationSpec = {
   path: "complex/polymorphism/missingrequired/invalid",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

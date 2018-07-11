@@ -40,13 +40,7 @@ export class Inheritance {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -75,8 +69,7 @@ export class Inheritance {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putValidOperationSpec);
@@ -180,7 +173,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   path: "complex/inheritance/valid",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -206,7 +199,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   path: "complex/inheritance/valid",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

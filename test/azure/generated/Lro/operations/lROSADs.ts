@@ -1037,8 +1037,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutNonRetry400OperationSpec);
@@ -1068,8 +1067,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutNonRetry201Creating400OperationSpec);
@@ -1100,8 +1098,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutNonRetry201Creating400InvalidJsonOperationSpec);
@@ -1131,8 +1128,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncRelativeRetry400OperationSpec);
@@ -1157,13 +1153,7 @@ export class LROSADs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteNonRetry400OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1185,13 +1175,7 @@ export class LROSADs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDelete202NonRetry400OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete202NonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1214,13 +1198,7 @@ export class LROSADs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteAsyncRelativeRetry400OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1246,8 +1224,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostNonRetry400OperationSpec);
@@ -1276,8 +1253,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPost202NonRetry400OperationSpec);
@@ -1307,8 +1283,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostAsyncRelativeRetry400OperationSpec);
@@ -1338,8 +1313,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutError201NoProvisioningStatePayloadOperationSpec);
@@ -1370,8 +1344,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncRelativeRetryNoStatusOperationSpec);
@@ -1403,8 +1376,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec);
@@ -1429,13 +1401,7 @@ export class LROSADs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDelete204SucceededOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete204SucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1458,13 +1424,7 @@ export class LROSADs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteAsyncRelativeRetryNoStatusOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRelativeRetryNoStatusOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1491,8 +1451,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPost202NoLocationOperationSpec);
@@ -1524,8 +1483,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostAsyncRelativeRetryNoPayloadOperationSpec);
@@ -1555,8 +1513,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPut200InvalidJsonOperationSpec);
@@ -1588,8 +1545,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncRelativeRetryInvalidHeaderOperationSpec);
@@ -1621,8 +1577,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec);
@@ -1648,13 +1603,7 @@ export class LROSADs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDelete202RetryInvalidHeaderOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete202RetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1677,13 +1626,7 @@ export class LROSADs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1706,13 +1649,7 @@ export class LROSADs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1739,8 +1676,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPost202RetryInvalidHeaderOperationSpec);
@@ -1772,8 +1708,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostAsyncRelativeRetryInvalidHeaderOperationSpec);
@@ -1805,8 +1740,7 @@ export class LROSADs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec);
@@ -4021,7 +3955,7 @@ const beginPutNonRetry400OperationSpec: msRest.OperationSpec = {
   path: "lro/nonretryerror/put/400",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4055,7 +3989,7 @@ const beginPutNonRetry201Creating400OperationSpec: msRest.OperationSpec = {
   path: "lro/nonretryerror/put/201/creating/400",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4089,7 +4023,7 @@ const beginPutNonRetry201Creating400InvalidJsonOperationSpec: msRest.OperationSp
   path: "lro/nonretryerror/put/201/creating/400/invalidjson",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4123,7 +4057,7 @@ const beginPutAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
   path: "lro/nonretryerror/putasync/retry/400",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4155,7 +4089,7 @@ const beginDeleteNonRetry400OperationSpec: msRest.OperationSpec = {
   path: "lro/nonretryerror/delete/400",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4181,7 +4115,7 @@ const beginDelete202NonRetry400OperationSpec: msRest.OperationSpec = {
   path: "lro/nonretryerror/delete/202/retry/400",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4207,7 +4141,7 @@ const beginDeleteAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
   path: "lro/nonretryerror/deleteasync/retry/400",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4233,7 +4167,7 @@ const beginPostNonRetry400OperationSpec: msRest.OperationSpec = {
   path: "lro/nonretryerror/post/400",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4264,7 +4198,7 @@ const beginPost202NonRetry400OperationSpec: msRest.OperationSpec = {
   path: "lro/nonretryerror/post/202/retry/400",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4295,7 +4229,7 @@ const beginPostAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
   path: "lro/nonretryerror/postasync/retry/400",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4326,7 +4260,7 @@ const beginPutError201NoProvisioningStatePayloadOperationSpec: msRest.OperationS
   path: "lro/error/put/201/noprovisioningstatepayload",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4360,7 +4294,7 @@ const beginPutAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec = {
   path: "lro/error/putasync/retry/nostatus",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4392,7 +4326,7 @@ const beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec: msRest.OperationSp
   path: "lro/error/putasync/retry/nostatuspayload",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4424,7 +4358,7 @@ const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/error/delete/204/nolocation",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4448,7 +4382,7 @@ const beginDeleteAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec =
   path: "lro/error/deleteasync/retry/nostatus",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4474,7 +4408,7 @@ const beginPost202NoLocationOperationSpec: msRest.OperationSpec = {
   path: "lro/error/post/202/nolocation",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4505,7 +4439,7 @@ const beginPostAsyncRelativeRetryNoPayloadOperationSpec: msRest.OperationSpec = 
   path: "lro/error/postasync/retry/nopayload",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4536,7 +4470,7 @@ const beginPut200InvalidJsonOperationSpec: msRest.OperationSpec = {
   path: "lro/error/put/200/invalidjson",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4568,7 +4502,7 @@ const beginPutAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec
   path: "lro/error/putasync/retry/invalidheader",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4600,7 +4534,7 @@ const beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operatio
   path: "lro/error/putasync/retry/invalidjsonpolling",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4632,7 +4566,7 @@ const beginDelete202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
   path: "lro/error/delete/202/retry/invalidheader",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4658,7 +4592,7 @@ const beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationS
   path: "lro/error/deleteasync/retry/invalidheader",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4684,7 +4618,7 @@ const beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Opera
   path: "lro/error/deleteasync/retry/invalidjsonpolling",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4710,7 +4644,7 @@ const beginPost202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
   path: "lro/error/post/202/retry/invalidheader",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4741,7 +4675,7 @@ const beginPostAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpe
   path: "lro/error/postasync/retry/invalidheader",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -4772,7 +4706,7 @@ const beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operati
   path: "lro/error/postasync/retry/invalidjsonpolling",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

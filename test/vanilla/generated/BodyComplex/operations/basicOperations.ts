@@ -68,7 +68,7 @@ export class BasicOperations {
         msRest.createOperationArguments(
           {
             complexBody,
-            "this.client.apiVersion": '2014-04-01-preview'
+            apiVersion: '2014-04-01-preview'
           },
           options),
         putValidOperationSpec);
@@ -436,7 +436,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   path: "complex/basic/valid",
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         isConstant: true,

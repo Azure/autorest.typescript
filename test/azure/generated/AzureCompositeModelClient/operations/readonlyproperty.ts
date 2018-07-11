@@ -40,13 +40,7 @@ export class Readonlyproperty {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -72,8 +66,7 @@ export class Readonlyproperty {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            size,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            size
           },
           options),
         putValidOperationSpec);
@@ -173,7 +166,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   path: "complex/readonlyproperty/valid",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -199,7 +192,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   path: "complex/readonlyproperty/valid",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

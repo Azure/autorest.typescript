@@ -1723,8 +1723,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPut200SucceededOperationSpec);
@@ -1754,8 +1753,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPut200SucceededNoStateOperationSpec);
@@ -1786,8 +1784,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPut202Retry200OperationSpec);
@@ -1818,8 +1815,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPut201CreatingSucceeded200OperationSpec);
@@ -1850,8 +1846,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPut200UpdatingSucceeded204OperationSpec);
@@ -1882,8 +1877,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPut201CreatingFailed200OperationSpec);
@@ -1914,8 +1908,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPut200Acceptedcanceled200OperationSpec);
@@ -1945,8 +1938,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutNoHeaderInRetryOperationSpec);
@@ -1977,8 +1969,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncRetrySucceededOperationSpec);
@@ -2009,8 +2000,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncNoRetrySucceededOperationSpec);
@@ -2041,8 +2031,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncRetryFailedOperationSpec);
@@ -2073,8 +2062,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncNoRetrycanceledOperationSpec);
@@ -2104,8 +2092,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncNoHeaderInRetryOperationSpec);
@@ -2134,8 +2121,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            sku,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            sku
           },
           options),
         beginPutNonResourceOperationSpec);
@@ -2164,8 +2150,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            sku,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            sku
           },
           options),
         beginPutAsyncNonResourceOperationSpec);
@@ -2194,8 +2179,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            provisioningState,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            provisioningState
           },
           options),
         beginPutSubResourceOperationSpec);
@@ -2224,8 +2208,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            provisioningState,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            provisioningState
           },
           options),
         beginPutAsyncSubResourceOperationSpec);
@@ -2252,13 +2235,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteProvisioning202Accepted200SucceededOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteProvisioning202Accepted200SucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2282,13 +2259,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteProvisioning202DeletingFailed200OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteProvisioning202DeletingFailed200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2312,13 +2283,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteProvisioning202Deletingcanceled200OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteProvisioning202Deletingcanceled200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2340,13 +2305,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDelete204SucceededOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete204SucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2369,13 +2328,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDelete202Retry200OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete202Retry200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2398,13 +2351,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDelete202NoRetry204OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete202NoRetry204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2427,13 +2374,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteNoHeaderInRetryOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteNoHeaderInRetryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2456,13 +2397,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteAsyncNoHeaderInRetryOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncNoHeaderInRetryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2485,13 +2420,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteAsyncRetrySucceededOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRetrySucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2514,13 +2443,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteAsyncNoRetrySucceededOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncNoRetrySucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2543,13 +2466,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteAsyncRetryFailedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRetryFailedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2572,13 +2489,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginDeleteAsyncRetrycanceledOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRetrycanceledOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2601,13 +2512,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginPost200WithPayloadOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginPost200WithPayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2634,8 +2539,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPost202Retry200OperationSpec);
@@ -2665,8 +2569,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPost202NoRetry204OperationSpec);
@@ -2693,13 +2596,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginPostDoubleHeadersFinalLocationGetOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginPostDoubleHeadersFinalLocationGetOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2723,13 +2620,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2753,13 +2644,7 @@ export class LROs {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2787,8 +2672,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostAsyncRetrySucceededOperationSpec);
@@ -2819,8 +2703,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostAsyncNoRetrySucceededOperationSpec);
@@ -2851,8 +2734,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostAsyncRetryFailedOperationSpec);
@@ -2883,8 +2765,7 @@ export class LROs {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostAsyncRetrycanceledOperationSpec);
@@ -6206,7 +6087,7 @@ const beginPut200SucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/put/200/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6238,7 +6119,7 @@ const beginPut200SucceededNoStateOperationSpec: msRest.OperationSpec = {
   path: "lro/put/200/succeeded/nostate",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6269,7 +6150,7 @@ const beginPut202Retry200OperationSpec: msRest.OperationSpec = {
   path: "lro/put/202/retry/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6300,7 +6181,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
   path: "lro/put/201/creating/succeeded/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6334,7 +6215,7 @@ const beginPut200UpdatingSucceeded204OperationSpec: msRest.OperationSpec = {
   path: "lro/put/200/updating/succeeded/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6365,7 +6246,7 @@ const beginPut201CreatingFailed200OperationSpec: msRest.OperationSpec = {
   path: "lro/put/201/created/failed/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6399,7 +6280,7 @@ const beginPut200Acceptedcanceled200OperationSpec: msRest.OperationSpec = {
   path: "lro/put/200/accepted/canceled/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6430,7 +6311,7 @@ const beginPutNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   path: "lro/put/noheader/202/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6462,7 +6343,7 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/putasync/retry/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6494,7 +6375,7 @@ const beginPutAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/putasync/noretry/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6526,7 +6407,7 @@ const beginPutAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   path: "lro/putasync/retry/failed",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6558,7 +6439,7 @@ const beginPutAsyncNoRetrycanceledOperationSpec: msRest.OperationSpec = {
   path: "lro/putasync/noretry/canceled",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6590,7 +6471,7 @@ const beginPutAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   path: "lro/putasync/noheader/201/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6622,7 +6503,7 @@ const beginPutNonResourceOperationSpec: msRest.OperationSpec = {
   path: "lro/putnonresource/202/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6653,7 +6534,7 @@ const beginPutAsyncNonResourceOperationSpec: msRest.OperationSpec = {
   path: "lro/putnonresourceasync/202/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6684,7 +6565,7 @@ const beginPutSubResourceOperationSpec: msRest.OperationSpec = {
   path: "lro/putsubresource/202/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6717,7 +6598,7 @@ const beginPutAsyncSubResourceOperationSpec: msRest.OperationSpec = {
   path: "lro/putsubresourceasync/202/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6750,7 +6631,7 @@ const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.Operat
   path: "lro/delete/provisioning/202/accepted/200/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6781,7 +6662,7 @@ const beginDeleteProvisioning202DeletingFailed200OperationSpec: msRest.Operation
   path: "lro/delete/provisioning/202/deleting/200/failed",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6812,7 +6693,7 @@ const beginDeleteProvisioning202Deletingcanceled200OperationSpec: msRest.Operati
   path: "lro/delete/provisioning/202/deleting/200/canceled",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6843,7 +6724,7 @@ const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/delete/204/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6867,7 +6748,7 @@ const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
   path: "lro/delete/202/retry/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6897,7 +6778,7 @@ const beginDelete202NoRetry204OperationSpec: msRest.OperationSpec = {
   path: "lro/delete/202/noretry/204",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6927,7 +6808,7 @@ const beginDeleteNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   path: "lro/delete/noheader",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6956,7 +6837,7 @@ const beginDeleteAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   path: "lro/deleteasync/noheader/202/204",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -6985,7 +6866,7 @@ const beginDeleteAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/deleteasync/retry/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7011,7 +6892,7 @@ const beginDeleteAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/deleteasync/noretry/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7037,7 +6918,7 @@ const beginDeleteAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   path: "lro/deleteasync/retry/failed",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7063,7 +6944,7 @@ const beginDeleteAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
   path: "lro/deleteasync/retry/canceled",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7089,7 +6970,7 @@ const beginPost200WithPayloadOperationSpec: msRest.OperationSpec = {
   path: "lro/post/payload/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7118,7 +6999,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
   path: "lro/post/202/retry/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7149,7 +7030,7 @@ const beginPost202NoRetry204OperationSpec: msRest.OperationSpec = {
   path: "lro/post/202/noretry/204",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7181,7 +7062,7 @@ const beginPostDoubleHeadersFinalLocationGetOperationSpec: msRest.OperationSpec 
   path: "lro/LROPostDoubleHeadersFinalLocationGet",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7207,7 +7088,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec: msRest.OperationSp
   path: "lro/LROPostDoubleHeadersFinalAzureHeaderGet",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7233,7 +7114,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: msRest.Oper
   path: "lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7259,7 +7140,7 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/postasync/retry/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7294,7 +7175,7 @@ const beginPostAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/postasync/noretry/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7329,7 +7210,7 @@ const beginPostAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   path: "lro/postasync/retry/failed",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -7360,7 +7241,7 @@ const beginPostAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
   path: "lro/postasync/retry/canceled",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

@@ -162,7 +162,7 @@ namespace AutoRest.TypeScript
                 var optionalParameters = method.Parameters.Where(p => p != null && !p.IsClientProperty && !string.IsNullOrWhiteSpace(p.Name) && !p.IsConstant && !p.IsRequired).ToList();
                 if (optionalParameters!= null && optionalParameters.Count() == 0)
                 {
-                    var optionsParameterTemplateModel = (ParameterTS)New<Parameter>(new
+                    var optionsParameterTemplateModel = New<Parameter>(new
                     {
                         Name = "options",
                         SerializedName = "options",
@@ -180,7 +180,7 @@ namespace AutoRest.TypeScript
                 }
                 else
                 {
-                    var optionsParameterTemplateModel = (ParameterTS)New<Parameter>(new
+                    var optionsParameterTemplateModel = New<Parameter>(new
                     {
                         Name = "options",
                         SerializedName = "options",

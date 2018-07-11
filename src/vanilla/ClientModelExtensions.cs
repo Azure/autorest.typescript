@@ -535,7 +535,7 @@ namespace AutoRest.TypeScript
             return "/" + constraintValue.Replace("/", "\\/") + "/";
         }
 
-        public static void ConstructRequestBodyMapper(TSValue value, ParameterTS requestBody)
+        public static void ConstructRequestBodyMapper(TSValue value, Parameter requestBody)
         {
             IModelType requestBodyModelType = requestBody.ModelType;
             if (requestBodyModelType is CompositeType)

@@ -40,13 +40,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -72,8 +66,7 @@ export class ArrayModel {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            arrayProperty,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            arrayProperty
           },
           options),
         putValidOperationSpec);
@@ -98,13 +91,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -130,8 +117,7 @@ export class ArrayModel {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            arrayProperty,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            arrayProperty
           },
           options),
         putEmptyOperationSpec);
@@ -156,13 +142,7 @@ export class ArrayModel {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getNotProvidedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -382,7 +362,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   path: "complex/array/valid",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -408,7 +388,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   path: "complex/array/valid",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -442,7 +422,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   path: "complex/array/empty",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -468,7 +448,7 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
   path: "complex/array/empty",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -502,7 +482,7 @@ const getNotProvidedOperationSpec: msRest.OperationSpec = {
   path: "complex/array/notprovided",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

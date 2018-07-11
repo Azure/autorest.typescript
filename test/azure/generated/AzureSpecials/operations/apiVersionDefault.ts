@@ -39,14 +39,7 @@ export class ApiVersionDefault {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getMethodGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMethodGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -68,14 +61,7 @@ export class ApiVersionDefault {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getMethodGlobalNotProvidedValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMethodGlobalNotProvidedValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -97,14 +83,7 @@ export class ApiVersionDefault {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getPathGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getPathGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -126,14 +105,7 @@ export class ApiVersionDefault {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getSwaggerGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSwaggerGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -312,7 +284,7 @@ const getMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -324,7 +296,7 @@ const getMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -348,7 +320,7 @@ const getMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -360,7 +332,7 @@ const getMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -384,7 +356,7 @@ const getPathGlobalValidOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -396,7 +368,7 @@ const getPathGlobalValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -420,7 +392,7 @@ const getSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -432,7 +404,7 @@ const getSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

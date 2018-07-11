@@ -47,10 +47,7 @@ export class StorageAccounts {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            accountName
           },
           options),
         checkNameAvailabilityOperationSpec);
@@ -142,10 +139,7 @@ export class StorageAccounts {
         msRest.createOperationArguments(
           {
             resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            accountName
           },
           options),
         deleteMethodOperationSpec);
@@ -182,10 +176,7 @@ export class StorageAccounts {
         msRest.createOperationArguments(
           {
             resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            accountName
           },
           options),
         getPropertiesOperationSpec);
@@ -230,10 +221,7 @@ export class StorageAccounts {
           {
             resourceGroupName,
             accountName,
-            parameters,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            parameters
           },
           options),
         updateOperationSpec);
@@ -266,10 +254,7 @@ export class StorageAccounts {
         msRest.createOperationArguments(
           {
             resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            accountName
           },
           options),
         listKeysOperationSpec);
@@ -295,15 +280,7 @@ export class StorageAccounts {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        listOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), listOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -331,10 +308,7 @@ export class StorageAccounts {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            resourceGroupName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            resourceGroupName
           },
           options),
         listByResourceGroupOperationSpec);
@@ -371,10 +345,7 @@ export class StorageAccounts {
           {
             resourceGroupName,
             accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            keyName,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            keyName
           },
           options),
         regenerateKeyOperationSpec);
@@ -416,10 +387,7 @@ export class StorageAccounts {
           {
             resourceGroupName,
             accountName,
-            parameters,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            parameters
           },
           options),
         beginCreateOperationSpec);
@@ -918,7 +886,7 @@ const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
   urlParameters: [
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -930,7 +898,7 @@ const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -942,7 +910,7 @@ const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -996,7 +964,7 @@ const deleteMethodOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -1008,7 +976,7 @@ const deleteMethodOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -1020,7 +988,7 @@ const deleteMethodOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1065,7 +1033,7 @@ const getPropertiesOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -1077,7 +1045,7 @@ const getPropertiesOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -1089,7 +1057,7 @@ const getPropertiesOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1135,7 +1103,7 @@ const updateOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -1147,7 +1115,7 @@ const updateOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -1159,7 +1127,7 @@ const updateOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1213,7 +1181,7 @@ const listKeysOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -1225,7 +1193,7 @@ const listKeysOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -1237,7 +1205,7 @@ const listKeysOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1263,7 +1231,7 @@ const listOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
   urlParameters: [
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -1275,7 +1243,7 @@ const listOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -1287,7 +1255,7 @@ const listOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1323,7 +1291,7 @@ const listByResourceGroupOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -1335,7 +1303,7 @@ const listByResourceGroupOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -1347,7 +1315,7 @@ const listByResourceGroupOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1393,7 +1361,7 @@ const regenerateKeyOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -1405,7 +1373,7 @@ const regenerateKeyOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -1417,7 +1385,7 @@ const regenerateKeyOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1473,7 +1441,7 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -1485,7 +1453,7 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -1497,7 +1465,7 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

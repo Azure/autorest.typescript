@@ -45,8 +45,7 @@ export class Header {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            fooClientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            fooClientRequestId
           },
           options),
         customNamedRequestIdOperationSpec);
@@ -78,8 +77,7 @@ export class Header {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            headerCustomNamedRequestIdParamGroupingParameters,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            headerCustomNamedRequestIdParamGroupingParameters
           },
           options),
         customNamedRequestIdParamGroupingOperationSpec);
@@ -109,8 +107,7 @@ export class Header {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            fooClientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            fooClientRequestId
           },
           options),
         customNamedRequestIdHeadOperationSpec);
@@ -272,7 +269,7 @@ const customNamedRequestIdOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -298,7 +295,7 @@ const customNamedRequestIdParamGroupingOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/customNamedRequestIdParamGrouping",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -347,7 +344,7 @@ const customNamedRequestIdHeadOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

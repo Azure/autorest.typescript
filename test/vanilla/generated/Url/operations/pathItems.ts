@@ -54,9 +54,7 @@ export class PathItems {
             localStringPath,
             localStringQuery,
             pathItemStringPath,
-            pathItemStringQuery,
-            "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery
+            pathItemStringQuery
           },
           options),
         getAllWithValuesOperationSpec);
@@ -95,9 +93,7 @@ export class PathItems {
             localStringPath,
             localStringQuery,
             pathItemStringPath,
-            pathItemStringQuery,
-            "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery
+            pathItemStringQuery
           },
           options),
         getGlobalQueryNullOperationSpec);
@@ -136,9 +132,7 @@ export class PathItems {
             localStringPath,
             localStringQuery,
             pathItemStringPath,
-            pathItemStringQuery,
-            "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery
+            pathItemStringQuery
           },
           options),
         getGlobalAndLocalQueryNullOperationSpec);
@@ -177,9 +171,7 @@ export class PathItems {
             localStringPath,
             localStringQuery,
             pathItemStringPath,
-            pathItemStringQuery,
-            "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery
+            pathItemStringQuery
           },
           options),
         getLocalPathItemQueryNullOperationSpec);
@@ -405,7 +397,7 @@ const getAllWithValuesOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.globalStringPath",
+      parameterPath: "globalStringPath",
       mapper: {
         required: true,
         serializedName: "globalStringPath",
@@ -435,7 +427,7 @@ const getAllWithValuesOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.globalStringQuery",
+      parameterPath: "globalStringQuery",
       mapper: {
         serializedName: "globalStringQuery",
         type: {
@@ -478,7 +470,7 @@ const getGlobalQueryNullOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.globalStringPath",
+      parameterPath: "globalStringPath",
       mapper: {
         required: true,
         serializedName: "globalStringPath",
@@ -508,7 +500,7 @@ const getGlobalQueryNullOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.globalStringQuery",
+      parameterPath: "globalStringQuery",
       mapper: {
         serializedName: "globalStringQuery",
         type: {
@@ -551,7 +543,7 @@ const getGlobalAndLocalQueryNullOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.globalStringPath",
+      parameterPath: "globalStringPath",
       mapper: {
         required: true,
         serializedName: "globalStringPath",
@@ -581,7 +573,7 @@ const getGlobalAndLocalQueryNullOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.globalStringQuery",
+      parameterPath: "globalStringQuery",
       mapper: {
         serializedName: "globalStringQuery",
         type: {
@@ -624,7 +616,7 @@ const getLocalPathItemQueryNullOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.globalStringPath",
+      parameterPath: "globalStringPath",
       mapper: {
         required: true,
         serializedName: "globalStringPath",
@@ -654,7 +646,7 @@ const getLocalPathItemQueryNullOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.globalStringQuery",
+      parameterPath: "globalStringQuery",
       mapper: {
         serializedName: "globalStringQuery",
         type: {

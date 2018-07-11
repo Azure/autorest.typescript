@@ -25,7 +25,6 @@ namespace AutoRest.TypeScript
                 new Factory<Method, MethodTS>(),
                 new Factory<CompositeType, CompositeTypeTS>(),
                 new Factory<Property, PropertyTS>(),
-                new Factory<Parameter, ParameterTS>(),
                 new Factory<DictionaryType, DictionaryTypeTS>(),
                 new Factory<SequenceType, SequenceTypeTS>(),
                 new Factory<MethodGroup, MethodGroupTS>(),

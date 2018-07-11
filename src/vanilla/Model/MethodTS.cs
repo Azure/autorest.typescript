@@ -60,12 +60,6 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public override Parameter Add(Parameter item)
-        {
-            var parameter = base.Add(item) as ParameterTS;
-            return parameter;
-        }
-
         private CodeModelTS CodeModelTS => (CodeModelTS)CodeModel;
 
         [JsonIgnore]
@@ -105,10 +99,7 @@ namespace AutoRest.TypeScript.Model
         public CompositeType OptionsParameterModelType => ((CompositeType)OptionsParameterTemplateModel.ModelType);
 
         [JsonIgnore]
-        public IEnumerable<ParameterTS> ParameterTemplateModels => Parameters.Cast<ParameterTS>();
-
-        [JsonIgnore]
-        public ParameterTS OptionsParameterTemplateModel
+        public Parameter OptionsParameterTemplateModel
         {
             get
             {
@@ -116,7 +107,7 @@ namespace AutoRest.TypeScript.Model
                     p => p != null && !p.IsClientProperty &&
                     !string.IsNullOrWhiteSpace(p.Name) && !p.IsConstant && !p.IsRequired &&
                     p.ModelType is CompositeType &&
-                    (p.ModelType.Name.EqualsIgnoreCase(Group + Name + "OptionalParams") || p.ModelType.Name.EqualsIgnoreCase("RequestOptionsBase"))).FirstOrDefault(op => op != null) as ParameterTS);
+                    (p.ModelType.Name.EqualsIgnoreCase(Group + Name + "OptionalParams") || p.ModelType.Name.EqualsIgnoreCase("RequestOptionsBase"))).FirstOrDefault(op => op != null));
             }
         }
 
@@ -170,7 +161,7 @@ namespace AutoRest.TypeScript.Model
             StringBuilder declarations = new StringBuilder();
 
             bool first = true;
-            IEnumerable<ParameterTS> requiredParameters = LocalParameters.Where(p => p.IsRequired);
+            IEnumerable<Parameter> requiredParameters = LocalParameters.Where(p => p.IsRequired);
             foreach (var parameter in requiredParameters)
             {
                 if (!first)
@@ -256,11 +247,11 @@ namespace AutoRest.TypeScript.Model
         /// Get the parameters that are actually method parameters in the order they appear in the method signature
         /// exclude global parameters and constants.
         /// </summary>
-        internal IEnumerable<ParameterTS> LocalParameters
+        internal IEnumerable<Parameter> LocalParameters
         {
             get
             {
-                return ParameterTemplateModels.Where(
+                return Parameters.Where(
                     p => p != null && !p.IsClientProperty && !string.IsNullOrWhiteSpace(p.Name) && !p.IsConstant)
                     .OrderBy(item => !item.IsRequired);
             }
@@ -271,13 +262,13 @@ namespace AutoRest.TypeScript.Model
         /// exclude global parameters. All the optional parameters are pushed into the second last "options" parameter.
         /// </summary>
         [JsonIgnore]
-        public IEnumerable<ParameterTS> LocalParametersWithOptions
+        public IEnumerable<Parameter> LocalParametersWithOptions
         {
             get
             {
-                List<ParameterTS> requiredParamsWithOptionsList = LocalParameters.Where(p => p.IsRequired).ToList();
+                List<Parameter> requiredParamsWithOptionsList = LocalParameters.Where(p => p.IsRequired).ToList();
                 requiredParamsWithOptionsList.Add(OptionsParameterTemplateModel);
-                return requiredParamsWithOptionsList as IEnumerable<ParameterTS>;
+                return requiredParamsWithOptionsList;
             }
         }
 
@@ -359,11 +350,6 @@ namespace AutoRest.TypeScript.Model
                 });
             });
         }
-
-        /// <summary>
-        /// Get the method's request body (or null if there is no request body)
-        /// </summary>
-        public ParameterTS RequestBody => Body as ParameterTS;
 
         /// <summary>
         /// Generate a reference to the ServiceClient
@@ -543,8 +529,6 @@ namespace AutoRest.TypeScript.Model
                     methodBody.Line(BuildOptionalMappings());
                 }
 
-                IEnumerable<Parameter> parameterTemplateModels = ParameterTemplateModels;
-
                 methodBody.Line(emptyLine);
 
                 methodBody.Line("let operationRes: msRest.HttpOperationResponse;");
@@ -600,13 +584,13 @@ namespace AutoRest.TypeScript.Model
                     }
                 };
 
-                foreach (Parameter parameter in ParameterTemplateModels)
+                foreach (Parameter parameter in Parameters)
                 {
                     if (parameter.IsConstant)
                     {
                         addArgument(parameter.Name, parameter.DefaultValue);
                     }
-                    else
+                    else if (!parameter.IsClientProperty)
                     {
                         addArgument(parameter.Name, parameter.Name);
                     }
@@ -649,12 +633,12 @@ namespace AutoRest.TypeScript.Model
                 });
             GenerateRequestParameters(operationSpec, "headerParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Header));
 
-            if (RequestBody != null)
+            if (Body != null)
             {
                 operationSpec.ObjectProperty("requestBody", requestBodyObject =>
                 {
-                    GenerateRequestParameterPath(requestBodyObject, RequestBody, parameterTransformations);
-                    requestBodyObject.Property("mapper", requestBodyMapper => ClientModelExtensions.ConstructRequestBodyMapper(requestBodyMapper, RequestBody));
+                    GenerateRequestParameterPath(requestBodyObject, Body, parameterTransformations);
+                    requestBodyObject.Property("mapper", requestBodyMapper => ClientModelExtensions.ConstructRequestBodyMapper(requestBodyMapper, Body));
                 });
                 operationSpec.QuotedStringProperty("contentType", RequestContentType);
             }
@@ -722,7 +706,7 @@ namespace AutoRest.TypeScript.Model
             {
                 operationSpec.ArrayProperty(propertyName, parameterArray =>
                 {
-                    foreach (ParameterTS requestParameter in requestParameters)
+                    foreach (Parameter requestParameter in requestParameters)
                     {
                         parameterArray.Object(parameterObject =>
                         {

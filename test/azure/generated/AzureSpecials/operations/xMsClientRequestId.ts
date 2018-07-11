@@ -40,13 +40,7 @@ export class XMsClientRequestId {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -75,8 +69,7 @@ export class XMsClientRequestId {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            xMsClientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            xMsClientRequestId
           },
           options),
         paramGetOperationSpec);
@@ -181,7 +174,7 @@ const getOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/overwrite/x-ms-client-request-id/method/",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -215,7 +208,7 @@ const paramGetOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

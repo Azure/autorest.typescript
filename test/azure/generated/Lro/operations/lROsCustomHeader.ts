@@ -213,8 +213,7 @@ export class LROsCustomHeader {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPutAsyncRetrySucceededOperationSpec);
@@ -247,8 +246,7 @@ export class LROsCustomHeader {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPut201CreatingSucceeded200OperationSpec);
@@ -279,8 +277,7 @@ export class LROsCustomHeader {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPost202Retry200OperationSpec);
@@ -313,8 +310,7 @@ export class LROsCustomHeader {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            product
           },
           options),
         beginPostAsyncRetrySucceededOperationSpec);
@@ -685,7 +681,7 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/customheader/putasync/retry/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -717,7 +713,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
   path: "lro/customheader/put/201/creating/succeeded/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -751,7 +747,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
   path: "lro/customheader/post/202/retry/200",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -782,7 +778,7 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   path: "lro/customheader/postasync/retry/succeeded",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

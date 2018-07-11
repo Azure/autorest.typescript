@@ -40,13 +40,7 @@ export class Paging {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getSinglePagesOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSinglePagesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -74,8 +68,7 @@ export class Paging {
         msRest.createOperationArguments(
           {
             clientRequestId,
-            pagingGetMultiplePagesOptions,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            pagingGetMultiplePagesOptions
           },
           options),
         getMultiplePagesOperationSpec);
@@ -106,8 +99,7 @@ export class Paging {
         msRest.createOperationArguments(
           {
             clientRequestId,
-            pagingGetOdataMultiplePagesOptions,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            pagingGetOdataMultiplePagesOptions
           },
           options),
         getOdataMultiplePagesOperationSpec);
@@ -140,8 +132,7 @@ export class Paging {
         msRest.createOperationArguments(
           {
             clientRequestId,
-            pagingGetMultiplePagesWithOffsetOptions,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            pagingGetMultiplePagesWithOffsetOptions
           },
           options),
         getMultiplePagesWithOffsetOperationSpec);
@@ -167,13 +158,7 @@ export class Paging {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getMultiplePagesRetryFirstOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMultiplePagesRetryFirstOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -196,13 +181,7 @@ export class Paging {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getMultiplePagesRetrySecondOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMultiplePagesRetrySecondOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -224,13 +203,7 @@ export class Paging {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getSinglePagesFailureOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSinglePagesFailureOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -252,13 +225,7 @@ export class Paging {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getMultiplePagesFailureOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMultiplePagesFailureOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -280,13 +247,7 @@ export class Paging {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getMultiplePagesFailureUriOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMultiplePagesFailureUriOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -316,8 +277,7 @@ export class Paging {
         msRest.createOperationArguments(
           {
             apiVersion,
-            tenant,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            tenant
           },
           options),
         getMultiplePagesFragmentNextLinkOperationSpec);
@@ -347,8 +307,7 @@ export class Paging {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            customParameterGroup,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            customParameterGroup
           },
           options),
         getMultiplePagesFragmentWithGroupingNextLinkOperationSpec);
@@ -429,8 +388,7 @@ export class Paging {
           {
             apiVersion,
             tenant,
-            nextLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            nextLink
           },
           options),
         nextFragmentOperationSpec);
@@ -463,8 +421,7 @@ export class Paging {
         msRest.createOperationArguments(
           {
             nextLink,
-            customParameterGroup,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            customParameterGroup
           },
           options),
         nextFragmentWithGroupingOperationSpec);
@@ -495,8 +452,7 @@ export class Paging {
         msRest.createOperationArguments(
           {
             clientRequestId,
-            pagingGetMultiplePagesLROOptions,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            pagingGetMultiplePagesLROOptions
           },
           options),
         beginGetMultiplePagesLROOperationSpec);
@@ -526,8 +482,7 @@ export class Paging {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            nextPageLink
           },
           options),
         getSinglePagesNextOperationSpec);
@@ -561,7 +516,6 @@ export class Paging {
           {
             nextPageLink,
             clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
             pagingGetMultiplePagesOptions
           },
           options),
@@ -596,7 +550,6 @@ export class Paging {
           {
             nextPageLink,
             clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
             pagingGetOdataMultiplePagesOptions
           },
           options),
@@ -631,7 +584,6 @@ export class Paging {
           {
             nextPageLink,
             clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
             pagingGetMultiplePagesWithOffsetNextOptions
           },
           options),
@@ -663,8 +615,7 @@ export class Paging {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            nextPageLink
           },
           options),
         getMultiplePagesRetryFirstNextOperationSpec);
@@ -695,8 +646,7 @@ export class Paging {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            nextPageLink
           },
           options),
         getMultiplePagesRetrySecondNextOperationSpec);
@@ -726,8 +676,7 @@ export class Paging {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            nextPageLink
           },
           options),
         getSinglePagesFailureNextOperationSpec);
@@ -757,8 +706,7 @@ export class Paging {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            nextPageLink
           },
           options),
         getMultiplePagesFailureNextOperationSpec);
@@ -788,8 +736,7 @@ export class Paging {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            nextPageLink
           },
           options),
         getMultiplePagesFailureUriNextOperationSpec);
@@ -870,7 +817,6 @@ export class Paging {
           {
             nextPageLink,
             clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
             pagingGetMultiplePagesLROOptions
           },
           options),
@@ -2000,7 +1946,7 @@ const getSinglePagesOperationSpec: msRest.OperationSpec = {
   path: "paging/single",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2035,7 +1981,7 @@ const getMultiplePagesOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2095,7 +2041,7 @@ const getOdataMultiplePagesOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2170,7 +2116,7 @@ const getMultiplePagesWithOffsetOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2221,7 +2167,7 @@ const getMultiplePagesRetryFirstOperationSpec: msRest.OperationSpec = {
   path: "paging/multiple/retryfirst",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2247,7 +2193,7 @@ const getMultiplePagesRetrySecondOperationSpec: msRest.OperationSpec = {
   path: "paging/multiple/retrysecond",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2273,7 +2219,7 @@ const getSinglePagesFailureOperationSpec: msRest.OperationSpec = {
   path: "paging/single/failure",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2299,7 +2245,7 @@ const getMultiplePagesFailureOperationSpec: msRest.OperationSpec = {
   path: "paging/multiple/failure",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2325,7 +2271,7 @@ const getMultiplePagesFailureUriOperationSpec: msRest.OperationSpec = {
   path: "paging/multiple/failureuri",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2375,7 +2321,7 @@ const getMultiplePagesFragmentNextLinkOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2431,7 +2377,7 @@ const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: msRest.Operatio
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2492,7 +2438,7 @@ const nextFragmentOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2559,7 +2505,7 @@ const nextFragmentWithGroupingOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2594,7 +2540,7 @@ const beginGetMultiplePagesLROOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2659,7 +2605,7 @@ const getSinglePagesNextOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2708,7 +2654,7 @@ const getMultiplePagesNextOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2782,7 +2728,7 @@ const getOdataMultiplePagesNextOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2856,7 +2802,7 @@ const getMultiplePagesWithOffsetNextOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2921,7 +2867,7 @@ const getMultiplePagesRetryFirstNextOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2961,7 +2907,7 @@ const getMultiplePagesRetrySecondNextOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -3001,7 +2947,7 @@ const getSinglePagesFailureNextOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -3041,7 +2987,7 @@ const getMultiplePagesFailureNextOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -3081,7 +3027,7 @@ const getMultiplePagesFailureUriNextOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -3130,7 +3076,7 @@ const beginGetMultiplePagesLRONextOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

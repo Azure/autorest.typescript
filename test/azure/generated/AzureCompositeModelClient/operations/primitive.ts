@@ -40,13 +40,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getIntOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -73,8 +67,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putIntOperationSpec);
@@ -99,13 +92,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getLongOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -132,8 +119,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putLongOperationSpec);
@@ -158,13 +144,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getFloatOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -191,8 +171,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putFloatOperationSpec);
@@ -217,13 +196,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getDoubleOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -251,8 +224,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putDoubleOperationSpec);
@@ -277,13 +249,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getBoolOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -310,8 +276,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putBoolOperationSpec);
@@ -336,13 +301,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getStringOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -369,8 +328,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putStringOperationSpec);
@@ -395,13 +353,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getDateOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -428,8 +380,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putDateOperationSpec);
@@ -454,13 +405,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getDateTimeOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -488,8 +433,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putDateTimeOperationSpec);
@@ -514,13 +458,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getDateTimeRfc1123OperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -548,8 +486,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            complexBody
           },
           options),
         putDateTimeRfc1123OperationSpec);
@@ -574,13 +511,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getDurationOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -606,8 +537,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            field,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            field
           },
           options),
         putDurationOperationSpec);
@@ -632,13 +562,7 @@ export class Primitive {
 
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        getByteOperationSpec);
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -664,8 +588,7 @@ export class Primitive {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            field,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            field
           },
           options),
         putByteOperationSpec);
@@ -1606,7 +1529,7 @@ const getIntOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/integer",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1632,7 +1555,7 @@ const putIntOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/integer",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1664,7 +1587,7 @@ const getLongOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/long",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1690,7 +1613,7 @@ const putLongOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/long",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1722,7 +1645,7 @@ const getFloatOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/float",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1748,7 +1671,7 @@ const putFloatOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/float",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1780,7 +1703,7 @@ const getDoubleOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/double",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1806,7 +1729,7 @@ const putDoubleOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/double",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1838,7 +1761,7 @@ const getBoolOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/bool",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1864,7 +1787,7 @@ const putBoolOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/bool",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1896,7 +1819,7 @@ const getStringOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/string",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1922,7 +1845,7 @@ const putStringOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/string",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1954,7 +1877,7 @@ const getDateOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/date",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -1980,7 +1903,7 @@ const putDateOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/date",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2012,7 +1935,7 @@ const getDateTimeOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/datetime",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2038,7 +1961,7 @@ const putDateTimeOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/datetime",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2070,7 +1993,7 @@ const getDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/datetimerfc1123",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2096,7 +2019,7 @@ const putDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/datetimerfc1123",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2128,7 +2051,7 @@ const getDurationOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/duration",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2154,7 +2077,7 @@ const putDurationOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/duration",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2188,7 +2111,7 @@ const getByteOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/byte",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
@@ -2214,7 +2137,7 @@ const putByteOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/byte",
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',

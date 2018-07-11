@@ -45,10 +45,7 @@ export class Group {
       operationRes = await this.client.sendOperationRequest(
         msRest.createOperationArguments(
           {
-            "this.client.subscriptionId": this.client.subscriptionId,
-            resourceGroupName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
+            resourceGroupName
           },
           options),
         getSampleResourceGroupOperationSpec);
@@ -109,7 +106,7 @@ const getSampleResourceGroupOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   urlParameters: [
     {
-      parameterPath: "this.client.subscriptionId",
+      parameterPath: "subscriptionId",
       mapper: {
         required: true,
         serializedName: "subscriptionId",
@@ -131,7 +128,7 @@ const getSampleResourceGroupOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "this.client.apiVersion",
+      parameterPath: "apiVersion",
       mapper: {
         required: true,
         serializedName: "api-version",
@@ -143,7 +140,7 @@ const getSampleResourceGroupOperationSpec: msRest.OperationSpec = {
   ],
   headerParameters: [
     {
-      parameterPath: "this.client.acceptLanguage",
+      parameterPath: "acceptLanguage",
       mapper: {
         serializedName: "accept-language",
         defaultValue: 'en-US',
