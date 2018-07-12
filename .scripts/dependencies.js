@@ -3,6 +3,27 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 /**
+ * Get whether or not the node_modules folder should be refreshed based on the command line
+ * arguments.
+ * @param {string} argv The command line arguments that were provided.
+ * @returns {boolean} Whether or not the node_modules folder should be refreshed.
+ */
+function shouldForceRefresh(argv) {
+  let result = false;
+  if (argv) {
+    for (const arg of argv) {
+      const argLower = arg && arg.toLocaleLowerCase();
+      if (argLower === "-f" || argLower === "-force" || argLower === "--force") {
+        result = true;
+        break;
+      }
+    }
+  }
+  return result;
+}
+exports.shouldForceRefresh = shouldForceRefresh;
+
+/**
  * Replace all of the instances of searchValue in text with replaceValue.
  * @param {string} text The text to search and replace in.
  * @param {string} searchValue The value to search for in text.
