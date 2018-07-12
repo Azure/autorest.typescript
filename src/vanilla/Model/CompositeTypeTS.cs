@@ -33,18 +33,18 @@ namespace AutoRest.TypeScript.Model
             return result;
         }
 
-        private IReadOnlyList<CompositeTypeTS> polymorphicUnionCases;
+        private IReadOnlyList<CompositeTypeTS> immediatePolymorphicSubtypes;
 
         /// <summary>Contains the immediate polymorphic children of this class.</summary>
-        public IReadOnlyList<CompositeTypeTS> PolymorphicUnionCases
+        public IReadOnlyList<CompositeTypeTS> ImmediatePolymorphicSubtypes
         {
             get
             {
-                if (polymorphicUnionCases == null)
+                if (immediatePolymorphicSubtypes == null)
                 {
                     if (BaseIsPolymorphic)
                     {
-                        polymorphicUnionCases =
+                        immediatePolymorphicSubtypes =
                             CodeModel.ModelTypes
                                 .Where(m => m.BaseModelType == this)
                                 .Cast<CompositeTypeTS>()
@@ -53,15 +53,15 @@ namespace AutoRest.TypeScript.Model
                     }
                     else
                     {
-                        polymorphicUnionCases = new List<CompositeTypeTS>().AsReadOnly();
+                        immediatePolymorphicSubtypes = new List<CompositeTypeTS>().AsReadOnly();
                     }
                 }
-                return polymorphicUnionCases;
+                return immediatePolymorphicSubtypes;
             }
         }
 
         /// <summary>The name to use when referring to this type in a parameter, return type or property definition.</summary>
-        public string UnionTypeName => PolymorphicUnionCases.Any() ? Name + "Union" : Name.ToString();
+        public string UnionTypeName => ImmediatePolymorphicSubtypes.Any() ? Name + "Union" : Name.ToString();
 
         public string NameAsFileName => Name.EqualsIgnoreCase("index") ? "IndexModelType" : (string)Name;
 
@@ -285,7 +285,7 @@ namespace AutoRest.TypeScript.Model
         {
             get
             {
-                IEnumerable<string> cases = new[] { this.Name.ToString() }.Concat(PolymorphicUnionCases.Select(m => m.UnionTypeName));
+                IEnumerable<string> cases = new[] { this.Name.ToString() }.Concat(ImmediatePolymorphicSubtypes.Select(m => m.UnionTypeName));
                 return $"export type {Name}Union = {string.Join(" | ", cases)};";
             }
         }
