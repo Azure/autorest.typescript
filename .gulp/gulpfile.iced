@@ -31,7 +31,7 @@ task 'install_common',"", (done) ->
   execute "npm install",{cwd:"#{basefolder}/autorest.common", silent:false }, done
 
 # Run language-specific tests:
-task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/nodejs-unit'], (done) ->
+task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/chrome-unit', 'test/nodejs-unit'], (done) ->
   done();
 
 task 'test/generator-unit', 'run generator unit tests', [], (done) ->
@@ -76,10 +76,6 @@ task 'testci', "more", [], (done) ->
   # install latest AutoRest
   await autorest ["--latest"], defer code, stderr, stdout
 
-  ## TEST SUITE
-  global.verbose = true
-  await run "test", defer _
-
   ## REGRESSION TEST
   global.verbose = false
   # regenerate
@@ -91,4 +87,9 @@ task 'testci', "more", [], (done) ->
   echo stderr
   echo stdout
   throw "Potentially unnoticed regression (see diff above)! Run `npm run regenerate`, then review and commit the changes." if stdout.length + stderr.length > 0
+
+  ## TEST SUITE
+  global.verbose = true
+  await run "test", defer _
+
   done()

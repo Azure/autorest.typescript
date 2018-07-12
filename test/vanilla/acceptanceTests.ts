@@ -1895,6 +1895,7 @@ describe('typescript', function () {
 
       if (!msRest.isNode) {
         it('browser should correctly deserialize large streams', async function () {
+          this.timeout(1000 * 60 * 10);
           const result = await testClient.files.getFileLargeWithHttpOperationResponse();
           const body = await result.blobBody();
           body.size.should.equal(3000 * 1024 * 1024);
