@@ -4,7 +4,7 @@ const localDependencies = dependencies.getDependenciesWithClonedRepositories();
 for (const localDependency of localDependencies) {
   dependencies.runLocalRepositoryNPMScript(localDependency, "preview");
 }
-let refreshNodeModules = false;
+let refreshNodeModules = dependencies.shouldForceRefresh(process.argv);
 for (const localDependency of localDependencies) {
   let version = dependencies.getNpmPackageVersion(localDependency, "preview");
   if (!version) {
