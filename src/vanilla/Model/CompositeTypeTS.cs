@@ -33,10 +33,10 @@ namespace AutoRest.TypeScript.Model
             return result;
         }
 
-        private List<CompositeTypeTS> polymorphicUnionCases;
+        private IReadOnlyList<CompositeTypeTS> polymorphicUnionCases;
 
         /// <summary>Contains the immediate polymorphic children of this class.</summary>
-        public List<CompositeTypeTS> PolymorphicUnionCases
+        public IReadOnlyList<CompositeTypeTS> PolymorphicUnionCases
         {
             get
             {
@@ -48,11 +48,12 @@ namespace AutoRest.TypeScript.Model
                             CodeModel.ModelTypes
                                 .Where(m => m.BaseModelType == this)
                                 .Cast<CompositeTypeTS>()
-                                .ToList();
+                                .ToList()
+                                .AsReadOnly();
                     }
                     else
                     {
-                        polymorphicUnionCases = new List<CompositeTypeTS>() { };
+                        polymorphicUnionCases = new List<CompositeTypeTS>().AsReadOnly();
                     }
                 }
                 return polymorphicUnionCases;
@@ -60,7 +61,7 @@ namespace AutoRest.TypeScript.Model
         }
 
         /// <summary>The name to use when referring to this type in a parameter, return type or property definition.</summary>
-        public string ReferenceName => PolymorphicUnionCases.Any() ? Name + "Union" : Name.ToString();
+        public string UnionTypeName => PolymorphicUnionCases.Any() ? Name + "Union" : Name.ToString();
 
         public string NameAsFileName => Name.EqualsIgnoreCase("index") ? "IndexModelType" : (string)Name;
 
@@ -284,7 +285,7 @@ namespace AutoRest.TypeScript.Model
         {
             get
             {
-                IEnumerable<string> cases = new[] { this.Name.ToString() }.Concat(PolymorphicUnionCases.Select(m => m.ReferenceName));
+                IEnumerable<string> cases = new[] { this.Name.ToString() }.Concat(PolymorphicUnionCases.Select(m => m.UnionTypeName));
                 return $"export type {Name}Union = {string.Join(" | ", cases)};";
             }
         }

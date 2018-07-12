@@ -501,7 +501,7 @@ namespace AutoRest.TypeScript
             {
                 // ServiceClientCredentials starts with the "msRest." prefix, so strip msRest./msRestAzure. as we import those
                 // types with no module prefix needed
-                var compositeName = composite.ReferenceName;
+                var compositeName = composite.UnionTypeName;
                 if (compositeName.StartsWith("msRest.") || compositeName.StartsWith("msRestAzure."))
                     tsType = compositeName.Substring(compositeName.IndexOf('.') + 1);
                 else if (inModelsModule || compositeName.Contains('.'))
