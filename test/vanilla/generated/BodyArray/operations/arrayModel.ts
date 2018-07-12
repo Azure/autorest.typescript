@@ -37,10 +37,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -59,10 +62,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -81,10 +87,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -105,15 +114,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putEmptyWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -133,10 +140,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanTfftWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanTfftOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBooleanTfftOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -157,15 +167,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putBooleanTfftWithHttpOperationResponse(arrayBody: boolean[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putBooleanTfftOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -185,10 +193,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanInvalidNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBooleanInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -207,10 +218,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBooleanInvalidStringOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBooleanInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -229,10 +243,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntegerValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntegerValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getIntegerValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -253,15 +270,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putIntegerValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putIntegerValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -281,10 +296,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntInvalidNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getIntInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -303,10 +321,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntInvalidStringOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getIntInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -325,10 +346,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getLongValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getLongValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -349,15 +373,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putLongValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putLongValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -377,10 +399,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getLongInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongInvalidNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getLongInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -399,10 +424,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getLongInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongInvalidStringOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getLongInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -421,10 +449,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getFloatValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getFloatValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -445,15 +476,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putFloatValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putFloatValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -473,10 +502,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getFloatInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatInvalidNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getFloatInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -495,10 +527,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getFloatInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatInvalidStringOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getFloatInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -517,10 +552,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDoubleValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDoubleValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -541,15 +579,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putDoubleValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putDoubleValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -569,10 +605,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDoubleInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleInvalidNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDoubleInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -591,10 +630,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDoubleInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleInvalidStringOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDoubleInvalidStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -613,10 +655,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getStringValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getStringValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -637,15 +682,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putStringValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putStringValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -665,10 +708,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getStringWithNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringWithNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getStringWithNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -687,10 +733,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getStringWithInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringWithInvalidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getStringWithInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -710,10 +759,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getUuidValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUuidValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getUuidValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -735,15 +787,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putUuidValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putUuidValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -763,10 +813,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getUuidInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUuidInvalidCharsOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getUuidInvalidCharsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -785,10 +838,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -809,15 +865,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putDateValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putDateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -837,10 +891,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateInvalidNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -859,10 +916,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateInvalidCharsOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateInvalidCharsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -882,10 +942,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -907,15 +970,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putDateTimeValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putDateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -935,10 +996,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateTimeInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeInvalidNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateTimeInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -957,10 +1021,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateTimeInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeInvalidCharsOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateTimeInvalidCharsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -980,10 +1047,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateTimeRfc1123ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeRfc1123ValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateTimeRfc1123ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1005,15 +1075,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putDateTimeRfc1123ValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1033,10 +1101,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDurationValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDurationValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDurationValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1057,15 +1128,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putDurationValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putDurationValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1086,10 +1155,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getByteValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getByteValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1111,15 +1183,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putByteValidWithHttpOperationResponse(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putByteValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1139,10 +1209,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getByteInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteInvalidNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getByteInvalidNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1162,10 +1235,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getBase64UrlWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64UrlOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBase64UrlOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1184,10 +1260,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getComplexNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getComplexNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1206,10 +1285,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getComplexEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getComplexEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1229,10 +1311,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getComplexItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexItemNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getComplexItemNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1252,10 +1337,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getComplexItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexItemEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getComplexItemEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1275,10 +1363,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getComplexValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getComplexValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getComplexValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1300,15 +1391,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putComplexValidWithHttpOperationResponse(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putComplexValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1328,10 +1417,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getArrayNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getArrayNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1350,10 +1442,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getArrayEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getArrayEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1372,10 +1467,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getArrayItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayItemNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getArrayItemNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1394,10 +1492,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getArrayItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayItemEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getArrayItemEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1416,10 +1517,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getArrayValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getArrayValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1440,15 +1544,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putArrayValidWithHttpOperationResponse(arrayBody: string[][], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putArrayValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1468,10 +1570,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDictionaryNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDictionaryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1490,10 +1595,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDictionaryEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDictionaryEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1513,10 +1621,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDictionaryItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryItemNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDictionaryItemNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1536,10 +1647,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDictionaryItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryItemEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDictionaryItemEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1559,10 +1673,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getDictionaryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDictionaryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1584,15 +1701,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putDictionaryValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        {
+          arrayBody,
+          options
+        },
         putDictionaryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);

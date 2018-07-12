@@ -36,10 +36,13 @@ export class HttpFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async getEmptyErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyErrorOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getEmptyErrorOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -58,10 +61,13 @@ export class HttpFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async getNoModelErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNoModelErrorOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNoModelErrorOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,10 +86,13 @@ export class HttpFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async getNoModelEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNoModelEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNoModelEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }

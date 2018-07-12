@@ -43,17 +43,15 @@ export class AvailabilitySets {
    * @reject {Error|ServiceError} The error object.
    */
   async updateWithHttpOperationResponse(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            avset,
-            tags
-          },
-          options),
+        {
+          resourceGroupName,
+          avset,
+          tags,
+          options
+        },
         updateOperationSpec);
     } catch (err) {
       return Promise.reject(err);

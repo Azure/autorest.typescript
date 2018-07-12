@@ -37,15 +37,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            boolPath: true
-          },
-          options),
+        {
+          options
+        },
         getBooleanTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -65,15 +62,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            boolPath: false
-          },
-          options),
+        {
+          options
+        },
         getBooleanFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -93,15 +87,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intPath: 1000000
-          },
-          options),
+        {
+          options
+        },
         getIntOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -121,15 +112,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intPath: -1000000
-          },
-          options),
+        {
+          options
+        },
         getIntNegativeOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -149,15 +137,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            longPath: 10000000000
-          },
-          options),
+        {
+          options
+        },
         getTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -177,15 +162,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            longPath: -10000000000
-          },
-          options),
+        {
+          options
+        },
         getNegativeTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -205,15 +187,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            floatPath: 103400000000000000000
-          },
-          options),
+        {
+          options
+        },
         floatScientificPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -233,15 +212,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            floatPath: -1.034e-20
-          },
-          options),
+        {
+          options
+        },
         floatScientificNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -261,15 +237,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            doublePath: 9999999.999
-          },
-          options),
+        {
+          options
+        },
         doubleDecimalPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -289,15 +262,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            doublePath: -9999999.999
-          },
-          options),
+        {
+          options
+        },
         doubleDecimalNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -317,15 +287,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringPath: '啊齄丂狛狜隣郎隣兀﨩'
-          },
-          options),
+        {
+          options
+        },
         stringUnicodeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -345,15 +312,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringPath: 'begin!*\'();:@ &=+$,/?#[]end'
-          },
-          options),
+        {
+          options
+        },
         stringUrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -373,15 +337,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringPath: ''
-          },
-          options),
+        {
+          options
+        },
         stringEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -403,15 +364,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async stringNullWithHttpOperationResponse(stringPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringPath
-          },
-          options),
+        {
+          stringPath,
+          options
+        },
         stringNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -434,15 +393,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async enumValidWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            enumPath
-          },
-          options),
+        {
+          enumPath,
+          options
+        },
         enumValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -465,15 +422,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async enumNullWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            enumPath
-          },
-          options),
+        {
+          enumPath,
+          options
+        },
         enumNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -495,15 +450,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async byteMultiByteWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bytePath
-          },
-          options),
+        {
+          bytePath,
+          options
+        },
         byteMultiByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -523,15 +476,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bytePath: new Uint8Array(0)
-          },
-          options),
+        {
+          options
+        },
         byteEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -553,15 +503,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async byteNullWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bytePath
-          },
-          options),
+        {
+          bytePath,
+          options
+        },
         byteNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -581,15 +529,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            datePath: new Date('2012-01-01')
-          },
-          options),
+        {
+          options
+        },
         dateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -612,15 +557,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async dateNullWithHttpOperationResponse(datePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            datePath
-          },
-          options),
+        {
+          datePath,
+          options
+        },
         dateNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -640,15 +583,12 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            dateTimePath: new Date('2012-01-01T01:01:01Z')
-          },
-          options),
+        {
+          options
+        },
         dateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -670,15 +610,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async dateTimeNullWithHttpOperationResponse(dateTimePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            dateTimePath
-          },
-          options),
+        {
+          dateTimePath,
+          options
+        },
         dateTimeNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -700,15 +638,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async base64UrlWithHttpOperationResponse(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            base64UrlPath
-          },
-          options),
+        {
+          base64UrlPath,
+          options
+        },
         base64UrlOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -732,15 +668,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayCsvInPathWithHttpOperationResponse(arrayPath: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayPath
-          },
-          options),
+        {
+          arrayPath,
+          options
+        },
         arrayCsvInPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -762,15 +696,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async unixTimeUrlWithHttpOperationResponse(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            unixTimeUrlPath
-          },
-          options),
+        {
+          unixTimeUrlPath,
+          options
+        },
         unixTimeUrlOperationSpec);
     } catch (err) {
       return Promise.reject(err);

@@ -36,10 +36,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -58,10 +61,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getInvalidFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidFloatOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getInvalidFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,10 +86,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getInvalidDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDoubleOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getInvalidDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -102,10 +111,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getInvalidDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDecimalOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getInvalidDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -126,15 +138,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putBigFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putBigFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -154,10 +164,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getBigFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigFloatOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBigFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -178,15 +191,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putBigDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putBigDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -206,10 +217,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getBigDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoubleOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBigDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -230,15 +244,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putBigDoublePositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putBigDoublePositiveDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -258,10 +270,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoublePositiveDecimalOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBigDoublePositiveDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -282,15 +297,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putBigDoubleNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putBigDoubleNegativeDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -310,10 +323,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDoubleNegativeDecimalOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBigDoubleNegativeDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -334,15 +350,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putBigDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putBigDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -362,10 +376,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getBigDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBigDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -386,15 +403,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putBigDecimalPositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putBigDecimalPositiveDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -414,10 +429,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalPositiveDecimalOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBigDecimalPositiveDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -438,15 +456,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putBigDecimalNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putBigDecimalNegativeDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -466,10 +482,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBigDecimalNegativeDecimalOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBigDecimalNegativeDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -490,15 +509,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putSmallFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putSmallFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -518,10 +535,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getSmallFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallFloatOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getSmallFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -542,15 +562,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putSmallDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putSmallDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -570,10 +588,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getSmallDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallDoubleOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getSmallDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -594,15 +615,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async putSmallDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            numberBody
-          },
-          options),
+        {
+          numberBody,
+          options
+        },
         putSmallDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -622,10 +641,13 @@ export class Number {
    * @reject {Error|ServiceError} The error object.
    */
   async getSmallDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSmallDecimalOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getSmallDecimalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }

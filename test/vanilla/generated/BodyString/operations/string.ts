@@ -37,10 +37,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GetNullOKResponse>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -59,16 +62,12 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async putNullWithHttpOperationResponse(options?: Models.StringPutNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let stringBody = (options && options.stringBody !== undefined) ? options.stringBody : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringBody
-          },
-          options),
+        {
+          options
+        },
         putNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -88,10 +87,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GetEmptyOKResponse>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -112,15 +114,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async putEmptyWithHttpOperationResponse(stringBody: Models.StringBody1, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringBody
-          },
-          options),
+        {
+          stringBody,
+          options
+        },
         putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -140,10 +140,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async getMbcsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GetMbcsOKResponse>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMbcsOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getMbcsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -165,15 +168,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async putMbcsWithHttpOperationResponse(stringBody: Models.StringBody2, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringBody
-          },
-          options),
+        {
+          stringBody,
+          options
+        },
         putMbcsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -194,10 +195,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async getWhitespaceWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GetWhitespaceOKResponse>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getWhitespaceOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getWhitespaceOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -220,15 +224,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async putWhitespaceWithHttpOperationResponse(stringBody: Models.StringBody3, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringBody
-          },
-          options),
+        {
+          stringBody,
+          options
+        },
         putWhitespaceOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -248,10 +250,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvidedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -270,10 +275,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async getBase64EncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64EncodedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBase64EncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -292,10 +300,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async getBase64UrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBase64UrlEncodedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBase64UrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -316,15 +327,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async putBase64UrlEncodedWithHttpOperationResponse(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringBody
-          },
-          options),
+        {
+          stringBody,
+          options
+        },
         putBase64UrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -344,10 +353,13 @@ export class String {
    * @reject {Error|ServiceError} The error object.
    */
   async getNullBase64UrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullBase64UrlEncodedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNullBase64UrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -925,7 +937,10 @@ const putNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "string/null",
   requestBody: {
-    parameterPath: "stringBody",
+    parameterPath: [
+      "options",
+      "stringBody"
+    ],
     mapper: {
       serializedName: "stringBody",
       type: {

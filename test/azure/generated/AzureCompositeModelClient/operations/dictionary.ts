@@ -37,10 +37,13 @@ export class Dictionary {
    * @reject {Error|ServiceError} The error object.
    */
   async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -59,16 +62,12 @@ export class Dictionary {
    * @reject {Error|ServiceError} The error object.
    */
   async putValidWithHttpOperationResponse(options?: Models.DictionaryPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let defaultProgram = (options && options.defaultProgram !== undefined) ? options.defaultProgram : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            defaultProgram
-          },
-          options),
+        {
+          options
+        },
         putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -88,10 +87,13 @@ export class Dictionary {
    * @reject {Error|ServiceError} The error object.
    */
   async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -110,16 +112,12 @@ export class Dictionary {
    * @reject {Error|ServiceError} The error object.
    */
   async putEmptyWithHttpOperationResponse(options?: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let defaultProgram = (options && options.defaultProgram !== undefined) ? options.defaultProgram : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            defaultProgram
-          },
-          options),
+        {
+          options
+        },
         putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -139,10 +137,13 @@ export class Dictionary {
    * @reject {Error|ServiceError} The error object.
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -161,10 +162,13 @@ export class Dictionary {
    * @reject {Error|ServiceError} The error object.
    */
   async getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvidedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -463,7 +467,10 @@ const putValidOperationSpec: msRest.OperationSpec = {
   ],
   requestBody: {
     parameterPath: {
-      defaultProgram: "defaultProgram"
+      defaultProgram: [
+        "options",
+        "defaultProgram"
+      ]
     },
     mapper: {
       ...Mappers.DictionaryWrapper,
@@ -523,7 +530,10 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
   ],
   requestBody: {
     parameterPath: {
-      defaultProgram: "defaultProgram"
+      defaultProgram: [
+        "options",
+        "defaultProgram"
+      ]
     },
     mapper: {
       ...Mappers.DictionaryWrapper,

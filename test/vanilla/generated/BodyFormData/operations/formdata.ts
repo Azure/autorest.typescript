@@ -40,16 +40,14 @@ export class Formdata {
    * @reject {Error|ServiceError} The error object.
    */
   async uploadFileWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, fileName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            fileContent,
-            fileName
-          },
-          options),
+        {
+          fileContent,
+          fileName,
+          options
+        },
         uploadFileOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -71,15 +69,13 @@ export class Formdata {
    * @reject {Error|ServiceError} The error object.
    */
   async uploadFileViaBodyWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            fileContent
-          },
-          options),
+        {
+          fileContent,
+          options
+        },
         uploadFileViaBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);

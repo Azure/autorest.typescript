@@ -37,10 +37,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.IntWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getIntOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getIntOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,15 +64,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putIntWithHttpOperationResponse(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            complexBody
-          },
-          options),
+        {
+          complexBody,
+          options
+        },
         putIntOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -89,10 +90,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getLongWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LongWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getLongOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -113,15 +117,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putLongWithHttpOperationResponse(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            complexBody
-          },
-          options),
+        {
+          complexBody,
+          options
+        },
         putLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -141,10 +143,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FloatWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFloatOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -165,15 +170,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putFloatWithHttpOperationResponse(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            complexBody
-          },
-          options),
+        {
+          complexBody,
+          options
+        },
         putFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -193,10 +196,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DoubleWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDoubleOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -218,15 +224,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putDoubleWithHttpOperationResponse(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            complexBody
-          },
-          options),
+        {
+          complexBody,
+          options
+        },
         putDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -246,10 +250,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getBoolWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.BooleanWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getBoolOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -270,15 +277,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putBoolWithHttpOperationResponse(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            complexBody
-          },
-          options),
+        {
+          complexBody,
+          options
+        },
         putBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -298,10 +303,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StringWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -322,15 +330,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putStringWithHttpOperationResponse(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            complexBody
-          },
-          options),
+        {
+          complexBody,
+          options
+        },
         putStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -350,10 +356,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DateWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -374,15 +383,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putDateWithHttpOperationResponse(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            complexBody
-          },
-          options),
+        {
+          complexBody,
+          options
+        },
         putDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -402,10 +409,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DatetimeWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -427,15 +437,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putDateTimeWithHttpOperationResponse(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            complexBody
-          },
-          options),
+        {
+          complexBody,
+          options
+        },
         putDateTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -455,10 +463,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getDateTimeRfc1123WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Datetimerfc1123Wrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDateTimeRfc1123OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDateTimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -480,15 +491,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putDateTimeRfc1123WithHttpOperationResponse(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            complexBody
-          },
-          options),
+        {
+          complexBody,
+          options
+        },
         putDateTimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -508,10 +517,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getDurationWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DurationWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getDurationOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -530,16 +542,12 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putDurationWithHttpOperationResponse(options?: Models.PrimitivePutDurationOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let field = (options && options.field !== undefined) ? options.field : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            field
-          },
-          options),
+        {
+          options
+        },
         putDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -559,10 +567,13 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async getByteWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ByteWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getByteOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -581,16 +592,12 @@ export class Primitive {
    * @reject {Error|ServiceError} The error object.
    */
   async putByteWithHttpOperationResponse(options?: Models.PrimitivePutByteOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let field = (options && options.field !== undefined) ? options.field : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            field
-          },
-          options),
+        {
+          options
+        },
         putByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1849,7 +1856,10 @@ const putDurationOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/duration",
   requestBody: {
     parameterPath: {
-      field: "field"
+      field: [
+        "options",
+        "field"
+      ]
     },
     mapper: {
       ...Mappers.DurationWrapper,
@@ -1885,7 +1895,10 @@ const putByteOperationSpec: msRest.OperationSpec = {
   path: "complex/primitive/byte",
   requestBody: {
     parameterPath: {
-      field: "field"
+      field: [
+        "options",
+        "field"
+      ]
     },
     mapper: {
       ...Mappers.ByteWrapper,

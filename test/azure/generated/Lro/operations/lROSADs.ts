@@ -1030,16 +1030,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1060,16 +1056,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutNonRetry201Creating400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutNonRetry201Creating400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1091,16 +1083,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutNonRetry201Creating400InvalidJsonOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1121,16 +1109,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetry400Response> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1150,10 +1134,13 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteNonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteNonRetry400Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteNonRetry400OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDeleteNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1172,10 +1159,13 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDelete202NonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202NonRetry400Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete202NonRetry400OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDelete202NonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1195,10 +1185,13 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteAsyncRelativeRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRelativeRetry400OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDeleteAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1217,16 +1210,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPostNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostNonRetry400OptionalParams): Promise<Models.LROSADsPostNonRetry400Response> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPostNonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1246,16 +1235,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPost202NonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPost202NonRetry400OptionalParams): Promise<Models.LROSADsPost202NonRetry400Response> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPost202NonRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1276,16 +1261,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetry400Response> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPostAsyncRelativeRetry400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1306,16 +1287,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutError201NoProvisioningStatePayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1337,16 +1314,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutAsyncRelativeRetryNoStatusOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1369,16 +1342,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1398,10 +1367,13 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete204SucceededOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDelete204SucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1421,10 +1393,13 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRelativeRetryNoStatusOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDeleteAsyncRelativeRetryNoStatusOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1444,16 +1419,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPost202NoLocationWithHttpOperationResponse(options?: Models.LROSADsBeginPost202NoLocationOptionalParams): Promise<Models.LROSADsPost202NoLocationResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPost202NoLocationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1476,16 +1447,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRelativeRetryNoPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPostAsyncRelativeRetryNoPayloadOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1506,16 +1473,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPut200InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPut200InvalidJsonOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1538,16 +1501,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1570,16 +1529,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1600,10 +1555,13 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDelete202RetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete202RetryInvalidHeaderOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDelete202RetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1623,10 +1581,13 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1646,10 +1607,13 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1669,16 +1633,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPost202RetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPost202RetryInvalidHeaderResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPost202RetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1701,16 +1661,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPostAsyncRelativeRetryInvalidHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1733,16 +1689,12 @@ export class LROSADs {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -3966,7 +3918,10 @@ const beginPutNonRetry400OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4000,7 +3955,10 @@ const beginPutNonRetry201Creating400OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4034,7 +3992,10 @@ const beginPutNonRetry201Creating400InvalidJsonOperationSpec: msRest.OperationSp
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4068,7 +4029,10 @@ const beginPutAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4178,7 +4142,10 @@ const beginPostNonRetry400OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4209,7 +4176,10 @@ const beginPost202NonRetry400OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4240,7 +4210,10 @@ const beginPostAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4271,7 +4244,10 @@ const beginPutError201NoProvisioningStatePayloadOperationSpec: msRest.OperationS
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4305,7 +4281,10 @@ const beginPutAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4337,7 +4316,10 @@ const beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec: msRest.OperationSp
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4419,7 +4401,10 @@ const beginPost202NoLocationOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4450,7 +4435,10 @@ const beginPostAsyncRelativeRetryNoPayloadOperationSpec: msRest.OperationSpec = 
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4481,7 +4469,10 @@ const beginPut200InvalidJsonOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4513,7 +4504,10 @@ const beginPutAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4545,7 +4539,10 @@ const beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operatio
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4655,7 +4652,10 @@ const beginPost202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4686,7 +4686,10 @@ const beginPostAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpe
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -4717,7 +4720,10 @@ const beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operati
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",

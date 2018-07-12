@@ -54,17 +54,13 @@ class ComplexModelClient extends ComplexModelClientContext {
    * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            subscriptionId: '123456',
-            resourceGroupName,
-            apiVersion: '2014-04-01-preview'
-          },
-          options),
+        {
+          resourceGroupName,
+          options
+        },
         listOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -91,19 +87,14 @@ class ComplexModelClient extends ComplexModelClientContext {
    * @reject {Error|ServiceError} The error object.
    */
   async createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
-    let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            resourceGroupName,
-            apiVersion: '2014-04-01-preview',
-            productDictionaryOfArray
-          },
-          options),
+        {
+          subscriptionId,
+          resourceGroupName,
+          options
+        },
         createOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -130,19 +121,14 @@ class ComplexModelClient extends ComplexModelClientContext {
    * @reject {Error|ServiceError} The error object.
    */
   async updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
-    let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            resourceGroupName,
-            apiVersion: '2014-04-01-preview',
-            productArrayOfDictionary
-          },
-          options),
+        {
+          subscriptionId,
+          resourceGroupName,
+          options
+        },
         updateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -386,7 +372,10 @@ const createOperationSpec: msRest.OperationSpec = {
   ],
   requestBody: {
     parameterPath: {
-      productDictionaryOfArray: "productDictionaryOfArray"
+      productDictionaryOfArray: [
+        "options",
+        "productDictionaryOfArray"
+      ]
     },
     mapper: {
       ...Mappers.CatalogDictionaryOfArray,
@@ -446,7 +435,10 @@ const updateOperationSpec: msRest.OperationSpec = {
   ],
   requestBody: {
     parameterPath: {
-      productArrayOfDictionary: "productArrayOfDictionary"
+      productArrayOfDictionary: [
+        "options",
+        "productArrayOfDictionary"
+      ]
     },
     mapper: {
       ...Mappers.CatalogArrayOfDictionary,

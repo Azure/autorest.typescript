@@ -40,15 +40,13 @@ export class ParameterGrouping {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            parameterGroupingPostRequiredParameters
-          },
-          options),
+        {
+          parameterGroupingPostRequiredParameters,
+          options
+        },
         postRequiredOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -68,16 +66,12 @@ export class ParameterGrouping {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalWithHttpOperationResponse(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let parameterGroupingPostOptionalParameters = (options && options.parameterGroupingPostOptionalParameters !== undefined) ? options.parameterGroupingPostOptionalParameters : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            parameterGroupingPostOptionalParameters
-          },
-          options),
+        {
+          options
+        },
         postOptionalOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -97,18 +91,12 @@ export class ParameterGrouping {
    * @reject {Error|ServiceError} The error object.
    */
   async postMultiParamGroupsWithHttpOperationResponse(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
-    let parameterGroupingPostMultiParamGroupsSecondParamGroup = (options && options.parameterGroupingPostMultiParamGroupsSecondParamGroup !== undefined) ? options.parameterGroupingPostMultiParamGroupsSecondParamGroup : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            firstParameterGroup,
-            parameterGroupingPostMultiParamGroupsSecondParamGroup
-          },
-          options),
+        {
+          options
+        },
         postMultiParamGroupsOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -129,16 +117,12 @@ export class ParameterGrouping {
    * @reject {Error|ServiceError} The error object.
    */
   async postSharedParameterGroupObjectWithHttpOperationResponse(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            firstParameterGroup
-          },
-          options),
+        {
+          options
+        },
         postSharedParameterGroupObjectOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -403,6 +387,7 @@ const postOptionalOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     {
       parameterPath: [
+        "options",
         "parameterGroupingPostOptionalParameters",
         "query"
       ],
@@ -428,6 +413,7 @@ const postOptionalOperationSpec: msRest.OperationSpec = {
     },
     {
       parameterPath: [
+        "options",
         "parameterGroupingPostOptionalParameters",
         "customHeader"
       ],
@@ -454,6 +440,7 @@ const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     {
       parameterPath: [
+        "options",
         "firstParameterGroup",
         "queryOne"
       ],
@@ -467,6 +454,7 @@ const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
     },
     {
       parameterPath: [
+        "options",
         "parameterGroupingPostMultiParamGroupsSecondParamGroup",
         "queryTwo"
       ],
@@ -492,6 +480,7 @@ const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
     },
     {
       parameterPath: [
+        "options",
         "firstParameterGroup",
         "headerOne"
       ],
@@ -504,6 +493,7 @@ const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
     },
     {
       parameterPath: [
+        "options",
         "parameterGroupingPostMultiParamGroupsSecondParamGroup",
         "headerTwo"
       ],
@@ -530,6 +520,7 @@ const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     {
       parameterPath: [
+        "options",
         "firstParameterGroup",
         "queryOne"
       ],
@@ -555,6 +546,7 @@ const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
     },
     {
       parameterPath: [
+        "options",
         "firstParameterGroup",
         "headerOne"
       ],

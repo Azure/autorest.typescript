@@ -37,10 +37,13 @@ export class EnumModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getNotExpandableWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Colors>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotExpandableOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNotExpandableOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -61,15 +64,13 @@ export class EnumModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putNotExpandableWithHttpOperationResponse(stringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringBody
-          },
-          options),
+        {
+          stringBody,
+          options
+        },
         putNotExpandableOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -89,10 +90,13 @@ export class EnumModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getReferencedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Colors>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getReferencedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getReferencedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -113,15 +117,13 @@ export class EnumModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putReferencedWithHttpOperationResponse(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            enumStringBody
-          },
-          options),
+        {
+          enumStringBody,
+          options
+        },
         putReferencedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -141,10 +143,13 @@ export class EnumModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getReferencedConstantWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RefColorConstant>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getReferencedConstantOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getReferencedConstantOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -163,16 +168,12 @@ export class EnumModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putReferencedConstantWithHttpOperationResponse(options?: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let field1 = (options && options.field1 !== undefined) ? options.field1 : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            field1
-          },
-          options),
+        {
+          options
+        },
         putReferencedConstantOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -556,7 +557,10 @@ const putReferencedConstantOperationSpec: msRest.OperationSpec = {
   path: "string/enum/ReferencedConstant",
   requestBody: {
     parameterPath: {
-      field1: "field1"
+      field1: [
+        "options",
+        "field1"
+      ]
     },
     mapper: {
       ...Mappers.RefColorConstant,

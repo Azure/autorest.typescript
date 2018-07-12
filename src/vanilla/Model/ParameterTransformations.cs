@@ -14,6 +14,10 @@ namespace AutoRest.TypeScript.Model
     public class ParameterTransformations
     {
         /// <summary>
+        /// The names of input parameters that are in the options parameter.
+        /// </summary>
+        private readonly ISet<string> inputParametersInOptions;
+        /// <summary>
         /// Output Parameter Name -> Output Parameter Property Name -> Input Parameter Name
         /// </summary>
         private readonly IDictionary<string, IDictionary<string, string>> unflattenedParameterMappings;
@@ -24,6 +28,7 @@ namespace AutoRest.TypeScript.Model
 
         public ParameterTransformations(IEnumerable<ParameterTransformation> transformations)
         {
+            inputParametersInOptions = new HashSet<string>();
             unflattenedParameterMappings = new Dictionary<string, IDictionary<string, string>>();
             ungroupedParameterMappings = new Dictionary<string, string[]>();
 
@@ -33,6 +38,13 @@ namespace AutoRest.TypeScript.Model
                 
                 foreach (ParameterMapping mapping in transformation.ParameterMappings)
                 {
+                    Parameter inputParameter = mapping.InputParameter;
+                    string inputParameterName = inputParameter.Name;
+                    if (!inputParameter.IsClientProperty && !inputParameter.IsRequired)
+                    {
+                        inputParametersInOptions.Add(inputParameterName);
+                    }
+
                     if (!string.IsNullOrEmpty(mapping.OutputParameterProperty))
                     {
                         if (!unflattenedParameterMappings.ContainsKey(outputParameterName))
@@ -41,11 +53,11 @@ namespace AutoRest.TypeScript.Model
                         }
                         IDictionary<string, string> unflattenedParameterPropertyMappings = unflattenedParameterMappings[outputParameterName];
 
-                        unflattenedParameterPropertyMappings.Add(mapping.OutputParameterProperty, mapping.InputParameter.Name);
+                        unflattenedParameterPropertyMappings.Add(mapping.OutputParameterProperty, inputParameterName);
                     }
                     else
                     {
-                        ungroupedParameterMappings.Add(outputParameterName, new string[] { mapping.InputParameter.Name, mapping.InputParameterProperty });
+                        ungroupedParameterMappings.Add(outputParameterName, new string[] { inputParameterName, mapping.InputParameterProperty });
                     }
                 }
             }
@@ -113,6 +125,16 @@ namespace AutoRest.TypeScript.Model
                 result = ungroupedParameterMappings[ungroupedParameterName];
             }
             return result;
+        }
+
+        /// <summary>
+        /// Get whether or not the input parameter with the provided name is in the options parameter.
+        /// </summary>
+        /// <param name="inputParameterName">The name of the input parameter</param>
+        /// <returns></returns>
+        public bool InputParameterInOptions(string inputParameterName)
+        {
+            return inputParametersInOptions.Contains(inputParameterName);
         }
     }
 }

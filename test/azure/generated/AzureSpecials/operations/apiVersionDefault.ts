@@ -36,10 +36,13 @@ export class ApiVersionDefault {
    * @reject {Error|ServiceError} The error object.
    */
   async getMethodGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMethodGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getMethodGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -58,10 +61,13 @@ export class ApiVersionDefault {
    * @reject {Error|ServiceError} The error object.
    */
   async getMethodGlobalNotProvidedValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMethodGlobalNotProvidedValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getMethodGlobalNotProvidedValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,10 +86,13 @@ export class ApiVersionDefault {
    * @reject {Error|ServiceError} The error object.
    */
   async getPathGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getPathGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getPathGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -102,10 +111,13 @@ export class ApiVersionDefault {
    * @reject {Error|ServiceError} The error object.
    */
   async getSwaggerGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getSwaggerGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getSwaggerGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }

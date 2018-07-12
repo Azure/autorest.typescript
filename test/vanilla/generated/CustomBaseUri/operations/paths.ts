@@ -38,15 +38,13 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async getEmptyWithHttpOperationResponse(accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            accountName
-          },
-          options),
+        {
+          accountName,
+          options
+        },
         getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);

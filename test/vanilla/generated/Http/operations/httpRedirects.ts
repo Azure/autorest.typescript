@@ -37,10 +37,13 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async head300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead300Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head300OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head300OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -59,10 +62,13 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async get300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet300Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get300OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get300OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -81,10 +87,13 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async head301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead301Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head301OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head301OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -103,10 +112,13 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async get301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet301Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get301OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get301OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -126,16 +138,12 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async put301WithHttpOperationResponse(options?: Models.HttpRedirectsPut301OptionalParams): Promise<Models.HttpRedirectsPut301Response> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         put301OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -155,10 +163,13 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async head302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead302Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head302OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head302OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -177,10 +188,13 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async get302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet302Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get302OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get302OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -200,16 +214,12 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async patch302WithHttpOperationResponse(options?: Models.HttpRedirectsPatch302OptionalParams): Promise<Models.HttpRedirectsPatch302Response> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         patch302OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -230,16 +240,12 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async post303WithHttpOperationResponse(options?: Models.HttpRedirectsPost303OptionalParams): Promise<Models.HttpRedirectsPost303Response> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         post303OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -259,10 +265,13 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async head307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead307Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head307OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -281,10 +290,13 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async get307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet307Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get307OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -303,16 +315,12 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async put307WithHttpOperationResponse(options?: Models.HttpRedirectsPut307OptionalParams): Promise<Models.HttpRedirectsPut307Response> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         put307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -332,16 +340,12 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async patch307WithHttpOperationResponse(options?: Models.HttpRedirectsPatch307OptionalParams): Promise<Models.HttpRedirectsPatch307Response> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         patch307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -361,16 +365,12 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async post307WithHttpOperationResponse(options?: Models.HttpRedirectsPost307OptionalParams): Promise<Models.HttpRedirectsPost307Response> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         post307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -390,16 +390,12 @@ export class HttpRedirects {
    * @reject {Error|ServiceError} The error object.
    */
   async delete307WithHttpOperationResponse(options?: Models.HttpRedirectsDelete307OptionalParams): Promise<Models.HttpRedirectsDelete307Response> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         delete307OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1112,7 +1108,10 @@ const put301OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/redirect/301",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1170,7 +1169,10 @@ const patch302OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/redirect/302",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1194,7 +1196,10 @@ const post303OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/redirect/303",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1255,7 +1260,10 @@ const put307OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/redirect/307",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1282,7 +1290,10 @@ const patch307OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/redirect/307",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1309,7 +1320,10 @@ const post307OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/redirect/307",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1336,7 +1350,10 @@ const delete307OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/redirect/307",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {

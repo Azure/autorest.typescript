@@ -37,10 +37,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -59,16 +62,12 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayProperty = (options && options.arrayProperty !== undefined) ? options.arrayProperty : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayProperty
-          },
-          options),
+        {
+          options
+        },
         putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -88,10 +87,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEmptyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -110,16 +112,12 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayProperty = (options && options.arrayProperty !== undefined) ? options.arrayProperty : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayProperty
-          },
-          options),
+        {
+          options
+        },
         putEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -139,10 +137,13 @@ export class ArrayModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNotProvidedOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNotProvidedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -376,7 +377,10 @@ const putValidOperationSpec: msRest.OperationSpec = {
   path: "complex/array/valid",
   requestBody: {
     parameterPath: {
-      arrayProperty: "arrayProperty"
+      arrayProperty: [
+        "options",
+        "arrayProperty"
+      ]
     },
     mapper: {
       ...Mappers.ArrayWrapper,
@@ -412,7 +416,10 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
   path: "complex/array/empty",
   requestBody: {
     parameterPath: {
-      arrayProperty: "arrayProperty"
+      arrayProperty: [
+        "options",
+        "arrayProperty"
+      ]
     },
     mapper: {
       ...Mappers.ArrayWrapper,

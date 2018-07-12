@@ -37,15 +37,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            boolQuery: true
-          },
-          options),
+        {
+          options
+        },
         getBooleanTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -65,15 +62,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            boolQuery: false
-          },
-          options),
+        {
+          options
+        },
         getBooleanFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -93,16 +87,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getBooleanNullWithHttpOperationResponse(options?: Models.QueriesGetBooleanNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let boolQuery = (options && options.boolQuery !== undefined) ? options.boolQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            boolQuery
-          },
-          options),
+        {
+          options
+        },
         getBooleanNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -122,15 +112,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intQuery: 1000000
-          },
-          options),
+        {
+          options
+        },
         getIntOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -150,15 +137,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intQuery: -1000000
-          },
-          options),
+        {
+          options
+        },
         getIntNegativeOneMillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -178,16 +162,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getIntNullWithHttpOperationResponse(options?: Models.QueriesGetIntNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let intQuery = (options && options.intQuery !== undefined) ? options.intQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intQuery
-          },
-          options),
+        {
+          options
+        },
         getIntNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -207,15 +187,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            longQuery: 10000000000
-          },
-          options),
+        {
+          options
+        },
         getTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -235,15 +212,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            longQuery: -10000000000
-          },
-          options),
+        {
+          options
+        },
         getNegativeTenBillionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -263,16 +237,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async getLongNullWithHttpOperationResponse(options?: Models.QueriesGetLongNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let longQuery = (options && options.longQuery !== undefined) ? options.longQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            longQuery
-          },
-          options),
+        {
+          options
+        },
         getLongNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -292,15 +262,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            floatQuery: 103400000000000000000
-          },
-          options),
+        {
+          options
+        },
         floatScientificPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -320,15 +287,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            floatQuery: -1.034e-20
-          },
-          options),
+        {
+          options
+        },
         floatScientificNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -348,16 +312,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async floatNullWithHttpOperationResponse(options?: Models.QueriesFloatNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let floatQuery = (options && options.floatQuery !== undefined) ? options.floatQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            floatQuery
-          },
-          options),
+        {
+          options
+        },
         floatNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -377,15 +337,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            doubleQuery: 9999999.999
-          },
-          options),
+        {
+          options
+        },
         doubleDecimalPositiveOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -405,15 +362,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            doubleQuery: -9999999.999
-          },
-          options),
+        {
+          options
+        },
         doubleDecimalNegativeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -433,16 +387,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async doubleNullWithHttpOperationResponse(options?: Models.QueriesDoubleNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let doubleQuery = (options && options.doubleQuery !== undefined) ? options.doubleQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            doubleQuery
-          },
-          options),
+        {
+          options
+        },
         doubleNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -462,15 +412,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringQuery: '啊齄丂狛狜隣郎隣兀﨩'
-          },
-          options),
+        {
+          options
+        },
         stringUnicodeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -490,15 +437,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringQuery: 'begin!*\'();:@ &=+$,/?#[]end'
-          },
-          options),
+        {
+          options
+        },
         stringUrlEncodedOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -518,15 +462,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringQuery: ''
-          },
-          options),
+        {
+          options
+        },
         stringEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -546,16 +487,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async stringNullWithHttpOperationResponse(options?: Models.QueriesStringNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let stringQuery = (options && options.stringQuery !== undefined) ? options.stringQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            stringQuery
-          },
-          options),
+        {
+          options
+        },
         stringNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -575,16 +512,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async enumValidWithHttpOperationResponse(options?: Models.QueriesEnumValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let enumQuery = (options && options.enumQuery !== undefined) ? options.enumQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            enumQuery
-          },
-          options),
+        {
+          options
+        },
         enumValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -604,16 +537,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async enumNullWithHttpOperationResponse(options?: Models.QueriesEnumNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let enumQuery = (options && options.enumQuery !== undefined) ? options.enumQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            enumQuery
-          },
-          options),
+        {
+          options
+        },
         enumNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -633,16 +562,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async byteMultiByteWithHttpOperationResponse(options?: Models.QueriesByteMultiByteOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let byteQuery = (options && options.byteQuery !== undefined) ? options.byteQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            byteQuery
-          },
-          options),
+        {
+          options
+        },
         byteMultiByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -662,15 +587,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            byteQuery: new Uint8Array(0)
-          },
-          options),
+        {
+          options
+        },
         byteEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -690,16 +612,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async byteNullWithHttpOperationResponse(options?: Models.QueriesByteNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let byteQuery = (options && options.byteQuery !== undefined) ? options.byteQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            byteQuery
-          },
-          options),
+        {
+          options
+        },
         byteNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -719,15 +637,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            dateQuery: new Date('2012-01-01')
-          },
-          options),
+        {
+          options
+        },
         dateValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -747,16 +662,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async dateNullWithHttpOperationResponse(options?: Models.QueriesDateNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let dateQuery = (options && options.dateQuery !== undefined) ? options.dateQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            dateQuery
-          },
-          options),
+        {
+          options
+        },
         dateNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -776,15 +687,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            dateTimeQuery: new Date('2012-01-01T01:01:01Z')
-          },
-          options),
+        {
+          options
+        },
         dateTimeValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -804,16 +712,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async dateTimeNullWithHttpOperationResponse(options?: Models.QueriesDateTimeNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let dateTimeQuery = (options && options.dateTimeQuery !== undefined) ? options.dateTimeQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            dateTimeQuery
-          },
-          options),
+        {
+          options
+        },
         dateTimeNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -834,16 +738,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayStringCsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        {
+          options
+        },
         arrayStringCsvValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -863,16 +763,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayStringCsvNullWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        {
+          options
+        },
         arrayStringCsvNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -892,16 +788,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayStringCsvEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        {
+          options
+        },
         arrayStringCsvEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -922,16 +814,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayStringSsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringSsvValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        {
+          options
+        },
         arrayStringSsvValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -952,16 +840,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayStringTsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringTsvValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        {
+          options
+        },
         arrayStringTsvValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -982,16 +866,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayStringPipesValidWithHttpOperationResponse(options?: Models.QueriesArrayStringPipesValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        {
+          options
+        },
         arrayStringPipesValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -2457,7 +2337,10 @@ const getBooleanNullOperationSpec: msRest.OperationSpec = {
   path: "queries/bool/null",
   queryParameters: [
     {
-      parameterPath: "boolQuery",
+      parameterPath: [
+        "options",
+        "boolQuery"
+      ],
       mapper: {
         serializedName: "boolQuery",
         type: {
@@ -2532,7 +2415,10 @@ const getIntNullOperationSpec: msRest.OperationSpec = {
   path: "queries/int/null",
   queryParameters: [
     {
-      parameterPath: "intQuery",
+      parameterPath: [
+        "options",
+        "intQuery"
+      ],
       mapper: {
         serializedName: "intQuery",
         type: {
@@ -2607,7 +2493,10 @@ const getLongNullOperationSpec: msRest.OperationSpec = {
   path: "queries/long/null",
   queryParameters: [
     {
-      parameterPath: "longQuery",
+      parameterPath: [
+        "options",
+        "longQuery"
+      ],
       mapper: {
         serializedName: "longQuery",
         type: {
@@ -2682,7 +2571,10 @@ const floatNullOperationSpec: msRest.OperationSpec = {
   path: "queries/float/null",
   queryParameters: [
     {
-      parameterPath: "floatQuery",
+      parameterPath: [
+        "options",
+        "floatQuery"
+      ],
       mapper: {
         serializedName: "floatQuery",
         type: {
@@ -2757,7 +2649,10 @@ const doubleNullOperationSpec: msRest.OperationSpec = {
   path: "queries/double/null",
   queryParameters: [
     {
-      parameterPath: "doubleQuery",
+      parameterPath: [
+        "options",
+        "doubleQuery"
+      ],
       mapper: {
         serializedName: "doubleQuery",
         type: {
@@ -2858,7 +2753,10 @@ const stringNullOperationSpec: msRest.OperationSpec = {
   path: "queries/string/null",
   queryParameters: [
     {
-      parameterPath: "stringQuery",
+      parameterPath: [
+        "options",
+        "stringQuery"
+      ],
       mapper: {
         serializedName: "stringQuery",
         type: {
@@ -2881,7 +2779,10 @@ const enumValidOperationSpec: msRest.OperationSpec = {
   path: "queries/enum/green%20color",
   queryParameters: [
     {
-      parameterPath: "enumQuery",
+      parameterPath: [
+        "options",
+        "enumQuery"
+      ],
       mapper: {
         serializedName: "enumQuery",
         type: {
@@ -2909,7 +2810,10 @@ const enumNullOperationSpec: msRest.OperationSpec = {
   path: "queries/enum/null",
   queryParameters: [
     {
-      parameterPath: "enumQuery",
+      parameterPath: [
+        "options",
+        "enumQuery"
+      ],
       mapper: {
         serializedName: "enumQuery",
         type: {
@@ -2937,7 +2841,10 @@ const byteMultiByteOperationSpec: msRest.OperationSpec = {
   path: "queries/byte/multibyte",
   queryParameters: [
     {
-      parameterPath: "byteQuery",
+      parameterPath: [
+        "options",
+        "byteQuery"
+      ],
       mapper: {
         serializedName: "byteQuery",
         type: {
@@ -2986,7 +2893,10 @@ const byteNullOperationSpec: msRest.OperationSpec = {
   path: "queries/byte/null",
   queryParameters: [
     {
-      parameterPath: "byteQuery",
+      parameterPath: [
+        "options",
+        "byteQuery"
+      ],
       mapper: {
         serializedName: "byteQuery",
         type: {
@@ -3035,7 +2945,10 @@ const dateNullOperationSpec: msRest.OperationSpec = {
   path: "queries/date/null",
   queryParameters: [
     {
-      parameterPath: "dateQuery",
+      parameterPath: [
+        "options",
+        "dateQuery"
+      ],
       mapper: {
         serializedName: "dateQuery",
         type: {
@@ -3084,7 +2997,10 @@ const dateTimeNullOperationSpec: msRest.OperationSpec = {
   path: "queries/datetime/null",
   queryParameters: [
     {
-      parameterPath: "dateTimeQuery",
+      parameterPath: [
+        "options",
+        "dateTimeQuery"
+      ],
       mapper: {
         serializedName: "dateTimeQuery",
         type: {
@@ -3107,7 +3023,10 @@ const arrayStringCsvValidOperationSpec: msRest.OperationSpec = {
   path: "queries/array/csv/string/valid",
   queryParameters: [
     {
-      parameterPath: "arrayQuery",
+      parameterPath: [
+        "options",
+        "arrayQuery"
+      ],
       collectionFormat: msRest.QueryCollectionFormat.Csv,
       mapper: {
         serializedName: "arrayQuery",
@@ -3137,7 +3056,10 @@ const arrayStringCsvNullOperationSpec: msRest.OperationSpec = {
   path: "queries/array/csv/string/null",
   queryParameters: [
     {
-      parameterPath: "arrayQuery",
+      parameterPath: [
+        "options",
+        "arrayQuery"
+      ],
       collectionFormat: msRest.QueryCollectionFormat.Csv,
       mapper: {
         serializedName: "arrayQuery",
@@ -3167,7 +3089,10 @@ const arrayStringCsvEmptyOperationSpec: msRest.OperationSpec = {
   path: "queries/array/csv/string/empty",
   queryParameters: [
     {
-      parameterPath: "arrayQuery",
+      parameterPath: [
+        "options",
+        "arrayQuery"
+      ],
       collectionFormat: msRest.QueryCollectionFormat.Csv,
       mapper: {
         serializedName: "arrayQuery",
@@ -3197,7 +3122,10 @@ const arrayStringSsvValidOperationSpec: msRest.OperationSpec = {
   path: "queries/array/ssv/string/valid",
   queryParameters: [
     {
-      parameterPath: "arrayQuery",
+      parameterPath: [
+        "options",
+        "arrayQuery"
+      ],
       collectionFormat: msRest.QueryCollectionFormat.Ssv,
       mapper: {
         serializedName: "arrayQuery",
@@ -3227,7 +3155,10 @@ const arrayStringTsvValidOperationSpec: msRest.OperationSpec = {
   path: "queries/array/tsv/string/valid",
   queryParameters: [
     {
-      parameterPath: "arrayQuery",
+      parameterPath: [
+        "options",
+        "arrayQuery"
+      ],
       collectionFormat: msRest.QueryCollectionFormat.Tsv,
       mapper: {
         serializedName: "arrayQuery",
@@ -3257,7 +3188,10 @@ const arrayStringPipesValidOperationSpec: msRest.OperationSpec = {
   path: "queries/array/pipes/string/valid",
   queryParameters: [
     {
-      parameterPath: "arrayQuery",
+      parameterPath: [
+        "options",
+        "arrayQuery"
+      ],
       collectionFormat: msRest.QueryCollectionFormat.Pipes,
       mapper: {
         serializedName: "arrayQuery",

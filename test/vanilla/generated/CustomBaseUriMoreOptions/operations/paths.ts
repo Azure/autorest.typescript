@@ -43,19 +43,15 @@ export class Paths {
    * @reject {Error|ServiceError} The error object.
    */
   async getEmptyWithHttpOperationResponse(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let keyVersion = (options && options.keyVersion !== undefined) ? options.keyVersion : 'v1';
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            vault,
-            secret,
-            keyName,
-            keyVersion
-          },
-          options),
+        {
+          vault,
+          secret,
+          keyName,
+          options
+        },
         getEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -174,7 +170,10 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "keyVersion",
+      parameterPath: [
+        "options",
+        "keyVersion"
+      ],
       mapper: {
         serializedName: "keyVersion",
         defaultValue: 'v1',

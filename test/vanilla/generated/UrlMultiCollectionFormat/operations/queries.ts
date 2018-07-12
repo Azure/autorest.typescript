@@ -37,16 +37,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayStringMultiNullWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        {
+          options
+        },
         arrayStringMultiNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -66,16 +62,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayStringMultiEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        {
+          options
+        },
         arrayStringMultiEmptyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -96,16 +88,12 @@ export class Queries {
    * @reject {Error|ServiceError} The error object.
    */
   async arrayStringMultiValidWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        {
+          options
+        },
         arrayStringMultiValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -245,7 +233,10 @@ const arrayStringMultiNullOperationSpec: msRest.OperationSpec = {
   path: "queries/array/multi/string/null",
   queryParameters: [
     {
-      parameterPath: "arrayQuery",
+      parameterPath: [
+        "options",
+        "arrayQuery"
+      ],
       collectionFormat: msRest.QueryCollectionFormat.Multi,
       mapper: {
         serializedName: "arrayQuery",
@@ -275,7 +266,10 @@ const arrayStringMultiEmptyOperationSpec: msRest.OperationSpec = {
   path: "queries/array/multi/string/empty",
   queryParameters: [
     {
-      parameterPath: "arrayQuery",
+      parameterPath: [
+        "options",
+        "arrayQuery"
+      ],
       collectionFormat: msRest.QueryCollectionFormat.Multi,
       mapper: {
         serializedName: "arrayQuery",
@@ -305,7 +299,10 @@ const arrayStringMultiValidOperationSpec: msRest.OperationSpec = {
   path: "queries/array/multi/string/valid",
   queryParameters: [
     {
-      parameterPath: "arrayQuery",
+      parameterPath: [
+        "options",
+        "arrayQuery"
+      ],
       collectionFormat: msRest.QueryCollectionFormat.Multi,
       mapper: {
         serializedName: "arrayQuery",

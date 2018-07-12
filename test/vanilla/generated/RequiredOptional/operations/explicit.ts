@@ -40,15 +40,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredIntegerParameterWithHttpOperationResponse(bodyParameter: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          bodyParameter,
+          options
+        },
         postRequiredIntegerParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -68,16 +66,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalIntegerParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalIntegerParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          options
+        },
         postOptionalIntegerParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -100,15 +94,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredIntegerPropertyWithHttpOperationResponse(value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            value
-          },
-          options),
+        {
+          value,
+          options
+        },
         postRequiredIntegerPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -128,16 +120,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalIntegerPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalIntegerPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let value = (options && options.value !== undefined) ? options.value : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            value
-          },
-          options),
+        {
+          options
+        },
         postOptionalIntegerPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -160,15 +148,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredIntegerHeaderWithHttpOperationResponse(headerParameter: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        {
+          headerParameter,
+          options
+        },
         postRequiredIntegerHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -188,16 +174,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalIntegerHeaderWithHttpOperationResponse(options?: Models.ExplicitPostOptionalIntegerHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let headerParameter = (options && options.headerParameter !== undefined) ? options.headerParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        {
+          options
+        },
         postOptionalIntegerHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -220,15 +202,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredStringParameterWithHttpOperationResponse(bodyParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          bodyParameter,
+          options
+        },
         postRequiredStringParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -248,16 +228,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalStringParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalStringParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          options
+        },
         postOptionalStringParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -280,15 +256,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredStringPropertyWithHttpOperationResponse(value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            value
-          },
-          options),
+        {
+          value,
+          options
+        },
         postRequiredStringPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -308,16 +282,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalStringPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalStringPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let value = (options && options.value !== undefined) ? options.value : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            value
-          },
-          options),
+        {
+          options
+        },
         postOptionalStringPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -340,15 +310,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredStringHeaderWithHttpOperationResponse(headerParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        {
+          headerParameter,
+          options
+        },
         postRequiredStringHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -368,16 +336,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalStringHeaderWithHttpOperationResponse(options?: Models.ExplicitPostOptionalStringHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          options
+        },
         postOptionalStringHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -400,15 +364,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredClassParameterWithHttpOperationResponse(bodyParameter: Models.Product, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          bodyParameter,
+          options
+        },
         postRequiredClassParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -428,16 +390,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalClassParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalClassParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          options
+        },
         postOptionalClassParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -460,15 +418,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredClassPropertyWithHttpOperationResponse(value: Models.Product, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            value
-          },
-          options),
+        {
+          value,
+          options
+        },
         postRequiredClassPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -488,16 +444,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalClassPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalClassPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let value = (options && options.value !== undefined) ? options.value : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            value
-          },
-          options),
+        {
+          options
+        },
         postOptionalClassPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -520,15 +472,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredArrayParameterWithHttpOperationResponse(bodyParameter: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          bodyParameter,
+          options
+        },
         postRequiredArrayParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -548,16 +498,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalArrayParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalArrayParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          options
+        },
         postOptionalArrayParameterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -580,15 +526,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredArrayPropertyWithHttpOperationResponse(value: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            value
-          },
-          options),
+        {
+          value,
+          options
+        },
         postRequiredArrayPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -608,16 +552,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalArrayPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalArrayPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let value = (options && options.value !== undefined) ? options.value : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            value
-          },
-          options),
+        {
+          options
+        },
         postOptionalArrayPropertyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -640,15 +580,13 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postRequiredArrayHeaderWithHttpOperationResponse(headerParameter: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        {
+          headerParameter,
+          options
+        },
         postRequiredArrayHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -668,16 +606,12 @@ export class Explicit {
    * @reject {Error|ServiceError} The error object.
    */
   async postOptionalArrayHeaderWithHttpOperationResponse(options?: Models.ExplicitPostOptionalArrayHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let headerParameter = (options && options.headerParameter !== undefined) ? options.headerParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        {
+          options
+        },
         postOptionalArrayHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1649,7 +1583,10 @@ const postOptionalIntegerParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/integer/parameter",
   requestBody: {
-    parameterPath: "bodyParameter",
+    parameterPath: [
+      "options",
+      "bodyParameter"
+    ],
     mapper: {
       serializedName: "bodyParameter",
       type: {
@@ -1693,7 +1630,10 @@ const postOptionalIntegerPropertyOperationSpec: msRest.OperationSpec = {
   path: "reqopt/optional/integer/property",
   requestBody: {
     parameterPath: {
-      value: "value"
+      value: [
+        "options",
+        "value"
+      ]
     },
     mapper: Mappers.IntOptionalWrapper
   },
@@ -1735,7 +1675,10 @@ const postOptionalIntegerHeaderOperationSpec: msRest.OperationSpec = {
   path: "reqopt/optional/integer/header",
   headerParameters: [
     {
-      parameterPath: "headerParameter",
+      parameterPath: [
+        "options",
+        "headerParameter"
+      ],
       mapper: {
         serializedName: "headerParameter",
         type: {
@@ -1779,7 +1722,10 @@ const postOptionalStringParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/string/parameter",
   requestBody: {
-    parameterPath: "bodyParameter",
+    parameterPath: [
+      "options",
+      "bodyParameter"
+    ],
     mapper: {
       serializedName: "bodyParameter",
       type: {
@@ -1823,7 +1769,10 @@ const postOptionalStringPropertyOperationSpec: msRest.OperationSpec = {
   path: "reqopt/optional/string/property",
   requestBody: {
     parameterPath: {
-      value: "value"
+      value: [
+        "options",
+        "value"
+      ]
     },
     mapper: Mappers.StringOptionalWrapper
   },
@@ -1865,7 +1814,10 @@ const postOptionalStringHeaderOperationSpec: msRest.OperationSpec = {
   path: "reqopt/optional/string/header",
   headerParameters: [
     {
-      parameterPath: "bodyParameter",
+      parameterPath: [
+        "options",
+        "bodyParameter"
+      ],
       mapper: {
         serializedName: "bodyParameter",
         type: {
@@ -1906,7 +1858,10 @@ const postOptionalClassParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/class/parameter",
   requestBody: {
-    parameterPath: "bodyParameter",
+    parameterPath: [
+      "options",
+      "bodyParameter"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -1945,7 +1900,10 @@ const postOptionalClassPropertyOperationSpec: msRest.OperationSpec = {
   path: "reqopt/optional/class/property",
   requestBody: {
     parameterPath: {
-      value: "value"
+      value: [
+        "options",
+        "value"
+      ]
     },
     mapper: Mappers.ClassOptionalWrapper
   },
@@ -1991,7 +1949,10 @@ const postOptionalArrayParameterOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/array/parameter",
   requestBody: {
-    parameterPath: "bodyParameter",
+    parameterPath: [
+      "options",
+      "bodyParameter"
+    ],
     mapper: {
       serializedName: "bodyParameter",
       type: {
@@ -2041,7 +2002,10 @@ const postOptionalArrayPropertyOperationSpec: msRest.OperationSpec = {
   path: "reqopt/optional/array/property",
   requestBody: {
     parameterPath: {
-      value: "value"
+      value: [
+        "options",
+        "value"
+      ]
     },
     mapper: Mappers.ArrayOptionalWrapper
   },
@@ -2089,7 +2053,10 @@ const postOptionalArrayHeaderOperationSpec: msRest.OperationSpec = {
   path: "reqopt/optional/array/header",
   headerParameters: [
     {
-      parameterPath: "headerParameter",
+      parameterPath: [
+        "options",
+        "headerParameter"
+      ],
       mapper: {
         serializedName: "headerParameter",
         type: {

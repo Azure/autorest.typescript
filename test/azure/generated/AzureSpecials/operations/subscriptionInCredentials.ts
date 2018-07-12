@@ -37,10 +37,13 @@ export class SubscriptionInCredentials {
    * @reject {Error|ServiceError} The error object.
    */
   async postMethodGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postMethodGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        postMethodGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -60,10 +63,13 @@ export class SubscriptionInCredentials {
    * @reject {Error|ServiceError} The error object.
    */
   async postMethodGlobalNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postMethodGlobalNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        postMethodGlobalNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,10 +89,13 @@ export class SubscriptionInCredentials {
    * @reject {Error|ServiceError} The error object.
    */
   async postMethodGlobalNotProvidedValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postMethodGlobalNotProvidedValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        postMethodGlobalNotProvidedValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -106,10 +115,13 @@ export class SubscriptionInCredentials {
    * @reject {Error|ServiceError} The error object.
    */
   async postPathGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postPathGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        postPathGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -129,10 +141,13 @@ export class SubscriptionInCredentials {
    * @reject {Error|ServiceError} The error object.
    */
   async postSwaggerGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), postSwaggerGlobalValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        postSwaggerGlobalValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }

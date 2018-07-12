@@ -36,10 +36,13 @@ export class HttpSuccess {
    * @reject {Error|ServiceError} The error object.
    */
   async head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head200OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head200OperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
@@ -61,10 +64,13 @@ export class HttpSuccess {
    * @reject {Error|ServiceError} The error object.
    */
   async head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head204OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head204OperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
@@ -86,10 +92,13 @@ export class HttpSuccess {
    * @reject {Error|ServiceError} The error object.
    */
   async head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head404OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head404OperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);

@@ -48,16 +48,12 @@ class AutoRestReportService extends AutoRestReportServiceContext {
    * @reject {Error|ServiceError} The error object.
    */
   async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
-    let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            qualifier
-          },
-          options),
+        {
+          options
+        },
         getReportOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -113,7 +109,10 @@ const getReportOperationSpec: msRest.OperationSpec = {
   path: "report",
   queryParameters: [
     {
-      parameterPath: "qualifier",
+      parameterPath: [
+        "options",
+        "qualifier"
+      ],
       mapper: {
         serializedName: "qualifier",
         type: {

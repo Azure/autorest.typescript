@@ -53,16 +53,14 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @reject {Error|ServiceError} The error object.
    */
   async validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            id
-          },
-          options),
+        {
+          resourceGroupName,
+          id,
+          options
+        },
         validationOfMethodParametersOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -88,18 +86,14 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @reject {Error|ServiceError} The error object.
    */
   async validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let body = (options && options.body !== undefined) ? options.body : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            id,
-            body
-          },
-          options),
+        {
+          resourceGroupName,
+          id,
+          options
+        },
         validationOfBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -118,15 +112,12 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @reject {Error|ServiceError} The error object.
    */
   async getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            constantParam: 'constant'
-          },
-          options),
+        {
+          options
+        },
         getWithConstantInPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -146,17 +137,12 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @reject {Error|ServiceError} The error object.
    */
   async postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let body = (options && options.body !== undefined) ? options.body : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            constantParam: 'constant',
-            body
-          },
-          options),
+        {
+          options
+        },
         postWithConstantInBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -469,7 +455,10 @@ const validationOfBodyOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "body",
+    parameterPath: [
+      "options",
+      "body"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -526,7 +515,10 @@ const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "body",
+    parameterPath: [
+      "options",
+      "body"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",

@@ -36,10 +36,13 @@ export class HeadException {
    * @reject {Error|ServiceError} The error object.
    */
   async head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head200OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -58,10 +61,13 @@ export class HeadException {
    * @reject {Error|ServiceError} The error object.
    */
   async head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head204OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head204OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,10 +86,13 @@ export class HeadException {
    * @reject {Error|ServiceError} The error object.
    */
   async head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head404OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head404OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
