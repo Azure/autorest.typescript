@@ -11,16 +11,14 @@ before_script:
   - npm install -g gulp-cli
 stages:
   - test
-  - regenerate
-  - bundlesize
 jobs:
   include:
     - stage: test
       script: npm run testci
       env: CHECK_NAME="Unit Tests"
-    - stage: regenerate
+    - stage: test
       script: npm run regenerateci
       env: CHECK_NAME="Regenerate"
-    - stage: bundlesize
+    - stage: test
       script: npm run bundle-size
       env: CHECK_NAME="Bundle Size"
