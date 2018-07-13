@@ -50,7 +50,7 @@ async function collectCoverage() {
     }
 
     const testServerVersion = require(join(coverageFolder, "..", "package.json")).version;
-    comment = `*feature set version ${testServerVersion}*\n\n${comment}`;
+    comment = `*using autorest.testserver version ${testServerVersion}*\n\n${comment}`;
 
     const allPercent = allCovered / (allTotal || 1) * 100 | 0;
     const json = JSON.stringify({
