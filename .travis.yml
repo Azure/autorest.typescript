@@ -5,7 +5,6 @@ node_js:
 install:
     # dotnet 2.0 prereq
   - sudo apt-get install libunwind8
-    # Install npm
   - npm install
 before_script:
   - npm install -g gulp-cli
@@ -20,5 +19,6 @@ jobs:
       script: npm run regenerateci
       env: CHECK_NAME="Regenerate"
     - stage: test
+      install: npm install --ignore-scripts
       script: npm run bundle-size
       env: CHECK_NAME="Bundle Size"
