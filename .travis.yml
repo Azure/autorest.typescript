@@ -5,6 +5,7 @@ node_js:
 cache:
   directories:
   - node_modules
+  - autorest.common/node_modules
 install:
     # dotnet 2.0 prereq
   - sudo apt-get install libunwind8

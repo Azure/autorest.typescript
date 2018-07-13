@@ -48,7 +48,7 @@ task 'set-tsnode-typecheck', 'set ts-node to type check mode', [], (done) ->
   done()
 
 task 'test/nodejs-unit', 'run nodejs unit tests', ['set-tsnode-typecheck'], (done) ->
-  await execute "#{basefolder}/node_modules/.bin/mocha --no-colors", defer _
+  await execute "#{basefolder}/node_modules/.bin/mocha", defer _
   done();
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
@@ -91,4 +91,5 @@ task 'testci', "more", [], (done) ->
   global.verbose = true
   await run "test", defer _
 
+  await execute "node #{basefolder}/.scripts/coverage.js", defer _
   done()
