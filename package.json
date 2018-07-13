@@ -9,6 +9,7 @@
     "pretest": "npm install",
     "test": "gulp test",
     "testci": "gulp testci",
+    "regenerateci": "gulp regenerateci",
     "build": "gulp build",
     "prepare": "gulp install_common && gulp build",
     "publish-preview": "gulp publish-preview",
