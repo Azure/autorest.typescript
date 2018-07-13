@@ -40,7 +40,6 @@ task 'testci/generator-unit', '', [], (done) ->
   done()
 
 task 'test/generator-unit', 'run generator unit tests', [], (done) ->
-  await run "build", defer _
   await execute "dotnet test #{basefolder}/unittests/autorest.typescript.tests.csproj /nologo", defer _
   done()
 
@@ -56,11 +55,11 @@ task 'test/typecheck', 'type check generated code', [], (done) ->
 task 'testci/nodejs-unit', '', [], (done) ->
   global.verbose = true
   await run "test/nodejs-unit", defer _
+  await execute "node #{basefolder}/.scripts/coverage", defer _
   done()
 
 task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
   await execute "#{basefolder}/node_modules/.bin/mocha", defer _
-  await execute "node #{basefolder}/.scripts/coverage", defer _
   done();
 
 task 'testci/chrome-unit', '', [], (done) ->
