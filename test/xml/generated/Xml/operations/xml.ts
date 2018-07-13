@@ -36,18 +36,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getComplexTypeRefNoMetaWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RootWithRefAndNoMeta>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getComplexTypeRefNoMetaOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getComplexTypeRefNoMetaWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RootWithRefAndNoMeta>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexTypeRefNoMetaOperationSpec);
   }
 
   /**
@@ -63,19 +57,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putComplexTypeRefNoMetaWithHttpOperationResponse(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          model,
-          options
-        },
-        putComplexTypeRefNoMetaOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putComplexTypeRefNoMetaWithHttpOperationResponse(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        model,
+        options
+      },
+      putComplexTypeRefNoMetaOperationSpec);
   }
 
   /**
@@ -89,18 +77,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getComplexTypeRefWithMetaWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RootWithRefAndMeta>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getComplexTypeRefWithMetaOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getComplexTypeRefWithMetaWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RootWithRefAndMeta>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexTypeRefWithMetaOperationSpec);
   }
 
   /**
@@ -116,19 +98,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putComplexTypeRefWithMetaWithHttpOperationResponse(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          model,
-          options
-        },
-        putComplexTypeRefWithMetaOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putComplexTypeRefWithMetaWithHttpOperationResponse(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        model,
+        options
+      },
+      putComplexTypeRefWithMetaOperationSpec);
   }
 
   /**
@@ -142,18 +118,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getSimpleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Slideshow>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getSimpleOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getSimpleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Slideshow>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSimpleOperationSpec);
   }
 
   /**
@@ -169,19 +139,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putSimpleWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          slideshow,
-          options
-        },
-        putSimpleOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putSimpleWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        slideshow,
+        options
+      },
+      putSimpleOperationSpec);
   }
 
   /**
@@ -195,18 +159,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AppleBarrel>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getWrappedListsOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AppleBarrel>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getWrappedListsOperationSpec);
   }
 
   /**
@@ -222,19 +180,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putWrappedListsWithHttpOperationResponse(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          wrappedLists,
-          options
-        },
-        putWrappedListsOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putWrappedListsWithHttpOperationResponse(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        wrappedLists,
+        options
+      },
+      putWrappedListsOperationSpec);
   }
 
   /**
@@ -248,18 +200,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getHeadersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetHeadersResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getHeadersOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getHeadersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetHeadersResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getHeadersOperationSpec);
   }
 
   /**
@@ -273,18 +219,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getEmptyListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Slideshow>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getEmptyListOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getEmptyListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Slideshow>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyListOperationSpec);
   }
 
   /**
@@ -300,19 +240,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putEmptyListWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          slideshow,
-          options
-        },
-        putEmptyListOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putEmptyListWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        slideshow,
+        options
+      },
+      putEmptyListOperationSpec);
   }
 
   /**
@@ -326,18 +260,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getEmptyWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AppleBarrel>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getEmptyWrappedListsOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getEmptyWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AppleBarrel>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyWrappedListsOperationSpec);
   }
 
   /**
@@ -353,19 +281,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putEmptyWrappedListsWithHttpOperationResponse(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          appleBarrel,
-          options
-        },
-        putEmptyWrappedListsOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putEmptyWrappedListsWithHttpOperationResponse(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        appleBarrel,
+        options
+      },
+      putEmptyWrappedListsOperationSpec);
   }
 
   /**
@@ -379,18 +301,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getRootListOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getRootListOperationSpec);
   }
 
   /**
@@ -406,19 +322,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          bananas,
-          options
-        },
-        putRootListOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        bananas,
+        options
+      },
+      putRootListOperationSpec);
   }
 
   /**
@@ -432,18 +342,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getRootListSingleItemWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getRootListSingleItemOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getRootListSingleItemWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getRootListSingleItemOperationSpec);
   }
 
   /**
@@ -459,19 +363,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putRootListSingleItemWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          bananas,
-          options
-        },
-        putRootListSingleItemOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putRootListSingleItemWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        bananas,
+        options
+      },
+      putRootListSingleItemOperationSpec);
   }
 
   /**
@@ -485,18 +383,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getEmptyRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getEmptyRootListOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getEmptyRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyRootListOperationSpec);
   }
 
   /**
@@ -512,19 +404,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putEmptyRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          bananas,
-          options
-        },
-        putEmptyRootListOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putEmptyRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        bananas,
+        options
+      },
+      putEmptyRootListOperationSpec);
   }
 
   /**
@@ -538,18 +424,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getEmptyChildElementWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getEmptyChildElementOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getEmptyChildElementWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyChildElementOperationSpec);
   }
 
   /**
@@ -565,19 +445,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putEmptyChildElementWithHttpOperationResponse(banana: Models.Banana, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          banana,
-          options
-        },
-        putEmptyChildElementOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putEmptyChildElementWithHttpOperationResponse(banana: Models.Banana, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        banana,
+        options
+      },
+      putEmptyChildElementOperationSpec);
   }
 
   /**
@@ -591,18 +465,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listContainersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ListContainersResponse>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        listContainersOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listContainersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ListContainersResponse>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      listContainersOperationSpec);
   }
 
   /**
@@ -616,18 +484,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getServicePropertiesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageServiceProperties>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getServicePropertiesOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getServicePropertiesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageServiceProperties>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getServicePropertiesOperationSpec);
   }
 
   /**
@@ -643,19 +505,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putServicePropertiesWithHttpOperationResponse(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          properties,
-          options
-        },
-        putServicePropertiesOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putServicePropertiesWithHttpOperationResponse(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        properties,
+        options
+      },
+      putServicePropertiesOperationSpec);
   }
 
   /**
@@ -669,18 +525,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getAclsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SignedIdentifier[]>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getAclsOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getAclsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SignedIdentifier[]>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getAclsOperationSpec);
   }
 
   /**
@@ -696,19 +546,13 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putAclsWithHttpOperationResponse(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          properties,
-          options
-        },
-        putAclsOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putAclsWithHttpOperationResponse(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        properties,
+        options
+      },
+      putAclsOperationSpec);
   }
 
   /**
@@ -722,18 +566,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listBlobsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ListBlobsResponse>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        listBlobsOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listBlobsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ListBlobsResponse>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      listBlobsOperationSpec);
   }
 
   /**

@@ -36,18 +36,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getValidOperationSpec);
   }
 
   /**
@@ -61,18 +55,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        putValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putValidOperationSpec);
   }
 
   /**
@@ -86,18 +74,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getEmptyOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyOperationSpec);
   }
 
   /**
@@ -111,18 +93,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        putEmptyOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putEmptyOperationSpec);
   }
 
   /**
@@ -136,18 +112,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getNotProvidedOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNotProvidedOperationSpec);
   }
 
   /**

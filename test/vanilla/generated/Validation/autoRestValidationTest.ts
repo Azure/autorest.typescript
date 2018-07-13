@@ -52,20 +52,14 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          resourceGroupName,
-          id,
-          options
-        },
-        validationOfMethodParametersOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        id,
+        options
+      },
+      validationOfMethodParametersOperationSpec);
   }
   // methods on the client.
 
@@ -85,20 +79,14 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          resourceGroupName,
-          id,
-          options
-        },
-        validationOfBodyOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        id,
+        options
+      },
+      validationOfBodyOperationSpec);
   }
   // methods on the client.
 
@@ -111,18 +99,12 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          options
-        },
-        getWithConstantInPathOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getWithConstantInPathOperationSpec);
   }
   // methods on the client.
 
@@ -136,18 +118,12 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          options
-        },
-        postWithConstantInBodyOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      postWithConstantInBodyOperationSpec);
   }
 
   /**

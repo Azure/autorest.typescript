@@ -42,21 +42,15 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getEmptyWithHttpOperationResponse(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          vault,
-          secret,
-          keyName,
-          options
-        },
-        getEmptyOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getEmptyWithHttpOperationResponse(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        vault,
+        secret,
+        keyName,
+        options
+      },
+      getEmptyOperationSpec);
   }
 
   /**

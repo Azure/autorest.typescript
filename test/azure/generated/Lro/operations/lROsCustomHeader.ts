@@ -40,18 +40,10 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -67,10 +59,8 @@ export class LROsCustomHeader {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -88,18 +78,10 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -115,10 +97,8 @@ export class LROsCustomHeader {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -135,24 +115,14 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async post202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPost202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPost202Retry200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  post202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPost202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPost202Retry200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -170,24 +140,14 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -205,18 +165,12 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutAsyncRetrySucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutAsyncRetrySucceededOperationSpec);
   }
 
   /**
@@ -234,18 +188,12 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPut201CreatingSucceeded200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPut201CreatingSucceeded200OperationSpec);
   }
 
   /**
@@ -261,18 +209,12 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<Models.LROsCustomHeaderPost202Retry200Response> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPost202Retry200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<Models.LROsCustomHeaderPost202Retry200Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPost202Retry200OperationSpec);
   }
 
   /**
@@ -290,18 +232,12 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPostAsyncRetrySucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPostAsyncRetrySucceededOperationSpec);
   }
 
   /**

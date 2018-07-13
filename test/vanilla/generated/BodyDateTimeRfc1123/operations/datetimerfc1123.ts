@@ -35,18 +35,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getNullOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec);
   }
 
   /**
@@ -60,18 +54,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getInvalidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidOperationSpec);
   }
 
   /**
@@ -85,18 +73,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getOverflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getOverflowOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getOverflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getOverflowOperationSpec);
   }
 
   /**
@@ -110,18 +92,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getUnderflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getUnderflowOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getUnderflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUnderflowOperationSpec);
   }
 
   /**
@@ -137,19 +113,13 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          datetimeBody,
-          options
-        },
-        putUtcMaxDateTimeOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        datetimeBody,
+        options
+      },
+      putUtcMaxDateTimeOperationSpec);
   }
 
   /**
@@ -163,18 +133,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getUtcLowercaseMaxDateTimeOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUtcLowercaseMaxDateTimeOperationSpec);
   }
 
   /**
@@ -188,18 +152,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getUtcUppercaseMaxDateTimeOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUtcUppercaseMaxDateTimeOperationSpec);
   }
 
   /**
@@ -215,19 +173,13 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          datetimeBody,
-          options
-        },
-        putUtcMinDateTimeOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        datetimeBody,
+        options
+      },
+      putUtcMinDateTimeOperationSpec);
   }
 
   /**
@@ -241,18 +193,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getUtcMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getUtcMinDateTimeOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getUtcMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUtcMinDateTimeOperationSpec);
   }
 
   /**

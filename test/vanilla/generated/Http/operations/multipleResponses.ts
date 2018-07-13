@@ -36,18 +36,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200Model204NoModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200Model204NoModelDefaultError200ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200Model204NoModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError200ValidOperationSpec);
   }
 
   /**
@@ -61,18 +55,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200Model204NoModelDefaultError204ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200Model204NoModelDefaultError204ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200Model204NoModelDefaultError204ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError204ValidOperationSpec);
   }
 
   /**
@@ -86,18 +74,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200Model204NoModelDefaultError201InvalidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError201InvalidOperationSpec);
   }
 
   /**
@@ -111,18 +93,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200Model204NoModelDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200Model204NoModelDefaultError202NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200Model204NoModelDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError202NoneOperationSpec);
   }
 
   /**
@@ -136,18 +112,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200Model204NoModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200Model204NoModelDefaultError400ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200Model204NoModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError400ValidOperationSpec);
   }
 
   /**
@@ -161,18 +131,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200Model201ModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200Model201ModelDefaultError200ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200Model201ModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model201ModelDefaultError200ValidOperationSpec);
   }
 
   /**
@@ -186,18 +150,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200Model201ModelDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200Model201ModelDefaultError201ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200Model201ModelDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model201ModelDefaultError201ValidOperationSpec);
   }
 
   /**
@@ -211,18 +169,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200Model201ModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200Model201ModelDefaultError400ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200Model201ModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model201ModelDefaultError400ValidOperationSpec);
   }
 
   /**
@@ -236,18 +188,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec);
   }
 
   /**
@@ -261,18 +207,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec);
   }
 
   /**
@@ -286,18 +226,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec);
   }
 
   /**
@@ -311,18 +245,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec);
   }
 
   /**
@@ -336,18 +264,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get202None204NoneDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get202None204NoneDefaultError202NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get202None204NoneDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultError202NoneOperationSpec);
   }
 
   /**
@@ -361,18 +283,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get202None204NoneDefaultError204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get202None204NoneDefaultError204NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get202None204NoneDefaultError204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultError204NoneOperationSpec);
   }
 
   /**
@@ -386,18 +302,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get202None204NoneDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get202None204NoneDefaultError400ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get202None204NoneDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultError400ValidOperationSpec);
   }
 
   /**
@@ -411,18 +321,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get202None204NoneDefaultNone202InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get202None204NoneDefaultNone202InvalidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get202None204NoneDefaultNone202InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultNone202InvalidOperationSpec);
   }
 
   /**
@@ -436,18 +340,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get202None204NoneDefaultNone204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get202None204NoneDefaultNone204NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get202None204NoneDefaultNone204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultNone204NoneOperationSpec);
   }
 
   /**
@@ -461,18 +359,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get202None204NoneDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get202None204NoneDefaultNone400NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get202None204NoneDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultNone400NoneOperationSpec);
   }
 
   /**
@@ -486,18 +378,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get202None204NoneDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get202None204NoneDefaultNone400InvalidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get202None204NoneDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultNone400InvalidOperationSpec);
   }
 
   /**
@@ -511,18 +397,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getDefaultModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getDefaultModelA200ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getDefaultModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultModelA200ValidOperationSpec);
   }
 
   /**
@@ -536,18 +416,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getDefaultModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getDefaultModelA200NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getDefaultModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultModelA200NoneOperationSpec);
   }
 
   /**
@@ -561,18 +435,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getDefaultModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getDefaultModelA400ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getDefaultModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultModelA400ValidOperationSpec);
   }
 
   /**
@@ -586,18 +454,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getDefaultModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getDefaultModelA400NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getDefaultModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultModelA400NoneOperationSpec);
   }
 
   /**
@@ -611,18 +473,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getDefaultNone200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getDefaultNone200InvalidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getDefaultNone200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultNone200InvalidOperationSpec);
   }
 
   /**
@@ -636,18 +492,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getDefaultNone200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getDefaultNone200NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getDefaultNone200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultNone200NoneOperationSpec);
   }
 
   /**
@@ -661,18 +511,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getDefaultNone400InvalidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultNone400InvalidOperationSpec);
   }
 
   /**
@@ -686,18 +530,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getDefaultNone400NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultNone400NoneOperationSpec);
   }
 
   /**
@@ -712,18 +550,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA200NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA200NoneOperationSpec);
   }
 
   /**
@@ -737,18 +569,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA200ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA200ValidOperationSpec);
   }
 
   /**
@@ -762,18 +588,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA200InvalidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA200InvalidOperationSpec);
   }
 
   /**
@@ -787,18 +607,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA400NoneOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA400NoneOperationSpec);
   }
 
   /**
@@ -812,18 +626,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA400ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA400ValidOperationSpec);
   }
 
   /**
@@ -837,18 +645,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA400InvalidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA400InvalidOperationSpec);
   }
 
   /**
@@ -862,18 +664,12 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async get200ModelA202ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        get200ModelA202ValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  get200ModelA202ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA202ValidOperationSpec);
   }
 
   /**

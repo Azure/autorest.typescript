@@ -38,18 +38,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async put200SucceededWithHttpOperationResponse(options?: Models.LROsPut200SucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPut200SucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  put200SucceededWithHttpOperationResponse(options?: Models.LROsPut200SucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPut200SucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -65,10 +57,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -84,18 +74,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async put200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsPut200SucceededNoStateOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPut200SucceededNoStateWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  put200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsPut200SucceededNoStateOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPut200SucceededNoStateWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -111,10 +93,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -131,18 +111,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async put202Retry200WithHttpOperationResponse(options?: Models.LROsPut202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPut202Retry200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  put202Retry200WithHttpOperationResponse(options?: Models.LROsPut202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPut202Retry200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -158,10 +130,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -178,18 +148,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -205,10 +167,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -225,18 +185,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async put200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsPut200UpdatingSucceeded204OptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPut200UpdatingSucceeded204WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  put200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsPut200UpdatingSucceeded204OptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPut200UpdatingSucceeded204WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -252,10 +204,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -272,18 +222,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async put201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsPut201CreatingFailed200OptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPut201CreatingFailed200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  put201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsPut201CreatingFailed200OptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPut201CreatingFailed200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -299,10 +241,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -319,18 +259,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async put200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsPut200Acceptedcanceled200OptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPut200Acceptedcanceled200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  put200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsPut200Acceptedcanceled200OptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPut200Acceptedcanceled200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -346,10 +278,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -365,18 +295,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsPutNoHeaderInRetryOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutNoHeaderInRetryWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsPutNoHeaderInRetryOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutNoHeaderInRetryWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -392,10 +314,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -412,18 +332,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsPutAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsPutAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -439,10 +351,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -459,18 +369,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsPutAsyncNoRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsPutAsyncNoRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -486,10 +388,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -506,18 +406,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsPutAsyncRetryFailedOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutAsyncRetryFailedWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsPutAsyncRetryFailedOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutAsyncRetryFailedWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -533,10 +425,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -553,18 +443,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsPutAsyncNoRetrycanceledOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsPutAsyncNoRetrycanceledOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -580,10 +462,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -599,18 +479,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsPutAsyncNoHeaderInRetryOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsPutAsyncNoHeaderInRetryOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -626,10 +498,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -644,18 +514,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putNonResourceWithHttpOperationResponse(options?: Models.LROsPutNonResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutNonResourceWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putNonResourceWithHttpOperationResponse(options?: Models.LROsPutNonResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutNonResourceWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -671,10 +533,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -689,18 +549,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsPutAsyncNonResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutAsyncNonResourceWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsPutAsyncNonResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutAsyncNonResourceWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -716,10 +568,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -734,18 +584,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putSubResourceWithHttpOperationResponse(options?: Models.LROsPutSubResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutSubResourceWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putSubResourceWithHttpOperationResponse(options?: Models.LROsPutSubResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutSubResourceWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -761,10 +603,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -779,18 +619,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsPutAsyncSubResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPutAsyncSubResourceWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  putAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsPutAsyncSubResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPutAsyncSubResourceWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -806,10 +638,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -826,18 +656,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -853,10 +675,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -873,18 +693,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -900,10 +712,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -920,18 +730,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -947,10 +749,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -965,24 +765,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDelete204SucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDelete204SucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -998,18 +788,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async delete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDelete202Retry200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  delete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDelete202Retry200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -1025,10 +807,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1044,18 +824,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async delete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDelete202NoRetry204WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  delete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDelete202NoRetry204WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -1071,10 +843,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1090,24 +860,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteNoHeaderInRetryWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteNoHeaderInRetryWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1123,24 +883,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1156,24 +906,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1189,24 +929,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1222,24 +952,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteAsyncRetryFailedWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteAsyncRetryFailedWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1255,24 +975,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1288,18 +998,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async post200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPost200WithPayloadWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  post200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginPost200WithPayloadWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -1315,10 +1017,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1334,24 +1034,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async post202Retry200WithHttpOperationResponse(options?: Models.LROsPost202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPost202Retry200WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  post202Retry200WithHttpOperationResponse(options?: Models.LROsPost202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPost202Retry200WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1367,18 +1057,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async post202NoRetry204WithHttpOperationResponse(options?: Models.LROsPost202NoRetry204OptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPost202NoRetry204WithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  post202NoRetry204WithHttpOperationResponse(options?: Models.LROsPost202NoRetry204OptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPost202NoRetry204WithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -1394,10 +1076,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1414,18 +1094,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -1441,10 +1113,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1461,18 +1131,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -1488,10 +1150,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1508,18 +1168,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  postDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -1535,10 +1187,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1555,18 +1205,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsPostAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsPostAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -1582,10 +1224,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1602,18 +1242,10 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsPostAsyncNoRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  postAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsPostAsyncNoRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -1629,10 +1261,8 @@ export class LROs {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1649,24 +1279,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsPostAsyncRetryFailedOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPostAsyncRetryFailedWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  postAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsPostAsyncRetryFailedOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPostAsyncRetryFailedWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -1683,24 +1303,14 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsPostAsyncRetrycanceledOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginPostAsyncRetrycanceledWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  postAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsPostAsyncRetrycanceledOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginPostAsyncRetrycanceledWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
       // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -1715,18 +1325,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPut200SucceededWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPut200SucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPut200SucceededWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPut200SucceededOperationSpec);
   }
 
   /**
@@ -1741,18 +1345,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPut200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPut200SucceededNoStateOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPut200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPut200SucceededNoStateOperationSpec);
   }
 
   /**
@@ -1768,18 +1366,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPut202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPut202Retry200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPut202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPut202Retry200OperationSpec);
   }
 
   /**
@@ -1795,18 +1387,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPut201CreatingSucceeded200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPut201CreatingSucceeded200OperationSpec);
   }
 
   /**
@@ -1822,18 +1408,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPut200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPut200UpdatingSucceeded204OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPut200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPut200UpdatingSucceeded204OperationSpec);
   }
 
   /**
@@ -1849,18 +1429,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPut201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPut201CreatingFailed200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPut201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPut201CreatingFailed200OperationSpec);
   }
 
   /**
@@ -1876,18 +1450,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPut200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPut200Acceptedcanceled200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPut200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPut200Acceptedcanceled200OperationSpec);
   }
 
   /**
@@ -1902,18 +1470,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutNoHeaderInRetryOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutNoHeaderInRetryOperationSpec);
   }
 
   /**
@@ -1929,18 +1491,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutAsyncRetrySucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutAsyncRetrySucceededOperationSpec);
   }
 
   /**
@@ -1956,18 +1512,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutAsyncNoRetrySucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutAsyncNoRetrySucceededOperationSpec);
   }
 
   /**
@@ -1983,18 +1533,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutAsyncRetryFailedOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutAsyncRetryFailedOperationSpec);
   }
 
   /**
@@ -2010,18 +1554,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutAsyncNoRetrycanceledOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutAsyncNoRetrycanceledOperationSpec);
   }
 
   /**
@@ -2036,18 +1574,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutAsyncNoHeaderInRetryOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutAsyncNoHeaderInRetryOperationSpec);
   }
 
   /**
@@ -2061,18 +1593,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutNonResourceOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutNonResourceOperationSpec);
   }
 
   /**
@@ -2086,18 +1612,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutAsyncNonResourceOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutAsyncNonResourceOperationSpec);
   }
 
   /**
@@ -2111,18 +1631,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutSubResourceOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutSubResourceOperationSpec);
   }
 
   /**
@@ -2136,18 +1650,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPutAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPutAsyncSubResourceOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPutAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPutAsyncSubResourceOperationSpec);
   }
 
   /**
@@ -2163,18 +1671,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDeleteProvisioning202Accepted200SucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDeleteProvisioning202Accepted200SucceededOperationSpec);
   }
 
   /**
@@ -2190,18 +1692,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDeleteProvisioning202DeletingFailed200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDeleteProvisioning202DeletingFailed200OperationSpec);
   }
 
   /**
@@ -2217,18 +1713,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDeleteProvisioning202Deletingcanceled200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDeleteProvisioning202Deletingcanceled200OperationSpec);
   }
 
   /**
@@ -2242,18 +1732,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDelete204SucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDelete204SucceededOperationSpec);
   }
 
   /**
@@ -2268,18 +1752,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDelete202Retry200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDelete202Retry200OperationSpec);
   }
 
   /**
@@ -2294,18 +1772,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDelete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDelete202NoRetry204OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDelete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDelete202NoRetry204OperationSpec);
   }
 
   /**
@@ -2320,18 +1792,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDeleteNoHeaderInRetryOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDeleteNoHeaderInRetryOperationSpec);
   }
 
   /**
@@ -2346,18 +1812,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDeleteAsyncNoHeaderInRetryOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDeleteAsyncNoHeaderInRetryOperationSpec);
   }
 
   /**
@@ -2372,18 +1832,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDeleteAsyncRetrySucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDeleteAsyncRetrySucceededOperationSpec);
   }
 
   /**
@@ -2398,18 +1852,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDeleteAsyncNoRetrySucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDeleteAsyncNoRetrySucceededOperationSpec);
   }
 
   /**
@@ -2424,18 +1872,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDeleteAsyncRetryFailedOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDeleteAsyncRetryFailedOperationSpec);
   }
 
   /**
@@ -2450,18 +1892,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginDeleteAsyncRetrycanceledOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginDeleteAsyncRetrycanceledOperationSpec);
   }
 
   /**
@@ -2476,18 +1912,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPost200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Sku>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPost200WithPayloadOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPost200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Sku>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPost200WithPayloadOperationSpec);
   }
 
   /**
@@ -2502,18 +1932,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPost202Retry200OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPost202Retry200OperationSpec);
   }
 
   /**
@@ -2528,18 +1952,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPost202NoRetry204WithHttpOperationResponse(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPost202NoRetry204OperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPost202NoRetry204WithHttpOperationResponse(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPost202NoRetry204OperationSpec);
   }
 
   /**
@@ -2555,18 +1973,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPostDoubleHeadersFinalLocationGetOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPostDoubleHeadersFinalLocationGetOperationSpec);
   }
 
   /**
@@ -2582,18 +1994,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec);
   }
 
   /**
@@ -2609,18 +2015,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec);
   }
 
   /**
@@ -2636,18 +2036,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPostAsyncRetrySucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPostAsyncRetrySucceededOperationSpec);
   }
 
   /**
@@ -2663,18 +2057,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPostAsyncNoRetrySucceededOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPostAsyncNoRetrySucceededOperationSpec);
   }
 
   /**
@@ -2690,18 +2078,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPostAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPostAsyncRetryFailedOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPostAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPostAsyncRetryFailedOperationSpec);
   }
 
   /**
@@ -2717,18 +2099,12 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginPostAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginPostAsyncRetrycanceledOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginPostAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginPostAsyncRetrycanceledOperationSpec);
   }
 
   /**

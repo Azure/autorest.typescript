@@ -36,18 +36,12 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FishUnion>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FishUnion>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getValidOperationSpec);
   }
 
   /**
@@ -95,19 +89,13 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          complexBody,
-          options
-        },
-        putValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putValidOperationSpec);
   }
 
   /**
@@ -122,18 +110,12 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getComplicatedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SalmonUnion>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getComplicatedOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getComplicatedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SalmonUnion>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplicatedOperationSpec);
   }
 
   /**
@@ -150,19 +132,13 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putComplicatedWithHttpOperationResponse(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          complexBody,
-          options
-        },
-        putComplicatedOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putComplicatedWithHttpOperationResponse(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putComplicatedOperationSpec);
   }
 
   /**
@@ -178,19 +154,13 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putMissingDiscriminatorWithHttpOperationResponse(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SalmonUnion>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          complexBody,
-          options
-        },
-        putMissingDiscriminatorOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putMissingDiscriminatorWithHttpOperationResponse(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SalmonUnion>> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putMissingDiscriminatorOperationSpec);
   }
 
   /**
@@ -233,19 +203,13 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putValidMissingRequiredWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          complexBody,
-          options
-        },
-        putValidMissingRequiredOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putValidMissingRequiredWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putValidMissingRequiredOperationSpec);
   }
 
   /**

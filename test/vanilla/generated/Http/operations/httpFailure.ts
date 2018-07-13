@@ -35,18 +35,12 @@ export class HttpFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getEmptyErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getEmptyErrorOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getEmptyErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyErrorOperationSpec);
   }
 
   /**
@@ -60,18 +54,12 @@ export class HttpFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getNoModelErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getNoModelErrorOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getNoModelErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNoModelErrorOperationSpec);
   }
 
   /**
@@ -85,18 +73,12 @@ export class HttpFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getNoModelEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getNoModelEmptyOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getNoModelEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNoModelEmptyOperationSpec);
   }
 
   /**

@@ -34,18 +34,12 @@ export class Flattencomplex {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.MyBaseTypeUnion>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.MyBaseTypeUnion>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getValidOperationSpec);
   }
 
   /**

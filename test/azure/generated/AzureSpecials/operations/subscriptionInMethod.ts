@@ -39,19 +39,13 @@ export class SubscriptionInMethod {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postMethodLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          subscriptionId,
-          options
-        },
-        postMethodLocalValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  postMethodLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        subscriptionId,
+        options
+      },
+      postMethodLocalValidOperationSpec);
   }
 
   /**
@@ -69,19 +63,13 @@ export class SubscriptionInMethod {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postMethodLocalNullWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          subscriptionId,
-          options
-        },
-        postMethodLocalNullOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  postMethodLocalNullWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        subscriptionId,
+        options
+      },
+      postMethodLocalNullOperationSpec);
   }
 
   /**
@@ -99,19 +87,13 @@ export class SubscriptionInMethod {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postPathLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          subscriptionId,
-          options
-        },
-        postPathLocalValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  postPathLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        subscriptionId,
+        options
+      },
+      postPathLocalValidOperationSpec);
   }
 
   /**
@@ -129,19 +111,13 @@ export class SubscriptionInMethod {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postSwaggerLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          subscriptionId,
-          options
-        },
-        postSwaggerLocalValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  postSwaggerLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        subscriptionId,
+        options
+      },
+      postSwaggerLocalValidOperationSpec);
   }
 
   /**

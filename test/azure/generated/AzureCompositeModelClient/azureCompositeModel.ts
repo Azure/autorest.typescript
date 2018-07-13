@@ -84,19 +84,13 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          resourceGroupName,
-          options
-        },
-        listOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        options
+      },
+      listOperationSpec);
   }
   // methods on the client.
 
@@ -117,20 +111,14 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          subscriptionId,
-          resourceGroupName,
-          options
-        },
-        createOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
+    return this.sendOperationRequest(
+      {
+        subscriptionId,
+        resourceGroupName,
+        options
+      },
+      createOperationSpec);
   }
   // methods on the client.
 
@@ -151,20 +139,14 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          subscriptionId,
-          resourceGroupName,
-          options
-        },
-        updateOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
+    return this.sendOperationRequest(
+      {
+        subscriptionId,
+        resourceGroupName,
+        options
+      },
+      updateOperationSpec);
   }
 
   /**

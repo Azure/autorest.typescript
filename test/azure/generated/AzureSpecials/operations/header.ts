@@ -38,19 +38,13 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async customNamedRequestIdWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          fooClientRequestId,
-          options
-        },
-        customNamedRequestIdOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  customNamedRequestIdWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdResponse> {
+    return this.client.sendOperationRequest(
+      {
+        fooClientRequestId,
+        options
+      },
+      customNamedRequestIdOperationSpec);
   }
 
   /**
@@ -68,19 +62,13 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async customNamedRequestIdParamGroupingWithHttpOperationResponse(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          headerCustomNamedRequestIdParamGroupingParameters,
-          options
-        },
-        customNamedRequestIdParamGroupingOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  customNamedRequestIdParamGroupingWithHttpOperationResponse(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
+    return this.client.sendOperationRequest(
+      {
+        headerCustomNamedRequestIdParamGroupingParameters,
+        options
+      },
+      customNamedRequestIdParamGroupingOperationSpec);
   }
 
   /**
@@ -96,22 +84,19 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async customNamedRequestIdHeadWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          fooClientRequestId,
-          options
-        },
-        customNamedRequestIdHeadOperationSpec);
+  customNamedRequestIdHeadWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
+    return this.client.sendOperationRequest(
+      {
+        fooClientRequestId,
+        options
+      },
+      customNamedRequestIdHeadOperationSpec).then(operationRes => {
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
-    } catch (err) {
-      return Promise.reject(err);
+      return operationRes;
     }
-    return Promise.resolve(operationRes);
+    );
   }
 
   /**

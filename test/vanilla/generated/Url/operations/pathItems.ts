@@ -42,20 +42,14 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getAllWithValuesWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          localStringPath,
-          pathItemStringPath,
-          options
-        },
-        getAllWithValuesOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getAllWithValuesWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        localStringPath,
+        pathItemStringPath,
+        options
+      },
+      getAllWithValuesOperationSpec);
   }
 
   /**
@@ -75,20 +69,14 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getGlobalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          localStringPath,
-          pathItemStringPath,
-          options
-        },
-        getGlobalQueryNullOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getGlobalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        localStringPath,
+        pathItemStringPath,
+        options
+      },
+      getGlobalQueryNullOperationSpec);
   }
 
   /**
@@ -108,20 +96,14 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getGlobalAndLocalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          localStringPath,
-          pathItemStringPath,
-          options
-        },
-        getGlobalAndLocalQueryNullOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getGlobalAndLocalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        localStringPath,
+        pathItemStringPath,
+        options
+      },
+      getGlobalAndLocalQueryNullOperationSpec);
   }
 
   /**
@@ -141,20 +123,14 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getLocalPathItemQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          localStringPath,
-          pathItemStringPath,
-          options
-        },
-        getLocalPathItemQueryNullOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getLocalPathItemQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        localStringPath,
+        pathItemStringPath,
+        options
+      },
+      getLocalPathItemQueryNullOperationSpec);
   }
 
   /**

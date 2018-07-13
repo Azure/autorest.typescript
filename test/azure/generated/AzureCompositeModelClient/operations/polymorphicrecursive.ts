@@ -36,18 +36,12 @@ export class Polymorphicrecursive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FishUnion>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FishUnion>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getValidOperationSpec);
   }
 
   /**
@@ -115,19 +109,13 @@ export class Polymorphicrecursive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          complexBody,
-          options
-        },
-        putValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putValidOperationSpec);
   }
 
   /**

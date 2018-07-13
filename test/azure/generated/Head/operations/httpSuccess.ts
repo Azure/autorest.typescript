@@ -35,21 +35,18 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        head200OperationSpec);
+  head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head200OperationSpec).then(operationRes => {
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
-    } catch (err) {
-      return Promise.reject(err);
+      return operationRes;
     }
-    return Promise.resolve(operationRes);
+    );
   }
 
   /**
@@ -63,21 +60,18 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        head204OperationSpec);
+  head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head204OperationSpec).then(operationRes => {
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
-    } catch (err) {
-      return Promise.reject(err);
+      return operationRes;
     }
-    return Promise.resolve(operationRes);
+    );
   }
 
   /**
@@ -91,21 +85,18 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        head404OperationSpec);
+  head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head404OperationSpec).then(operationRes => {
       // Deserialize Response
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
-    } catch (err) {
-      return Promise.reject(err);
+      return operationRes;
     }
-    return Promise.resolve(operationRes);
+    );
   }
 
   /**

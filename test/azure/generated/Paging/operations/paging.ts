@@ -36,18 +36,12 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getSinglePagesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getSinglePagesOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getSinglePagesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSinglePagesOperationSpec);
   }
 
   /**
@@ -61,18 +55,12 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getMultiplePagesOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMultiplePagesOperationSpec);
   }
 
   /**
@@ -86,18 +74,12 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getOdataMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetOdataMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getOdataMultiplePagesOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getOdataMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetOdataMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getOdataMultiplePagesOperationSpec);
   }
 
   /**
@@ -114,19 +96,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesWithOffsetWithHttpOperationResponse(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          pagingGetMultiplePagesWithOffsetOptions,
-          options
-        },
-        getMultiplePagesWithOffsetOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesWithOffsetWithHttpOperationResponse(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        pagingGetMultiplePagesWithOffsetOptions,
+        options
+      },
+      getMultiplePagesWithOffsetOperationSpec);
   }
 
   /**
@@ -141,18 +117,12 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesRetryFirstWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getMultiplePagesRetryFirstOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesRetryFirstWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMultiplePagesRetryFirstOperationSpec);
   }
 
   /**
@@ -167,18 +137,12 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesRetrySecondWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getMultiplePagesRetrySecondOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesRetrySecondWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMultiplePagesRetrySecondOperationSpec);
   }
 
   /**
@@ -192,18 +156,12 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getSinglePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getSinglePagesFailureOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getSinglePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSinglePagesFailureOperationSpec);
   }
 
   /**
@@ -217,18 +175,12 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getMultiplePagesFailureOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMultiplePagesFailureOperationSpec);
   }
 
   /**
@@ -242,18 +194,12 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesFailureUriWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        getMultiplePagesFailureUriOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesFailureUriWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMultiplePagesFailureUriOperationSpec);
   }
 
   /**
@@ -271,20 +217,14 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesFragmentNextLinkWithHttpOperationResponse(apiVersion: string, tenant: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          apiVersion,
-          tenant,
-          options
-        },
-        getMultiplePagesFragmentNextLinkOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesFragmentNextLinkWithHttpOperationResponse(apiVersion: string, tenant: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        apiVersion,
+        tenant,
+        options
+      },
+      getMultiplePagesFragmentNextLinkOperationSpec);
   }
 
   /**
@@ -300,19 +240,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse(customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          customParameterGroup,
-          options
-        },
-        getMultiplePagesFragmentWithGroupingNextLinkOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse(customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        customParameterGroup,
+        options
+      },
+      getMultiplePagesFragmentWithGroupingNextLinkOperationSpec);
   }
 
 
@@ -327,18 +261,10 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesLROOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginGetMultiplePagesLROWithHttpOperationResponse(options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  getMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesLROOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginGetMultiplePagesLROWithHttpOperationResponse(options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -354,10 +280,8 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -377,21 +301,15 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async nextFragmentWithHttpOperationResponse(apiVersion: string, tenant: string, nextLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          apiVersion,
-          tenant,
-          nextLink,
-          options
-        },
-        nextFragmentOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  nextFragmentWithHttpOperationResponse(apiVersion: string, tenant: string, nextLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        apiVersion,
+        tenant,
+        nextLink,
+        options
+      },
+      nextFragmentOperationSpec);
   }
 
   /**
@@ -409,20 +327,14 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async nextFragmentWithGroupingWithHttpOperationResponse(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextLink,
-          customParameterGroup,
-          options
-        },
-        nextFragmentWithGroupingOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  nextFragmentWithGroupingWithHttpOperationResponse(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextLink,
+        customParameterGroup,
+        options
+      },
+      nextFragmentWithGroupingOperationSpec);
   }
 
   /**
@@ -436,18 +348,12 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginGetMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          options
-        },
-        beginGetMultiplePagesLROOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginGetMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      beginGetMultiplePagesLROOperationSpec);
   }
 
   /**
@@ -463,19 +369,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getSinglePagesNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        getSinglePagesNextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getSinglePagesNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      getSinglePagesNextOperationSpec);
   }
 
   /**
@@ -491,19 +391,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        getMultiplePagesNextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      getMultiplePagesNextOperationSpec);
   }
 
   /**
@@ -519,19 +413,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getOdataMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetOdataMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        getOdataMultiplePagesNextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getOdataMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetOdataMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      getOdataMultiplePagesNextOperationSpec);
   }
 
   /**
@@ -547,19 +435,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesWithOffsetNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        getMultiplePagesWithOffsetNextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesWithOffsetNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      getMultiplePagesWithOffsetNextOperationSpec);
   }
 
   /**
@@ -576,19 +458,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesRetryFirstNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        getMultiplePagesRetryFirstNextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesRetryFirstNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      getMultiplePagesRetryFirstNextOperationSpec);
   }
 
   /**
@@ -605,19 +481,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesRetrySecondNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        getMultiplePagesRetrySecondNextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesRetrySecondNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      getMultiplePagesRetrySecondNextOperationSpec);
   }
 
   /**
@@ -633,19 +503,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getSinglePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        getSinglePagesFailureNextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getSinglePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      getSinglePagesFailureNextOperationSpec);
   }
 
   /**
@@ -661,19 +525,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        getMultiplePagesFailureNextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      getMultiplePagesFailureNextOperationSpec);
   }
 
   /**
@@ -689,19 +547,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        getMultiplePagesFailureUriNextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      getMultiplePagesFailureUriNextOperationSpec);
   }
 
 
@@ -718,18 +570,10 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
       let httpRequest = operationRes.request;
 
       // Deserialize Response
@@ -745,10 +589,8 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -764,19 +606,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        {
-          nextPageLink,
-          options
-        },
-        beginGetMultiplePagesLRONextOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      beginGetMultiplePagesLRONextOperationSpec);
   }
 
   /**
