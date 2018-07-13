@@ -37,8 +37,15 @@ jobs:
           # dotnet 2.0 prereq
         - sudo apt-get install libunwind8
         - npm install
-      script: gulp testci/regenerate
-      env: CHECK_NAME="Regenerate"
+      script: gulp testci/regenerate-ts
+      env: CHECK_NAME="Regenerate Vanilla"
+    - stage: test
+      install:
+          # dotnet 2.0 prereq
+        - sudo apt-get install libunwind8
+        - npm install
+      script: gulp testci/regenerate-tsazure
+      env: CHECK_NAME="Regenerate Azure"
     - stage: test
       install: npm install --ignore-scripts
       script: npm run bundle-size

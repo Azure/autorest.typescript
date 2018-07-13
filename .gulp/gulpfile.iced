@@ -91,13 +91,27 @@ task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
   webpackDevServer.stdout.on 'data', webpackDevServerHandler
   webpackDevServer.on 'exit', webpackDevServerHandler
 
-# CI job
-task 'testci/regenerate', '', [], (done) ->
+task 'testci/regenerate-ts', '', [], (done) ->
   # install latest AutoRest
   await autorest ["--latest"], defer code, stderr, stdout
 
   # regenerate
-  await run "regenerate", defer _
+  await run "regenerate-ts", defer _
+  # diff ('add' first so 'diff' includes untracked files)
+  await execute "git add -A", defer code, stderr, stdout
+  await execute "git diff --staged -w", defer code, stderr, stdout
+  # eval
+  echo stderr
+  echo stdout
+  throw "Potentially unnoticed regression (see diff above)! Run `npm run regenerate`, then review and commit the changes." if stdout.length + stderr.length > 0
+
+
+task 'testci/regenerate-tsazure', '', [], (done) ->
+  # install latest AutoRest
+  await autorest ["--latest"], defer code, stderr, stdout
+
+  # regenerate
+  await run "regenerate-tsazure", defer _
   # diff ('add' first so 'diff' includes untracked files)
   await execute "git add -A", defer code, stderr, stdout
   await execute "git diff --staged -w", defer code, stderr, stdout
