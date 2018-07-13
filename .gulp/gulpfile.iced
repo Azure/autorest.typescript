@@ -31,7 +31,7 @@ task 'install_common',"", (done) ->
   execute "npm install",{cwd:"#{basefolder}/autorest.common", silent:false }, done
 
 # Run language-specific tests:
-task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/nodejs-unit'], (done) ->
+task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/chrome-unit', 'test/nodejs-unit'], (done) ->
   done();
 
 task 'test/generator-unit', 'run generator unit tests', [], (done) ->
