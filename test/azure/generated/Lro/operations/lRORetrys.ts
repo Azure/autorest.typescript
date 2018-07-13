@@ -55,7 +55,7 @@ export class LRORetrys {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
           deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+          throw deserializationError;
         }
       }
         return operationRes;
@@ -92,7 +92,7 @@ export class LRORetrys {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
           deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+          throw deserializationError;
         }
       }
         return operationRes;
@@ -129,7 +129,7 @@ export class LRORetrys {
           const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
           deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+          throw deserializationError;
         }
       }
         return operationRes;
