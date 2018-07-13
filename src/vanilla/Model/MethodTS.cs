@@ -346,7 +346,7 @@ namespace AutoRest.TypeScript.Model
                     catchBlock.Line($"const {errorVariable} = new msRest.RestError(`Error ${{error}} occurred in deserializing the responseBody - ${{operationRes.bodyAsText}}`);");
                     catchBlock.Line($"{errorVariable}.request = msRest.stripRequest(httpRequest);");
                     catchBlock.Line($"{errorVariable}.response = msRest.stripResponse(operationRes);");
-                    catchBlock.Return($"Promise.reject({errorVariable})");
+                    catchBlock.Throw(errorVariable);
                 });
             });
         }
