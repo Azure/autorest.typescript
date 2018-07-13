@@ -180,7 +180,7 @@ task 'regenerate-tsxml', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts', '', ['regenerate-tscomposite'], (done) ->
+task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml'], (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]
   regenExpected {
@@ -194,5 +194,5 @@ task 'regenerate-ts', '', ['regenerate-tscomposite'], (done) ->
   },done
   return null
 
-task 'regenerate', "regenerate expected code for tests", ['regenerate-ts', 'regenerate-tsxml', 'regenerate-tsazure'], (done) ->
+task 'regenerate', "regenerate expected code for tests", ['regenerate-ts', 'regenerate-tsazure'], (done) ->
   done();

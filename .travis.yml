@@ -2,12 +2,49 @@ language: node_js
 sudo: required
 node_js:
   - "8"
-install:
-    # dotnet 2.0 prereq
-  - sudo apt-get install libunwind8
-    # Install npm
-  - npm install
-before_script:
-  - npm install -g gulp-cli
-script:
-  - npm -s run-script testci
+cache:
+  directories:
+    - $HOME/.npm
+stages:
+  - test
+jobs:
+  include:
+    - stage: test
+      env: CHECK_NAME="Typecheck"
+      install: npm install --ignore-scripts
+      script: gulp testci/typecheck
+
+    - env: CHECK_NAME="Node.js Tests"
+      install: npm install --ignore-scripts
+      script: gulp testci/nodejs-unit
+
+    - env: CHECK_NAME="Chrome Tests"
+      addons:
+        chrome: stable
+      install: npm install --ignore-scripts
+      script: gulp testci/chrome-unit
+
+    - env: CHECK_NAME=".NET Core Unit Tests"
+      install:
+          # dotnet 2.0 prereq
+        - sudo apt-get install libunwind8
+        - npm install
+      script: npm run testci/generator-unit
+
+    - env: CHECK_NAME="Regenerate Vanilla"
+      install:
+          # dotnet 2.0 prereq
+        - sudo apt-get install libunwind8
+        - npm install
+      script: gulp testci/regenerate-ts
+
+    - env: CHECK_NAME="Regenerate Azure"
+      install:
+          # dotnet 2.0 prereq
+        - sudo apt-get install libunwind8
+        - npm install
+      script: gulp testci/regenerate-tsazure
+
+    - env: CHECK_NAME="Bundle Size"
+      install: npm install --ignore-scripts
+      script: npm run bundle-size
