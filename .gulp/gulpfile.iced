@@ -45,6 +45,7 @@ task 'test/generator-unit', 'run generator unit tests', [], (done) ->
 
 task 'testci/typecheck', '', [], (done) ->
   global.verbose = true
+  await run "build", defer _
   await run "test/typecheck", defer _
   done()
 
