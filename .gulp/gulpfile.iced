@@ -34,17 +34,37 @@ task 'install_common',"", (done) ->
 task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/chrome-unit', 'test/nodejs-unit'], (done) ->
   done();
 
+task 'testci/generator-unit', '', [], (done) ->
+  global.verbose = true
+  await run "test/generator-unit", defer _
+  done()
+
 task 'test/generator-unit', 'run generator unit tests', [], (done) ->
   await execute "dotnet test #{basefolder}/unittests/autorest.typescript.tests.csproj /nologo", defer _
+  done()
+
+task 'testci/typecheck', '', [], (done) ->
+  global.verbose = true
+  await run "test/typecheck", defer _
   done()
 
 task 'test/typecheck', 'type check generated code', [], (done) ->
   await execute "#{basefolder}/node_modules/.bin/tsc -p #{basefolder}/test/tsconfig.generated.json", defer _
   done();
 
+task 'testci/nodejs-unit', '', [], (done) ->
+  global.verbose = true
+  await run "test/nodejs-unit", defer _
+  done()
+
 task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
   await execute "#{basefolder}/node_modules/.bin/mocha", defer _
   done();
+
+task 'testci/chrome-unit', '', [], (done) ->
+  global.verbose = true
+  await run "test/chrome-unit", defer _
+  done()
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
   webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/ts-node", ["#{basefolder}/testserver"], { shell: true })
@@ -72,7 +92,10 @@ task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
   webpackDevServer.on 'exit', webpackDevServerHandler
 
 # CI job
-task 'regenerateci', '', [], (done) ->
+task 'testci/regenerate', '', [], (done) ->
+  # install latest AutoRest
+  await autorest ["--latest"], defer code, stderr, stdout
+
   # regenerate
   await run "regenerate", defer _
   # diff ('add' first so 'diff' includes untracked files)
@@ -82,14 +105,3 @@ task 'regenerateci', '', [], (done) ->
   echo stderr
   echo stdout
   throw "Potentially unnoticed regression (see diff above)! Run `npm run regenerate`, then review and commit the changes." if stdout.length + stderr.length > 0
-
-task 'testci', "more", [], (done) ->
-  # install latest AutoRest
-  await autorest ["--latest"], defer code, stderr, stdout
-
-  ## TEST SUITE
-  global.verbose = true
-  await run "test", defer _
-
-  await execute "node #{basefolder}/.scripts/coverage.js", defer _
-  done()
