@@ -11,5 +11,6 @@ before_script:
   - npm install -g gulp-cli
 script:
   - npm -s run-script testci
+  - npm -s run-script bundle-size
 env:
   - CHECK_NAME="Bundle size"
