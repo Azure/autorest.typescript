@@ -36,8 +36,8 @@ async function main() {
   const percentChange = (Math.abs(change) * 100).toFixed(2) + '%';
 
   const json = JSON.stringify({
-    title: "Bundle Size",
-    summary: `Size ${change >= 0 ? "increased" : "decreased"} by ${percentChange} (${filesize(headSize-baseSize)})`
+    title: `Size ${change >= 0 ? "increased" : "decreased"} by ${percentChange} (${filesize(headSize-baseSize)})`,
+    summary: ""
   });
 
   console.log(`---output
