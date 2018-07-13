@@ -1,7 +1,5 @@
 language: node_js
 sudo: required
-addons:
-  chrome: stable
 node_js:
   - "8"
 cache:
@@ -23,6 +21,8 @@ jobs:
       script: gulp testci/nodejs-unit
 
     - env: CHECK_NAME="Chrome Tests"
+      addons:
+        chrome: stable
       install: npm install --ignore-scripts
       script: gulp testci/chrome-unit
 

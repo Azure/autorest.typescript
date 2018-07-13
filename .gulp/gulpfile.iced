@@ -40,12 +40,12 @@ task 'testci/generator-unit', '', [], (done) ->
   done()
 
 task 'test/generator-unit', 'run generator unit tests', [], (done) ->
+  await run "build", defer _
   await execute "dotnet test #{basefolder}/unittests/autorest.typescript.tests.csproj /nologo", defer _
   done()
 
 task 'testci/typecheck', '', [], (done) ->
   global.verbose = true
-  await run "build", defer _
   await run "test/typecheck", defer _
   done()
 
