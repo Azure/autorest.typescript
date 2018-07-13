@@ -12,36 +12,26 @@ else
 <text>
 @EmptyLine
 @(Model.GenerateWithHttpOperationResponseMethodComment())
-async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParameterDeclarationTS(true, true))): Promise<msRest.HttpOperationResponse> {
-  let client = @(Model.ClientReference);
-  // Send request
-  let initialResult: msRest.HttpOperationResponse;
-  try {
-    initialResult = await this.begin@(Model.Name.ToPascalCase())WithHttpOperationResponse(@(Model.MethodParameterDeclaration));
-  } catch (err) {
-    return Promise.reject(err);
-  }
-  let operationRes: msRest.HttpOperationResponse;
-  try {
-    operationRes = await client.getLongRunningOperationResult(initialResult, options);
+@(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParameterDeclarationTS(true, true))): Promise<msRest.HttpOperationResponse> {
+  return this.begin@(Model.Name.ToPascalCase())WithHttpOperationResponse(@(Model.MethodParameterDeclaration))
+    .then(initialResult => @(Model.ClientReference).getLongRunningOperationResult(initialResult, options))
+    .then(operationRes => {
 @if (Model.ReturnType.Body != null)
 {
-    @:let httpRequest = operationRes.request;
+@:    let httpRequest = operationRes.request;
 }
     @EmptyLine
     // Deserialize Response
 @if (Model.ReturnType.Body != null)
 {
-    @:@(Model.DeserializeResponse(Model.ReturnType.Body))
+@:    @(Model.DeserializeResponse(Model.ReturnType.Body))
 }
 @if (Model.ReturnType.Body != null && Model.DefaultResponse.Body != null && !Model.Responses.Any())
 {
-    @:@(Model.DeserializeResponse(Model.DefaultResponse.Body))
+@:    @(Model.DeserializeResponse(Model.DefaultResponse.Body))
 }
-} catch (err) {
-    return Promise.reject(err);
-  }
-  return Promise.resolve(operationRes);
+      return operationRes;
+    });
 }
 </text>
 }

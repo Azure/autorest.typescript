@@ -468,6 +468,16 @@ namespace AutoRest.TypeScript.DSL
             Text("undefined");
         }
 
+        public void Lambda(string paramName, Action<TSBlock> lambdaBodyAction)
+        {
+            Line($"{paramName} => {{");
+            Indent(() =>
+            {
+                lambdaBodyAction.Invoke(new TSBlock(this));
+            });
+            Line($"}}");
+        }
+
         /// <summary>
         /// Invoke the provided action in order to produce a value in this TSBuilder.
         /// </summary>
@@ -496,6 +506,16 @@ namespace AutoRest.TypeScript.DSL
         public void AsyncMethod(string methodName, string returnType, string parameterList, Action<TSBlock> methodBodyAction)
         {
             Line($"async {methodName}({parameterList}): {returnType} {{");
+            Indent(() =>
+            {
+                methodBodyAction.Invoke(new TSBlock(this));
+            });
+            Line($"}}");
+        }
+
+        public void Method(string methodName, string returnType, string parameterList, Action<TSBlock> methodBodyAction)
+        {
+            Line($"{methodName}({parameterList}): {returnType} {{");
             Indent(() =>
             {
                 methodBodyAction.Invoke(new TSBlock(this));

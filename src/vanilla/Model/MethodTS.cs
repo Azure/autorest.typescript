@@ -460,7 +460,7 @@ namespace AutoRest.TypeScript.Model
 
                 }
             });
-            
+
             return builder.ToString();
         }
 
@@ -493,40 +493,39 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
 
             builder.Line(GenerateWithHttpOperationResponseMethodComment());
-            builder.AsyncMethod($"{Name.ToCamelCase()}WithHttpOperationResponse", $"Promise<{HttpOperationResponseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
+            builder.Method($"{Name.ToCamelCase()}WithHttpOperationResponse", $"Promise<{HttpOperationResponseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
             {
-                methodBody.Line("let operationRes: msRest.HttpOperationResponse;");
-                methodBody.Try(tryBlock =>
+                methodBody.Return(returnValue =>
                 {
-                    tryBlock.FunctionCall($"operationRes = await {ClientReference}.sendOperationRequest", argumentList =>
+                    returnValue.FunctionCall($"{ClientReference}.sendOperationRequest", argumentList =>
                     {
                         argumentList.Object(GenerateOperationArguments);
                         argumentList.Text(GetOperationSpecVariableName());
                     });
-                    tryBlock.Line(";");
 
                     if (!HasStreamResponseType())
                     {
                         string resultInitializer = InitializeResult;
                         if (!string.IsNullOrEmpty(resultInitializer))
                         {
-                            tryBlock.LineComment("Deserialize Response");
-                            tryBlock.Line("const statusCode = operationRes.status;");
-                            tryBlock.Line(InitializeResult);
-
-                            if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
+                            returnValue.FunctionCall(".then", argumentList =>
                             {
-                                DeserializeResponse(tryBlock, DefaultResponse.Body);
-                            }
+                                argumentList.Lambda("operationRes", lambda =>
+                                {
+                                    lambda.LineComment("Deserialize Response");
+                                    lambda.Line("const statusCode = operationRes.status;");
+                                    lambda.Line(InitializeResult);
+
+                                    if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
+                                    {
+                                        DeserializeResponse(lambda, DefaultResponse.Body);
+                                    }
+                                    lambda.Return("operationRes");
+                                });
+                            });
                         }
                     }
-                })
-                .Catch("err", catchBlock =>
-                {
-                    catchBlock.Return("Promise.reject(err)");
                 });
-
-                methodBody.Return("Promise.resolve(operationRes)");
             });
 
             return builder.ToString();
@@ -632,7 +631,7 @@ namespace AutoRest.TypeScript.Model
                     }
                 });
             });
-            
+
 
             if (CodeModel.ShouldGenerateXmlSerialization)
             {
