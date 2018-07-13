@@ -8,7 +8,7 @@
     "start-test-server": "ts-node testserver",
     "pretest": "npm install",
     "test": "gulp test",
-    "testci": "gulp testci",
+    "testci/generator-unit": "gulp testci/generator-unit",
     "regenerateci": "gulp regenerateci",
     "build": "gulp build",
     "prepare": "gulp install_common && gulp build",
