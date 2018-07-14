@@ -109,8 +109,9 @@ checkRegeneration = (taskName) ->
 
 # Run language-specific tests:
 task 'testci', '', [], (done) ->
-  await run "test", defer _
+  # VSTS can't handle regenerating after running browser tests
   await checkRegeneration "regenerate", defer _
+  await run "test", defer _
   done();
 
 task 'testci/regenerate-ts', '', [], (done) ->
