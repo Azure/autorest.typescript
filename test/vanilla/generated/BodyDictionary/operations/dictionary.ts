@@ -1342,27 +1342,8 @@ export class Dictionary {
   getNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNull(): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1383,27 +1364,8 @@ export class Dictionary {
   getEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getEmpty(): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1426,27 +1388,8 @@ export class Dictionary {
   putEmpty(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
   putEmpty(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putEmpty(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putEmptyWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putEmptyWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putEmpty(): any {
+    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1467,27 +1410,8 @@ export class Dictionary {
   getNullValue(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
   getNullValue(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getNullValue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getNullValue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getNullValueWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullValueWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNullValue(): any {
+    return msRest.responseToBody(this.getNullValueWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1508,27 +1432,8 @@ export class Dictionary {
   getNullKey(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
   getNullKey(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getNullKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getNullKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getNullKeyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullKeyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNullKey(): any {
+    return msRest.responseToBody(this.getNullKeyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1549,27 +1454,8 @@ export class Dictionary {
   getEmptyStringKey(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
   getEmptyStringKey(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getEmptyStringKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getEmptyStringKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getEmptyStringKeyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyStringKeyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getEmptyStringKey(): any {
+    return msRest.responseToBody(this.getEmptyStringKeyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1590,27 +1476,8 @@ export class Dictionary {
   getInvalid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
   getInvalid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getInvalid(): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1631,27 +1498,8 @@ export class Dictionary {
   getBooleanTfft(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: boolean }>;
   getBooleanTfft(callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
   getBooleanTfft(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
-  getBooleanTfft(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: boolean }>;
-    if (!callback) {
-      return this.getBooleanTfftWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: boolean });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBooleanTfftWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: boolean };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBooleanTfft(): any {
+    return msRest.responseToBody(this.getBooleanTfftWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1674,27 +1522,8 @@ export class Dictionary {
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options: msRest.RequestOptionsBase): Promise<void>;
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, callback: msRest.ServiceCallback<void>): void;
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBooleanTfftWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBooleanTfftWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putBooleanTfft(): any {
+    return msRest.responseToBody(this.putBooleanTfftWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1715,27 +1544,8 @@ export class Dictionary {
   getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: boolean }>;
   getBooleanInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
   getBooleanInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
-  getBooleanInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: boolean }>;
-    if (!callback) {
-      return this.getBooleanInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: boolean });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBooleanInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: boolean };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBooleanInvalidNull(): any {
+    return msRest.responseToBody(this.getBooleanInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1756,27 +1566,8 @@ export class Dictionary {
   getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: boolean }>;
   getBooleanInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
   getBooleanInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
-  getBooleanInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: boolean }>;
-    if (!callback) {
-      return this.getBooleanInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: boolean });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBooleanInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: boolean };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBooleanInvalidString(): any {
+    return msRest.responseToBody(this.getBooleanInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1797,27 +1588,8 @@ export class Dictionary {
   getIntegerValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getIntegerValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getIntegerValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getIntegerValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getIntegerValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getIntegerValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getIntegerValid(): any {
+    return msRest.responseToBody(this.getIntegerValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1840,27 +1612,8 @@ export class Dictionary {
   putIntegerValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<void>;
   putIntegerValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
   putIntegerValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putIntegerValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putIntegerValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putIntegerValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putIntegerValid(): any {
+    return msRest.responseToBody(this.putIntegerValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1881,27 +1634,8 @@ export class Dictionary {
   getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getIntInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getIntInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getIntInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getIntInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getIntInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getIntInvalidNull(): any {
+    return msRest.responseToBody(this.getIntInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1922,27 +1656,8 @@ export class Dictionary {
   getIntInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getIntInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getIntInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getIntInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getIntInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getIntInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getIntInvalidString(): any {
+    return msRest.responseToBody(this.getIntInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1963,27 +1678,8 @@ export class Dictionary {
   getLongValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getLongValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getLongValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getLongValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getLongValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLongValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLongValid(): any {
+    return msRest.responseToBody(this.getLongValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2006,27 +1702,8 @@ export class Dictionary {
   putLongValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<void>;
   putLongValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
   putLongValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLongValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putLongValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putLongValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putLongValid(): any {
+    return msRest.responseToBody(this.putLongValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2047,27 +1724,8 @@ export class Dictionary {
   getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getLongInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getLongInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getLongInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getLongInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLongInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLongInvalidNull(): any {
+    return msRest.responseToBody(this.getLongInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2088,27 +1746,8 @@ export class Dictionary {
   getLongInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getLongInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getLongInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getLongInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getLongInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLongInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLongInvalidString(): any {
+    return msRest.responseToBody(this.getLongInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2129,27 +1768,8 @@ export class Dictionary {
   getFloatValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getFloatValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getFloatValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getFloatValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getFloatValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getFloatValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getFloatValid(): any {
+    return msRest.responseToBody(this.getFloatValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2172,27 +1792,8 @@ export class Dictionary {
   putFloatValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<void>;
   putFloatValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
   putFloatValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFloatValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putFloatValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putFloatValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putFloatValid(): any {
+    return msRest.responseToBody(this.putFloatValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2213,27 +1814,8 @@ export class Dictionary {
   getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getFloatInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getFloatInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getFloatInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getFloatInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getFloatInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getFloatInvalidNull(): any {
+    return msRest.responseToBody(this.getFloatInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2254,27 +1836,8 @@ export class Dictionary {
   getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getFloatInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getFloatInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getFloatInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getFloatInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getFloatInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getFloatInvalidString(): any {
+    return msRest.responseToBody(this.getFloatInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2295,27 +1858,8 @@ export class Dictionary {
   getDoubleValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getDoubleValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getDoubleValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getDoubleValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getDoubleValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDoubleValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDoubleValid(): any {
+    return msRest.responseToBody(this.getDoubleValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2338,27 +1882,8 @@ export class Dictionary {
   putDoubleValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<void>;
   putDoubleValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
   putDoubleValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDoubleValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDoubleValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDoubleValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDoubleValid(): any {
+    return msRest.responseToBody(this.putDoubleValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2379,27 +1904,8 @@ export class Dictionary {
   getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getDoubleInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getDoubleInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getDoubleInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getDoubleInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDoubleInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDoubleInvalidNull(): any {
+    return msRest.responseToBody(this.getDoubleInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2420,27 +1926,8 @@ export class Dictionary {
   getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
   getDoubleInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getDoubleInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getDoubleInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getDoubleInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDoubleInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDoubleInvalidString(): any {
+    return msRest.responseToBody(this.getDoubleInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2461,27 +1948,8 @@ export class Dictionary {
   getStringValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
   getStringValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getStringValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getStringValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getStringValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getStringValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getStringValid(): any {
+    return msRest.responseToBody(this.getStringValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2504,27 +1972,8 @@ export class Dictionary {
   putStringValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
   putStringValid(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putStringValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putStringValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putStringValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putStringValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putStringValid(): any {
+    return msRest.responseToBody(this.putStringValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2545,27 +1994,8 @@ export class Dictionary {
   getStringWithNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
   getStringWithNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getStringWithNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getStringWithNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getStringWithNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getStringWithNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getStringWithNull(): any {
+    return msRest.responseToBody(this.getStringWithNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2586,27 +2016,8 @@ export class Dictionary {
   getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
   getStringWithInvalid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getStringWithInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getStringWithInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getStringWithInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getStringWithInvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getStringWithInvalid(): any {
+    return msRest.responseToBody(this.getStringWithInvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2627,27 +2038,8 @@ export class Dictionary {
   getDateValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
   getDateValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getDateValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateValid(): any {
+    return msRest.responseToBody(this.getDateValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2670,27 +2062,8 @@ export class Dictionary {
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDateValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDateValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDateValid(): any {
+    return msRest.responseToBody(this.putDateValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2711,27 +2084,8 @@ export class Dictionary {
   getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
   getDateInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getDateInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateInvalidNull(): any {
+    return msRest.responseToBody(this.getDateInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2752,27 +2106,8 @@ export class Dictionary {
   getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
   getDateInvalidChars(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getDateInvalidCharsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateInvalidCharsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateInvalidChars(): any {
+    return msRest.responseToBody(this.getDateInvalidCharsWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2794,27 +2129,8 @@ export class Dictionary {
   getDateTimeValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
   getDateTimeValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getDateTimeValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateTimeValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateTimeValid(): any {
+    return msRest.responseToBody(this.getDateTimeValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2838,27 +2154,8 @@ export class Dictionary {
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDateTimeValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDateTimeValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDateTimeValid(): any {
+    return msRest.responseToBody(this.putDateTimeValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2879,27 +2176,8 @@ export class Dictionary {
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
   getDateTimeInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getDateTimeInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateTimeInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateTimeInvalidNull(): any {
+    return msRest.responseToBody(this.getDateTimeInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2920,27 +2198,8 @@ export class Dictionary {
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
   getDateTimeInvalidChars(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getDateTimeInvalidCharsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateTimeInvalidCharsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateTimeInvalidChars(): any {
+    return msRest.responseToBody(this.getDateTimeInvalidCharsWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2962,27 +2221,8 @@ export class Dictionary {
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
   getDateTimeRfc1123Valid(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getDateTimeRfc1123ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateTimeRfc1123ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateTimeRfc1123Valid(): any {
+    return msRest.responseToBody(this.getDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3006,27 +2246,8 @@ export class Dictionary {
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDateTimeRfc1123Valid(): any {
+    return msRest.responseToBody(this.putDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3047,27 +2268,8 @@ export class Dictionary {
   getDurationValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
   getDurationValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
-    if (!callback) {
-      return this.getDurationValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDurationValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDurationValid(): any {
+    return msRest.responseToBody(this.getDurationValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3090,27 +2292,8 @@ export class Dictionary {
   putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
   putDurationValid(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDurationValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDurationValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDurationValid(): any {
+    return msRest.responseToBody(this.putDurationValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3132,27 +2315,8 @@ export class Dictionary {
   getByteValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Uint8Array }>;
   getByteValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
   getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
-  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>;
-    if (!callback) {
-      return this.getByteValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Uint8Array });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getByteValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Uint8Array };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getByteValid(): any {
+    return msRest.responseToBody(this.getByteValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3176,27 +2340,8 @@ export class Dictionary {
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase): Promise<void>;
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, callback: msRest.ServiceCallback<void>): void;
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putByteValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putByteValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putByteValid(): any {
+    return msRest.responseToBody(this.putByteValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3217,27 +2362,8 @@ export class Dictionary {
   getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Uint8Array }>;
   getByteInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
   getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
-  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>;
-    if (!callback) {
-      return this.getByteInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Uint8Array });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getByteInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Uint8Array };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getByteInvalidNull(): any {
+    return msRest.responseToBody(this.getByteInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3259,27 +2385,8 @@ export class Dictionary {
   getBase64Url(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Uint8Array }>;
   getBase64Url(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
   getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
-  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>;
-    if (!callback) {
-      return this.getBase64UrlWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Uint8Array });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBase64UrlWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Uint8Array };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBase64Url(): any {
+    return msRest.responseToBody(this.getBase64UrlWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3300,27 +2407,8 @@ export class Dictionary {
   getComplexNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
   getComplexNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
-    if (!callback) {
-      return this.getComplexNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexNull(): any {
+    return msRest.responseToBody(this.getComplexNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3341,27 +2429,8 @@ export class Dictionary {
   getComplexEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
   getComplexEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
-    if (!callback) {
-      return this.getComplexEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexEmpty(): any {
+    return msRest.responseToBody(this.getComplexEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3383,27 +2452,8 @@ export class Dictionary {
   getComplexItemNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
   getComplexItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
-    if (!callback) {
-      return this.getComplexItemNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexItemNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexItemNull(): any {
+    return msRest.responseToBody(this.getComplexItemNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3425,27 +2475,8 @@ export class Dictionary {
   getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
   getComplexItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
-    if (!callback) {
-      return this.getComplexItemEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexItemEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexItemEmpty(): any {
+    return msRest.responseToBody(this.getComplexItemEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3467,27 +2498,8 @@ export class Dictionary {
   getComplexValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
   getComplexValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
-    if (!callback) {
-      return this.getComplexValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexValid(): any {
+    return msRest.responseToBody(this.getComplexValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3511,27 +2523,8 @@ export class Dictionary {
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options: msRest.RequestOptionsBase): Promise<void>;
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, callback: msRest.ServiceCallback<void>): void;
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putComplexValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putComplexValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putComplexValid(): any {
+    return msRest.responseToBody(this.putComplexValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3552,27 +2545,8 @@ export class Dictionary {
   getArrayNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
   getArrayNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
-    if (!callback) {
-      return this.getArrayNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string[] };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayNull(): any {
+    return msRest.responseToBody(this.getArrayNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3593,27 +2567,8 @@ export class Dictionary {
   getArrayEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
   getArrayEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
-    if (!callback) {
-      return this.getArrayEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string[] };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayEmpty(): any {
+    return msRest.responseToBody(this.getArrayEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3634,27 +2589,8 @@ export class Dictionary {
   getArrayItemNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
   getArrayItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
-    if (!callback) {
-      return this.getArrayItemNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayItemNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string[] };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayItemNull(): any {
+    return msRest.responseToBody(this.getArrayItemNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3675,27 +2611,8 @@ export class Dictionary {
   getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
   getArrayItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
-    if (!callback) {
-      return this.getArrayItemEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayItemEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string[] };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayItemEmpty(): any {
+    return msRest.responseToBody(this.getArrayItemEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3717,27 +2634,8 @@ export class Dictionary {
   getArrayValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
   getArrayValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
-    if (!callback) {
-      return this.getArrayValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string[] };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayValid(): any {
+    return msRest.responseToBody(this.getArrayValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3761,27 +2659,8 @@ export class Dictionary {
   putArrayValid(arrayBody: { [propertyName: string]: string[] }, options: msRest.RequestOptionsBase): Promise<void>;
   putArrayValid(arrayBody: { [propertyName: string]: string[] }, callback: msRest.ServiceCallback<void>): void;
   putArrayValid(arrayBody: { [propertyName: string]: string[] }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putArrayValid(arrayBody: { [propertyName: string]: string[] }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putArrayValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putArrayValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putArrayValid(): any {
+    return msRest.responseToBody(this.putArrayValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3802,27 +2681,8 @@ export class Dictionary {
   getDictionaryNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
   getDictionaryNull(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
-    if (!callback) {
-      return this.getDictionaryNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryNull(): any {
+    return msRest.responseToBody(this.getDictionaryNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3843,27 +2703,8 @@ export class Dictionary {
   getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
   getDictionaryEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
-    if (!callback) {
-      return this.getDictionaryEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryEmpty(): any {
+    return msRest.responseToBody(this.getDictionaryEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3885,27 +2726,8 @@ export class Dictionary {
   getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
   getDictionaryItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
-    if (!callback) {
-      return this.getDictionaryItemNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryItemNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryItemNull(): any {
+    return msRest.responseToBody(this.getDictionaryItemNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3927,27 +2749,8 @@ export class Dictionary {
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
   getDictionaryItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
-    if (!callback) {
-      return this.getDictionaryItemEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryItemEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryItemEmpty(): any {
+    return msRest.responseToBody(this.getDictionaryItemEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3970,27 +2773,8 @@ export class Dictionary {
   getDictionaryValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
   getDictionaryValid(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
-    if (!callback) {
-      return this.getDictionaryValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryValid(): any {
+    return msRest.responseToBody(this.getDictionaryValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4015,27 +2799,8 @@ export class Dictionary {
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options: msRest.RequestOptionsBase): Promise<void>;
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, callback: msRest.ServiceCallback<void>): void;
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDictionaryValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDictionaryValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDictionaryValid(): any {
+    return msRest.responseToBody(this.putDictionaryValidWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

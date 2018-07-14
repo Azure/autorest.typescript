@@ -200,27 +200,8 @@ export class DateModel {
   getNull(options: msRest.RequestOptionsBase): Promise<Date>;
   getNull(callback: msRest.ServiceCallback<Date>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNull(): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -241,27 +222,8 @@ export class DateModel {
   getInvalidDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getInvalidDate(callback: msRest.ServiceCallback<Date>): void;
   getInvalidDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getInvalidDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getInvalidDateWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidDateWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getInvalidDate(): any {
+    return msRest.responseToBody(this.getInvalidDateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -282,27 +244,8 @@ export class DateModel {
   getOverflowDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getOverflowDate(callback: msRest.ServiceCallback<Date>): void;
   getOverflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getOverflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getOverflowDateWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getOverflowDateWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getOverflowDate(): any {
+    return msRest.responseToBody(this.getOverflowDateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -323,27 +266,8 @@ export class DateModel {
   getUnderflowDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getUnderflowDate(callback: msRest.ServiceCallback<Date>): void;
   getUnderflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUnderflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getUnderflowDateWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUnderflowDateWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUnderflowDate(): any {
+    return msRest.responseToBody(this.getUnderflowDateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -366,27 +290,8 @@ export class DateModel {
   putMaxDate(dateBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putMaxDate(dateBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putMaxDate(dateBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMaxDate(dateBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putMaxDateWithHttpOperationResponse(dateBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putMaxDateWithHttpOperationResponse(dateBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putMaxDate(): any {
+    return msRest.responseToBody(this.putMaxDateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -407,27 +312,8 @@ export class DateModel {
   getMaxDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getMaxDate(callback: msRest.ServiceCallback<Date>): void;
   getMaxDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getMaxDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getMaxDateWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMaxDateWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMaxDate(): any {
+    return msRest.responseToBody(this.getMaxDateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -450,27 +336,8 @@ export class DateModel {
   putMinDate(dateBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putMinDate(dateBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putMinDate(dateBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMinDate(dateBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putMinDateWithHttpOperationResponse(dateBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putMinDateWithHttpOperationResponse(dateBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putMinDate(): any {
+    return msRest.responseToBody(this.putMinDateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -491,27 +358,8 @@ export class DateModel {
   getMinDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getMinDate(callback: msRest.ServiceCallback<Date>): void;
   getMinDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getMinDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getMinDateWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMinDateWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMinDate(): any {
+    return msRest.responseToBody(this.getMinDateWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

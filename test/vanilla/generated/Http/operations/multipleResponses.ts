@@ -690,27 +690,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200Model204NoModelDefaultError200ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200Model204NoModelDefaultError200ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200Model204NoModelDefaultError200Valid(): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError200ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -731,27 +712,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError204Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError204Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError204Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError204Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200Model204NoModelDefaultError204ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200Model204NoModelDefaultError204ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200Model204NoModelDefaultError204Valid(): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError204ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -772,27 +734,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError201Invalid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError201Invalid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError201Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError201Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200Model204NoModelDefaultError201Invalid(): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -813,27 +756,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError202None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError202None(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError202None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError202None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200Model204NoModelDefaultError202NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200Model204NoModelDefaultError202NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200Model204NoModelDefaultError202None(): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError202NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -854,27 +778,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200Model204NoModelDefaultError400ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200Model204NoModelDefaultError400ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200Model204NoModelDefaultError400Valid(): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError400ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -895,27 +800,8 @@ export class MultipleResponses {
   get200Model201ModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model201ModelDefaultError200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model201ModelDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200Model201ModelDefaultError200ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200Model201ModelDefaultError200ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200Model201ModelDefaultError200Valid(): any {
+    return msRest.responseToBody(this.get200Model201ModelDefaultError200ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -936,27 +822,8 @@ export class MultipleResponses {
   get200Model201ModelDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model201ModelDefaultError201Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model201ModelDefaultError201Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError201Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200Model201ModelDefaultError201ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200Model201ModelDefaultError201ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200Model201ModelDefaultError201Valid(): any {
+    return msRest.responseToBody(this.get200Model201ModelDefaultError201ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -977,27 +844,8 @@ export class MultipleResponses {
   get200Model201ModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model201ModelDefaultError400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model201ModelDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200Model201ModelDefaultError400ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200Model201ModelDefaultError400ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200Model201ModelDefaultError400Valid(): any {
+    return msRest.responseToBody(this.get200Model201ModelDefaultError400ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1018,27 +866,8 @@ export class MultipleResponses {
   get200ModelA201ModelC404ModelDDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<any>;
   get200ModelA201ModelC404ModelDDefaultError200Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<any>;
-    if (!callback) {
-      return this.get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as any);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as any;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA201ModelC404ModelDDefaultError200Valid(): any {
+    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1059,27 +888,8 @@ export class MultipleResponses {
   get200ModelA201ModelC404ModelDDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<any>;
   get200ModelA201ModelC404ModelDDefaultError201Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError201Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError201Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<any>;
-    if (!callback) {
-      return this.get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as any);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as any;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA201ModelC404ModelDDefaultError201Valid(): any {
+    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1100,27 +910,8 @@ export class MultipleResponses {
   get200ModelA201ModelC404ModelDDefaultError404Valid(options: msRest.RequestOptionsBase): Promise<any>;
   get200ModelA201ModelC404ModelDDefaultError404Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError404Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError404Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<any>;
-    if (!callback) {
-      return this.get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as any);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as any;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA201ModelC404ModelDDefaultError404Valid(): any {
+    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1141,27 +932,8 @@ export class MultipleResponses {
   get200ModelA201ModelC404ModelDDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<any>;
   get200ModelA201ModelC404ModelDDefaultError400Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<any>;
-    if (!callback) {
-      return this.get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as any);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as any;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA201ModelC404ModelDDefaultError400Valid(): any {
+    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1182,27 +954,8 @@ export class MultipleResponses {
   get202None204NoneDefaultError202None(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultError202None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultError202None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError202None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.get202None204NoneDefaultError202NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get202None204NoneDefaultError202NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get202None204NoneDefaultError202None(): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultError202NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1223,27 +976,8 @@ export class MultipleResponses {
   get202None204NoneDefaultError204None(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultError204None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultError204None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError204None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.get202None204NoneDefaultError204NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get202None204NoneDefaultError204NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get202None204NoneDefaultError204None(): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultError204NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1264,27 +998,8 @@ export class MultipleResponses {
   get202None204NoneDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultError400Valid(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.get202None204NoneDefaultError400ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get202None204NoneDefaultError400ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get202None204NoneDefaultError400Valid(): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultError400ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1305,27 +1020,8 @@ export class MultipleResponses {
   get202None204NoneDefaultNone202Invalid(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultNone202Invalid(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone202Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone202Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.get202None204NoneDefaultNone202InvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get202None204NoneDefaultNone202InvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get202None204NoneDefaultNone202Invalid(): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultNone202InvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1346,27 +1042,8 @@ export class MultipleResponses {
   get202None204NoneDefaultNone204None(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultNone204None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone204None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone204None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.get202None204NoneDefaultNone204NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get202None204NoneDefaultNone204NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get202None204NoneDefaultNone204None(): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultNone204NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1387,27 +1064,8 @@ export class MultipleResponses {
   get202None204NoneDefaultNone400None(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultNone400None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.get202None204NoneDefaultNone400NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get202None204NoneDefaultNone400NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get202None204NoneDefaultNone400None(): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultNone400NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1428,27 +1086,8 @@ export class MultipleResponses {
   get202None204NoneDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultNone400Invalid(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.get202None204NoneDefaultNone400InvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get202None204NoneDefaultNone400InvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get202None204NoneDefaultNone400Invalid(): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultNone400InvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1469,27 +1108,8 @@ export class MultipleResponses {
   getDefaultModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   getDefaultModelA200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.getDefaultModelA200ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDefaultModelA200ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDefaultModelA200Valid(): any {
+    return msRest.responseToBody(this.getDefaultModelA200ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1510,27 +1130,8 @@ export class MultipleResponses {
   getDefaultModelA200None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   getDefaultModelA200None(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.getDefaultModelA200NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDefaultModelA200NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDefaultModelA200None(): any {
+    return msRest.responseToBody(this.getDefaultModelA200NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1551,27 +1152,8 @@ export class MultipleResponses {
   getDefaultModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   getDefaultModelA400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.getDefaultModelA400ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDefaultModelA400ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDefaultModelA400Valid(): any {
+    return msRest.responseToBody(this.getDefaultModelA400ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1592,27 +1174,8 @@ export class MultipleResponses {
   getDefaultModelA400None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   getDefaultModelA400None(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.getDefaultModelA400NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDefaultModelA400NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDefaultModelA400None(): any {
+    return msRest.responseToBody(this.getDefaultModelA400NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1633,27 +1196,8 @@ export class MultipleResponses {
   getDefaultNone200Invalid(options: msRest.RequestOptionsBase): Promise<void>;
   getDefaultNone200Invalid(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone200Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone200Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getDefaultNone200InvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDefaultNone200InvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDefaultNone200Invalid(): any {
+    return msRest.responseToBody(this.getDefaultNone200InvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1674,27 +1218,8 @@ export class MultipleResponses {
   getDefaultNone200None(options: msRest.RequestOptionsBase): Promise<void>;
   getDefaultNone200None(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getDefaultNone200NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDefaultNone200NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDefaultNone200None(): any {
+    return msRest.responseToBody(this.getDefaultNone200NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1715,27 +1240,8 @@ export class MultipleResponses {
   getDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<void>;
   getDefaultNone400Invalid(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getDefaultNone400InvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDefaultNone400InvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDefaultNone400Invalid(): any {
+    return msRest.responseToBody(this.getDefaultNone400InvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1756,27 +1262,8 @@ export class MultipleResponses {
   getDefaultNone400None(options: msRest.RequestOptionsBase): Promise<void>;
   getDefaultNone400None(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getDefaultNone400NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDefaultNone400NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDefaultNone400None(): any {
+    return msRest.responseToBody(this.getDefaultNone400NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1798,27 +1285,8 @@ export class MultipleResponses {
   get200ModelA200None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA200None(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200ModelA200NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA200NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA200None(): any {
+    return msRest.responseToBody(this.get200ModelA200NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1839,27 +1307,8 @@ export class MultipleResponses {
   get200ModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200ModelA200ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA200ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA200Valid(): any {
+    return msRest.responseToBody(this.get200ModelA200ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1880,27 +1329,8 @@ export class MultipleResponses {
   get200ModelA200Invalid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA200Invalid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA200Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200ModelA200InvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA200InvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA200Invalid(): any {
+    return msRest.responseToBody(this.get200ModelA200InvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1921,27 +1351,8 @@ export class MultipleResponses {
   get200ModelA400None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA400None(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200ModelA400NoneWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA400NoneWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA400None(): any {
+    return msRest.responseToBody(this.get200ModelA400NoneWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1962,27 +1373,8 @@ export class MultipleResponses {
   get200ModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200ModelA400ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA400ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA400Valid(): any {
+    return msRest.responseToBody(this.get200ModelA400ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2003,27 +1395,8 @@ export class MultipleResponses {
   get200ModelA400Invalid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA400Invalid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200ModelA400InvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA400InvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA400Invalid(): any {
+    return msRest.responseToBody(this.get200ModelA400InvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2044,27 +1417,8 @@ export class MultipleResponses {
   get200ModelA202Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA202Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA202Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA202Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.A>;
-    if (!callback) {
-      return this.get200ModelA202ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.A);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get200ModelA202ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.A;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get200ModelA202Valid(): any {
+    return msRest.responseToBody(this.get200ModelA202ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

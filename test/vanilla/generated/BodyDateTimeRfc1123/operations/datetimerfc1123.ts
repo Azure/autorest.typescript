@@ -219,27 +219,8 @@ export class Datetimerfc1123 {
   getNull(options: msRest.RequestOptionsBase): Promise<Date>;
   getNull(callback: msRest.ServiceCallback<Date>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNull(): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -260,27 +241,8 @@ export class Datetimerfc1123 {
   getInvalid(options: msRest.RequestOptionsBase): Promise<Date>;
   getInvalid(callback: msRest.ServiceCallback<Date>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getInvalid(): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -301,27 +263,8 @@ export class Datetimerfc1123 {
   getOverflow(options: msRest.RequestOptionsBase): Promise<Date>;
   getOverflow(callback: msRest.ServiceCallback<Date>): void;
   getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getOverflowWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getOverflowWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getOverflow(): any {
+    return msRest.responseToBody(this.getOverflowWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -342,27 +285,8 @@ export class Datetimerfc1123 {
   getUnderflow(options: msRest.RequestOptionsBase): Promise<Date>;
   getUnderflow(callback: msRest.ServiceCallback<Date>): void;
   getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getUnderflowWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUnderflowWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUnderflow(): any {
+    return msRest.responseToBody(this.getUnderflowWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -385,27 +309,8 @@ export class Datetimerfc1123 {
   putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putUtcMaxDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMaxDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putUtcMaxDateTime(): any {
+    return msRest.responseToBody(this.putUtcMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -426,27 +331,8 @@ export class Datetimerfc1123 {
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUtcLowercaseMaxDateTime(): any {
+    return msRest.responseToBody(this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -467,27 +353,8 @@ export class Datetimerfc1123 {
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUtcUppercaseMaxDateTime(): any {
+    return msRest.responseToBody(this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -510,27 +377,8 @@ export class Datetimerfc1123 {
   putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putUtcMinDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMinDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putUtcMinDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putUtcMinDateTimeWithHttpOperationResponse(datetimeBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putUtcMinDateTime(): any {
+    return msRest.responseToBody(this.putUtcMinDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -551,27 +399,8 @@ export class Datetimerfc1123 {
   getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUtcMinDateTime(callback: msRest.ServiceCallback<Date>): void;
   getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getUtcMinDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUtcMinDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUtcMinDateTime(): any {
+    return msRest.responseToBody(this.getUtcMinDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

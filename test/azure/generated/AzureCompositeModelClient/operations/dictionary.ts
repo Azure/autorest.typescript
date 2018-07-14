@@ -157,27 +157,8 @@ export class Dictionary {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
   getValid(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.DictionaryWrapper>;
-    if (!callback) {
-      return this.getValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.DictionaryWrapper);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.DictionaryWrapper;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getValid(): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -198,27 +179,8 @@ export class Dictionary {
   putValid(options: Models.DictionaryPutValidOptionalParams): Promise<void>;
   putValid(callback: msRest.ServiceCallback<void>): void;
   putValid(options: Models.DictionaryPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putValid(options?: Models.DictionaryPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putValid(): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -239,27 +201,8 @@ export class Dictionary {
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
   getEmpty(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.DictionaryWrapper>;
-    if (!callback) {
-      return this.getEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.DictionaryWrapper);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.DictionaryWrapper;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getEmpty(): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -280,27 +223,8 @@ export class Dictionary {
   putEmpty(options: Models.DictionaryPutEmptyOptionalParams): Promise<void>;
   putEmpty(callback: msRest.ServiceCallback<void>): void;
   putEmpty(options: Models.DictionaryPutEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(options?: Models.DictionaryPutEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putEmpty(): any {
+    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -321,27 +245,8 @@ export class Dictionary {
   getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
   getNull(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.DictionaryWrapper>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.DictionaryWrapper);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.DictionaryWrapper;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNull(): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -362,27 +267,8 @@ export class Dictionary {
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
   getNotProvided(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.DictionaryWrapper>;
-    if (!callback) {
-      return this.getNotProvidedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.DictionaryWrapper);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNotProvidedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.DictionaryWrapper;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNotProvided(): any {
+    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

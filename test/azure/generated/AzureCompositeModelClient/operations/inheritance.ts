@@ -86,27 +86,8 @@ export class Inheritance {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.Siamese>;
   getValid(callback: msRest.ServiceCallback<Models.Siamese>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Siamese>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Siamese>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Siamese>;
-    if (!callback) {
-      return this.getValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Siamese);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Siamese;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getValid(): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -131,27 +112,8 @@ export class Inheritance {
   putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase): Promise<void>;
   putValid(complexBody: Models.Siamese, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putValidWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putValidWithHttpOperationResponse(complexBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putValid(): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

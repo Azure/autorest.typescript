@@ -181,27 +181,8 @@ export class Implicit {
   getRequiredPath(pathParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   getRequiredPath(pathParameter: string, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getRequiredPath(pathParameter: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  getRequiredPath(pathParameter: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.getRequiredPathWithHttpOperationResponse(pathParameter, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getRequiredPathWithHttpOperationResponse(pathParameter, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getRequiredPath(): any {
+    return msRest.responseToBody(this.getRequiredPathWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -222,27 +203,8 @@ export class Implicit {
   putOptionalQuery(options: Models.ImplicitPutOptionalQueryOptionalParams): Promise<void>;
   putOptionalQuery(callback: msRest.ServiceCallback<void>): void;
   putOptionalQuery(options: Models.ImplicitPutOptionalQueryOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putOptionalQuery(options?: Models.ImplicitPutOptionalQueryOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putOptionalQueryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putOptionalQueryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putOptionalQuery(): any {
+    return msRest.responseToBody(this.putOptionalQueryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -263,27 +225,8 @@ export class Implicit {
   putOptionalHeader(options: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<void>;
   putOptionalHeader(callback: msRest.ServiceCallback<void>): void;
   putOptionalHeader(options: Models.ImplicitPutOptionalHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putOptionalHeader(options?: Models.ImplicitPutOptionalHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putOptionalHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putOptionalHeaderWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putOptionalHeader(): any {
+    return msRest.responseToBody(this.putOptionalHeaderWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -304,27 +247,8 @@ export class Implicit {
   putOptionalBody(options: Models.ImplicitPutOptionalBodyOptionalParams): Promise<void>;
   putOptionalBody(callback: msRest.ServiceCallback<void>): void;
   putOptionalBody(options: Models.ImplicitPutOptionalBodyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putOptionalBody(options?: Models.ImplicitPutOptionalBodyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putOptionalBodyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putOptionalBodyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putOptionalBody(): any {
+    return msRest.responseToBody(this.putOptionalBodyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -345,27 +269,8 @@ export class Implicit {
   getRequiredGlobalPath(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   getRequiredGlobalPath(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getRequiredGlobalPath(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  getRequiredGlobalPath(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.getRequiredGlobalPathWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getRequiredGlobalPathWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getRequiredGlobalPath(): any {
+    return msRest.responseToBody(this.getRequiredGlobalPathWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -386,27 +291,8 @@ export class Implicit {
   getRequiredGlobalQuery(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   getRequiredGlobalQuery(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getRequiredGlobalQuery(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  getRequiredGlobalQuery(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.getRequiredGlobalQueryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getRequiredGlobalQueryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getRequiredGlobalQuery(): any {
+    return msRest.responseToBody(this.getRequiredGlobalQueryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -427,27 +313,8 @@ export class Implicit {
   getOptionalGlobalQuery(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   getOptionalGlobalQuery(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getOptionalGlobalQuery(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  getOptionalGlobalQuery(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.getOptionalGlobalQueryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getOptionalGlobalQueryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getOptionalGlobalQuery(): any {
+    return msRest.responseToBody(this.getOptionalGlobalQueryWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

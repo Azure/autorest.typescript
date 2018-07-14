@@ -83,27 +83,8 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<{ [propertyName: string]: number }>;
   getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getReportWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getReportWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getReport(): any {
+    return msRest.responseToBody(this.getReportWithHttpOperationResponse.bind(this), arguments);
   }
 }
 

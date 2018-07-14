@@ -293,27 +293,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<void>;
   putArray(callback: msRest.ServiceCallback<void>): void;
   putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putArrayWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putArrayWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putArray(): any {
+    return msRest.responseToBody(this.putArrayWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -334,27 +315,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   getArray(options: msRest.RequestOptionsBase): Promise<Models.FlattenedProduct[]>;
   getArray(callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
   getArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
-  getArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.FlattenedProduct[]>;
-    if (!callback) {
-      return this.getArrayWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.FlattenedProduct[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.FlattenedProduct[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArray(): any {
+    return msRest.responseToBody(this.getArrayWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -377,27 +339,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<void>;
   putWrappedArray(callback: msRest.ServiceCallback<void>): void;
   putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putWrappedArray(options?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putWrappedArrayWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putWrappedArrayWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putWrappedArray(): any {
+    return msRest.responseToBody(this.putWrappedArrayWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -419,27 +362,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   getWrappedArray(options: msRest.RequestOptionsBase): Promise<Models.ProductWrapper[]>;
   getWrappedArray(callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
   getWrappedArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
-  getWrappedArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductWrapper[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductWrapper[]>;
-    if (!callback) {
-      return this.getWrappedArrayWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductWrapper[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWrappedArrayWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductWrapper[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getWrappedArray(): any {
+    return msRest.responseToBody(this.getWrappedArrayWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -461,27 +385,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<void>;
   putDictionary(callback: msRest.ServiceCallback<void>): void;
   putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDictionaryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDictionaryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDictionary(): any {
+    return msRest.responseToBody(this.putDictionaryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -502,27 +407,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   getDictionary(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.FlattenedProduct }>;
   getDictionary(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
   getDictionary(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
-  getDictionary(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>;
-    if (!callback) {
-      return this.getDictionaryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.FlattenedProduct });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: Models.FlattenedProduct };
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionary(): any {
+    return msRest.responseToBody(this.getDictionaryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -544,27 +430,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<void>;
   putResourceCollection(callback: msRest.ServiceCallback<void>): void;
   putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putResourceCollectionWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putResourceCollectionWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putResourceCollection(): any {
+    return msRest.responseToBody(this.putResourceCollectionWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -585,27 +452,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.ResourceCollection>;
   getResourceCollection(callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
   getResourceCollection(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
-  getResourceCollection(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ResourceCollection>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ResourceCollection>;
-    if (!callback) {
-      return this.getResourceCollectionWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ResourceCollection);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getResourceCollectionWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ResourceCollection;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getResourceCollection(): any {
+    return msRest.responseToBody(this.getResourceCollectionWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -627,27 +475,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<Models.SimpleProduct>;
   putSimpleProduct(callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
   putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProduct(options?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SimpleProduct>;
-    if (!callback) {
-      return this.putSimpleProductWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.SimpleProduct);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putSimpleProductWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.SimpleProduct;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putSimpleProduct(): any {
+    return msRest.responseToBody(this.putSimpleProductWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -675,27 +504,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams): Promise<Models.SimpleProduct>;
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options?: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SimpleProduct>;
-    if (!callback) {
-      return this.postFlattenedSimpleProductWithHttpOperationResponse(productId, maxProductDisplayName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.SimpleProduct);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postFlattenedSimpleProductWithHttpOperationResponse(productId, maxProductDisplayName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.SimpleProduct;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postFlattenedSimpleProduct(): any {
+    return msRest.responseToBody(this.postFlattenedSimpleProductWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -718,27 +528,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.SimpleProduct>;
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SimpleProduct>;
-    if (!callback) {
-      return this.putSimpleProductWithGroupingWithHttpOperationResponse(flattenParameterGroup, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.SimpleProduct);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putSimpleProductWithGroupingWithHttpOperationResponse(flattenParameterGroup, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.SimpleProduct;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putSimpleProductWithGrouping(): any {
+    return msRest.responseToBody(this.putSimpleProductWithGroupingWithHttpOperationResponse.bind(this), arguments);
   }
 }
 

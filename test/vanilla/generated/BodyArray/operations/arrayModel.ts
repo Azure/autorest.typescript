@@ -1343,27 +1343,8 @@ export class ArrayModel {
   getNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getNull(callback: msRest.ServiceCallback<number[]>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNull(): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1384,27 +1365,8 @@ export class ArrayModel {
   getInvalid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getInvalid(callback: msRest.ServiceCallback<number[]>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getInvalid(): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1425,27 +1387,8 @@ export class ArrayModel {
   getEmpty(options: msRest.RequestOptionsBase): Promise<number[]>;
   getEmpty(callback: msRest.ServiceCallback<number[]>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getEmpty(): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1468,27 +1411,8 @@ export class ArrayModel {
   putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
   putEmpty(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putEmptyWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putEmptyWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putEmpty(): any {
+    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1509,27 +1433,8 @@ export class ArrayModel {
   getBooleanTfft(options: msRest.RequestOptionsBase): Promise<boolean[]>;
   getBooleanTfft(callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanTfft(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanTfft(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean[]>;
-    if (!callback) {
-      return this.getBooleanTfftWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBooleanTfftWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBooleanTfft(): any {
+    return msRest.responseToBody(this.getBooleanTfftWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1552,27 +1457,8 @@ export class ArrayModel {
   putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase): Promise<void>;
   putBooleanTfft(arrayBody: boolean[], callback: msRest.ServiceCallback<void>): void;
   putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBooleanTfft(arrayBody: boolean[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBooleanTfftWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBooleanTfftWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putBooleanTfft(): any {
+    return msRest.responseToBody(this.putBooleanTfftWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1593,27 +1479,8 @@ export class ArrayModel {
   getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<boolean[]>;
   getBooleanInvalidNull(callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean[]>;
-    if (!callback) {
-      return this.getBooleanInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBooleanInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBooleanInvalidNull(): any {
+    return msRest.responseToBody(this.getBooleanInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1634,27 +1501,8 @@ export class ArrayModel {
   getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<boolean[]>;
   getBooleanInvalidString(callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean[]>;
-    if (!callback) {
-      return this.getBooleanInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBooleanInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBooleanInvalidString(): any {
+    return msRest.responseToBody(this.getBooleanInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1675,27 +1523,8 @@ export class ArrayModel {
   getIntegerValid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getIntegerValid(callback: msRest.ServiceCallback<number[]>): void;
   getIntegerValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntegerValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getIntegerValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getIntegerValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getIntegerValid(): any {
+    return msRest.responseToBody(this.getIntegerValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1718,27 +1547,8 @@ export class ArrayModel {
   putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
   putIntegerValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putIntegerValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putIntegerValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putIntegerValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putIntegerValid(): any {
+    return msRest.responseToBody(this.putIntegerValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1759,27 +1569,8 @@ export class ArrayModel {
   getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getIntInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getIntInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getIntInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getIntInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getIntInvalidNull(): any {
+    return msRest.responseToBody(this.getIntInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1800,27 +1591,8 @@ export class ArrayModel {
   getIntInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
   getIntInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getIntInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getIntInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getIntInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getIntInvalidString(): any {
+    return msRest.responseToBody(this.getIntInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1841,27 +1613,8 @@ export class ArrayModel {
   getLongValid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getLongValid(callback: msRest.ServiceCallback<number[]>): void;
   getLongValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getLongValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLongValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLongValid(): any {
+    return msRest.responseToBody(this.getLongValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1884,27 +1637,8 @@ export class ArrayModel {
   putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
   putLongValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLongValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putLongValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putLongValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putLongValid(): any {
+    return msRest.responseToBody(this.putLongValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1925,27 +1659,8 @@ export class ArrayModel {
   getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getLongInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getLongInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getLongInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLongInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLongInvalidNull(): any {
+    return msRest.responseToBody(this.getLongInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1966,27 +1681,8 @@ export class ArrayModel {
   getLongInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
   getLongInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getLongInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getLongInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLongInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLongInvalidString(): any {
+    return msRest.responseToBody(this.getLongInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2007,27 +1703,8 @@ export class ArrayModel {
   getFloatValid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getFloatValid(callback: msRest.ServiceCallback<number[]>): void;
   getFloatValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getFloatValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getFloatValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getFloatValid(): any {
+    return msRest.responseToBody(this.getFloatValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2050,27 +1727,8 @@ export class ArrayModel {
   putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
   putFloatValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFloatValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putFloatValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putFloatValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putFloatValid(): any {
+    return msRest.responseToBody(this.putFloatValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2091,27 +1749,8 @@ export class ArrayModel {
   getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getFloatInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getFloatInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getFloatInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getFloatInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getFloatInvalidNull(): any {
+    return msRest.responseToBody(this.getFloatInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2132,27 +1771,8 @@ export class ArrayModel {
   getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
   getFloatInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getFloatInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getFloatInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getFloatInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getFloatInvalidString(): any {
+    return msRest.responseToBody(this.getFloatInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2173,27 +1793,8 @@ export class ArrayModel {
   getDoubleValid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getDoubleValid(callback: msRest.ServiceCallback<number[]>): void;
   getDoubleValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getDoubleValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDoubleValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDoubleValid(): any {
+    return msRest.responseToBody(this.getDoubleValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2216,27 +1817,8 @@ export class ArrayModel {
   putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
   putDoubleValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDoubleValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDoubleValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDoubleValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDoubleValid(): any {
+    return msRest.responseToBody(this.putDoubleValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2257,27 +1839,8 @@ export class ArrayModel {
   getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getDoubleInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getDoubleInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getDoubleInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDoubleInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDoubleInvalidNull(): any {
+    return msRest.responseToBody(this.getDoubleInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2298,27 +1861,8 @@ export class ArrayModel {
   getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
   getDoubleInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getDoubleInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number[]>;
-    if (!callback) {
-      return this.getDoubleInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDoubleInvalidStringWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDoubleInvalidString(): any {
+    return msRest.responseToBody(this.getDoubleInvalidStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2339,27 +1883,8 @@ export class ArrayModel {
   getStringValid(options: msRest.RequestOptionsBase): Promise<string[]>;
   getStringValid(callback: msRest.ServiceCallback<string[]>): void;
   getStringValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[]>;
-    if (!callback) {
-      return this.getStringValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getStringValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getStringValid(): any {
+    return msRest.responseToBody(this.getStringValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2382,27 +1907,8 @@ export class ArrayModel {
   putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
   putStringValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putStringValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putStringValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putStringValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putStringValid(): any {
+    return msRest.responseToBody(this.putStringValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2423,27 +1929,8 @@ export class ArrayModel {
   getStringWithNull(options: msRest.RequestOptionsBase): Promise<string[]>;
   getStringWithNull(callback: msRest.ServiceCallback<string[]>): void;
   getStringWithNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringWithNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[]>;
-    if (!callback) {
-      return this.getStringWithNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getStringWithNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getStringWithNull(): any {
+    return msRest.responseToBody(this.getStringWithNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2464,27 +1951,8 @@ export class ArrayModel {
   getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<string[]>;
   getStringWithInvalid(callback: msRest.ServiceCallback<string[]>): void;
   getStringWithInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringWithInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[]>;
-    if (!callback) {
-      return this.getStringWithInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getStringWithInvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getStringWithInvalid(): any {
+    return msRest.responseToBody(this.getStringWithInvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2506,27 +1974,8 @@ export class ArrayModel {
   getUuidValid(options: msRest.RequestOptionsBase): Promise<string[]>;
   getUuidValid(callback: msRest.ServiceCallback<string[]>): void;
   getUuidValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getUuidValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[]>;
-    if (!callback) {
-      return this.getUuidValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUuidValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUuidValid(): any {
+    return msRest.responseToBody(this.getUuidValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2550,27 +1999,8 @@ export class ArrayModel {
   putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
   putUuidValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUuidValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putUuidValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putUuidValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putUuidValid(): any {
+    return msRest.responseToBody(this.putUuidValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2591,27 +2021,8 @@ export class ArrayModel {
   getUuidInvalidChars(options: msRest.RequestOptionsBase): Promise<string[]>;
   getUuidInvalidChars(callback: msRest.ServiceCallback<string[]>): void;
   getUuidInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getUuidInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[]>;
-    if (!callback) {
-      return this.getUuidInvalidCharsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUuidInvalidCharsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUuidInvalidChars(): any {
+    return msRest.responseToBody(this.getUuidInvalidCharsWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2632,27 +2043,8 @@ export class ArrayModel {
   getDateValid(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date[] | string[]>;
-    if (!callback) {
-      return this.getDateValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date[] | string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date[] | string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateValid(): any {
+    return msRest.responseToBody(this.getDateValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2675,27 +2067,8 @@ export class ArrayModel {
   putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<void>;
   putDateValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDateValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDateValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDateValid(): any {
+    return msRest.responseToBody(this.putDateValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2716,27 +2089,8 @@ export class ArrayModel {
   getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date[] | string[]>;
-    if (!callback) {
-      return this.getDateInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date[] | string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date[] | string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateInvalidNull(): any {
+    return msRest.responseToBody(this.getDateInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2757,27 +2111,8 @@ export class ArrayModel {
   getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date[] | string[]>;
-    if (!callback) {
-      return this.getDateInvalidCharsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date[] | string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateInvalidCharsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date[] | string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateInvalidChars(): any {
+    return msRest.responseToBody(this.getDateInvalidCharsWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2799,27 +2134,8 @@ export class ArrayModel {
   getDateTimeValid(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateTimeValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date[] | string[]>;
-    if (!callback) {
-      return this.getDateTimeValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date[] | string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateTimeValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date[] | string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateTimeValid(): any {
+    return msRest.responseToBody(this.getDateTimeValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2843,27 +2159,8 @@ export class ArrayModel {
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<void>;
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDateTimeValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDateTimeValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDateTimeValid(): any {
+    return msRest.responseToBody(this.putDateTimeValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2884,27 +2181,8 @@ export class ArrayModel {
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateTimeInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date[] | string[]>;
-    if (!callback) {
-      return this.getDateTimeInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date[] | string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateTimeInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date[] | string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateTimeInvalidNull(): any {
+    return msRest.responseToBody(this.getDateTimeInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2925,27 +2203,8 @@ export class ArrayModel {
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateTimeInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date[] | string[]>;
-    if (!callback) {
-      return this.getDateTimeInvalidCharsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date[] | string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateTimeInvalidCharsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date[] | string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateTimeInvalidChars(): any {
+    return msRest.responseToBody(this.getDateTimeInvalidCharsWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2967,27 +2226,8 @@ export class ArrayModel {
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateTimeRfc1123Valid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date[] | string[]>;
-    if (!callback) {
-      return this.getDateTimeRfc1123ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date[] | string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDateTimeRfc1123ValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date[] | string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDateTimeRfc1123Valid(): any {
+    return msRest.responseToBody(this.getDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3011,27 +2251,8 @@ export class ArrayModel {
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<void>;
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDateTimeRfc1123Valid(): any {
+    return msRest.responseToBody(this.putDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3052,27 +2273,8 @@ export class ArrayModel {
   getDurationValid(options: msRest.RequestOptionsBase): Promise<string[]>;
   getDurationValid(callback: msRest.ServiceCallback<string[]>): void;
   getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[]>;
-    if (!callback) {
-      return this.getDurationValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDurationValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDurationValid(): any {
+    return msRest.responseToBody(this.getDurationValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3095,27 +2297,8 @@ export class ArrayModel {
   putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
   putDurationValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDurationValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDurationValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDurationValid(): any {
+    return msRest.responseToBody(this.putDurationValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3137,27 +2320,8 @@ export class ArrayModel {
   getByteValid(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
   getByteValid(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Uint8Array[]>;
-    if (!callback) {
-      return this.getByteValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Uint8Array[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getByteValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Uint8Array[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getByteValid(): any {
+    return msRest.responseToBody(this.getByteValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3181,27 +2345,8 @@ export class ArrayModel {
   putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase): Promise<void>;
   putByteValid(arrayBody: Uint8Array[], callback: msRest.ServiceCallback<void>): void;
   putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putByteValid(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putByteValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putByteValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putByteValid(): any {
+    return msRest.responseToBody(this.putByteValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3222,27 +2367,8 @@ export class ArrayModel {
   getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
   getByteInvalidNull(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Uint8Array[]>;
-    if (!callback) {
-      return this.getByteInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Uint8Array[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getByteInvalidNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Uint8Array[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getByteInvalidNull(): any {
+    return msRest.responseToBody(this.getByteInvalidNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3264,27 +2390,8 @@ export class ArrayModel {
   getBase64Url(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
   getBase64Url(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Uint8Array[]>;
-    if (!callback) {
-      return this.getBase64UrlWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Uint8Array[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBase64UrlWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Uint8Array[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBase64Url(): any {
+    return msRest.responseToBody(this.getBase64UrlWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3305,27 +2412,8 @@ export class ArrayModel {
   getComplexNull(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product[]>;
-    if (!callback) {
-      return this.getComplexNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexNull(): any {
+    return msRest.responseToBody(this.getComplexNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3346,27 +2434,8 @@ export class ArrayModel {
   getComplexEmpty(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product[]>;
-    if (!callback) {
-      return this.getComplexEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexEmpty(): any {
+    return msRest.responseToBody(this.getComplexEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3388,27 +2457,8 @@ export class ArrayModel {
   getComplexItemNull(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexItemNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product[]>;
-    if (!callback) {
-      return this.getComplexItemNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexItemNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexItemNull(): any {
+    return msRest.responseToBody(this.getComplexItemNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3430,27 +2480,8 @@ export class ArrayModel {
   getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexItemEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product[]>;
-    if (!callback) {
-      return this.getComplexItemEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexItemEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexItemEmpty(): any {
+    return msRest.responseToBody(this.getComplexItemEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3472,27 +2503,8 @@ export class ArrayModel {
   getComplexValid(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexValid(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product[]>;
-    if (!callback) {
-      return this.getComplexValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getComplexValid(): any {
+    return msRest.responseToBody(this.getComplexValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3516,27 +2528,8 @@ export class ArrayModel {
   putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase): Promise<void>;
   putComplexValid(arrayBody: Models.Product[], callback: msRest.ServiceCallback<void>): void;
   putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexValid(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putComplexValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putComplexValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putComplexValid(): any {
+    return msRest.responseToBody(this.putComplexValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3557,27 +2550,8 @@ export class ArrayModel {
   getArrayNull(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayNull(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[][]>;
-    if (!callback) {
-      return this.getArrayNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[][]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[][];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayNull(): any {
+    return msRest.responseToBody(this.getArrayNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3598,27 +2572,8 @@ export class ArrayModel {
   getArrayEmpty(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayEmpty(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[][]>;
-    if (!callback) {
-      return this.getArrayEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[][]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[][];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayEmpty(): any {
+    return msRest.responseToBody(this.getArrayEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3639,27 +2594,8 @@ export class ArrayModel {
   getArrayItemNull(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayItemNull(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[][]>;
-    if (!callback) {
-      return this.getArrayItemNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[][]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayItemNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[][];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayItemNull(): any {
+    return msRest.responseToBody(this.getArrayItemNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3680,27 +2616,8 @@ export class ArrayModel {
   getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayItemEmpty(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[][]>;
-    if (!callback) {
-      return this.getArrayItemEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[][]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayItemEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[][];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayItemEmpty(): any {
+    return msRest.responseToBody(this.getArrayItemEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3721,27 +2638,8 @@ export class ArrayModel {
   getArrayValid(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayValid(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[][]>;
-    if (!callback) {
-      return this.getArrayValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[][]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getArrayValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[][];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getArrayValid(): any {
+    return msRest.responseToBody(this.getArrayValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3764,27 +2662,8 @@ export class ArrayModel {
   putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase): Promise<void>;
   putArrayValid(arrayBody: string[][], callback: msRest.ServiceCallback<void>): void;
   putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putArrayValid(arrayBody: string[][], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putArrayValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putArrayValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putArrayValid(): any {
+    return msRest.responseToBody(this.putArrayValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3805,27 +2684,8 @@ export class ArrayModel {
   getDictionaryNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }[]>;
-    if (!callback) {
-      return this.getDictionaryNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string }[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string }[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryNull(): any {
+    return msRest.responseToBody(this.getDictionaryNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3846,27 +2706,8 @@ export class ArrayModel {
   getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }[]>;
-    if (!callback) {
-      return this.getDictionaryEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string }[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string }[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryEmpty(): any {
+    return msRest.responseToBody(this.getDictionaryEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3888,27 +2729,8 @@ export class ArrayModel {
   getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }[]>;
-    if (!callback) {
-      return this.getDictionaryItemNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string }[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryItemNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string }[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryItemNull(): any {
+    return msRest.responseToBody(this.getDictionaryItemNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3930,27 +2752,8 @@ export class ArrayModel {
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }[]>;
-    if (!callback) {
-      return this.getDictionaryItemEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string }[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryItemEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string }[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryItemEmpty(): any {
+    return msRest.responseToBody(this.getDictionaryItemEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3972,27 +2775,8 @@ export class ArrayModel {
   getDictionaryValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }[]>;
-    if (!callback) {
-      return this.getDictionaryValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string }[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getDictionaryValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: string }[];
-        return cb(err, result, data.request, data);
-      });
-    }
+  getDictionaryValid(): any {
+    return msRest.responseToBody(this.getDictionaryValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4016,27 +2800,8 @@ export class ArrayModel {
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase): Promise<void>;
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], callback: msRest.ServiceCallback<void>): void;
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putDictionaryValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putDictionaryValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putDictionaryValid(): any {
+    return msRest.responseToBody(this.putDictionaryValidWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

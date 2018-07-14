@@ -99,27 +99,8 @@ export class HeadException {
   head200(options: msRest.RequestOptionsBase): Promise<void>;
   head200(callback: msRest.ServiceCallback<void>): void;
   head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.head200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.head200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  head200(): any {
+    return msRest.responseToBody(this.head200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -140,27 +121,8 @@ export class HeadException {
   head204(options: msRest.RequestOptionsBase): Promise<void>;
   head204(callback: msRest.ServiceCallback<void>): void;
   head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.head204WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.head204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  head204(): any {
+    return msRest.responseToBody(this.head204WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -181,27 +143,8 @@ export class HeadException {
   head404(options: msRest.RequestOptionsBase): Promise<void>;
   head404(callback: msRest.ServiceCallback<void>): void;
   head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.head404WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.head404WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  head404(): any {
+    return msRest.responseToBody(this.head404WithHttpOperationResponse.bind(this), arguments);
   }
 
 }

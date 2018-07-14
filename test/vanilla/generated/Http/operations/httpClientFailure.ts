@@ -480,27 +480,8 @@ export class HttpClientFailure {
   head400(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   head400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.head400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.head400WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  head400(): any {
+    return msRest.responseToBody(this.head400WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -521,27 +502,8 @@ export class HttpClientFailure {
   get400(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   get400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.get400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get400WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get400(): any {
+    return msRest.responseToBody(this.get400WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -562,27 +524,8 @@ export class HttpClientFailure {
   put400(options: Models.HttpClientFailurePut400OptionalParams): Promise<Models.ErrorModel>;
   put400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put400(options: Models.HttpClientFailurePut400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  put400(options?: Models.HttpClientFailurePut400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.put400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put400WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put400(): any {
+    return msRest.responseToBody(this.put400WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -603,27 +546,8 @@ export class HttpClientFailure {
   patch400(options: Models.HttpClientFailurePatch400OptionalParams): Promise<Models.ErrorModel>;
   patch400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   patch400(options: Models.HttpClientFailurePatch400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  patch400(options?: Models.HttpClientFailurePatch400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.patch400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.patch400WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  patch400(): any {
+    return msRest.responseToBody(this.patch400WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -644,27 +568,8 @@ export class HttpClientFailure {
   post400(options: Models.HttpClientFailurePost400OptionalParams): Promise<Models.ErrorModel>;
   post400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post400(options: Models.HttpClientFailurePost400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  post400(options?: Models.HttpClientFailurePost400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.post400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.post400WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  post400(): any {
+    return msRest.responseToBody(this.post400WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -685,27 +590,8 @@ export class HttpClientFailure {
   delete400(options: Models.HttpClientFailureDelete400OptionalParams): Promise<Models.ErrorModel>;
   delete400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete400(options: Models.HttpClientFailureDelete400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  delete400(options?: Models.HttpClientFailureDelete400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.delete400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.delete400WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  delete400(): any {
+    return msRest.responseToBody(this.delete400WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -726,27 +612,8 @@ export class HttpClientFailure {
   head401(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   head401(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head401(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head401(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.head401WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.head401WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  head401(): any {
+    return msRest.responseToBody(this.head401WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -767,27 +634,8 @@ export class HttpClientFailure {
   get402(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   get402(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get402(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get402(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.get402WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get402WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get402(): any {
+    return msRest.responseToBody(this.get402WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -808,27 +656,8 @@ export class HttpClientFailure {
   get403(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   get403(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get403(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get403(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.get403WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get403WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get403(): any {
+    return msRest.responseToBody(this.get403WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -849,27 +678,8 @@ export class HttpClientFailure {
   put404(options: Models.HttpClientFailurePut404OptionalParams): Promise<Models.ErrorModel>;
   put404(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put404(options: Models.HttpClientFailurePut404OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  put404(options?: Models.HttpClientFailurePut404OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.put404WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put404WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put404(): any {
+    return msRest.responseToBody(this.put404WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -890,27 +700,8 @@ export class HttpClientFailure {
   patch405(options: Models.HttpClientFailurePatch405OptionalParams): Promise<Models.ErrorModel>;
   patch405(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   patch405(options: Models.HttpClientFailurePatch405OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  patch405(options?: Models.HttpClientFailurePatch405OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.patch405WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.patch405WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  patch405(): any {
+    return msRest.responseToBody(this.patch405WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -931,27 +722,8 @@ export class HttpClientFailure {
   post406(options: Models.HttpClientFailurePost406OptionalParams): Promise<Models.ErrorModel>;
   post406(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post406(options: Models.HttpClientFailurePost406OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  post406(options?: Models.HttpClientFailurePost406OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.post406WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.post406WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  post406(): any {
+    return msRest.responseToBody(this.post406WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -972,27 +744,8 @@ export class HttpClientFailure {
   delete407(options: Models.HttpClientFailureDelete407OptionalParams): Promise<Models.ErrorModel>;
   delete407(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete407(options: Models.HttpClientFailureDelete407OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  delete407(options?: Models.HttpClientFailureDelete407OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.delete407WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.delete407WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  delete407(): any {
+    return msRest.responseToBody(this.delete407WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1013,27 +766,8 @@ export class HttpClientFailure {
   put409(options: Models.HttpClientFailurePut409OptionalParams): Promise<Models.ErrorModel>;
   put409(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put409(options: Models.HttpClientFailurePut409OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  put409(options?: Models.HttpClientFailurePut409OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.put409WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put409WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put409(): any {
+    return msRest.responseToBody(this.put409WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1054,27 +788,8 @@ export class HttpClientFailure {
   head410(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   head410(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head410(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head410(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.head410WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.head410WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  head410(): any {
+    return msRest.responseToBody(this.head410WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1095,27 +810,8 @@ export class HttpClientFailure {
   get411(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   get411(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get411(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get411(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.get411WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get411WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get411(): any {
+    return msRest.responseToBody(this.get411WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1136,27 +832,8 @@ export class HttpClientFailure {
   get412(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   get412(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get412(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get412(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.get412WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get412WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get412(): any {
+    return msRest.responseToBody(this.get412WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1177,27 +854,8 @@ export class HttpClientFailure {
   put413(options: Models.HttpClientFailurePut413OptionalParams): Promise<Models.ErrorModel>;
   put413(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put413(options: Models.HttpClientFailurePut413OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  put413(options?: Models.HttpClientFailurePut413OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.put413WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put413WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put413(): any {
+    return msRest.responseToBody(this.put413WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1218,27 +876,8 @@ export class HttpClientFailure {
   patch414(options: Models.HttpClientFailurePatch414OptionalParams): Promise<Models.ErrorModel>;
   patch414(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   patch414(options: Models.HttpClientFailurePatch414OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  patch414(options?: Models.HttpClientFailurePatch414OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.patch414WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.patch414WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  patch414(): any {
+    return msRest.responseToBody(this.patch414WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1259,27 +898,8 @@ export class HttpClientFailure {
   post415(options: Models.HttpClientFailurePost415OptionalParams): Promise<Models.ErrorModel>;
   post415(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post415(options: Models.HttpClientFailurePost415OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  post415(options?: Models.HttpClientFailurePost415OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.post415WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.post415WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  post415(): any {
+    return msRest.responseToBody(this.post415WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1300,27 +920,8 @@ export class HttpClientFailure {
   get416(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   get416(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get416(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get416(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.get416WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.get416WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get416(): any {
+    return msRest.responseToBody(this.get416WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1341,27 +942,8 @@ export class HttpClientFailure {
   delete417(options: Models.HttpClientFailureDelete417OptionalParams): Promise<Models.ErrorModel>;
   delete417(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete417(options: Models.HttpClientFailureDelete417OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  delete417(options?: Models.HttpClientFailureDelete417OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.delete417WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.delete417WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  delete417(): any {
+    return msRest.responseToBody(this.delete417WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1382,27 +964,8 @@ export class HttpClientFailure {
   head429(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   head429(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head429(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head429(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
-    if (!callback) {
-      return this.head429WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.head429WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ErrorModel;
-        return cb(err, result, data.request, data);
-      });
-    }
+  head429(): any {
+    return msRest.responseToBody(this.head429WithHttpOperationResponse.bind(this), arguments);
   }
 
 }

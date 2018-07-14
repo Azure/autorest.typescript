@@ -421,27 +421,8 @@ export class Datetime {
   getNull(options: msRest.RequestOptionsBase): Promise<Date>;
   getNull(callback: msRest.ServiceCallback<Date>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNull(): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -462,27 +443,8 @@ export class Datetime {
   getInvalid(options: msRest.RequestOptionsBase): Promise<Date>;
   getInvalid(callback: msRest.ServiceCallback<Date>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getInvalid(): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -503,27 +465,8 @@ export class Datetime {
   getOverflow(options: msRest.RequestOptionsBase): Promise<Date>;
   getOverflow(callback: msRest.ServiceCallback<Date>): void;
   getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getOverflowWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getOverflowWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getOverflow(): any {
+    return msRest.responseToBody(this.getOverflowWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -544,27 +487,8 @@ export class Datetime {
   getUnderflow(options: msRest.RequestOptionsBase): Promise<Date>;
   getUnderflow(callback: msRest.ServiceCallback<Date>): void;
   getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getUnderflowWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUnderflowWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUnderflow(): any {
+    return msRest.responseToBody(this.getUnderflowWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -587,27 +511,8 @@ export class Datetime {
   putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putUtcMaxDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMaxDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putUtcMaxDateTime(): any {
+    return msRest.responseToBody(this.putUtcMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -628,27 +533,8 @@ export class Datetime {
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUtcLowercaseMaxDateTime(): any {
+    return msRest.responseToBody(this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -669,27 +555,8 @@ export class Datetime {
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUtcUppercaseMaxDateTime(): any {
+    return msRest.responseToBody(this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -712,27 +579,8 @@ export class Datetime {
   putLocalPositiveOffsetMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putLocalPositiveOffsetMaxDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putLocalPositiveOffsetMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalPositiveOffsetMaxDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putLocalPositiveOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putLocalPositiveOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putLocalPositiveOffsetMaxDateTime(): any {
+    return msRest.responseToBody(this.putLocalPositiveOffsetMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -753,27 +601,8 @@ export class Datetime {
   getLocalPositiveOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getLocalPositiveOffsetLowercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getLocalPositiveOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getLocalPositiveOffsetLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getLocalPositiveOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLocalPositiveOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLocalPositiveOffsetLowercaseMaxDateTime(): any {
+    return msRest.responseToBody(this.getLocalPositiveOffsetLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -794,27 +623,8 @@ export class Datetime {
   getLocalPositiveOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getLocalPositiveOffsetUppercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getLocalPositiveOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getLocalPositiveOffsetUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getLocalPositiveOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLocalPositiveOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLocalPositiveOffsetUppercaseMaxDateTime(): any {
+    return msRest.responseToBody(this.getLocalPositiveOffsetUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -837,27 +647,8 @@ export class Datetime {
   putLocalNegativeOffsetMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putLocalNegativeOffsetMaxDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putLocalNegativeOffsetMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalNegativeOffsetMaxDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putLocalNegativeOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putLocalNegativeOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putLocalNegativeOffsetMaxDateTime(): any {
+    return msRest.responseToBody(this.putLocalNegativeOffsetMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -878,27 +669,8 @@ export class Datetime {
   getLocalNegativeOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getLocalNegativeOffsetUppercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getLocalNegativeOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getLocalNegativeOffsetUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getLocalNegativeOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLocalNegativeOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLocalNegativeOffsetUppercaseMaxDateTime(): any {
+    return msRest.responseToBody(this.getLocalNegativeOffsetUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -919,27 +691,8 @@ export class Datetime {
   getLocalNegativeOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getLocalNegativeOffsetLowercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getLocalNegativeOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getLocalNegativeOffsetLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getLocalNegativeOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLocalNegativeOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLocalNegativeOffsetLowercaseMaxDateTime(): any {
+    return msRest.responseToBody(this.getLocalNegativeOffsetLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -962,27 +715,8 @@ export class Datetime {
   putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putUtcMinDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMinDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putUtcMinDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putUtcMinDateTimeWithHttpOperationResponse(datetimeBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putUtcMinDateTime(): any {
+    return msRest.responseToBody(this.putUtcMinDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1003,27 +737,8 @@ export class Datetime {
   getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUtcMinDateTime(callback: msRest.ServiceCallback<Date>): void;
   getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getUtcMinDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getUtcMinDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getUtcMinDateTime(): any {
+    return msRest.responseToBody(this.getUtcMinDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1046,27 +761,8 @@ export class Datetime {
   putLocalPositiveOffsetMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putLocalPositiveOffsetMinDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putLocalPositiveOffsetMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalPositiveOffsetMinDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(datetimeBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putLocalPositiveOffsetMinDateTime(): any {
+    return msRest.responseToBody(this.putLocalPositiveOffsetMinDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1087,27 +783,8 @@ export class Datetime {
   getLocalPositiveOffsetMinDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getLocalPositiveOffsetMinDateTime(callback: msRest.ServiceCallback<Date>): void;
   getLocalPositiveOffsetMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getLocalPositiveOffsetMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLocalPositiveOffsetMinDateTime(): any {
+    return msRest.responseToBody(this.getLocalPositiveOffsetMinDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1130,27 +807,8 @@ export class Datetime {
   putLocalNegativeOffsetMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putLocalNegativeOffsetMinDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putLocalNegativeOffsetMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalNegativeOffsetMinDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(datetimeBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putLocalNegativeOffsetMinDateTime(): any {
+    return msRest.responseToBody(this.putLocalNegativeOffsetMinDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1171,27 +829,8 @@ export class Datetime {
   getLocalNegativeOffsetMinDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getLocalNegativeOffsetMinDateTime(callback: msRest.ServiceCallback<Date>): void;
   getLocalNegativeOffsetMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getLocalNegativeOffsetMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Date>;
-    if (!callback) {
-      return this.getLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Date);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Date;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getLocalNegativeOffsetMinDateTime(): any {
+    return msRest.responseToBody(this.getLocalNegativeOffsetMinDateTimeWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

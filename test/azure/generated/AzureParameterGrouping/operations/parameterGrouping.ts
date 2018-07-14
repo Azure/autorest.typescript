@@ -127,27 +127,8 @@ export class ParameterGrouping {
   postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options: msRest.RequestOptionsBase): Promise<void>;
   postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, callback: msRest.ServiceCallback<void>): void;
   postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postRequired(): any {
+    return msRest.responseToBody(this.postRequiredWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -168,27 +149,8 @@ export class ParameterGrouping {
   postOptional(options: Models.ParameterGroupingPostOptionalOptionalParams): Promise<void>;
   postOptional(callback: msRest.ServiceCallback<void>): void;
   postOptional(options: Models.ParameterGroupingPostOptionalOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptional(options?: Models.ParameterGroupingPostOptionalOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postOptionalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postOptionalWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postOptional(): any {
+    return msRest.responseToBody(this.postOptionalWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -209,27 +171,8 @@ export class ParameterGrouping {
   postMultiParamGroups(options: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<void>;
   postMultiParamGroups(callback: msRest.ServiceCallback<void>): void;
   postMultiParamGroups(options: Models.ParameterGroupingPostMultiParamGroupsOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postMultiParamGroups(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postMultiParamGroupsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postMultiParamGroupsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postMultiParamGroups(): any {
+    return msRest.responseToBody(this.postMultiParamGroupsWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -251,27 +194,8 @@ export class ParameterGrouping {
   postSharedParameterGroupObject(options: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<void>;
   postSharedParameterGroupObject(callback: msRest.ServiceCallback<void>): void;
   postSharedParameterGroupObject(options: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postSharedParameterGroupObject(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postSharedParameterGroupObjectWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postSharedParameterGroupObjectWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postSharedParameterGroupObject(): any {
+    return msRest.responseToBody(this.postSharedParameterGroupObjectWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

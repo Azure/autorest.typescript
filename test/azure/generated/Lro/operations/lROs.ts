@@ -2126,27 +2126,8 @@ export class LROs {
   put200Succeeded(options: Models.LROsPut200SucceededOptionalParams): Promise<Models.Product>;
   put200Succeeded(callback: msRest.ServiceCallback<Models.Product>): void;
   put200Succeeded(options: Models.LROsPut200SucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put200Succeeded(options?: Models.LROsPut200SucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.put200SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put200SucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put200Succeeded(): any {
+    return msRest.responseToBody(this.put200SucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2168,27 +2149,8 @@ export class LROs {
   put200SucceededNoState(options: Models.LROsPut200SucceededNoStateOptionalParams): Promise<Models.Product>;
   put200SucceededNoState(callback: msRest.ServiceCallback<Models.Product>): void;
   put200SucceededNoState(options: Models.LROsPut200SucceededNoStateOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put200SucceededNoState(options?: Models.LROsPut200SucceededNoStateOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.put200SucceededNoStateWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put200SucceededNoStateWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put200SucceededNoState(): any {
+    return msRest.responseToBody(this.put200SucceededNoStateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2211,27 +2173,8 @@ export class LROs {
   put202Retry200(options: Models.LROsPut202Retry200OptionalParams): Promise<Models.Product>;
   put202Retry200(callback: msRest.ServiceCallback<Models.Product>): void;
   put202Retry200(options: Models.LROsPut202Retry200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put202Retry200(options?: Models.LROsPut202Retry200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.put202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put202Retry200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put202Retry200(): any {
+    return msRest.responseToBody(this.put202Retry200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2254,27 +2197,8 @@ export class LROs {
   put201CreatingSucceeded200(options: Models.LROsPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
   put201CreatingSucceeded200(callback: msRest.ServiceCallback<Models.Product>): void;
   put201CreatingSucceeded200(options: Models.LROsPut201CreatingSucceeded200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put201CreatingSucceeded200(options?: Models.LROsPut201CreatingSucceeded200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.put201CreatingSucceeded200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put201CreatingSucceeded200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put201CreatingSucceeded200(): any {
+    return msRest.responseToBody(this.put201CreatingSucceeded200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2297,27 +2221,8 @@ export class LROs {
   put200UpdatingSucceeded204(options: Models.LROsPut200UpdatingSucceeded204OptionalParams): Promise<Models.Product>;
   put200UpdatingSucceeded204(callback: msRest.ServiceCallback<Models.Product>): void;
   put200UpdatingSucceeded204(options: Models.LROsPut200UpdatingSucceeded204OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put200UpdatingSucceeded204(options?: Models.LROsPut200UpdatingSucceeded204OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.put200UpdatingSucceeded204WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put200UpdatingSucceeded204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put200UpdatingSucceeded204(): any {
+    return msRest.responseToBody(this.put200UpdatingSucceeded204WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2340,27 +2245,8 @@ export class LROs {
   put201CreatingFailed200(options: Models.LROsPut201CreatingFailed200OptionalParams): Promise<Models.Product>;
   put201CreatingFailed200(callback: msRest.ServiceCallback<Models.Product>): void;
   put201CreatingFailed200(options: Models.LROsPut201CreatingFailed200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put201CreatingFailed200(options?: Models.LROsPut201CreatingFailed200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.put201CreatingFailed200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put201CreatingFailed200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put201CreatingFailed200(): any {
+    return msRest.responseToBody(this.put201CreatingFailed200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2383,27 +2269,8 @@ export class LROs {
   put200Acceptedcanceled200(options: Models.LROsPut200Acceptedcanceled200OptionalParams): Promise<Models.Product>;
   put200Acceptedcanceled200(callback: msRest.ServiceCallback<Models.Product>): void;
   put200Acceptedcanceled200(options: Models.LROsPut200Acceptedcanceled200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put200Acceptedcanceled200(options?: Models.LROsPut200Acceptedcanceled200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.put200Acceptedcanceled200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.put200Acceptedcanceled200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  put200Acceptedcanceled200(): any {
+    return msRest.responseToBody(this.put200Acceptedcanceled200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2425,27 +2292,8 @@ export class LROs {
   putNoHeaderInRetry(options: Models.LROsPutNoHeaderInRetryOptionalParams): Promise<Models.Product>;
   putNoHeaderInRetry(callback: msRest.ServiceCallback<Models.Product>): void;
   putNoHeaderInRetry(options: Models.LROsPutNoHeaderInRetryOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putNoHeaderInRetry(options?: Models.LROsPutNoHeaderInRetryOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.putNoHeaderInRetryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putNoHeaderInRetryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putNoHeaderInRetry(): any {
+    return msRest.responseToBody(this.putNoHeaderInRetryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2468,27 +2316,8 @@ export class LROs {
   putAsyncRetrySucceeded(options: Models.LROsPutAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
   putAsyncRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncRetrySucceeded(options: Models.LROsPutAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRetrySucceeded(options?: Models.LROsPutAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.putAsyncRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putAsyncRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putAsyncRetrySucceeded(): any {
+    return msRest.responseToBody(this.putAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2511,27 +2340,8 @@ export class LROs {
   putAsyncNoRetrySucceeded(options: Models.LROsPutAsyncNoRetrySucceededOptionalParams): Promise<Models.Product>;
   putAsyncNoRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncNoRetrySucceeded(options: Models.LROsPutAsyncNoRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncNoRetrySucceeded(options?: Models.LROsPutAsyncNoRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.putAsyncNoRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putAsyncNoRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putAsyncNoRetrySucceeded(): any {
+    return msRest.responseToBody(this.putAsyncNoRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2554,27 +2364,8 @@ export class LROs {
   putAsyncRetryFailed(options: Models.LROsPutAsyncRetryFailedOptionalParams): Promise<Models.Product>;
   putAsyncRetryFailed(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncRetryFailed(options: Models.LROsPutAsyncRetryFailedOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRetryFailed(options?: Models.LROsPutAsyncRetryFailedOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.putAsyncRetryFailedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putAsyncRetryFailedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putAsyncRetryFailed(): any {
+    return msRest.responseToBody(this.putAsyncRetryFailedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2597,27 +2388,8 @@ export class LROs {
   putAsyncNoRetrycanceled(options: Models.LROsPutAsyncNoRetrycanceledOptionalParams): Promise<Models.Product>;
   putAsyncNoRetrycanceled(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncNoRetrycanceled(options: Models.LROsPutAsyncNoRetrycanceledOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncNoRetrycanceled(options?: Models.LROsPutAsyncNoRetrycanceledOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.putAsyncNoRetrycanceledWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putAsyncNoRetrycanceledWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putAsyncNoRetrycanceled(): any {
+    return msRest.responseToBody(this.putAsyncNoRetrycanceledWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2639,27 +2411,8 @@ export class LROs {
   putAsyncNoHeaderInRetry(options: Models.LROsPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.Product>;
   putAsyncNoHeaderInRetry(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncNoHeaderInRetry(options: Models.LROsPutAsyncNoHeaderInRetryOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncNoHeaderInRetry(options?: Models.LROsPutAsyncNoHeaderInRetryOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.putAsyncNoHeaderInRetryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putAsyncNoHeaderInRetryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putAsyncNoHeaderInRetry(): any {
+    return msRest.responseToBody(this.putAsyncNoHeaderInRetryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2680,27 +2433,8 @@ export class LROs {
   putNonResource(options: Models.LROsPutNonResourceOptionalParams): Promise<Models.Sku>;
   putNonResource(callback: msRest.ServiceCallback<Models.Sku>): void;
   putNonResource(options: Models.LROsPutNonResourceOptionalParams, callback: msRest.ServiceCallback<Models.Sku>): void;
-  putNonResource(options?: Models.LROsPutNonResourceOptionalParams, callback?: msRest.ServiceCallback<Models.Sku>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Sku>;
-    if (!callback) {
-      return this.putNonResourceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Sku);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putNonResourceWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Sku;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putNonResource(): any {
+    return msRest.responseToBody(this.putNonResourceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2721,27 +2455,8 @@ export class LROs {
   putAsyncNonResource(options: Models.LROsPutAsyncNonResourceOptionalParams): Promise<Models.Sku>;
   putAsyncNonResource(callback: msRest.ServiceCallback<Models.Sku>): void;
   putAsyncNonResource(options: Models.LROsPutAsyncNonResourceOptionalParams, callback: msRest.ServiceCallback<Models.Sku>): void;
-  putAsyncNonResource(options?: Models.LROsPutAsyncNonResourceOptionalParams, callback?: msRest.ServiceCallback<Models.Sku>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Sku>;
-    if (!callback) {
-      return this.putAsyncNonResourceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Sku);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putAsyncNonResourceWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Sku;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putAsyncNonResource(): any {
+    return msRest.responseToBody(this.putAsyncNonResourceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2762,27 +2477,8 @@ export class LROs {
   putSubResource(options: Models.LROsPutSubResourceOptionalParams): Promise<Models.SubProduct>;
   putSubResource(callback: msRest.ServiceCallback<Models.SubProduct>): void;
   putSubResource(options: Models.LROsPutSubResourceOptionalParams, callback: msRest.ServiceCallback<Models.SubProduct>): void;
-  putSubResource(options?: Models.LROsPutSubResourceOptionalParams, callback?: msRest.ServiceCallback<Models.SubProduct>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SubProduct>;
-    if (!callback) {
-      return this.putSubResourceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.SubProduct);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putSubResourceWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.SubProduct;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putSubResource(): any {
+    return msRest.responseToBody(this.putSubResourceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2803,27 +2499,8 @@ export class LROs {
   putAsyncSubResource(options: Models.LROsPutAsyncSubResourceOptionalParams): Promise<Models.SubProduct>;
   putAsyncSubResource(callback: msRest.ServiceCallback<Models.SubProduct>): void;
   putAsyncSubResource(options: Models.LROsPutAsyncSubResourceOptionalParams, callback: msRest.ServiceCallback<Models.SubProduct>): void;
-  putAsyncSubResource(options?: Models.LROsPutAsyncSubResourceOptionalParams, callback?: msRest.ServiceCallback<Models.SubProduct>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SubProduct>;
-    if (!callback) {
-      return this.putAsyncSubResourceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.SubProduct);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putAsyncSubResourceWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.SubProduct;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putAsyncSubResource(): any {
+    return msRest.responseToBody(this.putAsyncSubResourceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2846,27 +2523,8 @@ export class LROs {
   deleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   deleteProvisioning202Accepted200Succeeded(callback: msRest.ServiceCallback<Models.Product>): void;
   deleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  deleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.deleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  deleteProvisioning202Accepted200Succeeded(): any {
+    return msRest.responseToBody(this.deleteProvisioning202Accepted200SucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2889,27 +2547,8 @@ export class LROs {
   deleteProvisioning202DeletingFailed200(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   deleteProvisioning202DeletingFailed200(callback: msRest.ServiceCallback<Models.Product>): void;
   deleteProvisioning202DeletingFailed200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  deleteProvisioning202DeletingFailed200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.deleteProvisioning202DeletingFailed200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteProvisioning202DeletingFailed200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  deleteProvisioning202DeletingFailed200(): any {
+    return msRest.responseToBody(this.deleteProvisioning202DeletingFailed200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2932,27 +2571,8 @@ export class LROs {
   deleteProvisioning202Deletingcanceled200(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   deleteProvisioning202Deletingcanceled200(callback: msRest.ServiceCallback<Models.Product>): void;
   deleteProvisioning202Deletingcanceled200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  deleteProvisioning202Deletingcanceled200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.deleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  deleteProvisioning202Deletingcanceled200(): any {
+    return msRest.responseToBody(this.deleteProvisioning202Deletingcanceled200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2973,27 +2593,8 @@ export class LROs {
   delete204Succeeded(options: msRest.RequestOptionsBase): Promise<void>;
   delete204Succeeded(callback: msRest.ServiceCallback<void>): void;
   delete204Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  delete204Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.delete204SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.delete204SucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  delete204Succeeded(): any {
+    return msRest.responseToBody(this.delete204SucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3015,27 +2616,8 @@ export class LROs {
   delete202Retry200(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   delete202Retry200(callback: msRest.ServiceCallback<Models.Product>): void;
   delete202Retry200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  delete202Retry200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.delete202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.delete202Retry200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  delete202Retry200(): any {
+    return msRest.responseToBody(this.delete202Retry200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3057,27 +2639,8 @@ export class LROs {
   delete202NoRetry204(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   delete202NoRetry204(callback: msRest.ServiceCallback<Models.Product>): void;
   delete202NoRetry204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  delete202NoRetry204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.delete202NoRetry204WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.delete202NoRetry204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  delete202NoRetry204(): any {
+    return msRest.responseToBody(this.delete202NoRetry204WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3099,27 +2662,8 @@ export class LROs {
   deleteNoHeaderInRetry(options: msRest.RequestOptionsBase): Promise<void>;
   deleteNoHeaderInRetry(callback: msRest.ServiceCallback<void>): void;
   deleteNoHeaderInRetry(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteNoHeaderInRetry(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteNoHeaderInRetryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteNoHeaderInRetryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  deleteNoHeaderInRetry(): any {
+    return msRest.responseToBody(this.deleteNoHeaderInRetryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3141,27 +2685,8 @@ export class LROs {
   deleteAsyncNoHeaderInRetry(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncNoHeaderInRetry(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncNoHeaderInRetry(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncNoHeaderInRetry(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteAsyncNoHeaderInRetryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteAsyncNoHeaderInRetryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  deleteAsyncNoHeaderInRetry(): any {
+    return msRest.responseToBody(this.deleteAsyncNoHeaderInRetryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3183,27 +2708,8 @@ export class LROs {
   deleteAsyncRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncRetrySucceeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRetrySucceeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteAsyncRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteAsyncRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  deleteAsyncRetrySucceeded(): any {
+    return msRest.responseToBody(this.deleteAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3225,27 +2731,8 @@ export class LROs {
   deleteAsyncNoRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncNoRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncNoRetrySucceeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncNoRetrySucceeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteAsyncNoRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteAsyncNoRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  deleteAsyncNoRetrySucceeded(): any {
+    return msRest.responseToBody(this.deleteAsyncNoRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3267,27 +2754,8 @@ export class LROs {
   deleteAsyncRetryFailed(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncRetryFailed(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncRetryFailed(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRetryFailed(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteAsyncRetryFailedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteAsyncRetryFailedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  deleteAsyncRetryFailed(): any {
+    return msRest.responseToBody(this.deleteAsyncRetryFailedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3309,27 +2777,8 @@ export class LROs {
   deleteAsyncRetrycanceled(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncRetrycanceled(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncRetrycanceled(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRetrycanceled(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteAsyncRetrycanceledWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteAsyncRetrycanceledWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  deleteAsyncRetrycanceled(): any {
+    return msRest.responseToBody(this.deleteAsyncRetrycanceledWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3351,27 +2800,8 @@ export class LROs {
   post200WithPayload(options: msRest.RequestOptionsBase): Promise<Models.Sku>;
   post200WithPayload(callback: msRest.ServiceCallback<Models.Sku>): void;
   post200WithPayload(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Sku>): void;
-  post200WithPayload(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Sku>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Sku>;
-    if (!callback) {
-      return this.post200WithPayloadWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Sku);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.post200WithPayloadWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Sku;
-        return cb(err, result, data.request, data);
-      });
-    }
+  post200WithPayload(): any {
+    return msRest.responseToBody(this.post200WithPayloadWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3393,27 +2823,8 @@ export class LROs {
   post202Retry200(options: Models.LROsPost202Retry200OptionalParams): Promise<void>;
   post202Retry200(callback: msRest.ServiceCallback<void>): void;
   post202Retry200(options: Models.LROsPost202Retry200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202Retry200(options?: Models.LROsPost202Retry200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.post202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.post202Retry200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  post202Retry200(): any {
+    return msRest.responseToBody(this.post202Retry200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3435,27 +2846,8 @@ export class LROs {
   post202NoRetry204(options: Models.LROsPost202NoRetry204OptionalParams): Promise<Models.Product>;
   post202NoRetry204(callback: msRest.ServiceCallback<Models.Product>): void;
   post202NoRetry204(options: Models.LROsPost202NoRetry204OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  post202NoRetry204(options?: Models.LROsPost202NoRetry204OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.post202NoRetry204WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.post202NoRetry204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  post202NoRetry204(): any {
+    return msRest.responseToBody(this.post202NoRetry204WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3478,27 +2870,8 @@ export class LROs {
   postDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   postDoubleHeadersFinalLocationGet(callback: msRest.ServiceCallback<Models.Product>): void;
   postDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  postDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postDoubleHeadersFinalLocationGet(): any {
+    return msRest.responseToBody(this.postDoubleHeadersFinalLocationGetWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3521,27 +2894,8 @@ export class LROs {
   postDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   postDoubleHeadersFinalAzureHeaderGet(callback: msRest.ServiceCallback<Models.Product>): void;
   postDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  postDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postDoubleHeadersFinalAzureHeaderGet(): any {
+    return msRest.responseToBody(this.postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3564,27 +2918,8 @@ export class LROs {
   postDoubleHeadersFinalAzureHeaderGetDefault(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   postDoubleHeadersFinalAzureHeaderGetDefault(callback: msRest.ServiceCallback<Models.Product>): void;
   postDoubleHeadersFinalAzureHeaderGetDefault(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  postDoubleHeadersFinalAzureHeaderGetDefault(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.postDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postDoubleHeadersFinalAzureHeaderGetDefault(): any {
+    return msRest.responseToBody(this.postDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3607,27 +2942,8 @@ export class LROs {
   postAsyncRetrySucceeded(options: Models.LROsPostAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
   postAsyncRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   postAsyncRetrySucceeded(options: Models.LROsPostAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  postAsyncRetrySucceeded(options?: Models.LROsPostAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.postAsyncRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postAsyncRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postAsyncRetrySucceeded(): any {
+    return msRest.responseToBody(this.postAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3650,27 +2966,8 @@ export class LROs {
   postAsyncNoRetrySucceeded(options: Models.LROsPostAsyncNoRetrySucceededOptionalParams): Promise<Models.Product>;
   postAsyncNoRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   postAsyncNoRetrySucceeded(options: Models.LROsPostAsyncNoRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  postAsyncNoRetrySucceeded(options?: Models.LROsPostAsyncNoRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.postAsyncNoRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postAsyncNoRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postAsyncNoRetrySucceeded(): any {
+    return msRest.responseToBody(this.postAsyncNoRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3693,27 +2990,8 @@ export class LROs {
   postAsyncRetryFailed(options: Models.LROsPostAsyncRetryFailedOptionalParams): Promise<void>;
   postAsyncRetryFailed(callback: msRest.ServiceCallback<void>): void;
   postAsyncRetryFailed(options: Models.LROsPostAsyncRetryFailedOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRetryFailed(options?: Models.LROsPostAsyncRetryFailedOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postAsyncRetryFailedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postAsyncRetryFailedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postAsyncRetryFailed(): any {
+    return msRest.responseToBody(this.postAsyncRetryFailedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3736,27 +3014,8 @@ export class LROs {
   postAsyncRetrycanceled(options: Models.LROsPostAsyncRetrycanceledOptionalParams): Promise<void>;
   postAsyncRetrycanceled(callback: msRest.ServiceCallback<void>): void;
   postAsyncRetrycanceled(options: Models.LROsPostAsyncRetrycanceledOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRetrycanceled(options?: Models.LROsPostAsyncRetrycanceledOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postAsyncRetrycanceledWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postAsyncRetrycanceledWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postAsyncRetrycanceled(): any {
+    return msRest.responseToBody(this.postAsyncRetrycanceledWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3778,27 +3037,8 @@ export class LROs {
   beginPut200Succeeded(options: Models.LROsBeginPut200SucceededOptionalParams): Promise<Models.Product>;
   beginPut200Succeeded(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut200Succeeded(options: Models.LROsBeginPut200SucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200Succeeded(options?: Models.LROsBeginPut200SucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPut200SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPut200SucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPut200Succeeded(): any {
+    return msRest.responseToBody(this.beginPut200SucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3820,27 +3060,8 @@ export class LROs {
   beginPut200SucceededNoState(options: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<Models.Product>;
   beginPut200SucceededNoState(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut200SucceededNoState(options: Models.LROsBeginPut200SucceededNoStateOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200SucceededNoState(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPut200SucceededNoStateWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPut200SucceededNoStateWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPut200SucceededNoState(): any {
+    return msRest.responseToBody(this.beginPut200SucceededNoStateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3863,27 +3084,8 @@ export class LROs {
   beginPut202Retry200(options: Models.LROsBeginPut202Retry200OptionalParams): Promise<Models.Product>;
   beginPut202Retry200(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut202Retry200(options: Models.LROsBeginPut202Retry200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut202Retry200(options?: Models.LROsBeginPut202Retry200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPut202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPut202Retry200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPut202Retry200(): any {
+    return msRest.responseToBody(this.beginPut202Retry200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3906,27 +3108,8 @@ export class LROs {
   beginPut201CreatingSucceeded200(options: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
   beginPut201CreatingSucceeded200(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut201CreatingSucceeded200(options: Models.LROsBeginPut201CreatingSucceeded200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut201CreatingSucceeded200(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPut201CreatingSucceeded200(): any {
+    return msRest.responseToBody(this.beginPut201CreatingSucceeded200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3949,27 +3132,8 @@ export class LROs {
   beginPut200UpdatingSucceeded204(options: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<Models.Product>;
   beginPut200UpdatingSucceeded204(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut200UpdatingSucceeded204(options: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200UpdatingSucceeded204(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPut200UpdatingSucceeded204WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPut200UpdatingSucceeded204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPut200UpdatingSucceeded204(): any {
+    return msRest.responseToBody(this.beginPut200UpdatingSucceeded204WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -3992,27 +3156,8 @@ export class LROs {
   beginPut201CreatingFailed200(options: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<Models.Product>;
   beginPut201CreatingFailed200(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut201CreatingFailed200(options: Models.LROsBeginPut201CreatingFailed200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut201CreatingFailed200(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPut201CreatingFailed200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPut201CreatingFailed200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPut201CreatingFailed200(): any {
+    return msRest.responseToBody(this.beginPut201CreatingFailed200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4035,27 +3180,8 @@ export class LROs {
   beginPut200Acceptedcanceled200(options: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<Models.Product>;
   beginPut200Acceptedcanceled200(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut200Acceptedcanceled200(options: Models.LROsBeginPut200Acceptedcanceled200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200Acceptedcanceled200(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPut200Acceptedcanceled200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPut200Acceptedcanceled200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPut200Acceptedcanceled200(): any {
+    return msRest.responseToBody(this.beginPut200Acceptedcanceled200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4077,27 +3203,8 @@ export class LROs {
   beginPutNoHeaderInRetry(options: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<Models.Product>;
   beginPutNoHeaderInRetry(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutNoHeaderInRetry(options: Models.LROsBeginPutNoHeaderInRetryOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutNoHeaderInRetry(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPutNoHeaderInRetryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutNoHeaderInRetryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutNoHeaderInRetry(): any {
+    return msRest.responseToBody(this.beginPutNoHeaderInRetryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4120,27 +3227,8 @@ export class LROs {
   beginPutAsyncRetrySucceeded(options: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
   beginPutAsyncRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncRetrySucceeded(options: Models.LROsBeginPutAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRetrySucceeded(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutAsyncRetrySucceeded(): any {
+    return msRest.responseToBody(this.beginPutAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4163,27 +3251,8 @@ export class LROs {
   beginPutAsyncNoRetrySucceeded(options: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<Models.Product>;
   beginPutAsyncNoRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncNoRetrySucceeded(options: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncNoRetrySucceeded(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutAsyncNoRetrySucceeded(): any {
+    return msRest.responseToBody(this.beginPutAsyncNoRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4206,27 +3275,8 @@ export class LROs {
   beginPutAsyncRetryFailed(options: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<Models.Product>;
   beginPutAsyncRetryFailed(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncRetryFailed(options: Models.LROsBeginPutAsyncRetryFailedOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRetryFailed(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPutAsyncRetryFailedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutAsyncRetryFailedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutAsyncRetryFailed(): any {
+    return msRest.responseToBody(this.beginPutAsyncRetryFailedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4249,27 +3299,8 @@ export class LROs {
   beginPutAsyncNoRetrycanceled(options: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<Models.Product>;
   beginPutAsyncNoRetrycanceled(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncNoRetrycanceled(options: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncNoRetrycanceled(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutAsyncNoRetrycanceled(): any {
+    return msRest.responseToBody(this.beginPutAsyncNoRetrycanceledWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4291,27 +3322,8 @@ export class LROs {
   beginPutAsyncNoHeaderInRetry(options: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.Product>;
   beginPutAsyncNoHeaderInRetry(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncNoHeaderInRetry(options: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncNoHeaderInRetry(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutAsyncNoHeaderInRetry(): any {
+    return msRest.responseToBody(this.beginPutAsyncNoHeaderInRetryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4332,27 +3344,8 @@ export class LROs {
   beginPutNonResource(options: Models.LROsBeginPutNonResourceOptionalParams): Promise<Models.Sku>;
   beginPutNonResource(callback: msRest.ServiceCallback<Models.Sku>): void;
   beginPutNonResource(options: Models.LROsBeginPutNonResourceOptionalParams, callback: msRest.ServiceCallback<Models.Sku>): void;
-  beginPutNonResource(options?: Models.LROsBeginPutNonResourceOptionalParams, callback?: msRest.ServiceCallback<Models.Sku>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Sku>;
-    if (!callback) {
-      return this.beginPutNonResourceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Sku);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutNonResourceWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Sku;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutNonResource(): any {
+    return msRest.responseToBody(this.beginPutNonResourceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4373,27 +3366,8 @@ export class LROs {
   beginPutAsyncNonResource(options: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<Models.Sku>;
   beginPutAsyncNonResource(callback: msRest.ServiceCallback<Models.Sku>): void;
   beginPutAsyncNonResource(options: Models.LROsBeginPutAsyncNonResourceOptionalParams, callback: msRest.ServiceCallback<Models.Sku>): void;
-  beginPutAsyncNonResource(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams, callback?: msRest.ServiceCallback<Models.Sku>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Sku>;
-    if (!callback) {
-      return this.beginPutAsyncNonResourceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Sku);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutAsyncNonResourceWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Sku;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutAsyncNonResource(): any {
+    return msRest.responseToBody(this.beginPutAsyncNonResourceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4414,27 +3388,8 @@ export class LROs {
   beginPutSubResource(options: Models.LROsBeginPutSubResourceOptionalParams): Promise<Models.SubProduct>;
   beginPutSubResource(callback: msRest.ServiceCallback<Models.SubProduct>): void;
   beginPutSubResource(options: Models.LROsBeginPutSubResourceOptionalParams, callback: msRest.ServiceCallback<Models.SubProduct>): void;
-  beginPutSubResource(options?: Models.LROsBeginPutSubResourceOptionalParams, callback?: msRest.ServiceCallback<Models.SubProduct>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SubProduct>;
-    if (!callback) {
-      return this.beginPutSubResourceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.SubProduct);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutSubResourceWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.SubProduct;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutSubResource(): any {
+    return msRest.responseToBody(this.beginPutSubResourceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4455,27 +3410,8 @@ export class LROs {
   beginPutAsyncSubResource(options: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<Models.SubProduct>;
   beginPutAsyncSubResource(callback: msRest.ServiceCallback<Models.SubProduct>): void;
   beginPutAsyncSubResource(options: Models.LROsBeginPutAsyncSubResourceOptionalParams, callback: msRest.ServiceCallback<Models.SubProduct>): void;
-  beginPutAsyncSubResource(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams, callback?: msRest.ServiceCallback<Models.SubProduct>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SubProduct>;
-    if (!callback) {
-      return this.beginPutAsyncSubResourceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.SubProduct);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPutAsyncSubResourceWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.SubProduct;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPutAsyncSubResource(): any {
+    return msRest.responseToBody(this.beginPutAsyncSubResourceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4498,27 +3434,8 @@ export class LROs {
   beginDeleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   beginDeleteProvisioning202Accepted200Succeeded(callback: msRest.ServiceCallback<Models.Product>): void;
   beginDeleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDeleteProvisioning202Accepted200Succeeded(): any {
+    return msRest.responseToBody(this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4541,27 +3458,8 @@ export class LROs {
   beginDeleteProvisioning202DeletingFailed200(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   beginDeleteProvisioning202DeletingFailed200(callback: msRest.ServiceCallback<Models.Product>): void;
   beginDeleteProvisioning202DeletingFailed200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202DeletingFailed200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDeleteProvisioning202DeletingFailed200(): any {
+    return msRest.responseToBody(this.beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4584,27 +3482,8 @@ export class LROs {
   beginDeleteProvisioning202Deletingcanceled200(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   beginDeleteProvisioning202Deletingcanceled200(callback: msRest.ServiceCallback<Models.Product>): void;
   beginDeleteProvisioning202Deletingcanceled200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202Deletingcanceled200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDeleteProvisioning202Deletingcanceled200(): any {
+    return msRest.responseToBody(this.beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4625,27 +3504,8 @@ export class LROs {
   beginDelete204Succeeded(options: msRest.RequestOptionsBase): Promise<void>;
   beginDelete204Succeeded(callback: msRest.ServiceCallback<void>): void;
   beginDelete204Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDelete204Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDelete204SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDelete204SucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDelete204Succeeded(): any {
+    return msRest.responseToBody(this.beginDelete204SucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4667,27 +3527,8 @@ export class LROs {
   beginDelete202Retry200(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   beginDelete202Retry200(callback: msRest.ServiceCallback<Models.Product>): void;
   beginDelete202Retry200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDelete202Retry200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginDelete202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDelete202Retry200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDelete202Retry200(): any {
+    return msRest.responseToBody(this.beginDelete202Retry200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4709,27 +3550,8 @@ export class LROs {
   beginDelete202NoRetry204(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   beginDelete202NoRetry204(callback: msRest.ServiceCallback<Models.Product>): void;
   beginDelete202NoRetry204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDelete202NoRetry204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginDelete202NoRetry204WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDelete202NoRetry204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDelete202NoRetry204(): any {
+    return msRest.responseToBody(this.beginDelete202NoRetry204WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4751,27 +3573,8 @@ export class LROs {
   beginDeleteNoHeaderInRetry(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteNoHeaderInRetry(callback: msRest.ServiceCallback<void>): void;
   beginDeleteNoHeaderInRetry(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteNoHeaderInRetry(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteNoHeaderInRetryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteNoHeaderInRetryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDeleteNoHeaderInRetry(): any {
+    return msRest.responseToBody(this.beginDeleteNoHeaderInRetryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4793,27 +3596,8 @@ export class LROs {
   beginDeleteAsyncNoHeaderInRetry(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncNoHeaderInRetry(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncNoHeaderInRetry(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncNoHeaderInRetry(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDeleteAsyncNoHeaderInRetry(): any {
+    return msRest.responseToBody(this.beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4835,27 +3619,8 @@ export class LROs {
   beginDeleteAsyncRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncRetrySucceeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRetrySucceeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDeleteAsyncRetrySucceeded(): any {
+    return msRest.responseToBody(this.beginDeleteAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4877,27 +3642,8 @@ export class LROs {
   beginDeleteAsyncNoRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncNoRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncNoRetrySucceeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncNoRetrySucceeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDeleteAsyncNoRetrySucceeded(): any {
+    return msRest.responseToBody(this.beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4919,27 +3665,8 @@ export class LROs {
   beginDeleteAsyncRetryFailed(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncRetryFailed(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncRetryFailed(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRetryFailed(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteAsyncRetryFailedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteAsyncRetryFailedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDeleteAsyncRetryFailed(): any {
+    return msRest.responseToBody(this.beginDeleteAsyncRetryFailedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -4961,27 +3688,8 @@ export class LROs {
   beginDeleteAsyncRetrycanceled(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncRetrycanceled(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncRetrycanceled(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRetrycanceled(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginDeleteAsyncRetrycanceled(): any {
+    return msRest.responseToBody(this.beginDeleteAsyncRetrycanceledWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5003,27 +3711,8 @@ export class LROs {
   beginPost200WithPayload(options: msRest.RequestOptionsBase): Promise<Models.Sku>;
   beginPost200WithPayload(callback: msRest.ServiceCallback<Models.Sku>): void;
   beginPost200WithPayload(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Sku>): void;
-  beginPost200WithPayload(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Sku>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Sku>;
-    if (!callback) {
-      return this.beginPost200WithPayloadWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Sku);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPost200WithPayloadWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Sku;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPost200WithPayload(): any {
+    return msRest.responseToBody(this.beginPost200WithPayloadWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5045,27 +3734,8 @@ export class LROs {
   beginPost202Retry200(options: Models.LROsBeginPost202Retry200OptionalParams): Promise<void>;
   beginPost202Retry200(callback: msRest.ServiceCallback<void>): void;
   beginPost202Retry200(options: Models.LROsBeginPost202Retry200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPost202Retry200(options?: Models.LROsBeginPost202Retry200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginPost202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPost202Retry200WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPost202Retry200(): any {
+    return msRest.responseToBody(this.beginPost202Retry200WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5087,27 +3757,8 @@ export class LROs {
   beginPost202NoRetry204(options: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<Models.Product>;
   beginPost202NoRetry204(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPost202NoRetry204(options: Models.LROsBeginPost202NoRetry204OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPost202NoRetry204(options?: Models.LROsBeginPost202NoRetry204OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPost202NoRetry204WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPost202NoRetry204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPost202NoRetry204(): any {
+    return msRest.responseToBody(this.beginPost202NoRetry204WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5130,27 +3781,8 @@ export class LROs {
   beginPostDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   beginPostDoubleHeadersFinalLocationGet(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPostDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPostDoubleHeadersFinalLocationGet(): any {
+    return msRest.responseToBody(this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5173,27 +3805,8 @@ export class LROs {
   beginPostDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   beginPostDoubleHeadersFinalAzureHeaderGet(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPostDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPostDoubleHeadersFinalAzureHeaderGet(): any {
+    return msRest.responseToBody(this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5216,27 +3829,8 @@ export class LROs {
   beginPostDoubleHeadersFinalAzureHeaderGetDefault(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   beginPostDoubleHeadersFinalAzureHeaderGetDefault(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPostDoubleHeadersFinalAzureHeaderGetDefault(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPostDoubleHeadersFinalAzureHeaderGetDefault(): any {
+    return msRest.responseToBody(this.beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5259,27 +3853,8 @@ export class LROs {
   beginPostAsyncRetrySucceeded(options: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
   beginPostAsyncRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPostAsyncRetrySucceeded(options: Models.LROsBeginPostAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostAsyncRetrySucceeded(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPostAsyncRetrySucceeded(): any {
+    return msRest.responseToBody(this.beginPostAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5302,27 +3877,8 @@ export class LROs {
   beginPostAsyncNoRetrySucceeded(options: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<Models.Product>;
   beginPostAsyncNoRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPostAsyncNoRetrySucceeded(options: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostAsyncNoRetrySucceeded(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPostAsyncNoRetrySucceeded(): any {
+    return msRest.responseToBody(this.beginPostAsyncNoRetrySucceededWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5345,27 +3901,8 @@ export class LROs {
   beginPostAsyncRetryFailed(options: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<void>;
   beginPostAsyncRetryFailed(callback: msRest.ServiceCallback<void>): void;
   beginPostAsyncRetryFailed(options: Models.LROsBeginPostAsyncRetryFailedOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRetryFailed(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginPostAsyncRetryFailedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPostAsyncRetryFailedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPostAsyncRetryFailed(): any {
+    return msRest.responseToBody(this.beginPostAsyncRetryFailedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -5388,27 +3925,8 @@ export class LROs {
   beginPostAsyncRetrycanceled(options: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<void>;
   beginPostAsyncRetrycanceled(callback: msRest.ServiceCallback<void>): void;
   beginPostAsyncRetrycanceled(options: Models.LROsBeginPostAsyncRetrycanceledOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRetrycanceled(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginPostAsyncRetrycanceledWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginPostAsyncRetrycanceledWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginPostAsyncRetrycanceled(): any {
+    return msRest.responseToBody(this.beginPostAsyncRetrycanceledWithHttpOperationResponse.bind(this), arguments);
   }
 
 }
