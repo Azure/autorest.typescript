@@ -9,23 +9,16 @@ const stat = promisify(fs.stat);
 const filesize = require("filesize");
 
 async function getBundleSize() {
-  await new Promise((resolve, reject) => {
-    cp.exec(join(__dirname, "../node_modules/.bin/webpack -p"), { maxBuffer: 1024 * 1024 }, (err, stdout, stderr) => {
-      if (stdout) {
-        console.log(stdout);
-      }
-      if (stderr) {
-        console.error(stderr);
-      }
-      // Even if webpack errors, we still just want to see what it put on disk
-      resolve();
-    });
+  await new Promise((resolve) => {
+    const child = cp.spawn(join(__dirname, "../node_modules/.bin/webpack"), ['-p'], { maxBuffer: 1024 * 1024, stdio: 'inherit' });
+    child.on('exit', () => resolve());
   });
   const status = await stat(join(__dirname, "../testBundle.js"));
   return status.size;
 }
 
 function execVerbose(script) {
+  console.log(`> ${script}`);
   return exec(script, { maxBuffer: 1024 * 1024 });
 }
 
