@@ -948,8 +948,8 @@ export class Header {
   paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase): Promise<void>;
   paramExistingKey(userAgent: string, callback: msRest.ServiceCallback<void>): void;
   paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramExistingKey(): any {
-    return msRest.responseToBody(this.paramExistingKeyWithHttpOperationResponse.bind(this), arguments);
+  paramExistingKey(userAgent: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramExistingKeyWithHttpOperationResponse.bind(this), userAgent, options, callback);
   }
 
   /**
@@ -970,8 +970,8 @@ export class Header {
   responseExistingKey(options: msRest.RequestOptionsBase): Promise<void>;
   responseExistingKey(callback: msRest.ServiceCallback<void>): void;
   responseExistingKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseExistingKey(): any {
-    return msRest.responseToBody(this.responseExistingKeyWithHttpOperationResponse.bind(this), arguments);
+  responseExistingKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseExistingKeyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -994,8 +994,8 @@ export class Header {
   paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase): Promise<void>;
   paramProtectedKey(contentType: string, callback: msRest.ServiceCallback<void>): void;
   paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramProtectedKey(): any {
-    return msRest.responseToBody(this.paramProtectedKeyWithHttpOperationResponse.bind(this), arguments);
+  paramProtectedKey(contentType: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramProtectedKeyWithHttpOperationResponse.bind(this), contentType, options, callback);
   }
 
   /**
@@ -1016,8 +1016,8 @@ export class Header {
   responseProtectedKey(options: msRest.RequestOptionsBase): Promise<void>;
   responseProtectedKey(callback: msRest.ServiceCallback<void>): void;
   responseProtectedKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseProtectedKey(): any {
-    return msRest.responseToBody(this.responseProtectedKeyWithHttpOperationResponse.bind(this), arguments);
+  responseProtectedKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseProtectedKeyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1044,8 +1044,8 @@ export class Header {
   paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
   paramInteger(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramInteger(): any {
-    return msRest.responseToBody(this.paramIntegerWithHttpOperationResponse.bind(this), arguments);
+  paramInteger(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramIntegerWithHttpOperationResponse.bind(this), scenario, value, options, callback);
   }
 
   /**
@@ -1069,8 +1069,8 @@ export class Header {
   responseInteger(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseInteger(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseInteger(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseInteger(): any {
-    return msRest.responseToBody(this.responseIntegerWithHttpOperationResponse.bind(this), arguments);
+  responseInteger(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseIntegerWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1097,8 +1097,8 @@ export class Header {
   paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
   paramLong(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramLong(): any {
-    return msRest.responseToBody(this.paramLongWithHttpOperationResponse.bind(this), arguments);
+  paramLong(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramLongWithHttpOperationResponse.bind(this), scenario, value, options, callback);
   }
 
   /**
@@ -1122,8 +1122,8 @@ export class Header {
   responseLong(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseLong(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseLong(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseLong(): any {
-    return msRest.responseToBody(this.responseLongWithHttpOperationResponse.bind(this), arguments);
+  responseLong(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseLongWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1150,8 +1150,8 @@ export class Header {
   paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
   paramFloat(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramFloat(): any {
-    return msRest.responseToBody(this.paramFloatWithHttpOperationResponse.bind(this), arguments);
+  paramFloat(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramFloatWithHttpOperationResponse.bind(this), scenario, value, options, callback);
   }
 
   /**
@@ -1175,8 +1175,8 @@ export class Header {
   responseFloat(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseFloat(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseFloat(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseFloat(): any {
-    return msRest.responseToBody(this.responseFloatWithHttpOperationResponse.bind(this), arguments);
+  responseFloat(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseFloatWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1203,8 +1203,8 @@ export class Header {
   paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
   paramDouble(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDouble(): any {
-    return msRest.responseToBody(this.paramDoubleWithHttpOperationResponse.bind(this), arguments);
+  paramDouble(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramDoubleWithHttpOperationResponse.bind(this), scenario, value, options, callback);
   }
 
   /**
@@ -1228,8 +1228,8 @@ export class Header {
   responseDouble(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDouble(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDouble(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDouble(): any {
-    return msRest.responseToBody(this.responseDoubleWithHttpOperationResponse.bind(this), arguments);
+  responseDouble(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseDoubleWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1255,8 +1255,8 @@ export class Header {
   paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase): Promise<void>;
   paramBool(scenario: string, value: boolean, callback: msRest.ServiceCallback<void>): void;
   paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramBool(): any {
-    return msRest.responseToBody(this.paramBoolWithHttpOperationResponse.bind(this), arguments);
+  paramBool(scenario: string, value: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramBoolWithHttpOperationResponse.bind(this), scenario, value, options, callback);
   }
 
   /**
@@ -1279,8 +1279,8 @@ export class Header {
   responseBool(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseBool(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseBool(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseBool(): any {
-    return msRest.responseToBody(this.responseBoolWithHttpOperationResponse.bind(this), arguments);
+  responseBool(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseBoolWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1305,8 +1305,8 @@ export class Header {
   paramString(scenario: string, options: Models.HeaderParamStringOptionalParams): Promise<void>;
   paramString(scenario: string, callback: msRest.ServiceCallback<void>): void;
   paramString(scenario: string, options: Models.HeaderParamStringOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramString(): any {
-    return msRest.responseToBody(this.paramStringWithHttpOperationResponse.bind(this), arguments);
+  paramString(scenario: string, options?: Models.HeaderParamStringOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramStringWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1330,8 +1330,8 @@ export class Header {
   responseString(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseString(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseString(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseString(): any {
-    return msRest.responseToBody(this.responseStringWithHttpOperationResponse.bind(this), arguments);
+  responseString(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseStringWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1357,8 +1357,8 @@ export class Header {
   paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   paramDate(scenario: string, value: Date | string, callback: msRest.ServiceCallback<void>): void;
   paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDate(): any {
-    return msRest.responseToBody(this.paramDateWithHttpOperationResponse.bind(this), arguments);
+  paramDate(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramDateWithHttpOperationResponse.bind(this), scenario, value, options, callback);
   }
 
   /**
@@ -1381,8 +1381,8 @@ export class Header {
   responseDate(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDate(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDate(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDate(): any {
-    return msRest.responseToBody(this.responseDateWithHttpOperationResponse.bind(this), arguments);
+  responseDate(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseDateWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1409,8 +1409,8 @@ export class Header {
   paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   paramDatetime(scenario: string, value: Date | string, callback: msRest.ServiceCallback<void>): void;
   paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDatetime(): any {
-    return msRest.responseToBody(this.paramDatetimeWithHttpOperationResponse.bind(this), arguments);
+  paramDatetime(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramDatetimeWithHttpOperationResponse.bind(this), scenario, value, options, callback);
   }
 
   /**
@@ -1433,8 +1433,8 @@ export class Header {
   responseDatetime(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDatetime(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDatetime(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetime(): any {
-    return msRest.responseToBody(this.responseDatetimeWithHttpOperationResponse.bind(this), arguments);
+  responseDatetime(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseDatetimeWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1458,8 +1458,8 @@ export class Header {
   paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<void>;
   paramDatetimeRfc1123(scenario: string, callback: msRest.ServiceCallback<void>): void;
   paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramDatetimeRfc1123(): any {
-    return msRest.responseToBody(this.paramDatetimeRfc1123WithHttpOperationResponse.bind(this), arguments);
+  paramDatetimeRfc1123(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramDatetimeRfc1123WithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1483,8 +1483,8 @@ export class Header {
   responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDatetimeRfc1123(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetimeRfc1123(): any {
-    return msRest.responseToBody(this.responseDatetimeRfc1123WithHttpOperationResponse.bind(this), arguments);
+  responseDatetimeRfc1123(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseDatetimeRfc1123WithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1509,8 +1509,8 @@ export class Header {
   paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase): Promise<void>;
   paramDuration(scenario: string, value: string, callback: msRest.ServiceCallback<void>): void;
   paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDuration(): any {
-    return msRest.responseToBody(this.paramDurationWithHttpOperationResponse.bind(this), arguments);
+  paramDuration(scenario: string, value: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramDurationWithHttpOperationResponse.bind(this), scenario, value, options, callback);
   }
 
   /**
@@ -1533,8 +1533,8 @@ export class Header {
   responseDuration(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDuration(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDuration(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDuration(): any {
-    return msRest.responseToBody(this.responseDurationWithHttpOperationResponse.bind(this), arguments);
+  responseDuration(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseDurationWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1559,8 +1559,8 @@ export class Header {
   paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
   paramByte(scenario: string, value: Uint8Array, callback: msRest.ServiceCallback<void>): void;
   paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramByte(): any {
-    return msRest.responseToBody(this.paramByteWithHttpOperationResponse.bind(this), arguments);
+  paramByte(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramByteWithHttpOperationResponse.bind(this), scenario, value, options, callback);
   }
 
   /**
@@ -1583,8 +1583,8 @@ export class Header {
   responseByte(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseByte(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseByte(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseByte(): any {
-    return msRest.responseToBody(this.responseByteWithHttpOperationResponse.bind(this), arguments);
+  responseByte(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseByteWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1609,8 +1609,8 @@ export class Header {
   paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams): Promise<void>;
   paramEnum(scenario: string, callback: msRest.ServiceCallback<void>): void;
   paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramEnum(): any {
-    return msRest.responseToBody(this.paramEnumWithHttpOperationResponse.bind(this), arguments);
+  paramEnum(scenario: string, options?: Models.HeaderParamEnumOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramEnumWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1634,8 +1634,8 @@ export class Header {
   responseEnum(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseEnum(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseEnum(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseEnum(): any {
-    return msRest.responseToBody(this.responseEnumWithHttpOperationResponse.bind(this), arguments);
+  responseEnum(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.responseEnumWithHttpOperationResponse.bind(this), scenario, options, callback);
   }
 
   /**
@@ -1656,8 +1656,8 @@ export class Header {
   customRequestId(options: msRest.RequestOptionsBase): Promise<void>;
   customRequestId(callback: msRest.ServiceCallback<void>): void;
   customRequestId(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customRequestId(): any {
-    return msRest.responseToBody(this.customRequestIdWithHttpOperationResponse.bind(this), arguments);
+  customRequestId(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.customRequestIdWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

@@ -184,8 +184,8 @@ export class BasicOperations {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getValid(callback: msRest.ServiceCallback<Models.Basic>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getValid(): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -208,8 +208,8 @@ export class BasicOperations {
   putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase): Promise<void>;
   putValid(complexBody: Models.Basic, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
+  putValid(complexBody: Models.Basic, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -230,8 +230,8 @@ export class BasicOperations {
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getInvalid(callback: msRest.ServiceCallback<Models.Basic>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getInvalid(): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -252,8 +252,8 @@ export class BasicOperations {
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getEmpty(callback: msRest.ServiceCallback<Models.Basic>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getEmpty(): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -274,8 +274,8 @@ export class BasicOperations {
   getNull(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getNull(callback: msRest.ServiceCallback<Models.Basic>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -296,8 +296,8 @@ export class BasicOperations {
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getNotProvided(callback: msRest.ServiceCallback<Models.Basic>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getNotProvided(): any {
-    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), arguments);
+  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
+    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

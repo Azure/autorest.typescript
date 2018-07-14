@@ -616,8 +616,8 @@ export class Primitive {
   getInt(options: msRest.RequestOptionsBase): Promise<Models.IntWrapper>;
   getInt(callback: msRest.ServiceCallback<Models.IntWrapper>): void;
   getInt(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.IntWrapper>): void;
-  getInt(): any {
-    return msRest.responseToBody(this.getIntWithHttpOperationResponse.bind(this), arguments);
+  getInt(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.IntWrapper>): any {
+    return msRest.responseToBody(this.getIntWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -640,8 +640,8 @@ export class Primitive {
   putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase): Promise<void>;
   putInt(complexBody: Models.IntWrapper, callback: msRest.ServiceCallback<void>): void;
   putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putInt(): any {
-    return msRest.responseToBody(this.putIntWithHttpOperationResponse.bind(this), arguments);
+  putInt(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putIntWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -662,8 +662,8 @@ export class Primitive {
   getLong(options: msRest.RequestOptionsBase): Promise<Models.LongWrapper>;
   getLong(callback: msRest.ServiceCallback<Models.LongWrapper>): void;
   getLong(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LongWrapper>): void;
-  getLong(): any {
-    return msRest.responseToBody(this.getLongWithHttpOperationResponse.bind(this), arguments);
+  getLong(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LongWrapper>): any {
+    return msRest.responseToBody(this.getLongWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -686,8 +686,8 @@ export class Primitive {
   putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase): Promise<void>;
   putLong(complexBody: Models.LongWrapper, callback: msRest.ServiceCallback<void>): void;
   putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLong(): any {
-    return msRest.responseToBody(this.putLongWithHttpOperationResponse.bind(this), arguments);
+  putLong(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putLongWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -708,8 +708,8 @@ export class Primitive {
   getFloat(options: msRest.RequestOptionsBase): Promise<Models.FloatWrapper>;
   getFloat(callback: msRest.ServiceCallback<Models.FloatWrapper>): void;
   getFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FloatWrapper>): void;
-  getFloat(): any {
-    return msRest.responseToBody(this.getFloatWithHttpOperationResponse.bind(this), arguments);
+  getFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FloatWrapper>): any {
+    return msRest.responseToBody(this.getFloatWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -732,8 +732,8 @@ export class Primitive {
   putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase): Promise<void>;
   putFloat(complexBody: Models.FloatWrapper, callback: msRest.ServiceCallback<void>): void;
   putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFloat(): any {
-    return msRest.responseToBody(this.putFloatWithHttpOperationResponse.bind(this), arguments);
+  putFloat(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putFloatWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -754,8 +754,8 @@ export class Primitive {
   getDouble(options: msRest.RequestOptionsBase): Promise<Models.DoubleWrapper>;
   getDouble(callback: msRest.ServiceCallback<Models.DoubleWrapper>): void;
   getDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DoubleWrapper>): void;
-  getDouble(): any {
-    return msRest.responseToBody(this.getDoubleWithHttpOperationResponse.bind(this), arguments);
+  getDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DoubleWrapper>): any {
+    return msRest.responseToBody(this.getDoubleWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -779,8 +779,8 @@ export class Primitive {
   putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase): Promise<void>;
   putDouble(complexBody: Models.DoubleWrapper, callback: msRest.ServiceCallback<void>): void;
   putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDouble(): any {
-    return msRest.responseToBody(this.putDoubleWithHttpOperationResponse.bind(this), arguments);
+  putDouble(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDoubleWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -801,8 +801,8 @@ export class Primitive {
   getBool(options: msRest.RequestOptionsBase): Promise<Models.BooleanWrapper>;
   getBool(callback: msRest.ServiceCallback<Models.BooleanWrapper>): void;
   getBool(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.BooleanWrapper>): void;
-  getBool(): any {
-    return msRest.responseToBody(this.getBoolWithHttpOperationResponse.bind(this), arguments);
+  getBool(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.BooleanWrapper>): any {
+    return msRest.responseToBody(this.getBoolWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -825,8 +825,8 @@ export class Primitive {
   putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase): Promise<void>;
   putBool(complexBody: Models.BooleanWrapper, callback: msRest.ServiceCallback<void>): void;
   putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBool(): any {
-    return msRest.responseToBody(this.putBoolWithHttpOperationResponse.bind(this), arguments);
+  putBool(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBoolWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -847,8 +847,8 @@ export class Primitive {
   getString(options: msRest.RequestOptionsBase): Promise<Models.StringWrapper>;
   getString(callback: msRest.ServiceCallback<Models.StringWrapper>): void;
   getString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StringWrapper>): void;
-  getString(): any {
-    return msRest.responseToBody(this.getStringWithHttpOperationResponse.bind(this), arguments);
+  getString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StringWrapper>): any {
+    return msRest.responseToBody(this.getStringWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -871,8 +871,8 @@ export class Primitive {
   putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase): Promise<void>;
   putString(complexBody: Models.StringWrapper, callback: msRest.ServiceCallback<void>): void;
   putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putString(): any {
-    return msRest.responseToBody(this.putStringWithHttpOperationResponse.bind(this), arguments);
+  putString(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putStringWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -893,8 +893,8 @@ export class Primitive {
   getDate(options: msRest.RequestOptionsBase): Promise<Models.DateWrapper>;
   getDate(callback: msRest.ServiceCallback<Models.DateWrapper>): void;
   getDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DateWrapper>): void;
-  getDate(): any {
-    return msRest.responseToBody(this.getDateWithHttpOperationResponse.bind(this), arguments);
+  getDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DateWrapper>): any {
+    return msRest.responseToBody(this.getDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -917,8 +917,8 @@ export class Primitive {
   putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase): Promise<void>;
   putDate(complexBody: Models.DateWrapper, callback: msRest.ServiceCallback<void>): void;
   putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDate(): any {
-    return msRest.responseToBody(this.putDateWithHttpOperationResponse.bind(this), arguments);
+  putDate(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDateWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -939,8 +939,8 @@ export class Primitive {
   getDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeWrapper>;
   getDateTime(callback: msRest.ServiceCallback<Models.DatetimeWrapper>): void;
   getDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DatetimeWrapper>): void;
-  getDateTime(): any {
-    return msRest.responseToBody(this.getDateTimeWithHttpOperationResponse.bind(this), arguments);
+  getDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DatetimeWrapper>): any {
+    return msRest.responseToBody(this.getDateTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -964,8 +964,8 @@ export class Primitive {
   putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase): Promise<void>;
   putDateTime(complexBody: Models.DatetimeWrapper, callback: msRest.ServiceCallback<void>): void;
   putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTime(): any {
-    return msRest.responseToBody(this.putDateTimeWithHttpOperationResponse.bind(this), arguments);
+  putDateTime(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDateTimeWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -986,8 +986,8 @@ export class Primitive {
   getDateTimeRfc1123(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123Wrapper>;
   getDateTimeRfc1123(callback: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): void;
   getDateTimeRfc1123(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): void;
-  getDateTimeRfc1123(): any {
-    return msRest.responseToBody(this.getDateTimeRfc1123WithHttpOperationResponse.bind(this), arguments);
+  getDateTimeRfc1123(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): any {
+    return msRest.responseToBody(this.getDateTimeRfc1123WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1011,8 +1011,8 @@ export class Primitive {
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase): Promise<void>;
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeRfc1123(): any {
-    return msRest.responseToBody(this.putDateTimeRfc1123WithHttpOperationResponse.bind(this), arguments);
+  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDateTimeRfc1123WithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -1033,8 +1033,8 @@ export class Primitive {
   getDuration(options: msRest.RequestOptionsBase): Promise<Models.DurationWrapper>;
   getDuration(callback: msRest.ServiceCallback<Models.DurationWrapper>): void;
   getDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DurationWrapper>): void;
-  getDuration(): any {
-    return msRest.responseToBody(this.getDurationWithHttpOperationResponse.bind(this), arguments);
+  getDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DurationWrapper>): any {
+    return msRest.responseToBody(this.getDurationWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1055,8 +1055,8 @@ export class Primitive {
   putDuration(options: Models.PrimitivePutDurationOptionalParams): Promise<void>;
   putDuration(callback: msRest.ServiceCallback<void>): void;
   putDuration(options: Models.PrimitivePutDurationOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDuration(): any {
-    return msRest.responseToBody(this.putDurationWithHttpOperationResponse.bind(this), arguments);
+  putDuration(options?: Models.PrimitivePutDurationOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDurationWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1077,8 +1077,8 @@ export class Primitive {
   getByte(options: msRest.RequestOptionsBase): Promise<Models.ByteWrapper>;
   getByte(callback: msRest.ServiceCallback<Models.ByteWrapper>): void;
   getByte(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ByteWrapper>): void;
-  getByte(): any {
-    return msRest.responseToBody(this.getByteWithHttpOperationResponse.bind(this), arguments);
+  getByte(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ByteWrapper>): any {
+    return msRest.responseToBody(this.getByteWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1099,8 +1099,8 @@ export class Primitive {
   putByte(options: Models.PrimitivePutByteOptionalParams): Promise<void>;
   putByte(callback: msRest.ServiceCallback<void>): void;
   putByte(options: Models.PrimitivePutByteOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putByte(): any {
-    return msRest.responseToBody(this.putByteWithHttpOperationResponse.bind(this), arguments);
+  putByte(options?: Models.PrimitivePutByteOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putByteWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

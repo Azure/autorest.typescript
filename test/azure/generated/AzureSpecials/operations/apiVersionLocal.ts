@@ -156,8 +156,8 @@ export class ApiVersionLocal {
   getMethodLocalValid(options: msRest.RequestOptionsBase): Promise<void>;
   getMethodLocalValid(callback: msRest.ServiceCallback<void>): void;
   getMethodLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodLocalValid(): any {
-    return msRest.responseToBody(this.getMethodLocalValidWithHttpOperationResponse.bind(this), arguments);
+  getMethodLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getMethodLocalValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -178,8 +178,8 @@ export class ApiVersionLocal {
   getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<void>;
   getMethodLocalNull(callback: msRest.ServiceCallback<void>): void;
   getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getMethodLocalNull(): any {
-    return msRest.responseToBody(this.getMethodLocalNullWithHttpOperationResponse.bind(this), arguments);
+  getMethodLocalNull(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getMethodLocalNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -200,8 +200,8 @@ export class ApiVersionLocal {
   getPathLocalValid(options: msRest.RequestOptionsBase): Promise<void>;
   getPathLocalValid(callback: msRest.ServiceCallback<void>): void;
   getPathLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathLocalValid(): any {
-    return msRest.responseToBody(this.getPathLocalValidWithHttpOperationResponse.bind(this), arguments);
+  getPathLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getPathLocalValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -222,8 +222,8 @@ export class ApiVersionLocal {
   getSwaggerLocalValid(options: msRest.RequestOptionsBase): Promise<void>;
   getSwaggerLocalValid(callback: msRest.ServiceCallback<void>): void;
   getSwaggerLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerLocalValid(): any {
-    return msRest.responseToBody(this.getSwaggerLocalValidWithHttpOperationResponse.bind(this), arguments);
+  getSwaggerLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getSwaggerLocalValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

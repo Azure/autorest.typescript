@@ -377,8 +377,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<void>;
   putArray(callback: msRest.ServiceCallback<void>): void;
   putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putArray(): any {
-    return msRest.responseToBody(this.putArrayWithHttpOperationResponse.bind(this), arguments);
+  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putArrayWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -399,8 +399,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   getArray(options: msRest.RequestOptionsBase): Promise<Models.FlattenedProduct[]>;
   getArray(callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
   getArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
-  getArray(): any {
-    return msRest.responseToBody(this.getArrayWithHttpOperationResponse.bind(this), arguments);
+  getArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): any {
+    return msRest.responseToBody(this.getArrayWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -423,8 +423,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<void>;
   putWrappedArray(callback: msRest.ServiceCallback<void>): void;
   putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putWrappedArray(): any {
-    return msRest.responseToBody(this.putWrappedArrayWithHttpOperationResponse.bind(this), arguments);
+  putWrappedArray(options?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putWrappedArrayWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -446,8 +446,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   getWrappedArray(options: msRest.RequestOptionsBase): Promise<Models.ProductWrapper[]>;
   getWrappedArray(callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
   getWrappedArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
-  getWrappedArray(): any {
-    return msRest.responseToBody(this.getWrappedArrayWithHttpOperationResponse.bind(this), arguments);
+  getWrappedArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductWrapper[]>): any {
+    return msRest.responseToBody(this.getWrappedArrayWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -469,8 +469,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<void>;
   putDictionary(callback: msRest.ServiceCallback<void>): void;
   putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDictionary(): any {
-    return msRest.responseToBody(this.putDictionaryWithHttpOperationResponse.bind(this), arguments);
+  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDictionaryWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -491,8 +491,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   getDictionary(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.FlattenedProduct }>;
   getDictionary(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
   getDictionary(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
-  getDictionary(): any {
-    return msRest.responseToBody(this.getDictionaryWithHttpOperationResponse.bind(this), arguments);
+  getDictionary(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): any {
+    return msRest.responseToBody(this.getDictionaryWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -514,8 +514,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<void>;
   putResourceCollection(callback: msRest.ServiceCallback<void>): void;
   putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putResourceCollection(): any {
-    return msRest.responseToBody(this.putResourceCollectionWithHttpOperationResponse.bind(this), arguments);
+  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putResourceCollectionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -536,8 +536,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.ResourceCollection>;
   getResourceCollection(callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
   getResourceCollection(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
-  getResourceCollection(): any {
-    return msRest.responseToBody(this.getResourceCollectionWithHttpOperationResponse.bind(this), arguments);
+  getResourceCollection(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ResourceCollection>): any {
+    return msRest.responseToBody(this.getResourceCollectionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -559,8 +559,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<Models.SimpleProduct>;
   putSimpleProduct(callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
   putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProduct(): any {
-    return msRest.responseToBody(this.putSimpleProductWithHttpOperationResponse.bind(this), arguments);
+  putSimpleProduct(options?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
+    return msRest.responseToBody(this.putSimpleProductWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -588,8 +588,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams): Promise<Models.SimpleProduct>;
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  postFlattenedSimpleProduct(): any {
-    return msRest.responseToBody(this.postFlattenedSimpleProductWithHttpOperationResponse.bind(this), arguments);
+  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options?: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
+    return msRest.responseToBody(this.postFlattenedSimpleProductWithHttpOperationResponse.bind(this), productId, maxProductDisplayName, options, callback);
   }
 
   /**
@@ -612,8 +612,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.SimpleProduct>;
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProductWithGrouping(): any {
-    return msRest.responseToBody(this.putSimpleProductWithGroupingWithHttpOperationResponse.bind(this), arguments);
+  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
+    return msRest.responseToBody(this.putSimpleProductWithGroupingWithHttpOperationResponse.bind(this), flattenParameterGroup, options, callback);
   }
 }
 

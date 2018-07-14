@@ -189,8 +189,8 @@ export class Dictionary {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
   getValid(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getValid(): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -211,8 +211,8 @@ export class Dictionary {
   putValid(options: Models.DictionaryPutValidOptionalParams): Promise<void>;
   putValid(callback: msRest.ServiceCallback<void>): void;
   putValid(options: Models.DictionaryPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putValid(): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
+  putValid(options?: Models.DictionaryPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -233,8 +233,8 @@ export class Dictionary {
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
   getEmpty(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getEmpty(): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -255,8 +255,8 @@ export class Dictionary {
   putEmpty(options: Models.DictionaryPutEmptyOptionalParams): Promise<void>;
   putEmpty(callback: msRest.ServiceCallback<void>): void;
   putEmpty(options: Models.DictionaryPutEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arguments);
+  putEmpty(options?: Models.DictionaryPutEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -277,8 +277,8 @@ export class Dictionary {
   getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
   getNull(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -299,8 +299,8 @@ export class Dictionary {
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
   getNotProvided(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getNotProvided(): any {
-    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), arguments);
+  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
+    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

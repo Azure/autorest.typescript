@@ -140,8 +140,8 @@ export class Header {
   customNamedRequestId(fooClientRequestId: string, options: msRest.RequestOptionsBase): Promise<void>;
   customNamedRequestId(fooClientRequestId: string, callback: msRest.ServiceCallback<void>): void;
   customNamedRequestId(fooClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customNamedRequestId(): any {
-    return msRest.responseToBody(this.customNamedRequestIdWithHttpOperationResponse.bind(this), arguments);
+  customNamedRequestId(fooClientRequestId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.customNamedRequestIdWithHttpOperationResponse.bind(this), fooClientRequestId, options, callback);
   }
 
   /**
@@ -166,8 +166,8 @@ export class Header {
   customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options: msRest.RequestOptionsBase): Promise<void>;
   customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, callback: msRest.ServiceCallback<void>): void;
   customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customNamedRequestIdParamGrouping(): any {
-    return msRest.responseToBody(this.customNamedRequestIdParamGroupingWithHttpOperationResponse.bind(this), arguments);
+  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.customNamedRequestIdParamGroupingWithHttpOperationResponse.bind(this), headerCustomNamedRequestIdParamGroupingParameters, options, callback);
   }
 
   /**
@@ -190,8 +190,8 @@ export class Header {
   customNamedRequestIdHead(fooClientRequestId: string, options: msRest.RequestOptionsBase): Promise<boolean>;
   customNamedRequestIdHead(fooClientRequestId: string, callback: msRest.ServiceCallback<boolean>): void;
   customNamedRequestIdHead(fooClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  customNamedRequestIdHead(): any {
-    return msRest.responseToBody(this.customNamedRequestIdHeadWithHttpOperationResponse.bind(this), arguments);
+  customNamedRequestIdHead(fooClientRequestId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.customNamedRequestIdHeadWithHttpOperationResponse.bind(this), fooClientRequestId, options, callback);
   }
 
 }

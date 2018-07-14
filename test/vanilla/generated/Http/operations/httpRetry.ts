@@ -261,8 +261,8 @@ export class HttpRetry {
   head408(options: msRest.RequestOptionsBase): Promise<void>;
   head408(callback: msRest.ServiceCallback<void>): void;
   head408(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head408(): any {
-    return msRest.responseToBody(this.head408WithHttpOperationResponse.bind(this), arguments);
+  head408(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head408WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -283,8 +283,8 @@ export class HttpRetry {
   put500(options: Models.HttpRetryPut500OptionalParams): Promise<void>;
   put500(callback: msRest.ServiceCallback<void>): void;
   put500(options: Models.HttpRetryPut500OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put500(): any {
-    return msRest.responseToBody(this.put500WithHttpOperationResponse.bind(this), arguments);
+  put500(options?: Models.HttpRetryPut500OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.put500WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -305,8 +305,8 @@ export class HttpRetry {
   patch500(options: Models.HttpRetryPatch500OptionalParams): Promise<void>;
   patch500(callback: msRest.ServiceCallback<void>): void;
   patch500(options: Models.HttpRetryPatch500OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch500(): any {
-    return msRest.responseToBody(this.patch500WithHttpOperationResponse.bind(this), arguments);
+  patch500(options?: Models.HttpRetryPatch500OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.patch500WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -327,8 +327,8 @@ export class HttpRetry {
   get502(options: msRest.RequestOptionsBase): Promise<void>;
   get502(callback: msRest.ServiceCallback<void>): void;
   get502(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get502(): any {
-    return msRest.responseToBody(this.get502WithHttpOperationResponse.bind(this), arguments);
+  get502(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get502WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -349,8 +349,8 @@ export class HttpRetry {
   post503(options: Models.HttpRetryPost503OptionalParams): Promise<void>;
   post503(callback: msRest.ServiceCallback<void>): void;
   post503(options: Models.HttpRetryPost503OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post503(): any {
-    return msRest.responseToBody(this.post503WithHttpOperationResponse.bind(this), arguments);
+  post503(options?: Models.HttpRetryPost503OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post503WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -371,8 +371,8 @@ export class HttpRetry {
   delete503(options: Models.HttpRetryDelete503OptionalParams): Promise<void>;
   delete503(callback: msRest.ServiceCallback<void>): void;
   delete503(options: Models.HttpRetryDelete503OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete503(): any {
-    return msRest.responseToBody(this.delete503WithHttpOperationResponse.bind(this), arguments);
+  delete503(options?: Models.HttpRetryDelete503OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.delete503WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -393,8 +393,8 @@ export class HttpRetry {
   put504(options: Models.HttpRetryPut504OptionalParams): Promise<void>;
   put504(callback: msRest.ServiceCallback<void>): void;
   put504(options: Models.HttpRetryPut504OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put504(): any {
-    return msRest.responseToBody(this.put504WithHttpOperationResponse.bind(this), arguments);
+  put504(options?: Models.HttpRetryPut504OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.put504WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -415,8 +415,8 @@ export class HttpRetry {
   patch504(options: Models.HttpRetryPatch504OptionalParams): Promise<void>;
   patch504(callback: msRest.ServiceCallback<void>): void;
   patch504(options: Models.HttpRetryPatch504OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch504(): any {
-    return msRest.responseToBody(this.patch504WithHttpOperationResponse.bind(this), arguments);
+  patch504(options?: Models.HttpRetryPatch504OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.patch504WithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

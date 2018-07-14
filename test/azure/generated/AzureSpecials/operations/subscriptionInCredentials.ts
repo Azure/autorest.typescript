@@ -158,8 +158,8 @@ export class SubscriptionInCredentials {
   postMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
   postMethodGlobalValid(callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodGlobalValid(): any {
-    return msRest.responseToBody(this.postMethodGlobalValidWithHttpOperationResponse.bind(this), arguments);
+  postMethodGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postMethodGlobalValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -181,8 +181,8 @@ export class SubscriptionInCredentials {
   postMethodGlobalNull(options: msRest.RequestOptionsBase): Promise<void>;
   postMethodGlobalNull(callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodGlobalNull(): any {
-    return msRest.responseToBody(this.postMethodGlobalNullWithHttpOperationResponse.bind(this), arguments);
+  postMethodGlobalNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postMethodGlobalNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -204,8 +204,8 @@ export class SubscriptionInCredentials {
   postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<void>;
   postMethodGlobalNotProvidedValid(callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodGlobalNotProvidedValid(): any {
-    return msRest.responseToBody(this.postMethodGlobalNotProvidedValidWithHttpOperationResponse.bind(this), arguments);
+  postMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postMethodGlobalNotProvidedValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -227,8 +227,8 @@ export class SubscriptionInCredentials {
   postPathGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
   postPathGlobalValid(callback: msRest.ServiceCallback<void>): void;
   postPathGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postPathGlobalValid(): any {
-    return msRest.responseToBody(this.postPathGlobalValidWithHttpOperationResponse.bind(this), arguments);
+  postPathGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postPathGlobalValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -250,8 +250,8 @@ export class SubscriptionInCredentials {
   postSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
   postSwaggerGlobalValid(callback: msRest.ServiceCallback<void>): void;
   postSwaggerGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postSwaggerGlobalValid(): any {
-    return msRest.responseToBody(this.postSwaggerGlobalValidWithHttpOperationResponse.bind(this), arguments);
+  postSwaggerGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postSwaggerGlobalValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

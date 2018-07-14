@@ -341,8 +341,8 @@ export class LROsCustomHeader {
   putAsyncRetrySucceeded(options: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
   putAsyncRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncRetrySucceeded(options: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRetrySucceeded(): any {
-    return msRest.responseToBody(this.putAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  putAsyncRetrySucceeded(options?: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putAsyncRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -366,8 +366,8 @@ export class LROsCustomHeader {
   put201CreatingSucceeded200(options: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
   put201CreatingSucceeded200(callback: msRest.ServiceCallback<Models.Product>): void;
   put201CreatingSucceeded200(options: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put201CreatingSucceeded200(): any {
-    return msRest.responseToBody(this.put201CreatingSucceeded200WithHttpOperationResponse.bind(this), arguments);
+  put201CreatingSucceeded200(options?: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.put201CreatingSucceeded200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -390,8 +390,8 @@ export class LROsCustomHeader {
   post202Retry200(options: Models.LROsCustomHeaderPost202Retry200OptionalParams): Promise<void>;
   post202Retry200(callback: msRest.ServiceCallback<void>): void;
   post202Retry200(options: Models.LROsCustomHeaderPost202Retry200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202Retry200(): any {
-    return msRest.responseToBody(this.post202Retry200WithHttpOperationResponse.bind(this), arguments);
+  post202Retry200(options?: Models.LROsCustomHeaderPost202Retry200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post202Retry200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -415,8 +415,8 @@ export class LROsCustomHeader {
   postAsyncRetrySucceeded(options: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams): Promise<void>;
   postAsyncRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   postAsyncRetrySucceeded(options: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRetrySucceeded(): any {
-    return msRest.responseToBody(this.postAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  postAsyncRetrySucceeded(options?: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postAsyncRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -441,8 +441,8 @@ export class LROsCustomHeader {
   beginPutAsyncRetrySucceeded(options: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
   beginPutAsyncRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncRetrySucceeded(options: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRetrySucceeded(): any {
-    return msRest.responseToBody(this.beginPutAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  beginPutAsyncRetrySucceeded(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutAsyncRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -467,8 +467,8 @@ export class LROsCustomHeader {
   beginPut201CreatingSucceeded200(options: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
   beginPut201CreatingSucceeded200(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut201CreatingSucceeded200(options: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut201CreatingSucceeded200(): any {
-    return msRest.responseToBody(this.beginPut201CreatingSucceeded200WithHttpOperationResponse.bind(this), arguments);
+  beginPut201CreatingSucceeded200(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPut201CreatingSucceeded200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -491,8 +491,8 @@ export class LROsCustomHeader {
   beginPost202Retry200(options: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<void>;
   beginPost202Retry200(callback: msRest.ServiceCallback<void>): void;
   beginPost202Retry200(options: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPost202Retry200(): any {
-    return msRest.responseToBody(this.beginPost202Retry200WithHttpOperationResponse.bind(this), arguments);
+  beginPost202Retry200(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPost202Retry200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -517,8 +517,8 @@ export class LROsCustomHeader {
   beginPostAsyncRetrySucceeded(options: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<void>;
   beginPostAsyncRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   beginPostAsyncRetrySucceeded(options: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRetrySucceeded(): any {
-    return msRest.responseToBody(this.beginPostAsyncRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  beginPostAsyncRetrySucceeded(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPostAsyncRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

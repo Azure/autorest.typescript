@@ -75,8 +75,8 @@ export class Group {
   getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.SampleResourceGroup>;
   getSampleResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
   getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
-  getSampleResourceGroup(): any {
-    return msRest.responseToBody(this.getSampleResourceGroupWithHttpOperationResponse.bind(this), arguments);
+  getSampleResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SampleResourceGroup>): any {
+    return msRest.responseToBody(this.getSampleResourceGroupWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
   }
 
 }

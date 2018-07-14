@@ -108,8 +108,8 @@ export class HeadException {
   head200(options: msRest.RequestOptionsBase): Promise<void>;
   head200(callback: msRest.ServiceCallback<void>): void;
   head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head200(): any {
-    return msRest.responseToBody(this.head200WithHttpOperationResponse.bind(this), arguments);
+  head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -130,8 +130,8 @@ export class HeadException {
   head204(options: msRest.RequestOptionsBase): Promise<void>;
   head204(callback: msRest.ServiceCallback<void>): void;
   head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head204(): any {
-    return msRest.responseToBody(this.head204WithHttpOperationResponse.bind(this), arguments);
+  head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head204WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -152,8 +152,8 @@ export class HeadException {
   head404(options: msRest.RequestOptionsBase): Promise<void>;
   head404(callback: msRest.ServiceCallback<void>): void;
   head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head404(): any {
-    return msRest.responseToBody(this.head404WithHttpOperationResponse.bind(this), arguments);
+  head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head404WithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

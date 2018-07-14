@@ -131,8 +131,8 @@ export class Queries {
   arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams): Promise<void>;
   arrayStringMultiNull(callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiNull(): any {
-    return msRest.responseToBody(this.arrayStringMultiNullWithHttpOperationResponse.bind(this), arguments);
+  arrayStringMultiNull(options?: Models.QueriesArrayStringMultiNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayStringMultiNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -153,8 +153,8 @@ export class Queries {
   arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<void>;
   arrayStringMultiEmpty(callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiEmpty(): any {
-    return msRest.responseToBody(this.arrayStringMultiEmptyWithHttpOperationResponse.bind(this), arguments);
+  arrayStringMultiEmpty(options?: Models.QueriesArrayStringMultiEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayStringMultiEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -176,8 +176,8 @@ export class Queries {
   arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams): Promise<void>;
   arrayStringMultiValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiValid(): any {
-    return msRest.responseToBody(this.arrayStringMultiValidWithHttpOperationResponse.bind(this), arguments);
+  arrayStringMultiValid(options?: Models.QueriesArrayStringMultiValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayStringMultiValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

@@ -145,8 +145,8 @@ export class HttpServerFailure {
   head501(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   head501(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head501(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head501(): any {
-    return msRest.responseToBody(this.head501WithHttpOperationResponse.bind(this), arguments);
+  head501(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.head501WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -167,8 +167,8 @@ export class HttpServerFailure {
   get501(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   get501(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get501(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get501(): any {
-    return msRest.responseToBody(this.get501WithHttpOperationResponse.bind(this), arguments);
+  get501(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.get501WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -189,8 +189,8 @@ export class HttpServerFailure {
   post505(options: Models.HttpServerFailurePost505OptionalParams): Promise<Models.ErrorModel>;
   post505(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post505(options: Models.HttpServerFailurePost505OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  post505(): any {
-    return msRest.responseToBody(this.post505WithHttpOperationResponse.bind(this), arguments);
+  post505(options?: Models.HttpServerFailurePost505OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.post505WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -211,8 +211,8 @@ export class HttpServerFailure {
   delete505(options: Models.HttpServerFailureDelete505OptionalParams): Promise<Models.ErrorModel>;
   delete505(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete505(options: Models.HttpServerFailureDelete505OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  delete505(): any {
-    return msRest.responseToBody(this.delete505WithHttpOperationResponse.bind(this), arguments);
+  delete505(options?: Models.HttpServerFailureDelete505OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.delete505WithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

@@ -108,8 +108,8 @@ export class HttpFailure {
   getEmptyError(options: msRest.RequestOptionsBase): Promise<boolean>;
   getEmptyError(callback: msRest.ServiceCallback<boolean>): void;
   getEmptyError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getEmptyError(): any {
-    return msRest.responseToBody(this.getEmptyErrorWithHttpOperationResponse.bind(this), arguments);
+  getEmptyError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.getEmptyErrorWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -130,8 +130,8 @@ export class HttpFailure {
   getNoModelError(options: msRest.RequestOptionsBase): Promise<boolean>;
   getNoModelError(callback: msRest.ServiceCallback<boolean>): void;
   getNoModelError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelError(): any {
-    return msRest.responseToBody(this.getNoModelErrorWithHttpOperationResponse.bind(this), arguments);
+  getNoModelError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.getNoModelErrorWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -152,8 +152,8 @@ export class HttpFailure {
   getNoModelEmpty(options: msRest.RequestOptionsBase): Promise<boolean>;
   getNoModelEmpty(callback: msRest.ServiceCallback<boolean>): void;
   getNoModelEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelEmpty(): any {
-    return msRest.responseToBody(this.getNoModelEmptyWithHttpOperationResponse.bind(this), arguments);
+  getNoModelEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.getNoModelEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

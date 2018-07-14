@@ -706,8 +706,8 @@ export class Explicit {
   postRequiredIntegerParameter(bodyParameter: number, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredIntegerParameter(bodyParameter: number, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredIntegerParameter(bodyParameter: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredIntegerParameter(): any {
-    return msRest.responseToBody(this.postRequiredIntegerParameterWithHttpOperationResponse.bind(this), arguments);
+  postRequiredIntegerParameter(bodyParameter: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredIntegerParameterWithHttpOperationResponse.bind(this), bodyParameter, options, callback);
   }
 
   /**
@@ -728,8 +728,8 @@ export class Explicit {
   postOptionalIntegerParameter(options: Models.ExplicitPostOptionalIntegerParameterOptionalParams): Promise<void>;
   postOptionalIntegerParameter(callback: msRest.ServiceCallback<void>): void;
   postOptionalIntegerParameter(options: Models.ExplicitPostOptionalIntegerParameterOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalIntegerParameter(): any {
-    return msRest.responseToBody(this.postOptionalIntegerParameterWithHttpOperationResponse.bind(this), arguments);
+  postOptionalIntegerParameter(options?: Models.ExplicitPostOptionalIntegerParameterOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalIntegerParameterWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -753,8 +753,8 @@ export class Explicit {
   postRequiredIntegerProperty(value: number, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredIntegerProperty(value: number, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredIntegerProperty(value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredIntegerProperty(): any {
-    return msRest.responseToBody(this.postRequiredIntegerPropertyWithHttpOperationResponse.bind(this), arguments);
+  postRequiredIntegerProperty(value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredIntegerPropertyWithHttpOperationResponse.bind(this), value, options, callback);
   }
 
   /**
@@ -775,8 +775,8 @@ export class Explicit {
   postOptionalIntegerProperty(options: Models.ExplicitPostOptionalIntegerPropertyOptionalParams): Promise<void>;
   postOptionalIntegerProperty(callback: msRest.ServiceCallback<void>): void;
   postOptionalIntegerProperty(options: Models.ExplicitPostOptionalIntegerPropertyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalIntegerProperty(): any {
-    return msRest.responseToBody(this.postOptionalIntegerPropertyWithHttpOperationResponse.bind(this), arguments);
+  postOptionalIntegerProperty(options?: Models.ExplicitPostOptionalIntegerPropertyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalIntegerPropertyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -800,8 +800,8 @@ export class Explicit {
   postRequiredIntegerHeader(headerParameter: number, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredIntegerHeader(headerParameter: number, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredIntegerHeader(headerParameter: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredIntegerHeader(): any {
-    return msRest.responseToBody(this.postRequiredIntegerHeaderWithHttpOperationResponse.bind(this), arguments);
+  postRequiredIntegerHeader(headerParameter: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredIntegerHeaderWithHttpOperationResponse.bind(this), headerParameter, options, callback);
   }
 
   /**
@@ -822,8 +822,8 @@ export class Explicit {
   postOptionalIntegerHeader(options: Models.ExplicitPostOptionalIntegerHeaderOptionalParams): Promise<void>;
   postOptionalIntegerHeader(callback: msRest.ServiceCallback<void>): void;
   postOptionalIntegerHeader(options: Models.ExplicitPostOptionalIntegerHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalIntegerHeader(): any {
-    return msRest.responseToBody(this.postOptionalIntegerHeaderWithHttpOperationResponse.bind(this), arguments);
+  postOptionalIntegerHeader(options?: Models.ExplicitPostOptionalIntegerHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalIntegerHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -847,8 +847,8 @@ export class Explicit {
   postRequiredStringParameter(bodyParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredStringParameter(bodyParameter: string, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredStringParameter(bodyParameter: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredStringParameter(): any {
-    return msRest.responseToBody(this.postRequiredStringParameterWithHttpOperationResponse.bind(this), arguments);
+  postRequiredStringParameter(bodyParameter: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredStringParameterWithHttpOperationResponse.bind(this), bodyParameter, options, callback);
   }
 
   /**
@@ -869,8 +869,8 @@ export class Explicit {
   postOptionalStringParameter(options: Models.ExplicitPostOptionalStringParameterOptionalParams): Promise<void>;
   postOptionalStringParameter(callback: msRest.ServiceCallback<void>): void;
   postOptionalStringParameter(options: Models.ExplicitPostOptionalStringParameterOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalStringParameter(): any {
-    return msRest.responseToBody(this.postOptionalStringParameterWithHttpOperationResponse.bind(this), arguments);
+  postOptionalStringParameter(options?: Models.ExplicitPostOptionalStringParameterOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalStringParameterWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -894,8 +894,8 @@ export class Explicit {
   postRequiredStringProperty(value: string, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredStringProperty(value: string, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredStringProperty(value: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredStringProperty(): any {
-    return msRest.responseToBody(this.postRequiredStringPropertyWithHttpOperationResponse.bind(this), arguments);
+  postRequiredStringProperty(value: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredStringPropertyWithHttpOperationResponse.bind(this), value, options, callback);
   }
 
   /**
@@ -916,8 +916,8 @@ export class Explicit {
   postOptionalStringProperty(options: Models.ExplicitPostOptionalStringPropertyOptionalParams): Promise<void>;
   postOptionalStringProperty(callback: msRest.ServiceCallback<void>): void;
   postOptionalStringProperty(options: Models.ExplicitPostOptionalStringPropertyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalStringProperty(): any {
-    return msRest.responseToBody(this.postOptionalStringPropertyWithHttpOperationResponse.bind(this), arguments);
+  postOptionalStringProperty(options?: Models.ExplicitPostOptionalStringPropertyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalStringPropertyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -941,8 +941,8 @@ export class Explicit {
   postRequiredStringHeader(headerParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredStringHeader(headerParameter: string, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredStringHeader(headerParameter: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredStringHeader(): any {
-    return msRest.responseToBody(this.postRequiredStringHeaderWithHttpOperationResponse.bind(this), arguments);
+  postRequiredStringHeader(headerParameter: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredStringHeaderWithHttpOperationResponse.bind(this), headerParameter, options, callback);
   }
 
   /**
@@ -963,8 +963,8 @@ export class Explicit {
   postOptionalStringHeader(options: Models.ExplicitPostOptionalStringHeaderOptionalParams): Promise<void>;
   postOptionalStringHeader(callback: msRest.ServiceCallback<void>): void;
   postOptionalStringHeader(options: Models.ExplicitPostOptionalStringHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalStringHeader(): any {
-    return msRest.responseToBody(this.postOptionalStringHeaderWithHttpOperationResponse.bind(this), arguments);
+  postOptionalStringHeader(options?: Models.ExplicitPostOptionalStringHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalStringHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -988,8 +988,8 @@ export class Explicit {
   postRequiredClassParameter(bodyParameter: Models.Product, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredClassParameter(bodyParameter: Models.Product, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredClassParameter(bodyParameter: Models.Product, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredClassParameter(): any {
-    return msRest.responseToBody(this.postRequiredClassParameterWithHttpOperationResponse.bind(this), arguments);
+  postRequiredClassParameter(bodyParameter: Models.Product, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredClassParameterWithHttpOperationResponse.bind(this), bodyParameter, options, callback);
   }
 
   /**
@@ -1010,8 +1010,8 @@ export class Explicit {
   postOptionalClassParameter(options: Models.ExplicitPostOptionalClassParameterOptionalParams): Promise<void>;
   postOptionalClassParameter(callback: msRest.ServiceCallback<void>): void;
   postOptionalClassParameter(options: Models.ExplicitPostOptionalClassParameterOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalClassParameter(): any {
-    return msRest.responseToBody(this.postOptionalClassParameterWithHttpOperationResponse.bind(this), arguments);
+  postOptionalClassParameter(options?: Models.ExplicitPostOptionalClassParameterOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalClassParameterWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1035,8 +1035,8 @@ export class Explicit {
   postRequiredClassProperty(value: Models.Product, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredClassProperty(value: Models.Product, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredClassProperty(value: Models.Product, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredClassProperty(): any {
-    return msRest.responseToBody(this.postRequiredClassPropertyWithHttpOperationResponse.bind(this), arguments);
+  postRequiredClassProperty(value: Models.Product, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredClassPropertyWithHttpOperationResponse.bind(this), value, options, callback);
   }
 
   /**
@@ -1057,8 +1057,8 @@ export class Explicit {
   postOptionalClassProperty(options: Models.ExplicitPostOptionalClassPropertyOptionalParams): Promise<void>;
   postOptionalClassProperty(callback: msRest.ServiceCallback<void>): void;
   postOptionalClassProperty(options: Models.ExplicitPostOptionalClassPropertyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalClassProperty(): any {
-    return msRest.responseToBody(this.postOptionalClassPropertyWithHttpOperationResponse.bind(this), arguments);
+  postOptionalClassProperty(options?: Models.ExplicitPostOptionalClassPropertyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalClassPropertyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1082,8 +1082,8 @@ export class Explicit {
   postRequiredArrayParameter(bodyParameter: string[], options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredArrayParameter(bodyParameter: string[], callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredArrayParameter(bodyParameter: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredArrayParameter(): any {
-    return msRest.responseToBody(this.postRequiredArrayParameterWithHttpOperationResponse.bind(this), arguments);
+  postRequiredArrayParameter(bodyParameter: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredArrayParameterWithHttpOperationResponse.bind(this), bodyParameter, options, callback);
   }
 
   /**
@@ -1104,8 +1104,8 @@ export class Explicit {
   postOptionalArrayParameter(options: Models.ExplicitPostOptionalArrayParameterOptionalParams): Promise<void>;
   postOptionalArrayParameter(callback: msRest.ServiceCallback<void>): void;
   postOptionalArrayParameter(options: Models.ExplicitPostOptionalArrayParameterOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalArrayParameter(): any {
-    return msRest.responseToBody(this.postOptionalArrayParameterWithHttpOperationResponse.bind(this), arguments);
+  postOptionalArrayParameter(options?: Models.ExplicitPostOptionalArrayParameterOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalArrayParameterWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1129,8 +1129,8 @@ export class Explicit {
   postRequiredArrayProperty(value: string[], options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredArrayProperty(value: string[], callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredArrayProperty(value: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredArrayProperty(): any {
-    return msRest.responseToBody(this.postRequiredArrayPropertyWithHttpOperationResponse.bind(this), arguments);
+  postRequiredArrayProperty(value: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredArrayPropertyWithHttpOperationResponse.bind(this), value, options, callback);
   }
 
   /**
@@ -1151,8 +1151,8 @@ export class Explicit {
   postOptionalArrayProperty(options: Models.ExplicitPostOptionalArrayPropertyOptionalParams): Promise<void>;
   postOptionalArrayProperty(callback: msRest.ServiceCallback<void>): void;
   postOptionalArrayProperty(options: Models.ExplicitPostOptionalArrayPropertyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalArrayProperty(): any {
-    return msRest.responseToBody(this.postOptionalArrayPropertyWithHttpOperationResponse.bind(this), arguments);
+  postOptionalArrayProperty(options?: Models.ExplicitPostOptionalArrayPropertyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalArrayPropertyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1176,8 +1176,8 @@ export class Explicit {
   postRequiredArrayHeader(headerParameter: string[], options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   postRequiredArrayHeader(headerParameter: string[], callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   postRequiredArrayHeader(headerParameter: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredArrayHeader(): any {
-    return msRest.responseToBody(this.postRequiredArrayHeaderWithHttpOperationResponse.bind(this), arguments);
+  postRequiredArrayHeader(headerParameter: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.postRequiredArrayHeaderWithHttpOperationResponse.bind(this), headerParameter, options, callback);
   }
 
   /**
@@ -1198,8 +1198,8 @@ export class Explicit {
   postOptionalArrayHeader(options: Models.ExplicitPostOptionalArrayHeaderOptionalParams): Promise<void>;
   postOptionalArrayHeader(callback: msRest.ServiceCallback<void>): void;
   postOptionalArrayHeader(options: Models.ExplicitPostOptionalArrayHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptionalArrayHeader(): any {
-    return msRest.responseToBody(this.postOptionalArrayHeaderWithHttpOperationResponse.bind(this), arguments);
+  postOptionalArrayHeader(options?: Models.ExplicitPostOptionalArrayHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postOptionalArrayHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

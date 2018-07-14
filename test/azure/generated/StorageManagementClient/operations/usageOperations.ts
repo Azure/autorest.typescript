@@ -65,8 +65,8 @@ export class UsageOperations {
   list(options: msRest.RequestOptionsBase): Promise<Models.UsageListResult>;
   list(callback: msRest.ServiceCallback<Models.UsageListResult>): void;
   list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.UsageListResult>): void;
-  list(): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), arguments);
+  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.UsageListResult>): any {
+    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

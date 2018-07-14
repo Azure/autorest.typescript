@@ -74,8 +74,8 @@ export class Paths {
   getEmpty(accountName: string, options: msRest.RequestOptionsBase): Promise<void>;
   getEmpty(accountName: string, callback: msRest.ServiceCallback<void>): void;
   getEmpty(accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
+  getEmpty(accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), accountName, options, callback);
   }
 
 }

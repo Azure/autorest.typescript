@@ -250,8 +250,8 @@ export class SkipUrlEncoding {
   getMethodPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<void>;
   getMethodPathValid(unencodedPathParam: string, callback: msRest.ServiceCallback<void>): void;
   getMethodPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodPathValid(): any {
-    return msRest.responseToBody(this.getMethodPathValidWithHttpOperationResponse.bind(this), arguments);
+  getMethodPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getMethodPathValidWithHttpOperationResponse.bind(this), unencodedPathParam, options, callback);
   }
 
   /**
@@ -274,8 +274,8 @@ export class SkipUrlEncoding {
   getPathPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<void>;
   getPathPathValid(unencodedPathParam: string, callback: msRest.ServiceCallback<void>): void;
   getPathPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathPathValid(): any {
-    return msRest.responseToBody(this.getPathPathValidWithHttpOperationResponse.bind(this), arguments);
+  getPathPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getPathPathValidWithHttpOperationResponse.bind(this), unencodedPathParam, options, callback);
   }
 
   /**
@@ -296,8 +296,8 @@ export class SkipUrlEncoding {
   getSwaggerPathValid(options: msRest.RequestOptionsBase): Promise<void>;
   getSwaggerPathValid(callback: msRest.ServiceCallback<void>): void;
   getSwaggerPathValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerPathValid(): any {
-    return msRest.responseToBody(this.getSwaggerPathValidWithHttpOperationResponse.bind(this), arguments);
+  getSwaggerPathValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getSwaggerPathValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -320,8 +320,8 @@ export class SkipUrlEncoding {
   getMethodQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<void>;
   getMethodQueryValid(q1: string, callback: msRest.ServiceCallback<void>): void;
   getMethodQueryValid(q1: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodQueryValid(): any {
-    return msRest.responseToBody(this.getMethodQueryValidWithHttpOperationResponse.bind(this), arguments);
+  getMethodQueryValid(q1: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getMethodQueryValidWithHttpOperationResponse.bind(this), q1, options, callback);
   }
 
   /**
@@ -342,8 +342,8 @@ export class SkipUrlEncoding {
   getMethodQueryNull(options: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<void>;
   getMethodQueryNull(callback: msRest.ServiceCallback<void>): void;
   getMethodQueryNull(options: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getMethodQueryNull(): any {
-    return msRest.responseToBody(this.getMethodQueryNullWithHttpOperationResponse.bind(this), arguments);
+  getMethodQueryNull(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getMethodQueryNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -366,8 +366,8 @@ export class SkipUrlEncoding {
   getPathQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<void>;
   getPathQueryValid(q1: string, callback: msRest.ServiceCallback<void>): void;
   getPathQueryValid(q1: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathQueryValid(): any {
-    return msRest.responseToBody(this.getPathQueryValidWithHttpOperationResponse.bind(this), arguments);
+  getPathQueryValid(q1: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getPathQueryValidWithHttpOperationResponse.bind(this), q1, options, callback);
   }
 
   /**
@@ -388,8 +388,8 @@ export class SkipUrlEncoding {
   getSwaggerQueryValid(options: msRest.RequestOptionsBase): Promise<void>;
   getSwaggerQueryValid(callback: msRest.ServiceCallback<void>): void;
   getSwaggerQueryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerQueryValid(): any {
-    return msRest.responseToBody(this.getSwaggerQueryValidWithHttpOperationResponse.bind(this), arguments);
+  getSwaggerQueryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getSwaggerQueryValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

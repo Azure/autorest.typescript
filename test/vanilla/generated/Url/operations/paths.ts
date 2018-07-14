@@ -796,8 +796,8 @@ export class Paths {
   getBooleanTrue(options: msRest.RequestOptionsBase): Promise<void>;
   getBooleanTrue(callback: msRest.ServiceCallback<void>): void;
   getBooleanTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanTrue(): any {
-    return msRest.responseToBody(this.getBooleanTrueWithHttpOperationResponse.bind(this), arguments);
+  getBooleanTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getBooleanTrueWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -818,8 +818,8 @@ export class Paths {
   getBooleanFalse(options: msRest.RequestOptionsBase): Promise<void>;
   getBooleanFalse(callback: msRest.ServiceCallback<void>): void;
   getBooleanFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanFalse(): any {
-    return msRest.responseToBody(this.getBooleanFalseWithHttpOperationResponse.bind(this), arguments);
+  getBooleanFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getBooleanFalseWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -840,8 +840,8 @@ export class Paths {
   getIntOneMillion(options: msRest.RequestOptionsBase): Promise<void>;
   getIntOneMillion(callback: msRest.ServiceCallback<void>): void;
   getIntOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntOneMillion(): any {
-    return msRest.responseToBody(this.getIntOneMillionWithHttpOperationResponse.bind(this), arguments);
+  getIntOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getIntOneMillionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -862,8 +862,8 @@ export class Paths {
   getIntNegativeOneMillion(options: msRest.RequestOptionsBase): Promise<void>;
   getIntNegativeOneMillion(callback: msRest.ServiceCallback<void>): void;
   getIntNegativeOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntNegativeOneMillion(): any {
-    return msRest.responseToBody(this.getIntNegativeOneMillionWithHttpOperationResponse.bind(this), arguments);
+  getIntNegativeOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getIntNegativeOneMillionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -884,8 +884,8 @@ export class Paths {
   getTenBillion(options: msRest.RequestOptionsBase): Promise<void>;
   getTenBillion(callback: msRest.ServiceCallback<void>): void;
   getTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getTenBillion(): any {
-    return msRest.responseToBody(this.getTenBillionWithHttpOperationResponse.bind(this), arguments);
+  getTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getTenBillionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -906,8 +906,8 @@ export class Paths {
   getNegativeTenBillion(options: msRest.RequestOptionsBase): Promise<void>;
   getNegativeTenBillion(callback: msRest.ServiceCallback<void>): void;
   getNegativeTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getNegativeTenBillion(): any {
-    return msRest.responseToBody(this.getNegativeTenBillionWithHttpOperationResponse.bind(this), arguments);
+  getNegativeTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getNegativeTenBillionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -928,8 +928,8 @@ export class Paths {
   floatScientificPositive(options: msRest.RequestOptionsBase): Promise<void>;
   floatScientificPositive(callback: msRest.ServiceCallback<void>): void;
   floatScientificPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificPositive(): any {
-    return msRest.responseToBody(this.floatScientificPositiveWithHttpOperationResponse.bind(this), arguments);
+  floatScientificPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.floatScientificPositiveWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -950,8 +950,8 @@ export class Paths {
   floatScientificNegative(options: msRest.RequestOptionsBase): Promise<void>;
   floatScientificNegative(callback: msRest.ServiceCallback<void>): void;
   floatScientificNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificNegative(): any {
-    return msRest.responseToBody(this.floatScientificNegativeWithHttpOperationResponse.bind(this), arguments);
+  floatScientificNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.floatScientificNegativeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -972,8 +972,8 @@ export class Paths {
   doubleDecimalPositive(options: msRest.RequestOptionsBase): Promise<void>;
   doubleDecimalPositive(callback: msRest.ServiceCallback<void>): void;
   doubleDecimalPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalPositive(): any {
-    return msRest.responseToBody(this.doubleDecimalPositiveWithHttpOperationResponse.bind(this), arguments);
+  doubleDecimalPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.doubleDecimalPositiveWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -994,8 +994,8 @@ export class Paths {
   doubleDecimalNegative(options: msRest.RequestOptionsBase): Promise<void>;
   doubleDecimalNegative(callback: msRest.ServiceCallback<void>): void;
   doubleDecimalNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalNegative(): any {
-    return msRest.responseToBody(this.doubleDecimalNegativeWithHttpOperationResponse.bind(this), arguments);
+  doubleDecimalNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.doubleDecimalNegativeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1016,8 +1016,8 @@ export class Paths {
   stringUnicode(options: msRest.RequestOptionsBase): Promise<void>;
   stringUnicode(callback: msRest.ServiceCallback<void>): void;
   stringUnicode(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUnicode(): any {
-    return msRest.responseToBody(this.stringUnicodeWithHttpOperationResponse.bind(this), arguments);
+  stringUnicode(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.stringUnicodeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1038,8 +1038,8 @@ export class Paths {
   stringUrlEncoded(options: msRest.RequestOptionsBase): Promise<void>;
   stringUrlEncoded(callback: msRest.ServiceCallback<void>): void;
   stringUrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUrlEncoded(): any {
-    return msRest.responseToBody(this.stringUrlEncodedWithHttpOperationResponse.bind(this), arguments);
+  stringUrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.stringUrlEncodedWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1060,8 +1060,8 @@ export class Paths {
   stringEmpty(options: msRest.RequestOptionsBase): Promise<void>;
   stringEmpty(callback: msRest.ServiceCallback<void>): void;
   stringEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringEmpty(): any {
-    return msRest.responseToBody(this.stringEmptyWithHttpOperationResponse.bind(this), arguments);
+  stringEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.stringEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1084,8 +1084,8 @@ export class Paths {
   stringNull(stringPath: string, options: msRest.RequestOptionsBase): Promise<void>;
   stringNull(stringPath: string, callback: msRest.ServiceCallback<void>): void;
   stringNull(stringPath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringNull(): any {
-    return msRest.responseToBody(this.stringNullWithHttpOperationResponse.bind(this), arguments);
+  stringNull(stringPath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.stringNullWithHttpOperationResponse.bind(this), stringPath, options, callback);
   }
 
   /**
@@ -1109,8 +1109,8 @@ export class Paths {
   enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<void>;
   enumValid(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
   enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  enumValid(): any {
-    return msRest.responseToBody(this.enumValidWithHttpOperationResponse.bind(this), arguments);
+  enumValid(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.enumValidWithHttpOperationResponse.bind(this), enumPath, options, callback);
   }
 
   /**
@@ -1134,8 +1134,8 @@ export class Paths {
   enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<void>;
   enumNull(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
   enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  enumNull(): any {
-    return msRest.responseToBody(this.enumNullWithHttpOperationResponse.bind(this), arguments);
+  enumNull(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.enumNullWithHttpOperationResponse.bind(this), enumPath, options, callback);
   }
 
   /**
@@ -1158,8 +1158,8 @@ export class Paths {
   byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
   byteMultiByte(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
   byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteMultiByte(): any {
-    return msRest.responseToBody(this.byteMultiByteWithHttpOperationResponse.bind(this), arguments);
+  byteMultiByte(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.byteMultiByteWithHttpOperationResponse.bind(this), bytePath, options, callback);
   }
 
   /**
@@ -1180,8 +1180,8 @@ export class Paths {
   byteEmpty(options: msRest.RequestOptionsBase): Promise<void>;
   byteEmpty(callback: msRest.ServiceCallback<void>): void;
   byteEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteEmpty(): any {
-    return msRest.responseToBody(this.byteEmptyWithHttpOperationResponse.bind(this), arguments);
+  byteEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.byteEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1204,8 +1204,8 @@ export class Paths {
   byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
   byteNull(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
   byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteNull(): any {
-    return msRest.responseToBody(this.byteNullWithHttpOperationResponse.bind(this), arguments);
+  byteNull(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.byteNullWithHttpOperationResponse.bind(this), bytePath, options, callback);
   }
 
   /**
@@ -1226,8 +1226,8 @@ export class Paths {
   dateValid(options: msRest.RequestOptionsBase): Promise<void>;
   dateValid(callback: msRest.ServiceCallback<void>): void;
   dateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateValid(): any {
-    return msRest.responseToBody(this.dateValidWithHttpOperationResponse.bind(this), arguments);
+  dateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.dateValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1251,8 +1251,8 @@ export class Paths {
   dateNull(datePath: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   dateNull(datePath: Date | string, callback: msRest.ServiceCallback<void>): void;
   dateNull(datePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateNull(): any {
-    return msRest.responseToBody(this.dateNullWithHttpOperationResponse.bind(this), arguments);
+  dateNull(datePath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.dateNullWithHttpOperationResponse.bind(this), datePath, options, callback);
   }
 
   /**
@@ -1273,8 +1273,8 @@ export class Paths {
   dateTimeValid(options: msRest.RequestOptionsBase): Promise<void>;
   dateTimeValid(callback: msRest.ServiceCallback<void>): void;
   dateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateTimeValid(): any {
-    return msRest.responseToBody(this.dateTimeValidWithHttpOperationResponse.bind(this), arguments);
+  dateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.dateTimeValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1297,8 +1297,8 @@ export class Paths {
   dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   dateTimeNull(dateTimePath: Date | string, callback: msRest.ServiceCallback<void>): void;
   dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateTimeNull(): any {
-    return msRest.responseToBody(this.dateTimeNullWithHttpOperationResponse.bind(this), arguments);
+  dateTimeNull(dateTimePath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.dateTimeNullWithHttpOperationResponse.bind(this), dateTimePath, options, callback);
   }
 
   /**
@@ -1321,8 +1321,8 @@ export class Paths {
   base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
   base64Url(base64UrlPath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
   base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  base64Url(): any {
-    return msRest.responseToBody(this.base64UrlWithHttpOperationResponse.bind(this), arguments);
+  base64Url(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.base64UrlWithHttpOperationResponse.bind(this), base64UrlPath, options, callback);
   }
 
   /**
@@ -1347,8 +1347,8 @@ export class Paths {
   arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase): Promise<void>;
   arrayCsvInPath(arrayPath: string[], callback: msRest.ServiceCallback<void>): void;
   arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  arrayCsvInPath(): any {
-    return msRest.responseToBody(this.arrayCsvInPathWithHttpOperationResponse.bind(this), arguments);
+  arrayCsvInPath(arrayPath: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayCsvInPathWithHttpOperationResponse.bind(this), arrayPath, options, callback);
   }
 
   /**
@@ -1371,8 +1371,8 @@ export class Paths {
   unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   unixTimeUrl(unixTimeUrlPath: Date | string, callback: msRest.ServiceCallback<void>): void;
   unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  unixTimeUrl(): any {
-    return msRest.responseToBody(this.unixTimeUrlWithHttpOperationResponse.bind(this), arguments);
+  unixTimeUrl(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.unixTimeUrlWithHttpOperationResponse.bind(this), unixTimeUrlPath, options, callback);
   }
 
 }

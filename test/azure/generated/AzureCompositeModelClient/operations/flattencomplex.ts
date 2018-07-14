@@ -61,8 +61,8 @@ export class Flattencomplex {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.MyBaseType>;
   getValid(callback: msRest.ServiceCallback<Models.MyBaseType>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.MyBaseType>): void;
-  getValid(): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.MyBaseType>): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

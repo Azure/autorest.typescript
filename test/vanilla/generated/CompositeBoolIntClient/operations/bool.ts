@@ -190,8 +190,8 @@ export class Bool {
   getTrue(options: msRest.RequestOptionsBase): Promise<boolean>;
   getTrue(callback: msRest.ServiceCallback<boolean>): void;
   getTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getTrue(): any {
-    return msRest.responseToBody(this.getTrueWithHttpOperationResponse.bind(this), arguments);
+  getTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.getTrueWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -214,8 +214,8 @@ export class Bool {
   putTrue(boolBody: boolean, options: msRest.RequestOptionsBase): Promise<void>;
   putTrue(boolBody: boolean, callback: msRest.ServiceCallback<void>): void;
   putTrue(boolBody: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putTrue(): any {
-    return msRest.responseToBody(this.putTrueWithHttpOperationResponse.bind(this), arguments);
+  putTrue(boolBody: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putTrueWithHttpOperationResponse.bind(this), boolBody, options, callback);
   }
 
   /**
@@ -236,8 +236,8 @@ export class Bool {
   getFalse(options: msRest.RequestOptionsBase): Promise<boolean>;
   getFalse(callback: msRest.ServiceCallback<boolean>): void;
   getFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getFalse(): any {
-    return msRest.responseToBody(this.getFalseWithHttpOperationResponse.bind(this), arguments);
+  getFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.getFalseWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -260,8 +260,8 @@ export class Bool {
   putFalse(boolBody: boolean, options: msRest.RequestOptionsBase): Promise<void>;
   putFalse(boolBody: boolean, callback: msRest.ServiceCallback<void>): void;
   putFalse(boolBody: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFalse(): any {
-    return msRest.responseToBody(this.putFalseWithHttpOperationResponse.bind(this), arguments);
+  putFalse(boolBody: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putFalseWithHttpOperationResponse.bind(this), boolBody, options, callback);
   }
 
   /**
@@ -282,8 +282,8 @@ export class Bool {
   getNull(options: msRest.RequestOptionsBase): Promise<boolean>;
   getNull(callback: msRest.ServiceCallback<boolean>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -304,8 +304,8 @@ export class Bool {
   getInvalid(options: msRest.RequestOptionsBase): Promise<boolean>;
   getInvalid(callback: msRest.ServiceCallback<boolean>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getInvalid(): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

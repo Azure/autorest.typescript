@@ -792,8 +792,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError200Valid(): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError200ValidWithHttpOperationResponse.bind(this), arguments);
+  get200Model204NoModelDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError200ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -814,8 +814,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError204Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError204Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError204Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError204Valid(): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError204ValidWithHttpOperationResponse.bind(this), arguments);
+  get200Model204NoModelDefaultError204Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError204ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -836,8 +836,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError201Invalid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError201Invalid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError201Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError201Invalid(): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse.bind(this), arguments);
+  get200Model204NoModelDefaultError201Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -858,8 +858,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError202None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError202None(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError202None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError202None(): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError202NoneWithHttpOperationResponse.bind(this), arguments);
+  get200Model204NoModelDefaultError202None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError202NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -880,8 +880,8 @@ export class MultipleResponses {
   get200Model204NoModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model204NoModelDefaultError400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError400Valid(): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError400ValidWithHttpOperationResponse.bind(this), arguments);
+  get200Model204NoModelDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200Model204NoModelDefaultError400ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -902,8 +902,8 @@ export class MultipleResponses {
   get200Model201ModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model201ModelDefaultError200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model201ModelDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError200Valid(): any {
-    return msRest.responseToBody(this.get200Model201ModelDefaultError200ValidWithHttpOperationResponse.bind(this), arguments);
+  get200Model201ModelDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200Model201ModelDefaultError200ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -924,8 +924,8 @@ export class MultipleResponses {
   get200Model201ModelDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model201ModelDefaultError201Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model201ModelDefaultError201Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError201Valid(): any {
-    return msRest.responseToBody(this.get200Model201ModelDefaultError201ValidWithHttpOperationResponse.bind(this), arguments);
+  get200Model201ModelDefaultError201Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200Model201ModelDefaultError201ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -946,8 +946,8 @@ export class MultipleResponses {
   get200Model201ModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200Model201ModelDefaultError400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model201ModelDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError400Valid(): any {
-    return msRest.responseToBody(this.get200Model201ModelDefaultError400ValidWithHttpOperationResponse.bind(this), arguments);
+  get200Model201ModelDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200Model201ModelDefaultError400ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -968,8 +968,8 @@ export class MultipleResponses {
   get200ModelA201ModelC404ModelDDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<any>;
   get200ModelA201ModelC404ModelDDefaultError200Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError200Valid(): any {
-    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA201ModelC404ModelDDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
+    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -990,8 +990,8 @@ export class MultipleResponses {
   get200ModelA201ModelC404ModelDDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<any>;
   get200ModelA201ModelC404ModelDDefaultError201Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError201Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError201Valid(): any {
-    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA201ModelC404ModelDDefaultError201Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
+    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1012,8 +1012,8 @@ export class MultipleResponses {
   get200ModelA201ModelC404ModelDDefaultError404Valid(options: msRest.RequestOptionsBase): Promise<any>;
   get200ModelA201ModelC404ModelDDefaultError404Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError404Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError404Valid(): any {
-    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA201ModelC404ModelDDefaultError404Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
+    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1034,8 +1034,8 @@ export class MultipleResponses {
   get200ModelA201ModelC404ModelDDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<any>;
   get200ModelA201ModelC404ModelDDefaultError400Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError400Valid(): any {
-    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA201ModelC404ModelDDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
+    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1056,8 +1056,8 @@ export class MultipleResponses {
   get202None204NoneDefaultError202None(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultError202None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultError202None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError202None(): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultError202NoneWithHttpOperationResponse.bind(this), arguments);
+  get202None204NoneDefaultError202None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultError202NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1078,8 +1078,8 @@ export class MultipleResponses {
   get202None204NoneDefaultError204None(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultError204None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultError204None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError204None(): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultError204NoneWithHttpOperationResponse.bind(this), arguments);
+  get202None204NoneDefaultError204None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultError204NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1100,8 +1100,8 @@ export class MultipleResponses {
   get202None204NoneDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultError400Valid(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError400Valid(): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultError400ValidWithHttpOperationResponse.bind(this), arguments);
+  get202None204NoneDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultError400ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1122,8 +1122,8 @@ export class MultipleResponses {
   get202None204NoneDefaultNone202Invalid(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultNone202Invalid(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone202Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone202Invalid(): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultNone202InvalidWithHttpOperationResponse.bind(this), arguments);
+  get202None204NoneDefaultNone202Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultNone202InvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1144,8 +1144,8 @@ export class MultipleResponses {
   get202None204NoneDefaultNone204None(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultNone204None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone204None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone204None(): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultNone204NoneWithHttpOperationResponse.bind(this), arguments);
+  get202None204NoneDefaultNone204None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultNone204NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1166,8 +1166,8 @@ export class MultipleResponses {
   get202None204NoneDefaultNone400None(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultNone400None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone400None(): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultNone400NoneWithHttpOperationResponse.bind(this), arguments);
+  get202None204NoneDefaultNone400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultNone400NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1188,8 +1188,8 @@ export class MultipleResponses {
   get202None204NoneDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<void>;
   get202None204NoneDefaultNone400Invalid(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone400Invalid(): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultNone400InvalidWithHttpOperationResponse.bind(this), arguments);
+  get202None204NoneDefaultNone400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get202None204NoneDefaultNone400InvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1210,8 +1210,8 @@ export class MultipleResponses {
   getDefaultModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   getDefaultModelA200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA200Valid(): any {
-    return msRest.responseToBody(this.getDefaultModelA200ValidWithHttpOperationResponse.bind(this), arguments);
+  getDefaultModelA200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.getDefaultModelA200ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1232,8 +1232,8 @@ export class MultipleResponses {
   getDefaultModelA200None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   getDefaultModelA200None(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA200None(): any {
-    return msRest.responseToBody(this.getDefaultModelA200NoneWithHttpOperationResponse.bind(this), arguments);
+  getDefaultModelA200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.getDefaultModelA200NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1254,8 +1254,8 @@ export class MultipleResponses {
   getDefaultModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   getDefaultModelA400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA400Valid(): any {
-    return msRest.responseToBody(this.getDefaultModelA400ValidWithHttpOperationResponse.bind(this), arguments);
+  getDefaultModelA400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.getDefaultModelA400ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1276,8 +1276,8 @@ export class MultipleResponses {
   getDefaultModelA400None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   getDefaultModelA400None(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA400None(): any {
-    return msRest.responseToBody(this.getDefaultModelA400NoneWithHttpOperationResponse.bind(this), arguments);
+  getDefaultModelA400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.getDefaultModelA400NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1298,8 +1298,8 @@ export class MultipleResponses {
   getDefaultNone200Invalid(options: msRest.RequestOptionsBase): Promise<void>;
   getDefaultNone200Invalid(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone200Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone200Invalid(): any {
-    return msRest.responseToBody(this.getDefaultNone200InvalidWithHttpOperationResponse.bind(this), arguments);
+  getDefaultNone200Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getDefaultNone200InvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1320,8 +1320,8 @@ export class MultipleResponses {
   getDefaultNone200None(options: msRest.RequestOptionsBase): Promise<void>;
   getDefaultNone200None(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone200None(): any {
-    return msRest.responseToBody(this.getDefaultNone200NoneWithHttpOperationResponse.bind(this), arguments);
+  getDefaultNone200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getDefaultNone200NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1342,8 +1342,8 @@ export class MultipleResponses {
   getDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<void>;
   getDefaultNone400Invalid(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone400Invalid(): any {
-    return msRest.responseToBody(this.getDefaultNone400InvalidWithHttpOperationResponse.bind(this), arguments);
+  getDefaultNone400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getDefaultNone400InvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1364,8 +1364,8 @@ export class MultipleResponses {
   getDefaultNone400None(options: msRest.RequestOptionsBase): Promise<void>;
   getDefaultNone400None(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone400None(): any {
-    return msRest.responseToBody(this.getDefaultNone400NoneWithHttpOperationResponse.bind(this), arguments);
+  getDefaultNone400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getDefaultNone400NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1387,8 +1387,8 @@ export class MultipleResponses {
   get200ModelA200None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA200None(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200None(): any {
-    return msRest.responseToBody(this.get200ModelA200NoneWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200ModelA200NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1409,8 +1409,8 @@ export class MultipleResponses {
   get200ModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200Valid(): any {
-    return msRest.responseToBody(this.get200ModelA200ValidWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200ModelA200ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1431,8 +1431,8 @@ export class MultipleResponses {
   get200ModelA200Invalid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA200Invalid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA200Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200Invalid(): any {
-    return msRest.responseToBody(this.get200ModelA200InvalidWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA200Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200ModelA200InvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1453,8 +1453,8 @@ export class MultipleResponses {
   get200ModelA400None(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA400None(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400None(): any {
-    return msRest.responseToBody(this.get200ModelA400NoneWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200ModelA400NoneWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1475,8 +1475,8 @@ export class MultipleResponses {
   get200ModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400Valid(): any {
-    return msRest.responseToBody(this.get200ModelA400ValidWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200ModelA400ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1497,8 +1497,8 @@ export class MultipleResponses {
   get200ModelA400Invalid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA400Invalid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400Invalid(): any {
-    return msRest.responseToBody(this.get200ModelA400InvalidWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200ModelA400InvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1519,8 +1519,8 @@ export class MultipleResponses {
   get200ModelA202Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
   get200ModelA202Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA202Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA202Valid(): any {
-    return msRest.responseToBody(this.get200ModelA202ValidWithHttpOperationResponse.bind(this), arguments);
+  get200ModelA202Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
+    return msRest.responseToBody(this.get200ModelA202ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

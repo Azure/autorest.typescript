@@ -228,8 +228,8 @@ export class Implicit {
   getRequiredPath(pathParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   getRequiredPath(pathParameter: string, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getRequiredPath(pathParameter: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  getRequiredPath(): any {
-    return msRest.responseToBody(this.getRequiredPathWithHttpOperationResponse.bind(this), arguments);
+  getRequiredPath(pathParameter: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.getRequiredPathWithHttpOperationResponse.bind(this), pathParameter, options, callback);
   }
 
   /**
@@ -250,8 +250,8 @@ export class Implicit {
   putOptionalQuery(options: Models.ImplicitPutOptionalQueryOptionalParams): Promise<void>;
   putOptionalQuery(callback: msRest.ServiceCallback<void>): void;
   putOptionalQuery(options: Models.ImplicitPutOptionalQueryOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putOptionalQuery(): any {
-    return msRest.responseToBody(this.putOptionalQueryWithHttpOperationResponse.bind(this), arguments);
+  putOptionalQuery(options?: Models.ImplicitPutOptionalQueryOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putOptionalQueryWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -272,8 +272,8 @@ export class Implicit {
   putOptionalHeader(options: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<void>;
   putOptionalHeader(callback: msRest.ServiceCallback<void>): void;
   putOptionalHeader(options: Models.ImplicitPutOptionalHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putOptionalHeader(): any {
-    return msRest.responseToBody(this.putOptionalHeaderWithHttpOperationResponse.bind(this), arguments);
+  putOptionalHeader(options?: Models.ImplicitPutOptionalHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putOptionalHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -294,8 +294,8 @@ export class Implicit {
   putOptionalBody(options: Models.ImplicitPutOptionalBodyOptionalParams): Promise<void>;
   putOptionalBody(callback: msRest.ServiceCallback<void>): void;
   putOptionalBody(options: Models.ImplicitPutOptionalBodyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putOptionalBody(): any {
-    return msRest.responseToBody(this.putOptionalBodyWithHttpOperationResponse.bind(this), arguments);
+  putOptionalBody(options?: Models.ImplicitPutOptionalBodyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putOptionalBodyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -316,8 +316,8 @@ export class Implicit {
   getRequiredGlobalPath(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   getRequiredGlobalPath(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getRequiredGlobalPath(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  getRequiredGlobalPath(): any {
-    return msRest.responseToBody(this.getRequiredGlobalPathWithHttpOperationResponse.bind(this), arguments);
+  getRequiredGlobalPath(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.getRequiredGlobalPathWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -338,8 +338,8 @@ export class Implicit {
   getRequiredGlobalQuery(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   getRequiredGlobalQuery(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getRequiredGlobalQuery(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  getRequiredGlobalQuery(): any {
-    return msRest.responseToBody(this.getRequiredGlobalQueryWithHttpOperationResponse.bind(this), arguments);
+  getRequiredGlobalQuery(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.getRequiredGlobalQueryWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -360,8 +360,8 @@ export class Implicit {
   getOptionalGlobalQuery(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
   getOptionalGlobalQuery(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getOptionalGlobalQuery(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  getOptionalGlobalQuery(): any {
-    return msRest.responseToBody(this.getOptionalGlobalQueryWithHttpOperationResponse.bind(this), arguments);
+  getOptionalGlobalQuery(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
+    return msRest.responseToBody(this.getOptionalGlobalQueryWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

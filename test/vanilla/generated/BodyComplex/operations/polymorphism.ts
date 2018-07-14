@@ -268,8 +268,8 @@ export class Polymorphism {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.Fish>;
   getValid(callback: msRest.ServiceCallback<Models.Fish>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Fish>): void;
-  getValid(): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Fish>): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -324,8 +324,8 @@ export class Polymorphism {
   putValid(complexBody: Models.Fish, options: msRest.RequestOptionsBase): Promise<void>;
   putValid(complexBody: Models.Fish, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.Fish, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
+  putValid(complexBody: Models.Fish, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -347,8 +347,8 @@ export class Polymorphism {
   getComplicated(options: msRest.RequestOptionsBase): Promise<Models.Salmon>;
   getComplicated(callback: msRest.ServiceCallback<Models.Salmon>): void;
   getComplicated(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Salmon>): void;
-  getComplicated(): any {
-    return msRest.responseToBody(this.getComplicatedWithHttpOperationResponse.bind(this), arguments);
+  getComplicated(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Salmon>): any {
+    return msRest.responseToBody(this.getComplicatedWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -372,8 +372,8 @@ export class Polymorphism {
   putComplicated(complexBody: Models.Salmon, options: msRest.RequestOptionsBase): Promise<void>;
   putComplicated(complexBody: Models.Salmon, callback: msRest.ServiceCallback<void>): void;
   putComplicated(complexBody: Models.Salmon, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplicated(): any {
-    return msRest.responseToBody(this.putComplicatedWithHttpOperationResponse.bind(this), arguments);
+  putComplicated(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putComplicatedWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -396,8 +396,8 @@ export class Polymorphism {
   putMissingDiscriminator(complexBody: Models.Salmon, options: msRest.RequestOptionsBase): Promise<Models.Salmon>;
   putMissingDiscriminator(complexBody: Models.Salmon, callback: msRest.ServiceCallback<Models.Salmon>): void;
   putMissingDiscriminator(complexBody: Models.Salmon, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Salmon>): void;
-  putMissingDiscriminator(): any {
-    return msRest.responseToBody(this.putMissingDiscriminatorWithHttpOperationResponse.bind(this), arguments);
+  putMissingDiscriminator(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Salmon>): any {
+    return msRest.responseToBody(this.putMissingDiscriminatorWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -447,8 +447,8 @@ export class Polymorphism {
   putValidMissingRequired(complexBody: Models.Fish, options: msRest.RequestOptionsBase): Promise<void>;
   putValidMissingRequired(complexBody: Models.Fish, callback: msRest.ServiceCallback<void>): void;
   putValidMissingRequired(complexBody: Models.Fish, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValidMissingRequired(): any {
-    return msRest.responseToBody(this.putValidMissingRequiredWithHttpOperationResponse.bind(this), arguments);
+  putValidMissingRequired(complexBody: Models.Fish, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putValidMissingRequiredWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
 }

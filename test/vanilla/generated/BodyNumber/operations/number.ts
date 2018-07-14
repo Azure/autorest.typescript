@@ -650,8 +650,8 @@ export class Number {
   getNull(options: msRest.RequestOptionsBase): Promise<number>;
   getNull(callback: msRest.ServiceCallback<number>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -672,8 +672,8 @@ export class Number {
   getInvalidFloat(options: msRest.RequestOptionsBase): Promise<number>;
   getInvalidFloat(callback: msRest.ServiceCallback<number>): void;
   getInvalidFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getInvalidFloat(): any {
-    return msRest.responseToBody(this.getInvalidFloatWithHttpOperationResponse.bind(this), arguments);
+  getInvalidFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getInvalidFloatWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -694,8 +694,8 @@ export class Number {
   getInvalidDouble(options: msRest.RequestOptionsBase): Promise<number>;
   getInvalidDouble(callback: msRest.ServiceCallback<number>): void;
   getInvalidDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getInvalidDouble(): any {
-    return msRest.responseToBody(this.getInvalidDoubleWithHttpOperationResponse.bind(this), arguments);
+  getInvalidDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getInvalidDoubleWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -716,8 +716,8 @@ export class Number {
   getInvalidDecimal(options: msRest.RequestOptionsBase): Promise<number>;
   getInvalidDecimal(callback: msRest.ServiceCallback<number>): void;
   getInvalidDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getInvalidDecimal(): any {
-    return msRest.responseToBody(this.getInvalidDecimalWithHttpOperationResponse.bind(this), arguments);
+  getInvalidDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getInvalidDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -740,8 +740,8 @@ export class Number {
   putBigFloat(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putBigFloat(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigFloat(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigFloat(): any {
-    return msRest.responseToBody(this.putBigFloatWithHttpOperationResponse.bind(this), arguments);
+  putBigFloat(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigFloatWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -762,8 +762,8 @@ export class Number {
   getBigFloat(options: msRest.RequestOptionsBase): Promise<number>;
   getBigFloat(callback: msRest.ServiceCallback<number>): void;
   getBigFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigFloat(): any {
-    return msRest.responseToBody(this.getBigFloatWithHttpOperationResponse.bind(this), arguments);
+  getBigFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getBigFloatWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -786,8 +786,8 @@ export class Number {
   putBigDouble(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putBigDouble(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDouble(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDouble(): any {
-    return msRest.responseToBody(this.putBigDoubleWithHttpOperationResponse.bind(this), arguments);
+  putBigDouble(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDoubleWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -808,8 +808,8 @@ export class Number {
   getBigDouble(options: msRest.RequestOptionsBase): Promise<number>;
   getBigDouble(callback: msRest.ServiceCallback<number>): void;
   getBigDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDouble(): any {
-    return msRest.responseToBody(this.getBigDoubleWithHttpOperationResponse.bind(this), arguments);
+  getBigDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getBigDoubleWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -832,8 +832,8 @@ export class Number {
   putBigDoublePositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putBigDoublePositiveDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDoublePositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDoublePositiveDecimal(): any {
-    return msRest.responseToBody(this.putBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), arguments);
+  putBigDoublePositiveDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -854,8 +854,8 @@ export class Number {
   getBigDoublePositiveDecimal(options: msRest.RequestOptionsBase): Promise<number>;
   getBigDoublePositiveDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDoublePositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDoublePositiveDecimal(): any {
-    return msRest.responseToBody(this.getBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), arguments);
+  getBigDoublePositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -878,8 +878,8 @@ export class Number {
   putBigDoubleNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putBigDoubleNegativeDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDoubleNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDoubleNegativeDecimal(): any {
-    return msRest.responseToBody(this.putBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), arguments);
+  putBigDoubleNegativeDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -900,8 +900,8 @@ export class Number {
   getBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase): Promise<number>;
   getBigDoubleNegativeDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDoubleNegativeDecimal(): any {
-    return msRest.responseToBody(this.getBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), arguments);
+  getBigDoubleNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -924,8 +924,8 @@ export class Number {
   putBigDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putBigDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimal(): any {
-    return msRest.responseToBody(this.putBigDecimalWithHttpOperationResponse.bind(this), arguments);
+  putBigDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -946,8 +946,8 @@ export class Number {
   getBigDecimal(options: msRest.RequestOptionsBase): Promise<number>;
   getBigDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDecimal(): any {
-    return msRest.responseToBody(this.getBigDecimalWithHttpOperationResponse.bind(this), arguments);
+  getBigDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getBigDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -970,8 +970,8 @@ export class Number {
   putBigDecimalPositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putBigDecimalPositiveDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDecimalPositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimalPositiveDecimal(): any {
-    return msRest.responseToBody(this.putBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), arguments);
+  putBigDecimalPositiveDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -992,8 +992,8 @@ export class Number {
   getBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase): Promise<number>;
   getBigDecimalPositiveDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDecimalPositiveDecimal(): any {
-    return msRest.responseToBody(this.getBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), arguments);
+  getBigDecimalPositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1016,8 +1016,8 @@ export class Number {
   putBigDecimalNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putBigDecimalNegativeDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDecimalNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimalNegativeDecimal(): any {
-    return msRest.responseToBody(this.putBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), arguments);
+  putBigDecimalNegativeDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1038,8 +1038,8 @@ export class Number {
   getBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase): Promise<number>;
   getBigDecimalNegativeDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDecimalNegativeDecimal(): any {
-    return msRest.responseToBody(this.getBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), arguments);
+  getBigDecimalNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1062,8 +1062,8 @@ export class Number {
   putSmallFloat(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putSmallFloat(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putSmallFloat(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSmallFloat(): any {
-    return msRest.responseToBody(this.putSmallFloatWithHttpOperationResponse.bind(this), arguments);
+  putSmallFloat(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putSmallFloatWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1084,8 +1084,8 @@ export class Number {
   getSmallFloat(options: msRest.RequestOptionsBase): Promise<number>;
   getSmallFloat(callback: msRest.ServiceCallback<number>): void;
   getSmallFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getSmallFloat(): any {
-    return msRest.responseToBody(this.getSmallFloatWithHttpOperationResponse.bind(this), arguments);
+  getSmallFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getSmallFloatWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1108,8 +1108,8 @@ export class Number {
   putSmallDouble(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putSmallDouble(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putSmallDouble(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSmallDouble(): any {
-    return msRest.responseToBody(this.putSmallDoubleWithHttpOperationResponse.bind(this), arguments);
+  putSmallDouble(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putSmallDoubleWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1130,8 +1130,8 @@ export class Number {
   getSmallDouble(options: msRest.RequestOptionsBase): Promise<number>;
   getSmallDouble(callback: msRest.ServiceCallback<number>): void;
   getSmallDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getSmallDouble(): any {
-    return msRest.responseToBody(this.getSmallDoubleWithHttpOperationResponse.bind(this), arguments);
+  getSmallDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getSmallDoubleWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1154,8 +1154,8 @@ export class Number {
   putSmallDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putSmallDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putSmallDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSmallDecimal(): any {
-    return msRest.responseToBody(this.putSmallDecimalWithHttpOperationResponse.bind(this), arguments);
+  putSmallDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putSmallDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1176,8 +1176,8 @@ export class Number {
   getSmallDecimal(options: msRest.RequestOptionsBase): Promise<number>;
   getSmallDecimal(callback: msRest.ServiceCallback<number>): void;
   getSmallDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getSmallDecimal(): any {
-    return msRest.responseToBody(this.getSmallDecimalWithHttpOperationResponse.bind(this), arguments);
+  getSmallDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getSmallDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

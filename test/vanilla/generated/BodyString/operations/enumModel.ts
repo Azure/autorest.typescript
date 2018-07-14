@@ -198,8 +198,8 @@ export class EnumModel {
   getNotExpandable(options: msRest.RequestOptionsBase): Promise<Models.Colors>;
   getNotExpandable(callback: msRest.ServiceCallback<Models.Colors>): void;
   getNotExpandable(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Colors>): void;
-  getNotExpandable(): any {
-    return msRest.responseToBody(this.getNotExpandableWithHttpOperationResponse.bind(this), arguments);
+  getNotExpandable(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Colors>): any {
+    return msRest.responseToBody(this.getNotExpandableWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -222,8 +222,8 @@ export class EnumModel {
   putNotExpandable(stringBody: Models.Colors, options: msRest.RequestOptionsBase): Promise<void>;
   putNotExpandable(stringBody: Models.Colors, callback: msRest.ServiceCallback<void>): void;
   putNotExpandable(stringBody: Models.Colors, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putNotExpandable(): any {
-    return msRest.responseToBody(this.putNotExpandableWithHttpOperationResponse.bind(this), arguments);
+  putNotExpandable(stringBody: Models.Colors, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putNotExpandableWithHttpOperationResponse.bind(this), stringBody, options, callback);
   }
 
   /**
@@ -244,8 +244,8 @@ export class EnumModel {
   getReferenced(options: msRest.RequestOptionsBase): Promise<Models.Colors>;
   getReferenced(callback: msRest.ServiceCallback<Models.Colors>): void;
   getReferenced(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Colors>): void;
-  getReferenced(): any {
-    return msRest.responseToBody(this.getReferencedWithHttpOperationResponse.bind(this), arguments);
+  getReferenced(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Colors>): any {
+    return msRest.responseToBody(this.getReferencedWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -268,8 +268,8 @@ export class EnumModel {
   putReferenced(enumStringBody: Models.Colors, options: msRest.RequestOptionsBase): Promise<void>;
   putReferenced(enumStringBody: Models.Colors, callback: msRest.ServiceCallback<void>): void;
   putReferenced(enumStringBody: Models.Colors, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putReferenced(): any {
-    return msRest.responseToBody(this.putReferencedWithHttpOperationResponse.bind(this), arguments);
+  putReferenced(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putReferencedWithHttpOperationResponse.bind(this), enumStringBody, options, callback);
   }
 
   /**
@@ -290,8 +290,8 @@ export class EnumModel {
   getReferencedConstant(options: msRest.RequestOptionsBase): Promise<Models.RefColorConstant>;
   getReferencedConstant(callback: msRest.ServiceCallback<Models.RefColorConstant>): void;
   getReferencedConstant(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RefColorConstant>): void;
-  getReferencedConstant(): any {
-    return msRest.responseToBody(this.getReferencedConstantWithHttpOperationResponse.bind(this), arguments);
+  getReferencedConstant(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RefColorConstant>): any {
+    return msRest.responseToBody(this.getReferencedConstantWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -312,8 +312,8 @@ export class EnumModel {
   putReferencedConstant(options: Models.EnumModelPutReferencedConstantOptionalParams): Promise<void>;
   putReferencedConstant(callback: msRest.ServiceCallback<void>): void;
   putReferencedConstant(options: Models.EnumModelPutReferencedConstantOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putReferencedConstant(): any {
-    return msRest.responseToBody(this.putReferencedConstantWithHttpOperationResponse.bind(this), arguments);
+  putReferencedConstant(options?: Models.EnumModelPutReferencedConstantOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putReferencedConstantWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

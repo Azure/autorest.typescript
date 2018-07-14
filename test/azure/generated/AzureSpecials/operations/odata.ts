@@ -76,8 +76,8 @@ export class Odata {
   getWithFilter(options: Models.OdataGetWithFilterOptionalParams): Promise<void>;
   getWithFilter(callback: msRest.ServiceCallback<void>): void;
   getWithFilter(options: Models.OdataGetWithFilterOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getWithFilter(): any {
-    return msRest.responseToBody(this.getWithFilterWithHttpOperationResponse.bind(this), arguments);
+  getWithFilter(options?: Models.OdataGetWithFilterOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getWithFilterWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

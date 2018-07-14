@@ -161,8 +161,8 @@ export class ByteModel {
   getNull(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getNull(callback: msRest.ServiceCallback<Uint8Array>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -183,8 +183,8 @@ export class ByteModel {
   getEmpty(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getEmpty(callback: msRest.ServiceCallback<Uint8Array>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getEmpty(): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -205,8 +205,8 @@ export class ByteModel {
   getNonAscii(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getNonAscii(callback: msRest.ServiceCallback<Uint8Array>): void;
   getNonAscii(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getNonAscii(): any {
-    return msRest.responseToBody(this.getNonAsciiWithHttpOperationResponse.bind(this), arguments);
+  getNonAscii(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
+    return msRest.responseToBody(this.getNonAsciiWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -230,8 +230,8 @@ export class ByteModel {
   putNonAscii(byteBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
   putNonAscii(byteBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
   putNonAscii(byteBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putNonAscii(): any {
-    return msRest.responseToBody(this.putNonAsciiWithHttpOperationResponse.bind(this), arguments);
+  putNonAscii(byteBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putNonAsciiWithHttpOperationResponse.bind(this), byteBody, options, callback);
   }
 
   /**
@@ -252,8 +252,8 @@ export class ByteModel {
   getInvalid(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getInvalid(callback: msRest.ServiceCallback<Uint8Array>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getInvalid(): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

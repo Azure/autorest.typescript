@@ -86,8 +86,8 @@ export class AvailabilitySets {
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  update(): any {
-    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), arguments);
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), resourceGroupName, avset, tags, options, callback);
   }
 
 }
