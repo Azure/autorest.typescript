@@ -174,27 +174,8 @@ export class SubscriptionInMethod {
   postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
   postMethodLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postMethodLocalValidWithHttpOperationResponse(subscriptionId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postMethodLocalValidWithHttpOperationResponse(subscriptionId, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postMethodLocalValid(): any {
+    return msRest.responseToBody(this.postMethodLocalValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -219,27 +200,8 @@ export class SubscriptionInMethod {
   postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
   postMethodLocalNull(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalNull(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postMethodLocalNullWithHttpOperationResponse(subscriptionId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postMethodLocalNullWithHttpOperationResponse(subscriptionId, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postMethodLocalNull(): any {
+    return msRest.responseToBody(this.postMethodLocalNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -264,27 +226,8 @@ export class SubscriptionInMethod {
   postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
   postPathLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postPathLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postPathLocalValidWithHttpOperationResponse(subscriptionId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postPathLocalValidWithHttpOperationResponse(subscriptionId, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postPathLocalValid(): any {
+    return msRest.responseToBody(this.postPathLocalValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -309,27 +252,8 @@ export class SubscriptionInMethod {
   postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
   postSwaggerLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postSwaggerLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postSwaggerLocalValidWithHttpOperationResponse(subscriptionId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postSwaggerLocalValidWithHttpOperationResponse(subscriptionId, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postSwaggerLocalValid(): any {
+    return msRest.responseToBody(this.postSwaggerLocalValidWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

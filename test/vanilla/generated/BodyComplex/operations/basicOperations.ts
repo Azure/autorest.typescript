@@ -184,27 +184,8 @@ export class BasicOperations {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getValid(callback: msRest.ServiceCallback<Models.Basic>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Basic>;
-    if (!callback) {
-      return this.getValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Basic);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Basic;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getValid(): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -227,27 +208,8 @@ export class BasicOperations {
   putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase): Promise<void>;
   putValid(complexBody: Models.Basic, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Basic, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putValidWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putValidWithHttpOperationResponse(complexBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putValid(): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -268,27 +230,8 @@ export class BasicOperations {
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getInvalid(callback: msRest.ServiceCallback<Models.Basic>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Basic>;
-    if (!callback) {
-      return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Basic);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Basic;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getInvalid(): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -309,27 +252,8 @@ export class BasicOperations {
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getEmpty(callback: msRest.ServiceCallback<Models.Basic>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Basic>;
-    if (!callback) {
-      return this.getEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Basic);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Basic;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getEmpty(): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -350,27 +274,8 @@ export class BasicOperations {
   getNull(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getNull(callback: msRest.ServiceCallback<Models.Basic>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Basic>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Basic);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Basic;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNull(): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -391,27 +296,8 @@ export class BasicOperations {
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
   getNotProvided(callback: msRest.ServiceCallback<Models.Basic>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Basic>;
-    if (!callback) {
-      return this.getNotProvidedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Basic);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNotProvidedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Basic;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNotProvided(): any {
+    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

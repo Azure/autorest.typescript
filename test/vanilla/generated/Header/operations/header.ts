@@ -948,27 +948,8 @@ export class Header {
   paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase): Promise<void>;
   paramExistingKey(userAgent: string, callback: msRest.ServiceCallback<void>): void;
   paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramExistingKey(userAgent: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramExistingKeyWithHttpOperationResponse(userAgent, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramExistingKeyWithHttpOperationResponse(userAgent, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramExistingKey(): any {
+    return msRest.responseToBody(this.paramExistingKeyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -989,27 +970,8 @@ export class Header {
   responseExistingKey(options: msRest.RequestOptionsBase): Promise<void>;
   responseExistingKey(callback: msRest.ServiceCallback<void>): void;
   responseExistingKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseExistingKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseExistingKeyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseExistingKeyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseExistingKey(): any {
+    return msRest.responseToBody(this.responseExistingKeyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1032,27 +994,8 @@ export class Header {
   paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase): Promise<void>;
   paramProtectedKey(contentType: string, callback: msRest.ServiceCallback<void>): void;
   paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramProtectedKey(contentType: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramProtectedKeyWithHttpOperationResponse(contentType, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramProtectedKeyWithHttpOperationResponse(contentType, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramProtectedKey(): any {
+    return msRest.responseToBody(this.paramProtectedKeyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1073,27 +1016,8 @@ export class Header {
   responseProtectedKey(options: msRest.RequestOptionsBase): Promise<void>;
   responseProtectedKey(callback: msRest.ServiceCallback<void>): void;
   responseProtectedKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseProtectedKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseProtectedKeyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseProtectedKeyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseProtectedKey(): any {
+    return msRest.responseToBody(this.responseProtectedKeyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1120,27 +1044,8 @@ export class Header {
   paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
   paramInteger(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramInteger(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramIntegerWithHttpOperationResponse(scenario, value, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramIntegerWithHttpOperationResponse(scenario, value, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramInteger(): any {
+    return msRest.responseToBody(this.paramIntegerWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1164,27 +1069,8 @@ export class Header {
   responseInteger(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseInteger(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseInteger(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseInteger(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseIntegerWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseIntegerWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseInteger(): any {
+    return msRest.responseToBody(this.responseIntegerWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1211,27 +1097,8 @@ export class Header {
   paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
   paramLong(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramLong(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramLongWithHttpOperationResponse(scenario, value, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramLongWithHttpOperationResponse(scenario, value, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramLong(): any {
+    return msRest.responseToBody(this.paramLongWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1255,27 +1122,8 @@ export class Header {
   responseLong(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseLong(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseLong(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseLong(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseLongWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseLongWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseLong(): any {
+    return msRest.responseToBody(this.responseLongWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1302,27 +1150,8 @@ export class Header {
   paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
   paramFloat(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramFloat(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramFloatWithHttpOperationResponse(scenario, value, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramFloatWithHttpOperationResponse(scenario, value, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramFloat(): any {
+    return msRest.responseToBody(this.paramFloatWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1346,27 +1175,8 @@ export class Header {
   responseFloat(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseFloat(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseFloat(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseFloat(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseFloatWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseFloatWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseFloat(): any {
+    return msRest.responseToBody(this.responseFloatWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1393,27 +1203,8 @@ export class Header {
   paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
   paramDouble(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDouble(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramDoubleWithHttpOperationResponse(scenario, value, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramDoubleWithHttpOperationResponse(scenario, value, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramDouble(): any {
+    return msRest.responseToBody(this.paramDoubleWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1437,27 +1228,8 @@ export class Header {
   responseDouble(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDouble(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDouble(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDouble(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseDoubleWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseDoubleWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseDouble(): any {
+    return msRest.responseToBody(this.responseDoubleWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1483,27 +1255,8 @@ export class Header {
   paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase): Promise<void>;
   paramBool(scenario: string, value: boolean, callback: msRest.ServiceCallback<void>): void;
   paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramBool(scenario: string, value: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramBoolWithHttpOperationResponse(scenario, value, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramBoolWithHttpOperationResponse(scenario, value, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramBool(): any {
+    return msRest.responseToBody(this.paramBoolWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1526,27 +1279,8 @@ export class Header {
   responseBool(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseBool(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseBool(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseBool(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseBoolWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseBoolWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseBool(): any {
+    return msRest.responseToBody(this.responseBoolWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1571,27 +1305,8 @@ export class Header {
   paramString(scenario: string, options: Models.HeaderParamStringOptionalParams): Promise<void>;
   paramString(scenario: string, callback: msRest.ServiceCallback<void>): void;
   paramString(scenario: string, options: Models.HeaderParamStringOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramString(scenario: string, options?: Models.HeaderParamStringOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramStringWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramStringWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramString(): any {
+    return msRest.responseToBody(this.paramStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1615,27 +1330,8 @@ export class Header {
   responseString(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseString(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseString(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseString(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseStringWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseStringWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseString(): any {
+    return msRest.responseToBody(this.responseStringWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1661,27 +1357,8 @@ export class Header {
   paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   paramDate(scenario: string, value: Date | string, callback: msRest.ServiceCallback<void>): void;
   paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDate(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramDateWithHttpOperationResponse(scenario, value, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramDateWithHttpOperationResponse(scenario, value, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramDate(): any {
+    return msRest.responseToBody(this.paramDateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1704,27 +1381,8 @@ export class Header {
   responseDate(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDate(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDate(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDate(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseDateWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseDateWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseDate(): any {
+    return msRest.responseToBody(this.responseDateWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1751,27 +1409,8 @@ export class Header {
   paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   paramDatetime(scenario: string, value: Date | string, callback: msRest.ServiceCallback<void>): void;
   paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDatetime(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramDatetimeWithHttpOperationResponse(scenario, value, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramDatetimeWithHttpOperationResponse(scenario, value, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramDatetime(): any {
+    return msRest.responseToBody(this.paramDatetimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1794,27 +1433,8 @@ export class Header {
   responseDatetime(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDatetime(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDatetime(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetime(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseDatetimeWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseDatetimeWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseDatetime(): any {
+    return msRest.responseToBody(this.responseDatetimeWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1838,27 +1458,8 @@ export class Header {
   paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<void>;
   paramDatetimeRfc1123(scenario: string, callback: msRest.ServiceCallback<void>): void;
   paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramDatetimeRfc1123(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramDatetimeRfc1123WithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramDatetimeRfc1123WithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramDatetimeRfc1123(): any {
+    return msRest.responseToBody(this.paramDatetimeRfc1123WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1882,27 +1483,8 @@ export class Header {
   responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDatetimeRfc1123(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetimeRfc1123(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseDatetimeRfc1123WithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseDatetimeRfc1123WithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseDatetimeRfc1123(): any {
+    return msRest.responseToBody(this.responseDatetimeRfc1123WithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1927,27 +1509,8 @@ export class Header {
   paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase): Promise<void>;
   paramDuration(scenario: string, value: string, callback: msRest.ServiceCallback<void>): void;
   paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDuration(scenario: string, value: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramDurationWithHttpOperationResponse(scenario, value, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramDurationWithHttpOperationResponse(scenario, value, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramDuration(): any {
+    return msRest.responseToBody(this.paramDurationWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1970,27 +1533,8 @@ export class Header {
   responseDuration(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseDuration(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDuration(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDuration(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseDurationWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseDurationWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseDuration(): any {
+    return msRest.responseToBody(this.responseDurationWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2015,27 +1559,8 @@ export class Header {
   paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
   paramByte(scenario: string, value: Uint8Array, callback: msRest.ServiceCallback<void>): void;
   paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramByte(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramByteWithHttpOperationResponse(scenario, value, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramByteWithHttpOperationResponse(scenario, value, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramByte(): any {
+    return msRest.responseToBody(this.paramByteWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2058,27 +1583,8 @@ export class Header {
   responseByte(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseByte(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseByte(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseByte(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseByteWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseByteWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseByte(): any {
+    return msRest.responseToBody(this.responseByteWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2103,27 +1609,8 @@ export class Header {
   paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams): Promise<void>;
   paramEnum(scenario: string, callback: msRest.ServiceCallback<void>): void;
   paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramEnum(scenario: string, options?: Models.HeaderParamEnumOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramEnumWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramEnumWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramEnum(): any {
+    return msRest.responseToBody(this.paramEnumWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2147,27 +1634,8 @@ export class Header {
   responseEnum(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
   responseEnum(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseEnum(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseEnum(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.responseEnumWithHttpOperationResponse(scenario, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.responseEnumWithHttpOperationResponse(scenario, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  responseEnum(): any {
+    return msRest.responseToBody(this.responseEnumWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -2188,27 +1656,8 @@ export class Header {
   customRequestId(options: msRest.RequestOptionsBase): Promise<void>;
   customRequestId(callback: msRest.ServiceCallback<void>): void;
   customRequestId(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customRequestId(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.customRequestIdWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.customRequestIdWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  customRequestId(): any {
+    return msRest.responseToBody(this.customRequestIdWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

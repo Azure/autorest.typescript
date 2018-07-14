@@ -190,27 +190,8 @@ export class Bool {
   getTrue(options: msRest.RequestOptionsBase): Promise<boolean>;
   getTrue(callback: msRest.ServiceCallback<boolean>): void;
   getTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean>;
-    if (!callback) {
-      return this.getTrueWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getTrueWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getTrue(): any {
+    return msRest.responseToBody(this.getTrueWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -233,27 +214,8 @@ export class Bool {
   putTrue(boolBody: boolean, options: msRest.RequestOptionsBase): Promise<void>;
   putTrue(boolBody: boolean, callback: msRest.ServiceCallback<void>): void;
   putTrue(boolBody: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putTrue(boolBody: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putTrueWithHttpOperationResponse(boolBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putTrueWithHttpOperationResponse(boolBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putTrue(): any {
+    return msRest.responseToBody(this.putTrueWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -274,27 +236,8 @@ export class Bool {
   getFalse(options: msRest.RequestOptionsBase): Promise<boolean>;
   getFalse(callback: msRest.ServiceCallback<boolean>): void;
   getFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean>;
-    if (!callback) {
-      return this.getFalseWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getFalseWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getFalse(): any {
+    return msRest.responseToBody(this.getFalseWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -317,27 +260,8 @@ export class Bool {
   putFalse(boolBody: boolean, options: msRest.RequestOptionsBase): Promise<void>;
   putFalse(boolBody: boolean, callback: msRest.ServiceCallback<void>): void;
   putFalse(boolBody: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFalse(boolBody: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putFalseWithHttpOperationResponse(boolBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putFalseWithHttpOperationResponse(boolBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putFalse(): any {
+    return msRest.responseToBody(this.putFalseWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -358,27 +282,8 @@ export class Bool {
   getNull(options: msRest.RequestOptionsBase): Promise<boolean>;
   getNull(callback: msRest.ServiceCallback<boolean>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNull(): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -399,27 +304,8 @@ export class Bool {
   getInvalid(options: msRest.RequestOptionsBase): Promise<boolean>;
   getInvalid(callback: msRest.ServiceCallback<boolean>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean>;
-    if (!callback) {
-      return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getInvalid(): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

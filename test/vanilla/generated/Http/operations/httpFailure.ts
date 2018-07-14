@@ -108,27 +108,8 @@ export class HttpFailure {
   getEmptyError(options: msRest.RequestOptionsBase): Promise<boolean>;
   getEmptyError(callback: msRest.ServiceCallback<boolean>): void;
   getEmptyError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getEmptyError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean>;
-    if (!callback) {
-      return this.getEmptyErrorWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyErrorWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getEmptyError(): any {
+    return msRest.responseToBody(this.getEmptyErrorWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -149,27 +130,8 @@ export class HttpFailure {
   getNoModelError(options: msRest.RequestOptionsBase): Promise<boolean>;
   getNoModelError(callback: msRest.ServiceCallback<boolean>): void;
   getNoModelError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean>;
-    if (!callback) {
-      return this.getNoModelErrorWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNoModelErrorWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNoModelError(): any {
+    return msRest.responseToBody(this.getNoModelErrorWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -190,27 +152,8 @@ export class HttpFailure {
   getNoModelEmpty(options: msRest.RequestOptionsBase): Promise<boolean>;
   getNoModelEmpty(callback: msRest.ServiceCallback<boolean>): void;
   getNoModelEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<boolean>;
-    if (!callback) {
-      return this.getNoModelEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as boolean);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNoModelEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as boolean;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNoModelEmpty(): any {
+    return msRest.responseToBody(this.getNoModelEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

@@ -845,27 +845,8 @@ export class Paging {
   getSinglePages(options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getSinglePages(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getSinglePages(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getSinglePages(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getSinglePagesWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSinglePagesWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getSinglePages(): any {
+    return msRest.responseToBody(this.getSinglePagesWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -886,27 +867,8 @@ export class Paging {
   getMultiplePages(options: Models.PagingGetMultiplePagesOptionalParams): Promise<Models.ProductResult>;
   getMultiplePages(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePages(options: Models.PagingGetMultiplePagesOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePages(options?: Models.PagingGetMultiplePagesOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePages(): any {
+    return msRest.responseToBody(this.getMultiplePagesWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -927,27 +889,8 @@ export class Paging {
   getOdataMultiplePages(options: Models.PagingGetOdataMultiplePagesOptionalParams): Promise<Models.OdataProductResult>;
   getOdataMultiplePages(callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   getOdataMultiplePages(options: Models.PagingGetOdataMultiplePagesOptionalParams, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
-  getOdataMultiplePages(options?: Models.PagingGetOdataMultiplePagesOptionalParams, callback?: msRest.ServiceCallback<Models.OdataProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
-    if (!callback) {
-      return this.getOdataMultiplePagesWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getOdataMultiplePagesWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.OdataProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getOdataMultiplePages(): any {
+    return msRest.responseToBody(this.getOdataMultiplePagesWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -971,27 +914,8 @@ export class Paging {
   getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options: Models.PagingGetMultiplePagesWithOffsetOptionalParams): Promise<Models.ProductResult>;
   getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options: Models.PagingGetMultiplePagesWithOffsetOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesWithOffsetWithHttpOperationResponse(pagingGetMultiplePagesWithOffsetOptions, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesWithOffsetWithHttpOperationResponse(pagingGetMultiplePagesWithOffsetOptions, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesWithOffset(): any {
+    return msRest.responseToBody(this.getMultiplePagesWithOffsetWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1013,27 +937,8 @@ export class Paging {
   getMultiplePagesRetryFirst(options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getMultiplePagesRetryFirst(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesRetryFirst(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesRetryFirst(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesRetryFirstWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesRetryFirstWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesRetryFirst(): any {
+    return msRest.responseToBody(this.getMultiplePagesRetryFirstWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1055,27 +960,8 @@ export class Paging {
   getMultiplePagesRetrySecond(options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getMultiplePagesRetrySecond(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesRetrySecond(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesRetrySecond(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesRetrySecondWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesRetrySecondWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesRetrySecond(): any {
+    return msRest.responseToBody(this.getMultiplePagesRetrySecondWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1096,27 +982,8 @@ export class Paging {
   getSinglePagesFailure(options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getSinglePagesFailure(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getSinglePagesFailure(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getSinglePagesFailure(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getSinglePagesFailureWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSinglePagesFailureWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getSinglePagesFailure(): any {
+    return msRest.responseToBody(this.getSinglePagesFailureWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1137,27 +1004,8 @@ export class Paging {
   getMultiplePagesFailure(options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getMultiplePagesFailure(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesFailure(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesFailure(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesFailureWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesFailureWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesFailure(): any {
+    return msRest.responseToBody(this.getMultiplePagesFailureWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1178,27 +1026,8 @@ export class Paging {
   getMultiplePagesFailureUri(options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getMultiplePagesFailureUri(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesFailureUri(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesFailureUri(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesFailureUriWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesFailureUriWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesFailureUri(): any {
+    return msRest.responseToBody(this.getMultiplePagesFailureUriWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1223,27 +1052,8 @@ export class Paging {
   getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string, options: msRest.RequestOptionsBase): Promise<Models.OdataProductResult>;
   getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
-  getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.OdataProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesFragmentNextLinkWithHttpOperationResponse(apiVersion, tenant, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesFragmentNextLinkWithHttpOperationResponse(apiVersion, tenant, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.OdataProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesFragmentNextLink(): any {
+    return msRest.responseToBody(this.getMultiplePagesFragmentNextLinkWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1266,27 +1076,8 @@ export class Paging {
   getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.OdataProductResult>;
   getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
-  getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.OdataProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse(customParameterGroup, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse(customParameterGroup, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.OdataProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesFragmentWithGroupingNextLink(): any {
+    return msRest.responseToBody(this.getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1307,27 +1098,8 @@ export class Paging {
   getMultiplePagesLRO(options: Models.PagingGetMultiplePagesLROOptionalParams): Promise<Models.ProductResult>;
   getMultiplePagesLRO(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesLRO(options: Models.PagingGetMultiplePagesLROOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesLRO(options?: Models.PagingGetMultiplePagesLROOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesLROWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesLROWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesLRO(): any {
+    return msRest.responseToBody(this.getMultiplePagesLROWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1354,27 +1126,8 @@ export class Paging {
   nextFragment(apiVersion: string, tenant: string, nextLink: string, options: msRest.RequestOptionsBase): Promise<Models.OdataProductResult>;
   nextFragment(apiVersion: string, tenant: string, nextLink: string, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   nextFragment(apiVersion: string, tenant: string, nextLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
-  nextFragment(apiVersion: string, tenant: string, nextLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.OdataProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
-    if (!callback) {
-      return this.nextFragmentWithHttpOperationResponse(apiVersion, tenant, nextLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.nextFragmentWithHttpOperationResponse(apiVersion, tenant, nextLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.OdataProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  nextFragment(): any {
+    return msRest.responseToBody(this.nextFragmentWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1399,27 +1152,8 @@ export class Paging {
   nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.OdataProductResult>;
   nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
-  nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.OdataProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
-    if (!callback) {
-      return this.nextFragmentWithGroupingWithHttpOperationResponse(nextLink, customParameterGroup, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.nextFragmentWithGroupingWithHttpOperationResponse(nextLink, customParameterGroup, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.OdataProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  nextFragmentWithGrouping(): any {
+    return msRest.responseToBody(this.nextFragmentWithGroupingWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1440,27 +1174,8 @@ export class Paging {
   beginGetMultiplePagesLRO(options: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<Models.ProductResult>;
   beginGetMultiplePagesLRO(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   beginGetMultiplePagesLRO(options: Models.PagingBeginGetMultiplePagesLROOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRO(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.beginGetMultiplePagesLROWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginGetMultiplePagesLROWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginGetMultiplePagesLRO(): any {
+    return msRest.responseToBody(this.beginGetMultiplePagesLROWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1483,27 +1198,8 @@ export class Paging {
   getSinglePagesNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getSinglePagesNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getSinglePagesNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getSinglePagesNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getSinglePagesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSinglePagesNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getSinglePagesNext(): any {
+    return msRest.responseToBody(this.getSinglePagesNextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1526,27 +1222,8 @@ export class Paging {
   getMultiplePagesNext(nextPageLink: string, options: Models.PagingGetMultiplePagesNextOptionalParams): Promise<Models.ProductResult>;
   getMultiplePagesNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesNext(nextPageLink: string, options: Models.PagingGetMultiplePagesNextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesNext(nextPageLink: string, options?: Models.PagingGetMultiplePagesNextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesNext(): any {
+    return msRest.responseToBody(this.getMultiplePagesNextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1569,27 +1246,8 @@ export class Paging {
   getOdataMultiplePagesNext(nextPageLink: string, options: Models.PagingGetOdataMultiplePagesNextOptionalParams): Promise<Models.OdataProductResult>;
   getOdataMultiplePagesNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   getOdataMultiplePagesNext(nextPageLink: string, options: Models.PagingGetOdataMultiplePagesNextOptionalParams, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
-  getOdataMultiplePagesNext(nextPageLink: string, options?: Models.PagingGetOdataMultiplePagesNextOptionalParams, callback?: msRest.ServiceCallback<Models.OdataProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
-    if (!callback) {
-      return this.getOdataMultiplePagesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getOdataMultiplePagesNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.OdataProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getOdataMultiplePagesNext(): any {
+    return msRest.responseToBody(this.getOdataMultiplePagesNextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1612,27 +1270,8 @@ export class Paging {
   getMultiplePagesWithOffsetNext(nextPageLink: string, options: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams): Promise<Models.ProductResult>;
   getMultiplePagesWithOffsetNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesWithOffsetNext(nextPageLink: string, options: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesWithOffsetNext(nextPageLink: string, options?: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesWithOffsetNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesWithOffsetNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesWithOffsetNext(): any {
+    return msRest.responseToBody(this.getMultiplePagesWithOffsetNextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1656,27 +1295,8 @@ export class Paging {
   getMultiplePagesRetryFirstNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getMultiplePagesRetryFirstNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesRetryFirstNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesRetryFirstNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesRetryFirstNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesRetryFirstNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesRetryFirstNext(): any {
+    return msRest.responseToBody(this.getMultiplePagesRetryFirstNextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1700,27 +1320,8 @@ export class Paging {
   getMultiplePagesRetrySecondNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getMultiplePagesRetrySecondNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesRetrySecondNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesRetrySecondNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesRetrySecondNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesRetrySecondNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesRetrySecondNext(): any {
+    return msRest.responseToBody(this.getMultiplePagesRetrySecondNextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1743,27 +1344,8 @@ export class Paging {
   getSinglePagesFailureNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getSinglePagesFailureNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getSinglePagesFailureNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getSinglePagesFailureNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getSinglePagesFailureNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSinglePagesFailureNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getSinglePagesFailureNext(): any {
+    return msRest.responseToBody(this.getSinglePagesFailureNextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1786,27 +1368,8 @@ export class Paging {
   getMultiplePagesFailureNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getMultiplePagesFailureNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesFailureNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesFailureNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesFailureNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesFailureNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesFailureNext(): any {
+    return msRest.responseToBody(this.getMultiplePagesFailureNextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1829,27 +1392,8 @@ export class Paging {
   getMultiplePagesFailureUriNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ProductResult>;
   getMultiplePagesFailureUriNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesFailureUriNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesFailureUriNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesFailureUriNext(): any {
+    return msRest.responseToBody(this.getMultiplePagesFailureUriNextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1872,27 +1416,8 @@ export class Paging {
   getMultiplePagesLRONext(nextPageLink: string, options: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<Models.ProductResult>;
   getMultiplePagesLRONext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesLRONext(nextPageLink: string, options: Models.PagingGetMultiplePagesLRONextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  getMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMultiplePagesLRONext(): any {
+    return msRest.responseToBody(this.getMultiplePagesLRONextWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -1915,27 +1440,8 @@ export class Paging {
   beginGetMultiplePagesLRONext(nextPageLink: string, options: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<Models.ProductResult>;
   beginGetMultiplePagesLRONext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   beginGetMultiplePagesLRONext(nextPageLink: string, options: Models.PagingBeginGetMultiplePagesLRONextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
-    if (!callback) {
-      return this.beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ProductResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+  beginGetMultiplePagesLRONext(): any {
+    return msRest.responseToBody(this.beginGetMultiplePagesLRONextWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

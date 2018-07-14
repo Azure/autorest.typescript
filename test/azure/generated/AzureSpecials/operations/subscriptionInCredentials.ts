@@ -158,27 +158,8 @@ export class SubscriptionInCredentials {
   postMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
   postMethodGlobalValid(callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postMethodGlobalValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postMethodGlobalValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postMethodGlobalValid(): any {
+    return msRest.responseToBody(this.postMethodGlobalValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -200,27 +181,8 @@ export class SubscriptionInCredentials {
   postMethodGlobalNull(options: msRest.RequestOptionsBase): Promise<void>;
   postMethodGlobalNull(callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodGlobalNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postMethodGlobalNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postMethodGlobalNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postMethodGlobalNull(): any {
+    return msRest.responseToBody(this.postMethodGlobalNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -242,27 +204,8 @@ export class SubscriptionInCredentials {
   postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<void>;
   postMethodGlobalNotProvidedValid(callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postMethodGlobalNotProvidedValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postMethodGlobalNotProvidedValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postMethodGlobalNotProvidedValid(): any {
+    return msRest.responseToBody(this.postMethodGlobalNotProvidedValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -284,27 +227,8 @@ export class SubscriptionInCredentials {
   postPathGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
   postPathGlobalValid(callback: msRest.ServiceCallback<void>): void;
   postPathGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postPathGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postPathGlobalValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postPathGlobalValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postPathGlobalValid(): any {
+    return msRest.responseToBody(this.postPathGlobalValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -326,27 +250,8 @@ export class SubscriptionInCredentials {
   postSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
   postSwaggerGlobalValid(callback: msRest.ServiceCallback<void>): void;
   postSwaggerGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postSwaggerGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.postSwaggerGlobalValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postSwaggerGlobalValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  postSwaggerGlobalValid(): any {
+    return msRest.responseToBody(this.postSwaggerGlobalValidWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

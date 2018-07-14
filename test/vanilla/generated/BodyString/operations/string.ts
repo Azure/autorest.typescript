@@ -372,27 +372,8 @@ export class String {
   getNull(options: msRest.RequestOptionsBase): Promise<Models.GetNullOKResponse>;
   getNull(callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetNullOKResponse>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.GetNullOKResponse>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.GetNullOKResponse);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.GetNullOKResponse;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNull(): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -413,27 +394,8 @@ export class String {
   putNull(options: Models.StringPutNullOptionalParams): Promise<void>;
   putNull(callback: msRest.ServiceCallback<void>): void;
   putNull(options: Models.StringPutNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putNull(options?: Models.StringPutNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putNull(): any {
+    return msRest.responseToBody(this.putNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -454,27 +416,8 @@ export class String {
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.GetEmptyOKResponse>;
   getEmpty(callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetEmptyOKResponse>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.GetEmptyOKResponse>;
-    if (!callback) {
-      return this.getEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.GetEmptyOKResponse);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.GetEmptyOKResponse;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getEmpty(): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -497,27 +440,8 @@ export class String {
   putEmpty(stringBody: Models.StringBody1, options: msRest.RequestOptionsBase): Promise<void>;
   putEmpty(stringBody: Models.StringBody1, callback: msRest.ServiceCallback<void>): void;
   putEmpty(stringBody: Models.StringBody1, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(stringBody: Models.StringBody1, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putEmptyWithHttpOperationResponse(stringBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putEmptyWithHttpOperationResponse(stringBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putEmpty(): any {
+    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -538,27 +462,8 @@ export class String {
   getMbcs(options: msRest.RequestOptionsBase): Promise<Models.GetMbcsOKResponse>;
   getMbcs(callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
   getMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
-  getMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetMbcsOKResponse>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.GetMbcsOKResponse>;
-    if (!callback) {
-      return this.getMbcsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.GetMbcsOKResponse);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMbcsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.GetMbcsOKResponse;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMbcs(): any {
+    return msRest.responseToBody(this.getMbcsWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -582,27 +487,8 @@ export class String {
   putMbcs(stringBody: Models.StringBody2, options: msRest.RequestOptionsBase): Promise<void>;
   putMbcs(stringBody: Models.StringBody2, callback: msRest.ServiceCallback<void>): void;
   putMbcs(stringBody: Models.StringBody2, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMbcs(stringBody: Models.StringBody2, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putMbcsWithHttpOperationResponse(stringBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putMbcsWithHttpOperationResponse(stringBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putMbcs(): any {
+    return msRest.responseToBody(this.putMbcsWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -624,27 +510,8 @@ export class String {
   getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.GetWhitespaceOKResponse>;
   getWhitespace(callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
   getWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
-  getWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.GetWhitespaceOKResponse>;
-    if (!callback) {
-      return this.getWhitespaceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.GetWhitespaceOKResponse);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWhitespaceWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.GetWhitespaceOKResponse;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getWhitespace(): any {
+    return msRest.responseToBody(this.getWhitespaceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -669,27 +536,8 @@ export class String {
   putWhitespace(stringBody: Models.StringBody3, options: msRest.RequestOptionsBase): Promise<void>;
   putWhitespace(stringBody: Models.StringBody3, callback: msRest.ServiceCallback<void>): void;
   putWhitespace(stringBody: Models.StringBody3, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putWhitespace(stringBody: Models.StringBody3, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putWhitespaceWithHttpOperationResponse(stringBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putWhitespaceWithHttpOperationResponse(stringBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putWhitespace(): any {
+    return msRest.responseToBody(this.putWhitespaceWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -710,27 +558,8 @@ export class String {
   getNotProvided(options: msRest.RequestOptionsBase): Promise<string>;
   getNotProvided(callback: msRest.ServiceCallback<string>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string>;
-    if (!callback) {
-      return this.getNotProvidedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNotProvidedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNotProvided(): any {
+    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -751,27 +580,8 @@ export class String {
   getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getBase64Encoded(callback: msRest.ServiceCallback<Uint8Array>): void;
   getBase64Encoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getBase64Encoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Uint8Array>;
-    if (!callback) {
-      return this.getBase64EncodedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Uint8Array);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBase64EncodedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Uint8Array;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBase64Encoded(): any {
+    return msRest.responseToBody(this.getBase64EncodedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -792,27 +602,8 @@ export class String {
   getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
   getBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Uint8Array>;
-    if (!callback) {
-      return this.getBase64UrlEncodedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Uint8Array);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBase64UrlEncodedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Uint8Array;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getBase64UrlEncoded(): any {
+    return msRest.responseToBody(this.getBase64UrlEncodedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -835,27 +626,8 @@ export class String {
   putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
   putBase64UrlEncoded(stringBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
   putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBase64UrlEncodedWithHttpOperationResponse(stringBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBase64UrlEncodedWithHttpOperationResponse(stringBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  putBase64UrlEncoded(): any {
+    return msRest.responseToBody(this.putBase64UrlEncodedWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -876,27 +648,8 @@ export class String {
   getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getNullBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
   getNullBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Uint8Array>;
-    if (!callback) {
-      return this.getNullBase64UrlEncodedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Uint8Array);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullBase64UrlEncodedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Uint8Array;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getNullBase64UrlEncoded(): any {
+    return msRest.responseToBody(this.getNullBase64UrlEncodedWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

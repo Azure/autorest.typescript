@@ -156,27 +156,8 @@ export class ApiVersionLocal {
   getMethodLocalValid(options: msRest.RequestOptionsBase): Promise<void>;
   getMethodLocalValid(callback: msRest.ServiceCallback<void>): void;
   getMethodLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getMethodLocalValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMethodLocalValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMethodLocalValid(): any {
+    return msRest.responseToBody(this.getMethodLocalValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -197,27 +178,8 @@ export class ApiVersionLocal {
   getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<void>;
   getMethodLocalNull(callback: msRest.ServiceCallback<void>): void;
   getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getMethodLocalNull(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getMethodLocalNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getMethodLocalNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getMethodLocalNull(): any {
+    return msRest.responseToBody(this.getMethodLocalNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -238,27 +200,8 @@ export class ApiVersionLocal {
   getPathLocalValid(options: msRest.RequestOptionsBase): Promise<void>;
   getPathLocalValid(callback: msRest.ServiceCallback<void>): void;
   getPathLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getPathLocalValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getPathLocalValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getPathLocalValid(): any {
+    return msRest.responseToBody(this.getPathLocalValidWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -279,27 +222,8 @@ export class ApiVersionLocal {
   getSwaggerLocalValid(options: msRest.RequestOptionsBase): Promise<void>;
   getSwaggerLocalValid(callback: msRest.ServiceCallback<void>): void;
   getSwaggerLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getSwaggerLocalValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSwaggerLocalValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  getSwaggerLocalValid(): any {
+    return msRest.responseToBody(this.getSwaggerLocalValidWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

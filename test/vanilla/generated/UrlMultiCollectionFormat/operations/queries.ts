@@ -131,27 +131,8 @@ export class Queries {
   arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams): Promise<void>;
   arrayStringMultiNull(callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiNull(options?: Models.QueriesArrayStringMultiNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.arrayStringMultiNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.arrayStringMultiNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  arrayStringMultiNull(): any {
+    return msRest.responseToBody(this.arrayStringMultiNullWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -172,27 +153,8 @@ export class Queries {
   arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<void>;
   arrayStringMultiEmpty(callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiEmpty(options?: Models.QueriesArrayStringMultiEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.arrayStringMultiEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.arrayStringMultiEmptyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  arrayStringMultiEmpty(): any {
+    return msRest.responseToBody(this.arrayStringMultiEmptyWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -214,27 +176,8 @@ export class Queries {
   arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams): Promise<void>;
   arrayStringMultiValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiValid(options?: Models.QueriesArrayStringMultiValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.arrayStringMultiValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.arrayStringMultiValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  arrayStringMultiValid(): any {
+    return msRest.responseToBody(this.arrayStringMultiValidWithHttpOperationResponse.bind(this), arguments);
   }
 
 }

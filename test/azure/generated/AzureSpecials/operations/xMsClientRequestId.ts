@@ -98,27 +98,8 @@ export class XMsClientRequestId {
   get(options: msRest.RequestOptionsBase): Promise<void>;
   get(callback: msRest.ServiceCallback<void>): void;
   get(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  get(): any {
+    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), arguments);
   }
 
   /**
@@ -143,27 +124,8 @@ export class XMsClientRequestId {
   paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase): Promise<void>;
   paramGet(xMsClientRequestId: string, callback: msRest.ServiceCallback<void>): void;
   paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramGet(xMsClientRequestId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.paramGetWithHttpOperationResponse(xMsClientRequestId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.paramGetWithHttpOperationResponse(xMsClientRequestId, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+  paramGet(): any {
+    return msRest.responseToBody(this.paramGetWithHttpOperationResponse.bind(this), arguments);
   }
 
 }
