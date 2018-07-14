@@ -13,6 +13,6 @@
 @(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationTS(true, false))): Promise<@(Model.ReturnTypeTSString)>;
 @(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationWithCallbackTS(includeOptions: false))): void;
 @(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationWithCallbackTS(true, true))): void;
-@(Model.Name.ToCamelCase())(): any {
-  return msRest.responseToBody(this.@(Model.Name.ToCamelCase())WithHttpOperationResponse.bind(this), arguments);
+@(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationTS(true, true)), callback?: msRest.ServiceCallback<@(Model.ReturnTypeTSString)>): any {
+  return msRest.responseToBody(this.@(Model.Name.ToCamelCase())WithHttpOperationResponse.bind(this), @(Model.MethodParameterDeclaration), callback);
 }
