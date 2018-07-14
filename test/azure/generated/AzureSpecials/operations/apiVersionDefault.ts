@@ -118,8 +118,8 @@ export class ApiVersionDefault {
   getMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
   getMethodGlobalValid(callback: msRest.ServiceCallback<void>): void;
   getMethodGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodGlobalValid(): any {
-    return msRest.responseToBody(this.getMethodGlobalValidWithHttpOperationResponse.bind(this), arguments);
+  getMethodGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getMethodGlobalValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -140,8 +140,8 @@ export class ApiVersionDefault {
   getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<void>;
   getMethodGlobalNotProvidedValid(callback: msRest.ServiceCallback<void>): void;
   getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodGlobalNotProvidedValid(): any {
-    return msRest.responseToBody(this.getMethodGlobalNotProvidedValidWithHttpOperationResponse.bind(this), arguments);
+  getMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getMethodGlobalNotProvidedValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -162,8 +162,8 @@ export class ApiVersionDefault {
   getPathGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
   getPathGlobalValid(callback: msRest.ServiceCallback<void>): void;
   getPathGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathGlobalValid(): any {
-    return msRest.responseToBody(this.getPathGlobalValidWithHttpOperationResponse.bind(this), arguments);
+  getPathGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getPathGlobalValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -184,8 +184,8 @@ export class ApiVersionDefault {
   getSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
   getSwaggerGlobalValid(callback: msRest.ServiceCallback<void>): void;
   getSwaggerGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerGlobalValid(): any {
-    return msRest.responseToBody(this.getSwaggerGlobalValidWithHttpOperationResponse.bind(this), arguments);
+  getSwaggerGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getSwaggerGlobalValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

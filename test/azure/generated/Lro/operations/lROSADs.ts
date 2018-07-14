@@ -1304,8 +1304,8 @@ export class LROSADs {
   putNonRetry400(options: Models.LROSADsPutNonRetry400OptionalParams): Promise<Models.Product>;
   putNonRetry400(callback: msRest.ServiceCallback<Models.Product>): void;
   putNonRetry400(options: Models.LROSADsPutNonRetry400OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putNonRetry400(): any {
-    return msRest.responseToBody(this.putNonRetry400WithHttpOperationResponse.bind(this), arguments);
+  putNonRetry400(options?: Models.LROSADsPutNonRetry400OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putNonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1327,8 +1327,8 @@ export class LROSADs {
   putNonRetry201Creating400(options: Models.LROSADsPutNonRetry201Creating400OptionalParams): Promise<Models.Product>;
   putNonRetry201Creating400(callback: msRest.ServiceCallback<Models.Product>): void;
   putNonRetry201Creating400(options: Models.LROSADsPutNonRetry201Creating400OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putNonRetry201Creating400(): any {
-    return msRest.responseToBody(this.putNonRetry201Creating400WithHttpOperationResponse.bind(this), arguments);
+  putNonRetry201Creating400(options?: Models.LROSADsPutNonRetry201Creating400OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putNonRetry201Creating400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1351,8 +1351,8 @@ export class LROSADs {
   putNonRetry201Creating400InvalidJson(options: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.Product>;
   putNonRetry201Creating400InvalidJson(callback: msRest.ServiceCallback<Models.Product>): void;
   putNonRetry201Creating400InvalidJson(options: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putNonRetry201Creating400InvalidJson(): any {
-    return msRest.responseToBody(this.putNonRetry201Creating400InvalidJsonWithHttpOperationResponse.bind(this), arguments);
+  putNonRetry201Creating400InvalidJson(options?: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putNonRetry201Creating400InvalidJsonWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1374,8 +1374,8 @@ export class LROSADs {
   putAsyncRelativeRetry400(options: Models.LROSADsPutAsyncRelativeRetry400OptionalParams): Promise<Models.Product>;
   putAsyncRelativeRetry400(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncRelativeRetry400(options: Models.LROSADsPutAsyncRelativeRetry400OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetry400(): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetry400WithHttpOperationResponse.bind(this), arguments);
+  putAsyncRelativeRetry400(options?: Models.LROSADsPutAsyncRelativeRetry400OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putAsyncRelativeRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1396,8 +1396,8 @@ export class LROSADs {
   deleteNonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
   deleteNonRetry400(callback: msRest.ServiceCallback<void>): void;
   deleteNonRetry400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteNonRetry400(): any {
-    return msRest.responseToBody(this.deleteNonRetry400WithHttpOperationResponse.bind(this), arguments);
+  deleteNonRetry400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.deleteNonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1418,8 +1418,8 @@ export class LROSADs {
   delete202NonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
   delete202NonRetry400(callback: msRest.ServiceCallback<void>): void;
   delete202NonRetry400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  delete202NonRetry400(): any {
-    return msRest.responseToBody(this.delete202NonRetry400WithHttpOperationResponse.bind(this), arguments);
+  delete202NonRetry400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.delete202NonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1441,8 +1441,8 @@ export class LROSADs {
   deleteAsyncRelativeRetry400(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncRelativeRetry400(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncRelativeRetry400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetry400(): any {
-    return msRest.responseToBody(this.deleteAsyncRelativeRetry400WithHttpOperationResponse.bind(this), arguments);
+  deleteAsyncRelativeRetry400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.deleteAsyncRelativeRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1463,8 +1463,8 @@ export class LROSADs {
   postNonRetry400(options: Models.LROSADsPostNonRetry400OptionalParams): Promise<void>;
   postNonRetry400(callback: msRest.ServiceCallback<void>): void;
   postNonRetry400(options: Models.LROSADsPostNonRetry400OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postNonRetry400(): any {
-    return msRest.responseToBody(this.postNonRetry400WithHttpOperationResponse.bind(this), arguments);
+  postNonRetry400(options?: Models.LROSADsPostNonRetry400OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postNonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1485,8 +1485,8 @@ export class LROSADs {
   post202NonRetry400(options: Models.LROSADsPost202NonRetry400OptionalParams): Promise<void>;
   post202NonRetry400(callback: msRest.ServiceCallback<void>): void;
   post202NonRetry400(options: Models.LROSADsPost202NonRetry400OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202NonRetry400(): any {
-    return msRest.responseToBody(this.post202NonRetry400WithHttpOperationResponse.bind(this), arguments);
+  post202NonRetry400(options?: Models.LROSADsPost202NonRetry400OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post202NonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1508,8 +1508,8 @@ export class LROSADs {
   postAsyncRelativeRetry400(options: Models.LROSADsPostAsyncRelativeRetry400OptionalParams): Promise<void>;
   postAsyncRelativeRetry400(callback: msRest.ServiceCallback<void>): void;
   postAsyncRelativeRetry400(options: Models.LROSADsPostAsyncRelativeRetry400OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetry400(): any {
-    return msRest.responseToBody(this.postAsyncRelativeRetry400WithHttpOperationResponse.bind(this), arguments);
+  postAsyncRelativeRetry400(options?: Models.LROSADsPostAsyncRelativeRetry400OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postAsyncRelativeRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1531,8 +1531,8 @@ export class LROSADs {
   putError201NoProvisioningStatePayload(options: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.Product>;
   putError201NoProvisioningStatePayload(callback: msRest.ServiceCallback<Models.Product>): void;
   putError201NoProvisioningStatePayload(options: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putError201NoProvisioningStatePayload(): any {
-    return msRest.responseToBody(this.putError201NoProvisioningStatePayloadWithHttpOperationResponse.bind(this), arguments);
+  putError201NoProvisioningStatePayload(options?: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putError201NoProvisioningStatePayloadWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1555,8 +1555,8 @@ export class LROSADs {
   putAsyncRelativeRetryNoStatus(options: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.Product>;
   putAsyncRelativeRetryNoStatus(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncRelativeRetryNoStatus(options: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryNoStatus(): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), arguments);
+  putAsyncRelativeRetryNoStatus(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1580,8 +1580,8 @@ export class LROSADs {
   putAsyncRelativeRetryNoStatusPayload(options: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.Product>;
   putAsyncRelativeRetryNoStatusPayload(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncRelativeRetryNoStatusPayload(options: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryNoStatusPayload(): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse.bind(this), arguments);
+  putAsyncRelativeRetryNoStatusPayload(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1602,8 +1602,8 @@ export class LROSADs {
   delete204Succeeded(options: msRest.RequestOptionsBase): Promise<void>;
   delete204Succeeded(callback: msRest.ServiceCallback<void>): void;
   delete204Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  delete204Succeeded(): any {
-    return msRest.responseToBody(this.delete204SucceededWithHttpOperationResponse.bind(this), arguments);
+  delete204Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.delete204SucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1625,8 +1625,8 @@ export class LROSADs {
   deleteAsyncRelativeRetryNoStatus(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncRelativeRetryNoStatus(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncRelativeRetryNoStatus(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetryNoStatus(): any {
-    return msRest.responseToBody(this.deleteAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), arguments);
+  deleteAsyncRelativeRetryNoStatus(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.deleteAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1648,8 +1648,8 @@ export class LROSADs {
   post202NoLocation(options: Models.LROSADsPost202NoLocationOptionalParams): Promise<void>;
   post202NoLocation(callback: msRest.ServiceCallback<void>): void;
   post202NoLocation(options: Models.LROSADsPost202NoLocationOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202NoLocation(): any {
-    return msRest.responseToBody(this.post202NoLocationWithHttpOperationResponse.bind(this), arguments);
+  post202NoLocation(options?: Models.LROSADsPost202NoLocationOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post202NoLocationWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1672,8 +1672,8 @@ export class LROSADs {
   postAsyncRelativeRetryNoPayload(options: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<void>;
   postAsyncRelativeRetryNoPayload(callback: msRest.ServiceCallback<void>): void;
   postAsyncRelativeRetryNoPayload(options: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetryNoPayload(): any {
-    return msRest.responseToBody(this.postAsyncRelativeRetryNoPayloadWithHttpOperationResponse.bind(this), arguments);
+  postAsyncRelativeRetryNoPayload(options?: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postAsyncRelativeRetryNoPayloadWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1695,8 +1695,8 @@ export class LROSADs {
   put200InvalidJson(options: Models.LROSADsPut200InvalidJsonOptionalParams): Promise<Models.Product>;
   put200InvalidJson(callback: msRest.ServiceCallback<Models.Product>): void;
   put200InvalidJson(options: Models.LROSADsPut200InvalidJsonOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put200InvalidJson(): any {
-    return msRest.responseToBody(this.put200InvalidJsonWithHttpOperationResponse.bind(this), arguments);
+  put200InvalidJson(options?: Models.LROSADsPut200InvalidJsonOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.put200InvalidJsonWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1719,8 +1719,8 @@ export class LROSADs {
   putAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.Product>;
   putAsyncRelativeRetryInvalidHeader(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryInvalidHeader(): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  putAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1744,8 +1744,8 @@ export class LROSADs {
   putAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.Product>;
   putAsyncRelativeRetryInvalidJsonPolling(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryInvalidJsonPolling(): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), arguments);
+  putAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1767,8 +1767,8 @@ export class LROSADs {
   delete202RetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
   delete202RetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
   delete202RetryInvalidHeader(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  delete202RetryInvalidHeader(): any {
-    return msRest.responseToBody(this.delete202RetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  delete202RetryInvalidHeader(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.delete202RetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1790,8 +1790,8 @@ export class LROSADs {
   deleteAsyncRelativeRetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncRelativeRetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncRelativeRetryInvalidHeader(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetryInvalidHeader(): any {
-    return msRest.responseToBody(this.deleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  deleteAsyncRelativeRetryInvalidHeader(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.deleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1813,8 +1813,8 @@ export class LROSADs {
   deleteAsyncRelativeRetryInvalidJsonPolling(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncRelativeRetryInvalidJsonPolling(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncRelativeRetryInvalidJsonPolling(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetryInvalidJsonPolling(): any {
-    return msRest.responseToBody(this.deleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), arguments);
+  deleteAsyncRelativeRetryInvalidJsonPolling(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.deleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1836,8 +1836,8 @@ export class LROSADs {
   post202RetryInvalidHeader(options: Models.LROSADsPost202RetryInvalidHeaderOptionalParams): Promise<void>;
   post202RetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
   post202RetryInvalidHeader(options: Models.LROSADsPost202RetryInvalidHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202RetryInvalidHeader(): any {
-    return msRest.responseToBody(this.post202RetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  post202RetryInvalidHeader(options?: Models.LROSADsPost202RetryInvalidHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post202RetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1860,8 +1860,8 @@ export class LROSADs {
   postAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<void>;
   postAsyncRelativeRetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
   postAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetryInvalidHeader(): any {
-    return msRest.responseToBody(this.postAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  postAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1885,8 +1885,8 @@ export class LROSADs {
   postAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<void>;
   postAsyncRelativeRetryInvalidJsonPolling(callback: msRest.ServiceCallback<void>): void;
   postAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetryInvalidJsonPolling(): any {
-    return msRest.responseToBody(this.postAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), arguments);
+  postAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1907,8 +1907,8 @@ export class LROSADs {
   beginPutNonRetry400(options: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<Models.Product>;
   beginPutNonRetry400(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutNonRetry400(options: Models.LROSADsBeginPutNonRetry400OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutNonRetry400(): any {
-    return msRest.responseToBody(this.beginPutNonRetry400WithHttpOperationResponse.bind(this), arguments);
+  beginPutNonRetry400(options?: Models.LROSADsBeginPutNonRetry400OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutNonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1930,8 +1930,8 @@ export class LROSADs {
   beginPutNonRetry201Creating400(options: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<Models.Product>;
   beginPutNonRetry201Creating400(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutNonRetry201Creating400(options: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutNonRetry201Creating400(): any {
-    return msRest.responseToBody(this.beginPutNonRetry201Creating400WithHttpOperationResponse.bind(this), arguments);
+  beginPutNonRetry201Creating400(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutNonRetry201Creating400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1954,8 +1954,8 @@ export class LROSADs {
   beginPutNonRetry201Creating400InvalidJson(options: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.Product>;
   beginPutNonRetry201Creating400InvalidJson(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutNonRetry201Creating400InvalidJson(options: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutNonRetry201Creating400InvalidJson(): any {
-    return msRest.responseToBody(this.beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse.bind(this), arguments);
+  beginPutNonRetry201Creating400InvalidJson(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1977,8 +1977,8 @@ export class LROSADs {
   beginPutAsyncRelativeRetry400(options: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams): Promise<Models.Product>;
   beginPutAsyncRelativeRetry400(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncRelativeRetry400(options: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRelativeRetry400(): any {
-    return msRest.responseToBody(this.beginPutAsyncRelativeRetry400WithHttpOperationResponse.bind(this), arguments);
+  beginPutAsyncRelativeRetry400(options?: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutAsyncRelativeRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1999,8 +1999,8 @@ export class LROSADs {
   beginDeleteNonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteNonRetry400(callback: msRest.ServiceCallback<void>): void;
   beginDeleteNonRetry400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteNonRetry400(): any {
-    return msRest.responseToBody(this.beginDeleteNonRetry400WithHttpOperationResponse.bind(this), arguments);
+  beginDeleteNonRetry400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDeleteNonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2021,8 +2021,8 @@ export class LROSADs {
   beginDelete202NonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
   beginDelete202NonRetry400(callback: msRest.ServiceCallback<void>): void;
   beginDelete202NonRetry400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDelete202NonRetry400(): any {
-    return msRest.responseToBody(this.beginDelete202NonRetry400WithHttpOperationResponse.bind(this), arguments);
+  beginDelete202NonRetry400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDelete202NonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2044,8 +2044,8 @@ export class LROSADs {
   beginDeleteAsyncRelativeRetry400(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncRelativeRetry400(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncRelativeRetry400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRelativeRetry400(): any {
-    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetry400WithHttpOperationResponse.bind(this), arguments);
+  beginDeleteAsyncRelativeRetry400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2066,8 +2066,8 @@ export class LROSADs {
   beginPostNonRetry400(options: Models.LROSADsBeginPostNonRetry400OptionalParams): Promise<void>;
   beginPostNonRetry400(callback: msRest.ServiceCallback<void>): void;
   beginPostNonRetry400(options: Models.LROSADsBeginPostNonRetry400OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostNonRetry400(): any {
-    return msRest.responseToBody(this.beginPostNonRetry400WithHttpOperationResponse.bind(this), arguments);
+  beginPostNonRetry400(options?: Models.LROSADsBeginPostNonRetry400OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPostNonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2088,8 +2088,8 @@ export class LROSADs {
   beginPost202NonRetry400(options: Models.LROSADsBeginPost202NonRetry400OptionalParams): Promise<void>;
   beginPost202NonRetry400(callback: msRest.ServiceCallback<void>): void;
   beginPost202NonRetry400(options: Models.LROSADsBeginPost202NonRetry400OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPost202NonRetry400(): any {
-    return msRest.responseToBody(this.beginPost202NonRetry400WithHttpOperationResponse.bind(this), arguments);
+  beginPost202NonRetry400(options?: Models.LROSADsBeginPost202NonRetry400OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPost202NonRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2111,8 +2111,8 @@ export class LROSADs {
   beginPostAsyncRelativeRetry400(options: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams): Promise<void>;
   beginPostAsyncRelativeRetry400(callback: msRest.ServiceCallback<void>): void;
   beginPostAsyncRelativeRetry400(options: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRelativeRetry400(): any {
-    return msRest.responseToBody(this.beginPostAsyncRelativeRetry400WithHttpOperationResponse.bind(this), arguments);
+  beginPostAsyncRelativeRetry400(options?: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPostAsyncRelativeRetry400WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2134,8 +2134,8 @@ export class LROSADs {
   beginPutError201NoProvisioningStatePayload(options: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.Product>;
   beginPutError201NoProvisioningStatePayload(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutError201NoProvisioningStatePayload(options: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutError201NoProvisioningStatePayload(): any {
-    return msRest.responseToBody(this.beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse.bind(this), arguments);
+  beginPutError201NoProvisioningStatePayload(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2158,8 +2158,8 @@ export class LROSADs {
   beginPutAsyncRelativeRetryNoStatus(options: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.Product>;
   beginPutAsyncRelativeRetryNoStatus(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncRelativeRetryNoStatus(options: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRelativeRetryNoStatus(): any {
-    return msRest.responseToBody(this.beginPutAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), arguments);
+  beginPutAsyncRelativeRetryNoStatus(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2183,8 +2183,8 @@ export class LROSADs {
   beginPutAsyncRelativeRetryNoStatusPayload(options: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.Product>;
   beginPutAsyncRelativeRetryNoStatusPayload(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncRelativeRetryNoStatusPayload(options: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRelativeRetryNoStatusPayload(): any {
-    return msRest.responseToBody(this.beginPutAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse.bind(this), arguments);
+  beginPutAsyncRelativeRetryNoStatusPayload(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2205,8 +2205,8 @@ export class LROSADs {
   beginDelete204Succeeded(options: msRest.RequestOptionsBase): Promise<void>;
   beginDelete204Succeeded(callback: msRest.ServiceCallback<void>): void;
   beginDelete204Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDelete204Succeeded(): any {
-    return msRest.responseToBody(this.beginDelete204SucceededWithHttpOperationResponse.bind(this), arguments);
+  beginDelete204Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDelete204SucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2228,8 +2228,8 @@ export class LROSADs {
   beginDeleteAsyncRelativeRetryNoStatus(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncRelativeRetryNoStatus(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncRelativeRetryNoStatus(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRelativeRetryNoStatus(): any {
-    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), arguments);
+  beginDeleteAsyncRelativeRetryNoStatus(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2251,8 +2251,8 @@ export class LROSADs {
   beginPost202NoLocation(options: Models.LROSADsBeginPost202NoLocationOptionalParams): Promise<void>;
   beginPost202NoLocation(callback: msRest.ServiceCallback<void>): void;
   beginPost202NoLocation(options: Models.LROSADsBeginPost202NoLocationOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPost202NoLocation(): any {
-    return msRest.responseToBody(this.beginPost202NoLocationWithHttpOperationResponse.bind(this), arguments);
+  beginPost202NoLocation(options?: Models.LROSADsBeginPost202NoLocationOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPost202NoLocationWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2276,8 +2276,8 @@ export class LROSADs {
   beginPostAsyncRelativeRetryNoPayload(options: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<void>;
   beginPostAsyncRelativeRetryNoPayload(callback: msRest.ServiceCallback<void>): void;
   beginPostAsyncRelativeRetryNoPayload(options: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRelativeRetryNoPayload(): any {
-    return msRest.responseToBody(this.beginPostAsyncRelativeRetryNoPayloadWithHttpOperationResponse.bind(this), arguments);
+  beginPostAsyncRelativeRetryNoPayload(options?: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPostAsyncRelativeRetryNoPayloadWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2299,8 +2299,8 @@ export class LROSADs {
   beginPut200InvalidJson(options: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<Models.Product>;
   beginPut200InvalidJson(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut200InvalidJson(options: Models.LROSADsBeginPut200InvalidJsonOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200InvalidJson(): any {
-    return msRest.responseToBody(this.beginPut200InvalidJsonWithHttpOperationResponse.bind(this), arguments);
+  beginPut200InvalidJson(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPut200InvalidJsonWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2324,8 +2324,8 @@ export class LROSADs {
   beginPutAsyncRelativeRetryInvalidHeader(options: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.Product>;
   beginPutAsyncRelativeRetryInvalidHeader(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncRelativeRetryInvalidHeader(options: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRelativeRetryInvalidHeader(): any {
-    return msRest.responseToBody(this.beginPutAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  beginPutAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2349,8 +2349,8 @@ export class LROSADs {
   beginPutAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.Product>;
   beginPutAsyncRelativeRetryInvalidJsonPolling(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRelativeRetryInvalidJsonPolling(): any {
-    return msRest.responseToBody(this.beginPutAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), arguments);
+  beginPutAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2372,8 +2372,8 @@ export class LROSADs {
   beginDelete202RetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
   beginDelete202RetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
   beginDelete202RetryInvalidHeader(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDelete202RetryInvalidHeader(): any {
-    return msRest.responseToBody(this.beginDelete202RetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  beginDelete202RetryInvalidHeader(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDelete202RetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2395,8 +2395,8 @@ export class LROSADs {
   beginDeleteAsyncRelativeRetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncRelativeRetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncRelativeRetryInvalidHeader(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRelativeRetryInvalidHeader(): any {
-    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  beginDeleteAsyncRelativeRetryInvalidHeader(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2418,8 +2418,8 @@ export class LROSADs {
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRelativeRetryInvalidJsonPolling(): any {
-    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), arguments);
+  beginDeleteAsyncRelativeRetryInvalidJsonPolling(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2441,8 +2441,8 @@ export class LROSADs {
   beginPost202RetryInvalidHeader(options: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams): Promise<void>;
   beginPost202RetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
   beginPost202RetryInvalidHeader(options: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPost202RetryInvalidHeader(): any {
-    return msRest.responseToBody(this.beginPost202RetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  beginPost202RetryInvalidHeader(options?: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPost202RetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2466,8 +2466,8 @@ export class LROSADs {
   beginPostAsyncRelativeRetryInvalidHeader(options: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<void>;
   beginPostAsyncRelativeRetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
   beginPostAsyncRelativeRetryInvalidHeader(options: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRelativeRetryInvalidHeader(): any {
-    return msRest.responseToBody(this.beginPostAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), arguments);
+  beginPostAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPostAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2491,8 +2491,8 @@ export class LROSADs {
   beginPostAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<void>;
   beginPostAsyncRelativeRetryInvalidJsonPolling(callback: msRest.ServiceCallback<void>): void;
   beginPostAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRelativeRetryInvalidJsonPolling(): any {
-    return msRest.responseToBody(this.beginPostAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), arguments);
+  beginPostAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPostAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

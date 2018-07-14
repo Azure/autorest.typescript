@@ -1343,8 +1343,8 @@ export class ArrayModel {
   getNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getNull(callback: msRest.ServiceCallback<number[]>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1365,8 +1365,8 @@ export class ArrayModel {
   getInvalid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getInvalid(callback: msRest.ServiceCallback<number[]>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getInvalid(): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1387,8 +1387,8 @@ export class ArrayModel {
   getEmpty(options: msRest.RequestOptionsBase): Promise<number[]>;
   getEmpty(callback: msRest.ServiceCallback<number[]>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getEmpty(): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1411,8 +1411,8 @@ export class ArrayModel {
   putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
   putEmpty(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arguments);
+  putEmpty(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -1433,8 +1433,8 @@ export class ArrayModel {
   getBooleanTfft(options: msRest.RequestOptionsBase): Promise<boolean[]>;
   getBooleanTfft(callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanTfft(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanTfft(): any {
-    return msRest.responseToBody(this.getBooleanTfftWithHttpOperationResponse.bind(this), arguments);
+  getBooleanTfft(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): any {
+    return msRest.responseToBody(this.getBooleanTfftWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1457,8 +1457,8 @@ export class ArrayModel {
   putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase): Promise<void>;
   putBooleanTfft(arrayBody: boolean[], callback: msRest.ServiceCallback<void>): void;
   putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBooleanTfft(): any {
-    return msRest.responseToBody(this.putBooleanTfftWithHttpOperationResponse.bind(this), arguments);
+  putBooleanTfft(arrayBody: boolean[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBooleanTfftWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -1479,8 +1479,8 @@ export class ArrayModel {
   getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<boolean[]>;
   getBooleanInvalidNull(callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanInvalidNull(): any {
-    return msRest.responseToBody(this.getBooleanInvalidNullWithHttpOperationResponse.bind(this), arguments);
+  getBooleanInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): any {
+    return msRest.responseToBody(this.getBooleanInvalidNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1501,8 +1501,8 @@ export class ArrayModel {
   getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<boolean[]>;
   getBooleanInvalidString(callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanInvalidString(): any {
-    return msRest.responseToBody(this.getBooleanInvalidStringWithHttpOperationResponse.bind(this), arguments);
+  getBooleanInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): any {
+    return msRest.responseToBody(this.getBooleanInvalidStringWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1523,8 +1523,8 @@ export class ArrayModel {
   getIntegerValid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getIntegerValid(callback: msRest.ServiceCallback<number[]>): void;
   getIntegerValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntegerValid(): any {
-    return msRest.responseToBody(this.getIntegerValidWithHttpOperationResponse.bind(this), arguments);
+  getIntegerValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getIntegerValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1547,8 +1547,8 @@ export class ArrayModel {
   putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
   putIntegerValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putIntegerValid(): any {
-    return msRest.responseToBody(this.putIntegerValidWithHttpOperationResponse.bind(this), arguments);
+  putIntegerValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putIntegerValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -1569,8 +1569,8 @@ export class ArrayModel {
   getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getIntInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getIntInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntInvalidNull(): any {
-    return msRest.responseToBody(this.getIntInvalidNullWithHttpOperationResponse.bind(this), arguments);
+  getIntInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getIntInvalidNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1591,8 +1591,8 @@ export class ArrayModel {
   getIntInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
   getIntInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getIntInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntInvalidString(): any {
-    return msRest.responseToBody(this.getIntInvalidStringWithHttpOperationResponse.bind(this), arguments);
+  getIntInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getIntInvalidStringWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1613,8 +1613,8 @@ export class ArrayModel {
   getLongValid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getLongValid(callback: msRest.ServiceCallback<number[]>): void;
   getLongValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongValid(): any {
-    return msRest.responseToBody(this.getLongValidWithHttpOperationResponse.bind(this), arguments);
+  getLongValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getLongValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1637,8 +1637,8 @@ export class ArrayModel {
   putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
   putLongValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLongValid(): any {
-    return msRest.responseToBody(this.putLongValidWithHttpOperationResponse.bind(this), arguments);
+  putLongValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putLongValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -1659,8 +1659,8 @@ export class ArrayModel {
   getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getLongInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getLongInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongInvalidNull(): any {
-    return msRest.responseToBody(this.getLongInvalidNullWithHttpOperationResponse.bind(this), arguments);
+  getLongInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getLongInvalidNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1681,8 +1681,8 @@ export class ArrayModel {
   getLongInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
   getLongInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getLongInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongInvalidString(): any {
-    return msRest.responseToBody(this.getLongInvalidStringWithHttpOperationResponse.bind(this), arguments);
+  getLongInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getLongInvalidStringWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1703,8 +1703,8 @@ export class ArrayModel {
   getFloatValid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getFloatValid(callback: msRest.ServiceCallback<number[]>): void;
   getFloatValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatValid(): any {
-    return msRest.responseToBody(this.getFloatValidWithHttpOperationResponse.bind(this), arguments);
+  getFloatValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getFloatValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1727,8 +1727,8 @@ export class ArrayModel {
   putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
   putFloatValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFloatValid(): any {
-    return msRest.responseToBody(this.putFloatValidWithHttpOperationResponse.bind(this), arguments);
+  putFloatValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putFloatValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -1749,8 +1749,8 @@ export class ArrayModel {
   getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getFloatInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getFloatInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatInvalidNull(): any {
-    return msRest.responseToBody(this.getFloatInvalidNullWithHttpOperationResponse.bind(this), arguments);
+  getFloatInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getFloatInvalidNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1771,8 +1771,8 @@ export class ArrayModel {
   getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
   getFloatInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getFloatInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatInvalidString(): any {
-    return msRest.responseToBody(this.getFloatInvalidStringWithHttpOperationResponse.bind(this), arguments);
+  getFloatInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getFloatInvalidStringWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1793,8 +1793,8 @@ export class ArrayModel {
   getDoubleValid(options: msRest.RequestOptionsBase): Promise<number[]>;
   getDoubleValid(callback: msRest.ServiceCallback<number[]>): void;
   getDoubleValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleValid(): any {
-    return msRest.responseToBody(this.getDoubleValidWithHttpOperationResponse.bind(this), arguments);
+  getDoubleValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getDoubleValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1817,8 +1817,8 @@ export class ArrayModel {
   putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
   putDoubleValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDoubleValid(): any {
-    return msRest.responseToBody(this.putDoubleValidWithHttpOperationResponse.bind(this), arguments);
+  putDoubleValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDoubleValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -1839,8 +1839,8 @@ export class ArrayModel {
   getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
   getDoubleInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getDoubleInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleInvalidNull(): any {
-    return msRest.responseToBody(this.getDoubleInvalidNullWithHttpOperationResponse.bind(this), arguments);
+  getDoubleInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getDoubleInvalidNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1861,8 +1861,8 @@ export class ArrayModel {
   getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
   getDoubleInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getDoubleInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleInvalidString(): any {
-    return msRest.responseToBody(this.getDoubleInvalidStringWithHttpOperationResponse.bind(this), arguments);
+  getDoubleInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
+    return msRest.responseToBody(this.getDoubleInvalidStringWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1883,8 +1883,8 @@ export class ArrayModel {
   getStringValid(options: msRest.RequestOptionsBase): Promise<string[]>;
   getStringValid(callback: msRest.ServiceCallback<string[]>): void;
   getStringValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringValid(): any {
-    return msRest.responseToBody(this.getStringValidWithHttpOperationResponse.bind(this), arguments);
+  getStringValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
+    return msRest.responseToBody(this.getStringValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1907,8 +1907,8 @@ export class ArrayModel {
   putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
   putStringValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putStringValid(): any {
-    return msRest.responseToBody(this.putStringValidWithHttpOperationResponse.bind(this), arguments);
+  putStringValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putStringValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -1929,8 +1929,8 @@ export class ArrayModel {
   getStringWithNull(options: msRest.RequestOptionsBase): Promise<string[]>;
   getStringWithNull(callback: msRest.ServiceCallback<string[]>): void;
   getStringWithNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringWithNull(): any {
-    return msRest.responseToBody(this.getStringWithNullWithHttpOperationResponse.bind(this), arguments);
+  getStringWithNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
+    return msRest.responseToBody(this.getStringWithNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1951,8 +1951,8 @@ export class ArrayModel {
   getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<string[]>;
   getStringWithInvalid(callback: msRest.ServiceCallback<string[]>): void;
   getStringWithInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringWithInvalid(): any {
-    return msRest.responseToBody(this.getStringWithInvalidWithHttpOperationResponse.bind(this), arguments);
+  getStringWithInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
+    return msRest.responseToBody(this.getStringWithInvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1974,8 +1974,8 @@ export class ArrayModel {
   getUuidValid(options: msRest.RequestOptionsBase): Promise<string[]>;
   getUuidValid(callback: msRest.ServiceCallback<string[]>): void;
   getUuidValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getUuidValid(): any {
-    return msRest.responseToBody(this.getUuidValidWithHttpOperationResponse.bind(this), arguments);
+  getUuidValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
+    return msRest.responseToBody(this.getUuidValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1999,8 +1999,8 @@ export class ArrayModel {
   putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
   putUuidValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUuidValid(): any {
-    return msRest.responseToBody(this.putUuidValidWithHttpOperationResponse.bind(this), arguments);
+  putUuidValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putUuidValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -2021,8 +2021,8 @@ export class ArrayModel {
   getUuidInvalidChars(options: msRest.RequestOptionsBase): Promise<string[]>;
   getUuidInvalidChars(callback: msRest.ServiceCallback<string[]>): void;
   getUuidInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getUuidInvalidChars(): any {
-    return msRest.responseToBody(this.getUuidInvalidCharsWithHttpOperationResponse.bind(this), arguments);
+  getUuidInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
+    return msRest.responseToBody(this.getUuidInvalidCharsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2043,8 +2043,8 @@ export class ArrayModel {
   getDateValid(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateValid(): any {
-    return msRest.responseToBody(this.getDateValidWithHttpOperationResponse.bind(this), arguments);
+  getDateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
+    return msRest.responseToBody(this.getDateValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2067,8 +2067,8 @@ export class ArrayModel {
   putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<void>;
   putDateValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateValid(): any {
-    return msRest.responseToBody(this.putDateValidWithHttpOperationResponse.bind(this), arguments);
+  putDateValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDateValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -2089,8 +2089,8 @@ export class ArrayModel {
   getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateInvalidNull(): any {
-    return msRest.responseToBody(this.getDateInvalidNullWithHttpOperationResponse.bind(this), arguments);
+  getDateInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
+    return msRest.responseToBody(this.getDateInvalidNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2111,8 +2111,8 @@ export class ArrayModel {
   getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateInvalidChars(): any {
-    return msRest.responseToBody(this.getDateInvalidCharsWithHttpOperationResponse.bind(this), arguments);
+  getDateInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
+    return msRest.responseToBody(this.getDateInvalidCharsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2134,8 +2134,8 @@ export class ArrayModel {
   getDateTimeValid(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateTimeValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeValid(): any {
-    return msRest.responseToBody(this.getDateTimeValidWithHttpOperationResponse.bind(this), arguments);
+  getDateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
+    return msRest.responseToBody(this.getDateTimeValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2159,8 +2159,8 @@ export class ArrayModel {
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<void>;
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeValid(): any {
-    return msRest.responseToBody(this.putDateTimeValidWithHttpOperationResponse.bind(this), arguments);
+  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDateTimeValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -2181,8 +2181,8 @@ export class ArrayModel {
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateTimeInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeInvalidNull(): any {
-    return msRest.responseToBody(this.getDateTimeInvalidNullWithHttpOperationResponse.bind(this), arguments);
+  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
+    return msRest.responseToBody(this.getDateTimeInvalidNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2203,8 +2203,8 @@ export class ArrayModel {
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateTimeInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeInvalidChars(): any {
-    return msRest.responseToBody(this.getDateTimeInvalidCharsWithHttpOperationResponse.bind(this), arguments);
+  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
+    return msRest.responseToBody(this.getDateTimeInvalidCharsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2226,8 +2226,8 @@ export class ArrayModel {
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
   getDateTimeRfc1123Valid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeRfc1123Valid(): any {
-    return msRest.responseToBody(this.getDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), arguments);
+  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
+    return msRest.responseToBody(this.getDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2251,8 +2251,8 @@ export class ArrayModel {
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<void>;
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeRfc1123Valid(): any {
-    return msRest.responseToBody(this.putDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), arguments);
+  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -2273,8 +2273,8 @@ export class ArrayModel {
   getDurationValid(options: msRest.RequestOptionsBase): Promise<string[]>;
   getDurationValid(callback: msRest.ServiceCallback<string[]>): void;
   getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getDurationValid(): any {
-    return msRest.responseToBody(this.getDurationValidWithHttpOperationResponse.bind(this), arguments);
+  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
+    return msRest.responseToBody(this.getDurationValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2297,8 +2297,8 @@ export class ArrayModel {
   putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
   putDurationValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(): any {
-    return msRest.responseToBody(this.putDurationValidWithHttpOperationResponse.bind(this), arguments);
+  putDurationValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDurationValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -2320,8 +2320,8 @@ export class ArrayModel {
   getByteValid(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
   getByteValid(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getByteValid(): any {
-    return msRest.responseToBody(this.getByteValidWithHttpOperationResponse.bind(this), arguments);
+  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
+    return msRest.responseToBody(this.getByteValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2345,8 +2345,8 @@ export class ArrayModel {
   putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase): Promise<void>;
   putByteValid(arrayBody: Uint8Array[], callback: msRest.ServiceCallback<void>): void;
   putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putByteValid(): any {
-    return msRest.responseToBody(this.putByteValidWithHttpOperationResponse.bind(this), arguments);
+  putByteValid(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putByteValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -2367,8 +2367,8 @@ export class ArrayModel {
   getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
   getByteInvalidNull(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getByteInvalidNull(): any {
-    return msRest.responseToBody(this.getByteInvalidNullWithHttpOperationResponse.bind(this), arguments);
+  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
+    return msRest.responseToBody(this.getByteInvalidNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2390,8 +2390,8 @@ export class ArrayModel {
   getBase64Url(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
   getBase64Url(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getBase64Url(): any {
-    return msRest.responseToBody(this.getBase64UrlWithHttpOperationResponse.bind(this), arguments);
+  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
+    return msRest.responseToBody(this.getBase64UrlWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2412,8 +2412,8 @@ export class ArrayModel {
   getComplexNull(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexNull(): any {
-    return msRest.responseToBody(this.getComplexNullWithHttpOperationResponse.bind(this), arguments);
+  getComplexNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
+    return msRest.responseToBody(this.getComplexNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2434,8 +2434,8 @@ export class ArrayModel {
   getComplexEmpty(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexEmpty(): any {
-    return msRest.responseToBody(this.getComplexEmptyWithHttpOperationResponse.bind(this), arguments);
+  getComplexEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
+    return msRest.responseToBody(this.getComplexEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2457,8 +2457,8 @@ export class ArrayModel {
   getComplexItemNull(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexItemNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexItemNull(): any {
-    return msRest.responseToBody(this.getComplexItemNullWithHttpOperationResponse.bind(this), arguments);
+  getComplexItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
+    return msRest.responseToBody(this.getComplexItemNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2480,8 +2480,8 @@ export class ArrayModel {
   getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexItemEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexItemEmpty(): any {
-    return msRest.responseToBody(this.getComplexItemEmptyWithHttpOperationResponse.bind(this), arguments);
+  getComplexItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
+    return msRest.responseToBody(this.getComplexItemEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2503,8 +2503,8 @@ export class ArrayModel {
   getComplexValid(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
   getComplexValid(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexValid(): any {
-    return msRest.responseToBody(this.getComplexValidWithHttpOperationResponse.bind(this), arguments);
+  getComplexValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
+    return msRest.responseToBody(this.getComplexValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2528,8 +2528,8 @@ export class ArrayModel {
   putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase): Promise<void>;
   putComplexValid(arrayBody: Models.Product[], callback: msRest.ServiceCallback<void>): void;
   putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexValid(): any {
-    return msRest.responseToBody(this.putComplexValidWithHttpOperationResponse.bind(this), arguments);
+  putComplexValid(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putComplexValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -2550,8 +2550,8 @@ export class ArrayModel {
   getArrayNull(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayNull(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayNull(): any {
-    return msRest.responseToBody(this.getArrayNullWithHttpOperationResponse.bind(this), arguments);
+  getArrayNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
+    return msRest.responseToBody(this.getArrayNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2572,8 +2572,8 @@ export class ArrayModel {
   getArrayEmpty(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayEmpty(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayEmpty(): any {
-    return msRest.responseToBody(this.getArrayEmptyWithHttpOperationResponse.bind(this), arguments);
+  getArrayEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
+    return msRest.responseToBody(this.getArrayEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2594,8 +2594,8 @@ export class ArrayModel {
   getArrayItemNull(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayItemNull(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayItemNull(): any {
-    return msRest.responseToBody(this.getArrayItemNullWithHttpOperationResponse.bind(this), arguments);
+  getArrayItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
+    return msRest.responseToBody(this.getArrayItemNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2616,8 +2616,8 @@ export class ArrayModel {
   getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayItemEmpty(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayItemEmpty(): any {
-    return msRest.responseToBody(this.getArrayItemEmptyWithHttpOperationResponse.bind(this), arguments);
+  getArrayItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
+    return msRest.responseToBody(this.getArrayItemEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2638,8 +2638,8 @@ export class ArrayModel {
   getArrayValid(options: msRest.RequestOptionsBase): Promise<string[][]>;
   getArrayValid(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayValid(): any {
-    return msRest.responseToBody(this.getArrayValidWithHttpOperationResponse.bind(this), arguments);
+  getArrayValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
+    return msRest.responseToBody(this.getArrayValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2662,8 +2662,8 @@ export class ArrayModel {
   putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase): Promise<void>;
   putArrayValid(arrayBody: string[][], callback: msRest.ServiceCallback<void>): void;
   putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putArrayValid(): any {
-    return msRest.responseToBody(this.putArrayValidWithHttpOperationResponse.bind(this), arguments);
+  putArrayValid(arrayBody: string[][], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putArrayValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -2684,8 +2684,8 @@ export class ArrayModel {
   getDictionaryNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryNull(): any {
-    return msRest.responseToBody(this.getDictionaryNullWithHttpOperationResponse.bind(this), arguments);
+  getDictionaryNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
+    return msRest.responseToBody(this.getDictionaryNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2706,8 +2706,8 @@ export class ArrayModel {
   getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryEmpty(): any {
-    return msRest.responseToBody(this.getDictionaryEmptyWithHttpOperationResponse.bind(this), arguments);
+  getDictionaryEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
+    return msRest.responseToBody(this.getDictionaryEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2729,8 +2729,8 @@ export class ArrayModel {
   getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryItemNull(): any {
-    return msRest.responseToBody(this.getDictionaryItemNullWithHttpOperationResponse.bind(this), arguments);
+  getDictionaryItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
+    return msRest.responseToBody(this.getDictionaryItemNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2752,8 +2752,8 @@ export class ArrayModel {
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryItemEmpty(): any {
-    return msRest.responseToBody(this.getDictionaryItemEmptyWithHttpOperationResponse.bind(this), arguments);
+  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
+    return msRest.responseToBody(this.getDictionaryItemEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2775,8 +2775,8 @@ export class ArrayModel {
   getDictionaryValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
   getDictionaryValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryValid(): any {
-    return msRest.responseToBody(this.getDictionaryValidWithHttpOperationResponse.bind(this), arguments);
+  getDictionaryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
+    return msRest.responseToBody(this.getDictionaryValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2800,8 +2800,8 @@ export class ArrayModel {
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase): Promise<void>;
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], callback: msRest.ServiceCallback<void>): void;
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDictionaryValid(): any {
-    return msRest.responseToBody(this.putDictionaryValidWithHttpOperationResponse.bind(this), arguments);
+  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putDictionaryValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
 }

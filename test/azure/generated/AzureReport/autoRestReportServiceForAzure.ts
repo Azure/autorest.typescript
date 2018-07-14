@@ -83,8 +83,8 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<{ [propertyName: string]: number }>;
   getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(): any {
-    return msRest.responseToBody(this.getReportWithHttpOperationResponse.bind(this), arguments);
+  getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
+    return msRest.responseToBody(this.getReportWithHttpOperationResponse.bind(this), options, callback);
   }
 }
 

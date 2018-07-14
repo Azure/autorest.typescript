@@ -142,8 +142,8 @@ export class SubscriptionInMethod {
   postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
   postMethodLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalValid(): any {
-    return msRest.responseToBody(this.postMethodLocalValidWithHttpOperationResponse.bind(this), arguments);
+  postMethodLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postMethodLocalValidWithHttpOperationResponse.bind(this), subscriptionId, options, callback);
   }
 
   /**
@@ -168,8 +168,8 @@ export class SubscriptionInMethod {
   postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
   postMethodLocalNull(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalNull(): any {
-    return msRest.responseToBody(this.postMethodLocalNullWithHttpOperationResponse.bind(this), arguments);
+  postMethodLocalNull(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postMethodLocalNullWithHttpOperationResponse.bind(this), subscriptionId, options, callback);
   }
 
   /**
@@ -194,8 +194,8 @@ export class SubscriptionInMethod {
   postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
   postPathLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postPathLocalValid(): any {
-    return msRest.responseToBody(this.postPathLocalValidWithHttpOperationResponse.bind(this), arguments);
+  postPathLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postPathLocalValidWithHttpOperationResponse.bind(this), subscriptionId, options, callback);
   }
 
   /**
@@ -220,8 +220,8 @@ export class SubscriptionInMethod {
   postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
   postSwaggerLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postSwaggerLocalValid(): any {
-    return msRest.responseToBody(this.postSwaggerLocalValidWithHttpOperationResponse.bind(this), arguments);
+  postSwaggerLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postSwaggerLocalValidWithHttpOperationResponse.bind(this), subscriptionId, options, callback);
   }
 
 }

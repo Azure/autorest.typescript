@@ -219,8 +219,8 @@ export class Datetimerfc1123 {
   getNull(options: msRest.RequestOptionsBase): Promise<Date>;
   getNull(callback: msRest.ServiceCallback<Date>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -241,8 +241,8 @@ export class Datetimerfc1123 {
   getInvalid(options: msRest.RequestOptionsBase): Promise<Date>;
   getInvalid(callback: msRest.ServiceCallback<Date>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getInvalid(): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -263,8 +263,8 @@ export class Datetimerfc1123 {
   getOverflow(options: msRest.RequestOptionsBase): Promise<Date>;
   getOverflow(callback: msRest.ServiceCallback<Date>): void;
   getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getOverflow(): any {
-    return msRest.responseToBody(this.getOverflowWithHttpOperationResponse.bind(this), arguments);
+  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getOverflowWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -285,8 +285,8 @@ export class Datetimerfc1123 {
   getUnderflow(options: msRest.RequestOptionsBase): Promise<Date>;
   getUnderflow(callback: msRest.ServiceCallback<Date>): void;
   getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUnderflow(): any {
-    return msRest.responseToBody(this.getUnderflowWithHttpOperationResponse.bind(this), arguments);
+  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getUnderflowWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -309,8 +309,8 @@ export class Datetimerfc1123 {
   putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putUtcMaxDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMaxDateTime(): any {
-    return msRest.responseToBody(this.putUtcMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
+  putUtcMaxDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putUtcMaxDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
   }
 
   /**
@@ -331,8 +331,8 @@ export class Datetimerfc1123 {
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUtcLowercaseMaxDateTime(): any {
-    return msRest.responseToBody(this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
+  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -353,8 +353,8 @@ export class Datetimerfc1123 {
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUtcUppercaseMaxDateTime(): any {
-    return msRest.responseToBody(this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), arguments);
+  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -377,8 +377,8 @@ export class Datetimerfc1123 {
   putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putUtcMinDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMinDateTime(): any {
-    return msRest.responseToBody(this.putUtcMinDateTimeWithHttpOperationResponse.bind(this), arguments);
+  putUtcMinDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putUtcMinDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
   }
 
   /**
@@ -399,8 +399,8 @@ export class Datetimerfc1123 {
   getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUtcMinDateTime(callback: msRest.ServiceCallback<Date>): void;
   getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUtcMinDateTime(): any {
-    return msRest.responseToBody(this.getUtcMinDateTimeWithHttpOperationResponse.bind(this), arguments);
+  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getUtcMinDateTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

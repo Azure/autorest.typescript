@@ -138,8 +138,8 @@ export class ArrayModel {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayWrapper>;
   getValid(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
-  getValid(): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -160,8 +160,8 @@ export class ArrayModel {
   putValid(options: Models.ArrayModelPutValidOptionalParams): Promise<void>;
   putValid(callback: msRest.ServiceCallback<void>): void;
   putValid(options: Models.ArrayModelPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putValid(): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
+  putValid(options?: Models.ArrayModelPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -182,8 +182,8 @@ export class ArrayModel {
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayWrapper>;
   getEmpty(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
-  getEmpty(): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -204,8 +204,8 @@ export class ArrayModel {
   putEmpty(options: Models.ArrayModelPutEmptyOptionalParams): Promise<void>;
   putEmpty(callback: msRest.ServiceCallback<void>): void;
   putEmpty(options: Models.ArrayModelPutEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arguments);
+  putEmpty(options?: Models.ArrayModelPutEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -226,8 +226,8 @@ export class ArrayModel {
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.ArrayWrapper>;
   getNotProvided(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
-  getNotProvided(): any {
-    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), arguments);
+  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): any {
+    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

@@ -395,8 +395,8 @@ export class LRORetrys {
   put201CreatingSucceeded200(options: Models.LRORetrysPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
   put201CreatingSucceeded200(callback: msRest.ServiceCallback<Models.Product>): void;
   put201CreatingSucceeded200(options: Models.LRORetrysPut201CreatingSucceeded200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put201CreatingSucceeded200(): any {
-    return msRest.responseToBody(this.put201CreatingSucceeded200WithHttpOperationResponse.bind(this), arguments);
+  put201CreatingSucceeded200(options?: Models.LRORetrysPut201CreatingSucceeded200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.put201CreatingSucceeded200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -419,8 +419,8 @@ export class LRORetrys {
   putAsyncRelativeRetrySucceeded(options: Models.LRORetrysPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.Product>;
   putAsyncRelativeRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   putAsyncRelativeRetrySucceeded(options: Models.LRORetrysPutAsyncRelativeRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetrySucceeded(): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  putAsyncRelativeRetrySucceeded(options?: Models.LRORetrysPutAsyncRelativeRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.putAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -443,8 +443,8 @@ export class LRORetrys {
   deleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   deleteProvisioning202Accepted200Succeeded(callback: msRest.ServiceCallback<Models.Product>): void;
   deleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  deleteProvisioning202Accepted200Succeeded(): any {
-    return msRest.responseToBody(this.deleteProvisioning202Accepted200SucceededWithHttpOperationResponse.bind(this), arguments);
+  deleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.deleteProvisioning202Accepted200SucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -466,8 +466,8 @@ export class LRORetrys {
   delete202Retry200(options: msRest.RequestOptionsBase): Promise<void>;
   delete202Retry200(callback: msRest.ServiceCallback<void>): void;
   delete202Retry200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  delete202Retry200(): any {
-    return msRest.responseToBody(this.delete202Retry200WithHttpOperationResponse.bind(this), arguments);
+  delete202Retry200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.delete202Retry200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -489,8 +489,8 @@ export class LRORetrys {
   deleteAsyncRelativeRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
   deleteAsyncRelativeRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   deleteAsyncRelativeRetrySucceeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetrySucceeded(): any {
-    return msRest.responseToBody(this.deleteAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  deleteAsyncRelativeRetrySucceeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.deleteAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -512,8 +512,8 @@ export class LRORetrys {
   post202Retry200(options: Models.LRORetrysPost202Retry200OptionalParams): Promise<void>;
   post202Retry200(callback: msRest.ServiceCallback<void>): void;
   post202Retry200(options: Models.LRORetrysPost202Retry200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202Retry200(): any {
-    return msRest.responseToBody(this.post202Retry200WithHttpOperationResponse.bind(this), arguments);
+  post202Retry200(options?: Models.LRORetrysPost202Retry200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post202Retry200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -536,8 +536,8 @@ export class LRORetrys {
   postAsyncRelativeRetrySucceeded(options: Models.LRORetrysPostAsyncRelativeRetrySucceededOptionalParams): Promise<void>;
   postAsyncRelativeRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   postAsyncRelativeRetrySucceeded(options: Models.LRORetrysPostAsyncRelativeRetrySucceededOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetrySucceeded(): any {
-    return msRest.responseToBody(this.postAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  postAsyncRelativeRetrySucceeded(options?: Models.LRORetrysPostAsyncRelativeRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.postAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -560,8 +560,8 @@ export class LRORetrys {
   beginPut201CreatingSucceeded200(options: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
   beginPut201CreatingSucceeded200(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPut201CreatingSucceeded200(options: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut201CreatingSucceeded200(): any {
-    return msRest.responseToBody(this.beginPut201CreatingSucceeded200WithHttpOperationResponse.bind(this), arguments);
+  beginPut201CreatingSucceeded200(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPut201CreatingSucceeded200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -585,8 +585,8 @@ export class LRORetrys {
   beginPutAsyncRelativeRetrySucceeded(options: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.Product>;
   beginPutAsyncRelativeRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
   beginPutAsyncRelativeRetrySucceeded(options: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRelativeRetrySucceeded(): any {
-    return msRest.responseToBody(this.beginPutAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  beginPutAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginPutAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -609,8 +609,8 @@ export class LRORetrys {
   beginDeleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase): Promise<Models.Product>;
   beginDeleteProvisioning202Accepted200Succeeded(callback: msRest.ServiceCallback<Models.Product>): void;
   beginDeleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202Accepted200Succeeded(): any {
-    return msRest.responseToBody(this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse.bind(this), arguments);
+  beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -632,8 +632,8 @@ export class LRORetrys {
   beginDelete202Retry200(options: msRest.RequestOptionsBase): Promise<void>;
   beginDelete202Retry200(callback: msRest.ServiceCallback<void>): void;
   beginDelete202Retry200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDelete202Retry200(): any {
-    return msRest.responseToBody(this.beginDelete202Retry200WithHttpOperationResponse.bind(this), arguments);
+  beginDelete202Retry200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDelete202Retry200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -655,8 +655,8 @@ export class LRORetrys {
   beginDeleteAsyncRelativeRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
   beginDeleteAsyncRelativeRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   beginDeleteAsyncRelativeRetrySucceeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRelativeRetrySucceeded(): any {
-    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  beginDeleteAsyncRelativeRetrySucceeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginDeleteAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -678,8 +678,8 @@ export class LRORetrys {
   beginPost202Retry200(options: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<void>;
   beginPost202Retry200(callback: msRest.ServiceCallback<void>): void;
   beginPost202Retry200(options: Models.LRORetrysBeginPost202Retry200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPost202Retry200(): any {
-    return msRest.responseToBody(this.beginPost202Retry200WithHttpOperationResponse.bind(this), arguments);
+  beginPost202Retry200(options?: Models.LRORetrysBeginPost202Retry200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPost202Retry200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -703,8 +703,8 @@ export class LRORetrys {
   beginPostAsyncRelativeRetrySucceeded(options: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<void>;
   beginPostAsyncRelativeRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
   beginPostAsyncRelativeRetrySucceeded(options: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRelativeRetrySucceeded(): any {
-    return msRest.responseToBody(this.beginPostAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), arguments);
+  beginPostAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.beginPostAsyncRelativeRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

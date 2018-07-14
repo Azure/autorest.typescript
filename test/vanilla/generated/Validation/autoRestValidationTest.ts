@@ -149,8 +149,8 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase): Promise<Models.Product>;
   validationOfMethodParameters(resourceGroupName: string, id: number, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  validationOfMethodParameters(): any {
-    return msRest.responseToBody(this.validationOfMethodParametersWithHttpOperationResponse.bind(this), arguments);
+  validationOfMethodParameters(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.validationOfMethodParametersWithHttpOperationResponse.bind(this), resourceGroupName, id, options, callback);
   }
 
   /**
@@ -176,8 +176,8 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<Models.Product>;
   validationOfBody(resourceGroupName: string, id: number, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  validationOfBody(): any {
-    return msRest.responseToBody(this.validationOfBodyWithHttpOperationResponse.bind(this), arguments);
+  validationOfBody(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.validationOfBodyWithHttpOperationResponse.bind(this), resourceGroupName, id, options, callback);
   }
 
   /**
@@ -196,8 +196,8 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   getWithConstantInPath(options: msRest.RequestOptionsBase): Promise<void>;
   getWithConstantInPath(callback: msRest.ServiceCallback<void>): void;
   getWithConstantInPath(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getWithConstantInPath(): any {
-    return msRest.responseToBody(this.getWithConstantInPathWithHttpOperationResponse.bind(this), arguments);
+  getWithConstantInPath(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getWithConstantInPathWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -217,8 +217,8 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<Models.Product>;
   postWithConstantInBody(callback: msRest.ServiceCallback<Models.Product>): void;
   postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  postWithConstantInBody(): any {
-    return msRest.responseToBody(this.postWithConstantInBodyWithHttpOperationResponse.bind(this), arguments);
+  postWithConstantInBody(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
+    return msRest.responseToBody(this.postWithConstantInBodyWithHttpOperationResponse.bind(this), options, callback);
   }
 }
 

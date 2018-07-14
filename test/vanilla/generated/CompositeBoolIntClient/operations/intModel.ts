@@ -323,8 +323,8 @@ export class IntModel {
   getNull(options: msRest.RequestOptionsBase): Promise<number>;
   getNull(callback: msRest.ServiceCallback<number>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -345,8 +345,8 @@ export class IntModel {
   getInvalid(options: msRest.RequestOptionsBase): Promise<number>;
   getInvalid(callback: msRest.ServiceCallback<number>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getInvalid(): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -367,8 +367,8 @@ export class IntModel {
   getOverflowInt32(options: msRest.RequestOptionsBase): Promise<number>;
   getOverflowInt32(callback: msRest.ServiceCallback<number>): void;
   getOverflowInt32(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getOverflowInt32(): any {
-    return msRest.responseToBody(this.getOverflowInt32WithHttpOperationResponse.bind(this), arguments);
+  getOverflowInt32(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getOverflowInt32WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -389,8 +389,8 @@ export class IntModel {
   getUnderflowInt32(options: msRest.RequestOptionsBase): Promise<number>;
   getUnderflowInt32(callback: msRest.ServiceCallback<number>): void;
   getUnderflowInt32(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getUnderflowInt32(): any {
-    return msRest.responseToBody(this.getUnderflowInt32WithHttpOperationResponse.bind(this), arguments);
+  getUnderflowInt32(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getUnderflowInt32WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -411,8 +411,8 @@ export class IntModel {
   getOverflowInt64(options: msRest.RequestOptionsBase): Promise<number>;
   getOverflowInt64(callback: msRest.ServiceCallback<number>): void;
   getOverflowInt64(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getOverflowInt64(): any {
-    return msRest.responseToBody(this.getOverflowInt64WithHttpOperationResponse.bind(this), arguments);
+  getOverflowInt64(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getOverflowInt64WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -433,8 +433,8 @@ export class IntModel {
   getUnderflowInt64(options: msRest.RequestOptionsBase): Promise<number>;
   getUnderflowInt64(callback: msRest.ServiceCallback<number>): void;
   getUnderflowInt64(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getUnderflowInt64(): any {
-    return msRest.responseToBody(this.getUnderflowInt64WithHttpOperationResponse.bind(this), arguments);
+  getUnderflowInt64(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
+    return msRest.responseToBody(this.getUnderflowInt64WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -457,8 +457,8 @@ export class IntModel {
   putMax32(intBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putMax32(intBody: number, callback: msRest.ServiceCallback<void>): void;
   putMax32(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMax32(): any {
-    return msRest.responseToBody(this.putMax32WithHttpOperationResponse.bind(this), arguments);
+  putMax32(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putMax32WithHttpOperationResponse.bind(this), intBody, options, callback);
   }
 
   /**
@@ -481,8 +481,8 @@ export class IntModel {
   putMax64(intBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putMax64(intBody: number, callback: msRest.ServiceCallback<void>): void;
   putMax64(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMax64(): any {
-    return msRest.responseToBody(this.putMax64WithHttpOperationResponse.bind(this), arguments);
+  putMax64(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putMax64WithHttpOperationResponse.bind(this), intBody, options, callback);
   }
 
   /**
@@ -505,8 +505,8 @@ export class IntModel {
   putMin32(intBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putMin32(intBody: number, callback: msRest.ServiceCallback<void>): void;
   putMin32(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMin32(): any {
-    return msRest.responseToBody(this.putMin32WithHttpOperationResponse.bind(this), arguments);
+  putMin32(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putMin32WithHttpOperationResponse.bind(this), intBody, options, callback);
   }
 
   /**
@@ -529,8 +529,8 @@ export class IntModel {
   putMin64(intBody: number, options: msRest.RequestOptionsBase): Promise<void>;
   putMin64(intBody: number, callback: msRest.ServiceCallback<void>): void;
   putMin64(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMin64(): any {
-    return msRest.responseToBody(this.putMin64WithHttpOperationResponse.bind(this), arguments);
+  putMin64(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putMin64WithHttpOperationResponse.bind(this), intBody, options, callback);
   }
 
   /**
@@ -551,8 +551,8 @@ export class IntModel {
   getUnixTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getUnixTime(callback: msRest.ServiceCallback<Date>): void;
   getUnixTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUnixTime(): any {
-    return msRest.responseToBody(this.getUnixTimeWithHttpOperationResponse.bind(this), arguments);
+  getUnixTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getUnixTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -575,8 +575,8 @@ export class IntModel {
   putUnixTimeDate(intBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putUnixTimeDate(intBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putUnixTimeDate(intBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUnixTimeDate(): any {
-    return msRest.responseToBody(this.putUnixTimeDateWithHttpOperationResponse.bind(this), arguments);
+  putUnixTimeDate(intBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putUnixTimeDateWithHttpOperationResponse.bind(this), intBody, options, callback);
   }
 
   /**
@@ -597,8 +597,8 @@ export class IntModel {
   getInvalidUnixTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getInvalidUnixTime(callback: msRest.ServiceCallback<Date>): void;
   getInvalidUnixTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getInvalidUnixTime(): any {
-    return msRest.responseToBody(this.getInvalidUnixTimeWithHttpOperationResponse.bind(this), arguments);
+  getInvalidUnixTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getInvalidUnixTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -619,8 +619,8 @@ export class IntModel {
   getNullUnixTime(options: msRest.RequestOptionsBase): Promise<Date>;
   getNullUnixTime(callback: msRest.ServiceCallback<Date>): void;
   getNullUnixTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getNullUnixTime(): any {
-    return msRest.responseToBody(this.getNullUnixTimeWithHttpOperationResponse.bind(this), arguments);
+  getNullUnixTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getNullUnixTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

@@ -331,8 +331,8 @@ export class HttpRedirects {
   head300(options: msRest.RequestOptionsBase): Promise<void>;
   head300(callback: msRest.ServiceCallback<void>): void;
   head300(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head300(): any {
-    return msRest.responseToBody(this.head300WithHttpOperationResponse.bind(this), arguments);
+  head300(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head300WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -353,8 +353,8 @@ export class HttpRedirects {
   get300(options: msRest.RequestOptionsBase): Promise<string[]>;
   get300(callback: msRest.ServiceCallback<string[]>): void;
   get300(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  get300(): any {
-    return msRest.responseToBody(this.get300WithHttpOperationResponse.bind(this), arguments);
+  get300(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
+    return msRest.responseToBody(this.get300WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -375,8 +375,8 @@ export class HttpRedirects {
   head301(options: msRest.RequestOptionsBase): Promise<void>;
   head301(callback: msRest.ServiceCallback<void>): void;
   head301(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head301(): any {
-    return msRest.responseToBody(this.head301WithHttpOperationResponse.bind(this), arguments);
+  head301(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head301WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -397,8 +397,8 @@ export class HttpRedirects {
   get301(options: msRest.RequestOptionsBase): Promise<void>;
   get301(callback: msRest.ServiceCallback<void>): void;
   get301(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get301(): any {
-    return msRest.responseToBody(this.get301WithHttpOperationResponse.bind(this), arguments);
+  get301(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get301WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -420,8 +420,8 @@ export class HttpRedirects {
   put301(options: Models.HttpRedirectsPut301OptionalParams): Promise<void>;
   put301(callback: msRest.ServiceCallback<void>): void;
   put301(options: Models.HttpRedirectsPut301OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put301(): any {
-    return msRest.responseToBody(this.put301WithHttpOperationResponse.bind(this), arguments);
+  put301(options?: Models.HttpRedirectsPut301OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.put301WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -442,8 +442,8 @@ export class HttpRedirects {
   head302(options: msRest.RequestOptionsBase): Promise<void>;
   head302(callback: msRest.ServiceCallback<void>): void;
   head302(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head302(): any {
-    return msRest.responseToBody(this.head302WithHttpOperationResponse.bind(this), arguments);
+  head302(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head302WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -464,8 +464,8 @@ export class HttpRedirects {
   get302(options: msRest.RequestOptionsBase): Promise<void>;
   get302(callback: msRest.ServiceCallback<void>): void;
   get302(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get302(): any {
-    return msRest.responseToBody(this.get302WithHttpOperationResponse.bind(this), arguments);
+  get302(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get302WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -487,8 +487,8 @@ export class HttpRedirects {
   patch302(options: Models.HttpRedirectsPatch302OptionalParams): Promise<void>;
   patch302(callback: msRest.ServiceCallback<void>): void;
   patch302(options: Models.HttpRedirectsPatch302OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch302(): any {
-    return msRest.responseToBody(this.patch302WithHttpOperationResponse.bind(this), arguments);
+  patch302(options?: Models.HttpRedirectsPatch302OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.patch302WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -510,8 +510,8 @@ export class HttpRedirects {
   post303(options: Models.HttpRedirectsPost303OptionalParams): Promise<void>;
   post303(callback: msRest.ServiceCallback<void>): void;
   post303(options: Models.HttpRedirectsPost303OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post303(): any {
-    return msRest.responseToBody(this.post303WithHttpOperationResponse.bind(this), arguments);
+  post303(options?: Models.HttpRedirectsPost303OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post303WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -532,8 +532,8 @@ export class HttpRedirects {
   head307(options: msRest.RequestOptionsBase): Promise<void>;
   head307(callback: msRest.ServiceCallback<void>): void;
   head307(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head307(): any {
-    return msRest.responseToBody(this.head307WithHttpOperationResponse.bind(this), arguments);
+  head307(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head307WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -554,8 +554,8 @@ export class HttpRedirects {
   get307(options: msRest.RequestOptionsBase): Promise<void>;
   get307(callback: msRest.ServiceCallback<void>): void;
   get307(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get307(): any {
-    return msRest.responseToBody(this.get307WithHttpOperationResponse.bind(this), arguments);
+  get307(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.get307WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -576,8 +576,8 @@ export class HttpRedirects {
   put307(options: Models.HttpRedirectsPut307OptionalParams): Promise<void>;
   put307(callback: msRest.ServiceCallback<void>): void;
   put307(options: Models.HttpRedirectsPut307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put307(): any {
-    return msRest.responseToBody(this.put307WithHttpOperationResponse.bind(this), arguments);
+  put307(options?: Models.HttpRedirectsPut307OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.put307WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -598,8 +598,8 @@ export class HttpRedirects {
   patch307(options: Models.HttpRedirectsPatch307OptionalParams): Promise<void>;
   patch307(callback: msRest.ServiceCallback<void>): void;
   patch307(options: Models.HttpRedirectsPatch307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch307(): any {
-    return msRest.responseToBody(this.patch307WithHttpOperationResponse.bind(this), arguments);
+  patch307(options?: Models.HttpRedirectsPatch307OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.patch307WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -620,8 +620,8 @@ export class HttpRedirects {
   post307(options: Models.HttpRedirectsPost307OptionalParams): Promise<void>;
   post307(callback: msRest.ServiceCallback<void>): void;
   post307(options: Models.HttpRedirectsPost307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post307(): any {
-    return msRest.responseToBody(this.post307WithHttpOperationResponse.bind(this), arguments);
+  post307(options?: Models.HttpRedirectsPost307OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post307WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -642,8 +642,8 @@ export class HttpRedirects {
   delete307(options: Models.HttpRedirectsDelete307OptionalParams): Promise<void>;
   delete307(callback: msRest.ServiceCallback<void>): void;
   delete307(options: Models.HttpRedirectsDelete307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete307(): any {
-    return msRest.responseToBody(this.delete307WithHttpOperationResponse.bind(this), arguments);
+  delete307(options?: Models.HttpRedirectsDelete307OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.delete307WithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

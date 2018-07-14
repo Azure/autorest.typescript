@@ -200,8 +200,8 @@ export class DateModel {
   getNull(options: msRest.RequestOptionsBase): Promise<Date>;
   getNull(callback: msRest.ServiceCallback<Date>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -222,8 +222,8 @@ export class DateModel {
   getInvalidDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getInvalidDate(callback: msRest.ServiceCallback<Date>): void;
   getInvalidDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getInvalidDate(): any {
-    return msRest.responseToBody(this.getInvalidDateWithHttpOperationResponse.bind(this), arguments);
+  getInvalidDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getInvalidDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -244,8 +244,8 @@ export class DateModel {
   getOverflowDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getOverflowDate(callback: msRest.ServiceCallback<Date>): void;
   getOverflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getOverflowDate(): any {
-    return msRest.responseToBody(this.getOverflowDateWithHttpOperationResponse.bind(this), arguments);
+  getOverflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getOverflowDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -266,8 +266,8 @@ export class DateModel {
   getUnderflowDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getUnderflowDate(callback: msRest.ServiceCallback<Date>): void;
   getUnderflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUnderflowDate(): any {
-    return msRest.responseToBody(this.getUnderflowDateWithHttpOperationResponse.bind(this), arguments);
+  getUnderflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getUnderflowDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -290,8 +290,8 @@ export class DateModel {
   putMaxDate(dateBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putMaxDate(dateBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putMaxDate(dateBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMaxDate(): any {
-    return msRest.responseToBody(this.putMaxDateWithHttpOperationResponse.bind(this), arguments);
+  putMaxDate(dateBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putMaxDateWithHttpOperationResponse.bind(this), dateBody, options, callback);
   }
 
   /**
@@ -312,8 +312,8 @@ export class DateModel {
   getMaxDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getMaxDate(callback: msRest.ServiceCallback<Date>): void;
   getMaxDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getMaxDate(): any {
-    return msRest.responseToBody(this.getMaxDateWithHttpOperationResponse.bind(this), arguments);
+  getMaxDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getMaxDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -336,8 +336,8 @@ export class DateModel {
   putMinDate(dateBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
   putMinDate(dateBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putMinDate(dateBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMinDate(): any {
-    return msRest.responseToBody(this.putMinDateWithHttpOperationResponse.bind(this), arguments);
+  putMinDate(dateBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putMinDateWithHttpOperationResponse.bind(this), dateBody, options, callback);
   }
 
   /**
@@ -358,8 +358,8 @@ export class DateModel {
   getMinDate(options: msRest.RequestOptionsBase): Promise<Date>;
   getMinDate(callback: msRest.ServiceCallback<Date>): void;
   getMinDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getMinDate(): any {
-    return msRest.responseToBody(this.getMinDateWithHttpOperationResponse.bind(this), arguments);
+  getMinDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
+    return msRest.responseToBody(this.getMinDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

@@ -173,8 +173,8 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.CatalogArray>;
   list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
   list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
-  list(): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), arguments);
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.CatalogArray>): any {
+    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
   }
 
   /**
@@ -201,8 +201,8 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   create(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelCreateOptionalParams): Promise<Models.CatalogDictionary>;
   create(subscriptionId: string, resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
   create(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelCreateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
-  create(): any {
-    return msRest.responseToBody(this.createWithHttpOperationResponse.bind(this), arguments);
+  create(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams, callback?: msRest.ServiceCallback<Models.CatalogDictionary>): any {
+    return msRest.responseToBody(this.createWithHttpOperationResponse.bind(this), subscriptionId, resourceGroupName, options, callback);
   }
 
   /**
@@ -229,8 +229,8 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   update(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelUpdateOptionalParams): Promise<Models.CatalogArray>;
   update(subscriptionId: string, resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
   update(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelUpdateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
-  update(): any {
-    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), arguments);
+  update(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams, callback?: msRest.ServiceCallback<Models.CatalogArray>): any {
+    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), subscriptionId, resourceGroupName, options, callback);
   }
 }
 

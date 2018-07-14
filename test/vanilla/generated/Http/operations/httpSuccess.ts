@@ -385,8 +385,8 @@ export class HttpSuccess {
   head200(options: msRest.RequestOptionsBase): Promise<void>;
   head200(callback: msRest.ServiceCallback<void>): void;
   head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head200(): any {
-    return msRest.responseToBody(this.head200WithHttpOperationResponse.bind(this), arguments);
+  head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -407,8 +407,8 @@ export class HttpSuccess {
   get200(options: msRest.RequestOptionsBase): Promise<boolean>;
   get200(callback: msRest.ServiceCallback<boolean>): void;
   get200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  get200(): any {
-    return msRest.responseToBody(this.get200WithHttpOperationResponse.bind(this), arguments);
+  get200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.get200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -429,8 +429,8 @@ export class HttpSuccess {
   put200(options: Models.HttpSuccessPut200OptionalParams): Promise<void>;
   put200(callback: msRest.ServiceCallback<void>): void;
   put200(options: Models.HttpSuccessPut200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put200(): any {
-    return msRest.responseToBody(this.put200WithHttpOperationResponse.bind(this), arguments);
+  put200(options?: Models.HttpSuccessPut200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.put200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -451,8 +451,8 @@ export class HttpSuccess {
   patch200(options: Models.HttpSuccessPatch200OptionalParams): Promise<void>;
   patch200(callback: msRest.ServiceCallback<void>): void;
   patch200(options: Models.HttpSuccessPatch200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch200(): any {
-    return msRest.responseToBody(this.patch200WithHttpOperationResponse.bind(this), arguments);
+  patch200(options?: Models.HttpSuccessPatch200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.patch200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -473,8 +473,8 @@ export class HttpSuccess {
   post200(options: Models.HttpSuccessPost200OptionalParams): Promise<void>;
   post200(callback: msRest.ServiceCallback<void>): void;
   post200(options: Models.HttpSuccessPost200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post200(): any {
-    return msRest.responseToBody(this.post200WithHttpOperationResponse.bind(this), arguments);
+  post200(options?: Models.HttpSuccessPost200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -495,8 +495,8 @@ export class HttpSuccess {
   delete200(options: Models.HttpSuccessDelete200OptionalParams): Promise<void>;
   delete200(callback: msRest.ServiceCallback<void>): void;
   delete200(options: Models.HttpSuccessDelete200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete200(): any {
-    return msRest.responseToBody(this.delete200WithHttpOperationResponse.bind(this), arguments);
+  delete200(options?: Models.HttpSuccessDelete200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.delete200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -517,8 +517,8 @@ export class HttpSuccess {
   put201(options: Models.HttpSuccessPut201OptionalParams): Promise<void>;
   put201(callback: msRest.ServiceCallback<void>): void;
   put201(options: Models.HttpSuccessPut201OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put201(): any {
-    return msRest.responseToBody(this.put201WithHttpOperationResponse.bind(this), arguments);
+  put201(options?: Models.HttpSuccessPut201OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.put201WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -539,8 +539,8 @@ export class HttpSuccess {
   post201(options: Models.HttpSuccessPost201OptionalParams): Promise<void>;
   post201(callback: msRest.ServiceCallback<void>): void;
   post201(options: Models.HttpSuccessPost201OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post201(): any {
-    return msRest.responseToBody(this.post201WithHttpOperationResponse.bind(this), arguments);
+  post201(options?: Models.HttpSuccessPost201OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post201WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -561,8 +561,8 @@ export class HttpSuccess {
   put202(options: Models.HttpSuccessPut202OptionalParams): Promise<void>;
   put202(callback: msRest.ServiceCallback<void>): void;
   put202(options: Models.HttpSuccessPut202OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put202(): any {
-    return msRest.responseToBody(this.put202WithHttpOperationResponse.bind(this), arguments);
+  put202(options?: Models.HttpSuccessPut202OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.put202WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -583,8 +583,8 @@ export class HttpSuccess {
   patch202(options: Models.HttpSuccessPatch202OptionalParams): Promise<void>;
   patch202(callback: msRest.ServiceCallback<void>): void;
   patch202(options: Models.HttpSuccessPatch202OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch202(): any {
-    return msRest.responseToBody(this.patch202WithHttpOperationResponse.bind(this), arguments);
+  patch202(options?: Models.HttpSuccessPatch202OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.patch202WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -605,8 +605,8 @@ export class HttpSuccess {
   post202(options: Models.HttpSuccessPost202OptionalParams): Promise<void>;
   post202(callback: msRest.ServiceCallback<void>): void;
   post202(options: Models.HttpSuccessPost202OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202(): any {
-    return msRest.responseToBody(this.post202WithHttpOperationResponse.bind(this), arguments);
+  post202(options?: Models.HttpSuccessPost202OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post202WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -627,8 +627,8 @@ export class HttpSuccess {
   delete202(options: Models.HttpSuccessDelete202OptionalParams): Promise<void>;
   delete202(callback: msRest.ServiceCallback<void>): void;
   delete202(options: Models.HttpSuccessDelete202OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete202(): any {
-    return msRest.responseToBody(this.delete202WithHttpOperationResponse.bind(this), arguments);
+  delete202(options?: Models.HttpSuccessDelete202OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.delete202WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -649,8 +649,8 @@ export class HttpSuccess {
   head204(options: msRest.RequestOptionsBase): Promise<void>;
   head204(callback: msRest.ServiceCallback<void>): void;
   head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head204(): any {
-    return msRest.responseToBody(this.head204WithHttpOperationResponse.bind(this), arguments);
+  head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head204WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -671,8 +671,8 @@ export class HttpSuccess {
   put204(options: Models.HttpSuccessPut204OptionalParams): Promise<void>;
   put204(callback: msRest.ServiceCallback<void>): void;
   put204(options: Models.HttpSuccessPut204OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put204(): any {
-    return msRest.responseToBody(this.put204WithHttpOperationResponse.bind(this), arguments);
+  put204(options?: Models.HttpSuccessPut204OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.put204WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -693,8 +693,8 @@ export class HttpSuccess {
   patch204(options: Models.HttpSuccessPatch204OptionalParams): Promise<void>;
   patch204(callback: msRest.ServiceCallback<void>): void;
   patch204(options: Models.HttpSuccessPatch204OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch204(): any {
-    return msRest.responseToBody(this.patch204WithHttpOperationResponse.bind(this), arguments);
+  patch204(options?: Models.HttpSuccessPatch204OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.patch204WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -715,8 +715,8 @@ export class HttpSuccess {
   post204(options: Models.HttpSuccessPost204OptionalParams): Promise<void>;
   post204(callback: msRest.ServiceCallback<void>): void;
   post204(options: Models.HttpSuccessPost204OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post204(): any {
-    return msRest.responseToBody(this.post204WithHttpOperationResponse.bind(this), arguments);
+  post204(options?: Models.HttpSuccessPost204OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.post204WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -737,8 +737,8 @@ export class HttpSuccess {
   delete204(options: Models.HttpSuccessDelete204OptionalParams): Promise<void>;
   delete204(callback: msRest.ServiceCallback<void>): void;
   delete204(options: Models.HttpSuccessDelete204OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete204(): any {
-    return msRest.responseToBody(this.delete204WithHttpOperationResponse.bind(this), arguments);
+  delete204(options?: Models.HttpSuccessDelete204OptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.delete204WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -759,8 +759,8 @@ export class HttpSuccess {
   head404(options: msRest.RequestOptionsBase): Promise<void>;
   head404(callback: msRest.ServiceCallback<void>): void;
   head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head404(): any {
-    return msRest.responseToBody(this.head404WithHttpOperationResponse.bind(this), arguments);
+  head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.head404WithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

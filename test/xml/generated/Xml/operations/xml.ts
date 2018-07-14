@@ -592,8 +592,8 @@ export class Xml {
   getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase): Promise<Models.RootWithRefAndNoMeta>;
   getComplexTypeRefNoMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
   getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
-  getComplexTypeRefNoMeta(): any {
-    return msRest.responseToBody(this.getComplexTypeRefNoMetaWithHttpOperationResponse.bind(this), arguments);
+  getComplexTypeRefNoMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): any {
+    return msRest.responseToBody(this.getComplexTypeRefNoMetaWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -616,8 +616,8 @@ export class Xml {
   putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase): Promise<void>;
   putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, callback: msRest.ServiceCallback<void>): void;
   putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexTypeRefNoMeta(): any {
-    return msRest.responseToBody(this.putComplexTypeRefNoMetaWithHttpOperationResponse.bind(this), arguments);
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putComplexTypeRefNoMetaWithHttpOperationResponse.bind(this), model, options, callback);
   }
 
   /**
@@ -638,8 +638,8 @@ export class Xml {
   getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase): Promise<Models.RootWithRefAndMeta>;
   getComplexTypeRefWithMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
   getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
-  getComplexTypeRefWithMeta(): any {
-    return msRest.responseToBody(this.getComplexTypeRefWithMetaWithHttpOperationResponse.bind(this), arguments);
+  getComplexTypeRefWithMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndMeta>): any {
+    return msRest.responseToBody(this.getComplexTypeRefWithMetaWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -662,8 +662,8 @@ export class Xml {
   putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase): Promise<void>;
   putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, callback: msRest.ServiceCallback<void>): void;
   putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexTypeRefWithMeta(): any {
-    return msRest.responseToBody(this.putComplexTypeRefWithMetaWithHttpOperationResponse.bind(this), arguments);
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putComplexTypeRefWithMetaWithHttpOperationResponse.bind(this), model, options, callback);
   }
 
   /**
@@ -684,8 +684,8 @@ export class Xml {
   getSimple(options: msRest.RequestOptionsBase): Promise<Models.Slideshow>;
   getSimple(callback: msRest.ServiceCallback<Models.Slideshow>): void;
   getSimple(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
-  getSimple(): any {
-    return msRest.responseToBody(this.getSimpleWithHttpOperationResponse.bind(this), arguments);
+  getSimple(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): any {
+    return msRest.responseToBody(this.getSimpleWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -708,8 +708,8 @@ export class Xml {
   putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<void>;
   putSimple(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
   putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSimple(): any {
-    return msRest.responseToBody(this.putSimpleWithHttpOperationResponse.bind(this), arguments);
+  putSimple(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putSimpleWithHttpOperationResponse.bind(this), slideshow, options, callback);
   }
 
   /**
@@ -730,8 +730,8 @@ export class Xml {
   getWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.AppleBarrel>;
   getWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
   getWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
-  getWrappedLists(): any {
-    return msRest.responseToBody(this.getWrappedListsWithHttpOperationResponse.bind(this), arguments);
+  getWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): any {
+    return msRest.responseToBody(this.getWrappedListsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -754,8 +754,8 @@ export class Xml {
   putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<void>;
   putWrappedLists(wrappedLists: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
   putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putWrappedLists(): any {
-    return msRest.responseToBody(this.putWrappedListsWithHttpOperationResponse.bind(this), arguments);
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putWrappedListsWithHttpOperationResponse.bind(this), wrappedLists, options, callback);
   }
 
   /**
@@ -776,8 +776,8 @@ export class Xml {
   getHeaders(options: msRest.RequestOptionsBase): Promise<void>;
   getHeaders(callback: msRest.ServiceCallback<void>): void;
   getHeaders(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getHeaders(): any {
-    return msRest.responseToBody(this.getHeadersWithHttpOperationResponse.bind(this), arguments);
+  getHeaders(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getHeadersWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -798,8 +798,8 @@ export class Xml {
   getEmptyList(options: msRest.RequestOptionsBase): Promise<Models.Slideshow>;
   getEmptyList(callback: msRest.ServiceCallback<Models.Slideshow>): void;
   getEmptyList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
-  getEmptyList(): any {
-    return msRest.responseToBody(this.getEmptyListWithHttpOperationResponse.bind(this), arguments);
+  getEmptyList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): any {
+    return msRest.responseToBody(this.getEmptyListWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -822,8 +822,8 @@ export class Xml {
   putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<void>;
   putEmptyList(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
   putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyList(): any {
-    return msRest.responseToBody(this.putEmptyListWithHttpOperationResponse.bind(this), arguments);
+  putEmptyList(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putEmptyListWithHttpOperationResponse.bind(this), slideshow, options, callback);
   }
 
   /**
@@ -844,8 +844,8 @@ export class Xml {
   getEmptyWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.AppleBarrel>;
   getEmptyWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
   getEmptyWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
-  getEmptyWrappedLists(): any {
-    return msRest.responseToBody(this.getEmptyWrappedListsWithHttpOperationResponse.bind(this), arguments);
+  getEmptyWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): any {
+    return msRest.responseToBody(this.getEmptyWrappedListsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -868,8 +868,8 @@ export class Xml {
   putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<void>;
   putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
   putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyWrappedLists(): any {
-    return msRest.responseToBody(this.putEmptyWrappedListsWithHttpOperationResponse.bind(this), arguments);
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putEmptyWrappedListsWithHttpOperationResponse.bind(this), appleBarrel, options, callback);
   }
 
   /**
@@ -890,8 +890,8 @@ export class Xml {
   getRootList(options: msRest.RequestOptionsBase): Promise<Models.Banana[]>;
   getRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
   getRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getRootList(): any {
-    return msRest.responseToBody(this.getRootListWithHttpOperationResponse.bind(this), arguments);
+  getRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
+    return msRest.responseToBody(this.getRootListWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -914,8 +914,8 @@ export class Xml {
   putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<void>;
   putRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
   putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putRootList(): any {
-    return msRest.responseToBody(this.putRootListWithHttpOperationResponse.bind(this), arguments);
+  putRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putRootListWithHttpOperationResponse.bind(this), bananas, options, callback);
   }
 
   /**
@@ -936,8 +936,8 @@ export class Xml {
   getRootListSingleItem(options: msRest.RequestOptionsBase): Promise<Models.Banana[]>;
   getRootListSingleItem(callback: msRest.ServiceCallback<Models.Banana[]>): void;
   getRootListSingleItem(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getRootListSingleItem(): any {
-    return msRest.responseToBody(this.getRootListSingleItemWithHttpOperationResponse.bind(this), arguments);
+  getRootListSingleItem(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
+    return msRest.responseToBody(this.getRootListSingleItemWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -960,8 +960,8 @@ export class Xml {
   putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<void>;
   putRootListSingleItem(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
   putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putRootListSingleItem(): any {
-    return msRest.responseToBody(this.putRootListSingleItemWithHttpOperationResponse.bind(this), arguments);
+  putRootListSingleItem(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putRootListSingleItemWithHttpOperationResponse.bind(this), bananas, options, callback);
   }
 
   /**
@@ -982,8 +982,8 @@ export class Xml {
   getEmptyRootList(options: msRest.RequestOptionsBase): Promise<Models.Banana[]>;
   getEmptyRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
   getEmptyRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getEmptyRootList(): any {
-    return msRest.responseToBody(this.getEmptyRootListWithHttpOperationResponse.bind(this), arguments);
+  getEmptyRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
+    return msRest.responseToBody(this.getEmptyRootListWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1006,8 +1006,8 @@ export class Xml {
   putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<void>;
   putEmptyRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
   putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyRootList(): any {
-    return msRest.responseToBody(this.putEmptyRootListWithHttpOperationResponse.bind(this), arguments);
+  putEmptyRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putEmptyRootListWithHttpOperationResponse.bind(this), bananas, options, callback);
   }
 
   /**
@@ -1028,8 +1028,8 @@ export class Xml {
   getEmptyChildElement(options: msRest.RequestOptionsBase): Promise<Models.Banana>;
   getEmptyChildElement(callback: msRest.ServiceCallback<Models.Banana>): void;
   getEmptyChildElement(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana>): void;
-  getEmptyChildElement(): any {
-    return msRest.responseToBody(this.getEmptyChildElementWithHttpOperationResponse.bind(this), arguments);
+  getEmptyChildElement(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana>): any {
+    return msRest.responseToBody(this.getEmptyChildElementWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1052,8 +1052,8 @@ export class Xml {
   putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase): Promise<void>;
   putEmptyChildElement(banana: Models.Banana, callback: msRest.ServiceCallback<void>): void;
   putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyChildElement(): any {
-    return msRest.responseToBody(this.putEmptyChildElementWithHttpOperationResponse.bind(this), arguments);
+  putEmptyChildElement(banana: Models.Banana, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putEmptyChildElementWithHttpOperationResponse.bind(this), banana, options, callback);
   }
 
   /**
@@ -1074,8 +1074,8 @@ export class Xml {
   listContainers(options: msRest.RequestOptionsBase): Promise<Models.ListContainersResponse>;
   listContainers(callback: msRest.ServiceCallback<Models.ListContainersResponse>): void;
   listContainers(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ListContainersResponse>): void;
-  listContainers(): any {
-    return msRest.responseToBody(this.listContainersWithHttpOperationResponse.bind(this), arguments);
+  listContainers(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ListContainersResponse>): any {
+    return msRest.responseToBody(this.listContainersWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1096,8 +1096,8 @@ export class Xml {
   getServiceProperties(options: msRest.RequestOptionsBase): Promise<Models.StorageServiceProperties>;
   getServiceProperties(callback: msRest.ServiceCallback<Models.StorageServiceProperties>): void;
   getServiceProperties(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageServiceProperties>): void;
-  getServiceProperties(): any {
-    return msRest.responseToBody(this.getServicePropertiesWithHttpOperationResponse.bind(this), arguments);
+  getServiceProperties(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageServiceProperties>): any {
+    return msRest.responseToBody(this.getServicePropertiesWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1120,8 +1120,8 @@ export class Xml {
   putServiceProperties(properties: Models.StorageServiceProperties, options: msRest.RequestOptionsBase): Promise<void>;
   putServiceProperties(properties: Models.StorageServiceProperties, callback: msRest.ServiceCallback<void>): void;
   putServiceProperties(properties: Models.StorageServiceProperties, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putServiceProperties(): any {
-    return msRest.responseToBody(this.putServicePropertiesWithHttpOperationResponse.bind(this), arguments);
+  putServiceProperties(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putServicePropertiesWithHttpOperationResponse.bind(this), properties, options, callback);
   }
 
   /**
@@ -1142,8 +1142,8 @@ export class Xml {
   getAcls(options: msRest.RequestOptionsBase): Promise<Models.SignedIdentifier[]>;
   getAcls(callback: msRest.ServiceCallback<Models.SignedIdentifier[]>): void;
   getAcls(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SignedIdentifier[]>): void;
-  getAcls(): any {
-    return msRest.responseToBody(this.getAclsWithHttpOperationResponse.bind(this), arguments);
+  getAcls(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SignedIdentifier[]>): any {
+    return msRest.responseToBody(this.getAclsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1166,8 +1166,8 @@ export class Xml {
   putAcls(properties: Models.SignedIdentifier[], options: msRest.RequestOptionsBase): Promise<void>;
   putAcls(properties: Models.SignedIdentifier[], callback: msRest.ServiceCallback<void>): void;
   putAcls(properties: Models.SignedIdentifier[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putAcls(): any {
-    return msRest.responseToBody(this.putAclsWithHttpOperationResponse.bind(this), arguments);
+  putAcls(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putAclsWithHttpOperationResponse.bind(this), properties, options, callback);
   }
 
   /**
@@ -1188,8 +1188,8 @@ export class Xml {
   listBlobs(options: msRest.RequestOptionsBase): Promise<Models.ListBlobsResponse>;
   listBlobs(callback: msRest.ServiceCallback<Models.ListBlobsResponse>): void;
   listBlobs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ListBlobsResponse>): void;
-  listBlobs(): any {
-    return msRest.responseToBody(this.listBlobsWithHttpOperationResponse.bind(this), arguments);
+  listBlobs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ListBlobsResponse>): any {
+    return msRest.responseToBody(this.listBlobsWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

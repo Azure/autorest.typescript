@@ -136,8 +136,8 @@ export class Polymorphicrecursive {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.FishUnion>;
   getValid(callback: msRest.ServiceCallback<Models.FishUnion>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
-  getValid(): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FishUnion>): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -212,8 +212,8 @@ export class Polymorphicrecursive {
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<void>;
   putValid(complexBody: Models.FishUnion, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
+  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
 }

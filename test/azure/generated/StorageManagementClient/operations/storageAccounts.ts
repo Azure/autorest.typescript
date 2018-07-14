@@ -340,8 +340,8 @@ export class StorageAccounts {
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase): Promise<Models.CheckNameAvailabilityResult>;
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
-  checkNameAvailability(): any {
-    return msRest.responseToBody(this.checkNameAvailabilityWithHttpOperationResponse.bind(this), arguments);
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): any {
+    return msRest.responseToBody(this.checkNameAvailabilityWithHttpOperationResponse.bind(this), accountName, options, callback);
   }
 
   /**
@@ -374,8 +374,8 @@ export class StorageAccounts {
   create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccount>;
   create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
   create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  create(): any {
-    return msRest.responseToBody(this.createWithHttpOperationResponse.bind(this), arguments);
+  create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): any {
+    return msRest.responseToBody(this.createWithHttpOperationResponse.bind(this), resourceGroupName, accountName, parameters, options, callback);
   }
 
   /**
@@ -402,8 +402,8 @@ export class StorageAccounts {
   deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<void>;
   deleteMethod(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), arguments);
+  deleteMethod(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, accountName, options, callback);
   }
 
   /**
@@ -432,8 +432,8 @@ export class StorageAccounts {
   getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccount>;
   getProperties(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
   getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  getProperties(): any {
-    return msRest.responseToBody(this.getPropertiesWithHttpOperationResponse.bind(this), arguments);
+  getProperties(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): any {
+    return msRest.responseToBody(this.getPropertiesWithHttpOperationResponse.bind(this), resourceGroupName, accountName, options, callback);
   }
 
   /**
@@ -469,8 +469,8 @@ export class StorageAccounts {
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccount>;
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  update(): any {
-    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), arguments);
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): any {
+    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), resourceGroupName, accountName, parameters, options, callback);
   }
 
   /**
@@ -495,8 +495,8 @@ export class StorageAccounts {
   listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountKeys>;
   listKeys(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
   listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
-  listKeys(): any {
-    return msRest.responseToBody(this.listKeysWithHttpOperationResponse.bind(this), arguments);
+  listKeys(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): any {
+    return msRest.responseToBody(this.listKeysWithHttpOperationResponse.bind(this), resourceGroupName, accountName, options, callback);
   }
 
   /**
@@ -518,8 +518,8 @@ export class StorageAccounts {
   list(options: msRest.RequestOptionsBase): Promise<Models.StorageAccountListResult>;
   list(callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
   list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
-  list(): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), arguments);
+  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): any {
+    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -543,8 +543,8 @@ export class StorageAccounts {
   listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountListResult>;
   listByResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
   listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
-  listByResourceGroup(): any {
-    return msRest.responseToBody(this.listByResourceGroupWithHttpOperationResponse.bind(this), arguments);
+  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): any {
+    return msRest.responseToBody(this.listByResourceGroupWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
   }
 
   /**
@@ -571,8 +571,8 @@ export class StorageAccounts {
   regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<Models.StorageAccountKeys>;
   regenerateKey(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
   regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
-  regenerateKey(): any {
-    return msRest.responseToBody(this.regenerateKeyWithHttpOperationResponse.bind(this), arguments);
+  regenerateKey(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): any {
+    return msRest.responseToBody(this.regenerateKeyWithHttpOperationResponse.bind(this), resourceGroupName, accountName, options, callback);
   }
 
   /**
@@ -605,8 +605,8 @@ export class StorageAccounts {
   beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccount>;
   beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
   beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  beginCreate(): any {
-    return msRest.responseToBody(this.beginCreateWithHttpOperationResponse.bind(this), arguments);
+  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): any {
+    return msRest.responseToBody(this.beginCreateWithHttpOperationResponse.bind(this), resourceGroupName, accountName, parameters, options, callback);
   }
 
 }

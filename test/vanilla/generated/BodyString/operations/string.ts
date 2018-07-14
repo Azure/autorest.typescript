@@ -306,8 +306,8 @@ export class String {
   getNull(options: msRest.RequestOptionsBase): Promise<Models.GetNullOKResponse>;
   getNull(callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetNullOKResponse>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -328,8 +328,8 @@ export class String {
   putNull(options: Models.StringPutNullOptionalParams): Promise<void>;
   putNull(callback: msRest.ServiceCallback<void>): void;
   putNull(options: Models.StringPutNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putNull(): any {
-    return msRest.responseToBody(this.putNullWithHttpOperationResponse.bind(this), arguments);
+  putNull(options?: Models.StringPutNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -350,8 +350,8 @@ export class String {
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.GetEmptyOKResponse>;
   getEmpty(callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
-  getEmpty(): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetEmptyOKResponse>): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -374,8 +374,8 @@ export class String {
   putEmpty(stringBody: Models.StringBody1, options: msRest.RequestOptionsBase): Promise<void>;
   putEmpty(stringBody: Models.StringBody1, callback: msRest.ServiceCallback<void>): void;
   putEmpty(stringBody: Models.StringBody1, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arguments);
+  putEmpty(stringBody: Models.StringBody1, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), stringBody, options, callback);
   }
 
   /**
@@ -396,8 +396,8 @@ export class String {
   getMbcs(options: msRest.RequestOptionsBase): Promise<Models.GetMbcsOKResponse>;
   getMbcs(callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
   getMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
-  getMbcs(): any {
-    return msRest.responseToBody(this.getMbcsWithHttpOperationResponse.bind(this), arguments);
+  getMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetMbcsOKResponse>): any {
+    return msRest.responseToBody(this.getMbcsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -421,8 +421,8 @@ export class String {
   putMbcs(stringBody: Models.StringBody2, options: msRest.RequestOptionsBase): Promise<void>;
   putMbcs(stringBody: Models.StringBody2, callback: msRest.ServiceCallback<void>): void;
   putMbcs(stringBody: Models.StringBody2, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMbcs(): any {
-    return msRest.responseToBody(this.putMbcsWithHttpOperationResponse.bind(this), arguments);
+  putMbcs(stringBody: Models.StringBody2, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putMbcsWithHttpOperationResponse.bind(this), stringBody, options, callback);
   }
 
   /**
@@ -444,8 +444,8 @@ export class String {
   getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.GetWhitespaceOKResponse>;
   getWhitespace(callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
   getWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
-  getWhitespace(): any {
-    return msRest.responseToBody(this.getWhitespaceWithHttpOperationResponse.bind(this), arguments);
+  getWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): any {
+    return msRest.responseToBody(this.getWhitespaceWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -470,8 +470,8 @@ export class String {
   putWhitespace(stringBody: Models.StringBody3, options: msRest.RequestOptionsBase): Promise<void>;
   putWhitespace(stringBody: Models.StringBody3, callback: msRest.ServiceCallback<void>): void;
   putWhitespace(stringBody: Models.StringBody3, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putWhitespace(): any {
-    return msRest.responseToBody(this.putWhitespaceWithHttpOperationResponse.bind(this), arguments);
+  putWhitespace(stringBody: Models.StringBody3, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putWhitespaceWithHttpOperationResponse.bind(this), stringBody, options, callback);
   }
 
   /**
@@ -492,8 +492,8 @@ export class String {
   getNotProvided(options: msRest.RequestOptionsBase): Promise<string>;
   getNotProvided(callback: msRest.ServiceCallback<string>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNotProvided(): any {
-    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), arguments);
+  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -514,8 +514,8 @@ export class String {
   getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getBase64Encoded(callback: msRest.ServiceCallback<Uint8Array>): void;
   getBase64Encoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getBase64Encoded(): any {
-    return msRest.responseToBody(this.getBase64EncodedWithHttpOperationResponse.bind(this), arguments);
+  getBase64Encoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
+    return msRest.responseToBody(this.getBase64EncodedWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -536,8 +536,8 @@ export class String {
   getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
   getBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getBase64UrlEncoded(): any {
-    return msRest.responseToBody(this.getBase64UrlEncodedWithHttpOperationResponse.bind(this), arguments);
+  getBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
+    return msRest.responseToBody(this.getBase64UrlEncodedWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -560,8 +560,8 @@ export class String {
   putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
   putBase64UrlEncoded(stringBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
   putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBase64UrlEncoded(): any {
-    return msRest.responseToBody(this.putBase64UrlEncodedWithHttpOperationResponse.bind(this), arguments);
+  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBase64UrlEncodedWithHttpOperationResponse.bind(this), stringBody, options, callback);
   }
 
   /**
@@ -582,8 +582,8 @@ export class String {
   getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
   getNullBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
   getNullBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getNullBase64UrlEncoded(): any {
-    return msRest.responseToBody(this.getNullBase64UrlEncodedWithHttpOperationResponse.bind(this), arguments);
+  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
+    return msRest.responseToBody(this.getNullBase64UrlEncodedWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

@@ -157,8 +157,8 @@ export class PathItems {
   getAllWithValues(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetAllWithValuesOptionalParams): Promise<void>;
   getAllWithValues(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
   getAllWithValues(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetAllWithValuesOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getAllWithValues(): any {
-    return msRest.responseToBody(this.getAllWithValuesWithHttpOperationResponse.bind(this), arguments);
+  getAllWithValues(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getAllWithValuesWithHttpOperationResponse.bind(this), localStringPath, pathItemStringPath, options, callback);
   }
 
   /**
@@ -185,8 +185,8 @@ export class PathItems {
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<void>;
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getGlobalQueryNull(): any {
-    return msRest.responseToBody(this.getGlobalQueryNullWithHttpOperationResponse.bind(this), arguments);
+  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getGlobalQueryNullWithHttpOperationResponse.bind(this), localStringPath, pathItemStringPath, options, callback);
   }
 
   /**
@@ -213,8 +213,8 @@ export class PathItems {
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<void>;
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getGlobalAndLocalQueryNull(): any {
-    return msRest.responseToBody(this.getGlobalAndLocalQueryNullWithHttpOperationResponse.bind(this), arguments);
+  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getGlobalAndLocalQueryNullWithHttpOperationResponse.bind(this), localStringPath, pathItemStringPath, options, callback);
   }
 
   /**
@@ -241,8 +241,8 @@ export class PathItems {
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<void>;
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getLocalPathItemQueryNull(): any {
-    return msRest.responseToBody(this.getLocalPathItemQueryNullWithHttpOperationResponse.bind(this), arguments);
+  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getLocalPathItemQueryNullWithHttpOperationResponse.bind(this), localStringPath, pathItemStringPath, options, callback);
   }
 
 }

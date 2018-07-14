@@ -77,8 +77,8 @@ export class Paths {
   getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams): Promise<void>;
   getEmpty(vault: string, secret: string, keyName: string, callback: msRest.ServiceCallback<void>): void;
   getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), arguments);
+  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), vault, secret, keyName, options, callback);
   }
 
 }

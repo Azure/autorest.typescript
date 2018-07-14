@@ -693,8 +693,8 @@ export class Queries {
   getBooleanTrue(options: msRest.RequestOptionsBase): Promise<void>;
   getBooleanTrue(callback: msRest.ServiceCallback<void>): void;
   getBooleanTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanTrue(): any {
-    return msRest.responseToBody(this.getBooleanTrueWithHttpOperationResponse.bind(this), arguments);
+  getBooleanTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getBooleanTrueWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -715,8 +715,8 @@ export class Queries {
   getBooleanFalse(options: msRest.RequestOptionsBase): Promise<void>;
   getBooleanFalse(callback: msRest.ServiceCallback<void>): void;
   getBooleanFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanFalse(): any {
-    return msRest.responseToBody(this.getBooleanFalseWithHttpOperationResponse.bind(this), arguments);
+  getBooleanFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getBooleanFalseWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -737,8 +737,8 @@ export class Queries {
   getBooleanNull(options: Models.QueriesGetBooleanNullOptionalParams): Promise<void>;
   getBooleanNull(callback: msRest.ServiceCallback<void>): void;
   getBooleanNull(options: Models.QueriesGetBooleanNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getBooleanNull(): any {
-    return msRest.responseToBody(this.getBooleanNullWithHttpOperationResponse.bind(this), arguments);
+  getBooleanNull(options?: Models.QueriesGetBooleanNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getBooleanNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -759,8 +759,8 @@ export class Queries {
   getIntOneMillion(options: msRest.RequestOptionsBase): Promise<void>;
   getIntOneMillion(callback: msRest.ServiceCallback<void>): void;
   getIntOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntOneMillion(): any {
-    return msRest.responseToBody(this.getIntOneMillionWithHttpOperationResponse.bind(this), arguments);
+  getIntOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getIntOneMillionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -781,8 +781,8 @@ export class Queries {
   getIntNegativeOneMillion(options: msRest.RequestOptionsBase): Promise<void>;
   getIntNegativeOneMillion(callback: msRest.ServiceCallback<void>): void;
   getIntNegativeOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntNegativeOneMillion(): any {
-    return msRest.responseToBody(this.getIntNegativeOneMillionWithHttpOperationResponse.bind(this), arguments);
+  getIntNegativeOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getIntNegativeOneMillionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -803,8 +803,8 @@ export class Queries {
   getIntNull(options: Models.QueriesGetIntNullOptionalParams): Promise<void>;
   getIntNull(callback: msRest.ServiceCallback<void>): void;
   getIntNull(options: Models.QueriesGetIntNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getIntNull(): any {
-    return msRest.responseToBody(this.getIntNullWithHttpOperationResponse.bind(this), arguments);
+  getIntNull(options?: Models.QueriesGetIntNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getIntNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -825,8 +825,8 @@ export class Queries {
   getTenBillion(options: msRest.RequestOptionsBase): Promise<void>;
   getTenBillion(callback: msRest.ServiceCallback<void>): void;
   getTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getTenBillion(): any {
-    return msRest.responseToBody(this.getTenBillionWithHttpOperationResponse.bind(this), arguments);
+  getTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getTenBillionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -847,8 +847,8 @@ export class Queries {
   getNegativeTenBillion(options: msRest.RequestOptionsBase): Promise<void>;
   getNegativeTenBillion(callback: msRest.ServiceCallback<void>): void;
   getNegativeTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getNegativeTenBillion(): any {
-    return msRest.responseToBody(this.getNegativeTenBillionWithHttpOperationResponse.bind(this), arguments);
+  getNegativeTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getNegativeTenBillionWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -869,8 +869,8 @@ export class Queries {
   getLongNull(options: Models.QueriesGetLongNullOptionalParams): Promise<void>;
   getLongNull(callback: msRest.ServiceCallback<void>): void;
   getLongNull(options: Models.QueriesGetLongNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getLongNull(): any {
-    return msRest.responseToBody(this.getLongNullWithHttpOperationResponse.bind(this), arguments);
+  getLongNull(options?: Models.QueriesGetLongNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getLongNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -891,8 +891,8 @@ export class Queries {
   floatScientificPositive(options: msRest.RequestOptionsBase): Promise<void>;
   floatScientificPositive(callback: msRest.ServiceCallback<void>): void;
   floatScientificPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificPositive(): any {
-    return msRest.responseToBody(this.floatScientificPositiveWithHttpOperationResponse.bind(this), arguments);
+  floatScientificPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.floatScientificPositiveWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -913,8 +913,8 @@ export class Queries {
   floatScientificNegative(options: msRest.RequestOptionsBase): Promise<void>;
   floatScientificNegative(callback: msRest.ServiceCallback<void>): void;
   floatScientificNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificNegative(): any {
-    return msRest.responseToBody(this.floatScientificNegativeWithHttpOperationResponse.bind(this), arguments);
+  floatScientificNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.floatScientificNegativeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -935,8 +935,8 @@ export class Queries {
   floatNull(options: Models.QueriesFloatNullOptionalParams): Promise<void>;
   floatNull(callback: msRest.ServiceCallback<void>): void;
   floatNull(options: Models.QueriesFloatNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  floatNull(): any {
-    return msRest.responseToBody(this.floatNullWithHttpOperationResponse.bind(this), arguments);
+  floatNull(options?: Models.QueriesFloatNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.floatNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -957,8 +957,8 @@ export class Queries {
   doubleDecimalPositive(options: msRest.RequestOptionsBase): Promise<void>;
   doubleDecimalPositive(callback: msRest.ServiceCallback<void>): void;
   doubleDecimalPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalPositive(): any {
-    return msRest.responseToBody(this.doubleDecimalPositiveWithHttpOperationResponse.bind(this), arguments);
+  doubleDecimalPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.doubleDecimalPositiveWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -979,8 +979,8 @@ export class Queries {
   doubleDecimalNegative(options: msRest.RequestOptionsBase): Promise<void>;
   doubleDecimalNegative(callback: msRest.ServiceCallback<void>): void;
   doubleDecimalNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalNegative(): any {
-    return msRest.responseToBody(this.doubleDecimalNegativeWithHttpOperationResponse.bind(this), arguments);
+  doubleDecimalNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.doubleDecimalNegativeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1001,8 +1001,8 @@ export class Queries {
   doubleNull(options: Models.QueriesDoubleNullOptionalParams): Promise<void>;
   doubleNull(callback: msRest.ServiceCallback<void>): void;
   doubleNull(options: Models.QueriesDoubleNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  doubleNull(): any {
-    return msRest.responseToBody(this.doubleNullWithHttpOperationResponse.bind(this), arguments);
+  doubleNull(options?: Models.QueriesDoubleNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.doubleNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1023,8 +1023,8 @@ export class Queries {
   stringUnicode(options: msRest.RequestOptionsBase): Promise<void>;
   stringUnicode(callback: msRest.ServiceCallback<void>): void;
   stringUnicode(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUnicode(): any {
-    return msRest.responseToBody(this.stringUnicodeWithHttpOperationResponse.bind(this), arguments);
+  stringUnicode(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.stringUnicodeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1045,8 +1045,8 @@ export class Queries {
   stringUrlEncoded(options: msRest.RequestOptionsBase): Promise<void>;
   stringUrlEncoded(callback: msRest.ServiceCallback<void>): void;
   stringUrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUrlEncoded(): any {
-    return msRest.responseToBody(this.stringUrlEncodedWithHttpOperationResponse.bind(this), arguments);
+  stringUrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.stringUrlEncodedWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1067,8 +1067,8 @@ export class Queries {
   stringEmpty(options: msRest.RequestOptionsBase): Promise<void>;
   stringEmpty(callback: msRest.ServiceCallback<void>): void;
   stringEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringEmpty(): any {
-    return msRest.responseToBody(this.stringEmptyWithHttpOperationResponse.bind(this), arguments);
+  stringEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.stringEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1089,8 +1089,8 @@ export class Queries {
   stringNull(options: Models.QueriesStringNullOptionalParams): Promise<void>;
   stringNull(callback: msRest.ServiceCallback<void>): void;
   stringNull(options: Models.QueriesStringNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  stringNull(): any {
-    return msRest.responseToBody(this.stringNullWithHttpOperationResponse.bind(this), arguments);
+  stringNull(options?: Models.QueriesStringNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.stringNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1111,8 +1111,8 @@ export class Queries {
   enumValid(options: Models.QueriesEnumValidOptionalParams): Promise<void>;
   enumValid(callback: msRest.ServiceCallback<void>): void;
   enumValid(options: Models.QueriesEnumValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  enumValid(): any {
-    return msRest.responseToBody(this.enumValidWithHttpOperationResponse.bind(this), arguments);
+  enumValid(options?: Models.QueriesEnumValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.enumValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1133,8 +1133,8 @@ export class Queries {
   enumNull(options: Models.QueriesEnumNullOptionalParams): Promise<void>;
   enumNull(callback: msRest.ServiceCallback<void>): void;
   enumNull(options: Models.QueriesEnumNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  enumNull(): any {
-    return msRest.responseToBody(this.enumNullWithHttpOperationResponse.bind(this), arguments);
+  enumNull(options?: Models.QueriesEnumNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.enumNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1155,8 +1155,8 @@ export class Queries {
   byteMultiByte(options: Models.QueriesByteMultiByteOptionalParams): Promise<void>;
   byteMultiByte(callback: msRest.ServiceCallback<void>): void;
   byteMultiByte(options: Models.QueriesByteMultiByteOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  byteMultiByte(): any {
-    return msRest.responseToBody(this.byteMultiByteWithHttpOperationResponse.bind(this), arguments);
+  byteMultiByte(options?: Models.QueriesByteMultiByteOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.byteMultiByteWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1177,8 +1177,8 @@ export class Queries {
   byteEmpty(options: msRest.RequestOptionsBase): Promise<void>;
   byteEmpty(callback: msRest.ServiceCallback<void>): void;
   byteEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteEmpty(): any {
-    return msRest.responseToBody(this.byteEmptyWithHttpOperationResponse.bind(this), arguments);
+  byteEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.byteEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1199,8 +1199,8 @@ export class Queries {
   byteNull(options: Models.QueriesByteNullOptionalParams): Promise<void>;
   byteNull(callback: msRest.ServiceCallback<void>): void;
   byteNull(options: Models.QueriesByteNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  byteNull(): any {
-    return msRest.responseToBody(this.byteNullWithHttpOperationResponse.bind(this), arguments);
+  byteNull(options?: Models.QueriesByteNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.byteNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1221,8 +1221,8 @@ export class Queries {
   dateValid(options: msRest.RequestOptionsBase): Promise<void>;
   dateValid(callback: msRest.ServiceCallback<void>): void;
   dateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateValid(): any {
-    return msRest.responseToBody(this.dateValidWithHttpOperationResponse.bind(this), arguments);
+  dateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.dateValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1243,8 +1243,8 @@ export class Queries {
   dateNull(options: Models.QueriesDateNullOptionalParams): Promise<void>;
   dateNull(callback: msRest.ServiceCallback<void>): void;
   dateNull(options: Models.QueriesDateNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  dateNull(): any {
-    return msRest.responseToBody(this.dateNullWithHttpOperationResponse.bind(this), arguments);
+  dateNull(options?: Models.QueriesDateNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.dateNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1265,8 +1265,8 @@ export class Queries {
   dateTimeValid(options: msRest.RequestOptionsBase): Promise<void>;
   dateTimeValid(callback: msRest.ServiceCallback<void>): void;
   dateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateTimeValid(): any {
-    return msRest.responseToBody(this.dateTimeValidWithHttpOperationResponse.bind(this), arguments);
+  dateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.dateTimeValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1287,8 +1287,8 @@ export class Queries {
   dateTimeNull(options: Models.QueriesDateTimeNullOptionalParams): Promise<void>;
   dateTimeNull(callback: msRest.ServiceCallback<void>): void;
   dateTimeNull(options: Models.QueriesDateTimeNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  dateTimeNull(): any {
-    return msRest.responseToBody(this.dateTimeNullWithHttpOperationResponse.bind(this), arguments);
+  dateTimeNull(options?: Models.QueriesDateTimeNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.dateTimeNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1310,8 +1310,8 @@ export class Queries {
   arrayStringCsvValid(options: Models.QueriesArrayStringCsvValidOptionalParams): Promise<void>;
   arrayStringCsvValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringCsvValid(options: Models.QueriesArrayStringCsvValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringCsvValid(): any {
-    return msRest.responseToBody(this.arrayStringCsvValidWithHttpOperationResponse.bind(this), arguments);
+  arrayStringCsvValid(options?: Models.QueriesArrayStringCsvValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayStringCsvValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1332,8 +1332,8 @@ export class Queries {
   arrayStringCsvNull(options: Models.QueriesArrayStringCsvNullOptionalParams): Promise<void>;
   arrayStringCsvNull(callback: msRest.ServiceCallback<void>): void;
   arrayStringCsvNull(options: Models.QueriesArrayStringCsvNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringCsvNull(): any {
-    return msRest.responseToBody(this.arrayStringCsvNullWithHttpOperationResponse.bind(this), arguments);
+  arrayStringCsvNull(options?: Models.QueriesArrayStringCsvNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayStringCsvNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1354,8 +1354,8 @@ export class Queries {
   arrayStringCsvEmpty(options: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<void>;
   arrayStringCsvEmpty(callback: msRest.ServiceCallback<void>): void;
   arrayStringCsvEmpty(options: Models.QueriesArrayStringCsvEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringCsvEmpty(): any {
-    return msRest.responseToBody(this.arrayStringCsvEmptyWithHttpOperationResponse.bind(this), arguments);
+  arrayStringCsvEmpty(options?: Models.QueriesArrayStringCsvEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayStringCsvEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1377,8 +1377,8 @@ export class Queries {
   arrayStringSsvValid(options: Models.QueriesArrayStringSsvValidOptionalParams): Promise<void>;
   arrayStringSsvValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringSsvValid(options: Models.QueriesArrayStringSsvValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringSsvValid(): any {
-    return msRest.responseToBody(this.arrayStringSsvValidWithHttpOperationResponse.bind(this), arguments);
+  arrayStringSsvValid(options?: Models.QueriesArrayStringSsvValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayStringSsvValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1400,8 +1400,8 @@ export class Queries {
   arrayStringTsvValid(options: Models.QueriesArrayStringTsvValidOptionalParams): Promise<void>;
   arrayStringTsvValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringTsvValid(options: Models.QueriesArrayStringTsvValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringTsvValid(): any {
-    return msRest.responseToBody(this.arrayStringTsvValidWithHttpOperationResponse.bind(this), arguments);
+  arrayStringTsvValid(options?: Models.QueriesArrayStringTsvValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayStringTsvValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1423,8 +1423,8 @@ export class Queries {
   arrayStringPipesValid(options: Models.QueriesArrayStringPipesValidOptionalParams): Promise<void>;
   arrayStringPipesValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringPipesValid(options: Models.QueriesArrayStringPipesValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringPipesValid(): any {
-    return msRest.responseToBody(this.arrayStringPipesValidWithHttpOperationResponse.bind(this), arguments);
+  arrayStringPipesValid(options?: Models.QueriesArrayStringPipesValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.arrayStringPipesValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

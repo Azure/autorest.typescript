@@ -86,8 +86,8 @@ export class Inheritance {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.Siamese>;
   getValid(callback: msRest.ServiceCallback<Models.Siamese>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Siamese>): void;
-  getValid(): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Siamese>): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -112,8 +112,8 @@ export class Inheritance {
   putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase): Promise<void>;
   putValid(complexBody: Models.Siamese, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
+  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
 }

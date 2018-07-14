@@ -73,8 +73,8 @@ class AutoRestReportService extends AutoRestReportServiceContext {
   getReport(options: Models.AutoRestReportServiceGetReportOptionalParams): Promise<{ [propertyName: string]: number }>;
   getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getReport(options: Models.AutoRestReportServiceGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(): any {
-    return msRest.responseToBody(this.getReportWithHttpOperationResponse.bind(this), arguments);
+  getReport(options?: Models.AutoRestReportServiceGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
+    return msRest.responseToBody(this.getReportWithHttpOperationResponse.bind(this), options, callback);
   }
 }
 

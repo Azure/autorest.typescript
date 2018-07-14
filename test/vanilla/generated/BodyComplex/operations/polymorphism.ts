@@ -230,8 +230,8 @@ export class Polymorphism {
   getValid(options: msRest.RequestOptionsBase): Promise<Models.FishUnion>;
   getValid(callback: msRest.ServiceCallback<Models.FishUnion>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
-  getValid(): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), arguments);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FishUnion>): any {
+    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -286,8 +286,8 @@ export class Polymorphism {
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<void>;
   putValid(complexBody: Models.FishUnion, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), arguments);
+  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -309,8 +309,8 @@ export class Polymorphism {
   getComplicated(options: msRest.RequestOptionsBase): Promise<Models.SalmonUnion>;
   getComplicated(callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
   getComplicated(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
-  getComplicated(): any {
-    return msRest.responseToBody(this.getComplicatedWithHttpOperationResponse.bind(this), arguments);
+  getComplicated(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SalmonUnion>): any {
+    return msRest.responseToBody(this.getComplicatedWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -334,8 +334,8 @@ export class Polymorphism {
   putComplicated(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase): Promise<void>;
   putComplicated(complexBody: Models.SalmonUnion, callback: msRest.ServiceCallback<void>): void;
   putComplicated(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplicated(): any {
-    return msRest.responseToBody(this.putComplicatedWithHttpOperationResponse.bind(this), arguments);
+  putComplicated(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putComplicatedWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -358,8 +358,8 @@ export class Polymorphism {
   putMissingDiscriminator(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase): Promise<Models.SalmonUnion>;
   putMissingDiscriminator(complexBody: Models.SalmonUnion, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
   putMissingDiscriminator(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
-  putMissingDiscriminator(): any {
-    return msRest.responseToBody(this.putMissingDiscriminatorWithHttpOperationResponse.bind(this), arguments);
+  putMissingDiscriminator(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SalmonUnion>): any {
+    return msRest.responseToBody(this.putMissingDiscriminatorWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
   /**
@@ -409,8 +409,8 @@ export class Polymorphism {
   putValidMissingRequired(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<void>;
   putValidMissingRequired(complexBody: Models.FishUnion, callback: msRest.ServiceCallback<void>): void;
   putValidMissingRequired(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValidMissingRequired(): any {
-    return msRest.responseToBody(this.putValidMissingRequiredWithHttpOperationResponse.bind(this), arguments);
+  putValidMissingRequired(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putValidMissingRequiredWithHttpOperationResponse.bind(this), complexBody, options, callback);
   }
 
 }

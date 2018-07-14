@@ -117,8 +117,8 @@ export class HttpSuccess {
   head200(options: msRest.RequestOptionsBase): Promise<boolean>;
   head200(callback: msRest.ServiceCallback<boolean>): void;
   head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head200(): any {
-    return msRest.responseToBody(this.head200WithHttpOperationResponse.bind(this), arguments);
+  head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.head200WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -139,8 +139,8 @@ export class HttpSuccess {
   head204(options: msRest.RequestOptionsBase): Promise<boolean>;
   head204(callback: msRest.ServiceCallback<boolean>): void;
   head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head204(): any {
-    return msRest.responseToBody(this.head204WithHttpOperationResponse.bind(this), arguments);
+  head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.head204WithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -161,8 +161,8 @@ export class HttpSuccess {
   head404(options: msRest.RequestOptionsBase): Promise<boolean>;
   head404(callback: msRest.ServiceCallback<boolean>): void;
   head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head404(): any {
-    return msRest.responseToBody(this.head404WithHttpOperationResponse.bind(this), arguments);
+  head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
+    return msRest.responseToBody(this.head404WithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

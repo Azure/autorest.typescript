@@ -87,8 +87,8 @@ export class XMsClientRequestId {
   get(options: msRest.RequestOptionsBase): Promise<void>;
   get(callback: msRest.ServiceCallback<void>): void;
   get(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get(): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), arguments);
+  get(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -113,8 +113,8 @@ export class XMsClientRequestId {
   paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase): Promise<void>;
   paramGet(xMsClientRequestId: string, callback: msRest.ServiceCallback<void>): void;
   paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramGet(): any {
-    return msRest.responseToBody(this.paramGetWithHttpOperationResponse.bind(this), arguments);
+  paramGet(xMsClientRequestId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.paramGetWithHttpOperationResponse.bind(this), xMsClientRequestId, options, callback);
   }
 
 }

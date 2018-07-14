@@ -121,8 +121,8 @@ export class Duration {
   getNull(options: msRest.RequestOptionsBase): Promise<string>;
   getNull(callback: msRest.ServiceCallback<string>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), arguments);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -145,8 +145,8 @@ export class Duration {
   putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase): Promise<void>;
   putPositiveDuration(durationBody: string, callback: msRest.ServiceCallback<void>): void;
   putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putPositiveDuration(): any {
-    return msRest.responseToBody(this.putPositiveDurationWithHttpOperationResponse.bind(this), arguments);
+  putPositiveDuration(durationBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putPositiveDurationWithHttpOperationResponse.bind(this), durationBody, options, callback);
   }
 
   /**
@@ -167,8 +167,8 @@ export class Duration {
   getPositiveDuration(options: msRest.RequestOptionsBase): Promise<string>;
   getPositiveDuration(callback: msRest.ServiceCallback<string>): void;
   getPositiveDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getPositiveDuration(): any {
-    return msRest.responseToBody(this.getPositiveDurationWithHttpOperationResponse.bind(this), arguments);
+  getPositiveDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+    return msRest.responseToBody(this.getPositiveDurationWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -189,8 +189,8 @@ export class Duration {
   getInvalid(options: msRest.RequestOptionsBase): Promise<string>;
   getInvalid(callback: msRest.ServiceCallback<string>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getInvalid(): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), arguments);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }
