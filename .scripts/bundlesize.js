@@ -25,11 +25,15 @@ async function getBundleSize() {
   return status.size;
 }
 
+function execVerbose(script) {
+  return exec(script, { maxBuffer: 1024 * 1024 });
+}
+
 async function main() {
-  await exec("git reset --hard " + process.env.TRAVIS_BRANCH, { maxBuffer: 1024 * 1024 });
+  await execVerbose("git reset --hard " + process.env.TRAVIS_BRANCH);
   const baseSize = await getBundleSize();
 
-  await exec("git reset --hard " + process.env.TRAVIS_PULL_REQUEST_SHA, { maxBuffer: 1024 * 1024 });
+  await execVerbose("git reset --hard " + process.env.TRAVIS_PULL_REQUEST_SHA);
   const headSize = await getBundleSize();
 
   const change = (headSize / baseSize) - 1;
