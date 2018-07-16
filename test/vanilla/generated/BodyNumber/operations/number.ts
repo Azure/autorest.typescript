@@ -651,26 +651,7 @@ export class Number {
   getNull(callback: msRest.ServiceCallback<number>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getNullWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -692,26 +673,7 @@ export class Number {
   getInvalidFloat(callback: msRest.ServiceCallback<number>): void;
   getInvalidFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getInvalidFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getInvalidFloatWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidFloatWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getInvalidFloatWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -733,26 +695,7 @@ export class Number {
   getInvalidDouble(callback: msRest.ServiceCallback<number>): void;
   getInvalidDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getInvalidDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getInvalidDoubleWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidDoubleWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getInvalidDoubleWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -774,26 +717,7 @@ export class Number {
   getInvalidDecimal(callback: msRest.ServiceCallback<number>): void;
   getInvalidDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getInvalidDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getInvalidDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getInvalidDecimalWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getInvalidDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -817,26 +741,7 @@ export class Number {
   putBigFloat(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigFloat(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigFloat(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBigFloatWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBigFloatWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putBigFloatWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -858,26 +763,7 @@ export class Number {
   getBigFloat(callback: msRest.ServiceCallback<number>): void;
   getBigFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getBigFloatWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBigFloatWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getBigFloatWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -901,26 +787,7 @@ export class Number {
   putBigDouble(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDouble(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDouble(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBigDoubleWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBigDoubleWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putBigDoubleWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -942,26 +809,7 @@ export class Number {
   getBigDouble(callback: msRest.ServiceCallback<number>): void;
   getBigDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getBigDoubleWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBigDoubleWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getBigDoubleWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -985,26 +833,7 @@ export class Number {
   putBigDoublePositiveDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDoublePositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDoublePositiveDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBigDoublePositiveDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBigDoublePositiveDecimalWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1026,26 +855,7 @@ export class Number {
   getBigDoublePositiveDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDoublePositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDoublePositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getBigDoublePositiveDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBigDoublePositiveDecimalWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1069,26 +879,7 @@ export class Number {
   putBigDoubleNegativeDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDoubleNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDoubleNegativeDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBigDoubleNegativeDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBigDoubleNegativeDecimalWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1110,26 +901,7 @@ export class Number {
   getBigDoubleNegativeDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDoubleNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getBigDoubleNegativeDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBigDoubleNegativeDecimalWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1153,26 +925,7 @@ export class Number {
   putBigDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBigDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBigDecimalWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putBigDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1194,26 +947,7 @@ export class Number {
   getBigDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getBigDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBigDecimalWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getBigDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1237,26 +971,7 @@ export class Number {
   putBigDecimalPositiveDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDecimalPositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDecimalPositiveDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBigDecimalPositiveDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBigDecimalPositiveDecimalWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1278,26 +993,7 @@ export class Number {
   getBigDecimalPositiveDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDecimalPositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getBigDecimalPositiveDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBigDecimalPositiveDecimalWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1321,26 +1017,7 @@ export class Number {
   putBigDecimalNegativeDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDecimalNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDecimalNegativeDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putBigDecimalNegativeDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putBigDecimalNegativeDecimalWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1362,26 +1039,7 @@ export class Number {
   getBigDecimalNegativeDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDecimalNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getBigDecimalNegativeDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getBigDecimalNegativeDecimalWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1405,26 +1063,7 @@ export class Number {
   putSmallFloat(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putSmallFloat(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putSmallFloat(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putSmallFloatWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putSmallFloatWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putSmallFloatWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1446,26 +1085,7 @@ export class Number {
   getSmallFloat(callback: msRest.ServiceCallback<number>): void;
   getSmallFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getSmallFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getSmallFloatWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSmallFloatWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getSmallFloatWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1489,26 +1109,7 @@ export class Number {
   putSmallDouble(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putSmallDouble(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putSmallDouble(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putSmallDoubleWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putSmallDoubleWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putSmallDoubleWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1530,26 +1131,7 @@ export class Number {
   getSmallDouble(callback: msRest.ServiceCallback<number>): void;
   getSmallDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getSmallDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getSmallDoubleWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSmallDoubleWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getSmallDoubleWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1573,26 +1155,7 @@ export class Number {
   putSmallDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putSmallDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putSmallDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putSmallDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putSmallDecimalWithHttpOperationResponse(numberBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putSmallDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
   }
 
   /**
@@ -1614,26 +1177,7 @@ export class Number {
   getSmallDecimal(callback: msRest.ServiceCallback<number>): void;
   getSmallDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getSmallDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<number>;
-    if (!callback) {
-      return this.getSmallDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as number);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSmallDecimalWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as number;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getSmallDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

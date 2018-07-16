@@ -765,26 +765,7 @@ export class Xml {
   getComplexTypeRefNoMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
   getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
   getComplexTypeRefNoMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.RootWithRefAndNoMeta>;
-    if (!callback) {
-      return this.getComplexTypeRefNoMetaWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.RootWithRefAndNoMeta);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexTypeRefNoMetaWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.RootWithRefAndNoMeta;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getComplexTypeRefNoMetaWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -808,26 +789,7 @@ export class Xml {
   putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, callback: msRest.ServiceCallback<void>): void;
   putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putComplexTypeRefNoMetaWithHttpOperationResponse(model, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putComplexTypeRefNoMetaWithHttpOperationResponse(model, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putComplexTypeRefNoMetaWithHttpOperationResponse.bind(this), model, options, callback);
   }
 
   /**
@@ -849,26 +811,7 @@ export class Xml {
   getComplexTypeRefWithMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
   getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
   getComplexTypeRefWithMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndMeta>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.RootWithRefAndMeta>;
-    if (!callback) {
-      return this.getComplexTypeRefWithMetaWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.RootWithRefAndMeta);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getComplexTypeRefWithMetaWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.RootWithRefAndMeta;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getComplexTypeRefWithMetaWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -892,26 +835,7 @@ export class Xml {
   putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, callback: msRest.ServiceCallback<void>): void;
   putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putComplexTypeRefWithMetaWithHttpOperationResponse(model, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putComplexTypeRefWithMetaWithHttpOperationResponse(model, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putComplexTypeRefWithMetaWithHttpOperationResponse.bind(this), model, options, callback);
   }
 
   /**
@@ -933,26 +857,7 @@ export class Xml {
   getSimple(callback: msRest.ServiceCallback<Models.Slideshow>): void;
   getSimple(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
   getSimple(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Slideshow>;
-    if (!callback) {
-      return this.getSimpleWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Slideshow);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSimpleWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Slideshow;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getSimpleWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -976,26 +881,7 @@ export class Xml {
   putSimple(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
   putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putSimple(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putSimpleWithHttpOperationResponse(slideshow, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putSimpleWithHttpOperationResponse(slideshow, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putSimpleWithHttpOperationResponse.bind(this), slideshow, options, callback);
   }
 
   /**
@@ -1017,26 +903,7 @@ export class Xml {
   getWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
   getWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
   getWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.AppleBarrel>;
-    if (!callback) {
-      return this.getWrappedListsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.AppleBarrel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWrappedListsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.AppleBarrel;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getWrappedListsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1060,26 +927,7 @@ export class Xml {
   putWrappedLists(wrappedLists: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
   putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putWrappedLists(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putWrappedListsWithHttpOperationResponse(wrappedLists, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putWrappedListsWithHttpOperationResponse(wrappedLists, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putWrappedListsWithHttpOperationResponse.bind(this), wrappedLists, options, callback);
   }
 
   /**
@@ -1101,26 +949,7 @@ export class Xml {
   getHeaders(callback: msRest.ServiceCallback<void>): void;
   getHeaders(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getHeaders(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getHeadersWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getHeadersWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getHeadersWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1142,26 +971,7 @@ export class Xml {
   getEmptyList(callback: msRest.ServiceCallback<Models.Slideshow>): void;
   getEmptyList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
   getEmptyList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Slideshow>;
-    if (!callback) {
-      return this.getEmptyListWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Slideshow);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyListWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Slideshow;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getEmptyListWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1185,26 +995,7 @@ export class Xml {
   putEmptyList(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
   putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putEmptyList(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putEmptyListWithHttpOperationResponse(slideshow, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putEmptyListWithHttpOperationResponse(slideshow, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putEmptyListWithHttpOperationResponse.bind(this), slideshow, options, callback);
   }
 
   /**
@@ -1226,26 +1017,7 @@ export class Xml {
   getEmptyWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
   getEmptyWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
   getEmptyWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.AppleBarrel>;
-    if (!callback) {
-      return this.getEmptyWrappedListsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.AppleBarrel);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyWrappedListsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.AppleBarrel;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getEmptyWrappedListsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1269,26 +1041,7 @@ export class Xml {
   putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
   putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putEmptyWrappedListsWithHttpOperationResponse(appleBarrel, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putEmptyWrappedListsWithHttpOperationResponse(appleBarrel, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putEmptyWrappedListsWithHttpOperationResponse.bind(this), appleBarrel, options, callback);
   }
 
   /**
@@ -1310,26 +1063,7 @@ export class Xml {
   getRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
   getRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
   getRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Banana[]>;
-    if (!callback) {
-      return this.getRootListWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Banana[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getRootListWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Banana[];
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getRootListWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1353,26 +1087,7 @@ export class Xml {
   putRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
   putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putRootListWithHttpOperationResponse(bananas, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putRootListWithHttpOperationResponse(bananas, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putRootListWithHttpOperationResponse.bind(this), bananas, options, callback);
   }
 
   /**
@@ -1394,26 +1109,7 @@ export class Xml {
   getRootListSingleItem(callback: msRest.ServiceCallback<Models.Banana[]>): void;
   getRootListSingleItem(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
   getRootListSingleItem(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Banana[]>;
-    if (!callback) {
-      return this.getRootListSingleItemWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Banana[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getRootListSingleItemWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Banana[];
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getRootListSingleItemWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1437,26 +1133,7 @@ export class Xml {
   putRootListSingleItem(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
   putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putRootListSingleItem(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putRootListSingleItemWithHttpOperationResponse(bananas, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putRootListSingleItemWithHttpOperationResponse(bananas, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putRootListSingleItemWithHttpOperationResponse.bind(this), bananas, options, callback);
   }
 
   /**
@@ -1478,26 +1155,7 @@ export class Xml {
   getEmptyRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
   getEmptyRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
   getEmptyRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Banana[]>;
-    if (!callback) {
-      return this.getEmptyRootListWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Banana[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyRootListWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Banana[];
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getEmptyRootListWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1521,26 +1179,7 @@ export class Xml {
   putEmptyRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
   putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putEmptyRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putEmptyRootListWithHttpOperationResponse(bananas, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putEmptyRootListWithHttpOperationResponse(bananas, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putEmptyRootListWithHttpOperationResponse.bind(this), bananas, options, callback);
   }
 
   /**
@@ -1562,26 +1201,7 @@ export class Xml {
   getEmptyChildElement(callback: msRest.ServiceCallback<Models.Banana>): void;
   getEmptyChildElement(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana>): void;
   getEmptyChildElement(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Banana>;
-    if (!callback) {
-      return this.getEmptyChildElementWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Banana);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyChildElementWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Banana;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getEmptyChildElementWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1605,26 +1225,7 @@ export class Xml {
   putEmptyChildElement(banana: Models.Banana, callback: msRest.ServiceCallback<void>): void;
   putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putEmptyChildElement(banana: Models.Banana, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putEmptyChildElementWithHttpOperationResponse(banana, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putEmptyChildElementWithHttpOperationResponse(banana, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putEmptyChildElementWithHttpOperationResponse.bind(this), banana, options, callback);
   }
 
   /**
@@ -1646,26 +1247,7 @@ export class Xml {
   listContainers(callback: msRest.ServiceCallback<Models.ListContainersResponse>): void;
   listContainers(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ListContainersResponse>): void;
   listContainers(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ListContainersResponse>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ListContainersResponse>;
-    if (!callback) {
-      return this.listContainersWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ListContainersResponse);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listContainersWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ListContainersResponse;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listContainersWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1687,26 +1269,7 @@ export class Xml {
   getServiceProperties(callback: msRest.ServiceCallback<Models.StorageServiceProperties>): void;
   getServiceProperties(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageServiceProperties>): void;
   getServiceProperties(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageServiceProperties>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.StorageServiceProperties>;
-    if (!callback) {
-      return this.getServicePropertiesWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.StorageServiceProperties);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getServicePropertiesWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.StorageServiceProperties;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getServicePropertiesWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1730,26 +1293,7 @@ export class Xml {
   putServiceProperties(properties: Models.StorageServiceProperties, callback: msRest.ServiceCallback<void>): void;
   putServiceProperties(properties: Models.StorageServiceProperties, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putServiceProperties(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putServicePropertiesWithHttpOperationResponse(properties, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putServicePropertiesWithHttpOperationResponse(properties, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putServicePropertiesWithHttpOperationResponse.bind(this), properties, options, callback);
   }
 
   /**
@@ -1771,26 +1315,7 @@ export class Xml {
   getAcls(callback: msRest.ServiceCallback<Models.SignedIdentifier[]>): void;
   getAcls(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SignedIdentifier[]>): void;
   getAcls(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SignedIdentifier[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SignedIdentifier[]>;
-    if (!callback) {
-      return this.getAclsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.SignedIdentifier[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getAclsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.SignedIdentifier[];
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getAclsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1814,26 +1339,7 @@ export class Xml {
   putAcls(properties: Models.SignedIdentifier[], callback: msRest.ServiceCallback<void>): void;
   putAcls(properties: Models.SignedIdentifier[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putAcls(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putAclsWithHttpOperationResponse(properties, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putAclsWithHttpOperationResponse(properties, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putAclsWithHttpOperationResponse.bind(this), properties, options, callback);
   }
 
   /**
@@ -1855,26 +1361,7 @@ export class Xml {
   listBlobs(callback: msRest.ServiceCallback<Models.ListBlobsResponse>): void;
   listBlobs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ListBlobsResponse>): void;
   listBlobs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ListBlobsResponse>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ListBlobsResponse>;
-    if (!callback) {
-      return this.listBlobsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ListBlobsResponse);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listBlobsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ListBlobsResponse;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listBlobsWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }
