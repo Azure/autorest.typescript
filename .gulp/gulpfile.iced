@@ -31,28 +31,50 @@ task 'install_common',"", (done) ->
   execute "npm install",{cwd:"#{basefolder}/autorest.common", silent:false }, done
 
 # Run language-specific tests:
-task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/nodejs-unit'], (done) ->
+task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/chrome-unit', 'test/nodejs-unit'], (done) ->
   done();
+
+task 'testci/generator-unit', '', [], (done) ->
+  global.verbose = true
+  await run "test/generator-unit", defer _
+  done()
 
 task 'test/generator-unit', 'run generator unit tests', [], (done) ->
   await execute "dotnet test #{basefolder}/unittests/autorest.typescript.tests.csproj /nologo", defer _
+  done()
+
+task 'testci/typecheck', '', [], (done) ->
+  global.verbose = true
+  await run "test/typecheck", defer _
   done()
 
 task 'test/typecheck', 'type check generated code', [], (done) ->
   await execute "#{basefolder}/node_modules/.bin/tsc -p #{basefolder}/test/tsconfig.generated.json", defer _
   done();
 
-task 'set-tsnode-typecheck', 'set ts-node to type check mode', [], (done) ->
-  # This has to be set or else ts-node won't find const enum values.
-  process.env.TS_NODE_TYPE_CHECK = 'Y'
+task 'testci/nodejs-unit', '', [], (done) ->
+  global.verbose = true
+  await run "test/nodejs-unit", defer _
+  await execute "node #{basefolder}/.scripts/coverage", defer _
   done()
 
-task 'test/nodejs-unit', 'run nodejs unit tests', ['set-tsnode-typecheck'], (done) ->
-  await execute "#{basefolder}/node_modules/.bin/mocha --no-colors", defer _
+task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
+  await execute "#{basefolder}/node_modules/.bin/mocha", defer _
   done();
+
+task 'testci/chrome-unit', '', [], (done) ->
+  global.verbose = true
+  await run "test/chrome-unit", defer _
+  await execute "node #{basefolder}/.scripts/coverage", defer _
+  done()
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
   webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/ts-node", ["#{basefolder}/testserver"], { shell: true })
+  cleanupDevServer = () ->
+    webpackDevServer.stderr.destroy()
+    webpackDevServer.stdout.destroy()
+    webpackDevServer.kill()
+
   process.on("exit", () -> webpackDevServer.kill())
   mochaChromeRunning = false
   webpackDevServerHandler = (data) ->
@@ -61,34 +83,41 @@ task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
       try
         await execute "#{basefolder}/node_modules/.bin/mocha-chrome http://localhost:3000", defer _;
         # would just use a finally block but they appear to be broken in iced-coffee-script
-        webpackDevServer.kill()
+        cleanupDevServer()
         done()
       catch err
-        webpackDevServer.kill()
+        cleanupDevServer()
         done(err)
 
   webpackDevServer.stderr.on 'data', (data) -> console.error(data.toString())
   webpackDevServer.stdout.on 'data', webpackDevServerHandler
   webpackDevServer.on 'exit', webpackDevServerHandler
 
-# CI job
-task 'testci', "more", [], (done) ->
+task 'testci/regenerate-ts', '', [], (done) ->
   # install latest AutoRest
   await autorest ["--latest"], defer code, stderr, stdout
 
-  ## TEST SUITE
-  global.verbose = true
-  await run "test", defer _
-
-  ## REGRESSION TEST
-  global.verbose = false
   # regenerate
-  await run "regenerate", defer _
+  await run "regenerate-ts", defer _
   # diff ('add' first so 'diff' includes untracked files)
-  await  execute "git add -A", defer code, stderr, stdout
-  await  execute "git diff --staged -w", defer code, stderr, stdout
+  await execute "git add -A", defer code, stderr, stdout
+  await execute "git diff --staged -w", defer code, stderr, stdout
   # eval
   echo stderr
   echo stdout
   throw "Potentially unnoticed regression (see diff above)! Run `npm run regenerate`, then review and commit the changes." if stdout.length + stderr.length > 0
-  done()
+
+
+task 'testci/regenerate-tsazure', '', [], (done) ->
+  # install latest AutoRest
+  await autorest ["--latest"], defer code, stderr, stdout
+
+  # regenerate
+  await run "regenerate-tsazure", defer _
+  # diff ('add' first so 'diff' includes untracked files)
+  await execute "git add -A", defer code, stderr, stdout
+  await execute "git diff --staged -w", defer code, stderr, stdout
+  # eval
+  echo stderr
+  echo stdout
+  throw "Potentially unnoticed regression (see diff above)! Run `npm run regenerate`, then review and commit the changes." if stdout.length + stderr.length > 0

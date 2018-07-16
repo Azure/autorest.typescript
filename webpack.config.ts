@@ -11,7 +11,7 @@ const config: webpack.Configuration = {
     filename: 'testBundle.js',
     path: __dirname
   },
-  plugins: [
+  plugins: process.env.CI ? [] : [
     new ForkTsCheckerWebpackPlugin()
   ],
   devServer: {
@@ -25,7 +25,7 @@ const config: webpack.Configuration = {
         exclude: /(node_modules)|(startServer\.ts)/,
         options: {
           // speed up build times and get type checking through the forked checker plugin
-          transpileOnly: true
+          transpileOnly: !process.env.CI
         }
       }
     ]
