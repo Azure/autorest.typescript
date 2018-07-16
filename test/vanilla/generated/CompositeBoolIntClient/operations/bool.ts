@@ -36,10 +36,13 @@ export class Bool {
    * @reject {Error|ServiceError} The error object.
    */
   async getTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getTrueOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -60,15 +63,13 @@ export class Bool {
    * @reject {Error|ServiceError} The error object.
    */
   async putTrueWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            boolBody
-          },
-          options),
+        {
+          boolBody,
+          options
+        },
         putTrueOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -88,10 +89,13 @@ export class Bool {
    * @reject {Error|ServiceError} The error object.
    */
   async getFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getFalseOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -112,15 +116,13 @@ export class Bool {
    * @reject {Error|ServiceError} The error object.
    */
   async putFalseWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            boolBody
-          },
-          options),
+        {
+          boolBody,
+          options
+        },
         putFalseOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -140,10 +142,13 @@ export class Bool {
    * @reject {Error|ServiceError} The error object.
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -162,10 +167,13 @@ export class Bool {
    * @reject {Error|ServiceError} The error object.
    */
   async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }

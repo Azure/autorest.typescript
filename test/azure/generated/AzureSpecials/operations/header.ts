@@ -39,15 +39,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async customNamedRequestIdWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            fooClientRequestId
-          },
-          options),
+        {
+          fooClientRequestId,
+          options
+        },
         customNamedRequestIdOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -71,15 +69,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async customNamedRequestIdParamGroupingWithHttpOperationResponse(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            headerCustomNamedRequestIdParamGroupingParameters
-          },
-          options),
+        {
+          headerCustomNamedRequestIdParamGroupingParameters,
+          options
+        },
         customNamedRequestIdParamGroupingOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -101,15 +97,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async customNamedRequestIdHeadWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            fooClientRequestId
-          },
-          options),
+        {
+          fooClientRequestId,
+          options
+        },
         customNamedRequestIdHeadOperationSpec);
       // Deserialize Response
       const statusCode = operationRes.status;

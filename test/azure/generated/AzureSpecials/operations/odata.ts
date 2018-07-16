@@ -37,20 +37,12 @@ export class Odata {
    * @reject {Error|ServiceError} The error object.
    */
   async getWithFilterWithHttpOperationResponse(options?: Models.OdataGetWithFilterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let filter = (options && options.filter !== undefined) ? options.filter : undefined;
-    let top = (options && options.top !== undefined) ? options.top : undefined;
-    let orderby = (options && options.orderby !== undefined) ? options.orderby : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            filter,
-            top,
-            orderby
-          },
-          options),
+        {
+          options
+        },
         getWithFilterOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -107,7 +99,10 @@ const getWithFilterOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/odata/filter",
   queryParameters: [
     {
-      parameterPath: "filter",
+      parameterPath: [
+        "options",
+        "filter"
+      ],
       mapper: {
         serializedName: "$filter",
         type: {
@@ -116,7 +111,10 @@ const getWithFilterOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "top",
+      parameterPath: [
+        "options",
+        "top"
+      ],
       mapper: {
         serializedName: "$top",
         type: {
@@ -125,7 +123,10 @@ const getWithFilterOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "orderby",
+      parameterPath: [
+        "options",
+        "orderby"
+      ],
       mapper: {
         serializedName: "$orderby",
         type: {

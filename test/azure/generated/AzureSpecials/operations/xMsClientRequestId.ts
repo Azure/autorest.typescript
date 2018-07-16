@@ -37,10 +37,13 @@ export class XMsClientRequestId {
    * @reject {Error|ServiceError} The error object.
    */
   async getWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -63,15 +66,13 @@ export class XMsClientRequestId {
    * @reject {Error|ServiceError} The error object.
    */
   async paramGetWithHttpOperationResponse(xMsClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            xMsClientRequestId
-          },
-          options),
+        {
+          xMsClientRequestId,
+          options
+        },
         paramGetOperationSpec);
     } catch (err) {
       return Promise.reject(err);

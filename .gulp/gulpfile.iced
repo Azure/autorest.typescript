@@ -68,7 +68,7 @@ task 'testci/chrome-unit', '', [], (done) ->
   await execute "node #{basefolder}/.scripts/coverage", defer _
   done()
 
-task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
+task 'test/chrome-unit', 'run browser unit tests', ['test/nodejs-unit'], (done) ->
   webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/ts-node", ["#{basefolder}/testserver"], { shell: true })
   cleanupDevServer = () ->
     webpackDevServer.stderr.destroy()

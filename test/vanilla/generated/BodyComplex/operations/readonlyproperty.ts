@@ -37,10 +37,13 @@ export class Readonlyproperty {
    * @reject {Error|ServiceError} The error object.
    */
   async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ReadonlyObj>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getValidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -59,16 +62,12 @@ export class Readonlyproperty {
    * @reject {Error|ServiceError} The error object.
    */
   async putValidWithHttpOperationResponse(options?: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let size = (options && options.size !== undefined) ? options.size : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            size
-          },
-          options),
+        {
+          options
+        },
         putValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -180,7 +179,10 @@ const putValidOperationSpec: msRest.OperationSpec = {
   path: "complex/readonlyproperty/valid",
   requestBody: {
     parameterPath: {
-      size: "size"
+      size: [
+        "options",
+        "size"
+      ]
     },
     mapper: {
       ...Mappers.ReadonlyObj,

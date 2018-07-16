@@ -59,16 +59,12 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @reject {Error|ServiceError} The error object.
    */
   async putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceArray
-          },
-          options),
+        {
+          options
+        },
         putArrayOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -89,10 +85,13 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @reject {Error|ServiceError} The error object.
    */
   async getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlattenedProduct[]>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getArrayOperationSpec);
+      operationRes = await this.sendOperationRequest(
+        {
+          options
+        },
+        getArrayOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -113,16 +112,12 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @reject {Error|ServiceError} The error object.
    */
   async putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let resourceDictionary = (options && options.resourceDictionary !== undefined) ? options.resourceDictionary : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceDictionary
-          },
-          options),
+        {
+          options
+        },
         putDictionaryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -143,10 +138,13 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @reject {Error|ServiceError} The error object.
    */
   async getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Models.FlattenedProduct }>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getDictionaryOperationSpec);
+      operationRes = await this.sendOperationRequest(
+        {
+          options
+        },
+        getDictionaryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -167,16 +165,12 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @reject {Error|ServiceError} The error object.
    */
   async putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let resourceComplexObject = (options && options.resourceComplexObject !== undefined) ? options.resourceComplexObject : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceComplexObject
-          },
-          options),
+        {
+          options
+        },
         putResourceCollectionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -197,10 +191,13 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @reject {Error|ServiceError} The error object.
    */
   async getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ResourceCollection>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.sendOperationRequest(msRest.createOperationArguments({}, options), getResourceCollectionOperationSpec);
+      operationRes = await this.sendOperationRequest(
+        {
+          options
+        },
+        getResourceCollectionOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -474,7 +471,10 @@ const putArrayOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "resourceArray",
+    parameterPath: [
+      "options",
+      "resourceArray"
+    ],
     mapper: {
       serializedName: "ResourceArray",
       type: {
@@ -553,7 +553,10 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "resourceDictionary",
+    parameterPath: [
+      "options",
+      "resourceDictionary"
+    ],
     mapper: {
       serializedName: "ResourceDictionary",
       type: {
@@ -632,7 +635,10 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "resourceComplexObject",
+    parameterPath: [
+      "options",
+      "resourceComplexObject"
+    ],
     mapper: Mappers.ResourceCollection
   },
   contentType: "application/json; charset=utf-8",

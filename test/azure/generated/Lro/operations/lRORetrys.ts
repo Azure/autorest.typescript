@@ -313,16 +313,12 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPut201CreatingSucceeded200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -345,16 +341,12 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutAsyncRelativeRetrySucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -376,10 +368,13 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteProvisioning202Accepted200SucceededOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDeleteProvisioning202Accepted200SucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -399,10 +394,13 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDelete202Retry200Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDelete202Retry200OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDelete202Retry200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -422,10 +420,13 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), beginDeleteAsyncRelativeRetrySucceededOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        beginDeleteAsyncRelativeRetrySucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -445,16 +446,12 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPost202Retry200WithHttpOperationResponse(options?: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<Models.LRORetrysPost202Retry200Response> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPost202Retry200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -477,16 +474,12 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPostAsyncRelativeRetrySucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -1111,7 +1104,10 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -1145,7 +1141,10 @@ const beginPutAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -1260,7 +1259,10 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -1291,7 +1293,10 @@ const beginPostAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = 
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",

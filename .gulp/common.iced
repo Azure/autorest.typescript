@@ -367,8 +367,9 @@ module.exports =
     return proc
 
   autorest: (args,done,ignoreexitcode) ->
-    echo info "Queuing up: AutoRest #{args.join(' ')}"
-    execute "#{basefolder}/node_modules/.bin/autorest \"--use=#{basefolder}\" #{args.map((a) -> "\"#{a}\"").join(' ')}" , {silent:true, ignoreexitcode: ignoreexitcode || false}, (code,stdout,stderr) ->
+    autorestCommand = "#{basefolder}/node_modules/.bin/autorest #{args.map((a) -> "\"#{a}\"").join(' ')} \"--use=#{basefolder}\""
+    echo info "Queuing up: #{autorestCommand}"
+    execute autorestCommand , {silent:true, ignoreexitcode: ignoreexitcode || false}, (code,stdout,stderr) ->
       return done(code,stdout,stderr)
 
 # build task for global build

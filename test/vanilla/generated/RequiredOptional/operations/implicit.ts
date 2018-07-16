@@ -39,15 +39,13 @@ export class Implicit {
    * @reject {Error|ServiceError} The error object.
    */
   async getRequiredPathWithHttpOperationResponse(pathParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            pathParameter
-          },
-          options),
+        {
+          pathParameter,
+          options
+        },
         getRequiredPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -67,16 +65,12 @@ export class Implicit {
    * @reject {Error|ServiceError} The error object.
    */
   async putOptionalQueryWithHttpOperationResponse(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let queryParameter = (options && options.queryParameter !== undefined) ? options.queryParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            queryParameter
-          },
-          options),
+        {
+          options
+        },
         putOptionalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -96,16 +90,12 @@ export class Implicit {
    * @reject {Error|ServiceError} The error object.
    */
   async putOptionalHeaderWithHttpOperationResponse(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let queryParameter = (options && options.queryParameter !== undefined) ? options.queryParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            queryParameter
-          },
-          options),
+        {
+          options
+        },
         putOptionalHeaderOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -125,16 +115,12 @@ export class Implicit {
    * @reject {Error|ServiceError} The error object.
    */
   async putOptionalBodyWithHttpOperationResponse(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        {
+          options
+        },
         putOptionalBodyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -154,10 +140,13 @@ export class Implicit {
    * @reject {Error|ServiceError} The error object.
    */
   async getRequiredGlobalPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRequiredGlobalPathOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getRequiredGlobalPathOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -176,10 +165,13 @@ export class Implicit {
    * @reject {Error|ServiceError} The error object.
    */
   async getRequiredGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getRequiredGlobalQueryOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getRequiredGlobalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -198,10 +190,13 @@ export class Implicit {
    * @reject {Error|ServiceError} The error object.
    */
   async getOptionalGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOptionalGlobalQueryOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getOptionalGlobalQueryOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -528,7 +523,10 @@ const putOptionalQueryOperationSpec: msRest.OperationSpec = {
   path: "reqopt/implicit/optional/query",
   queryParameters: [
     {
-      parameterPath: "queryParameter",
+      parameterPath: [
+        "options",
+        "queryParameter"
+      ],
       mapper: {
         serializedName: "queryParameter",
         type: {
@@ -551,7 +549,10 @@ const putOptionalHeaderOperationSpec: msRest.OperationSpec = {
   path: "reqopt/implicit/optional/header",
   headerParameters: [
     {
-      parameterPath: "queryParameter",
+      parameterPath: [
+        "options",
+        "queryParameter"
+      ],
       mapper: {
         serializedName: "queryParameter",
         type: {
@@ -573,7 +574,10 @@ const putOptionalBodyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "reqopt/implicit/optional/body",
   requestBody: {
-    parameterPath: "bodyParameter",
+    parameterPath: [
+      "options",
+      "bodyParameter"
+    ],
     mapper: {
       serializedName: "bodyParameter",
       type: {

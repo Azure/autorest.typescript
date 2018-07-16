@@ -36,10 +36,13 @@ export class DateModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -58,10 +61,13 @@ export class DateModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getInvalidDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidDateOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getInvalidDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,10 +86,13 @@ export class DateModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getOverflowDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowDateOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getOverflowDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -102,10 +111,13 @@ export class DateModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getUnderflowDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowDateOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getUnderflowDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -126,15 +138,13 @@ export class DateModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putMaxDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            dateBody
-          },
-          options),
+        {
+          dateBody,
+          options
+        },
         putMaxDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -154,10 +164,13 @@ export class DateModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getMaxDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMaxDateOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getMaxDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -178,15 +191,13 @@ export class DateModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putMinDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            dateBody
-          },
-          options),
+        {
+          dateBody,
+          options
+        },
         putMinDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -206,10 +217,13 @@ export class DateModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getMinDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getMinDateOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getMinDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }

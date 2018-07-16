@@ -37,10 +37,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async head400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head400OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -59,10 +62,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async get400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get400OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -81,16 +87,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async put400WithHttpOperationResponse(options?: Models.HttpClientFailurePut400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         put400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -110,16 +112,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async patch400WithHttpOperationResponse(options?: Models.HttpClientFailurePatch400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         patch400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -139,16 +137,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async post400WithHttpOperationResponse(options?: Models.HttpClientFailurePost400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         post400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -168,16 +162,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async delete400WithHttpOperationResponse(options?: Models.HttpClientFailureDelete400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         delete400OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -197,10 +187,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async head401WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head401OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head401OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -219,10 +212,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async get402WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get402OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get402OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -241,10 +237,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async get403WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get403OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get403OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -263,16 +262,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async put404WithHttpOperationResponse(options?: Models.HttpClientFailurePut404OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         put404OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -292,16 +287,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async patch405WithHttpOperationResponse(options?: Models.HttpClientFailurePatch405OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         patch405OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -321,16 +312,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async post406WithHttpOperationResponse(options?: Models.HttpClientFailurePost406OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         post406OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -350,16 +337,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async delete407WithHttpOperationResponse(options?: Models.HttpClientFailureDelete407OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         delete407OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -379,16 +362,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async put409WithHttpOperationResponse(options?: Models.HttpClientFailurePut409OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         put409OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -408,10 +387,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async head410WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head410OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head410OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -430,10 +412,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async get411WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get411OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get411OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -452,10 +437,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async get412WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get412OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get412OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -474,16 +462,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async put413WithHttpOperationResponse(options?: Models.HttpClientFailurePut413OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         put413OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -503,16 +487,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async patch414WithHttpOperationResponse(options?: Models.HttpClientFailurePatch414OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         patch414OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -532,16 +512,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async post415WithHttpOperationResponse(options?: Models.HttpClientFailurePost415OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         post415OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -561,10 +537,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async get416WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get416OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get416OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -583,16 +562,12 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async delete417WithHttpOperationResponse(options?: Models.HttpClientFailureDelete417OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         delete417OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -612,10 +587,13 @@ export class HttpClientFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async head429WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head429OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head429OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1594,7 +1572,10 @@ const put400OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/failure/client/400",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1615,7 +1596,10 @@ const patch400OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/failure/client/400",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1636,7 +1620,10 @@ const post400OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/failure/client/400",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1657,7 +1644,10 @@ const delete400OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/failure/client/400",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1711,7 +1701,10 @@ const put404OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/failure/client/404",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1732,7 +1725,10 @@ const patch405OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/failure/client/405",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1753,7 +1749,10 @@ const post406OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/failure/client/406",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1774,7 +1773,10 @@ const delete407OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/failure/client/407",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1795,7 +1797,10 @@ const put409OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/failure/client/409",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1849,7 +1854,10 @@ const put413OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/failure/client/413",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1870,7 +1878,10 @@ const patch414OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/failure/client/414",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1891,7 +1902,10 @@ const post415OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/failure/client/415",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -1923,7 +1937,10 @@ const delete417OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/failure/client/417",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {

@@ -37,10 +37,13 @@ export class HttpRetry {
    * @reject {Error|ServiceError} The error object.
    */
   async head408WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head408OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head408OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -59,16 +62,12 @@ export class HttpRetry {
    * @reject {Error|ServiceError} The error object.
    */
   async put500WithHttpOperationResponse(options?: Models.HttpRetryPut500OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         put500OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -88,16 +87,12 @@ export class HttpRetry {
    * @reject {Error|ServiceError} The error object.
    */
   async patch500WithHttpOperationResponse(options?: Models.HttpRetryPatch500OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         patch500OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -117,10 +112,13 @@ export class HttpRetry {
    * @reject {Error|ServiceError} The error object.
    */
   async get502WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get502OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get502OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -139,16 +137,12 @@ export class HttpRetry {
    * @reject {Error|ServiceError} The error object.
    */
   async post503WithHttpOperationResponse(options?: Models.HttpRetryPost503OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         post503OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -168,16 +162,12 @@ export class HttpRetry {
    * @reject {Error|ServiceError} The error object.
    */
   async delete503WithHttpOperationResponse(options?: Models.HttpRetryDelete503OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         delete503OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -197,16 +187,12 @@ export class HttpRetry {
    * @reject {Error|ServiceError} The error object.
    */
   async put504WithHttpOperationResponse(options?: Models.HttpRetryPut504OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         put504OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -226,16 +212,12 @@ export class HttpRetry {
    * @reject {Error|ServiceError} The error object.
    */
   async patch504WithHttpOperationResponse(options?: Models.HttpRetryPatch504OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         patch504OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -590,7 +572,10 @@ const put500OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/retry/500",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -612,7 +597,10 @@ const patch500OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/retry/500",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -646,7 +634,10 @@ const post503OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/retry/503",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -668,7 +659,10 @@ const delete503OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/retry/503",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -690,7 +684,10 @@ const put504OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "http/retry/504",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -712,7 +709,10 @@ const patch504OperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/retry/504",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {

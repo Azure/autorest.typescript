@@ -39,15 +39,13 @@ export class SkipUrlEncoding {
    * @reject {Error|ServiceError} The error object.
    */
   async getMethodPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            unencodedPathParam
-          },
-          options),
+        {
+          unencodedPathParam,
+          options
+        },
         getMethodPathValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -69,15 +67,13 @@ export class SkipUrlEncoding {
    * @reject {Error|ServiceError} The error object.
    */
   async getPathPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            unencodedPathParam
-          },
-          options),
+        {
+          unencodedPathParam,
+          options
+        },
         getPathPathValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -97,15 +93,12 @@ export class SkipUrlEncoding {
    * @reject {Error|ServiceError} The error object.
    */
   async getSwaggerPathValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            unencodedPathParam: 'path1/path2/path3'
-          },
-          options),
+        {
+          options
+        },
         getSwaggerPathValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -127,15 +120,13 @@ export class SkipUrlEncoding {
    * @reject {Error|ServiceError} The error object.
    */
   async getMethodQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            q1
-          },
-          options),
+        {
+          q1,
+          options
+        },
         getMethodQueryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -155,16 +146,12 @@ export class SkipUrlEncoding {
    * @reject {Error|ServiceError} The error object.
    */
   async getMethodQueryNullWithHttpOperationResponse(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let q1 = (options && options.q1 !== undefined) ? options.q1 : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            q1
-          },
-          options),
+        {
+          options
+        },
         getMethodQueryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -186,15 +173,13 @@ export class SkipUrlEncoding {
    * @reject {Error|ServiceError} The error object.
    */
   async getPathQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            q1
-          },
-          options),
+        {
+          q1,
+          options
+        },
         getPathQueryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -214,15 +199,12 @@ export class SkipUrlEncoding {
    * @reject {Error|ServiceError} The error object.
    */
   async getSwaggerQueryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            q1: 'value1&q2=value2&q3=value3'
-          },
-          options),
+        {
+          options
+        },
         getSwaggerQueryValidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -683,7 +665,10 @@ const getMethodQueryNullOperationSpec: msRest.OperationSpec = {
   path: "azurespecials/skipUrlEncoding/method/query/null",
   queryParameters: [
     {
-      parameterPath: "q1",
+      parameterPath: [
+        "options",
+        "q1"
+      ],
       skipEncoding: true,
       mapper: {
         serializedName: "q1",

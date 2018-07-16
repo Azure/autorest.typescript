@@ -43,20 +43,14 @@ export class PathItems {
    * @reject {Error|ServiceError} The error object.
    */
   async getAllWithValuesWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
-    let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            localStringPath,
-            localStringQuery,
-            pathItemStringPath,
-            pathItemStringQuery
-          },
-          options),
+        {
+          localStringPath,
+          pathItemStringPath,
+          options
+        },
         getAllWithValuesOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -82,20 +76,14 @@ export class PathItems {
    * @reject {Error|ServiceError} The error object.
    */
   async getGlobalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
-    let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            localStringPath,
-            localStringQuery,
-            pathItemStringPath,
-            pathItemStringQuery
-          },
-          options),
+        {
+          localStringPath,
+          pathItemStringPath,
+          options
+        },
         getGlobalQueryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -121,20 +109,14 @@ export class PathItems {
    * @reject {Error|ServiceError} The error object.
    */
   async getGlobalAndLocalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
-    let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            localStringPath,
-            localStringQuery,
-            pathItemStringPath,
-            pathItemStringQuery
-          },
-          options),
+        {
+          localStringPath,
+          pathItemStringPath,
+          options
+        },
         getGlobalAndLocalQueryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -160,20 +142,14 @@ export class PathItems {
    * @reject {Error|ServiceError} The error object.
    */
   async getLocalPathItemQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
-    let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            localStringPath,
-            localStringQuery,
-            pathItemStringPath,
-            pathItemStringQuery
-          },
-          options),
+        {
+          localStringPath,
+          pathItemStringPath,
+          options
+        },
         getLocalPathItemQueryNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -409,7 +385,10 @@ const getAllWithValuesOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "localStringQuery",
+      parameterPath: [
+        "options",
+        "localStringQuery"
+      ],
       mapper: {
         serializedName: "localStringQuery",
         type: {
@@ -418,7 +397,10 @@ const getAllWithValuesOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "pathItemStringQuery",
+      parameterPath: [
+        "options",
+        "pathItemStringQuery"
+      ],
       mapper: {
         serializedName: "pathItemStringQuery",
         type: {
@@ -482,7 +464,10 @@ const getGlobalQueryNullOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "localStringQuery",
+      parameterPath: [
+        "options",
+        "localStringQuery"
+      ],
       mapper: {
         serializedName: "localStringQuery",
         type: {
@@ -491,7 +476,10 @@ const getGlobalQueryNullOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "pathItemStringQuery",
+      parameterPath: [
+        "options",
+        "pathItemStringQuery"
+      ],
       mapper: {
         serializedName: "pathItemStringQuery",
         type: {
@@ -555,7 +543,10 @@ const getGlobalAndLocalQueryNullOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "localStringQuery",
+      parameterPath: [
+        "options",
+        "localStringQuery"
+      ],
       mapper: {
         serializedName: "localStringQuery",
         type: {
@@ -564,7 +555,10 @@ const getGlobalAndLocalQueryNullOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "pathItemStringQuery",
+      parameterPath: [
+        "options",
+        "pathItemStringQuery"
+      ],
       mapper: {
         serializedName: "pathItemStringQuery",
         type: {
@@ -628,7 +622,10 @@ const getLocalPathItemQueryNullOperationSpec: msRest.OperationSpec = {
   ],
   queryParameters: [
     {
-      parameterPath: "localStringQuery",
+      parameterPath: [
+        "options",
+        "localStringQuery"
+      ],
       mapper: {
         serializedName: "localStringQuery",
         type: {
@@ -637,7 +634,10 @@ const getLocalPathItemQueryNullOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "pathItemStringQuery",
+      parameterPath: [
+        "options",
+        "pathItemStringQuery"
+      ],
       mapper: {
         serializedName: "pathItemStringQuery",
         type: {

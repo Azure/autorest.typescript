@@ -37,10 +37,13 @@ export class HttpServerFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async head501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), head501OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        head501OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -59,10 +62,13 @@ export class HttpServerFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async get501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), get501OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        get501OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -81,16 +87,12 @@ export class HttpServerFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async post505WithHttpOperationResponse(options?: Models.HttpServerFailurePost505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         post505OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -110,16 +112,12 @@ export class HttpServerFailure {
    * @reject {Error|ServiceError} The error object.
    */
   async delete505WithHttpOperationResponse(options?: Models.HttpServerFailureDelete505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        {
+          options
+        },
         delete505OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -320,7 +318,10 @@ const post505OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "http/failure/server/505",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {
@@ -341,7 +342,10 @@ const delete505OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/failure/server/505",
   requestBody: {
-    parameterPath: "booleanValue",
+    parameterPath: [
+      "options",
+      "booleanValue"
+    ],
     mapper: {
       serializedName: "booleanValue",
       type: {

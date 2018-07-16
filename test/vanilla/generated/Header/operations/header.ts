@@ -39,15 +39,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramExistingKeyWithHttpOperationResponse(userAgent: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            userAgent
-          },
-          options),
+        {
+          userAgent,
+          options
+        },
         paramExistingKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -67,10 +65,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseExistingKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseExistingKeyResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), responseExistingKeyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        responseExistingKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -91,15 +92,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramProtectedKeyWithHttpOperationResponse(contentType: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            contentType
-          },
-          options),
+        {
+          contentType,
+          options
+        },
         paramProtectedKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -119,10 +118,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseProtectedKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseProtectedKeyResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), responseProtectedKeyOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        responseProtectedKeyOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -147,16 +149,14 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramIntegerWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          value,
+          options
+        },
         paramIntegerOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -179,15 +179,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseIntegerWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseIntegerOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -213,16 +211,14 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramLongWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          value,
+          options
+        },
         paramLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -245,15 +241,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseLongWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseLongOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -279,16 +273,14 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramFloatWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          value,
+          options
+        },
         paramFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -311,15 +303,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseFloatWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseFloatOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -345,16 +335,14 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramDoubleWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          value,
+          options
+        },
         paramDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -377,15 +365,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseDoubleWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseDoubleOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -410,16 +396,14 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramBoolWithHttpOperationResponse(scenario: string, value: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          value,
+          options
+        },
         paramBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -441,15 +425,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseBoolWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseBoolOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -473,17 +455,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramStringWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let value = (options && options.value !== undefined) ? options.value : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         paramStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -506,15 +484,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseStringWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseStringOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -539,16 +515,14 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramDateWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          value,
+          options
+        },
         paramDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -570,15 +544,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseDateWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -604,16 +576,14 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramDatetimeWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          value,
+          options
+        },
         paramDatetimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -635,15 +605,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseDatetimeWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseDatetimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -666,17 +634,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let value = (options && options.value !== undefined) ? options.value : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         paramDatetimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -699,15 +663,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseDatetimeRfc1123OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -731,16 +693,14 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramDurationWithHttpOperationResponse(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          value,
+          options
+        },
         paramDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -762,15 +722,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseDurationWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseDurationOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -794,16 +752,14 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramByteWithHttpOperationResponse(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          value,
+          options
+        },
         paramByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -825,15 +781,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseByteWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseByteOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -857,17 +811,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async paramEnumWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let value = (options && options.value !== undefined) ? options.value : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         paramEnumOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -890,15 +840,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async responseEnumWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        {
+          scenario,
+          options
+        },
         responseEnumOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -918,10 +866,13 @@ export class Header {
    * @reject {Error|ServiceError} The error object.
    */
   async customRequestIdWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), customRequestIdOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        customRequestIdOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2605,7 +2556,10 @@ const paramStringOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "value",
+      parameterPath: [
+        "options",
+        "value"
+      ],
       mapper: {
         serializedName: "value",
         type: {
@@ -2784,7 +2738,10 @@ const paramDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "value",
+      parameterPath: [
+        "options",
+        "value"
+      ],
       mapper: {
         serializedName: "value",
         type: {
@@ -2963,7 +2920,10 @@ const paramEnumOperationSpec: msRest.OperationSpec = {
       }
     },
     {
-      parameterPath: "value",
+      parameterPath: [
+        "options",
+        "value"
+      ],
       mapper: {
         serializedName: "value",
         type: {

@@ -206,16 +206,12 @@ export class LROsCustomHeader {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPutAsyncRetrySucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -239,16 +235,12 @@ export class LROsCustomHeader {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPut201CreatingSucceeded200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -270,16 +262,12 @@ export class LROsCustomHeader {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<Models.LROsCustomHeaderPost202Retry200Response> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPost202Retry200OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -303,16 +291,12 @@ export class LROsCustomHeader {
    * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse> {
-    let product = (options && options.product !== undefined) ? options.product : undefined;
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            product
-          },
-          options),
+        {
+          options
+        },
         beginPostAsyncRetrySucceededOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -692,7 +676,10 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -724,7 +711,10 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -758,7 +748,10 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",
@@ -789,7 +782,10 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
     }
   ],
   requestBody: {
-    parameterPath: "product",
+    parameterPath: [
+      "options",
+      "product"
+    ],
     mapper: Mappers.Product
   },
   contentType: "application/json; charset=utf-8",

@@ -357,11 +357,6 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public string ClientReference => MethodGroup.IsCodeModelMethodGroup ? "this" : "this.client";
 
-        public static string GetStatusCodeReference(HttpStatusCode code)
-        {
-            return string.Format(CultureInfo.InvariantCulture, "{0}", (int)code);
-        }
-
         [JsonIgnore]
         public virtual string InitializeResult
         {
@@ -411,30 +406,6 @@ namespace AutoRest.TypeScript.Model
 
         private ParameterTransformations GetParameterTransformations()
             => new ParameterTransformations(InputParameterTransformation);
-
-        private IEnumerable<Property> OptionsParameterProperties
-        {
-            get
-            {
-                CompositeType optionsParameterModelType = (CompositeType)OptionsParameterTemplateModel.ModelType;
-                return optionsParameterModelType.Properties.Where(property => property.Name != "customHeaders");
-            }
-        }
-
-        public string BuildOptionalMappings()
-        {
-            TSBuilder builder = new TSBuilder();
-            foreach (Property optionalParam in OptionsParameterProperties)
-            {
-                string defaultValue = "undefined";
-                if (!string.IsNullOrWhiteSpace(optionalParam.DefaultValue))
-                {
-                    defaultValue = optionalParam.DefaultValue;
-                }
-                builder.Line("let {0} = ({1} && {1}.{2} !== undefined) ? {1}.{2} : {3};", optionalParam.Name, OptionsParameterTemplateModel.Name, optionalParam.Name, defaultValue);
-            }
-            return builder.ToString();
-        }
 
         /// <summary>
         /// Generates documentation for every method on the client.
@@ -524,20 +495,12 @@ namespace AutoRest.TypeScript.Model
             builder.Line(GenerateWithHttpOperationResponseMethodComment());
             builder.AsyncMethod($"{Name.ToCamelCase()}WithHttpOperationResponse", $"Promise<{HttpOperationResponseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
             {
-                if (OptionsParameterModelType.Properties.Any())
-                {
-                    methodBody.Line(BuildOptionalMappings());
-                }
-
-                methodBody.Line(emptyLine);
-
                 methodBody.Line("let operationRes: msRest.HttpOperationResponse;");
-
                 methodBody.Try(tryBlock =>
                 {
                     tryBlock.FunctionCall($"operationRes = await {ClientReference}.sendOperationRequest", argumentList =>
                     {
-                        argumentList.FunctionCall("msRest.createOperationArguments", GenerateOperationArguments);
+                        argumentList.Object(GenerateOperationArguments);
                         argumentList.Text(GetOperationSpecVariableName());
                     });
                     tryBlock.Line(";");
@@ -569,39 +532,26 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        public void GenerateOperationArguments(TSArgumentList operationArguments)
+        public void GenerateOperationArguments(TSObject operationArguments)
         {
-            operationArguments.Object(obj =>
+            ParameterTransformations transformations = GetParameterTransformations();
+
+            // Remember that Parameters contains the parameters of the REST API method, not the
+            // generated method.
+            foreach (Parameter parameter in Parameters)
             {
-                ParameterTransformations transformations = GetParameterTransformations();
-                Action<string, string> addArgument = (string operationArgumentName, string operationArgumentValue) =>
+                if (parameter.IsRequired &&
+                    !parameter.IsConstant &&
+                    !parameter.IsClientProperty &&
+                    !operationArguments.ContainsProperty(parameter.Name) &&
+                    !transformations.IsCreatedFromTransformation(parameter.Name) &&
+                    parameter.Name != "options")
                 {
-                    if (!obj.ContainsProperty(operationArgumentName) &&
-                        !transformations.IsCreatedFromTransformation(operationArgumentName) &&
-                        operationArgumentName != "options")
-                    {
-                        obj.TextProperty(operationArgumentName, operationArgumentValue);
-                    }
-                };
-
-                foreach (Parameter parameter in Parameters)
-                {
-                    if (parameter.IsConstant)
-                    {
-                        addArgument(parameter.Name, parameter.DefaultValue);
-                    }
-                    else if (!parameter.IsClientProperty)
-                    {
-                        addArgument(parameter.Name, parameter.Name);
-                    }
+                    operationArguments.TextProperty(parameter.Name, parameter.Name);
                 }
+            }
 
-                foreach (Property optionsProperty in OptionsParameterProperties)
-                {
-                    addArgument(optionsProperty.Name, optionsProperty.Name);
-                }
-            });
-            operationArguments.Text("options");
+            operationArguments.TextProperty("options", "options");
         }
 
         public void GenerateOperationSpec(TSObject operationSpec)
@@ -721,14 +671,21 @@ namespace AutoRest.TypeScript.Model
 
         private static void GenerateRequestParameterPath(TSObject parent, Parameter requestParameter, ParameterTransformations parameterTransformations)
         {
-            GenerateRequestParameterPath(parent, "parameterPath", requestParameter.Name, parameterTransformations);
+            GenerateRequestParameterPath(parent, "parameterPath", requestParameter.Name, !requestParameter.IsClientProperty && !requestParameter.IsRequired, parameterTransformations);
         }
 
-        private static void GenerateRequestParameterPath(TSObject parent, string propertyName, string parameterName, ParameterTransformations parameterTransformations)
+        private static void GenerateRequestParameterPath(TSObject parent, string propertyName, string parameterName, bool parameterInOptions, ParameterTransformations parameterTransformations)
         {
             if (!parameterTransformations.IsCreatedFromTransformation(parameterName))
             {
-                parent.QuotedStringProperty(propertyName, parameterName);
+                if (parameterInOptions || parameterTransformations.InputParameterInOptions(parameterName))
+                {
+                    parent.QuotedStringArrayProperty(propertyName, new string[] { "options", parameterName });
+                }
+                else
+                {
+                    parent.QuotedStringProperty(propertyName, parameterName);
+                }
             }
             else if (parameterTransformations.IsUnflattenedVariable(parameterName))
             {
@@ -740,7 +697,8 @@ namespace AutoRest.TypeScript.Model
                     {
                         string unflattenedPropertyName = unflattenedPropertyMapping.Key;
                         string inputParameterName = unflattenedPropertyMapping.Value;
-                        GenerateRequestParameterPath(parameterPathObject, unflattenedPropertyName, inputParameterName, parameterTransformations);
+                        bool inputParameterInOptions = parameterTransformations.InputParameterInOptions(inputParameterName);
+                        GenerateRequestParameterPath(parameterPathObject, unflattenedPropertyName, inputParameterName, inputParameterInOptions, parameterTransformations);
                     }
                 });
             }
@@ -748,17 +706,23 @@ namespace AutoRest.TypeScript.Model
             {
                 // Ungrouping
                 string[] inputParameterPath = parameterTransformations.GetUngroupedParameterPath(parameterName);
+                string inputParameterPathFirstPart = inputParameterPath[0];
+                bool inputParameterInOptions = parameterTransformations.InputParameterInOptions(inputParameterPathFirstPart);
                 if (inputParameterPath.Length == 1)
                 {
-                    GenerateRequestParameterPath(parent, propertyName, inputParameterPath[0], parameterTransformations);
+                    GenerateRequestParameterPath(parent, propertyName, inputParameterPath[0], inputParameterInOptions, parameterTransformations);
                 }
                 else
                 {
-                    parent.ArrayProperty(propertyName, parameterPathArray =>
+                    parent.ArrayProperty(propertyName, array =>
                     {
+                        if (inputParameterInOptions)
+                        {
+                            array.QuotedString("options");
+                        }
                         foreach (string inputParameterPathPart in inputParameterPath)
                         {
-                            parameterPathArray.QuotedString(inputParameterPathPart);
+                            array.QuotedString(inputParameterPathPart);
                         }
                     });
                 }
@@ -783,6 +747,11 @@ namespace AutoRest.TypeScript.Model
         public string CreateSerializerExpression()
         {
             return $"new msRest.Serializer(Mappers{(CodeModel.ShouldGenerateXmlSerialization == true ? ", true" : "")})";
+        }
+
+        public static bool IsInOptionsParameter(Parameter parameter)
+        {
+            return parameter != null && !parameter.IsClientProperty && !string.IsNullOrWhiteSpace(parameter.Name) && !parameter.IsConstant && !parameter.IsRequired;
         }
     }
 }

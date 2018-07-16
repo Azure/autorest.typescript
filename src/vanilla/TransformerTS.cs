@@ -159,8 +159,8 @@ namespace AutoRest.TypeScript
         {
             foreach (var method in cm.Methods)
             {
-                var optionalParameters = method.Parameters.Where(p => p != null && !p.IsClientProperty && !string.IsNullOrWhiteSpace(p.Name) && !p.IsConstant && !p.IsRequired).ToList();
-                if (optionalParameters!= null && optionalParameters.Count() == 0)
+                IEnumerable<Parameter> optionalParameters = method.Parameters.Where(MethodTS.IsInOptionsParameter);
+                if (optionalParameters == null || !optionalParameters.Any())
                 {
                     var optionsParameterTemplateModel = New<Parameter>(new
                     {

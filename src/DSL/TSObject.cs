@@ -204,6 +204,22 @@ namespace AutoRest.TypeScript.DSL
         }
 
         /// <summary>
+        /// Add a property to this TSObject with the provided name and quoted string[] values.
+        /// </summary>
+        /// <param name="propertyName">The name of the new property.</param>
+        /// <param name="propertyValue">The quoted string[] values of the new property.</param>
+        public void QuotedStringArrayProperty(string propertyName, string[] propertyValue)
+        {
+            ArrayProperty(propertyName, (TSArray tsArray) =>
+            {
+                foreach (string propertyValueElement in propertyValue)
+                {
+                    tsArray.QuotedString(propertyValueElement);
+                }
+            });
+        }
+
+        /// <summary>
         /// Add a property to this TSObject with the provided name. The provided action will be invoked to populate the array value of this property.
         /// </summary>
         /// <param name="propertyName">The name of the new property.</param>

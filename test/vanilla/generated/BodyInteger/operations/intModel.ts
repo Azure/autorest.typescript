@@ -36,10 +36,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNullOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -58,10 +61,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getInvalidOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -80,10 +86,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getOverflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowInt32OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getOverflowInt32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -102,10 +111,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getUnderflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowInt32OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getUnderflowInt32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -124,10 +136,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getOverflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getOverflowInt64OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getOverflowInt64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -146,10 +161,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getUnderflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnderflowInt64OperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getUnderflowInt64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -170,15 +188,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putMax32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intBody
-          },
-          options),
+        {
+          intBody,
+          options
+        },
         putMax32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -200,15 +216,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putMax64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intBody
-          },
-          options),
+        {
+          intBody,
+          options
+        },
         putMax64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -230,15 +244,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putMin32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intBody
-          },
-          options),
+        {
+          intBody,
+          options
+        },
         putMin32OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -260,15 +272,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putMin64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intBody
-          },
-          options),
+        {
+          intBody,
+          options
+        },
         putMin64OperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -288,10 +298,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getUnixTimeOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getUnixTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -312,15 +325,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async putUnixTimeDateWithHttpOperationResponse(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            intBody
-          },
-          options),
+        {
+          intBody,
+          options
+        },
         putUnixTimeDateOperationSpec);
     } catch (err) {
       return Promise.reject(err);
@@ -340,10 +351,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getInvalidUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getInvalidUnixTimeOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getInvalidUnixTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -362,10 +376,13 @@ export class IntModel {
    * @reject {Error|ServiceError} The error object.
    */
   async getNullUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getNullUnixTimeOperationSpec);
+      operationRes = await this.client.sendOperationRequest(
+        {
+          options
+        },
+        getNullUnixTimeOperationSpec);
     } catch (err) {
       return Promise.reject(err);
     }
