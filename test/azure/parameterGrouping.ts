@@ -9,6 +9,7 @@ import * as msRest from 'ms-rest-js';
 import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestParameterGroupingTestService } from './generated/AzureParameterGrouping/autoRestParameterGroupingTestService';
+import { ParameterGroupingPostOptionalOptionalParams } from "./generated/AzureParameterGrouping/models";
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
@@ -24,21 +25,19 @@ describe('typescript', function () {
   describe('Azure Parameter Grouping', function () {
     var testClient = new AutoRestParameterGroupingTestService(credentials, baseUri, clientOptions);
     it('should accept valid required parameters', function (done) {
-      testClient.parameterGrouping.postRequired({ body: body, customHeader: header, query: query, path: path },
-        function (error, result, request, response) {
-          should.not.exist(error);
-          response.status.should.equal(200);
-          done();
-        });
+      testClient.parameterGrouping.postRequired({ body: body, customHeader: header, query: query, path: path }, function (error, result, request, response) {
+        should.not.exist(error);
+        response.status.should.equal(200);
+        done();
+      });
     });
 
     it('should accept required parameters but null optional parameters', function (done) {
-      testClient.parameterGrouping.postRequired({ body: body, path: path },
-        function (error, result, request, response) {
-          should.not.exist(error);
-          response.status.should.equal(200);
-          done();
-        });
+      testClient.parameterGrouping.postRequired({ body: body, path: path }, function (error, result, request, response) {
+        should.not.exist(error);
+        response.status.should.equal(200);
+        done();
+      });
     });
 
     it('should reject null required parameters', function (done) {
@@ -52,16 +51,23 @@ describe('typescript', function () {
     });
 
     it('should accept valid optional parameters', function (done) {
-      testClient.parameterGrouping.postOptional({ parameterGroupingPostOptionalParameters: { query: query, customHeader: header } },
-        function (error, result, request, response) {
-          should.not.exist(error);
-          response.status.should.equal(200);
-          done();
-        });
+      const options: ParameterGroupingPostOptionalOptionalParams = {
+        parameterGroupingPostOptionalParameters: {
+          query: query,
+          customHeader: header
+        }
+      };
+      testClient.parameterGrouping.postOptional(options, function (error, result, request, response) {
+        should.not.exist(error);
+        response.status.should.equal(200);
+        done();
+      });
     });
 
     it('should accept null optional parameters', function (done) {
-      var options = { parameterGroupingPostOptionalParameters: null };
+      const options: ParameterGroupingPostOptionalOptionalParams = {
+        parameterGroupingPostOptionalParameters: null
+      };
       testClient.parameterGrouping.postOptional(options, function (error, result, request, response) {
         should.not.exist(error);
         response.status.should.equal(200);

@@ -700,7 +700,7 @@ namespace AutoRest.TypeScript.Model
                         string unflattenedPropertyName = unflattenedPropertyMapping.Key;
                         string inputParameterName = unflattenedPropertyMapping.Value;
                         bool inputParameterInOptions = parameterTransformations.InputParameterInOptions(inputParameterName);
-                        GenerateRequestParameterPath(parameterPathObject, unflattenedPropertyName, inputParameterName, parameterInOptions, parameterTransformations);
+                        GenerateRequestParameterPath(parameterPathObject, unflattenedPropertyName, inputParameterName, inputParameterInOptions, parameterTransformations);
                     }
                 });
             }
@@ -749,6 +749,11 @@ namespace AutoRest.TypeScript.Model
         public string CreateSerializerExpression()
         {
             return $"new msRest.Serializer(Mappers{(CodeModel.ShouldGenerateXmlSerialization == true ? ", true" : "")})";
+        }
+
+        public static bool IsInOptionsParameter(Parameter parameter)
+        {
+            return parameter != null && !parameter.IsClientProperty && !string.IsNullOrWhiteSpace(parameter.Name) && !parameter.IsConstant && !parameter.IsRequired;
         }
     }
 }

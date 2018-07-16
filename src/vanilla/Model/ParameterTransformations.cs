@@ -40,7 +40,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     Parameter inputParameter = mapping.InputParameter;
                     string inputParameterName = inputParameter.Name;
-                    if (!inputParameter.IsClientProperty && !inputParameter.IsRequired)
+                    if (MethodTS.IsInOptionsParameter(inputParameter))
                     {
                         inputParametersInOptions.Add(inputParameterName);
                     }

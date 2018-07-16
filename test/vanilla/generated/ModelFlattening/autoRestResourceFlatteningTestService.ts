@@ -1044,18 +1044,12 @@ const postFlattenedSimpleProductOperationSpec: msRest.OperationSpec = {
   path: "model-flatten/customFlattening",
   requestBody: {
     parameterPath: {
-      productId: [
-        "options",
-        "productId"
-      ],
+      productId: "productId",
       description: [
         "options",
         "description"
       ],
-      maxProductDisplayName: [
-        "options",
-        "maxProductDisplayName"
-      ],
+      maxProductDisplayName: "maxProductDisplayName",
       genericValue: [
         "options",
         "genericValue"
