@@ -62,7 +62,7 @@ task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
   await execute "#{basefolder}/node_modules/.bin/mocha", defer _
   done();
 
-task 'testci/chrome-unit', '', ['testci/nodejs-unit'], (done) ->
+task 'testci/chrome-unit', '', [], (done) ->
   global.verbose = true
   await run "test/chrome-unit", defer _
   await execute "node #{basefolder}/.scripts/coverage", defer _

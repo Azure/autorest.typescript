@@ -535,21 +535,19 @@ namespace AutoRest.TypeScript.Model
         public void GenerateOperationArguments(TSObject operationArguments)
         {
             ParameterTransformations transformations = GetParameterTransformations();
-            Action<string, string> addArgument = (string operationArgumentName, string operationArgumentValue) =>
-            {
-                if (!operationArguments.ContainsProperty(operationArgumentName) &&
-                    !transformations.IsCreatedFromTransformation(operationArgumentName) &&
-                    operationArgumentName != "options")
-                {
-                    operationArguments.TextProperty(operationArgumentName, operationArgumentValue);
-                }
-            };
 
+            // Remember that Parameters contains the parameters of the REST API method, not the
+            // generated method.
             foreach (Parameter parameter in Parameters)
             {
-                if (!parameter.IsConstant && !parameter.IsClientProperty && parameter.IsRequired)
+                if (parameter.IsRequired &&
+                    !parameter.IsConstant &&
+                    !parameter.IsClientProperty &&
+                    !operationArguments.ContainsProperty(parameter.Name) &&
+                    !transformations.IsCreatedFromTransformation(parameter.Name) &&
+                    parameter.Name != "options")
                 {
-                    addArgument(parameter.Name, parameter.Name);
+                    operationArguments.TextProperty(parameter.Name, parameter.Name);
                 }
             }
 
