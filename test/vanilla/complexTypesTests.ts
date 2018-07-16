@@ -316,7 +316,7 @@ describe('typescript', function () {
     });
 
     describe('Complex Types with Polymorphism Operations', function () {
-      var getFish = () => ({
+      var getFish = () => (<AutoRestComplexTestServiceModels.FishUnion>{
         'fishtype': 'salmon',
         'location': 'alaska',
         'iswild': true,
@@ -340,7 +340,7 @@ describe('typescript', function () {
           },
           {
             'fishtype': 'goblin',
-            'color': 'pinkish-gray',
+            'color': 'pinkish-gray' as AutoRestComplexTestServiceModels.GoblinSharkColor,
             'age': 1,
             'length': 30,
             'species': 'scary',
@@ -366,7 +366,7 @@ describe('typescript', function () {
           // Working around the fact that Uint8Array doesn't work with deepEqual
           delete (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
           const expectedFish = getFish();
-          delete expectedFish.siblings[1].picture;
+          delete (expectedFish.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
           assert.deepEqual(result, expectedFish);
 
           testClient.polymorphism.putValid(getFish(), function (error, result) {
@@ -375,7 +375,7 @@ describe('typescript', function () {
           });
         });
       });
-      var getBadfish = () => ({
+      var getBadfish = () => (<AutoRestComplexTestServiceModels.FishUnion>{
         'fishtype': 'sawshark',
         'species': 'snaggle toothed',
         'length': 18.5,
@@ -409,7 +409,7 @@ describe('typescript', function () {
         });
       });
 
-      var getRawSalmon: () => AutoRestComplexTestServiceModels.SmartSalmon = () => ({
+      var getRawSalmon = () => (<AutoRestComplexTestServiceModels.SalmonUnion>{
         "species": "king",
         "length": 1,
         "siblings": [
@@ -477,7 +477,7 @@ describe('typescript', function () {
     });
 
     describe('Complex Types with recursive definitions', function () {
-      var getBigfish = () => (<AutoRestComplexTestServiceModels.Fish>{
+      var getBigfish = () => (<AutoRestComplexTestServiceModels.FishUnion>{
         'fishtype': 'salmon',
         'location': 'alaska',
         'iswild': true,

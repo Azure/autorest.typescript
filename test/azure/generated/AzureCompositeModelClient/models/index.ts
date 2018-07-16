@@ -185,10 +185,19 @@ export interface Siamese extends Cat {
 }
 
 /**
+ * Contains the possible cases for Fish.
+ */
+export type FishUnion = Fish | SalmonUnion | SharkUnion;
+
+/**
  * @interface
  * An interface representing Fish.
  */
 export interface Fish {
+  /**
+   * @member {string} fishtype Polymorphic Discriminator
+   */
+  fishtype: "Fish";
   /**
    * @member {string} [species]
    */
@@ -198,21 +207,37 @@ export interface Fish {
    */
   length: number;
   /**
-   * @member {Fish[]} [siblings]
+   * @member {FishUnion[]} [siblings]
    */
-  siblings?: Fish[];
-  /**
-   * @member {string} fishtype Polymorphic Discriminator
-   */
-  fishtype: string;
+  siblings?: FishUnion[];
 }
+
+/**
+ * Contains the possible cases for Salmon.
+ */
+export type SalmonUnion = Salmon | SmartSalmon;
 
 /**
  * @interface
  * An interface representing Salmon.
- * @extends Fish
  */
-export interface Salmon extends Fish {
+export interface Salmon {
+  /**
+   * @member {string} fishtype Polymorphic Discriminator
+   */
+  fishtype: "salmon";
+  /**
+   * @member {string} [species]
+   */
+  species?: string;
+  /**
+   * @member {number} length
+   */
+  length: number;
+  /**
+   * @member {FishUnion[]} [siblings]
+   */
+  siblings?: FishUnion[];
   /**
    * @member {string} [location]
    */
@@ -226,9 +251,32 @@ export interface Salmon extends Fish {
 /**
  * @interface
  * An interface representing SmartSalmon.
- * @extends Salmon
  */
-export interface SmartSalmon extends Salmon {
+export interface SmartSalmon {
+  /**
+   * @member {string} fishtype Polymorphic Discriminator
+   */
+  fishtype: "smart_salmon";
+  /**
+   * @member {string} [species]
+   */
+  species?: string;
+  /**
+   * @member {number} length
+   */
+  length: number;
+  /**
+   * @member {FishUnion[]} [siblings]
+   */
+  siblings?: FishUnion[];
+  /**
+   * @member {string} [location]
+   */
+  location?: string;
+  /**
+   * @member {boolean} [iswild]
+   */
+  iswild?: boolean;
   /**
    * @member {{ [propertyName: string]: any }} [additionalProperties] Unmatched
    * properties from the message are deserialized this collection
@@ -241,11 +289,31 @@ export interface SmartSalmon extends Salmon {
 }
 
 /**
+ * Contains the possible cases for Shark.
+ */
+export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
+
+/**
  * @interface
  * An interface representing Shark.
- * @extends Fish
  */
-export interface Shark extends Fish {
+export interface Shark {
+  /**
+   * @member {string} fishtype Polymorphic Discriminator
+   */
+  fishtype: "shark";
+  /**
+   * @member {string} [species]
+   */
+  species?: string;
+  /**
+   * @member {number} length
+   */
+  length: number;
+  /**
+   * @member {FishUnion[]} [siblings]
+   */
+  siblings?: FishUnion[];
   /**
    * @member {number} [age]
    */
@@ -259,9 +327,32 @@ export interface Shark extends Fish {
 /**
  * @interface
  * An interface representing Sawshark.
- * @extends Shark
  */
-export interface Sawshark extends Shark {
+export interface Sawshark {
+  /**
+   * @member {string} fishtype Polymorphic Discriminator
+   */
+  fishtype: "sawshark";
+  /**
+   * @member {string} [species]
+   */
+  species?: string;
+  /**
+   * @member {number} length
+   */
+  length: number;
+  /**
+   * @member {FishUnion[]} [siblings]
+   */
+  siblings?: FishUnion[];
+  /**
+   * @member {number} [age]
+   */
+  age?: number;
+  /**
+   * @member {Date} birthday
+   */
+  birthday: Date;
   /**
    * @member {Uint8Array} [picture]
    */
@@ -271,9 +362,32 @@ export interface Sawshark extends Shark {
 /**
  * @interface
  * An interface representing Goblinshark.
- * @extends Shark
  */
-export interface Goblinshark extends Shark {
+export interface Goblinshark {
+  /**
+   * @member {string} fishtype Polymorphic Discriminator
+   */
+  fishtype: "goblin";
+  /**
+   * @member {string} [species]
+   */
+  species?: string;
+  /**
+   * @member {number} length
+   */
+  length: number;
+  /**
+   * @member {FishUnion[]} [siblings]
+   */
+  siblings?: FishUnion[];
+  /**
+   * @member {number} [age]
+   */
+  age?: number;
+  /**
+   * @member {Date} birthday
+   */
+  birthday: Date;
   /**
    * @member {number} [jawsize]
    */
@@ -288,9 +402,32 @@ export interface Goblinshark extends Shark {
 /**
  * @interface
  * An interface representing Cookiecuttershark.
- * @extends Shark
  */
-export interface Cookiecuttershark extends Shark {
+export interface Cookiecuttershark {
+  /**
+   * @member {string} fishtype Polymorphic Discriminator
+   */
+  fishtype: "cookiecuttershark";
+  /**
+   * @member {string} [species]
+   */
+  species?: string;
+  /**
+   * @member {number} length
+   */
+  length: number;
+  /**
+   * @member {FishUnion[]} [siblings]
+   */
+  siblings?: FishUnion[];
+  /**
+   * @member {number} [age]
+   */
+  age?: number;
+  /**
+   * @member {Date} birthday
+   */
+  birthday: Date;
 }
 
 /**
@@ -493,18 +630,23 @@ export interface ReadonlyObj {
 }
 
 /**
+ * Contains the possible cases for MyBaseType.
+ */
+export type MyBaseTypeUnion = MyBaseType | MyDerivedType;
+
+/**
  * @interface
  * An interface representing MyBaseType.
  */
 export interface MyBaseType {
   /**
+   * @member {string} kind Polymorphic Discriminator
+   */
+  kind: "MyBaseType";
+  /**
    * @member {string} [propB1]
    */
   propB1?: string;
-  /**
-   * @member {string} kind Polymorphic Discriminator
-   */
-  kind: string;
   /**
    * @member {string} [propBH1]
    */
@@ -514,9 +656,20 @@ export interface MyBaseType {
 /**
  * @interface
  * An interface representing MyDerivedType.
- * @extends MyBaseType
  */
-export interface MyDerivedType extends MyBaseType {
+export interface MyDerivedType {
+  /**
+   * @member {string} kind Polymorphic Discriminator
+   */
+  kind: "Kind1";
+  /**
+   * @member {string} [propB1]
+   */
+  propB1?: string;
+  /**
+   * @member {string} [propBH1]
+   */
+  propBH1?: string;
   /**
    * @member {string} [propD1]
    */

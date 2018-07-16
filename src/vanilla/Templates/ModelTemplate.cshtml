@@ -2,10 +2,25 @@
 @using System.Linq
 @using System.Collections.Generic
 @using AutoRest.TypeScript.Model
+@using AutoRest.Core.Model
 @inherits AutoRest.Core.Template<CompositeTypeTS>
 
-@{var propertyList = new List<AutoRest.Core.Model.Property>(Model.Properties.Where(p => !p.IsConstant));
-  var propertiesAdded = new HashSet<string>();}
+@{
+  var propertyList = new List<Property>(Model.InterfaceProperties);
+  var propertiesAdded = new HashSet<string>();
+}
+
+@if (Model.ImmediatePolymorphicSubtypes.Any())
+{
+<text>
+/**
+ * Contains the possible cases for @(Model.Name).
+ */
+@Model.PolymorphicUnionDeclaration
+@EmptyLine
+</text>
+}
+
 /**
  * @@interface
  * An interface representing @(Model.Name).
@@ -20,7 +35,7 @@
 @: *
 }
 @{
-    if (Model.BaseModelType != null)
+    if (Model.BaseModelType != null && !Model.BaseIsPolymorphic)
     {
 @: * @@extends @(Model.BaseModelType.Name)
 @: */
@@ -42,7 +57,7 @@
                                                   + "} " + CompositeTypeTS.GetPropertyDocumentationName(propertyList[i])
                                                   + " " + CompositeTypeTS.GetPropertyDocumentationString(propertyList[i]))))
    @:*/
-  @:@(CompositeTypeTS.PropertyTS(propertyList[i], true));
+  @:@(@Model.PropertyTS(propertyList[i], inModelsModule: true));
         }
     }
 

@@ -33,6 +33,36 @@ namespace AutoRest.TypeScript.Model
             return result;
         }
 
+        private IReadOnlyList<CompositeTypeTS> immediatePolymorphicSubtypes;
+
+        /// <summary>Contains the immediate polymorphic children of this class.</summary>
+        public IReadOnlyList<CompositeTypeTS> ImmediatePolymorphicSubtypes
+        {
+            get
+            {
+                if (immediatePolymorphicSubtypes == null)
+                {
+                    if (BaseIsPolymorphic)
+                    {
+                        immediatePolymorphicSubtypes =
+                            CodeModel.ModelTypes
+                                .Where(m => m.BaseModelType == this)
+                                .Cast<CompositeTypeTS>()
+                                .ToList()
+                                .AsReadOnly();
+                    }
+                    else
+                    {
+                        immediatePolymorphicSubtypes = new List<CompositeTypeTS>().AsReadOnly();
+                    }
+                }
+                return immediatePolymorphicSubtypes;
+            }
+        }
+
+        /// <summary>The name to use when referring to this type in a parameter, return type or property definition.</summary>
+        public string UnionTypeName => ImmediatePolymorphicSubtypes.Any() ? Name + "Union" : Name.ToString();
+
         public string NameAsFileName => Name.EqualsIgnoreCase("index") ? "IndexModelType" : (string)Name;
 
         /// <summary>
@@ -67,10 +97,24 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public IEnumerable<Core.Model.Property> SerializableProperties
+        public IEnumerable<Property> InterfaceProperties
         {
-            get { return this.Properties.Where(p => !string.IsNullOrEmpty(p.SerializedName)); }
+            get
+            {
+                IEnumerable<Property> result;
+                if (BaseIsPolymorphic)
+                {
+                    result = ComposedProperties.OrderBy(p => p.IsPolymorphicDiscriminator ? 0 : 1);
+                }
+                else
+                {
+                    result = Properties;
+                }
+                result = result.Where(p => !p.IsConstant);
+                return result;
+            }
         }
+
 
         private class PropertyWrapper
         {
@@ -80,7 +124,7 @@ namespace AutoRest.TypeScript.Model
             public PropertyWrapper() { RecursiveTypes = new List<string>(); }
         }
 
-        public IEnumerable<Core.Model.Property> DocumentationPropertyList
+        public IEnumerable<Property> DocumentationPropertyList
         {
             get
             {
@@ -213,22 +257,37 @@ namespace AutoRest.TypeScript.Model
         /// <param name="property">Model property to query</param>
         /// <param name="inModelsModule">Pass true if generating the code for the models module, thus model types don't need a "models." prefix</param>
         /// <returns>TypeScript property definition</returns>
-        public static string PropertyTS(Core.Model.Property property, bool inModelsModule)
+        public string PropertyTS(Core.Model.Property property, bool inModelsModule)
         {
             if (property == null)
             {
                 throw new ArgumentNullException(nameof(property));
             }
 
-            string typeString = property.ModelType.TSType(inModelsModule);
             var propertyName = property.Name;
+            if (property.IsPolymorphicDiscriminator)
+            {
+                return $"{propertyName}: \"{SerializedName}\"";
+            }
+
+            string typeString = property.ModelType.TSType(inModelsModule);
             if (property.IsReadOnly)
             {
                 propertyName = "readonly " + propertyName;
             }
             if (!property.IsRequired)
                 return propertyName + "?: " + typeString;
-            else return propertyName + ": " + typeString;
+            else
+                return propertyName + ": " + typeString;
+        }
+
+        public string PolymorphicUnionDeclaration
+        {
+            get
+            {
+                IEnumerable<string> cases = new[] { this.Name.ToString() }.Concat(ImmediatePolymorphicSubtypes.Select(m => m.UnionTypeName));
+                return $"export type {Name}Union = {string.Join(" | ", cases)};";
+            }
         }
 
         public virtual string ConstructModelMapper()

@@ -6,7 +6,7 @@
 @using AutoRest.TypeScript.Azure.Model
 @inherits AutoRest.Core.Template<PageCompositeTypeTSa>
 
-@{var propertyList = new List<AutoRest.Core.Model.Property>(Model.Properties.Where(p => !p.IsConstant)); }
+@{var propertyList = new List<Property>(Model.InterfaceProperties); }
 /**
  * @@interface
  * An interface representing the @(Model.Name).
@@ -34,7 +34,7 @@ export interface @(Model.Name) extends Array@(Model.ConstructTSItemTypeName()) {
                                                                 + "} " + PageCompositeTypeTSa.GetPropertyDocumentationName(property)
                                                     + " " + property.Documentation)))
    @:*/
-  @:@(PageCompositeTypeTSa.PropertyTS(property, true));
+  @:@(@Model.PropertyTS(property, true));
       }
   }
  }

@@ -477,7 +477,7 @@ namespace AutoRest.TypeScript
         /// <param name="inModelsModule">Pass true if generating the code for the models module, thus model types don't need a "models." prefix</param>
         /// <returns>TypeScript type string for type</returns>
         public static string TSType(this IModelType type, bool inModelsModule) {
-            CompositeType composite = type as CompositeType;
+            CompositeTypeTS composite = type as CompositeTypeTS;
             SequenceType sequence = type as SequenceType;
             DictionaryType dictionary = type as DictionaryType;
             PrimaryType primary = type as PrimaryType;
@@ -501,12 +501,13 @@ namespace AutoRest.TypeScript
             {
                 // ServiceClientCredentials starts with the "msRest." prefix, so strip msRest./msRestAzure. as we import those
                 // types with no module prefix needed
-                var compositeName = composite.Name;
+                var compositeName = composite.UnionTypeName;
                 if (compositeName.StartsWith("msRest.") || compositeName.StartsWith("msRestAzure."))
                     tsType = compositeName.Substring(compositeName.IndexOf('.') + 1);
                 else if (inModelsModule || compositeName.Contains('.'))
                     tsType = compositeName;
-                else tsType = "Models." + compositeName;
+                else
+                    tsType = "Models." + compositeName;
             }
             else if (sequence != null)
             {
