@@ -541,6 +541,110 @@ export class ArrayModel {
   }
 
   /**
+   * Get enum array value ['foo1', 'foo2', 'foo3']
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
+   */
+  async getEnumValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FooEnum[]>> {
+
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEnumValidOperationSpec);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Set array value ['foo1', 'foo2', 'foo3']
+   *
+   * @param {FooEnum[]} arrayBody
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
+   */
+  async putEnumValidWithHttpOperationResponse(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await this.client.sendOperationRequest(
+        msRest.createOperationArguments(
+          {
+            arrayBody
+          },
+          options),
+        putEnumValidOperationSpec);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Get enum array value ['foo1', 'foo2', 'foo3']
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
+   */
+  async getStringEnumValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
+
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringEnumValidOperationSpec);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Set array value ['foo1', 'foo2', 'foo3']
+   *
+   * @param {string[]} arrayBody
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
+   */
+  async putStringEnumValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await this.client.sendOperationRequest(
+        msRest.createOperationArguments(
+          {
+            arrayBody
+          },
+          options),
+        putStringEnumValidOperationSpec);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+  /**
    * Get string array value ['foo', null, 'foo2']
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
@@ -1909,6 +2013,174 @@ export class ArrayModel {
   putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putStringValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     return msRest.responseToBody(this.putStringValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  }
+
+  /**
+   * Get enum array value ['foo1', 'foo2', 'foo3']
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *                      {Models.FooEnum[]} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getEnumValid(): Promise<Models.FooEnum[]>;
+  getEnumValid(options: msRest.RequestOptionsBase): Promise<Models.FooEnum[]>;
+  getEnumValid(callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
+  getEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
+  getEnumValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FooEnum[]>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.FooEnum[]>;
+    if (!callback) {
+      return this.getEnumValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.FooEnum[]);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getEnumValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.FooEnum[];
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Set array value ['foo1', 'foo2', 'foo3']
+   *
+   * @param {FooEnum[]} arrayBody
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  putEnumValid(arrayBody: Models.FooEnum[]): Promise<void>;
+  putEnumValid(arrayBody: Models.FooEnum[], options: msRest.RequestOptionsBase): Promise<void>;
+  putEnumValid(arrayBody: Models.FooEnum[], callback: msRest.ServiceCallback<void>): void;
+  putEnumValid(arrayBody: Models.FooEnum[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEnumValid(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<void>;
+    if (!callback) {
+      return this.putEnumValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as void);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.putEnumValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as void;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Get enum array value ['foo1', 'foo2', 'foo3']
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getStringEnumValid(): Promise<string[]>;
+  getStringEnumValid(options: msRest.RequestOptionsBase): Promise<string[]>;
+  getStringEnumValid(callback: msRest.ServiceCallback<string[]>): void;
+  getStringEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
+  getStringEnumValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<string[]>;
+    if (!callback) {
+      return this.getStringEnumValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as string[]);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getStringEnumValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as string[];
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Set array value ['foo1', 'foo2', 'foo3']
+   *
+   * @param {string[]} arrayBody
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  putStringEnumValid(arrayBody: string[]): Promise<void>;
+  putStringEnumValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
+  putStringEnumValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
+  putStringEnumValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putStringEnumValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<void>;
+    if (!callback) {
+      return this.putStringEnumValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as void);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.putStringEnumValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as void;
+        return cb(err, result, data.request, data);
+      });
+    }
   }
 
   /**
@@ -3459,6 +3731,124 @@ const getStringValidOperationSpec: msRest.OperationSpec = {
 const putStringValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/string/foo1.foo2.foo3",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getEnumValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "array/prim/enum/foo1.foo2.foo3",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "FooEnumElementType",
+            type: {
+              name: "Enum",
+              allowedValues: [
+                "foo1",
+                "foo2",
+                "foo3"
+              ]
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putEnumValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "array/prim/enum/foo1.foo2.foo3",
+  requestBody: {
+    parameterPath: "arrayBody",
+    mapper: {
+      required: true,
+      serializedName: "arrayBody",
+      type: {
+        name: "Sequence",
+        element: {
+          serializedName: "FooEnumElementType",
+          type: {
+            name: "Enum",
+            allowedValues: [
+              "foo1",
+              "foo2",
+              "foo3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getStringEnumValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "array/prim/string-enum/foo1.foo2.foo3",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const putStringEnumValidOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "array/prim/string-enum/foo1.foo2.foo3",
   requestBody: {
     parameterPath: "arrayBody",
     mapper: {
