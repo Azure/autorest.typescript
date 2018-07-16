@@ -45,8 +45,7 @@ export class HttpSuccess {
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
       return operationRes;
-    }
-    );
+    });
   }
 
   /**
@@ -70,8 +69,7 @@ export class HttpSuccess {
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
       return operationRes;
-    }
-    );
+    });
   }
 
   /**
@@ -95,8 +93,7 @@ export class HttpSuccess {
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 204);
       return operationRes;
-    }
-    );
+    });
   }
 
   /**

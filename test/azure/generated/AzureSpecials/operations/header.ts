@@ -95,8 +95,7 @@ export class Header {
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
       return operationRes;
-    }
-    );
+    });
   }
 
   /**
