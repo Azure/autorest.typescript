@@ -32,6 +32,7 @@ import { AutoRestParameterizedHostTestClient } from './generated/CustomBaseUri/a
 import { AutoRestParameterizedCustomHostTestClient } from './generated/CustomBaseUriMoreOptions/autoRestParameterizedCustomHostTestClient';
 import { fail } from "assert";
 import { timeoutPromise } from '../util/util';
+import { FooEnum } from './generated/BodyArray/models';
 
 const readStreamToBuffer = async function (strm: NodeJS.ReadableStream): Promise<Buffer> {
   return new Promise<Buffer>((resolve, reject) => {
@@ -1088,6 +1089,20 @@ describe('typescript', function () {
               });
             });
           });
+        });
+
+        it('should get and put enum arrays', async function () {
+          const testArray = [FooEnum.Foo1, FooEnum.Foo2, FooEnum.Foo3];
+          const result = await testClient.arrayModel.getEnumValid();
+          assert.deepEqual(result, testArray);
+          await testClient.arrayModel.putEnumValid(testArray);
+        });
+
+        it('should get and put string enum arrays', async function () {
+          const testArray = ["foo1", "foo2", "foo3"];
+          const result = await testClient.arrayModel.getStringEnumValid();
+          assert.deepEqual(result, testArray);
+          await testClient.arrayModel.putStringEnumValid(testArray);
         });
 
         it('should get and put uuid arrays', function (done) {
