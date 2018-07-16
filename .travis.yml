@@ -46,8 +46,5 @@ jobs:
       script: gulp testci/regenerate-tsazure
 
     - env: CHECK_NAME="Bundle Size"
-      install:
-          # dotnet 2.0 prereq
-        - sudo apt-get install libunwind8
-        - npm install
+      install: npm install --ignore-scripts
       script: npm run bundle-size

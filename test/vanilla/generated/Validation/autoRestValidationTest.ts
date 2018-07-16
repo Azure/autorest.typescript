@@ -52,20 +52,14 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          resourceGroupName,
-          id,
-          options
-        },
-        validationOfMethodParametersOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        id,
+        options
+      },
+      validationOfMethodParametersOperationSpec);
   }
   // methods on the client.
 
@@ -85,20 +79,14 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          resourceGroupName,
-          id,
-          options
-        },
-        validationOfBodyOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        id,
+        options
+      },
+      validationOfBodyOperationSpec);
   }
   // methods on the client.
 
@@ -111,18 +99,12 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          options
-        },
-        getWithConstantInPathOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getWithConstantInPathOperationSpec);
   }
   // methods on the client.
 
@@ -136,18 +118,12 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          options
-        },
-        postWithConstantInBodyOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      postWithConstantInBodyOperationSpec);
   }
 
   /**
@@ -174,26 +150,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   validationOfMethodParameters(resourceGroupName: string, id: number, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfMethodParameters(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.validationOfMethodParametersWithHttpOperationResponse(resourceGroupName, id, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.validationOfMethodParametersWithHttpOperationResponse(resourceGroupName, id, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.validationOfMethodParametersWithHttpOperationResponse.bind(this), resourceGroupName, id, options, callback);
   }
 
   /**
@@ -220,26 +177,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   validationOfBody(resourceGroupName: string, id: number, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfBody(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.validationOfBodyWithHttpOperationResponse(resourceGroupName, id, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.validationOfBodyWithHttpOperationResponse(resourceGroupName, id, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.validationOfBodyWithHttpOperationResponse.bind(this), resourceGroupName, id, options, callback);
   }
 
   /**
@@ -259,26 +197,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   getWithConstantInPath(callback: msRest.ServiceCallback<void>): void;
   getWithConstantInPath(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getWithConstantInPath(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.getWithConstantInPathWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWithConstantInPathWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getWithConstantInPathWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -299,26 +218,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   postWithConstantInBody(callback: msRest.ServiceCallback<Models.Product>): void;
   postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
   postWithConstantInBody(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.Product>;
-    if (!callback) {
-      return this.postWithConstantInBodyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Product);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postWithConstantInBodyWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.postWithConstantInBodyWithHttpOperationResponse.bind(this), options, callback);
   }
 }
 

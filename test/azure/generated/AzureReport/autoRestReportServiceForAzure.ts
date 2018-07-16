@@ -57,18 +57,12 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        {
-          options
-        },
-        getReportOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getReportOperationSpec);
   }
 
   /**
@@ -90,26 +84,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
-    if (!callback) {
-      return this.getReportWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getReportWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getReportWithHttpOperationResponse.bind(this), options, callback);
   }
 }
 

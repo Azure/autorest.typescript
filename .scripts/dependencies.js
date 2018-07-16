@@ -224,9 +224,11 @@ exports.updatePackageJsonDependency = updatePackageJsonDependency;
 
 /**
  * Run NPM install in this repository
+ * @param {object} options
+ * @param {boolean} options.ignoreScripts whether to ignore scripts in npm install (skips dotnet build)
  * @returns {void}
  */
-function refreshNodeModules() {
+function refreshNodeModules(options) {
   const thisRepositoryFolderPath = getThisRepositoryFolderPath();
   const nodeModulesFolderPath = normalizePath(path.resolve(thisRepositoryFolderPath, "node_modules"));
   if (fs.existsSync(nodeModulesFolderPath)) {
@@ -240,7 +242,8 @@ function refreshNodeModules() {
     console.log(`Deleting "${nodeModulesFolderPath}"...`);
     deleteFolder(nodeModulesFolderPath);
   }
-  execute(`npm install`, getThisRepositoryFolderPath());
+  const ignoreScripts = options && options.ignoreScripts;
+  execute("npm install" + (ignoreScripts ? " --ignore-scripts" : ""), getThisRepositoryFolderPath());
 }
 exports.refreshNodeModules = refreshNodeModules;
 

@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System;
 using System.Collections.Generic;
@@ -137,6 +137,15 @@ namespace AutoRest.TypeScript.DSL
         {
             BeforeArgumentAdded();
             base.Undefined();
+        }
+
+        /// <summary>
+        /// Add a lambda to this TSArgumentList.
+        /// </summary>
+        public override void Lambda(string paramName, Action<TSBlock> lambdaBodyAction)
+        {
+            BeforeArgumentAdded();
+            base.Lambda(paramName, lambdaBodyAction);
         }
     }
 }

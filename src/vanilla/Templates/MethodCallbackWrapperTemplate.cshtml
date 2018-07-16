@@ -14,24 +14,5 @@
 @(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationWithCallbackTS(includeOptions: false))): void;
 @(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationWithCallbackTS(true, true))): void;
 @(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationTS(true, true)), callback?: msRest.ServiceCallback<@(Model.ReturnTypeTSString)>): any {
-  if (!callback && typeof options === 'function') {
-    callback = options;
-    options = undefined;
-  }
-  let cb = callback as msRest.ServiceCallback<@(Model.ReturnTypeTSString)>;
-  if (!callback) {
-    return this.@(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParameterDeclaration)).then((operationRes: msRest.HttpOperationResponse) => {
-      return Promise.resolve(@(Model.BuildResultInitialization("operationRes")));
-    }).catch((err: Error) => {
-      return Promise.reject(err);
-    });
-  } else {
-    msRest.promiseToCallback(this.@(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParameterDeclaration)))((err: Error, data: msRest.HttpOperationResponse) => {
-      if (err) {
-        return cb(err);
-      }
-      let result = @(Model.BuildResultInitialization("data"));
-      return cb(err, result, data.request, data);
-    });
-  }
+  return msRest.responseToBody(this.@(Model.Name.ToCamelCase())WithHttpOperationResponse.bind(this), @(Model.MethodParameterDeclaration), callback);
 }
