@@ -7,6 +7,7 @@ const exec = promisify(cp.exec);
 const fs = require("fs");
 const stat = promisify(fs.stat);
 const filesize = require("filesize");
+const dependencies = require("./dependencies");
 
 async function getBundleSize() {
   await new Promise((resolve) => {
@@ -24,16 +25,18 @@ function execVerbose(script) {
 
 async function main() {
   await execVerbose("git reset --hard " + process.env.TRAVIS_BRANCH);
+  dependencies.refreshNodeModules();
   const baseSize = await getBundleSize();
 
   await execVerbose("git reset --hard " + process.env.TRAVIS_PULL_REQUEST_SHA);
+  dependencies.refreshNodeModules();
   const headSize = await getBundleSize();
 
   const change = (headSize / baseSize) - 1;
   const percentChange = (Math.abs(change) * 100).toFixed(2) + '%';
 
   const json = JSON.stringify({
-    title: `Size ${change >= 0 ? "increased" : "decreased"} by ${percentChange} (${filesize(headSize-baseSize)})`,
+    title: `Size ${change >= 0 ? "increased" : "decreased"} by ${percentChange} (${filesize(headSize - baseSize)})`,
     summary: ""
   });
 
@@ -43,8 +46,8 @@ ${json}
 }
 
 main()
-.catch(err => {
-  console.error(err.message);
-  console.error(err.stack);
-  process.exit(1);
-});
+  .catch(err => {
+    console.error(err.message);
+    console.error(err.stack);
+    process.exit(1);
+  });
