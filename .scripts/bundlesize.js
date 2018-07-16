@@ -46,11 +46,11 @@ async function main() {
 
   try {
     await execVerbose("git reset --hard " + branch);
-    dependencies.refreshNodeModules();
+    dependencies.refreshNodeModules({ ignoreScripts: true });
     baseSize = await getBundleSize();
 
     await execVerbose("git reset --hard " + prCommit);
-    dependencies.refreshNodeModules();
+    dependencies.refreshNodeModules({ ignoreScripts: true });
     headSize = await getBundleSize();
 
     const change = (headSize / baseSize) - 1;
