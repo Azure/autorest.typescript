@@ -475,7 +475,7 @@ namespace AutoRest.TypeScript.DSL
             {
                 lambdaBodyAction.Invoke(new TSBlock(this));
             });
-            Line($"}}");
+            Text($"}}");
         }
 
         /// <summary>
@@ -503,34 +503,9 @@ namespace AutoRest.TypeScript.DSL
             Text(")");
         }
 
-        public void AsyncMethod(string methodName, string returnType, string parameterList, Action<TSBlock> methodBodyAction)
-        {
-            Line($"async {methodName}({parameterList}): {returnType} {{");
-            Indent(() =>
-            {
-                methodBodyAction.Invoke(new TSBlock(this));
-            });
-            Line($"}}");
-        }
-
         public void Method(string methodName, string returnType, string parameterList, Action<TSBlock> methodBodyAction)
         {
             Line($"{methodName}({parameterList}): {returnType} {{");
-            Indent(() =>
-            {
-                methodBodyAction.Invoke(new TSBlock(this));
-            });
-            Line($"}}");
-        }
-
-        public void AsyncMethod(string methodName, string returnType, Action<TSParameterList> parameterListAction, Action<TSBlock> methodBodyAction)
-        {
-            Text($"async {methodName}(");
-            if (parameterListAction != null)
-            {
-                parameterListAction.Invoke(new TSParameterList(this));
-            }
-            Line($"): {returnType} {{");
             Indent(() =>
             {
                 methodBodyAction.Invoke(new TSBlock(this));
