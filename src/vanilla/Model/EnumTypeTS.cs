@@ -8,6 +8,7 @@ namespace AutoRest.TypeScript.Model
 {
     public class EnumTypeTS : EnumType
     {
+        protected override string ModelAsStringType => "string";
         public string EnumName => CodeNamer.Instance.PascalCase(Name);
     }
 }
