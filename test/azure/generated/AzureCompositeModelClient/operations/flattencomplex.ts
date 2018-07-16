@@ -34,7 +34,7 @@ export class Flattencomplex {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.MyBaseType>> {
+  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.MyBaseTypeUnion>> {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
@@ -55,24 +55,24 @@ export class Flattencomplex {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.MyBaseType} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.MyBaseType} for more information.
+   *                      {Models.MyBaseTypeUnion} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.MyBaseTypeUnion} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getValid(): Promise<Models.MyBaseType>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.MyBaseType>;
-  getValid(callback: msRest.ServiceCallback<Models.MyBaseType>): void;
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.MyBaseType>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.MyBaseType>): any {
+  getValid(): Promise<Models.MyBaseTypeUnion>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.MyBaseTypeUnion>;
+  getValid(callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.MyBaseTypeUnion>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Models.MyBaseType>;
+    let cb = callback as msRest.ServiceCallback<Models.MyBaseTypeUnion>;
     if (!callback) {
       return this.getValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.MyBaseType);
+        return Promise.resolve(operationRes.parsedBody as Models.MyBaseTypeUnion);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -81,7 +81,7 @@ export class Flattencomplex {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Models.MyBaseType;
+        let result = data.parsedBody as Models.MyBaseTypeUnion;
         return cb(err, result, data.request, data);
       });
     }

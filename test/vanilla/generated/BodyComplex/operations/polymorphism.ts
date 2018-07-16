@@ -36,7 +36,7 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Fish>> {
+  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FishUnion>> {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
@@ -53,7 +53,7 @@ export class Polymorphism {
   /**
    * Put complex types that are polymorphic
    *
-   * @param {Fish} complexBody Please put a salmon that looks like this:
+   * @param {FishUnion} complexBody Please put a salmon that looks like this:
    * {
    * 'fishtype':'Salmon',
    * 'location':'alaska',
@@ -95,7 +95,7 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putValidWithHttpOperationResponse(complexBody: Models.Fish, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
@@ -122,7 +122,7 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getComplicatedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Salmon>> {
+  async getComplicatedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SalmonUnion>> {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
@@ -140,7 +140,7 @@ export class Polymorphism {
    * Put complex types that are polymorphic, but not at the root of the hierarchy; also have
    * additional properties
    *
-   * @param {Salmon} complexBody
+   * @param {SalmonUnion} complexBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -150,7 +150,7 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putComplicatedWithHttpOperationResponse(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async putComplicatedWithHttpOperationResponse(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
@@ -168,7 +168,7 @@ export class Polymorphism {
   /**
    * Put complex types that are polymorphic, omitting the discriminator
    *
-   * @param {Salmon} complexBody
+   * @param {SalmonUnion} complexBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -178,7 +178,7 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putMissingDiscriminatorWithHttpOperationResponse(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Salmon>> {
+  async putMissingDiscriminatorWithHttpOperationResponse(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SalmonUnion>> {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
@@ -197,8 +197,8 @@ export class Polymorphism {
    * Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
    * request should not be allowed from the client
    *
-   * @param {Fish} complexBody Please attempt put a sawshark that looks like this, the client should
-   * not allow this data to be sent:
+   * @param {FishUnion} complexBody Please attempt put a sawshark that looks like this, the client
+   * should not allow this data to be sent:
    * {
    * "fishtype": "sawshark",
    * "species": "snaggle toothed",
@@ -233,7 +233,7 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putValidMissingRequiredWithHttpOperationResponse(complexBody: Models.Fish, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async putValidMissingRequiredWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await this.client.sendOperationRequest(
@@ -257,24 +257,24 @@ export class Polymorphism {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Fish} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Fish} for more information.
+   *                      {Models.FishUnion} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.FishUnion} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getValid(): Promise<Models.Fish>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.Fish>;
-  getValid(callback: msRest.ServiceCallback<Models.Fish>): void;
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Fish>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Fish>): any {
+  getValid(): Promise<Models.FishUnion>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.FishUnion>;
+  getValid(callback: msRest.ServiceCallback<Models.FishUnion>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FishUnion>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Models.Fish>;
+    let cb = callback as msRest.ServiceCallback<Models.FishUnion>;
     if (!callback) {
       return this.getValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Fish);
+        return Promise.resolve(operationRes.parsedBody as Models.FishUnion);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -283,7 +283,7 @@ export class Polymorphism {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Models.Fish;
+        let result = data.parsedBody as Models.FishUnion;
         return cb(err, result, data.request, data);
       });
     }
@@ -292,7 +292,7 @@ export class Polymorphism {
   /**
    * Put complex types that are polymorphic
    *
-   * @param {Fish} complexBody Please put a salmon that looks like this:
+   * @param {FishUnion} complexBody Please put a salmon that looks like this:
    * {
    * 'fishtype':'Salmon',
    * 'location':'alaska',
@@ -337,11 +337,11 @@ export class Polymorphism {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putValid(complexBody: Models.Fish): Promise<void>;
-  putValid(complexBody: Models.Fish, options: msRest.RequestOptionsBase): Promise<void>;
-  putValid(complexBody: Models.Fish, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Fish, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Fish, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putValid(complexBody: Models.FishUnion): Promise<void>;
+  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<void>;
+  putValid(complexBody: Models.FishUnion, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -374,24 +374,24 @@ export class Polymorphism {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Salmon} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Salmon} for more information.
+   *                      {Models.SalmonUnion} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.SalmonUnion} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getComplicated(): Promise<Models.Salmon>;
-  getComplicated(options: msRest.RequestOptionsBase): Promise<Models.Salmon>;
-  getComplicated(callback: msRest.ServiceCallback<Models.Salmon>): void;
-  getComplicated(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Salmon>): void;
-  getComplicated(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Salmon>): any {
+  getComplicated(): Promise<Models.SalmonUnion>;
+  getComplicated(options: msRest.RequestOptionsBase): Promise<Models.SalmonUnion>;
+  getComplicated(callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
+  getComplicated(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
+  getComplicated(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SalmonUnion>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Models.Salmon>;
+    let cb = callback as msRest.ServiceCallback<Models.SalmonUnion>;
     if (!callback) {
       return this.getComplicatedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Salmon);
+        return Promise.resolve(operationRes.parsedBody as Models.SalmonUnion);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -400,7 +400,7 @@ export class Polymorphism {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Models.Salmon;
+        let result = data.parsedBody as Models.SalmonUnion;
         return cb(err, result, data.request, data);
       });
     }
@@ -410,7 +410,7 @@ export class Polymorphism {
    * Put complex types that are polymorphic, but not at the root of the hierarchy; also have
    * additional properties
    *
-   * @param {Salmon} complexBody
+   * @param {SalmonUnion} complexBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -423,11 +423,11 @@ export class Polymorphism {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putComplicated(complexBody: Models.Salmon): Promise<void>;
-  putComplicated(complexBody: Models.Salmon, options: msRest.RequestOptionsBase): Promise<void>;
-  putComplicated(complexBody: Models.Salmon, callback: msRest.ServiceCallback<void>): void;
-  putComplicated(complexBody: Models.Salmon, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplicated(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putComplicated(complexBody: Models.SalmonUnion): Promise<void>;
+  putComplicated(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase): Promise<void>;
+  putComplicated(complexBody: Models.SalmonUnion, callback: msRest.ServiceCallback<void>): void;
+  putComplicated(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putComplicated(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -453,7 +453,7 @@ export class Polymorphism {
   /**
    * Put complex types that are polymorphic, omitting the discriminator
    *
-   * @param {Salmon} complexBody
+   * @param {SalmonUnion} complexBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -461,24 +461,24 @@ export class Polymorphism {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Salmon} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Salmon} for more information.
+   *                      {Models.SalmonUnion} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.SalmonUnion} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putMissingDiscriminator(complexBody: Models.Salmon): Promise<Models.Salmon>;
-  putMissingDiscriminator(complexBody: Models.Salmon, options: msRest.RequestOptionsBase): Promise<Models.Salmon>;
-  putMissingDiscriminator(complexBody: Models.Salmon, callback: msRest.ServiceCallback<Models.Salmon>): void;
-  putMissingDiscriminator(complexBody: Models.Salmon, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Salmon>): void;
-  putMissingDiscriminator(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Salmon>): any {
+  putMissingDiscriminator(complexBody: Models.SalmonUnion): Promise<Models.SalmonUnion>;
+  putMissingDiscriminator(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase): Promise<Models.SalmonUnion>;
+  putMissingDiscriminator(complexBody: Models.SalmonUnion, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
+  putMissingDiscriminator(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
+  putMissingDiscriminator(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SalmonUnion>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Models.Salmon>;
+    let cb = callback as msRest.ServiceCallback<Models.SalmonUnion>;
     if (!callback) {
       return this.putMissingDiscriminatorWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.Salmon);
+        return Promise.resolve(operationRes.parsedBody as Models.SalmonUnion);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -487,7 +487,7 @@ export class Polymorphism {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Models.Salmon;
+        let result = data.parsedBody as Models.SalmonUnion;
         return cb(err, result, data.request, data);
       });
     }
@@ -497,8 +497,8 @@ export class Polymorphism {
    * Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
    * request should not be allowed from the client
    *
-   * @param {Fish} complexBody Please attempt put a sawshark that looks like this, the client should
-   * not allow this data to be sent:
+   * @param {FishUnion} complexBody Please attempt put a sawshark that looks like this, the client
+   * should not allow this data to be sent:
    * {
    * "fishtype": "sawshark",
    * "species": "snaggle toothed",
@@ -536,11 +536,11 @@ export class Polymorphism {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putValidMissingRequired(complexBody: Models.Fish): Promise<void>;
-  putValidMissingRequired(complexBody: Models.Fish, options: msRest.RequestOptionsBase): Promise<void>;
-  putValidMissingRequired(complexBody: Models.Fish, callback: msRest.ServiceCallback<void>): void;
-  putValidMissingRequired(complexBody: Models.Fish, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValidMissingRequired(complexBody: Models.Fish, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putValidMissingRequired(complexBody: Models.FishUnion): Promise<void>;
+  putValidMissingRequired(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<void>;
+  putValidMissingRequired(complexBody: Models.FishUnion, callback: msRest.ServiceCallback<void>): void;
+  putValidMissingRequired(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putValidMissingRequired(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
