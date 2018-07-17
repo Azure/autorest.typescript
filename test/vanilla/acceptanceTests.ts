@@ -102,9 +102,9 @@ describe('typescript', function () {
       });
 
       it('should put valid boolean values', function (done) {
-        testClient.bool.putTrue(true, function (error, result) {
+        testClient.bool.putTrue(function (error) {
           should.not.exist(error);
-          testClient.bool.putFalse(false, function (error, result) {
+          testClient.bool.putFalse(function (error) {
             should.not.exist(error);
             done();
           });
@@ -219,9 +219,9 @@ describe('typescript', function () {
       });
 
       it('should put valid boolean values', function (done) {
-        testClient.bool.putTrue(true, function (error, result) {
+        testClient.bool.putTrue(function (error) {
           should.not.exist(error);
-          testClient.bool.putFalse(false, function (error, result) {
+          testClient.bool.putFalse(function (error) {
             should.not.exist(error);
             done();
           });
@@ -342,9 +342,9 @@ describe('typescript', function () {
       });
 
       it('should put big positive and negative double value', function (done) {
-        testClient.number.putBigDoublePositiveDecimal(99999999.99, function (error, result) {
+        testClient.number.putBigDoublePositiveDecimal(function (error) {
           should.not.exist(error);
-          testClient.number.putBigDoubleNegativeDecimal(-99999999.99, function (error, result) {
+          testClient.number.putBigDoubleNegativeDecimal(function (error) {
             should.not.exist(error);
             done();
           });
@@ -392,7 +392,7 @@ describe('typescript', function () {
       });
 
       it('should support valid empty string value', function (done) {
-        testClient.string.putEmpty(AutoRestSwaggerBATServiceModels.StringBody1.EmptyString, function (error, result) {
+        testClient.string.putEmpty(function (error) {
           should.not.exist(error);
           testClient.string.getEmpty(function (error, result) {
             result.should.equal('');
@@ -402,7 +402,7 @@ describe('typescript', function () {
       });
 
       it('should support valid MBC string value', function (done) {
-        testClient.string.putMbcs(AutoRestSwaggerBATServiceModels.StringBody2.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣, function (error, result) {
+        testClient.string.putMbcs(function (error) {
           should.not.exist(error);
           testClient.string.getMbcs(function (error, result) {
             result.should.equal(AutoRestSwaggerBATServiceModels.GetMbcsOKResponse.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣);
@@ -412,7 +412,7 @@ describe('typescript', function () {
       });
 
       it('should support whitespace string value', function (done) {
-        testClient.string.putWhitespace(AutoRestSwaggerBATServiceModels.StringBody3.Nowisthetimeforallgoodmentocometotheaidoftheircountry, function (error, result) {
+        testClient.string.putWhitespace(function (error) {
           should.not.exist(error);
           testClient.string.getWhitespace(function (error, result) {
             result.should.equal(AutoRestSwaggerBATServiceModels.GetWhitespaceOKResponse.Nowisthetimeforallgoodmentocometotheaidoftheircountry);
