@@ -1,7 +1,8 @@
-﻿@using AutoRest.Core
+﻿@using System.Linq
+@using AutoRest.Core
 @using AutoRest.Core.Model
 @using AutoRest.TypeScript
-@inherits AutoRest.Core.Template<EnumType>
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.EnumTypeTS>
 
 /**
  * Defines values for @(Model.Name).
@@ -18,6 +19,15 @@
  * @@readonly
  * @@enum {@CodeNamer.Instance.CamelCase(Model.UnderlyingType.Name)}
  */
+@if (Model.ModelAsUnion)
+{
+<text>
+export type @(Model.Name) = @(string.Join(" | ", Model.Values.Select(v => CodeNamerTS.GetEnumValueName(v.SerializedName, Model.UnderlyingType, modelAsUnion: true))));
+</text>
+}
+else
+{
+<text>
 export enum @(Model.Name) {
 @for (int i = 0; i < Model.Values.Count; i++)
 {
@@ -29,4 +39,6 @@ export enum @(Model.Name) {
     }
   @:@(CodeNamer.Instance.GetEnumMemberName(Model.Values[i].MemberName)) = @(CodeNamerTS.GetEnumValueName(Model.Values[i].SerializedName, Model.UnderlyingType)),
 }
+}
+</text>
 }

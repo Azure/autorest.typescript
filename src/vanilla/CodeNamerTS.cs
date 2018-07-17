@@ -61,11 +61,11 @@ namespace AutoRest.TypeScript
             return base.GetEnumMemberName(name).ToPascalCase();
         }
 
-        public static string GetEnumValueName(string valueName, PrimaryType valueType)
+        public static string GetEnumValueName(string valueName, PrimaryType valueType, bool modelAsUnion = false)
         {
             if (valueName == null)
             {
-                return "null as any";
+                return modelAsUnion ? "null" : "null as any";
             }
             if (valueType == null)
             {

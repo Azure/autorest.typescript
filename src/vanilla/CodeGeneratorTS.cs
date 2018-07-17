@@ -43,6 +43,7 @@ namespace AutoRest.TypeScript
             codeModel.PackageName = Settings.Instance.PackageName;
             codeModel.PackageVersion = Settings.Instance.PackageVersion;
             codeModel.OutputFolder = generatorSettings.OutputFolder;
+            codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
 
             // Service client
             var serviceClientTemplate = new ServiceClientTemplate {Model = codeModel};
