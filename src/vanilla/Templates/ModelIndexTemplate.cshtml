@@ -18,7 +18,7 @@
 @EmptyLine
 @:@(Include(new ModelTemplate(), model))
 }
-@foreach (var model in Model.EnumTypes)
+@foreach (var model in Model.EnumTemplateModels)
 {
 @EmptyLine
 @:@(Include(new EnumTemplate(), model))

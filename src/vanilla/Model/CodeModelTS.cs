@@ -122,6 +122,8 @@ namespace AutoRest.TypeScript.Model
 
         public string OutputFolder { get; set; }
 
+        public bool ModelEnumAsUnion { get; set; }
+
         public string HomePageUrl
         {
             get
