@@ -41,6 +41,9 @@ regenExpected = (opts,done) ->
     if (opts.enableXML)
       args.push("--enable-xml")
 
+    if (opts.modelEnumAsUnion)
+      args.push("--typescript.model-enum-as-union=true")
+
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
         args.push("--#{opts.language}.namespace=#{optsMappingsValue[1]}")
@@ -119,6 +122,10 @@ tsMappings = {
   'ComplexModelClient': 'complex-model.json'
 }
 
+enumUnionMappings = {
+  'BodyString': 'body-string.json'
+}
+
 swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
 
 task 'regenerate-tscomposite', '', (done) ->
@@ -180,7 +187,20 @@ task 'regenerate-tsxml', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml'], (done) ->
+task 'regenerate-ts-enum-union', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/enumunion',
+    'inputBaseDir': swaggerDir,
+    'mappings': enumUnionMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures',
+    'flatteningThreshold': '1',
+    'modelEnumAsUnion': true
+  },done
+  return null
+
+task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union'], (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]
   regenExpected {
