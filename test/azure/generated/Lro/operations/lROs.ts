@@ -4720,10 +4720,10 @@ const beginDeleteNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
     }
   ],
   responses: {
-    204: {
+    202: {
       headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
     },
-    202: {
+    204: {
       headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
     },
     default: {
@@ -4749,10 +4749,10 @@ const beginDeleteAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
     }
   ],
   responses: {
-    204: {
+    202: {
       headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     },
-    202: {
+    204: {
       headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     },
     default: {
@@ -4882,10 +4882,10 @@ const beginPost200WithPayloadOperationSpec: msRest.OperationSpec = {
     }
   ],
   responses: {
-    202: {
+    200: {
       bodyMapper: Mappers.Sku
     },
-    200: {
+    202: {
       bodyMapper: Mappers.Sku
     },
     default: {
@@ -5066,11 +5066,11 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   },
   contentType: "application/json; charset=utf-8",
   responses: {
-    202: {
-      headersMapper: Mappers.LROsPostAsyncRetrySucceededHeaders
-    },
     200: {
       bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPostAsyncRetrySucceededHeaders
+    },
+    202: {
       headersMapper: Mappers.LROsPostAsyncRetrySucceededHeaders
     },
     default: {
@@ -5104,11 +5104,11 @@ const beginPostAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   },
   contentType: "application/json; charset=utf-8",
   responses: {
-    202: {
-      headersMapper: Mappers.LROsPostAsyncNoRetrySucceededHeaders
-    },
     200: {
       bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPostAsyncNoRetrySucceededHeaders
+    },
+    202: {
       headersMapper: Mappers.LROsPostAsyncNoRetrySucceededHeaders
     },
     default: {

@@ -551,15 +551,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getEnumValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FooEnum[]>> {
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getEnumValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getEnumValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FooEnum[]>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEnumValidOperationSpec);
   }
 
   /**
@@ -575,21 +572,13 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putEnumValidWithHttpOperationResponse(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
-        putEnumValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putEnumValidWithHttpOperationResponse(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putEnumValidOperationSpec);
   }
 
   /**
@@ -603,15 +592,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getStringEnumValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(msRest.createOperationArguments({}, options), getStringEnumValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getStringEnumValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getStringEnumValidOperationSpec);
   }
 
   /**
@@ -627,21 +613,13 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async putStringEnumValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
-        putStringEnumValidOperationSpec);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  putStringEnumValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putStringEnumValidOperationSpec);
   }
 
   /**
@@ -2034,26 +2012,7 @@ export class ArrayModel {
   getEnumValid(callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
   getEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
   getEnumValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FooEnum[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.FooEnum[]>;
-    if (!callback) {
-      return this.getEnumValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.FooEnum[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEnumValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.FooEnum[];
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getEnumValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2077,26 +2036,7 @@ export class ArrayModel {
   putEnumValid(arrayBody: Models.FooEnum[], callback: msRest.ServiceCallback<void>): void;
   putEnumValid(arrayBody: Models.FooEnum[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putEnumValid(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putEnumValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putEnumValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putEnumValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**
@@ -2118,26 +2058,7 @@ export class ArrayModel {
   getStringEnumValid(callback: msRest.ServiceCallback<string[]>): void;
   getStringEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
   getStringEnumValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<string[]>;
-    if (!callback) {
-      return this.getStringEnumValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as string[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getStringEnumValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as string[];
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getStringEnumValidWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -2161,26 +2082,7 @@ export class ArrayModel {
   putStringEnumValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putStringEnumValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putStringEnumValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.putStringEnumValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putStringEnumValidWithHttpOperationResponse(arrayBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.putStringEnumValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
   }
 
   /**

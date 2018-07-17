@@ -185,8 +185,6 @@ export class Number {
   /**
    * Put big double value 99999999.99
    *
-   * @param {number} numberBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -195,10 +193,9 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDoublePositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
-        numberBody,
         options
       },
       putBigDoublePositiveDecimalOperationSpec);
@@ -226,8 +223,6 @@ export class Number {
   /**
    * Put big double value -99999999.99
    *
-   * @param {number} numberBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -236,10 +231,9 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDoubleNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
-        numberBody,
         options
       },
       putBigDoubleNegativeDecimalOperationSpec);
@@ -308,8 +302,6 @@ export class Number {
   /**
    * Put big decimal value 99999999.99
    *
-   * @param {number} numberBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -318,10 +310,9 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDecimalPositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
-        numberBody,
         options
       },
       putBigDecimalPositiveDecimalOperationSpec);
@@ -349,8 +340,6 @@ export class Number {
   /**
    * Put big decimal value -99999999.99
    *
-   * @param {number} numberBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -359,10 +348,9 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDecimalNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
-        numberBody,
         options
       },
       putBigDecimalNegativeDecimalOperationSpec);
@@ -693,8 +681,6 @@ export class Number {
   /**
    * Put big double value 99999999.99
    *
-   * @param {number} numberBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback The callback.
@@ -706,12 +692,12 @@ export class Number {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putBigDoublePositiveDecimal(numberBody: number): Promise<void>;
-  putBigDoublePositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
-  putBigDoublePositiveDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
-  putBigDoublePositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDoublePositiveDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putBigDoublePositiveDecimal(): Promise<void>;
+  putBigDoublePositiveDecimal(options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDoublePositiveDecimal(callback: msRest.ServiceCallback<void>): void;
+  putBigDoublePositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putBigDoublePositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -739,8 +725,6 @@ export class Number {
   /**
    * Put big double value -99999999.99
    *
-   * @param {number} numberBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback The callback.
@@ -752,12 +736,12 @@ export class Number {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putBigDoubleNegativeDecimal(numberBody: number): Promise<void>;
-  putBigDoubleNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
-  putBigDoubleNegativeDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
-  putBigDoubleNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDoubleNegativeDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putBigDoubleNegativeDecimal(): Promise<void>;
+  putBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDoubleNegativeDecimal(callback: msRest.ServiceCallback<void>): void;
+  putBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putBigDoubleNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -831,8 +815,6 @@ export class Number {
   /**
    * Put big decimal value 99999999.99
    *
-   * @param {number} numberBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback The callback.
@@ -844,12 +826,12 @@ export class Number {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putBigDecimalPositiveDecimal(numberBody: number): Promise<void>;
-  putBigDecimalPositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
-  putBigDecimalPositiveDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimalPositiveDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimalPositiveDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putBigDecimalPositiveDecimal(): Promise<void>;
+  putBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDecimalPositiveDecimal(callback: msRest.ServiceCallback<void>): void;
+  putBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putBigDecimalPositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -877,8 +859,6 @@ export class Number {
   /**
    * Put big decimal value -99999999.99
    *
-   * @param {number} numberBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback The callback.
@@ -890,12 +870,12 @@ export class Number {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putBigDecimalNegativeDecimal(numberBody: number): Promise<void>;
-  putBigDecimalNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
-  putBigDecimalNegativeDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimalNegativeDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimalNegativeDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putBigDecimalNegativeDecimal(): Promise<void>;
+  putBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDecimalNegativeDecimal(callback: msRest.ServiceCallback<void>): void;
+  putBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putBigDecimalNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -1228,7 +1208,9 @@ const putBigDoublePositiveDecimalOperationSpec: msRest.OperationSpec = {
     parameterPath: "numberBody",
     mapper: {
       required: true,
+      isConstant: true,
       serializedName: "numberBody",
+      defaultValue: 99999999.99,
       type: {
         name: "Number"
       }
@@ -1270,7 +1252,9 @@ const putBigDoubleNegativeDecimalOperationSpec: msRest.OperationSpec = {
     parameterPath: "numberBody",
     mapper: {
       required: true,
+      isConstant: true,
       serializedName: "numberBody",
+      defaultValue: -99999999.99,
       type: {
         name: "Number"
       }
@@ -1354,7 +1338,9 @@ const putBigDecimalPositiveDecimalOperationSpec: msRest.OperationSpec = {
     parameterPath: "numberBody",
     mapper: {
       required: true,
+      isConstant: true,
       serializedName: "numberBody",
+      defaultValue: 99999999.99,
       type: {
         name: "Number"
       }
@@ -1396,7 +1382,9 @@ const putBigDecimalNegativeDecimalOperationSpec: msRest.OperationSpec = {
     parameterPath: "numberBody",
     mapper: {
       required: true,
+      isConstant: true,
       serializedName: "numberBody",
+      defaultValue: -99999999.99,
       type: {
         name: "Number"
       }
