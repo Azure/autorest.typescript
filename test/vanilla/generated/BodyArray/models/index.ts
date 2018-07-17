@@ -39,3 +39,15 @@ export interface ErrorModel {
    */
   message?: string;
 }
+
+/**
+ * Defines values for FooEnum.
+ * Possible values include: 'foo1', 'foo2', 'foo3'
+ * @readonly
+ * @enum {string}
+ */
+export enum FooEnum {
+  Foo1 = 'foo1',
+  Foo2 = 'foo2',
+  Foo3 = 'foo3',
+}

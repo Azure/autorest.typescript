@@ -85,8 +85,6 @@ export class String {
   /**
    * Set string value empty ''
    *
-   * @param {StringBody1} stringBody Possible values include: ''
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -95,10 +93,9 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyWithHttpOperationResponse(stringBody: Models.StringBody1, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
-        stringBody,
         options
       },
       putEmptyOperationSpec);
@@ -126,9 +123,6 @@ export class String {
   /**
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
-   * @param {StringBody2} stringBody Possible values include:
-   * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -137,10 +131,9 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMbcsWithHttpOperationResponse(stringBody: Models.StringBody2, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putMbcsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
-        stringBody,
         options
       },
       putMbcsOperationSpec);
@@ -170,9 +163,6 @@ export class String {
    * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for
    * all good men to come to the aid of their country<tab><space><space>'
    *
-   * @param {StringBody3} stringBody Possible values include: '    Now is the time for all good men
-   * to come to the aid of their country    '
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -181,10 +171,9 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putWhitespaceWithHttpOperationResponse(stringBody: Models.StringBody3, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putWhitespaceWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
-        stringBody,
         options
       },
       putWhitespaceOperationSpec);
@@ -357,8 +346,6 @@ export class String {
   /**
    * Set string value empty ''
    *
-   * @param {StringBody1} stringBody Possible values include: ''
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback The callback.
@@ -370,12 +357,12 @@ export class String {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putEmpty(stringBody: Models.StringBody1): Promise<void>;
-  putEmpty(stringBody: Models.StringBody1, options: msRest.RequestOptionsBase): Promise<void>;
-  putEmpty(stringBody: Models.StringBody1, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(stringBody: Models.StringBody1, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(stringBody: Models.StringBody1, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), stringBody, options, callback);
+  putEmpty(): Promise<void>;
+  putEmpty(options: msRest.RequestOptionsBase): Promise<void>;
+  putEmpty(callback: msRest.ServiceCallback<void>): void;
+  putEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -403,9 +390,6 @@ export class String {
   /**
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
-   * @param {StringBody2} stringBody Possible values include:
-   * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback The callback.
@@ -417,12 +401,12 @@ export class String {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putMbcs(stringBody: Models.StringBody2): Promise<void>;
-  putMbcs(stringBody: Models.StringBody2, options: msRest.RequestOptionsBase): Promise<void>;
-  putMbcs(stringBody: Models.StringBody2, callback: msRest.ServiceCallback<void>): void;
-  putMbcs(stringBody: Models.StringBody2, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMbcs(stringBody: Models.StringBody2, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putMbcsWithHttpOperationResponse.bind(this), stringBody, options, callback);
+  putMbcs(): Promise<void>;
+  putMbcs(options: msRest.RequestOptionsBase): Promise<void>;
+  putMbcs(callback: msRest.ServiceCallback<void>): void;
+  putMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putMbcsWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -452,9 +436,6 @@ export class String {
    * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for
    * all good men to come to the aid of their country<tab><space><space>'
    *
-   * @param {StringBody3} stringBody Possible values include: '    Now is the time for all good men
-   * to come to the aid of their country    '
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback The callback.
@@ -466,12 +447,12 @@ export class String {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putWhitespace(stringBody: Models.StringBody3): Promise<void>;
-  putWhitespace(stringBody: Models.StringBody3, options: msRest.RequestOptionsBase): Promise<void>;
-  putWhitespace(stringBody: Models.StringBody3, callback: msRest.ServiceCallback<void>): void;
-  putWhitespace(stringBody: Models.StringBody3, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putWhitespace(stringBody: Models.StringBody3, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putWhitespaceWithHttpOperationResponse.bind(this), stringBody, options, callback);
+  putWhitespace(): Promise<void>;
+  putWhitespace(options: msRest.RequestOptionsBase): Promise<void>;
+  putWhitespace(callback: msRest.ServiceCallback<void>): void;
+  putWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putWhitespaceWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -659,7 +640,9 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
     parameterPath: "stringBody",
     mapper: {
       required: true,
+      isConstant: true,
       serializedName: "stringBody",
+      defaultValue: '',
       type: {
         name: "String"
       }
@@ -701,7 +684,9 @@ const putMbcsOperationSpec: msRest.OperationSpec = {
     parameterPath: "stringBody",
     mapper: {
       required: true,
+      isConstant: true,
       serializedName: "stringBody",
+      defaultValue: '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
       type: {
         name: "String"
       }
@@ -743,7 +728,9 @@ const putWhitespaceOperationSpec: msRest.OperationSpec = {
     parameterPath: "stringBody",
     mapper: {
       required: true,
+      isConstant: true,
       serializedName: "stringBody",
+      defaultValue: '    Now is the time for all good men to come to the aid of their country    ',
       type: {
         name: "String"
       }

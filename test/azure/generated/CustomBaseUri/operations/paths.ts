@@ -83,6 +83,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       mapper: {
         required: true,
         serializedName: "accountName",
+        defaultValue: '',
         type: {
           name: "String"
         }

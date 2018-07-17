@@ -71,7 +71,7 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
     this.longRunningOperationRetryTimeout = 30;
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'https://management.azure.com/';
+      this.baseUri = 'https://management.azure.com';
     }
     this.credentials = credentials;
     this.subscriptionId = subscriptionId;

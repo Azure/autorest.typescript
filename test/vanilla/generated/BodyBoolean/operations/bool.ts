@@ -46,8 +46,6 @@ export class Bool {
   /**
    * Set Boolean value true
    *
-   * @param {boolean} boolBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -56,10 +54,9 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putTrueWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
-        boolBody,
         options
       },
       putTrueOperationSpec);
@@ -87,8 +84,6 @@ export class Bool {
   /**
    * Set Boolean value false
    *
-   * @param {boolean} boolBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -97,10 +92,9 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putFalseWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
-        boolBody,
         options
       },
       putFalseOperationSpec);
@@ -169,8 +163,6 @@ export class Bool {
   /**
    * Set Boolean value true
    *
-   * @param {boolean} boolBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback The callback.
@@ -182,12 +174,12 @@ export class Bool {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putTrue(boolBody: boolean): Promise<void>;
-  putTrue(boolBody: boolean, options: msRest.RequestOptionsBase): Promise<void>;
-  putTrue(boolBody: boolean, callback: msRest.ServiceCallback<void>): void;
-  putTrue(boolBody: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putTrue(boolBody: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putTrueWithHttpOperationResponse.bind(this), boolBody, options, callback);
+  putTrue(): Promise<void>;
+  putTrue(options: msRest.RequestOptionsBase): Promise<void>;
+  putTrue(callback: msRest.ServiceCallback<void>): void;
+  putTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putTrueWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -215,8 +207,6 @@ export class Bool {
   /**
    * Set Boolean value false
    *
-   * @param {boolean} boolBody
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback The callback.
@@ -228,12 +218,12 @@ export class Bool {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putFalse(boolBody: boolean): Promise<void>;
-  putFalse(boolBody: boolean, options: msRest.RequestOptionsBase): Promise<void>;
-  putFalse(boolBody: boolean, callback: msRest.ServiceCallback<void>): void;
-  putFalse(boolBody: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFalse(boolBody: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putFalseWithHttpOperationResponse.bind(this), boolBody, options, callback);
+  putFalse(): Promise<void>;
+  putFalse(options: msRest.RequestOptionsBase): Promise<void>;
+  putFalse(callback: msRest.ServiceCallback<void>): void;
+  putFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    return msRest.responseToBody(this.putFalseWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
@@ -309,7 +299,9 @@ const putTrueOperationSpec: msRest.OperationSpec = {
     parameterPath: "boolBody",
     mapper: {
       required: true,
+      isConstant: true,
       serializedName: "boolBody",
+      defaultValue: true,
       type: {
         name: "Boolean"
       }
@@ -351,7 +343,9 @@ const putFalseOperationSpec: msRest.OperationSpec = {
     parameterPath: "boolBody",
     mapper: {
       required: true,
+      isConstant: true,
       serializedName: "boolBody",
+      defaultValue: false,
       type: {
         name: "Boolean"
       }

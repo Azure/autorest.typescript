@@ -122,21 +122,6 @@ export enum GetEmptyOKResponse {
 }
 
 /**
- * Defines values for StringBody1.
- * Possible values include: ''
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: StringBody1 =
- * <StringBody1>"someUnknownValueThatWillStillBeValid";
- * @readonly
- * @enum {string}
- */
-export enum StringBody1 {
-  EmptyString = '',
-}
-
-/**
  * Defines values for GetMbcsOKResponse.
  * Possible values include:
  * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
@@ -153,22 +138,6 @@ export enum GetMbcsOKResponse {
 }
 
 /**
- * Defines values for StringBody2.
- * Possible values include:
- * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: StringBody2 =
- * <StringBody2>"someUnknownValueThatWillStillBeValid";
- * @readonly
- * @enum {string}
- */
-export enum StringBody2 {
-  啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣 = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
-}
-
-/**
  * Defines values for GetWhitespaceOKResponse.
  * Possible values include: '    Now is the time for all good men to come to
  * the aid of their country    '
@@ -181,21 +150,5 @@ export enum StringBody2 {
  * @enum {string}
  */
 export enum GetWhitespaceOKResponse {
-  Nowisthetimeforallgoodmentocometotheaidoftheircountry = '    Now is the time for all good men to come to the aid of their country    ',
-}
-
-/**
- * Defines values for StringBody3.
- * Possible values include: '    Now is the time for all good men to come to
- * the aid of their country    '
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: StringBody3 =
- * <StringBody3>"someUnknownValueThatWillStillBeValid";
- * @readonly
- * @enum {string}
- */
-export enum StringBody3 {
   Nowisthetimeforallgoodmentocometotheaidoftheircountry = '    Now is the time for all good men to come to the aid of their country    ',
 }

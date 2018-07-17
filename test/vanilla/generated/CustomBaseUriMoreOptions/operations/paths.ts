@@ -94,6 +94,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       mapper: {
         required: true,
         serializedName: "vault",
+        defaultValue: '',
         type: {
           name: "String"
         }
@@ -105,6 +106,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       mapper: {
         required: true,
         serializedName: "secret",
+        defaultValue: '',
         type: {
           name: "String"
         }
