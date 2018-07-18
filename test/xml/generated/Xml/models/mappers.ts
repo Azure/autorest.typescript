@@ -1162,7 +1162,7 @@ export const RootWithRefAndMeta = {
     className: "RootWithRefAndMeta",
     modelProperties: {
       refToModel: {
-        xmlName: "RefToModel",
+        xmlName: "XMLComplexTypeWithMeta",
         serializedName: "RefToModel",
         type: {
           name: "Composite",

@@ -567,7 +567,8 @@ namespace AutoRest.TypeScript
                     requestBody,
                     isPageable: false,
                     expandComposite: false,
-                    isXML: requestBody.Parent.CodeModel.ShouldGenerateXmlSerialization == true);
+                    isXML: requestBody.Parent.CodeModel.ShouldGenerateXmlSerialization == true,
+                    xmlName: requestBodyModelType.XmlProperties?.Name);
             }
         }
 
@@ -623,11 +624,6 @@ namespace AutoRest.TypeScript
                 mapper.QuotedStringProperty("xmlName", xmlName);
             }
 
-            if (!isCaseSensitive)
-            {
-                serializedName = serializedName.ToLower();
-            }
-
             if (property != null)
             {
                 isReadOnly = property.IsReadOnly;
@@ -644,11 +640,17 @@ namespace AutoRest.TypeScript
                         mapper.BooleanProperty("xmlIsWrapped", true);
                     }
 
-                    if (!addXmlNameFromParameterValue && !string.IsNullOrEmpty(property.XmlName))
+                    string propertyXmlName = property.ModelType.XmlProperties?.Name ?? property.XmlName;
+                    if (!addXmlNameFromParameterValue && !string.IsNullOrEmpty(propertyXmlName))
                     {
-                        mapper.QuotedStringProperty("xmlName", property.XmlName);
+                        mapper.QuotedStringProperty("xmlName", propertyXmlName);
                     }
                 }
+            }
+
+            if (!isCaseSensitive)
+            {
+                serializedName = serializedName.ToLower();
             }
 
             CompositeType composite = type as CompositeType;
@@ -665,16 +667,7 @@ namespace AutoRest.TypeScript
                     mapper.BooleanProperty("xmlElementIsWrapped", true);
                 }
 
-                string xmlElementName = null;
-                if (sequence.ElementType is CompositeType compositeElementType)
-                {
-                    xmlElementName = compositeElementType.XmlName;
-                }
-                else
-                {
-                    xmlElementName = sequence.ElementXmlName;
-                }
-
+                string xmlElementName = sequence.ElementType.XmlProperties?.Name ?? sequence.ElementXmlName;
                 if (!string.IsNullOrEmpty(xmlElementName))
                 {
                     mapper.QuotedStringProperty("xmlElementName", xmlElementName);

@@ -1801,6 +1801,7 @@ const putAclsOperationSpec: msRest.OperationSpec = {
   requestBody: {
     parameterPath: "properties",
     mapper: {
+      xmlName: "SignedIdentifiers",
       xmlElementName: "SignedIdentifier",
       required: true,
       serializedName: "properties",
