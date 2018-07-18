@@ -212,14 +212,14 @@ describe('typescript', function () {
       should.exist(banana);
       banana.name.should.equal('Unknown Banana');
       banana.flavor.should.equal('');
-      banana.expiration.valueOf().should.equal(new Date('2012-02-24T00:53:52.780Z').valueOf());
+      banana.expiration.valueOf().should.equal(new Date('2012-02-24T00:53:52.789Z').valueOf());
     });
 
     it('should correctly serialize an XML document with an empty child element', async function () {
       const banana: models.Banana = {
         name: 'Unknown Banana',
         flavor: '',
-        expiration: new Date('2012-02-24T00:53:52.780Z')
+        expiration: new Date('2012-02-24T00:53:52.789Z')
       }
       await testClient.xml.putEmptyChildElement(banana);
     });
@@ -350,18 +350,18 @@ describe('typescript', function () {
       acls.length.should.equal(1);
       acls[0].id.should.equal('MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=');
       acls[0].accessPolicy.permission.should.equal('rwd');
-      acls[0].accessPolicy.start.valueOf().should.equal(new Date('2009-09-28T08:49:37.0000000Z').valueOf());
-      acls[0].accessPolicy.expiry.valueOf().should.equal(new Date('2009-09-29T08:49:37.0000000Z').valueOf());
+      acls[0].accessPolicy.start.valueOf().should.equal(new Date('2009-09-28T08:49:37.123Z').valueOf());
+      acls[0].accessPolicy.expiry.valueOf().should.equal(new Date('2009-09-29T08:49:37.123Z').valueOf());
     });
 
-    it.skip('should put storage ACLs for a container', async function () {
+    it('should put storage ACLs for a container', async function () {
       const acls: models.SignedIdentifier[] = [
         {
           id: 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
           accessPolicy: {
             permission: 'rwd',
-            start: new Date('2009-09-28T08:49:37.0000000Z'),
-            expiry: new Date('2009-09-29T08:49:37.0000000Z')
+            start: new Date('2009-09-28T08:49:37.123Z'),
+            expiry: new Date('2009-09-29T08:49:37.123Z')
           }
         }
       ];
