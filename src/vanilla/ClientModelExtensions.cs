@@ -567,7 +567,8 @@ namespace AutoRest.TypeScript
                     requestBody,
                     isPageable: false,
                     expandComposite: false,
-                    isXML: requestBody.Parent.CodeModel.ShouldGenerateXmlSerialization == true);
+                    isXML: requestBody.Parent.CodeModel.ShouldGenerateXmlSerialization == true,
+                    xmlName: requestBodyModelType.XmlProperties?.Name);
             }
         }
 
