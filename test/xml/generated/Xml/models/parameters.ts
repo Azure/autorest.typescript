@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const comp0: msRest.OperationParameter = {
+export const comp0: msRest.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     required: true,
@@ -22,7 +22,7 @@ export const comp0: msRest.OperationParameter = {
     }
   }
 };
-export const comp1: msRest.OperationParameter = {
+export const comp1: msRest.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     required: true,
@@ -34,7 +34,7 @@ export const comp1: msRest.OperationParameter = {
     }
   }
 };
-export const restype0: msRest.OperationParameter = {
+export const restype0: msRest.OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
     required: true,
@@ -46,7 +46,7 @@ export const restype0: msRest.OperationParameter = {
     }
   }
 };
-export const comp2: msRest.OperationParameter = {
+export const comp2: msRest.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     required: true,
@@ -58,7 +58,7 @@ export const comp2: msRest.OperationParameter = {
     }
   }
 };
-export const restype1: msRest.OperationParameter = {
+export const restype1: msRest.OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
     required: true,

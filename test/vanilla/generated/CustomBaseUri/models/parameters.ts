@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const accountName: msRest.OperationParameter = {
+export const accountName: msRest.OperationURLParameter = {
   parameterPath: "accountName",
   mapper: {
     required: true,
@@ -22,7 +22,7 @@ export const accountName: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const host: msRest.OperationParameter = {
+export const host: msRest.OperationURLParameter = {
   parameterPath: "host",
   mapper: {
     required: true,

@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const qualifier: msRest.OperationParameter = {
+export const qualifier: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "qualifier"

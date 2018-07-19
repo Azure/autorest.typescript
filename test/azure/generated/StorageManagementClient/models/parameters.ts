@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const apiVersion: msRest.OperationParameter = {
+export const apiVersion: msRest.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -20,7 +20,7 @@ export const apiVersion: msRest.OperationParameter = {
     }
   }
 };
-export const subscriptionId: msRest.OperationParameter = {
+export const subscriptionId: msRest.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     required: true,
@@ -40,7 +40,7 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
-export const resourceGroupName: msRest.OperationParameter = {
+export const resourceGroupName: msRest.OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     required: true,
@@ -50,7 +50,7 @@ export const resourceGroupName: msRest.OperationParameter = {
     }
   }
 };
-export const accountName: msRest.OperationParameter = {
+export const accountName: msRest.OperationURLParameter = {
   parameterPath: "accountName",
   mapper: {
     required: true,

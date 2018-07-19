@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const resourceGroupName: msRest.OperationParameter = {
+export const resourceGroupName: msRest.OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     required: true,
@@ -20,7 +20,7 @@ export const resourceGroupName: msRest.OperationParameter = {
     }
   }
 };
-export const avset: msRest.OperationParameter = {
+export const avset: msRest.OperationURLParameter = {
   parameterPath: "avset",
   mapper: {
     required: true,

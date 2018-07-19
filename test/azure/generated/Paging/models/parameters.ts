@@ -98,7 +98,7 @@ export const maxresults2: msRest.OperationParameter = {
     }
   }
 };
-export const offset: msRest.OperationParameter = {
+export const offset: msRest.OperationURLParameter = {
   parameterPath: [
     "pagingGetMultiplePagesWithOffsetOptions",
     "offset"
@@ -124,7 +124,7 @@ export const timeout2: msRest.OperationParameter = {
     }
   }
 };
-export const apiVersion0: msRest.OperationParameter = {
+export const apiVersion0: msRest.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -134,7 +134,7 @@ export const apiVersion0: msRest.OperationParameter = {
     }
   }
 };
-export const tenant0: msRest.OperationParameter = {
+export const tenant0: msRest.OperationURLParameter = {
   parameterPath: "tenant",
   mapper: {
     required: true,
@@ -144,7 +144,7 @@ export const tenant0: msRest.OperationParameter = {
     }
   }
 };
-export const apiVersion1: msRest.OperationParameter = {
+export const apiVersion1: msRest.OperationQueryParameter = {
   parameterPath: [
     "customParameterGroup",
     "apiVersion"
@@ -157,7 +157,7 @@ export const apiVersion1: msRest.OperationParameter = {
     }
   }
 };
-export const tenant1: msRest.OperationParameter = {
+export const tenant1: msRest.OperationURLParameter = {
   parameterPath: [
     "customParameterGroup",
     "tenant"
@@ -197,7 +197,7 @@ export const timeout3: msRest.OperationParameter = {
     }
   }
 };
-export const nextLink: msRest.OperationParameter = {
+export const nextLink: msRest.OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     required: true,
@@ -208,7 +208,7 @@ export const nextLink: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const nextPageLink: msRest.OperationParameter = {
+export const nextPageLink: msRest.OperationURLParameter = {
   parameterPath: "nextPageLink",
   mapper: {
     required: true,

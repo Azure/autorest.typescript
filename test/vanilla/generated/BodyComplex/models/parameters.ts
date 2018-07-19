@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const apiVersion: msRest.OperationParameter = {
+export const apiVersion: msRest.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,

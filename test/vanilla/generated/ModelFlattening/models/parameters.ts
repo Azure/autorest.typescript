@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const name: msRest.OperationParameter = {
+export const name: msRest.OperationURLParameter = {
   parameterPath: [
     "flattenParameterGroup",
     "name"

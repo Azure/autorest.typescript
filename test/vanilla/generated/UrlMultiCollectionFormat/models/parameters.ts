@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const arrayQuery: msRest.OperationParameter = {
+export const arrayQuery: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "arrayQuery"

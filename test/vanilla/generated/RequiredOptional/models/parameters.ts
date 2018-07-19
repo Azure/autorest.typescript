@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const pathParameter: msRest.OperationParameter = {
+export const pathParameter: msRest.OperationURLParameter = {
   parameterPath: "pathParameter",
   mapper: {
     required: true,
@@ -20,7 +20,7 @@ export const pathParameter: msRest.OperationParameter = {
     }
   }
 };
-export const queryParameter: msRest.OperationParameter = {
+export const queryParameter: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "queryParameter"
@@ -32,7 +32,7 @@ export const queryParameter: msRest.OperationParameter = {
     }
   }
 };
-export const requiredGlobalPath: msRest.OperationParameter = {
+export const requiredGlobalPath: msRest.OperationURLParameter = {
   parameterPath: "requiredGlobalPath",
   mapper: {
     required: true,
@@ -42,7 +42,7 @@ export const requiredGlobalPath: msRest.OperationParameter = {
     }
   }
 };
-export const requiredGlobalQuery: msRest.OperationParameter = {
+export const requiredGlobalQuery: msRest.OperationQueryParameter = {
   parameterPath: "requiredGlobalQuery",
   mapper: {
     required: true,
@@ -52,7 +52,7 @@ export const requiredGlobalQuery: msRest.OperationParameter = {
     }
   }
 };
-export const optionalGlobalQuery: msRest.OperationParameter = {
+export const optionalGlobalQuery: msRest.OperationQueryParameter = {
   parameterPath: "optionalGlobalQuery",
   mapper: {
     serializedName: "optional-global-query",

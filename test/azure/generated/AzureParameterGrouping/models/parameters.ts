@@ -32,7 +32,7 @@ export const customHeader0: msRest.OperationParameter = {
     }
   }
 };
-export const query0: msRest.OperationParameter = {
+export const query0: msRest.OperationQueryParameter = {
   parameterPath: [
     "parameterGroupingPostRequiredParameters",
     "query"
@@ -45,7 +45,7 @@ export const query0: msRest.OperationParameter = {
     }
   }
 };
-export const path: msRest.OperationParameter = {
+export const path: msRest.OperationURLParameter = {
   parameterPath: [
     "parameterGroupingPostRequiredParameters",
     "path"
@@ -71,7 +71,7 @@ export const customHeader1: msRest.OperationParameter = {
     }
   }
 };
-export const query1: msRest.OperationParameter = {
+export const query1: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostOptionalParameters",
@@ -98,7 +98,7 @@ export const headerOne: msRest.OperationParameter = {
     }
   }
 };
-export const queryOne: msRest.OperationParameter = {
+export const queryOne: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "firstParameterGroup",
@@ -125,7 +125,7 @@ export const headerTwo: msRest.OperationParameter = {
     }
   }
 };
-export const queryTwo: msRest.OperationParameter = {
+export const queryTwo: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostMultiParamGroupsSecondParamGroup",

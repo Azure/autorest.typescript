@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 
-export const vault: msRest.OperationParameter = {
+export const vault: msRest.OperationURLParameter = {
   parameterPath: "vault",
   mapper: {
     required: true,
@@ -22,7 +22,7 @@ export const vault: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const secret: msRest.OperationParameter = {
+export const secret: msRest.OperationURLParameter = {
   parameterPath: "secret",
   mapper: {
     required: true,
@@ -34,7 +34,7 @@ export const secret: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const dnsSuffix: msRest.OperationParameter = {
+export const dnsSuffix: msRest.OperationURLParameter = {
   parameterPath: "dnsSuffix",
   mapper: {
     required: true,
@@ -46,7 +46,7 @@ export const dnsSuffix: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const keyName: msRest.OperationParameter = {
+export const keyName: msRest.OperationURLParameter = {
   parameterPath: "keyName",
   mapper: {
     required: true,
@@ -56,7 +56,7 @@ export const keyName: msRest.OperationParameter = {
     }
   }
 };
-export const subscriptionId: msRest.OperationParameter = {
+export const subscriptionId: msRest.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     required: true,
@@ -66,7 +66,7 @@ export const subscriptionId: msRest.OperationParameter = {
     }
   }
 };
-export const keyVersion: msRest.OperationParameter = {
+export const keyVersion: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "keyVersion"

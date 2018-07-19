@@ -30,7 +30,7 @@ export const xMsClientRequestId: msRest.OperationParameter = {
     }
   }
 };
-export const subscriptionId: msRest.OperationParameter = {
+export const subscriptionId: msRest.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     required: true,
@@ -40,7 +40,7 @@ export const subscriptionId: msRest.OperationParameter = {
     }
   }
 };
-export const apiVersion0: msRest.OperationParameter = {
+export const apiVersion0: msRest.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -50,7 +50,7 @@ export const apiVersion0: msRest.OperationParameter = {
     }
   }
 };
-export const apiVersion1: msRest.OperationParameter = {
+export const apiVersion1: msRest.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -62,7 +62,7 @@ export const apiVersion1: msRest.OperationParameter = {
     }
   }
 };
-export const apiVersion2: msRest.OperationParameter = {
+export const apiVersion2: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "apiVersion"
@@ -74,7 +74,7 @@ export const apiVersion2: msRest.OperationParameter = {
     }
   }
 };
-export const unencodedPathParam0: msRest.OperationParameter = {
+export const unencodedPathParam0: msRest.OperationURLParameter = {
   parameterPath: "unencodedPathParam",
   mapper: {
     required: true,
@@ -85,7 +85,7 @@ export const unencodedPathParam0: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const unencodedPathParam1: msRest.OperationParameter = {
+export const unencodedPathParam1: msRest.OperationURLParameter = {
   parameterPath: "unencodedPathParam",
   mapper: {
     required: true,
@@ -98,7 +98,7 @@ export const unencodedPathParam1: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const q10: msRest.OperationParameter = {
+export const q10: msRest.OperationQueryParameter = {
   parameterPath: "q1",
   mapper: {
     required: true,
@@ -109,7 +109,7 @@ export const q10: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const q11: msRest.OperationParameter = {
+export const q11: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "q1"
@@ -122,7 +122,7 @@ export const q11: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const q12: msRest.OperationParameter = {
+export const q12: msRest.OperationQueryParameter = {
   parameterPath: "q1",
   mapper: {
     required: true,
@@ -135,7 +135,7 @@ export const q12: msRest.OperationParameter = {
   },
   skipEncoding: true
 };
-export const filter: msRest.OperationParameter = {
+export const filter: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "filter"
@@ -147,7 +147,7 @@ export const filter: msRest.OperationParameter = {
     }
   }
 };
-export const top: msRest.OperationParameter = {
+export const top: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "top"
@@ -159,7 +159,7 @@ export const top: msRest.OperationParameter = {
     }
   }
 };
-export const orderby: msRest.OperationParameter = {
+export const orderby: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "orderby"
