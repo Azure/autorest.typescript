@@ -404,7 +404,7 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        private ParameterTransformations GetParameterTransformations()
+        internal ParameterTransformations GetParameterTransformations()
             => new ParameterTransformations(InputParameterTransformation);
 
         /// <summary>
@@ -570,9 +570,9 @@ namespace AutoRest.TypeScript.Model
             Parameter[] logicalParameters = LogicalParameters.ToArray();
             ParameterTransformations parameterTransformations = GetParameterTransformations();
 
-            AddParameterRefs(operationSpec, "urlParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Path));
-            AddParameterRefs(operationSpec, "queryParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Query));
-            AddParameterRefs(operationSpec, "headerParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Header));
+            AddParameterRefs(operationSpec, "urlParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Path));
+            AddParameterRefs(operationSpec, "queryParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Query));
+            AddParameterRefs(operationSpec, "headerParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Header));
 
             if (Body != null)
             {
@@ -588,7 +588,7 @@ namespace AutoRest.TypeScript.Model
                 IEnumerable<Parameter> formDataParameters = logicalParameters.Where(p => p.Location == ParameterLocation.FormData);
                 if (formDataParameters.Any())
                 {
-                    AddParameterRefs(operationSpec, "formDataParameters", parameterTransformations, formDataParameters);
+                    AddParameterRefs(operationSpec, "formDataParameters", formDataParameters);
                     operationSpec.QuotedStringProperty("contentType", RequestContentType);
                 }
             }
@@ -641,7 +641,7 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        internal static void GenerateRequestParameter(TSObject parameterObject, Parameter requestParameter, ParameterTransformations parameterTransformations)
+        internal static void GenerateRequestParameter(TSObject parameterObject, ParameterTS requestParameter, ParameterTransformations parameterTransformations)
         {
             GenerateRequestParameterPath(parameterObject, requestParameter, parameterTransformations);
             parameterObject.Property("mapper", mapper => ClientModelExtensions.ConstructMapper(mapper, requestParameter.ModelType, requestParameter.SerializedName, requestParameter, false, false, false));
@@ -660,7 +660,7 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        private static void AddParameterRefs(TSObject operationSpec, string propertyName, ParameterTransformations parameterTransformations, IEnumerable<Parameter> requestParameters)
+        private static void AddParameterRefs(TSObject operationSpec, string propertyName, IEnumerable<Parameter> requestParameters)
         {
             if (requestParameters != null && requestParameters.Any())
             {

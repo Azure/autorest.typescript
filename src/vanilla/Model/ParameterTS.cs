@@ -14,6 +14,8 @@ namespace AutoRest.TypeScript.Model
     {
         public ParameterTS() {}
 
+        public MethodTS MethodTS => (MethodTS) Method;
+
         private string _mapperName;
         /// <summary>
         /// The name of this parameter's mapper.

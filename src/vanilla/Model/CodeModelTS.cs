@@ -462,27 +462,6 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        private sealed class ParameterComparer : IEqualityComparer<ParameterTS>
-        {
-            private ParameterComparer() {}
-            public static ParameterComparer Instance { get; } = new ParameterComparer();
-
-            public bool Equals(ParameterTS x, ParameterTS y)
-            {
-                TSBuilder xBuilder = new TSBuilder();
-                xBuilder.Object(obj => ClientModelExtensions.ConstructParameterMapper(obj, x));
-
-                TSBuilder yBuilder = new TSBuilder();
-                yBuilder.Object(obj => ClientModelExtensions.ConstructParameterMapper(obj, y));
-                return xBuilder.ToString() == yBuilder.ToString();
-            }
-
-            public int GetHashCode(ParameterTS obj)
-            {
-                return 0;
-            }
-        }
-
         private class ParameterNameComparer : IEqualityComparer<ParameterTS>
         {
             private ParameterNameComparer() {}
@@ -499,43 +478,23 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public void CreateUniqueParameterNames(IEnumerable<ParameterTS> parameters)
-        {
-            IEnumerable<ParameterTS>[] distinctParameterGroups = parameters.GroupBy(p => p, ParameterComparer.Instance).ToArray();
-            if (distinctParameterGroups.Length > 1)
-            {
-                for (int i = 0; i < distinctParameterGroups.Length; i++)
-                {
-                    foreach (ParameterTS param in distinctParameterGroups[i])
-                    {
-                        param.MapperName = param.Name + i;
-                    }
-                }
-            }
-        }
-
         public string GenerateParameterMappers()
         {
             TSBuilder builder = new TSBuilder();
-            var parameters = Methods
+            IEnumerable<ParameterTS> parameters = Methods
                 .SelectMany(m => m.LogicalParameters)
                 .Cast<ParameterTS>()
                 .Where(p => p.ModelTypeName != "RequestOptionsBase" && p.Location != ParameterLocation.Body)
-                .GroupBy(p => p.Name.Value);
+                .Distinct(ParameterNameComparer.Instance);
 
-            foreach (var group in parameters)
+            foreach (ParameterTS parameter in parameters)
             {
-                CreateUniqueParameterNames(group);
-
-                foreach (var parameter in group.Distinct(ParameterNameComparer.Instance))
-                {
-                    builder.Text("export ");
-                    builder.ConstObjectVariable(
-                        parameter.MapperName,
-                        "msRest.OperationParameter",
-                        obj => ClientModelExtensions.ConstructParameterMapper(obj, parameter));
-                    builder.Line();
-                }
+                builder.Text("export ");
+                builder.ConstObjectVariable(
+                    parameter.MapperName,
+                    "msRest.OperationParameter",
+                    obj => ClientModelExtensions.ConstructParameterMapper(obj, parameter));
+                builder.Line();
             }
 
             return builder.ToString();
