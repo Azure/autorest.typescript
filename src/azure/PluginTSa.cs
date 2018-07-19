@@ -16,7 +16,7 @@ namespace AutoRest.TypeScript.Azure
                 // inherit base settings
                 Context,
 
-                // set code model implementations our own implementations 
+                // set code model implementations our own implementations
                 new Factory<CodeModel, CodeModelTSa>(),
                 new Factory<Method, MethodTSa>(),
                 new Factory<CompositeType, CompositeTypeTS>(),
@@ -25,7 +25,8 @@ namespace AutoRest.TypeScript.Azure
                 new Factory<SequenceType, SequenceTypeTS>(),
                 new Factory<MethodGroup, MethodGroupTS>(),
                 new Factory<EnumType, EnumTypeTS>(),
-                new Factory<PrimaryType, PrimaryTypeTS>()
+                new Factory<PrimaryType, PrimaryTypeTS>(),
+                new Factory<Parameter, ParameterTS>()
             };
         }
     }

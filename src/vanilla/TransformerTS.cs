@@ -30,9 +30,21 @@ namespace AutoRest.TypeScript
             CreateModelTypeForOptionalClientProperties(codeModel);
             CreateModelTypesForOptionalMethodParameters(codeModel);
             AddEnumTypesToCodeModel(codeModel);
+            EnsureParameterMethodSet(codeModel);
             CreateUniqueParameterMapperNames(codeModel);
 
             return codeModel;
+        }
+
+        private void EnsureParameterMethodSet(CodeModelTS codeModel)
+        {
+            foreach (Method method in codeModel.Methods)
+            {
+                foreach (Parameter parameter in method.LogicalParameters)
+                {
+                    parameter.Method = method;
+                }
+            }
         }
 
         private sealed class ParameterComparer : IEqualityComparer<ParameterTS>
