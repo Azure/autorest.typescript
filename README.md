@@ -56,6 +56,21 @@ autorest --typescript \
   --generate-metadata=true
 ```
 
+### Generate enums as unions
+By default, a Swagger enum is translated into a TypeScript enum, like so:
+```ts
+enum Colors {
+  Redcolor = 'red color',
+  GreenColor = 'green-color',
+  BlueColor = 'blue_color',
+}
+```
+You may instead generate a union of literal values (example below) by passing `----model-enum-as-union=true` to AutoRest.
+```ts
+type Colors = 'red color' | 'green-color' | 'blue_color';
+```
+This can save some space when bundling for the browser.
+
 ### Azure Service Client
 For generating a client for an azure service, provide `--typescript.azure-arm=true`:
 ```sh
@@ -86,8 +101,8 @@ the generated constructor will look like
 constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRest.ServiceClientOptions)
 ```
 
-### Furhter Documentation on the CMD Line
-The complete list of CMD line arguments can be found [here](https://github.com/Azure/autorest/blob/master/docs/user/cli.md). Not every CMD line switch is available for the typescript extension.
+### Further Documentation on the Command Line
+The complete list of command line arguments can be found [here](https://github.com/Azure/autorest/blob/master/docs/user/cli.md). Not every command line option is available for the typescript extension.
 
 # Development
 
