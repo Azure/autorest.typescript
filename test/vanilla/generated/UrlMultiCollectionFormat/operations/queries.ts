@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
+import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/queriesMappers";
 import { AutoRestUrlMutliCollectionFormatTestServiceContext } from "../autoRestUrlMutliCollectionFormatTestServiceContext";
 
@@ -157,25 +158,7 @@ const arrayStringMultiNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "arrayQuery"
-      ],
-      collectionFormat: msRest.QueryCollectionFormat.Multi,
-      mapper: {
-        serializedName: "arrayQuery",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayQuery
   ],
   responses: {
     200: {},
@@ -190,25 +173,7 @@ const arrayStringMultiEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/empty",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "arrayQuery"
-      ],
-      collectionFormat: msRest.QueryCollectionFormat.Multi,
-      mapper: {
-        serializedName: "arrayQuery",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayQuery
   ],
   responses: {
     200: {},
@@ -223,25 +188,7 @@ const arrayStringMultiValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/valid",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "arrayQuery"
-      ],
-      collectionFormat: msRest.QueryCollectionFormat.Multi,
-      mapper: {
-        serializedName: "arrayQuery",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayQuery
   ],
   responses: {
     200: {},

@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/lROsMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestLongRunningOperationTestServiceContext } from "../autoRestLongRunningOperationTestServiceContext";
 
 /** Class representing a LROs. */
@@ -3936,16 +3937,7 @@ const beginPut200SucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/200/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -3971,16 +3963,7 @@ const beginPut200SucceededNoStateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/200/succeeded/nostate",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4005,16 +3988,7 @@ const beginPut202Retry200OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/202/retry/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4039,16 +4013,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/201/creating/succeeded/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4076,16 +4041,7 @@ const beginPut200UpdatingSucceeded204OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/200/updating/succeeded/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4110,16 +4066,7 @@ const beginPut201CreatingFailed200OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/201/created/failed/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4147,16 +4094,7 @@ const beginPut200Acceptedcanceled200OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/200/accepted/canceled/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4181,16 +4119,7 @@ const beginPutNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/noheader/202/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4216,16 +4145,7 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/retry/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4251,16 +4171,7 @@ const beginPutAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/noretry/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4286,16 +4197,7 @@ const beginPutAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/retry/failed",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4321,16 +4223,7 @@ const beginPutAsyncNoRetrycanceledOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/noretry/canceled",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4356,16 +4249,7 @@ const beginPutAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/noheader/201/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4391,16 +4275,7 @@ const beginPutNonResourceOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putnonresource/202/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4425,16 +4300,7 @@ const beginPutAsyncNonResourceOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putnonresourceasync/202/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4459,16 +4325,7 @@ const beginPutSubResourceOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putsubresource/202/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {
@@ -4495,16 +4352,7 @@ const beginPutAsyncSubResourceOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putsubresourceasync/202/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {
@@ -4531,16 +4379,7 @@ const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.Operat
   httpMethod: "DELETE",
   path: "lro/delete/provisioning/202/accepted/200/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -4562,16 +4401,7 @@ const beginDeleteProvisioning202DeletingFailed200OperationSpec: msRest.Operation
   httpMethod: "DELETE",
   path: "lro/delete/provisioning/202/deleting/200/failed",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -4593,16 +4423,7 @@ const beginDeleteProvisioning202Deletingcanceled200OperationSpec: msRest.Operati
   httpMethod: "DELETE",
   path: "lro/delete/provisioning/202/deleting/200/canceled",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -4624,16 +4445,7 @@ const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/204/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     204: {},
@@ -4648,16 +4460,7 @@ const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/202/retry/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -4678,16 +4481,7 @@ const beginDelete202NoRetry204OperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/202/noretry/204",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -4708,16 +4502,7 @@ const beginDeleteNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/noheader",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     202: {
@@ -4737,16 +4522,7 @@ const beginDeleteAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/noheader/202/204",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     202: {
@@ -4766,16 +4542,7 @@ const beginDeleteAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/retry/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     202: {
@@ -4792,16 +4559,7 @@ const beginDeleteAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/noretry/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     202: {
@@ -4818,16 +4576,7 @@ const beginDeleteAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/retry/failed",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     202: {
@@ -4844,16 +4593,7 @@ const beginDeleteAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/retry/canceled",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     202: {
@@ -4870,16 +4610,7 @@ const beginPost200WithPayloadOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/post/payload/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -4899,16 +4630,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/post/202/retry/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4933,16 +4655,7 @@ const beginPost202NoRetry204OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/post/202/noretry/204",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -4968,16 +4681,7 @@ const beginPostDoubleHeadersFinalLocationGetOperationSpec: msRest.OperationSpec 
   httpMethod: "POST",
   path: "lro/LROPostDoubleHeadersFinalLocationGet",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     202: {
@@ -4994,16 +4698,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec: msRest.OperationSp
   httpMethod: "POST",
   path: "lro/LROPostDoubleHeadersFinalAzureHeaderGet",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     202: {
@@ -5020,16 +4715,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: msRest.Oper
   httpMethod: "POST",
   path: "lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     202: {
@@ -5046,16 +4732,7 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/postasync/retry/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -5084,16 +4761,7 @@ const beginPostAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/postasync/noretry/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -5122,16 +4790,7 @@ const beginPostAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/postasync/retry/failed",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -5156,16 +4815,7 @@ const beginPostAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/postasync/retry/canceled",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [

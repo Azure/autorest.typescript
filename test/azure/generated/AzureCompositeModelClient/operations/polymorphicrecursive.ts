@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/polymorphicrecursiveMappers";
+import * as Parameters from "../models/parameters";
 import { AzureCompositeModelContext } from "../azureCompositeModelContext";
 
 /** Class representing a Polymorphicrecursive. */
@@ -223,16 +224,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/polymorphicrecursive/valid",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -249,16 +241,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/polymorphicrecursive/valid",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",

@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/pagingMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestPagingTestServiceContext } from "../autoRestPagingTestServiceContext";
 
 /** Class representing a Paging. */
@@ -1239,16 +1240,7 @@ const getSinglePagesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/single",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1265,55 +1257,10 @@ const getMultiplePagesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple",
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "clientRequestId"
-      ],
-      mapper: {
-        serializedName: "client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesOptions",
-        "maxresults"
-      ],
-      mapper: {
-        serializedName: "maxresults",
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesOptions",
-        "timeout"
-      ],
-      mapper: {
-        serializedName: "timeout",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.clientRequestId,
+    Parameters.acceptLanguage,
+    Parameters.maxresults0,
+    Parameters.timeout0
   ],
   responses: {
     200: {
@@ -1330,55 +1277,10 @@ const getOdataMultiplePagesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/odata",
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "clientRequestId"
-      ],
-      mapper: {
-        serializedName: "client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetOdataMultiplePagesOptions",
-        "maxresults"
-      ],
-      mapper: {
-        serializedName: "maxresults",
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetOdataMultiplePagesOptions",
-        "timeout"
-      ],
-      mapper: {
-        serializedName: "timeout",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.clientRequestId,
+    Parameters.acceptLanguage,
+    Parameters.maxresults1,
+    Parameters.timeout1
   ],
   responses: {
     200: {
@@ -1395,68 +1297,13 @@ const getMultiplePagesWithOffsetOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/withpath/{offset}",
   urlParameters: [
-    {
-      parameterPath: [
-        "pagingGetMultiplePagesWithOffsetOptions",
-        "offset"
-      ],
-      mapper: {
-        required: true,
-        serializedName: "offset",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.offset
   ],
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "clientRequestId"
-      ],
-      mapper: {
-        serializedName: "client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "pagingGetMultiplePagesWithOffsetOptions",
-        "maxresults"
-      ],
-      mapper: {
-        serializedName: "maxresults",
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "pagingGetMultiplePagesWithOffsetOptions",
-        "timeout"
-      ],
-      mapper: {
-        serializedName: "timeout",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.clientRequestId,
+    Parameters.acceptLanguage,
+    Parameters.maxresults2,
+    Parameters.timeout2
   ],
   responses: {
     200: {
@@ -1473,16 +1320,7 @@ const getMultiplePagesRetryFirstOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/retryfirst",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1499,16 +1337,7 @@ const getMultiplePagesRetrySecondOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/retrysecond",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1525,16 +1354,7 @@ const getSinglePagesFailureOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/single/failure",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1551,16 +1371,7 @@ const getMultiplePagesFailureOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/failure",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1577,16 +1388,7 @@ const getMultiplePagesFailureUriOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/failureuri",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1603,40 +1405,13 @@ const getMultiplePagesFragmentNextLinkOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/fragment/{tenant}",
   urlParameters: [
-    {
-      parameterPath: "tenant",
-      mapper: {
-        required: true,
-        serializedName: "tenant",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.tenant0
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api_version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1653,46 +1428,13 @@ const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: msRest.Operatio
   httpMethod: "GET",
   path: "paging/multiple/fragmentwithgrouping/{tenant}",
   urlParameters: [
-    {
-      parameterPath: [
-        "customParameterGroup",
-        "tenant"
-      ],
-      mapper: {
-        required: true,
-        serializedName: "tenant",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.tenant1
   ],
   queryParameters: [
-    {
-      parameterPath: [
-        "customParameterGroup",
-        "apiVersion"
-      ],
-      mapper: {
-        required: true,
-        serializedName: "api_version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1709,51 +1451,14 @@ const nextFragmentOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/fragment/{tenant}/{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "tenant",
-      mapper: {
-        required: true,
-        serializedName: "tenant",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "nextLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.tenant0,
+    Parameters.nextLink
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api_version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1770,57 +1475,14 @@ const nextFragmentWithGroupingOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "customParameterGroup",
-        "tenant"
-      ],
-      mapper: {
-        required: true,
-        serializedName: "tenant",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextLink,
+    Parameters.tenant1
   ],
   queryParameters: [
-    {
-      parameterPath: [
-        "customParameterGroup",
-        "apiVersion"
-      ],
-      mapper: {
-        required: true,
-        serializedName: "api_version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1837,55 +1499,10 @@ const beginGetMultiplePagesLROOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "paging/multiple/lro",
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "clientRequestId"
-      ],
-      mapper: {
-        serializedName: "client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesLROOptions",
-        "maxresults"
-      ],
-      mapper: {
-        serializedName: "maxresults",
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesLROOptions",
-        "timeout"
-      ],
-      mapper: {
-        serializedName: "timeout",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.clientRequestId,
+    Parameters.acceptLanguage,
+    Parameters.maxresults3,
+    Parameters.timeout3
   ],
   responses: {
     202: {
@@ -1903,29 +1520,10 @@ const getSinglePagesNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1943,68 +1541,13 @@ const getMultiplePagesNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "clientRequestId"
-      ],
-      mapper: {
-        serializedName: "client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesOptions",
-        "maxresults"
-      ],
-      mapper: {
-        serializedName: "maxresults",
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesOptions",
-        "timeout"
-      ],
-      mapper: {
-        serializedName: "timeout",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.clientRequestId,
+    Parameters.acceptLanguage,
+    Parameters.maxresults0,
+    Parameters.timeout0
   ],
   responses: {
     200: {
@@ -2022,68 +1565,13 @@ const getOdataMultiplePagesNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "clientRequestId"
-      ],
-      mapper: {
-        serializedName: "client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetOdataMultiplePagesOptions",
-        "maxresults"
-      ],
-      mapper: {
-        serializedName: "maxresults",
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetOdataMultiplePagesOptions",
-        "timeout"
-      ],
-      mapper: {
-        serializedName: "timeout",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.clientRequestId,
+    Parameters.acceptLanguage,
+    Parameters.maxresults1,
+    Parameters.timeout1
   ],
   responses: {
     200: {
@@ -2101,68 +1589,13 @@ const getMultiplePagesWithOffsetNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "clientRequestId"
-      ],
-      mapper: {
-        serializedName: "client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesWithOffsetNextOptions",
-        "maxresults"
-      ],
-      mapper: {
-        serializedName: "maxresults",
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesWithOffsetNextOptions",
-        "timeout"
-      ],
-      mapper: {
-        serializedName: "timeout",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.clientRequestId,
+    Parameters.acceptLanguage,
+    Parameters.maxresults4,
+    Parameters.timeout4
   ],
   responses: {
     200: {
@@ -2180,29 +1613,10 @@ const getMultiplePagesRetryFirstNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2220,29 +1634,10 @@ const getMultiplePagesRetrySecondNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2260,29 +1655,10 @@ const getSinglePagesFailureNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2300,29 +1676,10 @@ const getMultiplePagesFailureNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2340,29 +1697,10 @@ const getMultiplePagesFailureUriNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2380,68 +1718,13 @@ const beginGetMultiplePagesLRONextOperationSpec: msRest.OperationSpec = {
   baseUrl: "http://localhost:3000",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "clientRequestId"
-      ],
-      mapper: {
-        serializedName: "client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesLROOptions",
-        "maxresults"
-      ],
-      mapper: {
-        serializedName: "maxresults",
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pagingGetMultiplePagesLROOptions",
-        "timeout"
-      ],
-      mapper: {
-        serializedName: "timeout",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.clientRequestId,
+    Parameters.acceptLanguage,
+    Parameters.maxresults3,
+    Parameters.timeout3
   ],
   responses: {
     202: {

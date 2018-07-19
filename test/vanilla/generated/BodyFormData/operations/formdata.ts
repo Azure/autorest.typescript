@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/formdataMappers";
 import { AutoRestSwaggerBATFormDataServiceContext } from "../autoRestSwaggerBATFormDataServiceContext";
 
@@ -78,26 +79,8 @@ const uploadFileOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "formdata/stream/uploadfile",
   formDataParameters: [
-    {
-      parameterPath: "fileContent",
-      mapper: {
-        required: true,
-        serializedName: "fileContent",
-        type: {
-          name: "Stream"
-        }
-      }
-    },
-    {
-      parameterPath: "fileName",
-      mapper: {
-        required: true,
-        serializedName: "fileName",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.fileContent,
+    Parameters.fileName
   ],
   contentType: "multipart/form-data",
   responses: {

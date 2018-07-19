@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/usageOperationsMappers";
+import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
 
 /** Class representing a UsageOperations. */
@@ -73,40 +74,13 @@ const listOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {

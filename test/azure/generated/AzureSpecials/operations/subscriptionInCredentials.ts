@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/subscriptionInCredentialsMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
 /** Class representing a SubscriptionInCredentials. */
@@ -246,28 +247,10 @@ const postMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -282,28 +265,10 @@ const postMethodGlobalNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -318,40 +283,13 @@ const postMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -366,28 +304,10 @@ const postPathGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -402,28 +322,10 @@ const postSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},

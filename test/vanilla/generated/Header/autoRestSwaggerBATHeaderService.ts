@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters";
 import * as operations from "./operations";
 import { AutoRestSwaggerBATHeaderServiceContext } from "./autoRestSwaggerBATHeaderServiceContext";
 

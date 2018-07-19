@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters";
 import { AutoRestResourceFlatteningTestServiceContext } from "./autoRestResourceFlatteningTestServiceContext";
 
 class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTestServiceContext {
@@ -802,19 +803,7 @@ const putSimpleProductWithGroupingOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "model-flatten/customFlattening/parametergrouping/{name}/",
   urlParameters: [
-    {
-      parameterPath: [
-        "flattenParameterGroup",
-        "name"
-      ],
-      mapper: {
-        required: true,
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.name
   ],
   requestBody: {
     parameterPath: {

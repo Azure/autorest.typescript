@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
+import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/headerMappers";
 import { AutoRestSwaggerBATHeaderServiceContext } from "../autoRestSwaggerBATHeaderServiceContext";
 
@@ -1444,16 +1445,7 @@ const paramExistingKeyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/existingkey",
   headerParameters: [
-    {
-      parameterPath: "userAgent",
-      mapper: {
-        required: true,
-        serializedName: "User-Agent",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.userAgent
   ],
   responses: {
     200: {},
@@ -1482,16 +1474,7 @@ const paramProtectedKeyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/protectedkey",
   headerParameters: [
-    {
-      parameterPath: "contentType",
-      mapper: {
-        required: true,
-        serializedName: "Content-Type",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.contentType
   ],
   responses: {
     200: {},
@@ -1520,26 +1503,8 @@ const paramIntegerOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/integer",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "value",
-      mapper: {
-        required: true,
-        serializedName: "value",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value0
   ],
   responses: {
     200: {},
@@ -1554,16 +1519,7 @@ const responseIntegerOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/integer",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -1580,26 +1536,8 @@ const paramLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/long",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "value",
-      mapper: {
-        required: true,
-        serializedName: "value",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value0
   ],
   responses: {
     200: {},
@@ -1614,16 +1552,7 @@ const responseLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/long",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -1640,26 +1569,8 @@ const paramFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/float",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "value",
-      mapper: {
-        required: true,
-        serializedName: "value",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value0
   ],
   responses: {
     200: {},
@@ -1674,16 +1585,7 @@ const responseFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/float",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -1700,26 +1602,8 @@ const paramDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/double",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "value",
-      mapper: {
-        required: true,
-        serializedName: "value",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value0
   ],
   responses: {
     200: {},
@@ -1734,16 +1618,7 @@ const responseDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/double",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -1760,26 +1635,8 @@ const paramBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/bool",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "value",
-      mapper: {
-        required: true,
-        serializedName: "value",
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value1
   ],
   responses: {
     200: {},
@@ -1794,16 +1651,7 @@ const responseBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/bool",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -1820,28 +1668,8 @@ const paramStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/string",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "value"
-      ],
-      mapper: {
-        serializedName: "value",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value2
   ],
   responses: {
     200: {},
@@ -1856,16 +1684,7 @@ const responseStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/string",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -1882,26 +1701,8 @@ const paramDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/date",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "value",
-      mapper: {
-        required: true,
-        serializedName: "value",
-        type: {
-          name: "Date"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value3
   ],
   responses: {
     200: {},
@@ -1916,16 +1717,7 @@ const responseDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/date",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -1942,26 +1734,8 @@ const paramDatetimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/datetime",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "value",
-      mapper: {
-        required: true,
-        serializedName: "value",
-        type: {
-          name: "DateTime"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value4
   ],
   responses: {
     200: {},
@@ -1976,16 +1750,7 @@ const responseDatetimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/datetime",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -2002,28 +1767,8 @@ const paramDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/datetimerfc1123",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "value"
-      ],
-      mapper: {
-        serializedName: "value",
-        type: {
-          name: "DateTimeRfc1123"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value5
   ],
   responses: {
     200: {},
@@ -2038,16 +1783,7 @@ const responseDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/datetimerfc1123",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -2064,26 +1800,8 @@ const paramDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/duration",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "value",
-      mapper: {
-        required: true,
-        serializedName: "value",
-        type: {
-          name: "TimeSpan"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value6
   ],
   responses: {
     200: {},
@@ -2098,16 +1816,7 @@ const responseDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/duration",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -2124,26 +1833,8 @@ const paramByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/byte",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "value",
-      mapper: {
-        required: true,
-        serializedName: "value",
-        type: {
-          name: "ByteArray"
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value7
   ],
   responses: {
     200: {},
@@ -2158,16 +1849,7 @@ const responseByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/byte",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {
@@ -2184,33 +1866,8 @@ const paramEnumOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/enum",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "value"
-      ],
-      mapper: {
-        serializedName: "value",
-        type: {
-          name: "Enum",
-          allowedValues: [
-            "White",
-            "black",
-            "GREY"
-          ]
-        }
-      }
-    }
+    Parameters.scenario,
+    Parameters.value8
   ],
   responses: {
     200: {},
@@ -2225,16 +1882,7 @@ const responseEnumOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/enum",
   headerParameters: [
-    {
-      parameterPath: "scenario",
-      mapper: {
-        required: true,
-        serializedName: "scenario",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.scenario
   ],
   responses: {
     200: {

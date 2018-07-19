@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/availabilitySetsMappers";
 import { AutoRestParameterFlatteningContext } from "../autoRestParameterFlatteningContext";
 
@@ -89,29 +90,8 @@ const updateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "avset",
-      mapper: {
-        required: true,
-        serializedName: "availabilitySetName",
-        constraints: {
-          MaxLength: 80
-        },
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.avset
   ],
   requestBody: {
     parameterPath: {

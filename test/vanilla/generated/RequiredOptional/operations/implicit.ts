@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
+import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/implicitMappers";
 import { AutoRestRequiredOptionalTestServiceContext } from "../autoRestRequiredOptionalTestServiceContext";
 
@@ -324,16 +325,7 @@ const getRequiredPathOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "reqopt/implicit/required/path/{pathParameter}",
   urlParameters: [
-    {
-      parameterPath: "pathParameter",
-      mapper: {
-        required: true,
-        serializedName: "pathParameter",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.pathParameter
   ],
   responses: {
     default: {
@@ -347,18 +339,7 @@ const putOptionalQueryOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "reqopt/implicit/optional/query",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "queryParameter"
-      ],
-      mapper: {
-        serializedName: "queryParameter",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.queryParameter
   ],
   responses: {
     200: {},
@@ -373,18 +354,7 @@ const putOptionalHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "reqopt/implicit/optional/header",
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "queryParameter"
-      ],
-      mapper: {
-        serializedName: "queryParameter",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.queryParameter
   ],
   responses: {
     200: {},
@@ -424,16 +394,7 @@ const getRequiredGlobalPathOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "reqopt/global/required/path/{required-global-path}",
   urlParameters: [
-    {
-      parameterPath: "requiredGlobalPath",
-      mapper: {
-        required: true,
-        serializedName: "required-global-path",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.requiredGlobalPath
   ],
   responses: {
     default: {
@@ -447,16 +408,7 @@ const getRequiredGlobalQueryOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "reqopt/global/required/query",
   queryParameters: [
-    {
-      parameterPath: "requiredGlobalQuery",
-      mapper: {
-        required: true,
-        serializedName: "required-global-query",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.requiredGlobalQuery
   ],
   responses: {
     default: {
@@ -470,15 +422,7 @@ const getOptionalGlobalQueryOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "reqopt/global/optional/query",
   queryParameters: [
-    {
-      parameterPath: "optionalGlobalQuery",
-      mapper: {
-        serializedName: "optional-global-query",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.optionalGlobalQuery
   ],
   responses: {
     default: {

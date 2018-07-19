@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
+import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/queriesMappers";
 import { AutoRestUrlTestServiceContext } from "../autoRestUrlTestServiceContext";
 
@@ -1434,18 +1435,7 @@ const getBooleanTrueOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/bool/true",
   queryParameters: [
-    {
-      parameterPath: "boolQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "boolQuery",
-        defaultValue: true,
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
+    Parameters.boolQuery0
   ],
   responses: {
     200: {},
@@ -1460,18 +1450,7 @@ const getBooleanFalseOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/bool/false",
   queryParameters: [
-    {
-      parameterPath: "boolQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "boolQuery",
-        defaultValue: false,
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
+    Parameters.boolQuery1
   ],
   responses: {
     200: {},
@@ -1486,18 +1465,7 @@ const getBooleanNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/bool/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "boolQuery"
-      ],
-      mapper: {
-        serializedName: "boolQuery",
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
+    Parameters.boolQuery2
   ],
   responses: {
     200: {},
@@ -1512,18 +1480,7 @@ const getIntOneMillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/int/1000000",
   queryParameters: [
-    {
-      parameterPath: "intQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "intQuery",
-        defaultValue: 1000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.intQuery0
   ],
   responses: {
     200: {},
@@ -1538,18 +1495,7 @@ const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/int/-1000000",
   queryParameters: [
-    {
-      parameterPath: "intQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "intQuery",
-        defaultValue: -1000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.intQuery1
   ],
   responses: {
     200: {},
@@ -1564,18 +1510,7 @@ const getIntNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/int/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "intQuery"
-      ],
-      mapper: {
-        serializedName: "intQuery",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.intQuery2
   ],
   responses: {
     200: {},
@@ -1590,18 +1525,7 @@ const getTenBillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/long/10000000000",
   queryParameters: [
-    {
-      parameterPath: "longQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "longQuery",
-        defaultValue: 10000000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.longQuery0
   ],
   responses: {
     200: {},
@@ -1616,18 +1540,7 @@ const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/long/-10000000000",
   queryParameters: [
-    {
-      parameterPath: "longQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "longQuery",
-        defaultValue: -10000000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.longQuery1
   ],
   responses: {
     200: {},
@@ -1642,18 +1555,7 @@ const getLongNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/long/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "longQuery"
-      ],
-      mapper: {
-        serializedName: "longQuery",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.longQuery2
   ],
   responses: {
     200: {},
@@ -1668,18 +1570,7 @@ const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/float/1.034E+20",
   queryParameters: [
-    {
-      parameterPath: "floatQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "floatQuery",
-        defaultValue: 103400000000000000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.floatQuery0
   ],
   responses: {
     200: {},
@@ -1694,18 +1585,7 @@ const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/float/-1.034E-20",
   queryParameters: [
-    {
-      parameterPath: "floatQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "floatQuery",
-        defaultValue: -1.034e-20,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.floatQuery1
   ],
   responses: {
     200: {},
@@ -1720,18 +1600,7 @@ const floatNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/float/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "floatQuery"
-      ],
-      mapper: {
-        serializedName: "floatQuery",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.floatQuery2
   ],
   responses: {
     200: {},
@@ -1746,18 +1615,7 @@ const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/double/9999999.999",
   queryParameters: [
-    {
-      parameterPath: "doubleQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "doubleQuery",
-        defaultValue: 9999999.999,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.doubleQuery0
   ],
   responses: {
     200: {},
@@ -1772,18 +1630,7 @@ const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/double/-9999999.999",
   queryParameters: [
-    {
-      parameterPath: "doubleQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "doubleQuery",
-        defaultValue: -9999999.999,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.doubleQuery1
   ],
   responses: {
     200: {},
@@ -1798,18 +1645,7 @@ const doubleNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/double/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "doubleQuery"
-      ],
-      mapper: {
-        serializedName: "doubleQuery",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.doubleQuery2
   ],
   responses: {
     200: {},
@@ -1824,18 +1660,7 @@ const stringUnicodeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/string/unicode/",
   queryParameters: [
-    {
-      parameterPath: "stringQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "stringQuery",
-        defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.stringQuery0
   ],
   responses: {
     200: {},
@@ -1850,18 +1675,7 @@ const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
   queryParameters: [
-    {
-      parameterPath: "stringQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "stringQuery",
-        defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.stringQuery1
   ],
   responses: {
     200: {},
@@ -1876,18 +1690,7 @@ const stringEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/string/empty",
   queryParameters: [
-    {
-      parameterPath: "stringQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "stringQuery",
-        defaultValue: '',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.stringQuery2
   ],
   responses: {
     200: {},
@@ -1902,18 +1705,7 @@ const stringNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/string/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "stringQuery"
-      ],
-      mapper: {
-        serializedName: "stringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.stringQuery3
   ],
   responses: {
     200: {},
@@ -1928,23 +1720,7 @@ const enumValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/enum/green%20color",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "enumQuery"
-      ],
-      mapper: {
-        serializedName: "enumQuery",
-        type: {
-          name: "Enum",
-          allowedValues: [
-            "red color",
-            "green color",
-            "blue color"
-          ]
-        }
-      }
-    }
+    Parameters.enumQuery
   ],
   responses: {
     200: {},
@@ -1959,23 +1735,7 @@ const enumNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/enum/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "enumQuery"
-      ],
-      mapper: {
-        serializedName: "enumQuery",
-        type: {
-          name: "Enum",
-          allowedValues: [
-            "red color",
-            "green color",
-            "blue color"
-          ]
-        }
-      }
-    }
+    Parameters.enumQuery
   ],
   responses: {
     200: {},
@@ -1990,18 +1750,7 @@ const byteMultiByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/byte/multibyte",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "byteQuery"
-      ],
-      mapper: {
-        serializedName: "byteQuery",
-        type: {
-          name: "ByteArray"
-        }
-      }
-    }
+    Parameters.byteQuery0
   ],
   responses: {
     200: {},
@@ -2016,18 +1765,7 @@ const byteEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/byte/empty",
   queryParameters: [
-    {
-      parameterPath: "byteQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "byteQuery",
-        defaultValue: new Uint8Array(0),
-        type: {
-          name: "ByteArray"
-        }
-      }
-    }
+    Parameters.byteQuery1
   ],
   responses: {
     200: {},
@@ -2042,18 +1780,7 @@ const byteNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/byte/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "byteQuery"
-      ],
-      mapper: {
-        serializedName: "byteQuery",
-        type: {
-          name: "ByteArray"
-        }
-      }
-    }
+    Parameters.byteQuery0
   ],
   responses: {
     200: {},
@@ -2068,18 +1795,7 @@ const dateValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/date/2012-01-01",
   queryParameters: [
-    {
-      parameterPath: "dateQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "dateQuery",
-        defaultValue: new Date('2012-01-01'),
-        type: {
-          name: "Date"
-        }
-      }
-    }
+    Parameters.dateQuery0
   ],
   responses: {
     200: {},
@@ -2094,18 +1810,7 @@ const dateNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/date/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "dateQuery"
-      ],
-      mapper: {
-        serializedName: "dateQuery",
-        type: {
-          name: "Date"
-        }
-      }
-    }
+    Parameters.dateQuery1
   ],
   responses: {
     200: {},
@@ -2120,18 +1825,7 @@ const dateTimeValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/datetime/2012-01-01T01%3A01%3A01Z",
   queryParameters: [
-    {
-      parameterPath: "dateTimeQuery",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "dateTimeQuery",
-        defaultValue: new Date('2012-01-01T01:01:01Z'),
-        type: {
-          name: "DateTime"
-        }
-      }
-    }
+    Parameters.dateTimeQuery0
   ],
   responses: {
     200: {},
@@ -2146,18 +1840,7 @@ const dateTimeNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/datetime/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "dateTimeQuery"
-      ],
-      mapper: {
-        serializedName: "dateTimeQuery",
-        type: {
-          name: "DateTime"
-        }
-      }
-    }
+    Parameters.dateTimeQuery1
   ],
   responses: {
     200: {},
@@ -2172,25 +1855,7 @@ const arrayStringCsvValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/csv/string/valid",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "arrayQuery"
-      ],
-      collectionFormat: msRest.QueryCollectionFormat.Csv,
-      mapper: {
-        serializedName: "arrayQuery",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayQuery0
   ],
   responses: {
     200: {},
@@ -2205,25 +1870,7 @@ const arrayStringCsvNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/csv/string/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "arrayQuery"
-      ],
-      collectionFormat: msRest.QueryCollectionFormat.Csv,
-      mapper: {
-        serializedName: "arrayQuery",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayQuery0
   ],
   responses: {
     200: {},
@@ -2238,25 +1885,7 @@ const arrayStringCsvEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/csv/string/empty",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "arrayQuery"
-      ],
-      collectionFormat: msRest.QueryCollectionFormat.Csv,
-      mapper: {
-        serializedName: "arrayQuery",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayQuery0
   ],
   responses: {
     200: {},
@@ -2271,25 +1900,7 @@ const arrayStringSsvValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/ssv/string/valid",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "arrayQuery"
-      ],
-      collectionFormat: msRest.QueryCollectionFormat.Ssv,
-      mapper: {
-        serializedName: "arrayQuery",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayQuery1
   ],
   responses: {
     200: {},
@@ -2304,25 +1915,7 @@ const arrayStringTsvValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/tsv/string/valid",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "arrayQuery"
-      ],
-      collectionFormat: msRest.QueryCollectionFormat.Tsv,
-      mapper: {
-        serializedName: "arrayQuery",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayQuery2
   ],
   responses: {
     200: {},
@@ -2337,25 +1930,7 @@ const arrayStringPipesValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/pipes/string/valid",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "arrayQuery"
-      ],
-      collectionFormat: msRest.QueryCollectionFormat.Pipes,
-      mapper: {
-        serializedName: "arrayQuery",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayQuery3
   ],
   responses: {
     200: {},

@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/basicOperationsMappers";
+import * as Parameters from "../models/parameters";
 import { AzureCompositeModelContext } from "../azureCompositeModelContext";
 
 /** Class representing a BasicOperations. */
@@ -283,16 +284,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/valid",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -309,30 +301,10 @@ const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/basic/valid",
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2016-02-29',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -355,16 +327,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/invalid",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -381,16 +344,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/empty",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -407,16 +361,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/null",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -433,16 +378,7 @@ const getNotProvidedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/notprovided",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {

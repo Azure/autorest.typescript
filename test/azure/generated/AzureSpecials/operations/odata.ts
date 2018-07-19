@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/odataMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
 /** Class representing a Odata. */
@@ -73,54 +74,12 @@ const getWithFilterOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/odata/filter",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "filter"
-      ],
-      mapper: {
-        serializedName: "$filter",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "top"
-      ],
-      mapper: {
-        serializedName: "$top",
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "orderby"
-      ],
-      mapper: {
-        serializedName: "$orderby",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.filter,
+    Parameters.top,
+    Parameters.orderby
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},

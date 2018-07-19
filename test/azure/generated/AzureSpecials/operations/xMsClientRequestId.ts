@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/xMsClientRequestIdMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
 /** Class representing a XMsClientRequestId. */
@@ -124,16 +125,7 @@ const getOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/overwrite/x-ms-client-request-id/method/",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -148,26 +140,8 @@ const paramGetOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
   headerParameters: [
-    {
-      parameterPath: "xMsClientRequestId",
-      mapper: {
-        required: true,
-        serializedName: "x-ms-client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.xMsClientRequestId,
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},

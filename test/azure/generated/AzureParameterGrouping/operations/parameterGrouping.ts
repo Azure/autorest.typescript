@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/parameterGroupingMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestParameterGroupingTestServiceContext } from "../autoRestParameterGroupingTestServiceContext";
 
 /** Class representing a ParameterGrouping. */
@@ -205,58 +206,14 @@ const postRequiredOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postRequired/{path}",
   urlParameters: [
-    {
-      parameterPath: [
-        "parameterGroupingPostRequiredParameters",
-        "path"
-      ],
-      mapper: {
-        required: true,
-        serializedName: "path",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.path
   ],
   queryParameters: [
-    {
-      parameterPath: [
-        "parameterGroupingPostRequiredParameters",
-        "query"
-      ],
-      mapper: {
-        serializedName: "query",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.query0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "parameterGroupingPostRequiredParameters",
-        "customHeader"
-      ],
-      mapper: {
-        serializedName: "customHeader",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage,
+    Parameters.customHeader0
   ],
   requestBody: {
     parameterPath: [
@@ -285,45 +242,11 @@ const postOptionalOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postOptional",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "parameterGroupingPostOptionalParameters",
-        "query"
-      ],
-      mapper: {
-        serializedName: "query",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.query1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "parameterGroupingPostOptionalParameters",
-        "customHeader"
-      ],
-      mapper: {
-        serializedName: "customHeader",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage,
+    Parameters.customHeader1
   ],
   responses: {
     200: {},
@@ -338,72 +261,13 @@ const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postMultipleParameterGroups",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "firstParameterGroup",
-        "queryOne"
-      ],
-      mapper: {
-        serializedName: "query-one",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-        "queryTwo"
-      ],
-      mapper: {
-        serializedName: "query-two",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.queryOne,
+    Parameters.queryTwo
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "firstParameterGroup",
-        "headerOne"
-      ],
-      mapper: {
-        serializedName: "header-one",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-        "headerTwo"
-      ],
-      mapper: {
-        serializedName: "header-two",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage,
+    Parameters.headerOne,
+    Parameters.headerTwo
   ],
   responses: {
     200: {},
@@ -418,45 +282,11 @@ const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/sharedParameterGroupObject",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "firstParameterGroup",
-        "queryOne"
-      ],
-      mapper: {
-        serializedName: "query-one",
-        defaultValue: 30,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.queryOne
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "firstParameterGroup",
-        "headerOne"
-      ],
-      mapper: {
-        serializedName: "header-one",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage,
+    Parameters.headerOne
   ],
   responses: {
     200: {},

@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/pathsMappers";
 import { AutoRestParameterizedHostTestClientContext } from "../autoRestParameterizedHostTestClientContext";
 
@@ -77,30 +78,8 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "customuri",
   urlParameters: [
-    {
-      parameterPath: "accountName",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "accountName",
-        defaultValue: '',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "host",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "host",
-        defaultValue: 'host',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.accountName,
+    Parameters.host
   ],
   responses: {
     200: {},

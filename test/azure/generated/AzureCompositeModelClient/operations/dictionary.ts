@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/dictionaryMappers";
+import * as Parameters from "../models/parameters";
 import { AzureCompositeModelContext } from "../azureCompositeModelContext";
 
 /** Class representing a Dictionary. */
@@ -278,16 +279,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/valid",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -304,16 +296,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/dictionary/typed/valid",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {
@@ -341,16 +324,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/empty",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -367,16 +341,7 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/dictionary/typed/empty",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {
@@ -404,16 +369,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/null",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -430,16 +386,7 @@ const getNotProvidedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/dictionary/typed/notprovided",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {

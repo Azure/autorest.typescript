@@ -10,6 +10,7 @@
 
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import { AutoRestReportServiceForAzureContext } from "./autoRestReportServiceForAzureContext";
@@ -93,30 +94,10 @@ const getReportOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "report/azure",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "qualifier"
-      ],
-      mapper: {
-        serializedName: "qualifier",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.qualifier
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {

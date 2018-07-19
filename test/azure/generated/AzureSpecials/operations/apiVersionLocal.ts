@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/apiVersionLocalMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
 /** Class representing a ApiVersionLocal. */
@@ -196,30 +197,10 @@ const getMethodLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/local/2.0",
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2.0',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -234,30 +215,10 @@ const getMethodLocalNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/local/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "apiVersion"
-      ],
-      mapper: {
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion2
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -272,30 +233,10 @@ const getPathLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/path/string/none/query/local/2.0",
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2.0',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -310,30 +251,10 @@ const getSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/swagger/string/none/query/local/2.0",
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2.0',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},

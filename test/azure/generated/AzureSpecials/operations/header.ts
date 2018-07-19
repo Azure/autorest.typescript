@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/headerMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
 /** Class representing a Header. */
@@ -179,26 +180,8 @@ const customNamedRequestIdOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/customNamedRequestId",
   headerParameters: [
-    {
-      parameterPath: "fooClientRequestId",
-      mapper: {
-        required: true,
-        serializedName: "foo-client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.fooClientRequestId0,
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -215,29 +198,8 @@ const customNamedRequestIdParamGroupingOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/customNamedRequestIdParamGrouping",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "headerCustomNamedRequestIdParamGroupingParameters",
-        "fooClientRequestId"
-      ],
-      mapper: {
-        required: true,
-        serializedName: "foo-client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage,
+    Parameters.fooClientRequestId1
   ],
   responses: {
     200: {
@@ -254,26 +216,8 @@ const customNamedRequestIdHeadOperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "azurespecials/customNamedRequestIdHead",
   headerParameters: [
-    {
-      parameterPath: "fooClientRequestId",
-      mapper: {
-        required: true,
-        serializedName: "foo-client-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.fooClientRequestId0,
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {

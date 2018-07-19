@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
+import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/basicOperationsMappers";
 import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestServiceContext";
 
@@ -297,18 +298,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/basic/valid",
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2014-04-01-preview',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   requestBody: {
     parameterPath: "complexBody",
