@@ -489,10 +489,15 @@ namespace AutoRest.TypeScript.Model
 
             foreach (ParameterTS parameter in parameters)
             {
+                string parameterInterfaceName =
+                    parameter.Location == ParameterLocation.Path ? "msRest.OperationURLParameter" :
+                    parameter.Location == ParameterLocation.Query ? "msRest.OperationQueryParameter" :
+                    "msRest.OperationParameter";
+
                 builder.Text("export ");
                 builder.ConstObjectVariable(
                     parameter.MapperName,
-                    "msRest.OperationParameter",
+                    parameterInterfaceName,
                     obj => ClientModelExtensions.ConstructParameterMapper(obj, parameter));
                 builder.Line();
             }
