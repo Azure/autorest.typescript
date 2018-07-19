@@ -29,6 +29,14 @@ namespace AutoRest.TypeScript.Model
 
         public string MappersModuleName => TypeName.ToCamelCase() + "Mappers";
 
+        public string Imports
+        {
+            get
+            {
+                return "";
+            }
+        }
+
         public ISet<string> OperationModelNames
         {
             get

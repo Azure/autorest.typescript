@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using AutoRest.Core;
 using AutoRest.Core.Extensibility;
@@ -20,7 +20,7 @@ namespace AutoRest.TypeScript
                 // inherit base settings
                 Context,
 
-                // set code model implementations our own implementations 
+                // set code model implementations our own implementations
                 new Factory<CodeModel, CodeModelTS>(),
                 new Factory<Method, MethodTS>(),
                 new Factory<CompositeType, CompositeTypeTS>(),
@@ -29,7 +29,8 @@ namespace AutoRest.TypeScript
                 new Factory<SequenceType, SequenceTypeTS>(),
                 new Factory<MethodGroup, MethodGroupTS>(),
                 new Factory<EnumType, EnumTypeTS>(),
-                new Factory<PrimaryType, PrimaryTypeTS>()
+                new Factory<PrimaryType, PrimaryTypeTS>(),
+                new Factory<Parameter, ParameterTS>()
             };
         }
     }
