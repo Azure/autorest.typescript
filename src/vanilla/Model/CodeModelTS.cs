@@ -453,6 +453,7 @@ namespace AutoRest.TypeScript.Model
                     }
                     else
                     {
+                        builder.ConstObjectVariable("serializer", ClientModelExtensions.CreateSerializerExpression(this));
                         addedFirstValue = true;
                     }
                     method.GenerateOperationSpecDefinition(builder);

@@ -711,6 +711,7 @@ export class LRORetrys {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/retryerror/put/201/creating/succeeded/200",
@@ -736,7 +737,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -762,7 +763,7 @@ const beginPutAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.OperationSpec = {
@@ -784,7 +785,7 @@ const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.Operat
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
@@ -801,7 +802,7 @@ const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -818,7 +819,7 @@ const beginDeleteAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec 
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
@@ -843,7 +844,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPostAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -868,5 +869,5 @@ const beginPostAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = 
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

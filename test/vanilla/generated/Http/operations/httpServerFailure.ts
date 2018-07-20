@@ -192,6 +192,7 @@ export class HttpServerFailure {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const head501OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/server/501",
@@ -200,7 +201,7 @@ const head501OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get501OperationSpec: msRest.OperationSpec = {
@@ -211,7 +212,7 @@ const get501OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const post505OperationSpec: msRest.OperationSpec = {
@@ -235,7 +236,7 @@ const post505OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const delete505OperationSpec: msRest.OperationSpec = {
@@ -259,5 +260,5 @@ const delete505OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

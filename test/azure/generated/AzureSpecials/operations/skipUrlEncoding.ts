@@ -336,6 +336,7 @@ export class SkipUrlEncoding {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getMethodPathValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
@@ -351,7 +352,7 @@ const getMethodPathValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getPathPathValidOperationSpec: msRest.OperationSpec = {
@@ -369,7 +370,7 @@ const getPathPathValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSwaggerPathValidOperationSpec: msRest.OperationSpec = {
@@ -387,7 +388,7 @@ const getSwaggerPathValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMethodQueryValidOperationSpec: msRest.OperationSpec = {
@@ -405,7 +406,7 @@ const getMethodQueryValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMethodQueryNullOperationSpec: msRest.OperationSpec = {
@@ -423,7 +424,7 @@ const getMethodQueryNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getPathQueryValidOperationSpec: msRest.OperationSpec = {
@@ -441,7 +442,7 @@ const getPathQueryValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSwaggerQueryValidOperationSpec: msRest.OperationSpec = {
@@ -459,5 +460,5 @@ const getSwaggerQueryValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

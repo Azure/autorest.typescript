@@ -1155,6 +1155,7 @@ export class Paths {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getBooleanTrueOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/bool/true/{boolPath}",
@@ -1167,7 +1168,7 @@ const getBooleanTrueOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getBooleanFalseOperationSpec: msRest.OperationSpec = {
@@ -1182,7 +1183,7 @@ const getBooleanFalseOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getIntOneMillionOperationSpec: msRest.OperationSpec = {
@@ -1197,7 +1198,7 @@ const getIntOneMillionOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
@@ -1212,7 +1213,7 @@ const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getTenBillionOperationSpec: msRest.OperationSpec = {
@@ -1227,7 +1228,7 @@ const getTenBillionOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
@@ -1242,7 +1243,7 @@ const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
@@ -1257,7 +1258,7 @@ const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
@@ -1272,7 +1273,7 @@ const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
@@ -1287,7 +1288,7 @@ const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
@@ -1302,7 +1303,7 @@ const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const stringUnicodeOperationSpec: msRest.OperationSpec = {
@@ -1317,7 +1318,7 @@ const stringUnicodeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
@@ -1332,7 +1333,7 @@ const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const stringEmptyOperationSpec: msRest.OperationSpec = {
@@ -1347,7 +1348,7 @@ const stringEmptyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const stringNullOperationSpec: msRest.OperationSpec = {
@@ -1362,7 +1363,7 @@ const stringNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const enumValidOperationSpec: msRest.OperationSpec = {
@@ -1377,7 +1378,7 @@ const enumValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const enumNullOperationSpec: msRest.OperationSpec = {
@@ -1392,7 +1393,7 @@ const enumNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const byteMultiByteOperationSpec: msRest.OperationSpec = {
@@ -1407,7 +1408,7 @@ const byteMultiByteOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const byteEmptyOperationSpec: msRest.OperationSpec = {
@@ -1422,7 +1423,7 @@ const byteEmptyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const byteNullOperationSpec: msRest.OperationSpec = {
@@ -1437,7 +1438,7 @@ const byteNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const dateValidOperationSpec: msRest.OperationSpec = {
@@ -1452,7 +1453,7 @@ const dateValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const dateNullOperationSpec: msRest.OperationSpec = {
@@ -1467,7 +1468,7 @@ const dateNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const dateTimeValidOperationSpec: msRest.OperationSpec = {
@@ -1482,7 +1483,7 @@ const dateTimeValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const dateTimeNullOperationSpec: msRest.OperationSpec = {
@@ -1497,7 +1498,7 @@ const dateTimeNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const base64UrlOperationSpec: msRest.OperationSpec = {
@@ -1512,7 +1513,7 @@ const base64UrlOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const arrayCsvInPathOperationSpec: msRest.OperationSpec = {
@@ -1527,7 +1528,7 @@ const arrayCsvInPathOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const unixTimeUrlOperationSpec: msRest.OperationSpec = {
@@ -1542,5 +1543,5 @@ const unixTimeUrlOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

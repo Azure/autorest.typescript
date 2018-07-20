@@ -154,6 +154,7 @@ export class Queries {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const arrayStringMultiNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/null",
@@ -166,7 +167,7 @@ const arrayStringMultiNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const arrayStringMultiEmptyOperationSpec: msRest.OperationSpec = {
@@ -181,7 +182,7 @@ const arrayStringMultiEmptyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const arrayStringMultiValidOperationSpec: msRest.OperationSpec = {
@@ -196,5 +197,5 @@ const arrayStringMultiValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

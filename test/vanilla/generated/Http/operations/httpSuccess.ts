@@ -766,6 +766,7 @@ export class HttpSuccess {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const head200OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/200",
@@ -775,7 +776,7 @@ const head200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200OperationSpec: msRest.OperationSpec = {
@@ -794,7 +795,7 @@ const get200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const put200OperationSpec: msRest.OperationSpec = {
@@ -819,7 +820,7 @@ const put200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const patch200OperationSpec: msRest.OperationSpec = {
@@ -844,7 +845,7 @@ const patch200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const post200OperationSpec: msRest.OperationSpec = {
@@ -869,7 +870,7 @@ const post200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const delete200OperationSpec: msRest.OperationSpec = {
@@ -894,7 +895,7 @@ const delete200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const put201OperationSpec: msRest.OperationSpec = {
@@ -919,7 +920,7 @@ const put201OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const post201OperationSpec: msRest.OperationSpec = {
@@ -944,7 +945,7 @@ const post201OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const put202OperationSpec: msRest.OperationSpec = {
@@ -969,7 +970,7 @@ const put202OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const patch202OperationSpec: msRest.OperationSpec = {
@@ -994,7 +995,7 @@ const patch202OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const post202OperationSpec: msRest.OperationSpec = {
@@ -1019,7 +1020,7 @@ const post202OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const delete202OperationSpec: msRest.OperationSpec = {
@@ -1044,7 +1045,7 @@ const delete202OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const head204OperationSpec: msRest.OperationSpec = {
@@ -1056,7 +1057,7 @@ const head204OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const put204OperationSpec: msRest.OperationSpec = {
@@ -1081,7 +1082,7 @@ const put204OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const patch204OperationSpec: msRest.OperationSpec = {
@@ -1106,7 +1107,7 @@ const patch204OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const post204OperationSpec: msRest.OperationSpec = {
@@ -1131,7 +1132,7 @@ const post204OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const delete204OperationSpec: msRest.OperationSpec = {
@@ -1156,7 +1157,7 @@ const delete204OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const head404OperationSpec: msRest.OperationSpec = {
@@ -1169,5 +1170,5 @@ const head404OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

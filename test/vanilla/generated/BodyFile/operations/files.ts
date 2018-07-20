@@ -84,6 +84,7 @@ export class Files {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getFileOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/nonempty",
@@ -100,7 +101,7 @@ const getFileOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getFileLargeOperationSpec: msRest.OperationSpec = {
@@ -119,7 +120,7 @@ const getFileLargeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getEmptyFileOperationSpec: msRest.OperationSpec = {
@@ -138,5 +139,5 @@ const getEmptyFileOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

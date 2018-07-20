@@ -192,6 +192,7 @@ export class ApiVersionDefault {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
@@ -207,7 +208,7 @@ const getMethodGlobalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
@@ -225,7 +226,7 @@ const getMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getPathGlobalValidOperationSpec: msRest.OperationSpec = {
@@ -243,7 +244,7 @@ const getPathGlobalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
@@ -261,5 +262,5 @@ const getSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

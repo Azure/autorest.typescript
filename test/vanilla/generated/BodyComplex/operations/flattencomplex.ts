@@ -65,6 +65,7 @@ export class Flattencomplex {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/flatten/valid",
@@ -74,5 +75,5 @@ const getValidOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

@@ -121,6 +121,7 @@ export class XMsClientRequestId {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/overwrite/x-ms-client-request-id/method/",
@@ -133,7 +134,7 @@ const getOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const paramGetOperationSpec: msRest.OperationSpec = {
@@ -149,5 +150,5 @@ const paramGetOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

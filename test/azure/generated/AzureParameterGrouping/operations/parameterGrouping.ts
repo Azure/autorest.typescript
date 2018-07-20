@@ -202,6 +202,7 @@ export class ParameterGrouping {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const postRequiredOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postRequired/{path}",
@@ -235,7 +236,7 @@ const postRequiredOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postOptionalOperationSpec: msRest.OperationSpec = {
@@ -254,7 +255,7 @@ const postOptionalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
@@ -275,7 +276,7 @@ const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
@@ -294,5 +295,5 @@ const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

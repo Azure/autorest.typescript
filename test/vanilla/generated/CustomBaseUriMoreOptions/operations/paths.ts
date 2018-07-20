@@ -85,6 +85,7 @@ export class Paths {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "customuri/{subscriptionId}/{keyName}",
@@ -104,5 +105,5 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

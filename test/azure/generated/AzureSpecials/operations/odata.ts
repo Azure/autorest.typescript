@@ -70,6 +70,7 @@ export class Odata {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getWithFilterOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/odata/filter",
@@ -87,5 +88,5 @@ const getWithFilterOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

@@ -75,6 +75,7 @@ export class Group {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getSampleResourceGroupOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
@@ -96,5 +97,5 @@ const getSampleResourceGroupOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

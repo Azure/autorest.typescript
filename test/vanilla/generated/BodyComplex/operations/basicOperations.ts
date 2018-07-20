@@ -280,6 +280,7 @@ export class BasicOperations {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/valid",
@@ -291,7 +292,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putValidOperationSpec: msRest.OperationSpec = {
@@ -314,7 +315,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidOperationSpec: msRest.OperationSpec = {
@@ -328,7 +329,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getEmptyOperationSpec: msRest.OperationSpec = {
@@ -342,7 +343,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getNullOperationSpec: msRest.OperationSpec = {
@@ -356,7 +357,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getNotProvidedOperationSpec: msRest.OperationSpec = {
@@ -370,5 +371,5 @@ const getNotProvidedOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

@@ -1041,6 +1041,7 @@ export class Number {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "number/null",
@@ -1057,7 +1058,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidFloatOperationSpec: msRest.OperationSpec = {
@@ -1076,7 +1077,7 @@ const getInvalidFloatOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidDoubleOperationSpec: msRest.OperationSpec = {
@@ -1095,7 +1096,7 @@ const getInvalidDoubleOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidDecimalOperationSpec: msRest.OperationSpec = {
@@ -1114,7 +1115,7 @@ const getInvalidDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putBigFloatOperationSpec: msRest.OperationSpec = {
@@ -1137,7 +1138,7 @@ const putBigFloatOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getBigFloatOperationSpec: msRest.OperationSpec = {
@@ -1156,7 +1157,7 @@ const getBigFloatOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putBigDoubleOperationSpec: msRest.OperationSpec = {
@@ -1179,7 +1180,7 @@ const putBigDoubleOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getBigDoubleOperationSpec: msRest.OperationSpec = {
@@ -1198,7 +1199,7 @@ const getBigDoubleOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putBigDoublePositiveDecimalOperationSpec: msRest.OperationSpec = {
@@ -1223,7 +1224,7 @@ const putBigDoublePositiveDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getBigDoublePositiveDecimalOperationSpec: msRest.OperationSpec = {
@@ -1242,7 +1243,7 @@ const getBigDoublePositiveDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putBigDoubleNegativeDecimalOperationSpec: msRest.OperationSpec = {
@@ -1267,7 +1268,7 @@ const putBigDoubleNegativeDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getBigDoubleNegativeDecimalOperationSpec: msRest.OperationSpec = {
@@ -1286,7 +1287,7 @@ const getBigDoubleNegativeDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putBigDecimalOperationSpec: msRest.OperationSpec = {
@@ -1309,7 +1310,7 @@ const putBigDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getBigDecimalOperationSpec: msRest.OperationSpec = {
@@ -1328,7 +1329,7 @@ const getBigDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putBigDecimalPositiveDecimalOperationSpec: msRest.OperationSpec = {
@@ -1353,7 +1354,7 @@ const putBigDecimalPositiveDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getBigDecimalPositiveDecimalOperationSpec: msRest.OperationSpec = {
@@ -1372,7 +1373,7 @@ const getBigDecimalPositiveDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putBigDecimalNegativeDecimalOperationSpec: msRest.OperationSpec = {
@@ -1397,7 +1398,7 @@ const putBigDecimalNegativeDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getBigDecimalNegativeDecimalOperationSpec: msRest.OperationSpec = {
@@ -1416,7 +1417,7 @@ const getBigDecimalNegativeDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putSmallFloatOperationSpec: msRest.OperationSpec = {
@@ -1439,7 +1440,7 @@ const putSmallFloatOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSmallFloatOperationSpec: msRest.OperationSpec = {
@@ -1458,7 +1459,7 @@ const getSmallFloatOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putSmallDoubleOperationSpec: msRest.OperationSpec = {
@@ -1481,7 +1482,7 @@ const putSmallDoubleOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSmallDoubleOperationSpec: msRest.OperationSpec = {
@@ -1500,7 +1501,7 @@ const getSmallDoubleOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putSmallDecimalOperationSpec: msRest.OperationSpec = {
@@ -1523,7 +1524,7 @@ const putSmallDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSmallDecimalOperationSpec: msRest.OperationSpec = {
@@ -1542,5 +1543,5 @@ const getSmallDecimalOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

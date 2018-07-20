@@ -273,6 +273,7 @@ export class Bool {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getTrueOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "bool/true",
@@ -289,7 +290,7 @@ const getTrueOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putTrueOperationSpec: msRest.OperationSpec = {
@@ -314,7 +315,7 @@ const putTrueOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getFalseOperationSpec: msRest.OperationSpec = {
@@ -333,7 +334,7 @@ const getFalseOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putFalseOperationSpec: msRest.OperationSpec = {
@@ -358,7 +359,7 @@ const putFalseOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getNullOperationSpec: msRest.OperationSpec = {
@@ -377,7 +378,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidOperationSpec: msRest.OperationSpec = {
@@ -396,5 +397,5 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

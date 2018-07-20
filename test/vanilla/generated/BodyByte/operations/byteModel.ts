@@ -239,6 +239,7 @@ export class ByteModel {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "byte/null",
@@ -255,7 +256,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getEmptyOperationSpec: msRest.OperationSpec = {
@@ -274,7 +275,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getNonAsciiOperationSpec: msRest.OperationSpec = {
@@ -293,7 +294,7 @@ const getNonAsciiOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putNonAsciiOperationSpec: msRest.OperationSpec = {
@@ -316,7 +317,7 @@ const putNonAsciiOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidOperationSpec: msRest.OperationSpec = {
@@ -335,5 +336,5 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

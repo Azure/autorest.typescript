@@ -243,6 +243,7 @@ export class SubscriptionInCredentials {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const postMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
@@ -258,7 +259,7 @@ const postMethodGlobalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postMethodGlobalNullOperationSpec: msRest.OperationSpec = {
@@ -276,7 +277,7 @@ const postMethodGlobalNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
@@ -297,7 +298,7 @@ const postMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postPathGlobalValidOperationSpec: msRest.OperationSpec = {
@@ -315,7 +316,7 @@ const postPathGlobalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
@@ -333,5 +334,5 @@ const postSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

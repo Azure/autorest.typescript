@@ -321,6 +321,7 @@ export class Implicit {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getRequiredPathOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "reqopt/implicit/required/path/{pathParameter}",
@@ -332,7 +333,7 @@ const getRequiredPathOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putOptionalQueryOperationSpec: msRest.OperationSpec = {
@@ -347,7 +348,7 @@ const putOptionalQueryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putOptionalHeaderOperationSpec: msRest.OperationSpec = {
@@ -362,7 +363,7 @@ const putOptionalHeaderOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putOptionalBodyOperationSpec: msRest.OperationSpec = {
@@ -387,7 +388,7 @@ const putOptionalBodyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getRequiredGlobalPathOperationSpec: msRest.OperationSpec = {
@@ -401,7 +402,7 @@ const getRequiredGlobalPathOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getRequiredGlobalQueryOperationSpec: msRest.OperationSpec = {
@@ -415,7 +416,7 @@ const getRequiredGlobalQueryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getOptionalGlobalQueryOperationSpec: msRest.OperationSpec = {
@@ -429,5 +430,5 @@ const getOptionalGlobalQueryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

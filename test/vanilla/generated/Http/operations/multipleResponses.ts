@@ -1424,6 +1424,7 @@ export class MultipleResponses {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const get200Model204NoModelDefaultError200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/200/valid",
@@ -1436,7 +1437,7 @@ const get200Model204NoModelDefaultError200ValidOperationSpec: msRest.OperationSp
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200Model204NoModelDefaultError204ValidOperationSpec: msRest.OperationSpec = {
@@ -1451,7 +1452,7 @@ const get200Model204NoModelDefaultError204ValidOperationSpec: msRest.OperationSp
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200Model204NoModelDefaultError201InvalidOperationSpec: msRest.OperationSpec = {
@@ -1466,7 +1467,7 @@ const get200Model204NoModelDefaultError201InvalidOperationSpec: msRest.Operation
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200Model204NoModelDefaultError202NoneOperationSpec: msRest.OperationSpec = {
@@ -1481,7 +1482,7 @@ const get200Model204NoModelDefaultError202NoneOperationSpec: msRest.OperationSpe
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200Model204NoModelDefaultError400ValidOperationSpec: msRest.OperationSpec = {
@@ -1496,7 +1497,7 @@ const get200Model204NoModelDefaultError400ValidOperationSpec: msRest.OperationSp
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200Model201ModelDefaultError200ValidOperationSpec: msRest.OperationSpec = {
@@ -1513,7 +1514,7 @@ const get200Model201ModelDefaultError200ValidOperationSpec: msRest.OperationSpec
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200Model201ModelDefaultError201ValidOperationSpec: msRest.OperationSpec = {
@@ -1530,7 +1531,7 @@ const get200Model201ModelDefaultError201ValidOperationSpec: msRest.OperationSpec
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200Model201ModelDefaultError400ValidOperationSpec: msRest.OperationSpec = {
@@ -1547,7 +1548,7 @@ const get200Model201ModelDefaultError400ValidOperationSpec: msRest.OperationSpec
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: msRest.OperationSpec = {
@@ -1567,7 +1568,7 @@ const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: msRest.Op
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: msRest.OperationSpec = {
@@ -1587,7 +1588,7 @@ const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: msRest.Op
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: msRest.OperationSpec = {
@@ -1607,7 +1608,7 @@ const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: msRest.Op
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: msRest.OperationSpec = {
@@ -1627,7 +1628,7 @@ const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: msRest.Op
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get202None204NoneDefaultError202NoneOperationSpec: msRest.OperationSpec = {
@@ -1640,7 +1641,7 @@ const get202None204NoneDefaultError202NoneOperationSpec: msRest.OperationSpec = 
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get202None204NoneDefaultError204NoneOperationSpec: msRest.OperationSpec = {
@@ -1653,7 +1654,7 @@ const get202None204NoneDefaultError204NoneOperationSpec: msRest.OperationSpec = 
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get202None204NoneDefaultError400ValidOperationSpec: msRest.OperationSpec = {
@@ -1666,7 +1667,7 @@ const get202None204NoneDefaultError400ValidOperationSpec: msRest.OperationSpec =
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get202None204NoneDefaultNone202InvalidOperationSpec: msRest.OperationSpec = {
@@ -1677,7 +1678,7 @@ const get202None204NoneDefaultNone202InvalidOperationSpec: msRest.OperationSpec 
     204: {},
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get202None204NoneDefaultNone204NoneOperationSpec: msRest.OperationSpec = {
@@ -1688,7 +1689,7 @@ const get202None204NoneDefaultNone204NoneOperationSpec: msRest.OperationSpec = {
     204: {},
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get202None204NoneDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
@@ -1699,7 +1700,7 @@ const get202None204NoneDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
     204: {},
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get202None204NoneDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
@@ -1710,7 +1711,7 @@ const get202None204NoneDefaultNone400InvalidOperationSpec: msRest.OperationSpec 
     204: {},
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDefaultModelA200ValidOperationSpec: msRest.OperationSpec = {
@@ -1721,7 +1722,7 @@ const getDefaultModelA200ValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.A
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDefaultModelA200NoneOperationSpec: msRest.OperationSpec = {
@@ -1732,7 +1733,7 @@ const getDefaultModelA200NoneOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.A
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDefaultModelA400ValidOperationSpec: msRest.OperationSpec = {
@@ -1743,7 +1744,7 @@ const getDefaultModelA400ValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.A
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDefaultModelA400NoneOperationSpec: msRest.OperationSpec = {
@@ -1754,7 +1755,7 @@ const getDefaultModelA400NoneOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.A
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDefaultNone200InvalidOperationSpec: msRest.OperationSpec = {
@@ -1763,7 +1764,7 @@ const getDefaultNone200InvalidOperationSpec: msRest.OperationSpec = {
   responses: {
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDefaultNone200NoneOperationSpec: msRest.OperationSpec = {
@@ -1772,7 +1773,7 @@ const getDefaultNone200NoneOperationSpec: msRest.OperationSpec = {
   responses: {
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
@@ -1781,7 +1782,7 @@ const getDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
   responses: {
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
@@ -1790,7 +1791,7 @@ const getDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
   responses: {
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA200NoneOperationSpec: msRest.OperationSpec = {
@@ -1802,7 +1803,7 @@ const get200ModelA200NoneOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA200ValidOperationSpec: msRest.OperationSpec = {
@@ -1814,7 +1815,7 @@ const get200ModelA200ValidOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA200InvalidOperationSpec: msRest.OperationSpec = {
@@ -1826,7 +1827,7 @@ const get200ModelA200InvalidOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA400NoneOperationSpec: msRest.OperationSpec = {
@@ -1838,7 +1839,7 @@ const get200ModelA400NoneOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA400ValidOperationSpec: msRest.OperationSpec = {
@@ -1850,7 +1851,7 @@ const get200ModelA400ValidOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA400InvalidOperationSpec: msRest.OperationSpec = {
@@ -1862,7 +1863,7 @@ const get200ModelA400InvalidOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get200ModelA202ValidOperationSpec: msRest.OperationSpec = {
@@ -1874,5 +1875,5 @@ const get200ModelA202ValidOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

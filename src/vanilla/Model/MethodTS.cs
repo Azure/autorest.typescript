@@ -314,7 +314,7 @@ namespace AutoRest.TypeScript.Model
             {
                 ifBlock.Try(tryBlock =>
                 {
-                    tryBlock.ConstObjectVariable("serializer", CreateSerializerExpression());
+                    tryBlock.ConstObjectVariable("serializer", CodeModel.CreateSerializerExpression());
                     tryBlock.Text($"{valueReference} = ");
                     tryBlock.FunctionCall("serializer.deserialize", argumentList =>
                     {
@@ -629,7 +629,7 @@ namespace AutoRest.TypeScript.Model
                 operationSpec.BooleanProperty("isXML", true);
             }
 
-            operationSpec.TextProperty("serializer", CreateSerializerExpression());
+            operationSpec.TextProperty("serializer", "serializer");
         }
 
         private static void AddSkipEncodingProperty(TSObject parameterObject, Parameter parameter)
@@ -746,11 +746,6 @@ namespace AutoRest.TypeScript.Model
         private string GetOperationSpecVariableName()
         {
             return Name.ToCamelCase() + "OperationSpec";
-        }
-
-        public string CreateSerializerExpression()
-        {
-            return $"new msRest.Serializer(Mappers{(CodeModel.ShouldGenerateXmlSerialization == true ? ", true" : "")})";
         }
 
         public static bool IsInOptionsParameter(Parameter parameter)

@@ -306,6 +306,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const putArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/array",
@@ -338,7 +339,7 @@ const putArrayOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getArrayOperationSpec: msRest.OperationSpec = {
@@ -367,7 +368,7 @@ const getArrayOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putDictionaryOperationSpec: msRest.OperationSpec = {
@@ -402,7 +403,7 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDictionaryOperationSpec: msRest.OperationSpec = {
@@ -431,7 +432,7 @@ const getDictionaryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putResourceCollectionOperationSpec: msRest.OperationSpec = {
@@ -454,7 +455,7 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getResourceCollectionOperationSpec: msRest.OperationSpec = {
@@ -471,7 +472,7 @@ const getResourceCollectionOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 export { AutoRestResourceFlatteningTestService, Models as AutoRestResourceFlatteningTestServiceModels, Mappers as AutoRestResourceFlatteningTestServiceMappers };

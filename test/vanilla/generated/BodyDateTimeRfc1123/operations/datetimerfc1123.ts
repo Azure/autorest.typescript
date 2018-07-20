@@ -406,6 +406,7 @@ export class Datetimerfc1123 {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetimerfc1123/null",
@@ -422,7 +423,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidOperationSpec: msRest.OperationSpec = {
@@ -441,7 +442,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getOverflowOperationSpec: msRest.OperationSpec = {
@@ -460,7 +461,7 @@ const getOverflowOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUnderflowOperationSpec: msRest.OperationSpec = {
@@ -479,7 +480,7 @@ const getUnderflowOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -502,7 +503,7 @@ const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -521,7 +522,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -540,7 +541,7 @@ const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
@@ -563,7 +564,7 @@ const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
@@ -582,5 +583,5 @@ const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

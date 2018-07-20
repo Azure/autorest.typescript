@@ -836,6 +836,7 @@ export class Datetime {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/null",
@@ -852,7 +853,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidOperationSpec: msRest.OperationSpec = {
@@ -871,7 +872,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getOverflowOperationSpec: msRest.OperationSpec = {
@@ -890,7 +891,7 @@ const getOverflowOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUnderflowOperationSpec: msRest.OperationSpec = {
@@ -909,7 +910,7 @@ const getUnderflowOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -932,7 +933,7 @@ const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -951,7 +952,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -970,7 +971,7 @@ const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putLocalPositiveOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -993,7 +994,7 @@ const putLocalPositiveOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1012,7 +1013,7 @@ const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationS
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1031,7 +1032,7 @@ const getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationS
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putLocalNegativeOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1054,7 +1055,7 @@ const putLocalNegativeOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1073,7 +1074,7 @@ const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationS
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1092,7 +1093,7 @@ const getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationS
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1115,7 +1116,7 @@ const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1134,7 +1135,7 @@ const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1157,7 +1158,7 @@ const putLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1176,7 +1177,7 @@ const getLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1199,7 +1200,7 @@ const putLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
@@ -1218,5 +1219,5 @@ const getLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

@@ -150,6 +150,7 @@ export class HttpFailure {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getEmptyErrorOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/emptybody/error",
@@ -166,7 +167,7 @@ const getEmptyErrorOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getNoModelErrorOperationSpec: msRest.OperationSpec = {
@@ -183,7 +184,7 @@ const getNoModelErrorOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getNoModelEmptyOperationSpec: msRest.OperationSpec = {
@@ -200,5 +201,5 @@ const getNoModelEmptyOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
