@@ -9,8 +9,8 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/pathsMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestParameterizedHostTestClientContext } from "../autoRestParameterizedHostTestClientContext";
 
 /** Class representing a Paths. */

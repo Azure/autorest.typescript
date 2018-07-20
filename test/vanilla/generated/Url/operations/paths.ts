@@ -10,8 +10,8 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
-import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/pathsMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestUrlTestServiceContext } from "../autoRestUrlTestServiceContext";
 
 /** Class representing a Paths. */

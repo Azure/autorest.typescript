@@ -8,13 +8,13 @@
  * regenerated.
  */
 
+import * as msRestAzure from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as Parameters from "./models/parameters";
-import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
-import { AzureCompositeModelContext } from "./azureCompositeModelContext";
 import * as operations from "./operations";
+import { AzureCompositeModelContext } from "./azureCompositeModelContext";
 
 
 class AzureCompositeModel extends AzureCompositeModelContext {

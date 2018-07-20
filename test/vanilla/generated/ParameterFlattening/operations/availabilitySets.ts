@@ -9,8 +9,8 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/availabilitySetsMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestParameterFlatteningContext } from "../autoRestParameterFlatteningContext";
 
 /** Class representing a AvailabilitySets. */

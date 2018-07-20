@@ -10,8 +10,8 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
-import * as Parameters from "../models/parameters";
 import * as Mappers from "../models/implicitMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestRequiredOptionalTestServiceContext } from "../autoRestRequiredOptionalTestServiceContext";
 
 /** Class representing a Implicit. */
