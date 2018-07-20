@@ -59,7 +59,13 @@ namespace AutoRest.TypeScript
                 await Write(mapperIndexTemplate, Path.Combine("models", "mappers.ts"));
             }
 
-            await Write(new ParameterTemplate {Model = codeModel}, Path.Combine("models", "parameters.ts"));
+            bool serviceHasMappableParameters = codeModel.Methods
+                .SelectMany(m => m.LogicalParameters)
+                .Any(p => p.Location != ParameterLocation.Body);
+            if (serviceHasMappableParameters)
+            {
+                await Write(new ParameterTemplate {Model = codeModel}, Path.Combine("models", "parameters.ts"));
+            }
 
             //MethodGroups
             if (codeModel.MethodGroupModels.Any())

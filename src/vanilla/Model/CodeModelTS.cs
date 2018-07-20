@@ -478,6 +478,11 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        public bool HasMappableParameters =>
+            MethodTemplateModels
+                .SelectMany(m => m.LogicalParameters)
+                .Any(p => p.Location != ParameterLocation.Body);
+
         public string GenerateParameterMappers()
         {
             TSBuilder builder = new TSBuilder();
@@ -517,10 +522,7 @@ namespace AutoRest.TypeScript.Model
             builder.ImportAllAs("Models", "./models");
             builder.ImportAllAs("Mappers", "./models/mappers");
 
-            bool hasMappableParameter = MethodTemplateModels
-                .SelectMany(m => m.LogicalParameters)
-                .Any(p => p.Location == ParameterLocation.Path || p.Location == ParameterLocation.Query || p.Location == ParameterLocation.Header);
-            if (hasMappableParameter)
+            if (HasMappableParameters)
             {
                 builder.ImportAllAs("Parameters", "./models/parameters");
             }

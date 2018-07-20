@@ -8,6 +8,7 @@ using AutoRest.Extensions.Azure;
 using AutoRest.TypeScript.Model;
 using Newtonsoft.Json;
 using AutoRest.Core.Utilities;
+using AutoRest.TypeScript.DSL;
 
 namespace AutoRest.TypeScript.Azure.Model
 {
@@ -77,6 +78,35 @@ namespace AutoRest.TypeScript.Azure.Model
         public override string PackageDependencies()
         {
             return "\"ms-rest-azure-js\": \"~0.11.104\"";
+        }
+
+        public string GenerateAzureServiceClientImports()
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.ImportAllAs("msRest", "ms-rest-js");
+
+            bool usesAzureOptionsType = OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
+            if (usesAzureOptionsType)
+            {
+                builder.ImportAllAs("msRestAzure", "ms-rest-azure-js");
+            }
+
+            builder.ImportAllAs("Models", "./models");
+            builder.ImportAllAs("Mappers", "./models/mappers");
+
+            if (HasMappableParameters)
+            {
+                builder.ImportAllAs("Parameters", "./models/parameters");
+            }
+
+            if (MethodGroupModels.Any())
+            {
+                builder.ImportAllAs("operations", "./operations");
+            }
+            builder.Import(new string[] { ContextName }, $"./{ContextName.ToCamelCase()}");
+
+            return builder.ToString();
         }
     }
 }
