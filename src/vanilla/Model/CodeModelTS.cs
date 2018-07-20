@@ -462,7 +462,7 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        private class ParameterNameComparer : IEqualityComparer<ParameterTS>
+        private sealed class ParameterNameComparer : IEqualityComparer<ParameterTS>
         {
             private ParameterNameComparer() {}
             public static ParameterNameComparer Instance { get; } = new ParameterNameComparer();
@@ -474,7 +474,7 @@ namespace AutoRest.TypeScript.Model
 
             public int GetHashCode(ParameterTS obj)
             {
-                return obj.Name.GetHashCode();
+                return obj.MapperName.GetHashCode();
             }
         }
 
@@ -485,6 +485,7 @@ namespace AutoRest.TypeScript.Model
                 .SelectMany(m => m.LogicalParameters)
                 .Cast<ParameterTS>()
                 .Where(p => p.ModelTypeName != "RequestOptionsBase" && p.Location != ParameterLocation.Body)
+                .OrderBy(p => p.MapperName)
                 .Distinct(ParameterNameComparer.Instance);
 
             foreach (ParameterTS parameter in parameters)
