@@ -61,7 +61,6 @@ export const CatalogDictionary = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"
@@ -84,7 +83,6 @@ export const CatalogArray = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"
@@ -107,11 +105,9 @@ export const CatalogArrayOfDictionary = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -136,11 +132,9 @@ export const CatalogDictionaryOfArray = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -187,11 +181,9 @@ export const ComplexModelClientCreateOptionalParams = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -216,11 +208,9 @@ export const ComplexModelClientUpdateOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"

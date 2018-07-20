@@ -259,7 +259,6 @@ export const QueriesArrayStringCsvValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -281,7 +280,6 @@ export const QueriesArrayStringCsvNullOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -303,7 +301,6 @@ export const QueriesArrayStringCsvEmptyOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -325,7 +322,6 @@ export const QueriesArrayStringSsvValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -347,7 +343,6 @@ export const QueriesArrayStringTsvValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -369,7 +364,6 @@ export const QueriesArrayStringPipesValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }

@@ -78,7 +78,6 @@ export const Product = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }

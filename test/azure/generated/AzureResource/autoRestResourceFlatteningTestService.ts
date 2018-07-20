@@ -323,7 +323,6 @@ const putArrayOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Sequence",
         element: {
-          serializedName: "ResourceElementType",
           type: {
             name: "Composite",
             className: "Resource"
@@ -354,7 +353,6 @@ const getArrayOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"
@@ -386,7 +384,6 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "FlattenedProductElementType",
           type: {
             name: "Composite",
             className: "FlattenedProduct"
@@ -417,7 +414,6 @@ const getDictionaryOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"

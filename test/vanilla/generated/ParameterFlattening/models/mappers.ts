@@ -21,7 +21,6 @@ export const AvailabilitySetUpdateParameters = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }

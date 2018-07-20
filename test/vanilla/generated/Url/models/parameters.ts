@@ -18,7 +18,6 @@ export const arrayPath: msRest.OperationURLParameter = {
     type: {
       name: "Sequence",
       element: {
-        serializedName: "stringElementType",
         type: {
           name: "String"
         }
@@ -36,7 +35,6 @@ export const arrayQuery0: msRest.OperationQueryParameter = {
     type: {
       name: "Sequence",
       element: {
-        serializedName: "stringElementType",
         type: {
           name: "String"
         }
@@ -55,7 +53,6 @@ export const arrayQuery1: msRest.OperationQueryParameter = {
     type: {
       name: "Sequence",
       element: {
-        serializedName: "stringElementType",
         type: {
           name: "String"
         }
@@ -74,7 +71,6 @@ export const arrayQuery2: msRest.OperationQueryParameter = {
     type: {
       name: "Sequence",
       element: {
-        serializedName: "stringElementType",
         type: {
           name: "String"
         }
@@ -93,7 +89,6 @@ export const arrayQuery3: msRest.OperationQueryParameter = {
     type: {
       name: "Sequence",
       element: {
-        serializedName: "stringElementType",
         type: {
           name: "String"
         }

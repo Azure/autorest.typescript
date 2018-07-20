@@ -38,7 +38,6 @@ export const Resource = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }

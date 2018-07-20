@@ -680,7 +680,6 @@ const get300OperationSpec: msRest.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }

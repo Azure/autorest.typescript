@@ -62,7 +62,6 @@ export const Slide = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -111,7 +110,6 @@ export const Slideshow = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SlideElementType",
             type: {
               name: "Composite",
               className: "Slide"
@@ -137,7 +135,6 @@ export const AppleBarrel = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -152,7 +149,6 @@ export const AppleBarrel = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -293,7 +289,6 @@ export const Container = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -351,7 +346,6 @@ export const ListContainersResponse = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ContainerElementType",
             type: {
               name: "Composite",
               className: "Container"
@@ -703,7 +697,6 @@ export const Blob = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -864,7 +857,6 @@ export const Blobs = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BlobPrefixElementType",
             type: {
               name: "Composite",
               className: "BlobPrefix"
@@ -879,7 +871,6 @@ export const Blobs = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BlobElementType",
             type: {
               name: "Composite",
               className: "Blob"
@@ -1068,7 +1059,6 @@ export const StorageServiceProperties = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "CorsRuleElementType",
             type: {
               name: "Composite",
               className: "CorsRule"

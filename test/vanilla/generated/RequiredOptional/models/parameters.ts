@@ -62,7 +62,6 @@ export const headerParameter3: msRest.OperationParameter = {
     type: {
       name: "Sequence",
       element: {
-        serializedName: "stringElementType",
         type: {
           name: "String"
         }
@@ -80,7 +79,6 @@ export const headerParameter4: msRest.OperationParameter = {
     type: {
       name: "Sequence",
       element: {
-        serializedName: "stringElementType",
         type: {
           name: "String"
         }

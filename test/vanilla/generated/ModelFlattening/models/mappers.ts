@@ -63,7 +63,6 @@ export const Resource = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -141,7 +140,6 @@ export const ResourceCollection = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"
@@ -154,7 +152,6 @@ export const ResourceCollection = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"
@@ -329,7 +326,6 @@ export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ResourceElementType",
             type: {
               name: "Composite",
               className: "Resource"
@@ -352,7 +348,6 @@ export const AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams 
         type: {
           name: "Sequence",
           element: {
-            serializedName: "WrappedProductElementType",
             type: {
               name: "Composite",
               className: "WrappedProduct"
@@ -375,7 +370,6 @@ export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = 
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"

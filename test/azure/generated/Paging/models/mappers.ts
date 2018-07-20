@@ -429,7 +429,6 @@ export const ProductResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"
@@ -458,7 +457,6 @@ export const OdataProductResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"

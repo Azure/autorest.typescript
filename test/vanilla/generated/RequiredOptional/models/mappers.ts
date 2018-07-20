@@ -109,7 +109,6 @@ export const ArrayWrapper = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -131,7 +130,6 @@ export const ArrayOptionalWrapper = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -404,7 +402,6 @@ export const ExplicitPostOptionalArrayParameterOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -426,7 +423,6 @@ export const ExplicitPostOptionalArrayPropertyOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -448,7 +444,6 @@ export const ExplicitPostOptionalArrayHeaderOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }

@@ -108,7 +108,6 @@ export const Resource = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -490,7 +489,6 @@ export const UsageListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "UsageElementType",
             type: {
               name: "Composite",
               className: "Usage"
@@ -549,7 +547,6 @@ export const StorageAccountListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "StorageAccountElementType",
             type: {
               name: "Composite",
               className: "StorageAccount"

@@ -65,7 +65,6 @@ export const CatalogDictionary = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"
@@ -88,7 +87,6 @@ export const CatalogArray = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"
@@ -111,11 +109,9 @@ export const CatalogArrayOfDictionary = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -140,11 +136,9 @@ export const CatalogDictionaryOfArray = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -265,7 +259,6 @@ export const Cat = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "DogElementType",
             type: {
               name: "Composite",
               className: "Dog"
@@ -323,7 +316,6 @@ export const Fish = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FishElementType",
             type: {
               name: "Composite",
               polymorphicDiscriminator: {
@@ -381,7 +373,6 @@ export const SmartSalmon = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Object"
             }
@@ -721,7 +712,6 @@ export const ArrayWrapper = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -743,7 +733,6 @@ export const DictionaryWrapper = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -839,11 +828,9 @@ export const AzureCompositeModelCreateOptionalParams = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -868,11 +855,9 @@ export const AzureCompositeModelUpdateOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -929,7 +914,6 @@ export const ArrayModelPutValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -951,7 +935,6 @@ export const ArrayModelPutEmptyOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -973,7 +956,6 @@ export const DictionaryPutValidOptionalParams = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -995,7 +977,6 @@ export const DictionaryPutEmptyOptionalParams = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }

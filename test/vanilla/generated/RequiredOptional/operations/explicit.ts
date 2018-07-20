@@ -1328,7 +1328,6 @@ const postRequiredArrayParameterOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Sequence",
         element: {
-          serializedName: "stringElementType",
           type: {
             name: "String"
           }
@@ -1357,7 +1356,6 @@ const postOptionalArrayParameterOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Sequence",
         element: {
-          serializedName: "stringElementType",
           type: {
             name: "String"
           }

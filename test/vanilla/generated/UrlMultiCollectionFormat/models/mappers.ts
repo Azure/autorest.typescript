@@ -42,7 +42,6 @@ export const QueriesArrayStringMultiNullOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -64,7 +63,6 @@ export const QueriesArrayStringMultiEmptyOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -86,7 +84,6 @@ export const QueriesArrayStringMultiValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
