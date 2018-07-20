@@ -516,7 +516,15 @@ namespace AutoRest.TypeScript.Model
             }
             builder.ImportAllAs("Models", "./models");
             builder.ImportAllAs("Mappers", "./models/mappers");
-            builder.ImportAllAs("Parameters", "./models/parameters");
+
+            bool hasMappableParameter = MethodTemplateModels
+                .SelectMany(m => m.LogicalParameters)
+                .Any(p => p.Location == ParameterLocation.Path || p.Location == ParameterLocation.Query || p.Location == ParameterLocation.Header);
+            if (hasMappableParameter)
+            {
+                builder.ImportAllAs("Parameters", "./models/parameters");
+            }
+
             if (MethodGroupModels.Any())
             {
                 builder.ImportAllAs("operations", "./operations");

@@ -8,10 +8,6 @@
 @Header(" * ")
  */
 @EmptyLine
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
-import * as Parameters from "./models/parameters";
-import * as msRest from "ms-rest-js";
 @{
 bool usesAzureOptionsType = Model.OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
 if (usesAzureOptionsType)
@@ -19,10 +15,7 @@ if (usesAzureOptionsType)
 @:import * as msRestAzure from "ms-rest-azure-js";
 }
 }
-import { @(Model.ContextName) } from "./@(Model.ContextName.ToCamelCase())";
-@if (Model.MethodGroupModels.Any()) {
-@:import * as operations from "./operations";
-}
+@(Model.GenerateServiceClientImports())
 @EmptyLine
 @{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant && !p.Name.EqualsIgnoreCase("apiVersion"));}

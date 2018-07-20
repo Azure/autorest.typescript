@@ -29,14 +29,6 @@ namespace AutoRest.TypeScript.Model
 
         public string MappersModuleName => TypeName.ToCamelCase() + "Mappers";
 
-        public string Imports
-        {
-            get
-            {
-                return "";
-            }
-        }
-
         public ISet<string> OperationModelNames
         {
             get
@@ -165,6 +157,31 @@ namespace AutoRest.TypeScript.Model
                     method.GenerateOperationSpecDefinition(builder);
                 }
             }
+
+            return builder.ToString();
+        }
+
+
+        public string GenerateMethodGroupImports()
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.ImportAllAs("msRest", "ms-rest-js");
+            if (ContainsCompositeOrEnumTypeInParametersOrReturnType())
+            {
+                builder.ImportAllAs("Models", "../models");
+            }
+            builder.ImportAllAs("Mappers", $"../models/{MappersModuleName}");
+
+            bool hasMappableParameter = Methods
+                .SelectMany(m => m.LogicalParameters)
+                .Any(p => p.Location == ParameterLocation.Path || p.Location == ParameterLocation.Query || p.Location == ParameterLocation.Header);
+            if (hasMappableParameter)
+            {
+                builder.ImportAllAs("Parameters", "../models/parameters");
+            }
+
+            builder.Import(new string[] { CodeModelTS.ContextName }, $"../{CodeModelTS.ContextName.ToCamelCase()}");
 
             return builder.ToString();
         }
