@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/formdataMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestSwaggerBATFormDataServiceContext } from "../autoRestSwaggerBATFormDataServiceContext";
 
 /** Class representing a Formdata. */
