@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/explicitMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestRequiredOptionalTestServiceContext } from "../autoRestRequiredOptionalTestServiceContext";
 
 /** Class representing a Explicit. */
@@ -1101,16 +1102,7 @@ const postRequiredIntegerHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/integer/header",
   headerParameters: [
-    {
-      parameterPath: "headerParameter",
-      mapper: {
-        required: true,
-        serializedName: "headerParameter",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.headerParameter0
   ],
   responses: {
     default: {
@@ -1124,18 +1116,7 @@ const postOptionalIntegerHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/integer/header",
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "headerParameter"
-      ],
-      mapper: {
-        serializedName: "headerParameter",
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.headerParameter1
   ],
   responses: {
     200: {},
@@ -1240,16 +1221,7 @@ const postRequiredStringHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/string/header",
   headerParameters: [
-    {
-      parameterPath: "headerParameter",
-      mapper: {
-        required: true,
-        serializedName: "headerParameter",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.headerParameter2
   ],
   responses: {
     default: {
@@ -1263,18 +1235,7 @@ const postOptionalStringHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/string/header",
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "bodyParameter"
-      ],
-      mapper: {
-        serializedName: "bodyParameter",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.bodyParameter
   ],
   responses: {
     200: {},
@@ -1473,22 +1434,7 @@ const postRequiredArrayHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/requied/array/header",
   headerParameters: [
-    {
-      parameterPath: "headerParameter",
-      mapper: {
-        required: true,
-        serializedName: "headerParameter",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.headerParameter3
   ],
   responses: {
     default: {
@@ -1502,24 +1448,7 @@ const postOptionalArrayHeaderOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "reqopt/optional/array/header",
   headerParameters: [
-    {
-      parameterPath: [
-        "options",
-        "headerParameter"
-      ],
-      mapper: {
-        serializedName: "headerParameter",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.headerParameter4
   ],
   responses: {
     200: {},

@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/headExceptionMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestHeadExceptionTestServiceContext } from "../autoRestHeadExceptionTestServiceContext";
 
 /** Class representing a HeadException. */
@@ -154,16 +155,7 @@ const head200OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -178,16 +170,7 @@ const head204OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/204",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     204: {},
@@ -202,16 +185,7 @@ const head404OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/404",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     204: {},

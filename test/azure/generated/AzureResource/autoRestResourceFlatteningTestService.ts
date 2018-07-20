@@ -8,10 +8,11 @@
  * regenerated.
  */
 
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
+import * as Models from "./models";
+import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters";
 import { AutoRestResourceFlatteningTestServiceContext } from "./autoRestResourceFlatteningTestServiceContext";
 
 
@@ -309,16 +310,7 @@ const putArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/array",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -353,16 +345,7 @@ const getArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azure/resource-flatten/array",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -391,16 +374,7 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/dictionary",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -435,16 +409,7 @@ const getDictionaryOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azure/resource-flatten/dictionary",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -473,16 +438,7 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/resourcecollection",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -505,16 +461,7 @@ const getResourceCollectionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azure/resource-flatten/resourcecollection",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {

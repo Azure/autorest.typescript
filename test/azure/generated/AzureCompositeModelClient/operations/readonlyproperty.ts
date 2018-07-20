@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/readonlypropertyMappers";
+import * as Parameters from "../models/parameters";
 import { AzureCompositeModelContext } from "../azureCompositeModelContext";
 
 /** Class representing a Readonlyproperty. */
@@ -114,16 +115,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/readonlyproperty/valid",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -140,16 +132,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/readonlyproperty/valid",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {

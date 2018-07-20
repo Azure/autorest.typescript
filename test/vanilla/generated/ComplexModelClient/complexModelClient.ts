@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters";
 import { ComplexModelClientContext } from "./complexModelClientContext";
 
 class ComplexModelClient extends ComplexModelClientContext {
@@ -208,42 +209,11 @@ const listOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "subscriptionId",
-        defaultValue: '123456',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId0,
+    Parameters.resourceGroupName
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2014-04-01-preview',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   responses: {
     200: {
@@ -260,40 +230,11 @@ const createOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId1,
+    Parameters.resourceGroupName
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2014-04-01-preview',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   requestBody: {
     parameterPath: {
@@ -323,40 +264,11 @@ const updateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId1,
+    Parameters.resourceGroupName
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2014-04-01-preview',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   requestBody: {
     parameterPath: {

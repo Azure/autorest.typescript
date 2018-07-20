@@ -539,6 +539,11 @@ namespace AutoRest.TypeScript
             return "/" + constraintValue.Replace("/", "\\/") + "/";
         }
 
+        public static void ConstructParameterMapper(TSObject obj, ParameterTS parameter)
+        {
+            MethodTS.GenerateRequestParameter(obj, parameter, parameter.MethodTS.GetParameterTransformations());
+        }
+
         public static void ConstructRequestBodyMapper(TSValue value, Parameter requestBody)
         {
             IModelType requestBodyModelType = requestBody.ModelType;

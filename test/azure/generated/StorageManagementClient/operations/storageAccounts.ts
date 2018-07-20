@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/storageAccountsMappers";
+import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
 
 /** Class representing a StorageAccounts. */
@@ -616,40 +617,13 @@ const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "accountName",
@@ -674,60 +648,15 @@ const deleteMethodOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "accountName",
-      mapper: {
-        required: true,
-        serializedName: "accountName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -743,60 +672,15 @@ const getPropertiesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "accountName",
-      mapper: {
-        required: true,
-        serializedName: "accountName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -813,60 +697,15 @@ const updateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "accountName",
-      mapper: {
-        required: true,
-        serializedName: "accountName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "parameters",
@@ -891,60 +730,15 @@ const listKeysOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "accountName",
-      mapper: {
-        required: true,
-        serializedName: "accountName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -961,40 +755,13 @@ const listOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1011,50 +778,14 @@ const listByResourceGroupOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1071,60 +802,15 @@ const regenerateKeyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "accountName",
-      mapper: {
-        required: true,
-        serializedName: "accountName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {
@@ -1154,60 +840,15 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "accountName",
-      mapper: {
-        required: true,
-        serializedName: "accountName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "parameters",

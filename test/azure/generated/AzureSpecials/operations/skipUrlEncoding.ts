@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/skipUrlEncodingMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
 /** Class representing a SkipUrlEncoding. */
@@ -339,29 +340,10 @@ const getMethodPathValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
   urlParameters: [
-    {
-      parameterPath: "unencodedPathParam",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "unencodedPathParam",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.unencodedPathParam0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -376,29 +358,10 @@ const getPathPathValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
   urlParameters: [
-    {
-      parameterPath: "unencodedPathParam",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "unencodedPathParam",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.unencodedPathParam0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -413,31 +376,10 @@ const getSwaggerPathValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
   urlParameters: [
-    {
-      parameterPath: "unencodedPathParam",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "unencodedPathParam",
-        defaultValue: 'path1/path2/path3',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.unencodedPathParam1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -452,29 +394,10 @@ const getMethodQueryValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/method/query/valid",
   queryParameters: [
-    {
-      parameterPath: "q1",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "q1",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.q10
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -489,31 +412,10 @@ const getMethodQueryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/method/query/null",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "q1"
-      ],
-      skipEncoding: true,
-      mapper: {
-        serializedName: "q1",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.q11
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -528,29 +430,10 @@ const getPathQueryValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/path/query/valid",
   queryParameters: [
-    {
-      parameterPath: "q1",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "q1",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.q10
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -565,31 +448,10 @@ const getSwaggerQueryValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/skipUrlEncoding/swagger/query/valid",
   queryParameters: [
-    {
-      parameterPath: "q1",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "q1",
-        defaultValue: 'value1&q2=value2&q3=value3',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.q12
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},

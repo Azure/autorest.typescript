@@ -11,6 +11,7 @@ using AutoRest.Extensions;
 using AutoRest.TypeScript.Model;
 using static AutoRest.Core.Utilities.DependencyInjection;
 using System.Collections.Generic;
+using AutoRest.TypeScript.DSL;
 
 namespace AutoRest.TypeScript
 {
@@ -29,8 +30,71 @@ namespace AutoRest.TypeScript
             CreateModelTypeForOptionalClientProperties(codeModel);
             CreateModelTypesForOptionalMethodParameters(codeModel);
             AddEnumTypesToCodeModel(codeModel);
+            EnsureParameterMethodSet(codeModel);
+            CreateUniqueParameterMapperNames(codeModel);
 
             return codeModel;
+        }
+
+        private void EnsureParameterMethodSet(CodeModelTS codeModel)
+        {
+            foreach (Method method in codeModel.Methods)
+            {
+                foreach (Parameter parameter in method.LogicalParameters)
+                {
+                    parameter.Method = method;
+                }
+            }
+        }
+
+        private sealed class ParameterComparer : IEqualityComparer<ParameterTS>
+        {
+            private ParameterComparer() {}
+            public static ParameterComparer Instance { get; } = new ParameterComparer();
+
+            public bool Equals(ParameterTS x, ParameterTS y)
+            {
+                TSBuilder xBuilder = new TSBuilder();
+                xBuilder.Object(obj => ClientModelExtensions.ConstructParameterMapper(obj, x));
+
+                TSBuilder yBuilder = new TSBuilder();
+                yBuilder.Object(obj => ClientModelExtensions.ConstructParameterMapper(obj, y));
+                return xBuilder.ToString() == yBuilder.ToString();
+            }
+
+            public int GetHashCode(ParameterTS obj)
+            {
+                return 0;
+            }
+        }
+
+        private void CreateUniqueParameterNames(IEnumerable<ParameterTS> parameters)
+        {
+            IEnumerable<ParameterTS>[] distinctParameterGroups = parameters.GroupBy(p => p, ParameterComparer.Instance).ToArray();
+            if (distinctParameterGroups.Length > 1)
+            {
+                for (int i = 0; i < distinctParameterGroups.Length; i++)
+                {
+                    foreach (ParameterTS param in distinctParameterGroups[i])
+                    {
+                        param.MapperName = param.Name + i;
+                    }
+                }
+            }
+        }
+        private void CreateUniqueParameterMapperNames(CodeModelTS codeModel)
+        {
+            TSBuilder builder = new TSBuilder();
+            var parameters = codeModel.Methods
+                .SelectMany(m => m.LogicalParameters)
+                .Cast<ParameterTS>()
+                .Where(p => p.ModelTypeName != "RequestOptionsBase" && p.Location != ParameterLocation.Body)
+                .GroupBy(p => p.Name.Value);
+
+            foreach (var group in parameters)
+            {
+                CreateUniqueParameterNames(group);
+            }
         }
 
         public void TransformHeaderCollectionParameterTypes(CodeModelTS cm)

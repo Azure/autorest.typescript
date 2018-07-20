@@ -10,6 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/subscriptionInMethodMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
 /** Class representing a SubscriptionInMethod. */
@@ -231,28 +232,10 @@ const postMethodLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -267,28 +250,10 @@ const postMethodLocalNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -303,28 +268,10 @@ const postPathLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},
@@ -339,28 +286,10 @@ const postSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {},

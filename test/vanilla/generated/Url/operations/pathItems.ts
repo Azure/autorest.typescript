@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/pathItemsMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestUrlTestServiceContext } from "../autoRestUrlTestServiceContext";
 
 /** Class representing a PathItems. */
@@ -252,71 +253,14 @@ const getAllWithValuesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
   urlParameters: [
-    {
-      parameterPath: "localStringPath",
-      mapper: {
-        required: true,
-        serializedName: "localStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "pathItemStringPath",
-      mapper: {
-        required: true,
-        serializedName: "pathItemStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "globalStringPath",
-      mapper: {
-        required: true,
-        serializedName: "globalStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.localStringPath,
+    Parameters.pathItemStringPath,
+    Parameters.globalStringPath
   ],
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "localStringQuery"
-      ],
-      mapper: {
-        serializedName: "localStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pathItemStringQuery"
-      ],
-      mapper: {
-        serializedName: "pathItemStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "globalStringQuery",
-      mapper: {
-        serializedName: "globalStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.localStringQuery,
+    Parameters.pathItemStringQuery,
+    Parameters.globalStringQuery
   ],
   responses: {
     200: {},
@@ -331,71 +275,14 @@ const getGlobalQueryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
   urlParameters: [
-    {
-      parameterPath: "localStringPath",
-      mapper: {
-        required: true,
-        serializedName: "localStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "pathItemStringPath",
-      mapper: {
-        required: true,
-        serializedName: "pathItemStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "globalStringPath",
-      mapper: {
-        required: true,
-        serializedName: "globalStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.localStringPath,
+    Parameters.pathItemStringPath,
+    Parameters.globalStringPath
   ],
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "localStringQuery"
-      ],
-      mapper: {
-        serializedName: "localStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pathItemStringQuery"
-      ],
-      mapper: {
-        serializedName: "pathItemStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "globalStringQuery",
-      mapper: {
-        serializedName: "globalStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.localStringQuery,
+    Parameters.pathItemStringQuery,
+    Parameters.globalStringQuery
   ],
   responses: {
     200: {},
@@ -410,71 +297,14 @@ const getGlobalAndLocalQueryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
   urlParameters: [
-    {
-      parameterPath: "localStringPath",
-      mapper: {
-        required: true,
-        serializedName: "localStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "pathItemStringPath",
-      mapper: {
-        required: true,
-        serializedName: "pathItemStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "globalStringPath",
-      mapper: {
-        required: true,
-        serializedName: "globalStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.localStringPath,
+    Parameters.pathItemStringPath,
+    Parameters.globalStringPath
   ],
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "localStringQuery"
-      ],
-      mapper: {
-        serializedName: "localStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pathItemStringQuery"
-      ],
-      mapper: {
-        serializedName: "pathItemStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "globalStringQuery",
-      mapper: {
-        serializedName: "globalStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.localStringQuery,
+    Parameters.pathItemStringQuery,
+    Parameters.globalStringQuery
   ],
   responses: {
     200: {},
@@ -489,71 +319,14 @@ const getLocalPathItemQueryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
   urlParameters: [
-    {
-      parameterPath: "localStringPath",
-      mapper: {
-        required: true,
-        serializedName: "localStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "pathItemStringPath",
-      mapper: {
-        required: true,
-        serializedName: "pathItemStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "globalStringPath",
-      mapper: {
-        required: true,
-        serializedName: "globalStringPath",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.localStringPath,
+    Parameters.pathItemStringPath,
+    Parameters.globalStringPath
   ],
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "localStringQuery"
-      ],
-      mapper: {
-        serializedName: "localStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "pathItemStringQuery"
-      ],
-      mapper: {
-        serializedName: "pathItemStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "globalStringQuery",
-      mapper: {
-        serializedName: "globalStringQuery",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.localStringQuery,
+    Parameters.pathItemStringQuery,
+    Parameters.globalStringQuery
   ],
   responses: {
     200: {},

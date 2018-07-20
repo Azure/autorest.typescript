@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/pathsMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestUrlTestServiceContext } from "../autoRestUrlTestServiceContext";
 
 /** Class representing a Paths. */
@@ -1158,18 +1159,7 @@ const getBooleanTrueOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/bool/true/{boolPath}",
   urlParameters: [
-    {
-      parameterPath: "boolPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "boolPath",
-        defaultValue: true,
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
+    Parameters.boolPath0
   ],
   responses: {
     200: {},
@@ -1184,18 +1174,7 @@ const getBooleanFalseOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/bool/false/{boolPath}",
   urlParameters: [
-    {
-      parameterPath: "boolPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "boolPath",
-        defaultValue: false,
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
+    Parameters.boolPath1
   ],
   responses: {
     200: {},
@@ -1210,18 +1189,7 @@ const getIntOneMillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/int/1000000/{intPath}",
   urlParameters: [
-    {
-      parameterPath: "intPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "intPath",
-        defaultValue: 1000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.intPath0
   ],
   responses: {
     200: {},
@@ -1236,18 +1204,7 @@ const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/int/-1000000/{intPath}",
   urlParameters: [
-    {
-      parameterPath: "intPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "intPath",
-        defaultValue: -1000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.intPath1
   ],
   responses: {
     200: {},
@@ -1262,18 +1219,7 @@ const getTenBillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/long/10000000000/{longPath}",
   urlParameters: [
-    {
-      parameterPath: "longPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "longPath",
-        defaultValue: 10000000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.longPath0
   ],
   responses: {
     200: {},
@@ -1288,18 +1234,7 @@ const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/long/-10000000000/{longPath}",
   urlParameters: [
-    {
-      parameterPath: "longPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "longPath",
-        defaultValue: -10000000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.longPath1
   ],
   responses: {
     200: {},
@@ -1314,18 +1249,7 @@ const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/float/1.034E+20/{floatPath}",
   urlParameters: [
-    {
-      parameterPath: "floatPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "floatPath",
-        defaultValue: 103400000000000000000,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.floatPath0
   ],
   responses: {
     200: {},
@@ -1340,18 +1264,7 @@ const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/float/-1.034E-20/{floatPath}",
   urlParameters: [
-    {
-      parameterPath: "floatPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "floatPath",
-        defaultValue: -1.034e-20,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.floatPath1
   ],
   responses: {
     200: {},
@@ -1366,18 +1279,7 @@ const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/double/9999999.999/{doublePath}",
   urlParameters: [
-    {
-      parameterPath: "doublePath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "doublePath",
-        defaultValue: 9999999.999,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.doublePath0
   ],
   responses: {
     200: {},
@@ -1392,18 +1294,7 @@ const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/double/-9999999.999/{doublePath}",
   urlParameters: [
-    {
-      parameterPath: "doublePath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "doublePath",
-        defaultValue: -9999999.999,
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.doublePath1
   ],
   responses: {
     200: {},
@@ -1418,18 +1309,7 @@ const stringUnicodeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/unicode/{stringPath}",
   urlParameters: [
-    {
-      parameterPath: "stringPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "stringPath",
-        defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.stringPath0
   ],
   responses: {
     200: {},
@@ -1444,18 +1324,7 @@ const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
   urlParameters: [
-    {
-      parameterPath: "stringPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "stringPath",
-        defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.stringPath1
   ],
   responses: {
     200: {},
@@ -1470,18 +1339,7 @@ const stringEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/empty/{stringPath}",
   urlParameters: [
-    {
-      parameterPath: "stringPath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "stringPath",
-        defaultValue: '',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.stringPath2
   ],
   responses: {
     200: {},
@@ -1496,16 +1354,7 @@ const stringNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/null/{stringPath}",
   urlParameters: [
-    {
-      parameterPath: "stringPath",
-      mapper: {
-        required: true,
-        serializedName: "stringPath",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.stringPath3
   ],
   responses: {
     400: {},
@@ -1520,21 +1369,7 @@ const enumValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/enum/green%20color/{enumPath}",
   urlParameters: [
-    {
-      parameterPath: "enumPath",
-      mapper: {
-        required: true,
-        serializedName: "enumPath",
-        type: {
-          name: "Enum",
-          allowedValues: [
-            "red color",
-            "green color",
-            "blue color"
-          ]
-        }
-      }
-    }
+    Parameters.enumPath
   ],
   responses: {
     200: {},
@@ -1549,21 +1384,7 @@ const enumNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/null/{enumPath}",
   urlParameters: [
-    {
-      parameterPath: "enumPath",
-      mapper: {
-        required: true,
-        serializedName: "enumPath",
-        type: {
-          name: "Enum",
-          allowedValues: [
-            "red color",
-            "green color",
-            "blue color"
-          ]
-        }
-      }
-    }
+    Parameters.enumPath
   ],
   responses: {
     400: {},
@@ -1578,16 +1399,7 @@ const byteMultiByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/byte/multibyte/{bytePath}",
   urlParameters: [
-    {
-      parameterPath: "bytePath",
-      mapper: {
-        required: true,
-        serializedName: "bytePath",
-        type: {
-          name: "ByteArray"
-        }
-      }
-    }
+    Parameters.bytePath0
   ],
   responses: {
     200: {},
@@ -1602,18 +1414,7 @@ const byteEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/byte/empty/{bytePath}",
   urlParameters: [
-    {
-      parameterPath: "bytePath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "bytePath",
-        defaultValue: new Uint8Array(0),
-        type: {
-          name: "ByteArray"
-        }
-      }
-    }
+    Parameters.bytePath1
   ],
   responses: {
     200: {},
@@ -1628,16 +1429,7 @@ const byteNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/byte/null/{bytePath}",
   urlParameters: [
-    {
-      parameterPath: "bytePath",
-      mapper: {
-        required: true,
-        serializedName: "bytePath",
-        type: {
-          name: "ByteArray"
-        }
-      }
-    }
+    Parameters.bytePath0
   ],
   responses: {
     400: {},
@@ -1652,18 +1444,7 @@ const dateValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/date/2012-01-01/{datePath}",
   urlParameters: [
-    {
-      parameterPath: "datePath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "datePath",
-        defaultValue: new Date('2012-01-01'),
-        type: {
-          name: "Date"
-        }
-      }
-    }
+    Parameters.datePath0
   ],
   responses: {
     200: {},
@@ -1678,16 +1459,7 @@ const dateNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/date/null/{datePath}",
   urlParameters: [
-    {
-      parameterPath: "datePath",
-      mapper: {
-        required: true,
-        serializedName: "datePath",
-        type: {
-          name: "Date"
-        }
-      }
-    }
+    Parameters.datePath1
   ],
   responses: {
     400: {},
@@ -1702,18 +1474,7 @@ const dateTimeValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
   urlParameters: [
-    {
-      parameterPath: "dateTimePath",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "dateTimePath",
-        defaultValue: new Date('2012-01-01T01:01:01Z'),
-        type: {
-          name: "DateTime"
-        }
-      }
-    }
+    Parameters.dateTimePath0
   ],
   responses: {
     200: {},
@@ -1728,16 +1489,7 @@ const dateTimeNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/datetime/null/{dateTimePath}",
   urlParameters: [
-    {
-      parameterPath: "dateTimePath",
-      mapper: {
-        required: true,
-        serializedName: "dateTimePath",
-        type: {
-          name: "DateTime"
-        }
-      }
-    }
+    Parameters.dateTimePath1
   ],
   responses: {
     400: {},
@@ -1752,16 +1504,7 @@ const base64UrlOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/bG9yZW0/{base64UrlPath}",
   urlParameters: [
-    {
-      parameterPath: "base64UrlPath",
-      mapper: {
-        required: true,
-        serializedName: "base64UrlPath",
-        type: {
-          name: "Base64Url"
-        }
-      }
-    }
+    Parameters.base64UrlPath
   ],
   responses: {
     200: {},
@@ -1776,22 +1519,7 @@ const arrayCsvInPathOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
   urlParameters: [
-    {
-      parameterPath: "arrayPath",
-      mapper: {
-        required: true,
-        serializedName: "arrayPath",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
+    Parameters.arrayPath
   ],
   responses: {
     200: {},
@@ -1806,16 +1534,7 @@ const unixTimeUrlOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paths/int/1460505600/{unixTimeUrlPath}",
   urlParameters: [
-    {
-      parameterPath: "unixTimeUrlPath",
-      mapper: {
-        required: true,
-        serializedName: "unixTimeUrlPath",
-        type: {
-          name: "UnixTime"
-        }
-      }
-    }
+    Parameters.unixTimeUrlPath
   ],
   responses: {
     200: {},

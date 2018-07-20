@@ -10,6 +10,7 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.TypeScript.DSL;
+using AutoRest.TypeScript;
 using Newtonsoft.Json;
 
 namespace AutoRest.TypeScript.Model
@@ -363,7 +364,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.16.366\"";
+            return "\"ms-rest-js\": \"~0.16.372\"";
         }
 
         public virtual Method GetSampleMethod()
@@ -461,6 +462,55 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
+        private sealed class ParameterNameComparer : IEqualityComparer<ParameterTS>
+        {
+            private ParameterNameComparer() {}
+            public static ParameterNameComparer Instance { get; } = new ParameterNameComparer();
+
+            public bool Equals(ParameterTS x, ParameterTS y)
+            {
+                return x.MapperName == y.MapperName;
+            }
+
+            public int GetHashCode(ParameterTS obj)
+            {
+                return obj.MapperName.GetHashCode();
+            }
+        }
+
+        public bool HasMappableParameters =>
+            MethodTemplateModels
+                .SelectMany(m => m.LogicalParameters)
+                .Any(p => p.Location != ParameterLocation.Body);
+
+        public string GenerateParameterMappers()
+        {
+            TSBuilder builder = new TSBuilder();
+            IEnumerable<ParameterTS> parameters = Methods
+                .SelectMany(m => m.LogicalParameters)
+                .Cast<ParameterTS>()
+                .Where(p => p.ModelTypeName != "RequestOptionsBase" && p.Location != ParameterLocation.Body)
+                .OrderBy(p => p.MapperName)
+                .Distinct(ParameterNameComparer.Instance);
+
+            foreach (ParameterTS parameter in parameters)
+            {
+                string parameterInterfaceName =
+                    parameter.Location == ParameterLocation.Path ? "msRest.OperationURLParameter" :
+                    parameter.Location == ParameterLocation.Query ? "msRest.OperationQueryParameter" :
+                    "msRest.OperationParameter";
+
+                builder.Text("export ");
+                builder.ConstObjectVariable(
+                    parameter.MapperName,
+                    parameterInterfaceName,
+                    obj => ClientModelExtensions.ConstructParameterMapper(obj, parameter));
+                builder.Line();
+            }
+
+            return builder.ToString();
+        }
+
         public string GenerateServiceClientImports()
         {
             TSBuilder builder = new TSBuilder();
@@ -471,6 +521,12 @@ namespace AutoRest.TypeScript.Model
             }
             builder.ImportAllAs("Models", "./models");
             builder.ImportAllAs("Mappers", "./models/mappers");
+
+            if (HasMappableParameters)
+            {
+                builder.ImportAllAs("Parameters", "./models/parameters");
+            }
+
             if (MethodGroupModels.Any())
             {
                 builder.ImportAllAs("operations", "./operations");

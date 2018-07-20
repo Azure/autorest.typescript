@@ -404,7 +404,7 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        private ParameterTransformations GetParameterTransformations()
+        internal ParameterTransformations GetParameterTransformations()
             => new ParameterTransformations(InputParameterTransformation);
 
         /// <summary>
@@ -568,25 +568,16 @@ namespace AutoRest.TypeScript.Model
             }
 
             Parameter[] logicalParameters = LogicalParameters.ToArray();
-            ParameterTransformations parameterTransformations = GetParameterTransformations();
 
-            GenerateRequestParameters(operationSpec, "urlParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Path), AddSkipEncodingProperty);
-            GenerateRequestParameters(operationSpec, "queryParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Query),
-                (TSObject queryParameterObject, Parameter queryParameter) =>
-                {
-                    AddSkipEncodingProperty(queryParameterObject, queryParameter);
-                    if (queryParameter.CollectionFormat != CollectionFormat.None)
-                    {
-                        queryParameterObject.TextProperty("collectionFormat", $"msRest.QueryCollectionFormat.{queryParameter.CollectionFormat}");
-                    }
-                });
-            GenerateRequestParameters(operationSpec, "headerParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Header));
+            AddParameterRefs(operationSpec, "urlParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Path));
+            AddParameterRefs(operationSpec, "queryParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Query));
+            AddParameterRefs(operationSpec, "headerParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Header));
 
             if (Body != null)
             {
                 operationSpec.ObjectProperty("requestBody", requestBodyObject =>
                 {
-                    GenerateRequestParameterPath(requestBodyObject, Body, parameterTransformations);
+                    GenerateRequestParameterPath(requestBodyObject, Body, GetParameterTransformations());
                     requestBodyObject.Property("mapper", requestBodyMapper => ClientModelExtensions.ConstructRequestBodyMapper(requestBodyMapper, Body));
                 });
                 operationSpec.QuotedStringProperty("contentType", RequestContentType);
@@ -596,7 +587,7 @@ namespace AutoRest.TypeScript.Model
                 IEnumerable<Parameter> formDataParameters = logicalParameters.Where(p => p.Location == ParameterLocation.FormData);
                 if (formDataParameters.Any())
                 {
-                    GenerateRequestParameters(operationSpec, "formDataParameters", parameterTransformations, formDataParameters);
+                    AddParameterRefs(operationSpec, "formDataParameters", formDataParameters);
                     operationSpec.QuotedStringProperty("contentType", RequestContentType);
                 }
             }
@@ -649,20 +640,34 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        private static void GenerateRequestParameters(TSObject operationSpec, string propertyName, ParameterTransformations parameterTransformations, IEnumerable<Parameter> requestParameters, Action<TSObject, Parameter> extraParameterProperties = null)
+        internal static void GenerateRequestParameter(TSObject parameterObject, ParameterTS requestParameter, ParameterTransformations parameterTransformations)
+        {
+            GenerateRequestParameterPath(parameterObject, requestParameter, parameterTransformations);
+            parameterObject.Property("mapper", mapper => ClientModelExtensions.ConstructMapper(mapper, requestParameter.ModelType, requestParameter.SerializedName, requestParameter, false, false, false));
+
+            ParameterLocation location = requestParameter.Location;
+            if (location == ParameterLocation.Path || location == ParameterLocation.Query)
+            {
+                AddSkipEncodingProperty(parameterObject, requestParameter);
+            }
+            if (location == ParameterLocation.Query)
+            {
+                if (requestParameter.CollectionFormat != CollectionFormat.None)
+                {
+                    parameterObject.TextProperty("collectionFormat", $"msRest.QueryCollectionFormat.{requestParameter.CollectionFormat}");
+                }
+            }
+        }
+
+        private static void AddParameterRefs(TSObject operationSpec, string propertyName, IEnumerable<Parameter> requestParameters)
         {
             if (requestParameters != null && requestParameters.Any())
             {
                 operationSpec.ArrayProperty(propertyName, parameterArray =>
                 {
-                    foreach (Parameter requestParameter in requestParameters)
+                    foreach (ParameterTS requestParameter in requestParameters)
                     {
-                        parameterArray.Object(parameterObject =>
-                        {
-                            GenerateRequestParameterPath(parameterObject, requestParameter, parameterTransformations);
-                            extraParameterProperties?.Invoke(parameterObject, requestParameter);
-                            parameterObject.Property("mapper", mapper => ClientModelExtensions.ConstructMapper(mapper, requestParameter.ModelType, requestParameter.SerializedName, requestParameter, false, false, false));
-                        });
+                        parameterArray.Value(v => v.Text("Parameters." + requestParameter.MapperName));
                     }
                 });
             }

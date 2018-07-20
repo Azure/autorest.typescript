@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/xmlMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestSwaggerBATXMLServiceContext } from "../autoRestSwaggerBATXMLServiceContext";
 
 /** Class representing a Xml. */
@@ -1610,18 +1611,7 @@ const listContainersOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/",
   queryParameters: [
-    {
-      parameterPath: "comp",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "comp",
-        defaultValue: 'list',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.comp0
   ],
   responses: {
     200: {
@@ -1637,30 +1627,8 @@ const getServicePropertiesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/",
   queryParameters: [
-    {
-      parameterPath: "comp",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "comp",
-        defaultValue: 'properties',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "restype",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "restype",
-        defaultValue: 'service',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.comp1,
+    Parameters.restype0
   ],
   responses: {
     200: {
@@ -1676,30 +1644,8 @@ const putServicePropertiesOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/",
   queryParameters: [
-    {
-      parameterPath: "comp",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "comp",
-        defaultValue: 'properties',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "restype",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "restype",
-        defaultValue: 'service',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.comp1,
+    Parameters.restype0
   ],
   requestBody: {
     parameterPath: "properties",
@@ -1721,30 +1667,8 @@ const getAclsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/mycontainer",
   queryParameters: [
-    {
-      parameterPath: "comp",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "comp",
-        defaultValue: 'acl',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "restype",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "restype",
-        defaultValue: 'container',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.comp2,
+    Parameters.restype1
   ],
   responses: {
     200: {
@@ -1773,30 +1697,8 @@ const putAclsOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/mycontainer",
   queryParameters: [
-    {
-      parameterPath: "comp",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "comp",
-        defaultValue: 'acl',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "restype",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "restype",
-        defaultValue: 'container',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.comp2,
+    Parameters.restype1
   ],
   requestBody: {
     parameterPath: "properties",
@@ -1830,30 +1732,8 @@ const listBlobsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/mycontainer",
   queryParameters: [
-    {
-      parameterPath: "comp",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "comp",
-        defaultValue: 'list',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "restype",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "restype",
-        defaultValue: 'container',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.comp0,
+    Parameters.restype1
   ],
   responses: {
     200: {

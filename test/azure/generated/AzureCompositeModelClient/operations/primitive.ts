@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/primitiveMappers";
+import * as Parameters from "../models/parameters";
 import { AzureCompositeModelContext } from "../azureCompositeModelContext";
 
 /** Class representing a Primitive. */
@@ -985,16 +986,7 @@ const getIntOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/integer",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1011,16 +1003,7 @@ const putIntOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/integer",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -1043,16 +1026,7 @@ const getLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/long",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1069,16 +1043,7 @@ const putLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/long",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -1101,16 +1066,7 @@ const getFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/float",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1127,16 +1083,7 @@ const putFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/float",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -1159,16 +1106,7 @@ const getDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/double",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1185,16 +1123,7 @@ const putDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/double",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -1217,16 +1146,7 @@ const getBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/bool",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1243,16 +1163,7 @@ const putBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/bool",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -1275,16 +1186,7 @@ const getStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/string",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1301,16 +1203,7 @@ const putStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/string",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -1333,16 +1226,7 @@ const getDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/date",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1359,16 +1243,7 @@ const putDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/date",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -1391,16 +1266,7 @@ const getDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/datetime",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1417,16 +1283,7 @@ const putDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/datetime",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -1449,16 +1306,7 @@ const getDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/datetimerfc1123",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1475,16 +1323,7 @@ const putDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/datetimerfc1123",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "complexBody",
@@ -1507,16 +1346,7 @@ const getDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/duration",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1533,16 +1363,7 @@ const putDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/duration",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {
@@ -1570,16 +1391,7 @@ const getByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/byte",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1596,16 +1408,7 @@ const putByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/primitive/byte",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {

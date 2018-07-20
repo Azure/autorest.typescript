@@ -160,5 +160,31 @@ namespace AutoRest.TypeScript.Model
 
             return builder.ToString();
         }
+
+        public bool HasMappableParameters =>
+            Methods
+                .SelectMany(m => m.LogicalParameters)
+                .Any(p => p.Location != ParameterLocation.Body);
+
+        public string GenerateMethodGroupImports()
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.ImportAllAs("msRest", "ms-rest-js");
+            if (ContainsCompositeOrEnumTypeInParametersOrReturnType())
+            {
+                builder.ImportAllAs("Models", "../models");
+            }
+            builder.ImportAllAs("Mappers", $"../models/{MappersModuleName}");
+
+            if (HasMappableParameters)
+            {
+                builder.ImportAllAs("Parameters", "../models/parameters");
+            }
+
+            builder.Import(new string[] { CodeModelTS.ContextName }, $"../{CodeModelTS.ContextName.ToCamelCase()}");
+
+            return builder.ToString();
+        }
     }
 }

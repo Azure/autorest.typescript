@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/groupMappers";
+import * as Parameters from "../models/parameters";
 import { MicrosoftAzureTestUrlContext } from "../microsoftAzureTestUrlContext";
 
 /** Class representing a Group. */
@@ -78,50 +79,14 @@ const getSampleResourceGroupOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {

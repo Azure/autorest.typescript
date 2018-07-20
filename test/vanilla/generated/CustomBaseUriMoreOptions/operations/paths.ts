@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/pathsMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestParameterizedCustomHostTestClientContext } from "../autoRestParameterizedCustomHostTestClientContext";
 
 /** Class representing a Paths. */
@@ -88,77 +89,14 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "customuri/{subscriptionId}/{keyName}",
   urlParameters: [
-    {
-      parameterPath: "vault",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "vault",
-        defaultValue: '',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "secret",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "secret",
-        defaultValue: '',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "dnsSuffix",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "dnsSuffix",
-        defaultValue: 'host',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "keyName",
-      mapper: {
-        required: true,
-        serializedName: "keyName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.vault,
+    Parameters.secret,
+    Parameters.dnsSuffix,
+    Parameters.keyName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "keyVersion"
-      ],
-      mapper: {
-        serializedName: "keyVersion",
-        defaultValue: 'v1',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.keyVersion
   ],
   responses: {
     200: {},

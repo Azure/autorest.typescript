@@ -7,13 +7,7 @@
 @Header(" * ")
  */
 @EmptyLine
-import * as msRest from "ms-rest-js";
-@if (Model.ContainsCompositeOrEnumTypeInParametersOrReturnType())
-{
-@:import * as Models from "../models";
-}
-import * as Mappers from "../models/@(Model.MappersModuleName)";
-import { @(Model.CodeModelTS.ContextName) } from "../@(Model.CodeModelTS.ContextName.ToCamelCase())";
+@(Model.GenerateMethodGroupImports())
 @EmptyLine
 /** Class representing a @(Model.TypeName). */
 export class @(Model.TypeName) {

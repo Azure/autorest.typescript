@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/lROsCustomHeaderMappers";
+import * as Parameters from "../models/parameters";
 import { AutoRestLongRunningOperationTestServiceContext } from "../autoRestLongRunningOperationTestServiceContext";
 
 /** Class representing a LROsCustomHeader. */
@@ -448,16 +449,7 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/customheader/putasync/retry/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -483,16 +475,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/customheader/put/201/creating/succeeded/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -520,16 +503,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/customheader/post/202/retry/200",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [
@@ -554,16 +528,7 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "lro/customheader/postasync/retry/succeeded",
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: [

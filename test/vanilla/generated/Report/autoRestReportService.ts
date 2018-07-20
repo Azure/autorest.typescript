@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters";
 import { AutoRestReportServiceContext } from "./autoRestReportServiceContext";
 
 class AutoRestReportService extends AutoRestReportServiceContext {
@@ -83,18 +84,7 @@ const getReportOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "report",
   queryParameters: [
-    {
-      parameterPath: [
-        "options",
-        "qualifier"
-      ],
-      mapper: {
-        serializedName: "qualifier",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.qualifier
   ],
   responses: {
     200: {

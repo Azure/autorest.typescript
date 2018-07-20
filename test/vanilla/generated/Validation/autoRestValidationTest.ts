@@ -11,6 +11,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters";
 import { AutoRestValidationTestContext } from "./autoRestValidationTestContext";
 
 class AutoRestValidationTest extends AutoRestValidationTestContext {
@@ -227,61 +228,12 @@ const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        constraints: {
-          MaxLength: 10,
-          MinLength: 3,
-          Pattern: /[a-zA-Z0-9]+/
-        },
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "id",
-      mapper: {
-        required: true,
-        serializedName: "id",
-        constraints: {
-          InclusiveMaximum: 1000,
-          InclusiveMinimum: 100,
-          MultipleOf: 10
-        },
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.id
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "apiVersion",
-        constraints: {
-          Pattern: /\d{2}-\d{2}-\d{4}/
-        },
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   responses: {
     200: {
@@ -298,61 +250,12 @@ const validationOfBodyOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        constraints: {
-          MaxLength: 10,
-          MinLength: 3,
-          Pattern: /[a-zA-Z0-9]+/
-        },
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "id",
-      mapper: {
-        required: true,
-        serializedName: "id",
-        constraints: {
-          InclusiveMaximum: 1000,
-          InclusiveMinimum: 100,
-          MultipleOf: 10
-        },
-        type: {
-          name: "Number"
-        }
-      }
-    }
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.id
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        serializedName: "apiVersion",
-        constraints: {
-          Pattern: /\d{2}-\d{2}-\d{4}/
-        },
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion
   ],
   requestBody: {
     parameterPath: [
@@ -377,18 +280,7 @@ const getWithConstantInPathOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "validation/constantsInPath/{constantParam}/value",
   urlParameters: [
-    {
-      parameterPath: "constantParam",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "constantParam",
-        defaultValue: 'constant',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.constantParam
   ],
   responses: {
     200: {},
@@ -401,18 +293,7 @@ const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "validation/constantsInPath/{constantParam}/value",
   urlParameters: [
-    {
-      parameterPath: "constantParam",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "constantParam",
-        defaultValue: 'constant',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.constantParam
   ],
   requestBody: {
     parameterPath: [

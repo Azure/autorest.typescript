@@ -8,12 +8,12 @@
  * regenerated.
  */
 
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
-import { AutoRestLongRunningOperationTestServiceContext } from "./autoRestLongRunningOperationTestServiceContext";
+import * as Models from "./models";
+import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestLongRunningOperationTestServiceContext } from "./autoRestLongRunningOperationTestServiceContext";
 
 
 class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperationTestServiceContext {

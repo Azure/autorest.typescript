@@ -8,12 +8,13 @@
  * regenerated.
  */
 
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
-import { AzureCompositeModelContext } from "./azureCompositeModelContext";
+import * as Models from "./models";
+import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters";
 import * as operations from "./operations";
+import { AzureCompositeModelContext } from "./azureCompositeModelContext";
 
 
 class AzureCompositeModel extends AzureCompositeModelContext {
@@ -239,54 +240,14 @@ const listOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "subscriptionId",
-        defaultValue: '123456',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId0,
+    Parameters.resourceGroupName
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2014-04-01-preview',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -303,52 +264,14 @@ const createOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId1,
+    Parameters.resourceGroupName
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2014-04-01-preview',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {
@@ -378,52 +301,14 @@ const updateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId1,
+    Parameters.resourceGroupName
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2014-04-01-preview',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: {
