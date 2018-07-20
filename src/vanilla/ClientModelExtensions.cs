@@ -539,6 +539,11 @@ namespace AutoRest.TypeScript
             return "/" + constraintValue.Replace("/", "\\/") + "/";
         }
 
+        public static string CreateSerializerExpression(this CodeModel codeModel)
+        {
+            return $"new msRest.Serializer(Mappers{(codeModel.ShouldGenerateXmlSerialization == true ? ", true" : "")})";
+        }
+
         public static void ConstructParameterMapper(TSObject obj, ParameterTS parameter)
         {
             MethodTS.GenerateRequestParameter(obj, parameter, parameter.MethodTS.GetParameterTransformations());
