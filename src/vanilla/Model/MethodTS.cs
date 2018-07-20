@@ -568,7 +568,6 @@ namespace AutoRest.TypeScript.Model
             }
 
             Parameter[] logicalParameters = LogicalParameters.ToArray();
-            ParameterTransformations parameterTransformations = GetParameterTransformations();
 
             AddParameterRefs(operationSpec, "urlParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Path));
             AddParameterRefs(operationSpec, "queryParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Query));
@@ -578,7 +577,7 @@ namespace AutoRest.TypeScript.Model
             {
                 operationSpec.ObjectProperty("requestBody", requestBodyObject =>
                 {
-                    GenerateRequestParameterPath(requestBodyObject, Body, parameterTransformations);
+                    GenerateRequestParameterPath(requestBodyObject, Body, GetParameterTransformations());
                     requestBodyObject.Property("mapper", requestBodyMapper => ClientModelExtensions.ConstructRequestBodyMapper(requestBodyMapper, Body));
                 });
                 operationSpec.QuotedStringProperty("contentType", RequestContentType);
