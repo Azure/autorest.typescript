@@ -249,6 +249,7 @@ export class PathItems {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getAllWithValuesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
@@ -268,7 +269,7 @@ const getAllWithValuesOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getGlobalQueryNullOperationSpec: msRest.OperationSpec = {
@@ -290,7 +291,7 @@ const getGlobalQueryNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getGlobalAndLocalQueryNullOperationSpec: msRest.OperationSpec = {
@@ -312,7 +313,7 @@ const getGlobalAndLocalQueryNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getLocalPathItemQueryNullOperationSpec: msRest.OperationSpec = {
@@ -334,5 +335,5 @@ const getLocalPathItemQueryNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

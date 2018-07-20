@@ -228,6 +228,7 @@ export class SubscriptionInMethod {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const postMethodLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
@@ -243,7 +244,7 @@ const postMethodLocalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postMethodLocalNullOperationSpec: msRest.OperationSpec = {
@@ -261,7 +262,7 @@ const postMethodLocalNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postPathLocalValidOperationSpec: msRest.OperationSpec = {
@@ -279,7 +280,7 @@ const postPathLocalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
@@ -297,5 +298,5 @@ const postSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

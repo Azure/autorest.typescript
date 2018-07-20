@@ -80,6 +80,7 @@ class AutoRestReportService extends AutoRestReportServiceContext {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getReportOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "report",
@@ -105,7 +106,7 @@ const getReportOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 export { AutoRestReportService, Models as AutoRestReportServiceModels, Mappers as AutoRestReportServiceMappers };

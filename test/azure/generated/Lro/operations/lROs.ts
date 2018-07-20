@@ -3933,6 +3933,7 @@ export class LROs {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const beginPut200SucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/200/succeeded",
@@ -3956,7 +3957,7 @@ const beginPut200SucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPut200SucceededNoStateOperationSpec: msRest.OperationSpec = {
@@ -3981,7 +3982,7 @@ const beginPut200SucceededNoStateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPut202Retry200OperationSpec: msRest.OperationSpec = {
@@ -4006,7 +4007,7 @@ const beginPut202Retry200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
@@ -4034,7 +4035,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPut200UpdatingSucceeded204OperationSpec: msRest.OperationSpec = {
@@ -4059,7 +4060,7 @@ const beginPut200UpdatingSucceeded204OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPut201CreatingFailed200OperationSpec: msRest.OperationSpec = {
@@ -4087,7 +4088,7 @@ const beginPut201CreatingFailed200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPut200Acceptedcanceled200OperationSpec: msRest.OperationSpec = {
@@ -4112,7 +4113,7 @@ const beginPut200Acceptedcanceled200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
@@ -4138,7 +4139,7 @@ const beginPutNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -4164,7 +4165,7 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -4190,7 +4191,7 @@ const beginPutAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
@@ -4216,7 +4217,7 @@ const beginPutAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutAsyncNoRetrycanceledOperationSpec: msRest.OperationSpec = {
@@ -4242,7 +4243,7 @@ const beginPutAsyncNoRetrycanceledOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
@@ -4268,7 +4269,7 @@ const beginPutAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutNonResourceOperationSpec: msRest.OperationSpec = {
@@ -4293,7 +4294,7 @@ const beginPutNonResourceOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutAsyncNonResourceOperationSpec: msRest.OperationSpec = {
@@ -4318,7 +4319,7 @@ const beginPutAsyncNonResourceOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutSubResourceOperationSpec: msRest.OperationSpec = {
@@ -4345,7 +4346,7 @@ const beginPutSubResourceOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPutAsyncSubResourceOperationSpec: msRest.OperationSpec = {
@@ -4372,7 +4373,7 @@ const beginPutAsyncSubResourceOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.OperationSpec = {
@@ -4394,7 +4395,7 @@ const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.Operat
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteProvisioning202DeletingFailed200OperationSpec: msRest.OperationSpec = {
@@ -4416,7 +4417,7 @@ const beginDeleteProvisioning202DeletingFailed200OperationSpec: msRest.Operation
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteProvisioning202Deletingcanceled200OperationSpec: msRest.OperationSpec = {
@@ -4438,7 +4439,7 @@ const beginDeleteProvisioning202Deletingcanceled200OperationSpec: msRest.Operati
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
@@ -4453,7 +4454,7 @@ const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
@@ -4474,7 +4475,7 @@ const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDelete202NoRetry204OperationSpec: msRest.OperationSpec = {
@@ -4495,7 +4496,7 @@ const beginDelete202NoRetry204OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
@@ -4515,7 +4516,7 @@ const beginDeleteNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
@@ -4535,7 +4536,7 @@ const beginDeleteAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -4552,7 +4553,7 @@ const beginDeleteAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -4569,7 +4570,7 @@ const beginDeleteAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
@@ -4586,7 +4587,7 @@ const beginDeleteAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
@@ -4603,7 +4604,7 @@ const beginDeleteAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPost200WithPayloadOperationSpec: msRest.OperationSpec = {
@@ -4623,7 +4624,7 @@ const beginPost200WithPayloadOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
@@ -4648,7 +4649,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPost202NoRetry204OperationSpec: msRest.OperationSpec = {
@@ -4674,7 +4675,7 @@ const beginPost202NoRetry204OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPostDoubleHeadersFinalLocationGetOperationSpec: msRest.OperationSpec = {
@@ -4691,7 +4692,7 @@ const beginPostDoubleHeadersFinalLocationGetOperationSpec: msRest.OperationSpec 
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec: msRest.OperationSpec = {
@@ -4708,7 +4709,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec: msRest.OperationSp
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: msRest.OperationSpec = {
@@ -4725,7 +4726,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: msRest.Oper
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -4754,7 +4755,7 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPostAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -4783,7 +4784,7 @@ const beginPostAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPostAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
@@ -4808,7 +4809,7 @@ const beginPostAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPostAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
@@ -4833,5 +4834,5 @@ const beginPostAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

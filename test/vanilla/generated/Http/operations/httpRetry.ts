@@ -356,6 +356,7 @@ export class HttpRetry {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const head408OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/retry/408",
@@ -365,7 +366,7 @@ const head408OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const put500OperationSpec: msRest.OperationSpec = {
@@ -390,7 +391,7 @@ const put500OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const patch500OperationSpec: msRest.OperationSpec = {
@@ -415,7 +416,7 @@ const patch500OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get502OperationSpec: msRest.OperationSpec = {
@@ -427,7 +428,7 @@ const get502OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const post503OperationSpec: msRest.OperationSpec = {
@@ -452,7 +453,7 @@ const post503OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const delete503OperationSpec: msRest.OperationSpec = {
@@ -477,7 +478,7 @@ const delete503OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const put504OperationSpec: msRest.OperationSpec = {
@@ -502,7 +503,7 @@ const put504OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const patch504OperationSpec: msRest.OperationSpec = {
@@ -527,5 +528,5 @@ const patch504OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

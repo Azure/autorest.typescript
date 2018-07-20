@@ -205,6 +205,7 @@ class ComplexModelClient extends ComplexModelClientContext {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const listOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
@@ -223,7 +224,7 @@ const listOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const createOperationSpec: msRest.OperationSpec = {
@@ -257,7 +258,7 @@ const createOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const updateOperationSpec: msRest.OperationSpec = {
@@ -291,7 +292,7 @@ const updateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 export { ComplexModelClient, Models as ComplexModelModels, Mappers as ComplexModelMappers };

@@ -75,6 +75,7 @@ export class Formdata {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const uploadFileOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "formdata/stream/uploadfile",
@@ -96,7 +97,7 @@ const uploadFileOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const uploadFileViaBodyOperationSpec: msRest.OperationSpec = {
@@ -126,5 +127,5 @@ const uploadFileViaBodyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

@@ -1236,6 +1236,7 @@ export class Paging {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getSinglePagesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "paging/single",
@@ -1250,7 +1251,7 @@ const getSinglePagesOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesOperationSpec: msRest.OperationSpec = {
@@ -1270,7 +1271,7 @@ const getMultiplePagesOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getOdataMultiplePagesOperationSpec: msRest.OperationSpec = {
@@ -1290,7 +1291,7 @@ const getOdataMultiplePagesOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesWithOffsetOperationSpec: msRest.OperationSpec = {
@@ -1313,7 +1314,7 @@ const getMultiplePagesWithOffsetOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesRetryFirstOperationSpec: msRest.OperationSpec = {
@@ -1330,7 +1331,7 @@ const getMultiplePagesRetryFirstOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesRetrySecondOperationSpec: msRest.OperationSpec = {
@@ -1347,7 +1348,7 @@ const getMultiplePagesRetrySecondOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSinglePagesFailureOperationSpec: msRest.OperationSpec = {
@@ -1364,7 +1365,7 @@ const getSinglePagesFailureOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesFailureOperationSpec: msRest.OperationSpec = {
@@ -1381,7 +1382,7 @@ const getMultiplePagesFailureOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesFailureUriOperationSpec: msRest.OperationSpec = {
@@ -1398,7 +1399,7 @@ const getMultiplePagesFailureUriOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesFragmentNextLinkOperationSpec: msRest.OperationSpec = {
@@ -1421,7 +1422,7 @@ const getMultiplePagesFragmentNextLinkOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: msRest.OperationSpec = {
@@ -1444,7 +1445,7 @@ const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: msRest.Operatio
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const nextFragmentOperationSpec: msRest.OperationSpec = {
@@ -1468,7 +1469,7 @@ const nextFragmentOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const nextFragmentWithGroupingOperationSpec: msRest.OperationSpec = {
@@ -1492,7 +1493,7 @@ const nextFragmentWithGroupingOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetMultiplePagesLROOperationSpec: msRest.OperationSpec = {
@@ -1512,7 +1513,7 @@ const beginGetMultiplePagesLROOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSinglePagesNextOperationSpec: msRest.OperationSpec = {
@@ -1533,7 +1534,7 @@ const getSinglePagesNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesNextOperationSpec: msRest.OperationSpec = {
@@ -1557,7 +1558,7 @@ const getMultiplePagesNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getOdataMultiplePagesNextOperationSpec: msRest.OperationSpec = {
@@ -1581,7 +1582,7 @@ const getOdataMultiplePagesNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesWithOffsetNextOperationSpec: msRest.OperationSpec = {
@@ -1605,7 +1606,7 @@ const getMultiplePagesWithOffsetNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesRetryFirstNextOperationSpec: msRest.OperationSpec = {
@@ -1626,7 +1627,7 @@ const getMultiplePagesRetryFirstNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesRetrySecondNextOperationSpec: msRest.OperationSpec = {
@@ -1647,7 +1648,7 @@ const getMultiplePagesRetrySecondNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSinglePagesFailureNextOperationSpec: msRest.OperationSpec = {
@@ -1668,7 +1669,7 @@ const getSinglePagesFailureNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesFailureNextOperationSpec: msRest.OperationSpec = {
@@ -1689,7 +1690,7 @@ const getMultiplePagesFailureNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMultiplePagesFailureUriNextOperationSpec: msRest.OperationSpec = {
@@ -1710,7 +1711,7 @@ const getMultiplePagesFailureUriNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetMultiplePagesLRONextOperationSpec: msRest.OperationSpec = {
@@ -1734,5 +1735,5 @@ const beginGetMultiplePagesLRONextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

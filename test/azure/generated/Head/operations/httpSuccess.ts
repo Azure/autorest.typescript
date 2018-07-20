@@ -166,6 +166,7 @@ export class HttpSuccess {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const head200OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/200",
@@ -179,7 +180,7 @@ const head200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const head204OperationSpec: msRest.OperationSpec = {
@@ -195,7 +196,7 @@ const head204OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const head404OperationSpec: msRest.OperationSpec = {
@@ -211,5 +212,5 @@ const head404OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

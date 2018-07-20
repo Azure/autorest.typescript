@@ -193,6 +193,7 @@ export class ApiVersionLocal {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getMethodLocalValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/local/2.0",
@@ -208,7 +209,7 @@ const getMethodLocalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMethodLocalNullOperationSpec: msRest.OperationSpec = {
@@ -226,7 +227,7 @@ const getMethodLocalNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getPathLocalValidOperationSpec: msRest.OperationSpec = {
@@ -244,7 +245,7 @@ const getPathLocalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
@@ -262,5 +263,5 @@ const getSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

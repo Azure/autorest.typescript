@@ -284,6 +284,7 @@ export class EnumModel {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getNotExpandableOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "string/enum/notExpandable",
@@ -305,7 +306,7 @@ const getNotExpandableOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putNotExpandableOperationSpec: msRest.OperationSpec = {
@@ -333,7 +334,7 @@ const putNotExpandableOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getReferencedOperationSpec: msRest.OperationSpec = {
@@ -357,7 +358,7 @@ const getReferencedOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putReferencedOperationSpec: msRest.OperationSpec = {
@@ -385,7 +386,7 @@ const putReferencedOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getReferencedConstantOperationSpec: msRest.OperationSpec = {
@@ -399,7 +400,7 @@ const getReferencedConstantOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putReferencedConstantOperationSpec: msRest.OperationSpec = {
@@ -424,5 +425,5 @@ const putReferencedConstantOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

@@ -613,6 +613,7 @@ export class StorageAccounts {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
@@ -641,7 +642,7 @@ const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const deleteMethodOperationSpec: msRest.OperationSpec = {
@@ -665,7 +666,7 @@ const deleteMethodOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getPropertiesOperationSpec: msRest.OperationSpec = {
@@ -690,7 +691,7 @@ const getPropertiesOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const updateOperationSpec: msRest.OperationSpec = {
@@ -723,7 +724,7 @@ const updateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listKeysOperationSpec: msRest.OperationSpec = {
@@ -748,7 +749,7 @@ const listKeysOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listOperationSpec: msRest.OperationSpec = {
@@ -771,7 +772,7 @@ const listOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listByResourceGroupOperationSpec: msRest.OperationSpec = {
@@ -795,7 +796,7 @@ const listByResourceGroupOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const regenerateKeyOperationSpec: msRest.OperationSpec = {
@@ -833,7 +834,7 @@ const regenerateKeyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginCreateOperationSpec: msRest.OperationSpec = {
@@ -867,5 +868,5 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

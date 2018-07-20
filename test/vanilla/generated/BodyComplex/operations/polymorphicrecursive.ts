@@ -219,6 +219,7 @@ export class Polymorphicrecursive {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/polymorphicrecursive/valid",
@@ -230,7 +231,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putValidOperationSpec: msRest.OperationSpec = {
@@ -250,5 +251,5 @@ const putValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

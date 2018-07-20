@@ -176,6 +176,7 @@ export class Header {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const customNamedRequestIdOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/customNamedRequestId",
@@ -191,7 +192,7 @@ const customNamedRequestIdOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const customNamedRequestIdParamGroupingOperationSpec: msRest.OperationSpec = {
@@ -209,7 +210,7 @@ const customNamedRequestIdParamGroupingOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const customNamedRequestIdHeadOperationSpec: msRest.OperationSpec = {
@@ -230,5 +231,5 @@ const customNamedRequestIdHeadOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

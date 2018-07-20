@@ -417,6 +417,7 @@ export class Polymorphism {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/polymorphism/valid",
@@ -431,7 +432,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putValidOperationSpec: msRest.OperationSpec = {
@@ -454,7 +455,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getComplicatedOperationSpec: msRest.OperationSpec = {
@@ -471,7 +472,7 @@ const getComplicatedOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putComplicatedOperationSpec: msRest.OperationSpec = {
@@ -494,7 +495,7 @@ const putComplicatedOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putMissingDiscriminatorOperationSpec: msRest.OperationSpec = {
@@ -519,7 +520,7 @@ const putMissingDiscriminatorOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putValidMissingRequiredOperationSpec: msRest.OperationSpec = {
@@ -542,5 +543,5 @@ const putValidMissingRequiredOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

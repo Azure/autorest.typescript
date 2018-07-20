@@ -365,6 +365,7 @@ export class DateModel {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "date/null",
@@ -381,7 +382,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidDateOperationSpec: msRest.OperationSpec = {
@@ -400,7 +401,7 @@ const getInvalidDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getOverflowDateOperationSpec: msRest.OperationSpec = {
@@ -419,7 +420,7 @@ const getOverflowDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUnderflowDateOperationSpec: msRest.OperationSpec = {
@@ -438,7 +439,7 @@ const getUnderflowDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putMaxDateOperationSpec: msRest.OperationSpec = {
@@ -461,7 +462,7 @@ const putMaxDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMaxDateOperationSpec: msRest.OperationSpec = {
@@ -480,7 +481,7 @@ const getMaxDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putMinDateOperationSpec: msRest.OperationSpec = {
@@ -503,7 +504,7 @@ const putMinDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getMinDateOperationSpec: msRest.OperationSpec = {
@@ -522,5 +523,5 @@ const getMinDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

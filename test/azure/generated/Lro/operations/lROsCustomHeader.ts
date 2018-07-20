@@ -445,6 +445,7 @@ export class LROsCustomHeader {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/customheader/putasync/retry/succeeded",
@@ -468,7 +469,7 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
@@ -496,7 +497,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
@@ -521,7 +522,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
@@ -546,5 +547,5 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

@@ -86,6 +86,7 @@ export class AvailabilitySets {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const updateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",
@@ -107,5 +108,5 @@ const updateOperationSpec: msRest.OperationSpec = {
     200: {},
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

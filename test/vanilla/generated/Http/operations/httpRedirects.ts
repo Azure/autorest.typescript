@@ -649,6 +649,7 @@ export class HttpRedirects {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const head300OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/300",
@@ -663,7 +664,7 @@ const head300OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get300OperationSpec: msRest.OperationSpec = {
@@ -692,7 +693,7 @@ const get300OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const head301OperationSpec: msRest.OperationSpec = {
@@ -709,7 +710,7 @@ const head301OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get301OperationSpec: msRest.OperationSpec = {
@@ -726,7 +727,7 @@ const get301OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const put301OperationSpec: msRest.OperationSpec = {
@@ -753,7 +754,7 @@ const put301OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const head302OperationSpec: msRest.OperationSpec = {
@@ -770,7 +771,7 @@ const head302OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get302OperationSpec: msRest.OperationSpec = {
@@ -787,7 +788,7 @@ const get302OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const patch302OperationSpec: msRest.OperationSpec = {
@@ -814,7 +815,7 @@ const patch302OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const post303OperationSpec: msRest.OperationSpec = {
@@ -844,7 +845,7 @@ const post303OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const head307OperationSpec: msRest.OperationSpec = {
@@ -861,7 +862,7 @@ const head307OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const get307OperationSpec: msRest.OperationSpec = {
@@ -878,7 +879,7 @@ const get307OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const put307OperationSpec: msRest.OperationSpec = {
@@ -908,7 +909,7 @@ const put307OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const patch307OperationSpec: msRest.OperationSpec = {
@@ -938,7 +939,7 @@ const patch307OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const post307OperationSpec: msRest.OperationSpec = {
@@ -968,7 +969,7 @@ const post307OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const delete307OperationSpec: msRest.OperationSpec = {
@@ -998,5 +999,5 @@ const delete307OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

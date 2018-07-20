@@ -535,6 +535,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const putArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "model-flatten/array",
@@ -564,7 +565,7 @@ const putArrayOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getArrayOperationSpec: msRest.OperationSpec = {
@@ -590,7 +591,7 @@ const getArrayOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putWrappedArrayOperationSpec: msRest.OperationSpec = {
@@ -622,7 +623,7 @@ const putWrappedArrayOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getWrappedArrayOperationSpec: msRest.OperationSpec = {
@@ -648,7 +649,7 @@ const getWrappedArrayOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putDictionaryOperationSpec: msRest.OperationSpec = {
@@ -680,7 +681,7 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getDictionaryOperationSpec: msRest.OperationSpec = {
@@ -706,7 +707,7 @@ const getDictionaryOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putResourceCollectionOperationSpec: msRest.OperationSpec = {
@@ -726,7 +727,7 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getResourceCollectionOperationSpec: msRest.OperationSpec = {
@@ -740,7 +741,7 @@ const getResourceCollectionOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putSimpleProductOperationSpec: msRest.OperationSpec = {
@@ -762,7 +763,7 @@ const putSimpleProductOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postFlattenedSimpleProductOperationSpec: msRest.OperationSpec = {
@@ -796,7 +797,7 @@ const postFlattenedSimpleProductOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putSimpleProductWithGroupingOperationSpec: msRest.OperationSpec = {
@@ -839,7 +840,7 @@ const putSimpleProductWithGroupingOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 export { AutoRestResourceFlatteningTestService, Models as AutoRestResourceFlatteningTestServiceModels, Mappers as AutoRestResourceFlatteningTestServiceMappers };

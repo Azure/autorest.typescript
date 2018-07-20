@@ -90,6 +90,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getReportOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "report/azure",
@@ -118,7 +119,7 @@ const getReportOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 export { AutoRestReportServiceForAzure, Models as AutoRestReportServiceForAzureModels, Mappers as AutoRestReportServiceForAzureMappers };

@@ -1196,6 +1196,7 @@ export class Xml {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers, true);
 const getComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "xml/complex-type-ref-no-meta",
@@ -1206,7 +1207,7 @@ const getComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
@@ -1225,7 +1226,7 @@ const putComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
@@ -1238,7 +1239,7 @@ const getComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
@@ -1257,7 +1258,7 @@ const putComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getSimpleOperationSpec: msRest.OperationSpec = {
@@ -1272,7 +1273,7 @@ const getSimpleOperationSpec: msRest.OperationSpec = {
     }
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putSimpleOperationSpec: msRest.OperationSpec = {
@@ -1293,7 +1294,7 @@ const putSimpleOperationSpec: msRest.OperationSpec = {
     }
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getWrappedListsOperationSpec: msRest.OperationSpec = {
@@ -1306,7 +1307,7 @@ const getWrappedListsOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putWrappedListsOperationSpec: msRest.OperationSpec = {
@@ -1327,7 +1328,7 @@ const putWrappedListsOperationSpec: msRest.OperationSpec = {
     }
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getHeadersOperationSpec: msRest.OperationSpec = {
@@ -1340,7 +1341,7 @@ const getHeadersOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getEmptyListOperationSpec: msRest.OperationSpec = {
@@ -1353,7 +1354,7 @@ const getEmptyListOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putEmptyListOperationSpec: msRest.OperationSpec = {
@@ -1372,7 +1373,7 @@ const putEmptyListOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
@@ -1385,7 +1386,7 @@ const getEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
@@ -1404,7 +1405,7 @@ const putEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getRootListOperationSpec: msRest.OperationSpec = {
@@ -1430,7 +1431,7 @@ const getRootListOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putRootListOperationSpec: msRest.OperationSpec = {
@@ -1460,7 +1461,7 @@ const putRootListOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getRootListSingleItemOperationSpec: msRest.OperationSpec = {
@@ -1486,7 +1487,7 @@ const getRootListSingleItemOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putRootListSingleItemOperationSpec: msRest.OperationSpec = {
@@ -1516,7 +1517,7 @@ const putRootListSingleItemOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getEmptyRootListOperationSpec: msRest.OperationSpec = {
@@ -1542,7 +1543,7 @@ const getEmptyRootListOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putEmptyRootListOperationSpec: msRest.OperationSpec = {
@@ -1572,7 +1573,7 @@ const putEmptyRootListOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getEmptyChildElementOperationSpec: msRest.OperationSpec = {
@@ -1585,7 +1586,7 @@ const getEmptyChildElementOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putEmptyChildElementOperationSpec: msRest.OperationSpec = {
@@ -1604,7 +1605,7 @@ const putEmptyChildElementOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const listContainersOperationSpec: msRest.OperationSpec = {
@@ -1620,7 +1621,7 @@ const listContainersOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getServicePropertiesOperationSpec: msRest.OperationSpec = {
@@ -1637,7 +1638,7 @@ const getServicePropertiesOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putServicePropertiesOperationSpec: msRest.OperationSpec = {
@@ -1660,7 +1661,7 @@ const putServicePropertiesOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const getAclsOperationSpec: msRest.OperationSpec = {
@@ -1690,7 +1691,7 @@ const getAclsOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const putAclsOperationSpec: msRest.OperationSpec = {
@@ -1725,7 +1726,7 @@ const putAclsOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };
 
 const listBlobsOperationSpec: msRest.OperationSpec = {
@@ -1742,5 +1743,5 @@ const listBlobsOperationSpec: msRest.OperationSpec = {
     default: {}
   },
   isXML: true,
-  serializer: new msRest.Serializer(Mappers, true)
+  serializer
 };

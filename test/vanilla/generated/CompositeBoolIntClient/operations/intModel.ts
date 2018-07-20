@@ -626,6 +626,7 @@ export class IntModel {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/null",
@@ -642,7 +643,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidOperationSpec: msRest.OperationSpec = {
@@ -661,7 +662,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getOverflowInt32OperationSpec: msRest.OperationSpec = {
@@ -680,7 +681,7 @@ const getOverflowInt32OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUnderflowInt32OperationSpec: msRest.OperationSpec = {
@@ -699,7 +700,7 @@ const getUnderflowInt32OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getOverflowInt64OperationSpec: msRest.OperationSpec = {
@@ -718,7 +719,7 @@ const getOverflowInt64OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUnderflowInt64OperationSpec: msRest.OperationSpec = {
@@ -737,7 +738,7 @@ const getUnderflowInt64OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putMax32OperationSpec: msRest.OperationSpec = {
@@ -760,7 +761,7 @@ const putMax32OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putMax64OperationSpec: msRest.OperationSpec = {
@@ -783,7 +784,7 @@ const putMax64OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putMin32OperationSpec: msRest.OperationSpec = {
@@ -806,7 +807,7 @@ const putMin32OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putMin64OperationSpec: msRest.OperationSpec = {
@@ -829,7 +830,7 @@ const putMin64OperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getUnixTimeOperationSpec: msRest.OperationSpec = {
@@ -848,7 +849,7 @@ const getUnixTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const putUnixTimeDateOperationSpec: msRest.OperationSpec = {
@@ -871,7 +872,7 @@ const putUnixTimeDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getInvalidUnixTimeOperationSpec: msRest.OperationSpec = {
@@ -890,7 +891,7 @@ const getInvalidUnixTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getNullUnixTimeOperationSpec: msRest.OperationSpec = {
@@ -909,5 +910,5 @@ const getNullUnixTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

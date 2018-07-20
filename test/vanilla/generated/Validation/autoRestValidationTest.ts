@@ -224,6 +224,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
@@ -243,7 +244,7 @@ const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const validationOfBodyOperationSpec: msRest.OperationSpec = {
@@ -273,7 +274,7 @@ const validationOfBodyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getWithConstantInPathOperationSpec: msRest.OperationSpec = {
@@ -286,7 +287,7 @@ const getWithConstantInPathOperationSpec: msRest.OperationSpec = {
     200: {},
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
@@ -309,7 +310,7 @@ const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
     },
     default: {}
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 export { AutoRestValidationTest, Models as AutoRestValidationTestModels, Mappers as AutoRestValidationTestMappers };
