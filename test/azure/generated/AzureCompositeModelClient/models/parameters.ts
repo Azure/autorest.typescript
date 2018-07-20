@@ -10,23 +10,11 @@
 
 import * as msRest from "ms-rest-js";
 
-export const subscriptionId0: msRest.OperationURLParameter = {
-  parameterPath: "subscriptionId",
+export const acceptLanguage: msRest.OperationParameter = {
+  parameterPath: "acceptLanguage",
   mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "subscriptionId",
-    defaultValue: '123456',
-    type: {
-      name: "String"
-    }
-  }
-};
-export const resourceGroupName: msRest.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    required: true,
-    serializedName: "resourceGroupName",
+    serializedName: "accept-language",
+    defaultValue: 'en-US',
     type: {
       name: "String"
     }
@@ -44,11 +32,35 @@ export const apiVersion0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const acceptLanguage: msRest.OperationParameter = {
-  parameterPath: "acceptLanguage",
+export const apiVersion1: msRest.OperationQueryParameter = {
+  parameterPath: "apiVersion",
   mapper: {
-    serializedName: "accept-language",
-    defaultValue: 'en-US',
+    required: true,
+    isConstant: true,
+    serializedName: "api-version",
+    defaultValue: '2016-02-29',
+    type: {
+      name: "String"
+    }
+  }
+};
+export const resourceGroupName: msRest.OperationURLParameter = {
+  parameterPath: "resourceGroupName",
+  mapper: {
+    required: true,
+    serializedName: "resourceGroupName",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const subscriptionId0: msRest.OperationURLParameter = {
+  parameterPath: "subscriptionId",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "subscriptionId",
+    defaultValue: '123456',
     type: {
       name: "String"
     }
@@ -59,18 +71,6 @@ export const subscriptionId1: msRest.OperationURLParameter = {
   mapper: {
     required: true,
     serializedName: "subscriptionId",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const apiVersion1: msRest.OperationQueryParameter = {
-  parameterPath: "apiVersion",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "api-version",
-    defaultValue: '2016-02-29',
     type: {
       name: "String"
     }

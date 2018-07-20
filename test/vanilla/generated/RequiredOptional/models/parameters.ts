@@ -10,6 +10,93 @@
 
 import * as msRest from "ms-rest-js";
 
+export const bodyParameter: msRest.OperationParameter = {
+  parameterPath: [
+    "options",
+    "bodyParameter"
+  ],
+  mapper: {
+    serializedName: "bodyParameter",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const headerParameter0: msRest.OperationParameter = {
+  parameterPath: "headerParameter",
+  mapper: {
+    required: true,
+    serializedName: "headerParameter",
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const headerParameter1: msRest.OperationParameter = {
+  parameterPath: [
+    "options",
+    "headerParameter"
+  ],
+  mapper: {
+    serializedName: "headerParameter",
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const headerParameter2: msRest.OperationParameter = {
+  parameterPath: "headerParameter",
+  mapper: {
+    required: true,
+    serializedName: "headerParameter",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const headerParameter3: msRest.OperationParameter = {
+  parameterPath: "headerParameter",
+  mapper: {
+    required: true,
+    serializedName: "headerParameter",
+    type: {
+      name: "Sequence",
+      element: {
+        serializedName: "stringElementType",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+export const headerParameter4: msRest.OperationParameter = {
+  parameterPath: [
+    "options",
+    "headerParameter"
+  ],
+  mapper: {
+    serializedName: "headerParameter",
+    type: {
+      name: "Sequence",
+      element: {
+        serializedName: "stringElementType",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+export const optionalGlobalQuery: msRest.OperationQueryParameter = {
+  parameterPath: "optionalGlobalQuery",
+  mapper: {
+    serializedName: "optional-global-query",
+    type: {
+      name: "Number"
+    }
+  }
+};
 export const pathParameter: msRest.OperationURLParameter = {
   parameterPath: "pathParameter",
   mapper: {
@@ -49,93 +136,6 @@ export const requiredGlobalQuery: msRest.OperationQueryParameter = {
     serializedName: "required-global-query",
     type: {
       name: "String"
-    }
-  }
-};
-export const optionalGlobalQuery: msRest.OperationQueryParameter = {
-  parameterPath: "optionalGlobalQuery",
-  mapper: {
-    serializedName: "optional-global-query",
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const headerParameter0: msRest.OperationParameter = {
-  parameterPath: "headerParameter",
-  mapper: {
-    required: true,
-    serializedName: "headerParameter",
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const headerParameter1: msRest.OperationParameter = {
-  parameterPath: [
-    "options",
-    "headerParameter"
-  ],
-  mapper: {
-    serializedName: "headerParameter",
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const headerParameter2: msRest.OperationParameter = {
-  parameterPath: "headerParameter",
-  mapper: {
-    required: true,
-    serializedName: "headerParameter",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const bodyParameter: msRest.OperationParameter = {
-  parameterPath: [
-    "options",
-    "bodyParameter"
-  ],
-  mapper: {
-    serializedName: "bodyParameter",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const headerParameter3: msRest.OperationParameter = {
-  parameterPath: "headerParameter",
-  mapper: {
-    required: true,
-    serializedName: "headerParameter",
-    type: {
-      name: "Sequence",
-      element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-export const headerParameter4: msRest.OperationParameter = {
-  parameterPath: [
-    "options",
-    "headerParameter"
-  ],
-  mapper: {
-    serializedName: "headerParameter",
-    type: {
-      name: "Sequence",
-      element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
     }
   }
 };

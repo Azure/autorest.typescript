@@ -10,46 +10,6 @@
 
 import * as msRest from "ms-rest-js";
 
-export const subscriptionId: msRest.OperationURLParameter = {
-  parameterPath: "subscriptionId",
-  mapper: {
-    required: true,
-    serializedName: "subscriptionId",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const resourceGroupName: msRest.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    required: true,
-    serializedName: "resourceGroupName",
-    constraints: {
-      MaxLength: 10,
-      MinLength: 3,
-      Pattern: /[a-zA-Z0-9]+/
-    },
-    type: {
-      name: "String"
-    }
-  }
-};
-export const id: msRest.OperationURLParameter = {
-  parameterPath: "id",
-  mapper: {
-    required: true,
-    serializedName: "id",
-    constraints: {
-      InclusiveMaximum: 1000,
-      InclusiveMinimum: 100,
-      MultipleOf: 10
-    },
-    type: {
-      name: "Number"
-    }
-  }
-};
 export const apiVersion: msRest.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
@@ -70,6 +30,46 @@ export const constantParam: msRest.OperationURLParameter = {
     isConstant: true,
     serializedName: "constantParam",
     defaultValue: 'constant',
+    type: {
+      name: "String"
+    }
+  }
+};
+export const id: msRest.OperationURLParameter = {
+  parameterPath: "id",
+  mapper: {
+    required: true,
+    serializedName: "id",
+    constraints: {
+      InclusiveMaximum: 1000,
+      InclusiveMinimum: 100,
+      MultipleOf: 10
+    },
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const resourceGroupName: msRest.OperationURLParameter = {
+  parameterPath: "resourceGroupName",
+  mapper: {
+    required: true,
+    serializedName: "resourceGroupName",
+    constraints: {
+      MaxLength: 10,
+      MinLength: 3,
+      Pattern: /[a-zA-Z0-9]+/
+    },
+    type: {
+      name: "String"
+    }
+  }
+};
+export const subscriptionId: msRest.OperationURLParameter = {
+  parameterPath: "subscriptionId",
+  mapper: {
+    required: true,
+    serializedName: "subscriptionId",
     type: {
       name: "String"
     }

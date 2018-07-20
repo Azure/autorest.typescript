@@ -20,6 +20,29 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
+export const apiVersion0: msRest.OperationQueryParameter = {
+  parameterPath: "apiVersion",
+  mapper: {
+    required: true,
+    serializedName: "api_version",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const apiVersion1: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "customParameterGroup",
+    "apiVersion"
+  ],
+  mapper: {
+    required: true,
+    serializedName: "api_version",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const clientRequestId: msRest.OperationParameter = {
   parameterPath: [
     "options",
@@ -45,20 +68,6 @@ export const maxresults0: msRest.OperationParameter = {
     }
   }
 };
-export const timeout0: msRest.OperationParameter = {
-  parameterPath: [
-    "options",
-    "pagingGetMultiplePagesOptions",
-    "timeout"
-  ],
-  mapper: {
-    serializedName: "timeout",
-    defaultValue: 30,
-    type: {
-      name: "Number"
-    }
-  }
-};
 export const maxresults1: msRest.OperationParameter = {
   parameterPath: [
     "options",
@@ -67,20 +76,6 @@ export const maxresults1: msRest.OperationParameter = {
   ],
   mapper: {
     serializedName: "maxresults",
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const timeout1: msRest.OperationParameter = {
-  parameterPath: [
-    "options",
-    "pagingGetOdataMultiplePagesOptions",
-    "timeout"
-  ],
-  mapper: {
-    serializedName: "timeout",
-    defaultValue: 30,
     type: {
       name: "Number"
     }
@@ -98,78 +93,6 @@ export const maxresults2: msRest.OperationParameter = {
     }
   }
 };
-export const offset: msRest.OperationURLParameter = {
-  parameterPath: [
-    "pagingGetMultiplePagesWithOffsetOptions",
-    "offset"
-  ],
-  mapper: {
-    required: true,
-    serializedName: "offset",
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const timeout2: msRest.OperationParameter = {
-  parameterPath: [
-    "pagingGetMultiplePagesWithOffsetOptions",
-    "timeout"
-  ],
-  mapper: {
-    serializedName: "timeout",
-    defaultValue: 30,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const apiVersion0: msRest.OperationQueryParameter = {
-  parameterPath: "apiVersion",
-  mapper: {
-    required: true,
-    serializedName: "api_version",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const tenant0: msRest.OperationURLParameter = {
-  parameterPath: "tenant",
-  mapper: {
-    required: true,
-    serializedName: "tenant",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const apiVersion1: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "customParameterGroup",
-    "apiVersion"
-  ],
-  mapper: {
-    required: true,
-    serializedName: "api_version",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const tenant1: msRest.OperationURLParameter = {
-  parameterPath: [
-    "customParameterGroup",
-    "tenant"
-  ],
-  mapper: {
-    required: true,
-    serializedName: "tenant",
-    type: {
-      name: "String"
-    }
-  }
-};
 export const maxresults3: msRest.OperationParameter = {
   parameterPath: [
     "options",
@@ -183,15 +106,14 @@ export const maxresults3: msRest.OperationParameter = {
     }
   }
 };
-export const timeout3: msRest.OperationParameter = {
+export const maxresults4: msRest.OperationParameter = {
   parameterPath: [
     "options",
-    "pagingGetMultiplePagesLROOptions",
-    "timeout"
+    "pagingGetMultiplePagesWithOffsetNextOptions",
+    "maxresults"
   ],
   mapper: {
-    serializedName: "timeout",
-    defaultValue: 30,
+    serializedName: "maxresults",
     type: {
       name: "Number"
     }
@@ -219,14 +141,92 @@ export const nextPageLink: msRest.OperationURLParameter = {
   },
   skipEncoding: true
 };
-export const maxresults4: msRest.OperationParameter = {
+export const offset: msRest.OperationURLParameter = {
   parameterPath: [
-    "options",
-    "pagingGetMultiplePagesWithOffsetNextOptions",
-    "maxresults"
+    "pagingGetMultiplePagesWithOffsetOptions",
+    "offset"
   ],
   mapper: {
-    serializedName: "maxresults",
+    required: true,
+    serializedName: "offset",
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const tenant0: msRest.OperationURLParameter = {
+  parameterPath: "tenant",
+  mapper: {
+    required: true,
+    serializedName: "tenant",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const tenant1: msRest.OperationURLParameter = {
+  parameterPath: [
+    "customParameterGroup",
+    "tenant"
+  ],
+  mapper: {
+    required: true,
+    serializedName: "tenant",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const timeout0: msRest.OperationParameter = {
+  parameterPath: [
+    "options",
+    "pagingGetMultiplePagesOptions",
+    "timeout"
+  ],
+  mapper: {
+    serializedName: "timeout",
+    defaultValue: 30,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const timeout1: msRest.OperationParameter = {
+  parameterPath: [
+    "options",
+    "pagingGetOdataMultiplePagesOptions",
+    "timeout"
+  ],
+  mapper: {
+    serializedName: "timeout",
+    defaultValue: 30,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const timeout2: msRest.OperationParameter = {
+  parameterPath: [
+    "pagingGetMultiplePagesWithOffsetOptions",
+    "timeout"
+  ],
+  mapper: {
+    serializedName: "timeout",
+    defaultValue: 30,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const timeout3: msRest.OperationParameter = {
+  parameterPath: [
+    "options",
+    "pagingGetMultiplePagesLROOptions",
+    "timeout"
+  ],
+  mapper: {
+    serializedName: "timeout",
+    defaultValue: 30,
     type: {
       name: "Number"
     }

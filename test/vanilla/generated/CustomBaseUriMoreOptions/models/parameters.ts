@@ -10,30 +10,6 @@
 
 import * as msRest from "ms-rest-js";
 
-export const vault: msRest.OperationURLParameter = {
-  parameterPath: "vault",
-  mapper: {
-    required: true,
-    serializedName: "vault",
-    defaultValue: '',
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-export const secret: msRest.OperationURLParameter = {
-  parameterPath: "secret",
-  mapper: {
-    required: true,
-    serializedName: "secret",
-    defaultValue: '',
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
 export const dnsSuffix: msRest.OperationURLParameter = {
   parameterPath: "dnsSuffix",
   mapper: {
@@ -56,16 +32,6 @@ export const keyName: msRest.OperationURLParameter = {
     }
   }
 };
-export const subscriptionId: msRest.OperationURLParameter = {
-  parameterPath: "subscriptionId",
-  mapper: {
-    required: true,
-    serializedName: "subscriptionId",
-    type: {
-      name: "String"
-    }
-  }
-};
 export const keyVersion: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
@@ -78,4 +44,38 @@ export const keyVersion: msRest.OperationQueryParameter = {
       name: "String"
     }
   }
+};
+export const secret: msRest.OperationURLParameter = {
+  parameterPath: "secret",
+  mapper: {
+    required: true,
+    serializedName: "secret",
+    defaultValue: '',
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+export const subscriptionId: msRest.OperationURLParameter = {
+  parameterPath: "subscriptionId",
+  mapper: {
+    required: true,
+    serializedName: "subscriptionId",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const vault: msRest.OperationURLParameter = {
+  parameterPath: "vault",
+  mapper: {
+    required: true,
+    serializedName: "vault",
+    defaultValue: '',
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
 };

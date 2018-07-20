@@ -32,16 +32,42 @@ export const customHeader0: msRest.OperationParameter = {
     }
   }
 };
-export const query0: msRest.OperationQueryParameter = {
+export const customHeader1: msRest.OperationParameter = {
   parameterPath: [
-    "parameterGroupingPostRequiredParameters",
-    "query"
+    "options",
+    "parameterGroupingPostOptionalParameters",
+    "customHeader"
   ],
   mapper: {
-    serializedName: "query",
-    defaultValue: 30,
+    serializedName: "customHeader",
     type: {
-      name: "Number"
+      name: "String"
+    }
+  }
+};
+export const headerOne: msRest.OperationParameter = {
+  parameterPath: [
+    "options",
+    "firstParameterGroup",
+    "headerOne"
+  ],
+  mapper: {
+    serializedName: "header-one",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const headerTwo: msRest.OperationParameter = {
+  parameterPath: [
+    "options",
+    "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+    "headerTwo"
+  ],
+  mapper: {
+    serializedName: "header-two",
+    type: {
+      name: "String"
     }
   }
 };
@@ -58,16 +84,16 @@ export const path: msRest.OperationURLParameter = {
     }
   }
 };
-export const customHeader1: msRest.OperationParameter = {
+export const query0: msRest.OperationQueryParameter = {
   parameterPath: [
-    "options",
-    "parameterGroupingPostOptionalParameters",
-    "customHeader"
+    "parameterGroupingPostRequiredParameters",
+    "query"
   ],
   mapper: {
-    serializedName: "customHeader",
+    serializedName: "query",
+    defaultValue: 30,
     type: {
-      name: "String"
+      name: "Number"
     }
   }
 };
@@ -85,19 +111,6 @@ export const query1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const headerOne: msRest.OperationParameter = {
-  parameterPath: [
-    "options",
-    "firstParameterGroup",
-    "headerOne"
-  ],
-  mapper: {
-    serializedName: "header-one",
-    type: {
-      name: "String"
-    }
-  }
-};
 export const queryOne: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
@@ -109,19 +122,6 @@ export const queryOne: msRest.OperationQueryParameter = {
     defaultValue: 30,
     type: {
       name: "Number"
-    }
-  }
-};
-export const headerTwo: msRest.OperationParameter = {
-  parameterPath: [
-    "options",
-    "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-    "headerTwo"
-  ],
-  mapper: {
-    serializedName: "header-two",
-    type: {
-      name: "String"
     }
   }
 };

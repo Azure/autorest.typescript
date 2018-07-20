@@ -10,16 +10,6 @@
 
 import * as msRest from "ms-rest-js";
 
-export const resourceGroupName: msRest.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    required: true,
-    serializedName: "resourceGroupName",
-    type: {
-      name: "String"
-    }
-  }
-};
 export const avset: msRest.OperationURLParameter = {
   parameterPath: "avset",
   mapper: {
@@ -28,6 +18,16 @@ export const avset: msRest.OperationURLParameter = {
     constraints: {
       MaxLength: 80
     },
+    type: {
+      name: "String"
+    }
+  }
+};
+export const resourceGroupName: msRest.OperationURLParameter = {
+  parameterPath: "resourceGroupName",
+  mapper: {
+    required: true,
+    serializedName: "resourceGroupName",
     type: {
       name: "String"
     }

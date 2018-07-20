@@ -10,6 +10,16 @@
 
 import * as msRest from "ms-rest-js";
 
+export const acceptLanguage: msRest.OperationParameter = {
+  parameterPath: "acceptLanguage",
+  mapper: {
+    serializedName: "accept-language",
+    defaultValue: 'en-US',
+    type: {
+      name: "String"
+    }
+  }
+};
 export const qualifier: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
@@ -17,16 +27,6 @@ export const qualifier: msRest.OperationQueryParameter = {
   ],
   mapper: {
     serializedName: "qualifier",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const acceptLanguage: msRest.OperationParameter = {
-  parameterPath: "acceptLanguage",
-  mapper: {
-    serializedName: "accept-language",
-    defaultValue: 'en-US',
     type: {
       name: "String"
     }

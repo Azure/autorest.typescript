@@ -10,16 +10,6 @@
 
 import * as msRest from "ms-rest-js";
 
-export const userAgent: msRest.OperationParameter = {
-  parameterPath: "userAgent",
-  mapper: {
-    required: true,
-    serializedName: "User-Agent",
-    type: {
-      name: "String"
-    }
-  }
-};
 export const contentType: msRest.OperationParameter = {
   parameterPath: "contentType",
   mapper: {
@@ -35,6 +25,16 @@ export const scenario: msRest.OperationParameter = {
   mapper: {
     required: true,
     serializedName: "scenario",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const userAgent: msRest.OperationParameter = {
+  parameterPath: "userAgent",
+  mapper: {
+    required: true,
+    serializedName: "User-Agent",
     type: {
       name: "String"
     }

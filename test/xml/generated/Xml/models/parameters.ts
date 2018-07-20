@@ -34,18 +34,6 @@ export const comp1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const restype0: msRest.OperationQueryParameter = {
-  parameterPath: "restype",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "restype",
-    defaultValue: 'service',
-    type: {
-      name: "String"
-    }
-  }
-};
 export const comp2: msRest.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
@@ -53,6 +41,18 @@ export const comp2: msRest.OperationQueryParameter = {
     isConstant: true,
     serializedName: "comp",
     defaultValue: 'acl',
+    type: {
+      name: "String"
+    }
+  }
+};
+export const restype0: msRest.OperationQueryParameter = {
+  parameterPath: "restype",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "restype",
+    defaultValue: 'service',
     type: {
       name: "String"
     }

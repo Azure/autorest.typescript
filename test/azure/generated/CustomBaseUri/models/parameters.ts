@@ -10,6 +10,16 @@
 
 import * as msRest from "ms-rest-js";
 
+export const acceptLanguage: msRest.OperationParameter = {
+  parameterPath: "acceptLanguage",
+  mapper: {
+    serializedName: "accept-language",
+    defaultValue: 'en-US',
+    type: {
+      name: "String"
+    }
+  }
+};
 export const accountName: msRest.OperationURLParameter = {
   parameterPath: "accountName",
   mapper: {
@@ -33,14 +43,4 @@ export const host: msRest.OperationURLParameter = {
     }
   },
   skipEncoding: true
-};
-export const acceptLanguage: msRest.OperationParameter = {
-  parameterPath: "acceptLanguage",
-  mapper: {
-    serializedName: "accept-language",
-    defaultValue: 'en-US',
-    type: {
-      name: "String"
-    }
-  }
 };

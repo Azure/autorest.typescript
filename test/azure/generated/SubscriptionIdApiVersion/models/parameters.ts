@@ -10,21 +10,11 @@
 
 import * as msRest from "ms-rest-js";
 
-export const subscriptionId: msRest.OperationURLParameter = {
-  parameterPath: "subscriptionId",
+export const acceptLanguage: msRest.OperationParameter = {
+  parameterPath: "acceptLanguage",
   mapper: {
-    required: true,
-    serializedName: "subscriptionId",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const resourceGroupName: msRest.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    required: true,
-    serializedName: "resourceGroupName",
+    serializedName: "accept-language",
+    defaultValue: 'en-US',
     type: {
       name: "String"
     }
@@ -40,11 +30,21 @@ export const apiVersion: msRest.OperationQueryParameter = {
     }
   }
 };
-export const acceptLanguage: msRest.OperationParameter = {
-  parameterPath: "acceptLanguage",
+export const resourceGroupName: msRest.OperationURLParameter = {
+  parameterPath: "resourceGroupName",
   mapper: {
-    serializedName: "accept-language",
-    defaultValue: 'en-US',
+    required: true,
+    serializedName: "resourceGroupName",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const subscriptionId: msRest.OperationURLParameter = {
+  parameterPath: "subscriptionId",
+  mapper: {
+    required: true,
+    serializedName: "subscriptionId",
     type: {
       name: "String"
     }

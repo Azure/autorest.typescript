@@ -20,26 +20,6 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
-export const xMsClientRequestId: msRest.OperationParameter = {
-  parameterPath: "xMsClientRequestId",
-  mapper: {
-    required: true,
-    serializedName: "x-ms-client-request-id",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const subscriptionId: msRest.OperationURLParameter = {
-  parameterPath: "subscriptionId",
-  mapper: {
-    required: true,
-    serializedName: "subscriptionId",
-    type: {
-      name: "String"
-    }
-  }
-};
 export const apiVersion0: msRest.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
@@ -74,29 +54,52 @@ export const apiVersion2: msRest.OperationQueryParameter = {
     }
   }
 };
-export const unencodedPathParam0: msRest.OperationURLParameter = {
-  parameterPath: "unencodedPathParam",
+export const filter: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "filter"
+  ],
   mapper: {
-    required: true,
-    serializedName: "unencodedPathParam",
+    serializedName: "$filter",
     type: {
       name: "String"
     }
-  },
-  skipEncoding: true
+  }
 };
-export const unencodedPathParam1: msRest.OperationURLParameter = {
-  parameterPath: "unencodedPathParam",
+export const fooClientRequestId0: msRest.OperationParameter = {
+  parameterPath: "fooClientRequestId",
   mapper: {
     required: true,
-    isConstant: true,
-    serializedName: "unencodedPathParam",
-    defaultValue: 'path1/path2/path3',
+    serializedName: "foo-client-request-id",
     type: {
       name: "String"
     }
-  },
-  skipEncoding: true
+  }
+};
+export const fooClientRequestId1: msRest.OperationParameter = {
+  parameterPath: [
+    "headerCustomNamedRequestIdParamGroupingParameters",
+    "fooClientRequestId"
+  ],
+  mapper: {
+    required: true,
+    serializedName: "foo-client-request-id",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const orderby: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "orderby"
+  ],
+  mapper: {
+    serializedName: "$orderby",
+    type: {
+      name: "String"
+    }
+  }
 };
 export const q10: msRest.OperationQueryParameter = {
   parameterPath: "q1",
@@ -135,13 +138,11 @@ export const q12: msRest.OperationQueryParameter = {
   },
   skipEncoding: true
 };
-export const filter: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "filter"
-  ],
+export const subscriptionId: msRest.OperationURLParameter = {
+  parameterPath: "subscriptionId",
   mapper: {
-    serializedName: "$filter",
+    required: true,
+    serializedName: "subscriptionId",
     type: {
       name: "String"
     }
@@ -159,36 +160,35 @@ export const top: msRest.OperationQueryParameter = {
     }
   }
 };
-export const orderby: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "orderby"
-  ],
+export const unencodedPathParam0: msRest.OperationURLParameter = {
+  parameterPath: "unencodedPathParam",
   mapper: {
-    serializedName: "$orderby",
+    required: true,
+    serializedName: "unencodedPathParam",
     type: {
       name: "String"
     }
-  }
+  },
+  skipEncoding: true
 };
-export const fooClientRequestId0: msRest.OperationParameter = {
-  parameterPath: "fooClientRequestId",
+export const unencodedPathParam1: msRest.OperationURLParameter = {
+  parameterPath: "unencodedPathParam",
   mapper: {
     required: true,
-    serializedName: "foo-client-request-id",
+    isConstant: true,
+    serializedName: "unencodedPathParam",
+    defaultValue: 'path1/path2/path3',
     type: {
       name: "String"
     }
-  }
+  },
+  skipEncoding: true
 };
-export const fooClientRequestId1: msRest.OperationParameter = {
-  parameterPath: [
-    "headerCustomNamedRequestIdParamGroupingParameters",
-    "fooClientRequestId"
-  ],
+export const xMsClientRequestId: msRest.OperationParameter = {
+  parameterPath: "xMsClientRequestId",
   mapper: {
     required: true,
-    serializedName: "foo-client-request-id",
+    serializedName: "x-ms-client-request-id",
     type: {
       name: "String"
     }

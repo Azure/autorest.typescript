@@ -10,13 +10,13 @@
 
 import * as msRest from "ms-rest-js";
 
-export const subscriptionId0: msRest.OperationURLParameter = {
-  parameterPath: "subscriptionId",
+export const apiVersion: msRest.OperationQueryParameter = {
+  parameterPath: "apiVersion",
   mapper: {
     required: true,
     isConstant: true,
-    serializedName: "subscriptionId",
-    defaultValue: '123456',
+    serializedName: "api-version",
+    defaultValue: '2014-04-01-preview',
     type: {
       name: "String"
     }
@@ -32,13 +32,13 @@ export const resourceGroupName: msRest.OperationURLParameter = {
     }
   }
 };
-export const apiVersion: msRest.OperationQueryParameter = {
-  parameterPath: "apiVersion",
+export const subscriptionId0: msRest.OperationURLParameter = {
+  parameterPath: "subscriptionId",
   mapper: {
     required: true,
     isConstant: true,
-    serializedName: "api-version",
-    defaultValue: '2014-04-01-preview',
+    serializedName: "subscriptionId",
+    defaultValue: '123456',
     type: {
       name: "String"
     }

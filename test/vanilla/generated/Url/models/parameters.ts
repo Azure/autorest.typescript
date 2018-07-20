@@ -10,263 +10,6 @@
 
 import * as msRest from "ms-rest-js";
 
-export const boolPath0: msRest.OperationURLParameter = {
-  parameterPath: "boolPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "boolPath",
-    defaultValue: true,
-    type: {
-      name: "Boolean"
-    }
-  }
-};
-export const boolPath1: msRest.OperationURLParameter = {
-  parameterPath: "boolPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "boolPath",
-    defaultValue: false,
-    type: {
-      name: "Boolean"
-    }
-  }
-};
-export const intPath0: msRest.OperationURLParameter = {
-  parameterPath: "intPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "intPath",
-    defaultValue: 1000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const intPath1: msRest.OperationURLParameter = {
-  parameterPath: "intPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "intPath",
-    defaultValue: -1000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const longPath0: msRest.OperationURLParameter = {
-  parameterPath: "longPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "longPath",
-    defaultValue: 10000000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const longPath1: msRest.OperationURLParameter = {
-  parameterPath: "longPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "longPath",
-    defaultValue: -10000000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const floatPath0: msRest.OperationURLParameter = {
-  parameterPath: "floatPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "floatPath",
-    defaultValue: 103400000000000000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const floatPath1: msRest.OperationURLParameter = {
-  parameterPath: "floatPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "floatPath",
-    defaultValue: -1.034e-20,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const doublePath0: msRest.OperationURLParameter = {
-  parameterPath: "doublePath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "doublePath",
-    defaultValue: 9999999.999,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const doublePath1: msRest.OperationURLParameter = {
-  parameterPath: "doublePath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "doublePath",
-    defaultValue: -9999999.999,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const stringPath0: msRest.OperationURLParameter = {
-  parameterPath: "stringPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "stringPath",
-    defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
-    type: {
-      name: "String"
-    }
-  }
-};
-export const stringPath1: msRest.OperationURLParameter = {
-  parameterPath: "stringPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "stringPath",
-    defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
-    type: {
-      name: "String"
-    }
-  }
-};
-export const stringPath2: msRest.OperationURLParameter = {
-  parameterPath: "stringPath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "stringPath",
-    defaultValue: '',
-    type: {
-      name: "String"
-    }
-  }
-};
-export const stringPath3: msRest.OperationURLParameter = {
-  parameterPath: "stringPath",
-  mapper: {
-    required: true,
-    serializedName: "stringPath",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const enumPath: msRest.OperationURLParameter = {
-  parameterPath: "enumPath",
-  mapper: {
-    required: true,
-    serializedName: "enumPath",
-    type: {
-      name: "Enum",
-      allowedValues: [
-        "red color",
-        "green color",
-        "blue color"
-      ]
-    }
-  }
-};
-export const bytePath0: msRest.OperationURLParameter = {
-  parameterPath: "bytePath",
-  mapper: {
-    required: true,
-    serializedName: "bytePath",
-    type: {
-      name: "ByteArray"
-    }
-  }
-};
-export const bytePath1: msRest.OperationURLParameter = {
-  parameterPath: "bytePath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "bytePath",
-    defaultValue: new Uint8Array(0),
-    type: {
-      name: "ByteArray"
-    }
-  }
-};
-export const datePath0: msRest.OperationURLParameter = {
-  parameterPath: "datePath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "datePath",
-    defaultValue: new Date('2012-01-01'),
-    type: {
-      name: "Date"
-    }
-  }
-};
-export const datePath1: msRest.OperationURLParameter = {
-  parameterPath: "datePath",
-  mapper: {
-    required: true,
-    serializedName: "datePath",
-    type: {
-      name: "Date"
-    }
-  }
-};
-export const dateTimePath0: msRest.OperationURLParameter = {
-  parameterPath: "dateTimePath",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "dateTimePath",
-    defaultValue: new Date('2012-01-01T01:01:01Z'),
-    type: {
-      name: "DateTime"
-    }
-  }
-};
-export const dateTimePath1: msRest.OperationURLParameter = {
-  parameterPath: "dateTimePath",
-  mapper: {
-    required: true,
-    serializedName: "dateTimePath",
-    type: {
-      name: "DateTime"
-    }
-  }
-};
-export const base64UrlPath: msRest.OperationURLParameter = {
-  parameterPath: "base64UrlPath",
-  mapper: {
-    required: true,
-    serializedName: "base64UrlPath",
-    type: {
-      name: "Base64Url"
-    }
-  }
-};
 export const arrayPath: msRest.OperationURLParameter = {
   parameterPath: "arrayPath",
   mapper: {
@@ -280,333 +23,6 @@ export const arrayPath: msRest.OperationURLParameter = {
           name: "String"
         }
       }
-    }
-  }
-};
-export const unixTimeUrlPath: msRest.OperationURLParameter = {
-  parameterPath: "unixTimeUrlPath",
-  mapper: {
-    required: true,
-    serializedName: "unixTimeUrlPath",
-    type: {
-      name: "UnixTime"
-    }
-  }
-};
-export const boolQuery0: msRest.OperationQueryParameter = {
-  parameterPath: "boolQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "boolQuery",
-    defaultValue: true,
-    type: {
-      name: "Boolean"
-    }
-  }
-};
-export const boolQuery1: msRest.OperationQueryParameter = {
-  parameterPath: "boolQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "boolQuery",
-    defaultValue: false,
-    type: {
-      name: "Boolean"
-    }
-  }
-};
-export const boolQuery2: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "boolQuery"
-  ],
-  mapper: {
-    serializedName: "boolQuery",
-    type: {
-      name: "Boolean"
-    }
-  }
-};
-export const intQuery0: msRest.OperationQueryParameter = {
-  parameterPath: "intQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "intQuery",
-    defaultValue: 1000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const intQuery1: msRest.OperationQueryParameter = {
-  parameterPath: "intQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "intQuery",
-    defaultValue: -1000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const intQuery2: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "intQuery"
-  ],
-  mapper: {
-    serializedName: "intQuery",
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const longQuery0: msRest.OperationQueryParameter = {
-  parameterPath: "longQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "longQuery",
-    defaultValue: 10000000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const longQuery1: msRest.OperationQueryParameter = {
-  parameterPath: "longQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "longQuery",
-    defaultValue: -10000000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const longQuery2: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "longQuery"
-  ],
-  mapper: {
-    serializedName: "longQuery",
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const floatQuery0: msRest.OperationQueryParameter = {
-  parameterPath: "floatQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "floatQuery",
-    defaultValue: 103400000000000000000,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const floatQuery1: msRest.OperationQueryParameter = {
-  parameterPath: "floatQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "floatQuery",
-    defaultValue: -1.034e-20,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const floatQuery2: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "floatQuery"
-  ],
-  mapper: {
-    serializedName: "floatQuery",
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const doubleQuery0: msRest.OperationQueryParameter = {
-  parameterPath: "doubleQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "doubleQuery",
-    defaultValue: 9999999.999,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const doubleQuery1: msRest.OperationQueryParameter = {
-  parameterPath: "doubleQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "doubleQuery",
-    defaultValue: -9999999.999,
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const doubleQuery2: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "doubleQuery"
-  ],
-  mapper: {
-    serializedName: "doubleQuery",
-    type: {
-      name: "Number"
-    }
-  }
-};
-export const stringQuery0: msRest.OperationQueryParameter = {
-  parameterPath: "stringQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "stringQuery",
-    defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
-    type: {
-      name: "String"
-    }
-  }
-};
-export const stringQuery1: msRest.OperationQueryParameter = {
-  parameterPath: "stringQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "stringQuery",
-    defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
-    type: {
-      name: "String"
-    }
-  }
-};
-export const stringQuery2: msRest.OperationQueryParameter = {
-  parameterPath: "stringQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "stringQuery",
-    defaultValue: '',
-    type: {
-      name: "String"
-    }
-  }
-};
-export const stringQuery3: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "stringQuery"
-  ],
-  mapper: {
-    serializedName: "stringQuery",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const enumQuery: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "enumQuery"
-  ],
-  mapper: {
-    serializedName: "enumQuery",
-    type: {
-      name: "Enum",
-      allowedValues: [
-        "red color",
-        "green color",
-        "blue color"
-      ]
-    }
-  }
-};
-export const byteQuery0: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "byteQuery"
-  ],
-  mapper: {
-    serializedName: "byteQuery",
-    type: {
-      name: "ByteArray"
-    }
-  }
-};
-export const byteQuery1: msRest.OperationQueryParameter = {
-  parameterPath: "byteQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "byteQuery",
-    defaultValue: new Uint8Array(0),
-    type: {
-      name: "ByteArray"
-    }
-  }
-};
-export const dateQuery0: msRest.OperationQueryParameter = {
-  parameterPath: "dateQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "dateQuery",
-    defaultValue: new Date('2012-01-01'),
-    type: {
-      name: "Date"
-    }
-  }
-};
-export const dateQuery1: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "dateQuery"
-  ],
-  mapper: {
-    serializedName: "dateQuery",
-    type: {
-      name: "Date"
-    }
-  }
-};
-export const dateTimeQuery0: msRest.OperationQueryParameter = {
-  parameterPath: "dateTimeQuery",
-  mapper: {
-    required: true,
-    isConstant: true,
-    serializedName: "dateTimeQuery",
-    defaultValue: new Date('2012-01-01T01:01:01Z'),
-    type: {
-      name: "DateTime"
-    }
-  }
-};
-export const dateTimeQuery1: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "dateTimeQuery"
-  ],
-  mapper: {
-    serializedName: "dateTimeQuery",
-    type: {
-      name: "DateTime"
     }
   }
 };
@@ -686,6 +102,445 @@ export const arrayQuery3: msRest.OperationQueryParameter = {
   },
   collectionFormat: msRest.QueryCollectionFormat.Pipes
 };
+export const base64UrlPath: msRest.OperationURLParameter = {
+  parameterPath: "base64UrlPath",
+  mapper: {
+    required: true,
+    serializedName: "base64UrlPath",
+    type: {
+      name: "Base64Url"
+    }
+  }
+};
+export const boolPath0: msRest.OperationURLParameter = {
+  parameterPath: "boolPath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "boolPath",
+    defaultValue: true,
+    type: {
+      name: "Boolean"
+    }
+  }
+};
+export const boolPath1: msRest.OperationURLParameter = {
+  parameterPath: "boolPath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "boolPath",
+    defaultValue: false,
+    type: {
+      name: "Boolean"
+    }
+  }
+};
+export const boolQuery0: msRest.OperationQueryParameter = {
+  parameterPath: "boolQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "boolQuery",
+    defaultValue: true,
+    type: {
+      name: "Boolean"
+    }
+  }
+};
+export const boolQuery1: msRest.OperationQueryParameter = {
+  parameterPath: "boolQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "boolQuery",
+    defaultValue: false,
+    type: {
+      name: "Boolean"
+    }
+  }
+};
+export const boolQuery2: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "boolQuery"
+  ],
+  mapper: {
+    serializedName: "boolQuery",
+    type: {
+      name: "Boolean"
+    }
+  }
+};
+export const bytePath0: msRest.OperationURLParameter = {
+  parameterPath: "bytePath",
+  mapper: {
+    required: true,
+    serializedName: "bytePath",
+    type: {
+      name: "ByteArray"
+    }
+  }
+};
+export const bytePath1: msRest.OperationURLParameter = {
+  parameterPath: "bytePath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "bytePath",
+    defaultValue: new Uint8Array(0),
+    type: {
+      name: "ByteArray"
+    }
+  }
+};
+export const byteQuery0: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "byteQuery"
+  ],
+  mapper: {
+    serializedName: "byteQuery",
+    type: {
+      name: "ByteArray"
+    }
+  }
+};
+export const byteQuery1: msRest.OperationQueryParameter = {
+  parameterPath: "byteQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "byteQuery",
+    defaultValue: new Uint8Array(0),
+    type: {
+      name: "ByteArray"
+    }
+  }
+};
+export const datePath0: msRest.OperationURLParameter = {
+  parameterPath: "datePath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "datePath",
+    defaultValue: new Date('2012-01-01'),
+    type: {
+      name: "Date"
+    }
+  }
+};
+export const datePath1: msRest.OperationURLParameter = {
+  parameterPath: "datePath",
+  mapper: {
+    required: true,
+    serializedName: "datePath",
+    type: {
+      name: "Date"
+    }
+  }
+};
+export const dateQuery0: msRest.OperationQueryParameter = {
+  parameterPath: "dateQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "dateQuery",
+    defaultValue: new Date('2012-01-01'),
+    type: {
+      name: "Date"
+    }
+  }
+};
+export const dateQuery1: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "dateQuery"
+  ],
+  mapper: {
+    serializedName: "dateQuery",
+    type: {
+      name: "Date"
+    }
+  }
+};
+export const dateTimePath0: msRest.OperationURLParameter = {
+  parameterPath: "dateTimePath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "dateTimePath",
+    defaultValue: new Date('2012-01-01T01:01:01Z'),
+    type: {
+      name: "DateTime"
+    }
+  }
+};
+export const dateTimePath1: msRest.OperationURLParameter = {
+  parameterPath: "dateTimePath",
+  mapper: {
+    required: true,
+    serializedName: "dateTimePath",
+    type: {
+      name: "DateTime"
+    }
+  }
+};
+export const dateTimeQuery0: msRest.OperationQueryParameter = {
+  parameterPath: "dateTimeQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "dateTimeQuery",
+    defaultValue: new Date('2012-01-01T01:01:01Z'),
+    type: {
+      name: "DateTime"
+    }
+  }
+};
+export const dateTimeQuery1: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "dateTimeQuery"
+  ],
+  mapper: {
+    serializedName: "dateTimeQuery",
+    type: {
+      name: "DateTime"
+    }
+  }
+};
+export const doublePath0: msRest.OperationURLParameter = {
+  parameterPath: "doublePath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "doublePath",
+    defaultValue: 9999999.999,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const doublePath1: msRest.OperationURLParameter = {
+  parameterPath: "doublePath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "doublePath",
+    defaultValue: -9999999.999,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const doubleQuery0: msRest.OperationQueryParameter = {
+  parameterPath: "doubleQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "doubleQuery",
+    defaultValue: 9999999.999,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const doubleQuery1: msRest.OperationQueryParameter = {
+  parameterPath: "doubleQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "doubleQuery",
+    defaultValue: -9999999.999,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const doubleQuery2: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "doubleQuery"
+  ],
+  mapper: {
+    serializedName: "doubleQuery",
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const enumPath: msRest.OperationURLParameter = {
+  parameterPath: "enumPath",
+  mapper: {
+    required: true,
+    serializedName: "enumPath",
+    type: {
+      name: "Enum",
+      allowedValues: [
+        "red color",
+        "green color",
+        "blue color"
+      ]
+    }
+  }
+};
+export const enumQuery: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "enumQuery"
+  ],
+  mapper: {
+    serializedName: "enumQuery",
+    type: {
+      name: "Enum",
+      allowedValues: [
+        "red color",
+        "green color",
+        "blue color"
+      ]
+    }
+  }
+};
+export const floatPath0: msRest.OperationURLParameter = {
+  parameterPath: "floatPath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "floatPath",
+    defaultValue: 103400000000000000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const floatPath1: msRest.OperationURLParameter = {
+  parameterPath: "floatPath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "floatPath",
+    defaultValue: -1.034e-20,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const floatQuery0: msRest.OperationQueryParameter = {
+  parameterPath: "floatQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "floatQuery",
+    defaultValue: 103400000000000000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const floatQuery1: msRest.OperationQueryParameter = {
+  parameterPath: "floatQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "floatQuery",
+    defaultValue: -1.034e-20,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const floatQuery2: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "floatQuery"
+  ],
+  mapper: {
+    serializedName: "floatQuery",
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const globalStringPath: msRest.OperationURLParameter = {
+  parameterPath: "globalStringPath",
+  mapper: {
+    required: true,
+    serializedName: "globalStringPath",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const globalStringQuery: msRest.OperationQueryParameter = {
+  parameterPath: "globalStringQuery",
+  mapper: {
+    serializedName: "globalStringQuery",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const intPath0: msRest.OperationURLParameter = {
+  parameterPath: "intPath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "intPath",
+    defaultValue: 1000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const intPath1: msRest.OperationURLParameter = {
+  parameterPath: "intPath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "intPath",
+    defaultValue: -1000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const intQuery0: msRest.OperationQueryParameter = {
+  parameterPath: "intQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "intQuery",
+    defaultValue: 1000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const intQuery1: msRest.OperationQueryParameter = {
+  parameterPath: "intQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "intQuery",
+    defaultValue: -1000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const intQuery2: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "intQuery"
+  ],
+  mapper: {
+    serializedName: "intQuery",
+    type: {
+      name: "Number"
+    }
+  }
+};
 export const localStringPath: msRest.OperationURLParameter = {
   parameterPath: "localStringPath",
   mapper: {
@@ -705,6 +560,66 @@ export const localStringQuery: msRest.OperationQueryParameter = {
     serializedName: "localStringQuery",
     type: {
       name: "String"
+    }
+  }
+};
+export const longPath0: msRest.OperationURLParameter = {
+  parameterPath: "longPath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "longPath",
+    defaultValue: 10000000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const longPath1: msRest.OperationURLParameter = {
+  parameterPath: "longPath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "longPath",
+    defaultValue: -10000000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const longQuery0: msRest.OperationQueryParameter = {
+  parameterPath: "longQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "longQuery",
+    defaultValue: 10000000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const longQuery1: msRest.OperationQueryParameter = {
+  parameterPath: "longQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "longQuery",
+    defaultValue: -10000000000,
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const longQuery2: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "longQuery"
+  ],
+  mapper: {
+    serializedName: "longQuery",
+    type: {
+      name: "Number"
     }
   }
 };
@@ -730,22 +645,107 @@ export const pathItemStringQuery: msRest.OperationQueryParameter = {
     }
   }
 };
-export const globalStringPath: msRest.OperationURLParameter = {
-  parameterPath: "globalStringPath",
+export const stringPath0: msRest.OperationURLParameter = {
+  parameterPath: "stringPath",
   mapper: {
     required: true,
-    serializedName: "globalStringPath",
+    isConstant: true,
+    serializedName: "stringPath",
+    defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
     type: {
       name: "String"
     }
   }
 };
-export const globalStringQuery: msRest.OperationQueryParameter = {
-  parameterPath: "globalStringQuery",
+export const stringPath1: msRest.OperationURLParameter = {
+  parameterPath: "stringPath",
   mapper: {
-    serializedName: "globalStringQuery",
+    required: true,
+    isConstant: true,
+    serializedName: "stringPath",
+    defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
     type: {
       name: "String"
+    }
+  }
+};
+export const stringPath2: msRest.OperationURLParameter = {
+  parameterPath: "stringPath",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "stringPath",
+    defaultValue: '',
+    type: {
+      name: "String"
+    }
+  }
+};
+export const stringPath3: msRest.OperationURLParameter = {
+  parameterPath: "stringPath",
+  mapper: {
+    required: true,
+    serializedName: "stringPath",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const stringQuery0: msRest.OperationQueryParameter = {
+  parameterPath: "stringQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "stringQuery",
+    defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
+    type: {
+      name: "String"
+    }
+  }
+};
+export const stringQuery1: msRest.OperationQueryParameter = {
+  parameterPath: "stringQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "stringQuery",
+    defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
+    type: {
+      name: "String"
+    }
+  }
+};
+export const stringQuery2: msRest.OperationQueryParameter = {
+  parameterPath: "stringQuery",
+  mapper: {
+    required: true,
+    isConstant: true,
+    serializedName: "stringQuery",
+    defaultValue: '',
+    type: {
+      name: "String"
+    }
+  }
+};
+export const stringQuery3: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "stringQuery"
+  ],
+  mapper: {
+    serializedName: "stringQuery",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const unixTimeUrlPath: msRest.OperationURLParameter = {
+  parameterPath: "unixTimeUrlPath",
+  mapper: {
+    required: true,
+    serializedName: "unixTimeUrlPath",
+    type: {
+      name: "UnixTime"
     }
   }
 };

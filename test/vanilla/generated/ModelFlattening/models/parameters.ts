@@ -10,32 +10,6 @@
 
 import * as msRest from "ms-rest-js";
 
-export const name: msRest.OperationURLParameter = {
-  parameterPath: [
-    "flattenParameterGroup",
-    "name"
-  ],
-  mapper: {
-    required: true,
-    serializedName: "name",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const productId: msRest.OperationParameter = {
-  parameterPath: [
-    "flattenParameterGroup",
-    "productId"
-  ],
-  mapper: {
-    required: true,
-    serializedName: "base_product_id",
-    type: {
-      name: "String"
-    }
-  }
-};
 export const description: msRest.OperationParameter = {
   parameterPath: [
     "flattenParameterGroup",
@@ -43,6 +17,18 @@ export const description: msRest.OperationParameter = {
   ],
   mapper: {
     serializedName: "base_product_description",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const genericValue: msRest.OperationParameter = {
+  parameterPath: [
+    "flattenParameterGroup",
+    "genericValue"
+  ],
+  mapper: {
+    serializedName: "details.max_product_image.generic_value",
     type: {
       name: "String"
     }
@@ -61,13 +47,14 @@ export const maxProductDisplayName: msRest.OperationParameter = {
     }
   }
 };
-export const genericValue: msRest.OperationParameter = {
+export const name: msRest.OperationURLParameter = {
   parameterPath: [
     "flattenParameterGroup",
-    "genericValue"
+    "name"
   ],
   mapper: {
-    serializedName: "details.max_product_image.generic_value",
+    required: true,
+    serializedName: "name",
     type: {
       name: "String"
     }
@@ -80,6 +67,19 @@ export const odatavalue: msRest.OperationParameter = {
   ],
   mapper: {
     serializedName: "details.max_product_image.@odata\\.value",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const productId: msRest.OperationParameter = {
+  parameterPath: [
+    "flattenParameterGroup",
+    "productId"
+  ],
+  mapper: {
+    required: true,
+    serializedName: "base_product_id",
     type: {
       name: "String"
     }
