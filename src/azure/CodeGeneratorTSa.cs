@@ -41,10 +41,10 @@ namespace AutoRest.TypeScript.Azure
             }
 
             GeneratorSettingsTS generatorSettings = Singleton<GeneratorSettingsTS>.Instance;
-
             codeModel.PackageName = Settings.Instance.PackageName;
             codeModel.PackageVersion = Settings.Instance.PackageVersion;
             codeModel.OutputFolder = generatorSettings.OutputFolder;
+            codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
 
             // Service client
             var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel };
