@@ -65,7 +65,7 @@ enum Colors {
   BlueColor = 'blue_color',
 }
 ```
-You may instead generate a union of literal values (example below) by passing `----model-enum-as-union=true` to AutoRest.
+You may instead generate a union of literal values (example below) by passing `--model-enum-as-union=true` to AutoRest.
 ```ts
 type Colors = 'red color' | 'green-color' | 'blue_color';
 ```
