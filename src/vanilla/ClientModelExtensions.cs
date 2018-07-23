@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.TypeScript
@@ -1088,6 +1089,54 @@ namespace AutoRest.TypeScript
                 paramValue = isBrowser ? "new ReadableStream()" : "new require(\"stream\").Readable()";
             }
             return paramValue;
+        }
+
+        public static string ToKebabCase(this string value)
+        {
+            string result;
+
+            if (string.IsNullOrEmpty(value))
+            {
+                result = value;
+            }
+            else
+            {
+                bool changed = false;
+                StringBuilder builder = new StringBuilder();
+
+                int valueLength = value == null ? 0 : value.Length;
+                bool previousCharacterWasCapitalized = false;
+                for (int i = 0; i < valueLength; ++i)
+                {
+                    char currentCharacter = value[i];
+                    bool currentCharacterIsCapitalized = char.IsUpper(currentCharacter);
+
+                    if (currentCharacterIsCapitalized)
+                    {
+                        changed = true;
+
+                        if (i != 0 && !previousCharacterWasCapitalized)
+                        {
+                            builder.Append('-');
+                        }
+                    }
+
+                    builder.Append(char.ToLower(currentCharacter));
+
+                    previousCharacterWasCapitalized = currentCharacterIsCapitalized;
+                }
+
+                if (!changed)
+                {
+                    result = value;
+                }
+                else
+                {
+                    result = builder.ToString();
+                }
+            }
+
+            return result;
         }
     }
 }
