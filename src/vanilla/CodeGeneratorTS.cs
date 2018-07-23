@@ -25,6 +25,17 @@ namespace AutoRest.TypeScript
 
         public override string UsageInstructions => $"The {ClientRuntimePackage} or higher npm package is required to execute the generated code.";
 
+
+        protected void InitializeSettings(CodeModelTS codeModel)
+        {
+            GeneratorSettingsTS generatorSettings = Singleton<GeneratorSettingsTS>.Instance;
+            codeModel.PackageName = Settings.Instance.PackageName;
+            codeModel.PackageVersion = Settings.Instance.PackageVersion;
+            codeModel.OutputFolder = generatorSettings.OutputFolder;
+            codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
+            codeModel.GenerateMetadata = generatorSettings.GenerateMetadata;
+        }
+
         /// <summary>
         ///     Generate TypeScript client code
         /// </summary>
@@ -38,12 +49,7 @@ namespace AutoRest.TypeScript
                 throw new InvalidCastException("CodeModel is not a TypeScript code model.");
             }
 
-            GeneratorSettingsTS generatorSettings = Singleton<GeneratorSettingsTS>.Instance;
-
-            codeModel.PackageName = Settings.Instance.PackageName;
-            codeModel.PackageVersion = Settings.Instance.PackageVersion;
-            codeModel.OutputFolder = generatorSettings.OutputFolder;
-            codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
+            InitializeSettings(codeModel);
 
             // Service client
             var serviceClientTemplate = new ServiceClientTemplate {Model = codeModel};
@@ -82,7 +88,7 @@ namespace AutoRest.TypeScript
                 }
             }
 
-            if (generatorSettings.GenerateMetadata)
+            if (codeModel.GenerateMetadata)
             {
                 // package.json
                 var packageJson = new PackageJson { Model = codeModel };
