@@ -40,11 +40,7 @@ namespace AutoRest.TypeScript.Azure
                 throw new InvalidCastException("CodeModel is not a Azure TypeScript code model.");
             }
 
-            GeneratorSettingsTS generatorSettings = Singleton<GeneratorSettingsTS>.Instance;
-            codeModel.PackageName = Settings.Instance.PackageName;
-            codeModel.PackageVersion = Settings.Instance.PackageVersion;
-            codeModel.OutputFolder = generatorSettings.OutputFolder;
-            codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
+            InitializeSettings(codeModel);
 
             // Service client
             var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel };
@@ -71,7 +67,7 @@ namespace AutoRest.TypeScript.Azure
                 }
             }
 
-            if (generatorSettings.GenerateMetadata)
+            if (codeModel.GenerateMetadata)
             {
                 // package.json
                 var packageJson = new PackageJson { Model = codeModel };

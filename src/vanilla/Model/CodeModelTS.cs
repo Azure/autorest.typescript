@@ -125,6 +125,8 @@ namespace AutoRest.TypeScript.Model
 
         public bool ModelEnumAsUnion { get; set; }
 
+        public bool GenerateMetadata { get; set; }
+
         public string HomePageUrl
         {
             get
