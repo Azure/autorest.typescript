@@ -481,7 +481,7 @@ describe('typescript', function () {
     it('should throw on Post202NoLocation', function (done) {
       testClient.lROSADs.post202NoLocation({ product: product }, function (error, result) {
         should.exist(error);
-        error.message.should.containEql('Location header is missing from long running operation.');
+        error.message.should.equal(`Can't determine long running operation polling strategy from initial response.`);
         done();
       });
     });
