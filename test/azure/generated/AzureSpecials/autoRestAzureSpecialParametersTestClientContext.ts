@@ -73,6 +73,7 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
     if (!this.baseUri) {
       this.baseUri = 'http://localhost:3000';
     }
+    this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
     this.subscriptionId = subscriptionId;
 

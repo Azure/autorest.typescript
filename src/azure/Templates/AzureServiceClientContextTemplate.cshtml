@@ -92,6 +92,13 @@ else
     @:this.baseUri = '@Model.BaseUrl';
 }
 
+@if (!string.IsNullOrEmpty(Model.RequestContentType))
+{
+<text>
+    this.requestContentType = "@(Model.RequestContentType)";
+</text>
+}
+
 @foreach (var param in requiredParameters)
 {
   @:  this.@(param.Name) = @(param.Name);

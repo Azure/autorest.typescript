@@ -725,7 +725,6 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -753,7 +752,6 @@ const beginPutAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -835,7 +833,6 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LRORetrysPost202Retry200Headers
@@ -860,7 +857,6 @@ const beginPostAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = 
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders

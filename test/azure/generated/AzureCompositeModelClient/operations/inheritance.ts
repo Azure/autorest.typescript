@@ -151,7 +151,6 @@ const putValidOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

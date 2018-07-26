@@ -633,7 +633,6 @@ const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.CheckNameAvailabilityResult
@@ -715,7 +714,6 @@ const updateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.StorageAccount
@@ -825,7 +823,6 @@ const regenerateKeyOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.StorageAccountKeys
@@ -858,7 +855,6 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.StorageAccount

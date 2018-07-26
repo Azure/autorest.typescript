@@ -44,6 +44,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceCl
 
     this.host = 'host';
     this.baseUri = "http://{accountName}{host}";
+    this.requestContentType = "application/json; charset=utf-8";
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.host !== null && options.host !== undefined) {

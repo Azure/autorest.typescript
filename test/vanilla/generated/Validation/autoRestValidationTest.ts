@@ -265,7 +265,6 @@ const validationOfBodyOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -303,7 +302,6 @@ const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product

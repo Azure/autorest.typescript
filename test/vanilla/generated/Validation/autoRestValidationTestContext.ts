@@ -56,6 +56,7 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
     if (!this.baseUri) {
       this.baseUri = "http://localhost:3000";
     }
+    this.requestContentType = "application/json; charset=utf-8";
     this.subscriptionId = subscriptionId;
     this.apiVersion = apiVersion;
 

@@ -813,7 +813,6 @@ const put200OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -838,7 +837,6 @@ const patch200OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -863,7 +861,6 @@ const post200OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -888,7 +885,6 @@ const delete200OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -913,7 +909,6 @@ const put201OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     201: {},
     default: {
@@ -938,7 +933,6 @@ const post201OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     201: {},
     default: {
@@ -963,7 +957,6 @@ const put202OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     default: {
@@ -988,7 +981,6 @@ const patch202OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     default: {
@@ -1013,7 +1005,6 @@ const post202OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     default: {
@@ -1038,7 +1029,6 @@ const delete202OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     default: {
@@ -1075,7 +1065,6 @@ const put204OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     default: {
@@ -1100,7 +1089,6 @@ const patch204OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     default: {
@@ -1125,7 +1113,6 @@ const post204OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     default: {
@@ -1150,7 +1137,6 @@ const delete204OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     default: {

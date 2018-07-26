@@ -558,7 +558,6 @@ const putArrayOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -616,7 +615,6 @@ const putWrappedArrayOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -674,7 +672,6 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -720,7 +717,6 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.ResourceCollection
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -754,7 +750,6 @@ const putSimpleProductOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.SimpleProduct
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.SimpleProduct
@@ -788,7 +783,6 @@ const postFlattenedSimpleProductOperationSpec: msRest.OperationSpec = {
     },
     mapper: Mappers.SimpleProduct
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.SimpleProduct
@@ -831,7 +825,6 @@ const putSimpleProductWithGroupingOperationSpec: msRest.OperationSpec = {
     },
     mapper: Mappers.SimpleProduct
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.SimpleProduct

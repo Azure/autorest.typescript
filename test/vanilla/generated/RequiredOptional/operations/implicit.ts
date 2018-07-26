@@ -381,7 +381,6 @@ const putOptionalBodyOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

@@ -249,7 +249,6 @@ const createOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.CatalogDictionary
@@ -283,7 +282,6 @@ const updateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.CatalogArray

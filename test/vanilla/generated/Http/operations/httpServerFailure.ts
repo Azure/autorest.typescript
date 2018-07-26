@@ -230,7 +230,6 @@ const post505OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -254,7 +253,6 @@ const delete505OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.ErrorModel

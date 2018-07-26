@@ -926,7 +926,6 @@ const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -987,7 +986,6 @@ const putLocalPositiveOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1048,7 +1046,6 @@ const putLocalNegativeOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1109,7 +1106,6 @@ const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1151,7 +1147,6 @@ const putLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1193,7 +1188,6 @@ const putLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

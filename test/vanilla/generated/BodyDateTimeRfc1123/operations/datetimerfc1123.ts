@@ -496,7 +496,6 @@ const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -557,7 +556,6 @@ const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

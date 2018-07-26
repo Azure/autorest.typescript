@@ -1013,7 +1013,6 @@ const putIntOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1053,7 +1052,6 @@ const putLongOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1093,7 +1091,6 @@ const putFloatOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1133,7 +1130,6 @@ const putDoubleOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1173,7 +1169,6 @@ const putBoolOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1213,7 +1208,6 @@ const putStringOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1253,7 +1247,6 @@ const putDateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1293,7 +1286,6 @@ const putDateTimeOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1333,7 +1325,6 @@ const putDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1378,7 +1369,6 @@ const putDurationOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1423,7 +1413,6 @@ const putByteOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

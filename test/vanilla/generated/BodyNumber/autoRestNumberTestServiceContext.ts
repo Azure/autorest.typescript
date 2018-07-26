@@ -44,6 +44,7 @@ export class AutoRestNumberTestServiceContext extends msRest.ServiceClient {
     if (!this.baseUri) {
       this.baseUri = "http://localhost:3000";
     }
+    this.requestContentType = "application/json; charset=utf-8";
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
   }

@@ -745,7 +745,6 @@ const put301OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     301: {
       headersMapper: Mappers.HttpRedirectsPut301Headers
@@ -806,7 +805,6 @@ const patch302OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     302: {
       headersMapper: Mappers.HttpRedirectsPatch302Headers
@@ -833,7 +831,6 @@ const post303OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsPost303Headers
@@ -897,7 +894,6 @@ const put307OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsPut307Headers
@@ -927,7 +923,6 @@ const patch307OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsPatch307Headers
@@ -957,7 +952,6 @@ const post307OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsPost307Headers
@@ -987,7 +981,6 @@ const delete307OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HttpRedirectsDelete307Headers
