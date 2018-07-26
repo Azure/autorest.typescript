@@ -47,7 +47,7 @@ regenExpected = (opts,done) ->
     if (opts.generateMetadata)
       args.push("--generate-metadata=true")
 
-    if (!opts.generateBodyMethods)
+    if (opts.generateBodyMethods == false)
       args.push("--generate-body-methods=false")
 
     if (!!opts.nsPrefix)
