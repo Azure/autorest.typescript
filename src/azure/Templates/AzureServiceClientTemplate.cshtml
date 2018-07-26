@@ -67,10 +67,13 @@ foreach (var methodGroup in Model.MethodGroupModels)
 @EmptyLine
 @:  @(method.GenerateWithHttpOperationResponseMethod(EmptyLine))
 }
+@if (@Model.GenerateBodyMethods)
+{
 @foreach (var method in Model.MethodWrappableTemplateModels)
 {
   @EmptyLine
   @:@(Include(new MethodCallbackWrapperTemplate(), method))
+}
 }
 }
 @EmptyLine

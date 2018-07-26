@@ -488,12 +488,14 @@ namespace AutoRest.TypeScript.Model
             return GenerateMethodDocumentation(MethodFlavor.HttpOperationResponse);
         }
 
+        public string ResponseMethodSuffix => CodeModelTS.GenerateBodyMethods ? "WithHttpOperationResponse" : "";
+
         public string GenerateWithHttpOperationResponseMethod(string emptyLine)
         {
             TSBuilder builder = new TSBuilder();
 
             builder.Line(GenerateWithHttpOperationResponseMethodComment());
-            builder.Method($"{Name.ToCamelCase()}WithHttpOperationResponse", $"Promise<{HttpOperationResponseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
+            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{HttpOperationResponseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
             {
                 methodBody.Return(returnValue =>
                 {

@@ -14,5 +14,5 @@
 @(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationWithCallbackTS(includeOptions: false))): void;
 @(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationWithCallbackTS(true, true))): void;
 @(Model.Name.ToCamelCase())(@(Model.MethodParameterDeclarationTS(true, true)), callback?: msRest.ServiceCallback<@(Model.ReturnTypeTSString)>): any {
-  return msRest.responseToBody(this.@(Model.Name.ToCamelCase())WithHttpOperationResponse.bind(this), @(Model.MethodParameterDeclaration), callback);
+  return msRest.responseToBody(this.@(Model.Name.ToCamelCase())@(Model.ResponseMethodSuffix).bind(this), @(Model.MethodParameterDeclaration), callback);
 }

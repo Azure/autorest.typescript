@@ -12,8 +12,8 @@ else
 <text>
 @EmptyLine
 @(Model.GenerateWithHttpOperationResponseMethodComment())
-@(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParameterDeclarationTS(true, true))): Promise<msRest.HttpOperationResponse> {
-  return this.begin@(Model.Name.ToPascalCase())WithHttpOperationResponse(@(Model.MethodParameterDeclaration))
+@(Model.Name.ToCamelCase())@(Model.ResponseMethodSuffix)(@(Model.MethodParameterDeclarationTS(true, true))): Promise<msRest.HttpOperationResponse> {
+  return this.begin@(Model.Name.ToPascalCase())@(Model.ResponseMethodSuffix)(@(Model.MethodParameterDeclaration))
     .then(initialResult => @(Model.ClientReference).getLongRunningOperationResult(initialResult, options))
     .then(operationRes => {
 @if (Model.ReturnType.Body != null)
