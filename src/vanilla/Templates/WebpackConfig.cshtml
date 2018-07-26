@@ -5,10 +5,14 @@
 
 // This is a template webpack config file with minimal configuration.
 // Users are free to create their own webpack configuration files in their application.
-const webpack = require('webpack');
 const path = require('path');
+@EmptyLine
 
-module.exports = {
+/**
+ * @@type {import('webpack').Configuration}
+ */
+const config = {
+  mode: 'production',
   entry: './lib/@(Model.Name.ToCamelCase()).ts',
   devtool: 'source-map',
   output: {
@@ -22,7 +26,9 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
-        exclude: /(node_modules|test)/
+        options: {
+          configFile: path.join(__dirname, "tsconfig.webpack.json")
+        }
       }
     ]
   },
@@ -35,15 +41,8 @@ module.exports = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
-  },
-  node: {
-    fs: false,
-    net: false,
-    path: false,
-    dns: false,
-    tls: false,
-    tty: false,
-    v8: false,
-    Buffer: false
   }
 };
+@EmptyLine
+
+module.exports = config;

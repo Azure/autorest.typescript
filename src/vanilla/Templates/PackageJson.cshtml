@@ -3,33 +3,37 @@
 {
   "name": "@(Model.PackageName)",
   "author": "Microsoft Corporation",
-  "description": "@(Model.Name.ToPascalCase()) Library with typescript type definitions and works in node.js and browser javascript.",
+  "description": "@(Model.Name.ToPascalCase()) Library with typescript type definitions for node.js and browser.",
   "version": "@(Model.PackageVersion)",
   "dependencies": {
     @(Model.PackageDependencies())
   },
-  "keywords": [ "node", "azure", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "license": "MIT",
   "main": "./dist/lib/@(Model.Name.ToCamelCase()).js",
   "types": "./typings/lib/@(Model.Name.ToCamelCase()).d.ts",
   "devDependencies": {
-    "ts-loader": "^2.3.7",
-    "tslib": "^1.9.2",
-    "tslint": "^5.7.0",
-    "typescript": "^2.5.2",
-    "webpack": "^3.6.0",
-    "uglify-es": "^3.1.0"
+    "ts-loader": "^4.4.2",
+    "tslib": "^1.9.3",
+    "typescript": "^2.9.2",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0"
   },
   "homepage": "@(Model.HomePageUrl)",
   "repository": {
     "type": "git",
-    "url": "@(Model.RepositoryUrl)",
+    "url": "@(Model.RepositoryUrl)"
   },
   "bugs": {
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "tsc": "tsc -p tsconfig.json",
-    "build": "npm -s run-script tsc && webpack && node node_modules/uglify-es/bin/uglifyjs --source-map -c -m -o @(Model.Name.ToCamelCase())Bundle.min.js @(Model.Name.ToCamelCase())Bundle.js"
+    "build": "tsc && webpack"
   }
 }
