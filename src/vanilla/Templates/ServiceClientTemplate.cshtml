@@ -68,12 +68,15 @@ class @(Model.Name) extends @(Model.ContextName) {
 @EmptyLine
 @:  @(method.GenerateWithHttpOperationResponseMethod(EmptyLine))
 }
-@foreach (var method in Model.MethodWrappableTemplateModels)
+@if (@Model.GenerateBodyMethods)
+{
+foreach (var method in Model.MethodWrappableTemplateModels)
 {
 <text>
 @EmptyLine
   @(Include(new MethodCallbackWrapperTemplate(), method))
 </text>
+}
 }
 }
 @EmptyLine
