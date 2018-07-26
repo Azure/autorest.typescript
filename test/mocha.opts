@@ -2,4 +2,6 @@
 --timeout 50000
 --reporter list
 --colors
+--exclude test/metadata/generated/**/*
+--exclude test/azuremetadata/generated/**/*
 test/**/*.ts

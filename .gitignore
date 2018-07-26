@@ -239,6 +239,9 @@ node_modules/
 # Typescript v1 declaration files
 typings/
 
+# TypeScript build outputs
+dist/
+
 # Visual Studio 6 build log
 *.plg
 
@@ -301,3 +304,4 @@ src/obj/
 *.js
 *.js.map
 !.scripts/*.js
+!webpack.config.js
