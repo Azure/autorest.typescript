@@ -38,6 +38,28 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public string ContextName => Name + "Context";
 
+        private bool _computedRequestContentType;
+        private string _requestContentType;
+        public string RequestContentType
+        {
+            get
+            {
+                if (!_computedRequestContentType)
+                {
+                    IEnumerable<string> contentTypes = Methods
+                        .Select(m => m.RequestContentType)
+                        .GroupBy(t => t)
+                        .OrderByDescending(g => g.Count())
+                        .Select(g => g.Key);
+
+                    _computedRequestContentType = true;
+                    _requestContentType = contentTypes.FirstOrDefault();
+                }
+
+                return _requestContentType;
+            }
+        }
+
         [JsonIgnore]
         public string SchemeHostAndPort
         {

@@ -592,7 +592,7 @@ namespace AutoRest.TypeScript.Model
                     operationSpec.QuotedStringProperty("contentType", RequestContentType);
                 }
             }
-            if (!string.IsNullOrEmpty(RequestContentType))
+            if (!string.IsNullOrEmpty(RequestContentType) && RequestContentType != CodeModelTS.RequestContentType)
             {
                 operationSpec.QuotedStringProperty("contentType", RequestContentType);
             }

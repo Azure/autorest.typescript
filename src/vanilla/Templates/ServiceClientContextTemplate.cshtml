@@ -113,6 +113,13 @@ else
 </text>
 }
 
+@if (!string.IsNullOrEmpty(Model.RequestContentType))
+{
+<text>
+    this.requestContentType = "@(Model.RequestContentType)";
+</text>
+}
+
 @foreach (var param in requiredParameters)
 {
 <text>
