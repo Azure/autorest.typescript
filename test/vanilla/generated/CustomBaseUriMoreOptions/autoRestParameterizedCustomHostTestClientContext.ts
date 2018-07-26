@@ -50,6 +50,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
 
     this.dnsSuffix = 'host';
     this.baseUri = "{vault}{secret}{dnsSuffix}";
+    this.requestContentType = "application/json; charset=utf-8";
     this.subscriptionId = subscriptionId;
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);

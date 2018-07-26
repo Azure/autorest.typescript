@@ -202,7 +202,6 @@ const getMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -221,7 +220,6 @@ const getMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -240,7 +238,6 @@ const getPathGlobalValidOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -259,7 +256,6 @@ const getSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

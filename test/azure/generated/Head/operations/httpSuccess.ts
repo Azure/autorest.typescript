@@ -173,7 +173,6 @@ const head200OperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     404: {},
@@ -190,7 +189,6 @@ const head204OperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     404: {},
@@ -207,7 +205,6 @@ const head404OperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     404: {},

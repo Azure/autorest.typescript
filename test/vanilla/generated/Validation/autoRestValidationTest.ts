@@ -236,7 +236,6 @@ const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -266,7 +265,6 @@ const validationOfBodyOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -284,7 +282,6 @@ const getWithConstantInPathOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.constantParam
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {}
@@ -305,7 +302,6 @@ const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product

@@ -63,6 +63,7 @@ export class AutoRestLongRunningOperationTestServiceContext extends msRestAzure.
     if (!this.baseUri) {
       this.baseUri = 'http://localhost:3000';
     }
+    this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);

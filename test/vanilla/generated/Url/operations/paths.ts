@@ -1162,7 +1162,6 @@ const getBooleanTrueOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.boolPath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1178,7 +1177,6 @@ const getBooleanFalseOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.boolPath1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1194,7 +1192,6 @@ const getIntOneMillionOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.intPath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1210,7 +1207,6 @@ const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.intPath1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1226,7 +1222,6 @@ const getTenBillionOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.longPath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1242,7 +1237,6 @@ const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.longPath1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1258,7 +1252,6 @@ const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.floatPath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1274,7 +1267,6 @@ const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.floatPath1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1290,7 +1282,6 @@ const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.doublePath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1306,7 +1297,6 @@ const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.doublePath1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1322,7 +1312,6 @@ const stringUnicodeOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.stringPath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1338,7 +1327,6 @@ const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.stringPath1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1354,7 +1342,6 @@ const stringEmptyOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.stringPath2
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1370,7 +1357,6 @@ const stringNullOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.stringPath3
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     400: {},
     default: {
@@ -1386,7 +1372,6 @@ const enumValidOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.enumPath
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1402,7 +1387,6 @@ const enumNullOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.enumPath
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     400: {},
     default: {
@@ -1418,7 +1402,6 @@ const byteMultiByteOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.bytePath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1434,7 +1417,6 @@ const byteEmptyOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.bytePath1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1450,7 +1432,6 @@ const byteNullOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.bytePath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     400: {},
     default: {
@@ -1466,7 +1447,6 @@ const dateValidOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.datePath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1482,7 +1462,6 @@ const dateNullOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.datePath1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     400: {},
     default: {
@@ -1498,7 +1477,6 @@ const dateTimeValidOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.dateTimePath0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1514,7 +1492,6 @@ const dateTimeNullOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.dateTimePath1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     400: {},
     default: {
@@ -1530,7 +1507,6 @@ const base64UrlOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.base64UrlPath
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1546,7 +1522,6 @@ const arrayCsvInPathOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.arrayPath
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1562,7 +1537,6 @@ const unixTimeUrlOperationSpec: msRest.OperationSpec = {
   urlParameters: [
     Parameters.unixTimeUrlPath
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

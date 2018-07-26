@@ -630,7 +630,6 @@ const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/null",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -650,7 +649,6 @@ const getNullOperationSpec: msRest.OperationSpec = {
 const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -670,7 +668,6 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
 const getOverflowInt32OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/overflowint32",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -690,7 +687,6 @@ const getOverflowInt32OperationSpec: msRest.OperationSpec = {
 const getUnderflowInt32OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/underflowint32",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -710,7 +706,6 @@ const getUnderflowInt32OperationSpec: msRest.OperationSpec = {
 const getOverflowInt64OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/overflowint64",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -730,7 +725,6 @@ const getOverflowInt64OperationSpec: msRest.OperationSpec = {
 const getUnderflowInt64OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/underflowint64",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -760,7 +754,6 @@ const putMax32OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -783,7 +776,6 @@ const putMax64OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -806,7 +798,6 @@ const putMin32OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -829,7 +820,6 @@ const putMin64OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -842,7 +832,6 @@ const putMin64OperationSpec: msRest.OperationSpec = {
 const getUnixTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/unixtime",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -872,7 +861,6 @@ const putUnixTimeDateOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -885,7 +873,6 @@ const putUnixTimeDateOperationSpec: msRest.OperationSpec = {
 const getInvalidUnixTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/invalidunixtime",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -905,7 +892,6 @@ const getInvalidUnixTimeOperationSpec: msRest.OperationSpec = {
 const getNullUnixTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "int/nullunixtime",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

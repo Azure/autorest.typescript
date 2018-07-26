@@ -128,7 +128,6 @@ const getOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -145,7 +144,6 @@ const paramGetOperationSpec: msRest.OperationSpec = {
     Parameters.xMsClientRequestId,
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

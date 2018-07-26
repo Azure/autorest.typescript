@@ -277,7 +277,6 @@ const serializer = new msRest.Serializer(Mappers);
 const getTrueOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "bool/true",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -309,7 +308,6 @@ const putTrueOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -322,7 +320,6 @@ const putTrueOperationSpec: msRest.OperationSpec = {
 const getFalseOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "bool/false",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -354,7 +351,6 @@ const putFalseOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -367,7 +363,6 @@ const putFalseOperationSpec: msRest.OperationSpec = {
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "bool/null",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -387,7 +382,6 @@ const getNullOperationSpec: msRest.OperationSpec = {
 const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "bool/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

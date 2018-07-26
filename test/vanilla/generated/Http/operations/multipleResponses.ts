@@ -1428,7 +1428,6 @@ const serializer = new msRest.Serializer(Mappers);
 const get200Model204NoModelDefaultError200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/200/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1444,7 +1443,6 @@ const get200Model204NoModelDefaultError200ValidOperationSpec: msRest.OperationSp
 const get200Model204NoModelDefaultError204ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/204/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1460,7 +1458,6 @@ const get200Model204NoModelDefaultError204ValidOperationSpec: msRest.OperationSp
 const get200Model204NoModelDefaultError201InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/201/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1476,7 +1473,6 @@ const get200Model204NoModelDefaultError201InvalidOperationSpec: msRest.Operation
 const get200Model204NoModelDefaultError202NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/202/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1492,7 +1488,6 @@ const get200Model204NoModelDefaultError202NoneOperationSpec: msRest.OperationSpe
 const get200Model204NoModelDefaultError400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/400/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1508,7 +1503,6 @@ const get200Model204NoModelDefaultError400ValidOperationSpec: msRest.OperationSp
 const get200Model201ModelDefaultError200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/B/default/Error/response/200/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1526,7 +1520,6 @@ const get200Model201ModelDefaultError200ValidOperationSpec: msRest.OperationSpec
 const get200Model201ModelDefaultError201ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/B/default/Error/response/201/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1544,7 +1537,6 @@ const get200Model201ModelDefaultError201ValidOperationSpec: msRest.OperationSpec
 const get200Model201ModelDefaultError400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/B/default/Error/response/400/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1562,7 +1554,6 @@ const get200Model201ModelDefaultError400ValidOperationSpec: msRest.OperationSpec
 const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/200/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1583,7 +1574,6 @@ const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: msRest.Op
 const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/201/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1604,7 +1594,6 @@ const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: msRest.Op
 const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/404/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1625,7 +1614,6 @@ const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: msRest.Op
 const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/400/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1646,7 +1634,6 @@ const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: msRest.Op
 const get202None204NoneDefaultError202NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/Error/response/202/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     204: {},
@@ -1660,7 +1647,6 @@ const get202None204NoneDefaultError202NoneOperationSpec: msRest.OperationSpec = 
 const get202None204NoneDefaultError204NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/Error/response/204/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     204: {},
@@ -1674,7 +1660,6 @@ const get202None204NoneDefaultError204NoneOperationSpec: msRest.OperationSpec = 
 const get202None204NoneDefaultError400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/Error/response/400/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     204: {},
@@ -1688,7 +1673,6 @@ const get202None204NoneDefaultError400ValidOperationSpec: msRest.OperationSpec =
 const get202None204NoneDefaultNone202InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/202/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     204: {},
@@ -1700,7 +1684,6 @@ const get202None204NoneDefaultNone202InvalidOperationSpec: msRest.OperationSpec 
 const get202None204NoneDefaultNone204NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/204/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     204: {},
@@ -1712,7 +1695,6 @@ const get202None204NoneDefaultNone204NoneOperationSpec: msRest.OperationSpec = {
 const get202None204NoneDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/400/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     204: {},
@@ -1724,7 +1706,6 @@ const get202None204NoneDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
 const get202None204NoneDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/400/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {},
     204: {},
@@ -1736,7 +1717,6 @@ const get202None204NoneDefaultNone400InvalidOperationSpec: msRest.OperationSpec 
 const getDefaultModelA200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/200/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.A
@@ -1748,7 +1728,6 @@ const getDefaultModelA200ValidOperationSpec: msRest.OperationSpec = {
 const getDefaultModelA200NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/200/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.A
@@ -1760,7 +1739,6 @@ const getDefaultModelA200NoneOperationSpec: msRest.OperationSpec = {
 const getDefaultModelA400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/400/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.A
@@ -1772,7 +1750,6 @@ const getDefaultModelA400ValidOperationSpec: msRest.OperationSpec = {
 const getDefaultModelA400NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/400/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {
       bodyMapper: Mappers.A
@@ -1784,7 +1761,6 @@ const getDefaultModelA400NoneOperationSpec: msRest.OperationSpec = {
 const getDefaultNone200InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/200/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {}
   },
@@ -1794,7 +1770,6 @@ const getDefaultNone200InvalidOperationSpec: msRest.OperationSpec = {
 const getDefaultNone200NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/200/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {}
   },
@@ -1804,7 +1779,6 @@ const getDefaultNone200NoneOperationSpec: msRest.OperationSpec = {
 const getDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/400/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {}
   },
@@ -1814,7 +1788,6 @@ const getDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
 const getDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/400/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     default: {}
   },
@@ -1824,7 +1797,6 @@ const getDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
 const get200ModelA200NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/200/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1837,7 +1809,6 @@ const get200ModelA200NoneOperationSpec: msRest.OperationSpec = {
 const get200ModelA200ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/200/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1850,7 +1821,6 @@ const get200ModelA200ValidOperationSpec: msRest.OperationSpec = {
 const get200ModelA200InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/200/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1863,7 +1833,6 @@ const get200ModelA200InvalidOperationSpec: msRest.OperationSpec = {
 const get200ModelA400NoneOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/400/none",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1876,7 +1845,6 @@ const get200ModelA400NoneOperationSpec: msRest.OperationSpec = {
 const get200ModelA400ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/400/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1889,7 +1857,6 @@ const get200ModelA400ValidOperationSpec: msRest.OperationSpec = {
 const get200ModelA400InvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/400/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A
@@ -1902,7 +1869,6 @@ const get200ModelA400InvalidOperationSpec: msRest.OperationSpec = {
 const get200ModelA202ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/202/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.A

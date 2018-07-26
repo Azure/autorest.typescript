@@ -2513,7 +2513,6 @@ const beginPutNonRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2541,7 +2540,6 @@ const beginPutNonRetry201Creating400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2569,7 +2567,6 @@ const beginPutNonRetry201Creating400InvalidJsonOperationSpec: msRest.OperationSp
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2597,7 +2594,6 @@ const beginPutAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -2616,7 +2612,6 @@ const beginDeleteNonRetry400OperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsDeleteNonRetry400Headers
@@ -2634,7 +2629,6 @@ const beginDelete202NonRetry400OperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsDelete202NonRetry400Headers
@@ -2652,7 +2646,6 @@ const beginDeleteAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetry400Headers
@@ -2677,7 +2670,6 @@ const beginPostNonRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostNonRetry400Headers
@@ -2702,7 +2694,6 @@ const beginPost202NonRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPost202NonRetry400Headers
@@ -2727,7 +2718,6 @@ const beginPostAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetry400Headers
@@ -2752,7 +2742,6 @@ const beginPutError201NoProvisioningStatePayloadOperationSpec: msRest.OperationS
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2780,7 +2769,6 @@ const beginPutAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -2806,7 +2794,6 @@ const beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec: msRest.OperationSp
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -2825,7 +2812,6 @@ const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     204: {},
     default: {
@@ -2841,7 +2827,6 @@ const beginDeleteAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec =
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryNoStatusHeaders
@@ -2866,7 +2851,6 @@ const beginPost202NoLocationOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPost202NoLocationHeaders
@@ -2891,7 +2875,6 @@ const beginPostAsyncRelativeRetryNoPayloadOperationSpec: msRest.OperationSpec = 
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders
@@ -2916,7 +2899,6 @@ const beginPut200InvalidJsonOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2942,7 +2924,6 @@ const beginPutAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -2968,7 +2949,6 @@ const beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operatio
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -2987,7 +2967,6 @@ const beginDelete202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsDelete202RetryInvalidHeaderHeaders
@@ -3005,7 +2984,6 @@ const beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationS
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders
@@ -3023,7 +3001,6 @@ const beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Opera
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
@@ -3048,7 +3025,6 @@ const beginPost202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPost202RetryInvalidHeaderHeaders
@@ -3073,7 +3049,6 @@ const beginPostAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpe
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders
@@ -3098,7 +3073,6 @@ const beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operati
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders

@@ -243,7 +243,6 @@ const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "byte/null",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -263,7 +262,6 @@ const getNullOperationSpec: msRest.OperationSpec = {
 const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "byte/empty",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -283,7 +281,6 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
 const getNonAsciiOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "byte/nonAscii",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -313,7 +310,6 @@ const putNonAsciiOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -326,7 +322,6 @@ const putNonAsciiOperationSpec: msRest.OperationSpec = {
 const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "byte/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

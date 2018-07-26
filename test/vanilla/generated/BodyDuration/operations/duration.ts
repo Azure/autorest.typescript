@@ -200,7 +200,6 @@ const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "duration/null",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -230,7 +229,6 @@ const putPositiveDurationOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -243,7 +241,6 @@ const putPositiveDurationOperationSpec: msRest.OperationSpec = {
 const getPositiveDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "duration/positiveduration",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -263,7 +260,6 @@ const getPositiveDurationOperationSpec: msRest.OperationSpec = {
 const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "duration/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

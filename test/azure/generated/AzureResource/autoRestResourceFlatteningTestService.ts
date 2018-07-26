@@ -332,7 +332,6 @@ const putArrayOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -348,7 +347,6 @@ const getArrayOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -397,7 +395,6 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -413,7 +410,6 @@ const getDictionaryOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -450,7 +446,6 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.ResourceCollection
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -466,7 +461,6 @@ const getResourceCollectionOperationSpec: msRest.OperationSpec = {
   headerParameters: [
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ResourceCollection

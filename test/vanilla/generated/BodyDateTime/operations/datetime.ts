@@ -840,7 +840,6 @@ const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/null",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -860,7 +859,6 @@ const getNullOperationSpec: msRest.OperationSpec = {
 const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -880,7 +878,6 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
 const getOverflowOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/overflow",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -900,7 +897,6 @@ const getOverflowOperationSpec: msRest.OperationSpec = {
 const getUnderflowOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/underflow",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -930,7 +926,6 @@ const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -943,7 +938,6 @@ const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
 const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/utc/lowercase",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -963,7 +957,6 @@ const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
 const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/utc/uppercase",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -993,7 +986,6 @@ const putLocalPositiveOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1006,7 +998,6 @@ const putLocalPositiveOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
 const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/localpositiveoffset/lowercase",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1026,7 +1017,6 @@ const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationS
 const getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/localpositiveoffset/uppercase",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1056,7 +1046,6 @@ const putLocalNegativeOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1069,7 +1058,6 @@ const putLocalNegativeOffsetMaxDateTimeOperationSpec: msRest.OperationSpec = {
 const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/localnegativeoffset/uppercase",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1089,7 +1077,6 @@ const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: msRest.OperationS
 const getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/max/localnegativeoffset/lowercase",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1119,7 +1106,6 @@ const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1132,7 +1118,6 @@ const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
 const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/min/utc",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1162,7 +1147,6 @@ const putLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1175,7 +1159,6 @@ const putLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
 const getLocalPositiveOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/min/localpositiveoffset",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -1205,7 +1188,6 @@ const putLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1218,7 +1200,6 @@ const putLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
 const getLocalNegativeOffsetMinDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "datetime/min/localnegativeoffset",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

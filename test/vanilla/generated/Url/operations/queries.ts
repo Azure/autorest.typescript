@@ -1438,7 +1438,6 @@ const getBooleanTrueOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.boolQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1454,7 +1453,6 @@ const getBooleanFalseOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.boolQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1470,7 +1468,6 @@ const getBooleanNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.boolQuery2
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1486,7 +1483,6 @@ const getIntOneMillionOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.intQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1502,7 +1498,6 @@ const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.intQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1518,7 +1513,6 @@ const getIntNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.intQuery2
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1534,7 +1528,6 @@ const getTenBillionOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.longQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1550,7 +1543,6 @@ const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.longQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1566,7 +1558,6 @@ const getLongNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.longQuery2
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1582,7 +1573,6 @@ const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.floatQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1598,7 +1588,6 @@ const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.floatQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1614,7 +1603,6 @@ const floatNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.floatQuery2
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1630,7 +1618,6 @@ const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.doubleQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1646,7 +1633,6 @@ const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.doubleQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1662,7 +1648,6 @@ const doubleNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.doubleQuery2
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1678,7 +1663,6 @@ const stringUnicodeOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.stringQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1694,7 +1678,6 @@ const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.stringQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1710,7 +1693,6 @@ const stringEmptyOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.stringQuery2
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1726,7 +1708,6 @@ const stringNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.stringQuery3
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1742,7 +1723,6 @@ const enumValidOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.enumQuery
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1758,7 +1738,6 @@ const enumNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.enumQuery
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1774,7 +1753,6 @@ const byteMultiByteOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.byteQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1790,7 +1768,6 @@ const byteEmptyOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.byteQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1806,7 +1783,6 @@ const byteNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.byteQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1822,7 +1798,6 @@ const dateValidOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.dateQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1838,7 +1813,6 @@ const dateNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.dateQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1854,7 +1828,6 @@ const dateTimeValidOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.dateTimeQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1870,7 +1843,6 @@ const dateTimeNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.dateTimeQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1886,7 +1858,6 @@ const arrayStringCsvValidOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.arrayQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1902,7 +1873,6 @@ const arrayStringCsvNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.arrayQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1918,7 +1888,6 @@ const arrayStringCsvEmptyOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.arrayQuery0
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1934,7 +1903,6 @@ const arrayStringSsvValidOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.arrayQuery1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1950,7 +1918,6 @@ const arrayStringTsvValidOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.arrayQuery2
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1966,7 +1933,6 @@ const arrayStringPipesValidOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.arrayQuery3
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

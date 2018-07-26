@@ -73,6 +73,7 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
     if (!this.baseUri) {
       this.baseUri = 'https://management.azure.com';
     }
+    this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
     this.subscriptionId = subscriptionId;
 

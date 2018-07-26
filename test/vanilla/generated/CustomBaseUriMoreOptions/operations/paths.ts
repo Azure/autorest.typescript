@@ -99,7 +99,6 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.keyVersion
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

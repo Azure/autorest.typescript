@@ -985,7 +985,6 @@ const serializer = new msRest.Serializer(Mappers);
 const getIntOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/integer",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.IntWrapper
@@ -1007,7 +1006,6 @@ const putIntOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1020,7 +1018,6 @@ const putIntOperationSpec: msRest.OperationSpec = {
 const getLongOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/long",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.LongWrapper
@@ -1042,7 +1039,6 @@ const putLongOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1055,7 +1051,6 @@ const putLongOperationSpec: msRest.OperationSpec = {
 const getFloatOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/float",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.FloatWrapper
@@ -1077,7 +1072,6 @@ const putFloatOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1090,7 +1084,6 @@ const putFloatOperationSpec: msRest.OperationSpec = {
 const getDoubleOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/double",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.DoubleWrapper
@@ -1112,7 +1105,6 @@ const putDoubleOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1125,7 +1117,6 @@ const putDoubleOperationSpec: msRest.OperationSpec = {
 const getBoolOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/bool",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.BooleanWrapper
@@ -1147,7 +1138,6 @@ const putBoolOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1160,7 +1150,6 @@ const putBoolOperationSpec: msRest.OperationSpec = {
 const getStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/string",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.StringWrapper
@@ -1182,7 +1171,6 @@ const putStringOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1195,7 +1183,6 @@ const putStringOperationSpec: msRest.OperationSpec = {
 const getDateOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/date",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.DateWrapper
@@ -1217,7 +1204,6 @@ const putDateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1230,7 +1216,6 @@ const putDateOperationSpec: msRest.OperationSpec = {
 const getDateTimeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/datetime",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.DatetimeWrapper
@@ -1252,7 +1237,6 @@ const putDateTimeOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1265,7 +1249,6 @@ const putDateTimeOperationSpec: msRest.OperationSpec = {
 const getDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/datetimerfc1123",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Datetimerfc1123Wrapper
@@ -1287,7 +1270,6 @@ const putDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1300,7 +1282,6 @@ const putDateTimeRfc1123OperationSpec: msRest.OperationSpec = {
 const getDurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/duration",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.DurationWrapper
@@ -1327,7 +1308,6 @@ const putDurationOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -1340,7 +1320,6 @@ const putDurationOperationSpec: msRest.OperationSpec = {
 const getByteOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/primitive/byte",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ByteWrapper
@@ -1367,7 +1346,6 @@ const putByteOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

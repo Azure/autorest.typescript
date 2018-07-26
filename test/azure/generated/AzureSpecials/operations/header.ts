@@ -184,7 +184,6 @@ const customNamedRequestIdOperationSpec: msRest.OperationSpec = {
     Parameters.fooClientRequestId0,
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders
@@ -203,7 +202,6 @@ const customNamedRequestIdParamGroupingOperationSpec: msRest.OperationSpec = {
     Parameters.acceptLanguage,
     Parameters.fooClientRequestId1
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders
@@ -222,7 +220,6 @@ const customNamedRequestIdHeadOperationSpec: msRest.OperationSpec = {
     Parameters.fooClientRequestId0,
     Parameters.acceptLanguage
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders

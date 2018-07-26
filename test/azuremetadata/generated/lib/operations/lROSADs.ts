@@ -2513,7 +2513,6 @@ const beginPutNonRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2541,7 +2540,6 @@ const beginPutNonRetry201Creating400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2569,7 +2567,6 @@ const beginPutNonRetry201Creating400InvalidJsonOperationSpec: msRest.OperationSp
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2597,7 +2594,6 @@ const beginPutAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -2674,7 +2670,6 @@ const beginPostNonRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostNonRetry400Headers
@@ -2699,7 +2694,6 @@ const beginPost202NonRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPost202NonRetry400Headers
@@ -2724,7 +2718,6 @@ const beginPostAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetry400Headers
@@ -2749,7 +2742,6 @@ const beginPutError201NoProvisioningStatePayloadOperationSpec: msRest.OperationS
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2777,7 +2769,6 @@ const beginPutAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -2803,7 +2794,6 @@ const beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec: msRest.OperationSp
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -2861,7 +2851,6 @@ const beginPost202NoLocationOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPost202NoLocationHeaders
@@ -2886,7 +2875,6 @@ const beginPostAsyncRelativeRetryNoPayloadOperationSpec: msRest.OperationSpec = 
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders
@@ -2911,7 +2899,6 @@ const beginPut200InvalidJsonOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -2937,7 +2924,6 @@ const beginPutAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -2963,7 +2949,6 @@ const beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operatio
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -3040,7 +3025,6 @@ const beginPost202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPost202RetryInvalidHeaderHeaders
@@ -3065,7 +3049,6 @@ const beginPostAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpe
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders
@@ -3090,7 +3073,6 @@ const beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operati
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders

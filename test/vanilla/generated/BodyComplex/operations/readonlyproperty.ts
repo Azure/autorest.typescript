@@ -114,7 +114,6 @@ const serializer = new msRest.Serializer(Mappers);
 const getValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "complex/readonlyproperty/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ReadonlyObj
@@ -141,7 +140,6 @@ const putValidOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

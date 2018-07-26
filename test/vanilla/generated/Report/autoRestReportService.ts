@@ -87,7 +87,6 @@ const getReportOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.qualifier
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {

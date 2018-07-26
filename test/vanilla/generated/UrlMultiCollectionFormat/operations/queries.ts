@@ -161,7 +161,6 @@ const arrayStringMultiNullOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.arrayQuery
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -177,7 +176,6 @@ const arrayStringMultiEmptyOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.arrayQuery
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -193,7 +191,6 @@ const arrayStringMultiValidOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.arrayQuery
   ],
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

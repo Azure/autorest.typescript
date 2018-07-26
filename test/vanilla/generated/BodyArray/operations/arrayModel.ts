@@ -2985,7 +2985,6 @@ const serializer = new msRest.Serializer(Mappers);
 const getNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/null",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3011,7 +3010,6 @@ const getNullOperationSpec: msRest.OperationSpec = {
 const getInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/invalid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3037,7 +3035,6 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
 const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/empty",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3079,7 +3076,6 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3092,7 +3088,6 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
 const getBooleanTfftOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/boolean/tfft",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3134,7 +3129,6 @@ const putBooleanTfftOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3147,7 +3141,6 @@ const putBooleanTfftOperationSpec: msRest.OperationSpec = {
 const getBooleanInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/boolean/true.null.false",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3173,7 +3166,6 @@ const getBooleanInvalidNullOperationSpec: msRest.OperationSpec = {
 const getBooleanInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/boolean/true.boolean.false",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3199,7 +3191,6 @@ const getBooleanInvalidStringOperationSpec: msRest.OperationSpec = {
 const getIntegerValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/integer/1.-1.3.300",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3241,7 +3232,6 @@ const putIntegerValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3254,7 +3244,6 @@ const putIntegerValidOperationSpec: msRest.OperationSpec = {
 const getIntInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/integer/1.null.zero",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3280,7 +3269,6 @@ const getIntInvalidNullOperationSpec: msRest.OperationSpec = {
 const getIntInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/integer/1.integer.0",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3306,7 +3294,6 @@ const getIntInvalidStringOperationSpec: msRest.OperationSpec = {
 const getLongValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/long/1.-1.3.300",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3348,7 +3335,6 @@ const putLongValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3361,7 +3347,6 @@ const putLongValidOperationSpec: msRest.OperationSpec = {
 const getLongInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/long/1.null.zero",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3387,7 +3372,6 @@ const getLongInvalidNullOperationSpec: msRest.OperationSpec = {
 const getLongInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/long/1.integer.0",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3413,7 +3397,6 @@ const getLongInvalidStringOperationSpec: msRest.OperationSpec = {
 const getFloatValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/float/0--0.01-1.2e20",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3455,7 +3438,6 @@ const putFloatValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3468,7 +3450,6 @@ const putFloatValidOperationSpec: msRest.OperationSpec = {
 const getFloatInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/float/0.0-null-1.2e20",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3494,7 +3475,6 @@ const getFloatInvalidNullOperationSpec: msRest.OperationSpec = {
 const getFloatInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/float/1.number.0",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3520,7 +3500,6 @@ const getFloatInvalidStringOperationSpec: msRest.OperationSpec = {
 const getDoubleValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/double/0--0.01-1.2e20",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3562,7 +3541,6 @@ const putDoubleValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3575,7 +3553,6 @@ const putDoubleValidOperationSpec: msRest.OperationSpec = {
 const getDoubleInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/double/0.0-null-1.2e20",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3601,7 +3578,6 @@ const getDoubleInvalidNullOperationSpec: msRest.OperationSpec = {
 const getDoubleInvalidStringOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/double/1.number.0",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3627,7 +3603,6 @@ const getDoubleInvalidStringOperationSpec: msRest.OperationSpec = {
 const getStringValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string/foo1.foo2.foo3",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3669,7 +3644,6 @@ const putStringValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3733,7 +3707,6 @@ const putEnumValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3787,7 +3760,6 @@ const putStringEnumValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3800,7 +3772,6 @@ const putStringEnumValidOperationSpec: msRest.OperationSpec = {
 const getStringWithNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string/foo.null.foo2",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3826,7 +3797,6 @@ const getStringWithNullOperationSpec: msRest.OperationSpec = {
 const getStringWithInvalidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string/foo.123.foo2",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3852,7 +3822,6 @@ const getStringWithInvalidOperationSpec: msRest.OperationSpec = {
 const getUuidValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/uuid/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3894,7 +3863,6 @@ const putUuidValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3907,7 +3875,6 @@ const putUuidValidOperationSpec: msRest.OperationSpec = {
 const getUuidInvalidCharsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/uuid/invalidchars",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3933,7 +3900,6 @@ const getUuidInvalidCharsOperationSpec: msRest.OperationSpec = {
 const getDateValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -3975,7 +3941,6 @@ const putDateValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -3988,7 +3953,6 @@ const putDateValidOperationSpec: msRest.OperationSpec = {
 const getDateInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date/invalidnull",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4014,7 +3978,6 @@ const getDateInvalidNullOperationSpec: msRest.OperationSpec = {
 const getDateInvalidCharsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date/invalidchars",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4040,7 +4003,6 @@ const getDateInvalidCharsOperationSpec: msRest.OperationSpec = {
 const getDateTimeValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4082,7 +4044,6 @@ const putDateTimeValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -4095,7 +4056,6 @@ const putDateTimeValidOperationSpec: msRest.OperationSpec = {
 const getDateTimeInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time/invalidnull",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4121,7 +4081,6 @@ const getDateTimeInvalidNullOperationSpec: msRest.OperationSpec = {
 const getDateTimeInvalidCharsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time/invalidchars",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4147,7 +4106,6 @@ const getDateTimeInvalidCharsOperationSpec: msRest.OperationSpec = {
 const getDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time-rfc1123/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4189,7 +4147,6 @@ const putDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -4202,7 +4159,6 @@ const putDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
 const getDurationValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/duration/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4244,7 +4200,6 @@ const putDurationValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -4257,7 +4212,6 @@ const putDurationValidOperationSpec: msRest.OperationSpec = {
 const getByteValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/byte/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4299,7 +4253,6 @@ const putByteValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -4312,7 +4265,6 @@ const putByteValidOperationSpec: msRest.OperationSpec = {
 const getByteInvalidNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/byte/invalidnull",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4338,7 +4290,6 @@ const getByteInvalidNullOperationSpec: msRest.OperationSpec = {
 const getBase64UrlOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/base64url/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4364,7 +4315,6 @@ const getBase64UrlOperationSpec: msRest.OperationSpec = {
 const getComplexNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/null",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4391,7 +4341,6 @@ const getComplexNullOperationSpec: msRest.OperationSpec = {
 const getComplexEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/empty",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4418,7 +4367,6 @@ const getComplexEmptyOperationSpec: msRest.OperationSpec = {
 const getComplexItemNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/itemnull",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4445,7 +4393,6 @@ const getComplexItemNullOperationSpec: msRest.OperationSpec = {
 const getComplexItemEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/itemempty",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4472,7 +4419,6 @@ const getComplexItemEmptyOperationSpec: msRest.OperationSpec = {
 const getComplexValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4516,7 +4462,6 @@ const putComplexValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -4529,7 +4474,6 @@ const putComplexValidOperationSpec: msRest.OperationSpec = {
 const getArrayNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/null",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4561,7 +4505,6 @@ const getArrayNullOperationSpec: msRest.OperationSpec = {
 const getArrayEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/empty",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4593,7 +4536,6 @@ const getArrayEmptyOperationSpec: msRest.OperationSpec = {
 const getArrayItemNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/itemnull",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4625,7 +4567,6 @@ const getArrayItemNullOperationSpec: msRest.OperationSpec = {
 const getArrayItemEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/itemempty",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4657,7 +4598,6 @@ const getArrayItemEmptyOperationSpec: msRest.OperationSpec = {
 const getArrayValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4711,7 +4651,6 @@ const putArrayValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -4724,7 +4663,6 @@ const putArrayValidOperationSpec: msRest.OperationSpec = {
 const getDictionaryNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/null",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4756,7 +4694,6 @@ const getDictionaryNullOperationSpec: msRest.OperationSpec = {
 const getDictionaryEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/empty",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4788,7 +4725,6 @@ const getDictionaryEmptyOperationSpec: msRest.OperationSpec = {
 const getDictionaryItemNullOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/itemnull",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4820,7 +4756,6 @@ const getDictionaryItemNullOperationSpec: msRest.OperationSpec = {
 const getDictionaryItemEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/itemempty",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4852,7 +4787,6 @@ const getDictionaryItemEmptyOperationSpec: msRest.OperationSpec = {
 const getDictionaryValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/valid",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -4906,7 +4840,6 @@ const putDictionaryValidOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

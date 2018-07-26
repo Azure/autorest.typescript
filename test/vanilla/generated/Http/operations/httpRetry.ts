@@ -360,7 +360,6 @@ const serializer = new msRest.Serializer(Mappers);
 const head408OperationSpec: msRest.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/retry/408",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -385,7 +384,6 @@ const put500OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -410,7 +408,6 @@ const patch500OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -423,7 +420,6 @@ const patch500OperationSpec: msRest.OperationSpec = {
 const get502OperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "http/retry/502",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -448,7 +444,6 @@ const post503OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -473,7 +468,6 @@ const delete503OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -498,7 +492,6 @@ const put504OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -523,7 +516,6 @@ const patch504OperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {

@@ -558,7 +558,6 @@ const putArrayOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -571,7 +570,6 @@ const putArrayOperationSpec: msRest.OperationSpec = {
 const getArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/array",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -617,7 +615,6 @@ const putWrappedArrayOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -630,7 +627,6 @@ const putWrappedArrayOperationSpec: msRest.OperationSpec = {
 const getWrappedArrayOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/wrappedarray",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -676,7 +672,6 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
       }
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -689,7 +684,6 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
 const getDictionaryOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/dictionary",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -723,7 +717,6 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.ResourceCollection
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {},
     default: {
@@ -736,7 +729,6 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
 const getResourceCollectionOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "model-flatten/resourcecollection",
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ResourceCollection
@@ -758,7 +750,6 @@ const putSimpleProductOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.SimpleProduct
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.SimpleProduct
@@ -792,7 +783,6 @@ const postFlattenedSimpleProductOperationSpec: msRest.OperationSpec = {
     },
     mapper: Mappers.SimpleProduct
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.SimpleProduct
@@ -835,7 +825,6 @@ const putSimpleProductWithGroupingOperationSpec: msRest.OperationSpec = {
     },
     mapper: Mappers.SimpleProduct
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.SimpleProduct

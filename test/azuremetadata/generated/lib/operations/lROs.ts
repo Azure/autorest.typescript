@@ -3947,7 +3947,6 @@ const beginPut200SucceededOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -3973,7 +3972,6 @@ const beginPut200SucceededNoStateOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -3998,7 +3996,6 @@ const beginPut202Retry200OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.Product
@@ -4023,7 +4020,6 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -4051,7 +4047,6 @@ const beginPut200UpdatingSucceeded204OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -4076,7 +4071,6 @@ const beginPut201CreatingFailed200OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -4104,7 +4098,6 @@ const beginPut200Acceptedcanceled200OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product
@@ -4129,7 +4122,6 @@ const beginPutNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.Product,
@@ -4155,7 +4147,6 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4181,7 +4172,6 @@ const beginPutAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4207,7 +4197,6 @@ const beginPutAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4233,7 +4222,6 @@ const beginPutAsyncNoRetrycanceledOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4259,7 +4247,6 @@ const beginPutAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     201: {
       bodyMapper: Mappers.Product,
@@ -4285,7 +4272,6 @@ const beginPutNonResourceOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Sku
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.Sku
@@ -4310,7 +4296,6 @@ const beginPutAsyncNonResourceOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Sku
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.Sku
@@ -4337,7 +4322,6 @@ const beginPutSubResourceOperationSpec: msRest.OperationSpec = {
     },
     mapper: Mappers.SubProduct
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.SubProduct
@@ -4364,7 +4348,6 @@ const beginPutAsyncSubResourceOperationSpec: msRest.OperationSpec = {
     },
     mapper: Mappers.SubProduct
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.SubProduct
@@ -4640,7 +4623,6 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROsPost202Retry200Headers
@@ -4665,7 +4647,6 @@ const beginPost202NoRetry204OperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       bodyMapper: Mappers.Product,
@@ -4742,7 +4723,6 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4771,7 +4751,6 @@ const beginPostAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.Product,
@@ -4800,7 +4779,6 @@ const beginPostAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
@@ -4825,7 +4803,6 @@ const beginPostAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
     ],
     mapper: Mappers.Product
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     202: {
       headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
