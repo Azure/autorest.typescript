@@ -47,6 +47,9 @@ regenExpected = (opts,done) ->
     if (opts.generateMetadata)
       args.push("--generate-metadata=true")
 
+    if (!opts.generateBodyMethods)
+      args.push("--generate-body-methods=false")
+
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
         args.push("--#{opts.language}.namespace=#{optsMappingsValue[1]}")
@@ -137,6 +140,10 @@ azureMetadataMappings = {
   'lib': 'lro.json',
 }
 
+noBodyMethodsMappings = {
+  'BodyString': 'body-string.json'
+}
+
 swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
 
 task 'regenerate-tscomposite', '', (done) ->
@@ -208,6 +215,19 @@ task 'regenerate-ts-enum-union', '', [], (done) ->
     'nsPrefix': 'Fixtures',
     'flatteningThreshold': '1',
     'modelEnumAsUnion': true
+  },done
+  return null
+
+task 'regenerate-ts-no-body-methods', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/no-body-methods',
+    'inputBaseDir': swaggerDir,
+    'mappings': noBodyMethodsMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures',
+    'flatteningThreshold': '1',
+    'generateBodyMethods': false
   },done
   return null
 
