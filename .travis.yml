@@ -48,3 +48,7 @@ jobs:
     - env: CHECK_NAME="Bundle Size"
       install: npm install --ignore-scripts
       script: npm run bundle-size
+
+    - env: CHECK_NAME="Generate Metadata Flag"
+      install: npm install --ignore-scripts
+      script: gulp testci/metadata

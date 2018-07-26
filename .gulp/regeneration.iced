@@ -42,7 +42,10 @@ regenExpected = (opts,done) ->
       args.push("--enable-xml")
 
     if (opts.modelEnumAsUnion)
-      args.push("--typescript.model-enum-as-union=true")
+      args.push("--model-enum-as-union=true")
+
+    if (opts.generateMetadata)
+      args.push("--generate-metadata=true")
 
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
@@ -126,6 +129,14 @@ enumUnionMappings = {
   'BodyString': 'body-string.json'
 }
 
+metadataMappings = {
+  'lib': 'body-complex.json',
+}
+
+azureMetadataMappings = {
+  'lib': 'lro.json',
+}
+
 swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
 
 task 'regenerate-tscomposite', '', (done) ->
@@ -160,7 +171,7 @@ task 'regenerate-tsazurecomposite', '', (done) ->
   },done
   return null
 
-task 'regenerate-tsazure', '', ['regenerate-tsazurecomposite'], (done) ->
+task 'regenerate-tsazure', '', ['regenerate-tsazurecomposite', 'regenerate-tsazure-metadata'], (done) ->
   for p of defaultAzureMappings
     tsAzureMappings[p] = defaultAzureMappings[p]
   regenExpected {
@@ -200,7 +211,34 @@ task 'regenerate-ts-enum-union', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union'], (done) ->
+task 'regenerate-ts-metadata', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/metadata',
+    'inputBaseDir': swaggerDir,
+    'mappings': metadataMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures',
+    'flatteningThreshold': '1',
+    'generateMetadata': true
+  },done
+  return null
+
+task 'regenerate-tsazure-metadata', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/azuremetadata',
+    'inputBaseDir': swaggerDir,
+    'mappings': azureMetadataMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures',
+    'flatteningThreshold': '1',
+    'azureArm': true,
+    'generateMetadata': true
+  },done
+  return null
+
+task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union', 'regenerate-ts-metadata'], (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]
   regenExpected {

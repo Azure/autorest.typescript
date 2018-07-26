@@ -31,7 +31,7 @@ task 'install_common',"", (done) ->
   execute "npm install",{cwd:"#{basefolder}/autorest.common", silent:false }, done
 
 # Run language-specific tests:
-task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/chrome-unit', 'test/nodejs-unit'], (done) ->
+task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/chrome-unit', 'test/nodejs-unit', 'test/metadata', 'test/azure-metadata'], (done) ->
   done();
 
 task 'testci/generator-unit', '', [], (done) ->
@@ -46,6 +46,19 @@ task 'test/generator-unit', 'run generator unit tests', [], (done) ->
 task 'testci/typecheck', '', [], (done) ->
   global.verbose = true
   await run "test/typecheck", defer _
+  done()
+
+task 'testci/metadata', '', ['test/metadata', 'test/azure-metadata'], (done) ->
+  done()
+
+task 'test/metadata', '', [], (done) ->
+  await execute "npm install",{cwd:"#{basefolder}/test/metadata/generated", silent:false }, defer _
+  await execute "npm run build",{cwd:"#{basefolder}/test/metadata/generated", silent:false }, defer _
+  done()
+
+task 'test/azure-metadata', '', [], (done) ->
+  await execute "npm install",{cwd:"#{basefolder}/test/azuremetadata/generated", silent:false }, defer _
+  await execute "npm run build",{cwd:"#{basefolder}/test/azuremetadata/generated", silent:false }, defer _
   done()
 
 task 'test/typecheck', 'type check generated code', [], (done) ->
