@@ -71,6 +71,19 @@ type Colors = 'red color' | 'green-color' | 'blue_color';
 ```
 This can save some space when bundling for the browser.
 
+### Body method generation
+For usability and back-compatibility, the generator creates a pair of methods for each operation in the Swagger by default:
+```ts
+get(): Promise<Body>;
+getWithHttpOperationResponse(): Promise<HttpOperationResponse<Body, Headers>>;
+```
+
+If you pass `--generate-body-methods=false`, the generator will create just one method per operation.
+This can save space in your browser bundle.
+```ts
+get(): Promise<HttpOperationResponse<Body, Headers>>;
+```
+
 ### Azure Service Client
 For generating a client for an azure service, provide `--typescript.azure-arm=true`:
 ```sh
