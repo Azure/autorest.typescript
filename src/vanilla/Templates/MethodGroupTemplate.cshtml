@@ -25,10 +25,13 @@ export class @(Model.TypeName) {
 @:  @(method.GenerateWithHttpOperationResponseMethod(EmptyLine))
 @EmptyLine
 }
-@foreach (var method in Model.MethodWrappableTemplateModels)
+@if (@Model.CodeModelTS.GenerateBodyMethods)
+{
+foreach (var method in Model.MethodWrappableTemplateModels)
 {
   @:@(Include(new MethodCallbackWrapperTemplate(), method))
   @EmptyLine
+}
 }
 }
 @EmptyLine

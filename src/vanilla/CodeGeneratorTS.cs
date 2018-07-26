@@ -34,6 +34,7 @@ namespace AutoRest.TypeScript
             codeModel.OutputFolder = generatorSettings.OutputFolder;
             codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
             codeModel.GenerateMetadata = generatorSettings.GenerateMetadata;
+            codeModel.GenerateBodyMethods = generatorSettings.GenerateBodyMethods;
         }
 
         /// <summary>

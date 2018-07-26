@@ -127,6 +127,8 @@ namespace AutoRest.TypeScript.Model
 
         public bool GenerateMetadata { get; set; }
 
+        public bool GenerateBodyMethods { get; set; }
+
         public string HomePageUrl
         {
             get

@@ -10,6 +10,7 @@ namespace AutoRest.TypeScript
     {
         /// <summary>
         /// If true, outputs package.json, tsconfig.json, webpack.config.js, and README.md files.
+        /// Defaults to false.
         /// </summary>
         public bool GenerateMetadata { get; set; }
 
@@ -20,7 +21,15 @@ namespace AutoRest.TypeScript
 
         /// <summary>
         /// If true, models enums as unions of literal strings.
+        /// Otherwise, models enums as TypeScript enums. Defaults to false.
         /// </summary>
         public bool ModelEnumAsUnion { get; set; }
+
+        /// <summary>
+        /// If true, generates "body" and "response" methods for each operation.
+        /// Otherwise, generates only the "response" method without the "WithHttpOperationResponse" suffix.
+        /// Defaults to true.
+        /// </summary>
+        public bool GenerateBodyMethods { get; set; } = true;
     }
 }
