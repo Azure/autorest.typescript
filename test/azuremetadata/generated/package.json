@@ -4,7 +4,7 @@
   "description": "AutoRestLongRunningOperationTestService Library with typescript type definitions for node.js and browser.",
   "version": "",
   "dependencies": {
-    "ms-rest-azure-js": "C:/Users/daschult/Sources/ms-rest-azure-js"
+    "ms-rest-azure-js": "~0.11.118"
   },
   "keywords": [
     "node",
