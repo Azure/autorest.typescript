@@ -373,8 +373,12 @@ describe('typescript', function () {
     });
 
     it('should throw on Post202RetryInvalidHeader', async () => {
-      const error = await msAssert.throwsAsync(testClient.lROSADs.post202RetryInvalidHeader({ product: product }));
-      error.should.be.instanceof(Error);
+      const promise: Promise<void> = testClient.lROSADs.post202RetryInvalidHeader({ product: product });
+      if (msRest.isNode) {
+        await msAssert.throwsAsync(promise);
+      } else {
+        await promise;
+      }
     });
 
     it('should throw on PostAsyncRelativeRetryInvalidHeader', async () => {
