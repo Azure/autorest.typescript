@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const ErrorModel = {
+
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +33,7 @@ export const ErrorModel = {
   }
 };
 
-export const A = {
+export const A: msRest.CompositeMapper = {
   serializedName: "A",
   type: {
     name: "Composite",
@@ -47,7 +49,7 @@ export const A = {
   }
 };
 
-export const B = {
+export const B: msRest.CompositeMapper = {
   serializedName: "B",
   type: {
     name: "Composite",
@@ -64,7 +66,7 @@ export const B = {
   }
 };
 
-export const C = {
+export const C: msRest.CompositeMapper = {
   serializedName: "C",
   type: {
     name: "Composite",
@@ -80,7 +82,7 @@ export const C = {
   }
 };
 
-export const D = {
+export const D: msRest.CompositeMapper = {
   serializedName: "D",
   type: {
     name: "Composite",
@@ -96,7 +98,7 @@ export const D = {
   }
 };
 
-export const HttpSuccessPut200OptionalParams = {
+export const HttpSuccessPut200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put200Options",
   type: {
     name: "Composite",
@@ -112,7 +114,7 @@ export const HttpSuccessPut200OptionalParams = {
   }
 };
 
-export const HttpSuccessPatch200OptionalParams = {
+export const HttpSuccessPatch200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch200Options",
   type: {
     name: "Composite",
@@ -128,7 +130,7 @@ export const HttpSuccessPatch200OptionalParams = {
   }
 };
 
-export const HttpSuccessPost200OptionalParams = {
+export const HttpSuccessPost200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post200Options",
   type: {
     name: "Composite",
@@ -144,7 +146,7 @@ export const HttpSuccessPost200OptionalParams = {
   }
 };
 
-export const HttpSuccessDelete200OptionalParams = {
+export const HttpSuccessDelete200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Delete200Options",
   type: {
     name: "Composite",
@@ -160,7 +162,7 @@ export const HttpSuccessDelete200OptionalParams = {
   }
 };
 
-export const HttpSuccessPut201OptionalParams = {
+export const HttpSuccessPut201OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put201Options",
   type: {
     name: "Composite",
@@ -176,7 +178,7 @@ export const HttpSuccessPut201OptionalParams = {
   }
 };
 
-export const HttpSuccessPost201OptionalParams = {
+export const HttpSuccessPost201OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post201Options",
   type: {
     name: "Composite",
@@ -192,7 +194,7 @@ export const HttpSuccessPost201OptionalParams = {
   }
 };
 
-export const HttpSuccessPut202OptionalParams = {
+export const HttpSuccessPut202OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put202Options",
   type: {
     name: "Composite",
@@ -208,7 +210,7 @@ export const HttpSuccessPut202OptionalParams = {
   }
 };
 
-export const HttpSuccessPatch202OptionalParams = {
+export const HttpSuccessPatch202OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch202Options",
   type: {
     name: "Composite",
@@ -224,7 +226,7 @@ export const HttpSuccessPatch202OptionalParams = {
   }
 };
 
-export const HttpSuccessPost202OptionalParams = {
+export const HttpSuccessPost202OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post202Options",
   type: {
     name: "Composite",
@@ -240,7 +242,7 @@ export const HttpSuccessPost202OptionalParams = {
   }
 };
 
-export const HttpSuccessDelete202OptionalParams = {
+export const HttpSuccessDelete202OptionalParams: msRest.CompositeMapper = {
   serializedName: "Delete202Options",
   type: {
     name: "Composite",
@@ -256,7 +258,7 @@ export const HttpSuccessDelete202OptionalParams = {
   }
 };
 
-export const HttpSuccessPut204OptionalParams = {
+export const HttpSuccessPut204OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put204Options",
   type: {
     name: "Composite",
@@ -272,7 +274,7 @@ export const HttpSuccessPut204OptionalParams = {
   }
 };
 
-export const HttpSuccessPatch204OptionalParams = {
+export const HttpSuccessPatch204OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch204Options",
   type: {
     name: "Composite",
@@ -288,7 +290,7 @@ export const HttpSuccessPatch204OptionalParams = {
   }
 };
 
-export const HttpSuccessPost204OptionalParams = {
+export const HttpSuccessPost204OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post204Options",
   type: {
     name: "Composite",
@@ -304,7 +306,7 @@ export const HttpSuccessPost204OptionalParams = {
   }
 };
 
-export const HttpSuccessDelete204OptionalParams = {
+export const HttpSuccessDelete204OptionalParams: msRest.CompositeMapper = {
   serializedName: "Delete204Options",
   type: {
     name: "Composite",
@@ -320,7 +322,7 @@ export const HttpSuccessDelete204OptionalParams = {
   }
 };
 
-export const HttpRedirectsPut301OptionalParams = {
+export const HttpRedirectsPut301OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put301Options",
   type: {
     name: "Composite",
@@ -336,7 +338,7 @@ export const HttpRedirectsPut301OptionalParams = {
   }
 };
 
-export const HttpRedirectsPatch302OptionalParams = {
+export const HttpRedirectsPatch302OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch302Options",
   type: {
     name: "Composite",
@@ -352,7 +354,7 @@ export const HttpRedirectsPatch302OptionalParams = {
   }
 };
 
-export const HttpRedirectsPost303OptionalParams = {
+export const HttpRedirectsPost303OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post303Options",
   type: {
     name: "Composite",
@@ -368,7 +370,7 @@ export const HttpRedirectsPost303OptionalParams = {
   }
 };
 
-export const HttpRedirectsPut307OptionalParams = {
+export const HttpRedirectsPut307OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put307Options",
   type: {
     name: "Composite",
@@ -384,7 +386,7 @@ export const HttpRedirectsPut307OptionalParams = {
   }
 };
 
-export const HttpRedirectsPatch307OptionalParams = {
+export const HttpRedirectsPatch307OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch307Options",
   type: {
     name: "Composite",
@@ -400,7 +402,7 @@ export const HttpRedirectsPatch307OptionalParams = {
   }
 };
 
-export const HttpRedirectsPost307OptionalParams = {
+export const HttpRedirectsPost307OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post307Options",
   type: {
     name: "Composite",
@@ -416,7 +418,7 @@ export const HttpRedirectsPost307OptionalParams = {
   }
 };
 
-export const HttpRedirectsDelete307OptionalParams = {
+export const HttpRedirectsDelete307OptionalParams: msRest.CompositeMapper = {
   serializedName: "Delete307Options",
   type: {
     name: "Composite",
@@ -432,7 +434,7 @@ export const HttpRedirectsDelete307OptionalParams = {
   }
 };
 
-export const HttpClientFailurePut400OptionalParams = {
+export const HttpClientFailurePut400OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put400Options",
   type: {
     name: "Composite",
@@ -448,7 +450,7 @@ export const HttpClientFailurePut400OptionalParams = {
   }
 };
 
-export const HttpClientFailurePatch400OptionalParams = {
+export const HttpClientFailurePatch400OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch400Options",
   type: {
     name: "Composite",
@@ -464,7 +466,7 @@ export const HttpClientFailurePatch400OptionalParams = {
   }
 };
 
-export const HttpClientFailurePost400OptionalParams = {
+export const HttpClientFailurePost400OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post400Options",
   type: {
     name: "Composite",
@@ -480,7 +482,7 @@ export const HttpClientFailurePost400OptionalParams = {
   }
 };
 
-export const HttpClientFailureDelete400OptionalParams = {
+export const HttpClientFailureDelete400OptionalParams: msRest.CompositeMapper = {
   serializedName: "Delete400Options",
   type: {
     name: "Composite",
@@ -496,7 +498,7 @@ export const HttpClientFailureDelete400OptionalParams = {
   }
 };
 
-export const HttpClientFailurePut404OptionalParams = {
+export const HttpClientFailurePut404OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put404Options",
   type: {
     name: "Composite",
@@ -512,7 +514,7 @@ export const HttpClientFailurePut404OptionalParams = {
   }
 };
 
-export const HttpClientFailurePatch405OptionalParams = {
+export const HttpClientFailurePatch405OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch405Options",
   type: {
     name: "Composite",
@@ -528,7 +530,7 @@ export const HttpClientFailurePatch405OptionalParams = {
   }
 };
 
-export const HttpClientFailurePost406OptionalParams = {
+export const HttpClientFailurePost406OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post406Options",
   type: {
     name: "Composite",
@@ -544,7 +546,7 @@ export const HttpClientFailurePost406OptionalParams = {
   }
 };
 
-export const HttpClientFailureDelete407OptionalParams = {
+export const HttpClientFailureDelete407OptionalParams: msRest.CompositeMapper = {
   serializedName: "Delete407Options",
   type: {
     name: "Composite",
@@ -560,7 +562,7 @@ export const HttpClientFailureDelete407OptionalParams = {
   }
 };
 
-export const HttpClientFailurePut409OptionalParams = {
+export const HttpClientFailurePut409OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put409Options",
   type: {
     name: "Composite",
@@ -576,7 +578,7 @@ export const HttpClientFailurePut409OptionalParams = {
   }
 };
 
-export const HttpClientFailurePut413OptionalParams = {
+export const HttpClientFailurePut413OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put413Options",
   type: {
     name: "Composite",
@@ -592,7 +594,7 @@ export const HttpClientFailurePut413OptionalParams = {
   }
 };
 
-export const HttpClientFailurePatch414OptionalParams = {
+export const HttpClientFailurePatch414OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch414Options",
   type: {
     name: "Composite",
@@ -608,7 +610,7 @@ export const HttpClientFailurePatch414OptionalParams = {
   }
 };
 
-export const HttpClientFailurePost415OptionalParams = {
+export const HttpClientFailurePost415OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post415Options",
   type: {
     name: "Composite",
@@ -624,7 +626,7 @@ export const HttpClientFailurePost415OptionalParams = {
   }
 };
 
-export const HttpClientFailureDelete417OptionalParams = {
+export const HttpClientFailureDelete417OptionalParams: msRest.CompositeMapper = {
   serializedName: "Delete417Options",
   type: {
     name: "Composite",
@@ -640,7 +642,7 @@ export const HttpClientFailureDelete417OptionalParams = {
   }
 };
 
-export const HttpServerFailurePost505OptionalParams = {
+export const HttpServerFailurePost505OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post505Options",
   type: {
     name: "Composite",
@@ -656,7 +658,7 @@ export const HttpServerFailurePost505OptionalParams = {
   }
 };
 
-export const HttpServerFailureDelete505OptionalParams = {
+export const HttpServerFailureDelete505OptionalParams: msRest.CompositeMapper = {
   serializedName: "Delete505Options",
   type: {
     name: "Composite",
@@ -672,7 +674,7 @@ export const HttpServerFailureDelete505OptionalParams = {
   }
 };
 
-export const HttpRetryPut500OptionalParams = {
+export const HttpRetryPut500OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put500Options",
   type: {
     name: "Composite",
@@ -688,7 +690,7 @@ export const HttpRetryPut500OptionalParams = {
   }
 };
 
-export const HttpRetryPatch500OptionalParams = {
+export const HttpRetryPatch500OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch500Options",
   type: {
     name: "Composite",
@@ -704,7 +706,7 @@ export const HttpRetryPatch500OptionalParams = {
   }
 };
 
-export const HttpRetryPost503OptionalParams = {
+export const HttpRetryPost503OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post503Options",
   type: {
     name: "Composite",
@@ -720,7 +722,7 @@ export const HttpRetryPost503OptionalParams = {
   }
 };
 
-export const HttpRetryDelete503OptionalParams = {
+export const HttpRetryDelete503OptionalParams: msRest.CompositeMapper = {
   serializedName: "Delete503Options",
   type: {
     name: "Composite",
@@ -736,7 +738,7 @@ export const HttpRetryDelete503OptionalParams = {
   }
 };
 
-export const HttpRetryPut504OptionalParams = {
+export const HttpRetryPut504OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put504Options",
   type: {
     name: "Composite",
@@ -752,7 +754,7 @@ export const HttpRetryPut504OptionalParams = {
   }
 };
 
-export const HttpRetryPatch504OptionalParams = {
+export const HttpRetryPatch504OptionalParams: msRest.CompositeMapper = {
   serializedName: "Patch504Options",
   type: {
     name: "Composite",
@@ -768,7 +770,7 @@ export const HttpRetryPatch504OptionalParams = {
   }
 };
 
-export const HttpRedirectsHead300Headers = {
+export const HttpRedirectsHead300Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-head300-headers",
   type: {
     name: "Composite",
@@ -784,7 +786,7 @@ export const HttpRedirectsHead300Headers = {
   }
 };
 
-export const HttpRedirectsGet300Headers = {
+export const HttpRedirectsGet300Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-get300-headers",
   type: {
     name: "Composite",
@@ -800,7 +802,7 @@ export const HttpRedirectsGet300Headers = {
   }
 };
 
-export const HttpRedirectsHead301Headers = {
+export const HttpRedirectsHead301Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-head301-headers",
   type: {
     name: "Composite",
@@ -816,7 +818,7 @@ export const HttpRedirectsHead301Headers = {
   }
 };
 
-export const HttpRedirectsGet301Headers = {
+export const HttpRedirectsGet301Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-get301-headers",
   type: {
     name: "Composite",
@@ -832,7 +834,7 @@ export const HttpRedirectsGet301Headers = {
   }
 };
 
-export const HttpRedirectsPut301Headers = {
+export const HttpRedirectsPut301Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-put301-headers",
   type: {
     name: "Composite",
@@ -848,7 +850,7 @@ export const HttpRedirectsPut301Headers = {
   }
 };
 
-export const HttpRedirectsHead302Headers = {
+export const HttpRedirectsHead302Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-head302-headers",
   type: {
     name: "Composite",
@@ -864,7 +866,7 @@ export const HttpRedirectsHead302Headers = {
   }
 };
 
-export const HttpRedirectsGet302Headers = {
+export const HttpRedirectsGet302Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-get302-headers",
   type: {
     name: "Composite",
@@ -880,7 +882,7 @@ export const HttpRedirectsGet302Headers = {
   }
 };
 
-export const HttpRedirectsPatch302Headers = {
+export const HttpRedirectsPatch302Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-patch302-headers",
   type: {
     name: "Composite",
@@ -896,7 +898,7 @@ export const HttpRedirectsPatch302Headers = {
   }
 };
 
-export const HttpRedirectsPost303Headers = {
+export const HttpRedirectsPost303Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-post303-headers",
   type: {
     name: "Composite",
@@ -912,7 +914,7 @@ export const HttpRedirectsPost303Headers = {
   }
 };
 
-export const HttpRedirectsHead307Headers = {
+export const HttpRedirectsHead307Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-head307-headers",
   type: {
     name: "Composite",
@@ -928,7 +930,7 @@ export const HttpRedirectsHead307Headers = {
   }
 };
 
-export const HttpRedirectsGet307Headers = {
+export const HttpRedirectsGet307Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-get307-headers",
   type: {
     name: "Composite",
@@ -944,7 +946,7 @@ export const HttpRedirectsGet307Headers = {
   }
 };
 
-export const HttpRedirectsPut307Headers = {
+export const HttpRedirectsPut307Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-put307-headers",
   type: {
     name: "Composite",
@@ -960,7 +962,7 @@ export const HttpRedirectsPut307Headers = {
   }
 };
 
-export const HttpRedirectsPatch307Headers = {
+export const HttpRedirectsPatch307Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-patch307-headers",
   type: {
     name: "Composite",
@@ -976,7 +978,7 @@ export const HttpRedirectsPatch307Headers = {
   }
 };
 
-export const HttpRedirectsPost307Headers = {
+export const HttpRedirectsPost307Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-post307-headers",
   type: {
     name: "Composite",
@@ -992,7 +994,7 @@ export const HttpRedirectsPost307Headers = {
   }
 };
 
-export const HttpRedirectsDelete307Headers = {
+export const HttpRedirectsDelete307Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-delete307-headers",
   type: {
     name: "Composite",

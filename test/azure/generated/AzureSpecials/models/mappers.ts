@@ -9,11 +9,12 @@
  */
 
 import {CloudErrorMapper, BaseResourceMapper } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const ErrorModel = {
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -44,7 +45,7 @@ export const ErrorModel = {
   }
 };
 
-export const OdataFilter = {
+export const OdataFilter: msRest.CompositeMapper = {
   serializedName: "OdataFilter",
   type: {
     name: "Composite",
@@ -66,7 +67,7 @@ export const OdataFilter = {
   }
 };
 
-export const HeaderCustomNamedRequestIdParamGroupingParameters = {
+export const HeaderCustomNamedRequestIdParamGroupingParameters: msRest.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderCustomNamedRequestIdParamGroupingParameters",
@@ -81,7 +82,7 @@ export const HeaderCustomNamedRequestIdParamGroupingParameters = {
   }
 };
 
-export const ApiVersionLocalGetMethodLocalNullOptionalParams = {
+export const ApiVersionLocalGetMethodLocalNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetMethodLocalNullOptions",
   type: {
     name: "Composite",
@@ -97,7 +98,7 @@ export const ApiVersionLocalGetMethodLocalNullOptionalParams = {
   }
 };
 
-export const SkipUrlEncodingGetMethodQueryNullOptionalParams = {
+export const SkipUrlEncodingGetMethodQueryNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetMethodQueryNullOptions",
   type: {
     name: "Composite",
@@ -113,7 +114,7 @@ export const SkipUrlEncodingGetMethodQueryNullOptionalParams = {
   }
 };
 
-export const OdataGetWithFilterOptionalParams = {
+export const OdataGetWithFilterOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetWithFilterOptions",
   type: {
     name: "Composite",
@@ -141,7 +142,7 @@ export const OdataGetWithFilterOptionalParams = {
   }
 };
 
-export const HeaderCustomNamedRequestIdHeaders = {
+export const HeaderCustomNamedRequestIdHeaders: msRest.CompositeMapper = {
   serializedName: "header-customnamedrequestid-headers",
   type: {
     name: "Composite",
@@ -157,7 +158,7 @@ export const HeaderCustomNamedRequestIdHeaders = {
   }
 };
 
-export const HeaderCustomNamedRequestIdParamGroupingHeaders = {
+export const HeaderCustomNamedRequestIdParamGroupingHeaders: msRest.CompositeMapper = {
   serializedName: "header-customnamedrequestidparamgrouping-headers",
   type: {
     name: "Composite",
@@ -173,7 +174,7 @@ export const HeaderCustomNamedRequestIdParamGroupingHeaders = {
   }
 };
 
-export const HeaderCustomNamedRequestIdHeadHeaders = {
+export const HeaderCustomNamedRequestIdHeadHeaders: msRest.CompositeMapper = {
   serializedName: "header-customnamedrequestidhead-headers",
   type: {
     name: "Composite",

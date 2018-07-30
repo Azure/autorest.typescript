@@ -9,11 +9,12 @@
  */
 
 import {CloudErrorMapper, BaseResourceMapper } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const Resource = {
+export const Resource: msRest.CompositeMapper = {
   serializedName: "Resource",
   type: {
     name: "Composite",
@@ -61,7 +62,7 @@ export const Resource = {
   }
 };
 
-export const Sku = {
+export const Sku: msRest.CompositeMapper = {
   serializedName: "Sku",
   type: {
     name: "Composite",
@@ -83,7 +84,7 @@ export const Sku = {
   }
 };
 
-export const Product = {
+export const Product: msRest.CompositeMapper = {
   serializedName: "Product",
   type: {
     name: "Composite",
@@ -107,7 +108,7 @@ export const Product = {
   }
 };
 
-export const SubResource = {
+export const SubResource: msRest.CompositeMapper = {
   serializedName: "SubResource",
   type: {
     name: "Composite",
@@ -124,7 +125,7 @@ export const SubResource = {
   }
 };
 
-export const SubProduct = {
+export const SubProduct: msRest.CompositeMapper = {
   serializedName: "SubProduct",
   type: {
     name: "Composite",
@@ -148,7 +149,7 @@ export const SubProduct = {
   }
 };
 
-export const OperationResultError = {
+export const OperationResultError: msRest.CompositeMapper = {
   serializedName: "OperationResult_error",
   type: {
     name: "Composite",
@@ -170,7 +171,7 @@ export const OperationResultError = {
   }
 };
 
-export const OperationResult = {
+export const OperationResult: msRest.CompositeMapper = {
   serializedName: "OperationResult",
   type: {
     name: "Composite",
@@ -193,7 +194,7 @@ export const OperationResult = {
   }
 };
 
-export const LROsPut200SucceededOptionalParams = {
+export const LROsPut200SucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "Put200SucceededOptions",
   type: {
     name: "Composite",
@@ -210,7 +211,7 @@ export const LROsPut200SucceededOptionalParams = {
   }
 };
 
-export const LROsPut200SucceededNoStateOptionalParams = {
+export const LROsPut200SucceededNoStateOptionalParams: msRest.CompositeMapper = {
   serializedName: "Put200SucceededNoStateOptions",
   type: {
     name: "Composite",
@@ -227,7 +228,7 @@ export const LROsPut200SucceededNoStateOptionalParams = {
   }
 };
 
-export const LROsPut202Retry200OptionalParams = {
+export const LROsPut202Retry200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put202Retry200Options",
   type: {
     name: "Composite",
@@ -244,7 +245,7 @@ export const LROsPut202Retry200OptionalParams = {
   }
 };
 
-export const LROsPut201CreatingSucceeded200OptionalParams = {
+export const LROsPut201CreatingSucceeded200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put201CreatingSucceeded200Options",
   type: {
     name: "Composite",
@@ -261,7 +262,7 @@ export const LROsPut201CreatingSucceeded200OptionalParams = {
   }
 };
 
-export const LROsPut200UpdatingSucceeded204OptionalParams = {
+export const LROsPut200UpdatingSucceeded204OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put200UpdatingSucceeded204Options",
   type: {
     name: "Composite",
@@ -278,7 +279,7 @@ export const LROsPut200UpdatingSucceeded204OptionalParams = {
   }
 };
 
-export const LROsPut201CreatingFailed200OptionalParams = {
+export const LROsPut201CreatingFailed200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put201CreatingFailed200Options",
   type: {
     name: "Composite",
@@ -295,7 +296,7 @@ export const LROsPut201CreatingFailed200OptionalParams = {
   }
 };
 
-export const LROsPut200Acceptedcanceled200OptionalParams = {
+export const LROsPut200Acceptedcanceled200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put200Acceptedcanceled200Options",
   type: {
     name: "Composite",
@@ -312,7 +313,7 @@ export const LROsPut200Acceptedcanceled200OptionalParams = {
   }
 };
 
-export const LROsPutNoHeaderInRetryOptionalParams = {
+export const LROsPutNoHeaderInRetryOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutNoHeaderInRetryOptions",
   type: {
     name: "Composite",
@@ -329,7 +330,7 @@ export const LROsPutNoHeaderInRetryOptionalParams = {
   }
 };
 
-export const LROsPutAsyncRetrySucceededOptionalParams = {
+export const LROsPutAsyncRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -346,7 +347,7 @@ export const LROsPutAsyncRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsPutAsyncNoRetrySucceededOptionalParams = {
+export const LROsPutAsyncNoRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncNoRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -363,7 +364,7 @@ export const LROsPutAsyncNoRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsPutAsyncRetryFailedOptionalParams = {
+export const LROsPutAsyncRetryFailedOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncRetryFailedOptions",
   type: {
     name: "Composite",
@@ -380,7 +381,7 @@ export const LROsPutAsyncRetryFailedOptionalParams = {
   }
 };
 
-export const LROsPutAsyncNoRetrycanceledOptionalParams = {
+export const LROsPutAsyncNoRetrycanceledOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncNoRetrycanceledOptions",
   type: {
     name: "Composite",
@@ -397,7 +398,7 @@ export const LROsPutAsyncNoRetrycanceledOptionalParams = {
   }
 };
 
-export const LROsPutAsyncNoHeaderInRetryOptionalParams = {
+export const LROsPutAsyncNoHeaderInRetryOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncNoHeaderInRetryOptions",
   type: {
     name: "Composite",
@@ -414,7 +415,7 @@ export const LROsPutAsyncNoHeaderInRetryOptionalParams = {
   }
 };
 
-export const LROsPutNonResourceOptionalParams = {
+export const LROsPutNonResourceOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutNonResourceOptions",
   type: {
     name: "Composite",
@@ -431,7 +432,7 @@ export const LROsPutNonResourceOptionalParams = {
   }
 };
 
-export const LROsPutAsyncNonResourceOptionalParams = {
+export const LROsPutAsyncNonResourceOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncNonResourceOptions",
   type: {
     name: "Composite",
@@ -448,7 +449,7 @@ export const LROsPutAsyncNonResourceOptionalParams = {
   }
 };
 
-export const LROsPutSubResourceOptionalParams = {
+export const LROsPutSubResourceOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutSubResourceOptions",
   type: {
     name: "Composite",
@@ -464,7 +465,7 @@ export const LROsPutSubResourceOptionalParams = {
   }
 };
 
-export const LROsPutAsyncSubResourceOptionalParams = {
+export const LROsPutAsyncSubResourceOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncSubResourceOptions",
   type: {
     name: "Composite",
@@ -480,7 +481,7 @@ export const LROsPutAsyncSubResourceOptionalParams = {
   }
 };
 
-export const LROsPost202Retry200OptionalParams = {
+export const LROsPost202Retry200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post202Retry200Options",
   type: {
     name: "Composite",
@@ -497,7 +498,7 @@ export const LROsPost202Retry200OptionalParams = {
   }
 };
 
-export const LROsPost202NoRetry204OptionalParams = {
+export const LROsPost202NoRetry204OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post202NoRetry204Options",
   type: {
     name: "Composite",
@@ -514,7 +515,7 @@ export const LROsPost202NoRetry204OptionalParams = {
   }
 };
 
-export const LROsPostAsyncRetrySucceededOptionalParams = {
+export const LROsPostAsyncRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -531,7 +532,7 @@ export const LROsPostAsyncRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsPostAsyncNoRetrySucceededOptionalParams = {
+export const LROsPostAsyncNoRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncNoRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -548,7 +549,7 @@ export const LROsPostAsyncNoRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsPostAsyncRetryFailedOptionalParams = {
+export const LROsPostAsyncRetryFailedOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncRetryFailedOptions",
   type: {
     name: "Composite",
@@ -565,7 +566,7 @@ export const LROsPostAsyncRetryFailedOptionalParams = {
   }
 };
 
-export const LROsPostAsyncRetrycanceledOptionalParams = {
+export const LROsPostAsyncRetrycanceledOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncRetrycanceledOptions",
   type: {
     name: "Composite",
@@ -582,7 +583,7 @@ export const LROsPostAsyncRetrycanceledOptionalParams = {
   }
 };
 
-export const LROsBeginPut200SucceededOptionalParams = {
+export const LROsBeginPut200SucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut200SucceededOptions",
   type: {
     name: "Composite",
@@ -599,7 +600,7 @@ export const LROsBeginPut200SucceededOptionalParams = {
   }
 };
 
-export const LROsBeginPut200SucceededNoStateOptionalParams = {
+export const LROsBeginPut200SucceededNoStateOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut200SucceededNoStateOptions",
   type: {
     name: "Composite",
@@ -616,7 +617,7 @@ export const LROsBeginPut200SucceededNoStateOptionalParams = {
   }
 };
 
-export const LROsBeginPut202Retry200OptionalParams = {
+export const LROsBeginPut202Retry200OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut202Retry200Options",
   type: {
     name: "Composite",
@@ -633,7 +634,7 @@ export const LROsBeginPut202Retry200OptionalParams = {
   }
 };
 
-export const LROsBeginPut201CreatingSucceeded200OptionalParams = {
+export const LROsBeginPut201CreatingSucceeded200OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut201CreatingSucceeded200Options",
   type: {
     name: "Composite",
@@ -650,7 +651,7 @@ export const LROsBeginPut201CreatingSucceeded200OptionalParams = {
   }
 };
 
-export const LROsBeginPut200UpdatingSucceeded204OptionalParams = {
+export const LROsBeginPut200UpdatingSucceeded204OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut200UpdatingSucceeded204Options",
   type: {
     name: "Composite",
@@ -667,7 +668,7 @@ export const LROsBeginPut200UpdatingSucceeded204OptionalParams = {
   }
 };
 
-export const LROsBeginPut201CreatingFailed200OptionalParams = {
+export const LROsBeginPut201CreatingFailed200OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut201CreatingFailed200Options",
   type: {
     name: "Composite",
@@ -684,7 +685,7 @@ export const LROsBeginPut201CreatingFailed200OptionalParams = {
   }
 };
 
-export const LROsBeginPut200Acceptedcanceled200OptionalParams = {
+export const LROsBeginPut200Acceptedcanceled200OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut200Acceptedcanceled200Options",
   type: {
     name: "Composite",
@@ -701,7 +702,7 @@ export const LROsBeginPut200Acceptedcanceled200OptionalParams = {
   }
 };
 
-export const LROsBeginPutNoHeaderInRetryOptionalParams = {
+export const LROsBeginPutNoHeaderInRetryOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutNoHeaderInRetryOptions",
   type: {
     name: "Composite",
@@ -718,7 +719,7 @@ export const LROsBeginPutNoHeaderInRetryOptionalParams = {
   }
 };
 
-export const LROsBeginPutAsyncRetrySucceededOptionalParams = {
+export const LROsBeginPutAsyncRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -735,7 +736,7 @@ export const LROsBeginPutAsyncRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsBeginPutAsyncNoRetrySucceededOptionalParams = {
+export const LROsBeginPutAsyncNoRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncNoRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -752,7 +753,7 @@ export const LROsBeginPutAsyncNoRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsBeginPutAsyncRetryFailedOptionalParams = {
+export const LROsBeginPutAsyncRetryFailedOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncRetryFailedOptions",
   type: {
     name: "Composite",
@@ -769,7 +770,7 @@ export const LROsBeginPutAsyncRetryFailedOptionalParams = {
   }
 };
 
-export const LROsBeginPutAsyncNoRetrycanceledOptionalParams = {
+export const LROsBeginPutAsyncNoRetrycanceledOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncNoRetrycanceledOptions",
   type: {
     name: "Composite",
@@ -786,7 +787,7 @@ export const LROsBeginPutAsyncNoRetrycanceledOptionalParams = {
   }
 };
 
-export const LROsBeginPutAsyncNoHeaderInRetryOptionalParams = {
+export const LROsBeginPutAsyncNoHeaderInRetryOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncNoHeaderInRetryOptions",
   type: {
     name: "Composite",
@@ -803,7 +804,7 @@ export const LROsBeginPutAsyncNoHeaderInRetryOptionalParams = {
   }
 };
 
-export const LROsBeginPutNonResourceOptionalParams = {
+export const LROsBeginPutNonResourceOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutNonResourceOptions",
   type: {
     name: "Composite",
@@ -820,7 +821,7 @@ export const LROsBeginPutNonResourceOptionalParams = {
   }
 };
 
-export const LROsBeginPutAsyncNonResourceOptionalParams = {
+export const LROsBeginPutAsyncNonResourceOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncNonResourceOptions",
   type: {
     name: "Composite",
@@ -837,7 +838,7 @@ export const LROsBeginPutAsyncNonResourceOptionalParams = {
   }
 };
 
-export const LROsBeginPutSubResourceOptionalParams = {
+export const LROsBeginPutSubResourceOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutSubResourceOptions",
   type: {
     name: "Composite",
@@ -853,7 +854,7 @@ export const LROsBeginPutSubResourceOptionalParams = {
   }
 };
 
-export const LROsBeginPutAsyncSubResourceOptionalParams = {
+export const LROsBeginPutAsyncSubResourceOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncSubResourceOptions",
   type: {
     name: "Composite",
@@ -869,7 +870,7 @@ export const LROsBeginPutAsyncSubResourceOptionalParams = {
   }
 };
 
-export const LROsBeginPost202Retry200OptionalParams = {
+export const LROsBeginPost202Retry200OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPost202Retry200Options",
   type: {
     name: "Composite",
@@ -886,7 +887,7 @@ export const LROsBeginPost202Retry200OptionalParams = {
   }
 };
 
-export const LROsBeginPost202NoRetry204OptionalParams = {
+export const LROsBeginPost202NoRetry204OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPost202NoRetry204Options",
   type: {
     name: "Composite",
@@ -903,7 +904,7 @@ export const LROsBeginPost202NoRetry204OptionalParams = {
   }
 };
 
-export const LROsBeginPostAsyncRetrySucceededOptionalParams = {
+export const LROsBeginPostAsyncRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -920,7 +921,7 @@ export const LROsBeginPostAsyncRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsBeginPostAsyncNoRetrySucceededOptionalParams = {
+export const LROsBeginPostAsyncNoRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncNoRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -937,7 +938,7 @@ export const LROsBeginPostAsyncNoRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsBeginPostAsyncRetryFailedOptionalParams = {
+export const LROsBeginPostAsyncRetryFailedOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncRetryFailedOptions",
   type: {
     name: "Composite",
@@ -954,7 +955,7 @@ export const LROsBeginPostAsyncRetryFailedOptionalParams = {
   }
 };
 
-export const LROsBeginPostAsyncRetrycanceledOptionalParams = {
+export const LROsBeginPostAsyncRetrycanceledOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncRetrycanceledOptions",
   type: {
     name: "Composite",
@@ -971,7 +972,7 @@ export const LROsBeginPostAsyncRetrycanceledOptionalParams = {
   }
 };
 
-export const LRORetrysPut201CreatingSucceeded200OptionalParams = {
+export const LRORetrysPut201CreatingSucceeded200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put201CreatingSucceeded200Options",
   type: {
     name: "Composite",
@@ -988,7 +989,7 @@ export const LRORetrysPut201CreatingSucceeded200OptionalParams = {
   }
 };
 
-export const LRORetrysPutAsyncRelativeRetrySucceededOptionalParams = {
+export const LRORetrysPutAsyncRelativeRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncRelativeRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -1005,7 +1006,7 @@ export const LRORetrysPutAsyncRelativeRetrySucceededOptionalParams = {
   }
 };
 
-export const LRORetrysPost202Retry200OptionalParams = {
+export const LRORetrysPost202Retry200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post202Retry200Options",
   type: {
     name: "Composite",
@@ -1022,7 +1023,7 @@ export const LRORetrysPost202Retry200OptionalParams = {
   }
 };
 
-export const LRORetrysPostAsyncRelativeRetrySucceededOptionalParams = {
+export const LRORetrysPostAsyncRelativeRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncRelativeRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -1039,7 +1040,7 @@ export const LRORetrysPostAsyncRelativeRetrySucceededOptionalParams = {
   }
 };
 
-export const LRORetrysBeginPut201CreatingSucceeded200OptionalParams = {
+export const LRORetrysBeginPut201CreatingSucceeded200OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut201CreatingSucceeded200Options",
   type: {
     name: "Composite",
@@ -1056,7 +1057,7 @@ export const LRORetrysBeginPut201CreatingSucceeded200OptionalParams = {
   }
 };
 
-export const LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams = {
+export const LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncRelativeRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -1073,7 +1074,7 @@ export const LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams = {
   }
 };
 
-export const LRORetrysBeginPost202Retry200OptionalParams = {
+export const LRORetrysBeginPost202Retry200OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPost202Retry200Options",
   type: {
     name: "Composite",
@@ -1090,7 +1091,7 @@ export const LRORetrysBeginPost202Retry200OptionalParams = {
   }
 };
 
-export const LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams = {
+export const LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncRelativeRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -1107,7 +1108,7 @@ export const LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams = {
   }
 };
 
-export const LROSADsPutNonRetry400OptionalParams = {
+export const LROSADsPutNonRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "PutNonRetry400Options",
   type: {
     name: "Composite",
@@ -1124,7 +1125,7 @@ export const LROSADsPutNonRetry400OptionalParams = {
   }
 };
 
-export const LROSADsPutNonRetry201Creating400OptionalParams = {
+export const LROSADsPutNonRetry201Creating400OptionalParams: msRest.CompositeMapper = {
   serializedName: "PutNonRetry201Creating400Options",
   type: {
     name: "Composite",
@@ -1141,7 +1142,7 @@ export const LROSADsPutNonRetry201Creating400OptionalParams = {
   }
 };
 
-export const LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams = {
+export const LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutNonRetry201Creating400InvalidJsonOptions",
   type: {
     name: "Composite",
@@ -1158,7 +1159,7 @@ export const LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetry400OptionalParams = {
+export const LROSADsPutAsyncRelativeRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncRelativeRetry400Options",
   type: {
     name: "Composite",
@@ -1175,7 +1176,7 @@ export const LROSADsPutAsyncRelativeRetry400OptionalParams = {
   }
 };
 
-export const LROSADsPostNonRetry400OptionalParams = {
+export const LROSADsPostNonRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "PostNonRetry400Options",
   type: {
     name: "Composite",
@@ -1192,7 +1193,7 @@ export const LROSADsPostNonRetry400OptionalParams = {
   }
 };
 
-export const LROSADsPost202NonRetry400OptionalParams = {
+export const LROSADsPost202NonRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post202NonRetry400Options",
   type: {
     name: "Composite",
@@ -1209,7 +1210,7 @@ export const LROSADsPost202NonRetry400OptionalParams = {
   }
 };
 
-export const LROSADsPostAsyncRelativeRetry400OptionalParams = {
+export const LROSADsPostAsyncRelativeRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncRelativeRetry400Options",
   type: {
     name: "Composite",
@@ -1226,7 +1227,7 @@ export const LROSADsPostAsyncRelativeRetry400OptionalParams = {
   }
 };
 
-export const LROSADsPutError201NoProvisioningStatePayloadOptionalParams = {
+export const LROSADsPutError201NoProvisioningStatePayloadOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutError201NoProvisioningStatePayloadOptions",
   type: {
     name: "Composite",
@@ -1243,7 +1244,7 @@ export const LROSADsPutError201NoProvisioningStatePayloadOptionalParams = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetryNoStatusOptionalParams = {
+export const LROSADsPutAsyncRelativeRetryNoStatusOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncRelativeRetryNoStatusOptions",
   type: {
     name: "Composite",
@@ -1260,7 +1261,7 @@ export const LROSADsPutAsyncRelativeRetryNoStatusOptionalParams = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams = {
+export const LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncRelativeRetryNoStatusPayloadOptions",
   type: {
     name: "Composite",
@@ -1277,7 +1278,7 @@ export const LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams = {
   }
 };
 
-export const LROSADsPost202NoLocationOptionalParams = {
+export const LROSADsPost202NoLocationOptionalParams: msRest.CompositeMapper = {
   serializedName: "Post202NoLocationOptions",
   type: {
     name: "Composite",
@@ -1294,7 +1295,7 @@ export const LROSADsPost202NoLocationOptionalParams = {
   }
 };
 
-export const LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams = {
+export const LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncRelativeRetryNoPayloadOptions",
   type: {
     name: "Composite",
@@ -1311,7 +1312,7 @@ export const LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams = {
   }
 };
 
-export const LROSADsPut200InvalidJsonOptionalParams = {
+export const LROSADsPut200InvalidJsonOptionalParams: msRest.CompositeMapper = {
   serializedName: "Put200InvalidJsonOptions",
   type: {
     name: "Composite",
@@ -1328,7 +1329,7 @@ export const LROSADsPut200InvalidJsonOptionalParams = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams = {
+export const LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncRelativeRetryInvalidHeaderOptions",
   type: {
     name: "Composite",
@@ -1345,7 +1346,7 @@ export const LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
+export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncRelativeRetryInvalidJsonPollingOptions",
   type: {
     name: "Composite",
@@ -1362,7 +1363,7 @@ export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
   }
 };
 
-export const LROSADsPost202RetryInvalidHeaderOptionalParams = {
+export const LROSADsPost202RetryInvalidHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "Post202RetryInvalidHeaderOptions",
   type: {
     name: "Composite",
@@ -1379,7 +1380,7 @@ export const LROSADsPost202RetryInvalidHeaderOptionalParams = {
   }
 };
 
-export const LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams = {
+export const LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncRelativeRetryInvalidHeaderOptions",
   type: {
     name: "Composite",
@@ -1396,7 +1397,7 @@ export const LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams = {
   }
 };
 
-export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
+export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncRelativeRetryInvalidJsonPollingOptions",
   type: {
     name: "Composite",
@@ -1413,7 +1414,7 @@ export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
   }
 };
 
-export const LROSADsBeginPutNonRetry400OptionalParams = {
+export const LROSADsBeginPutNonRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutNonRetry400Options",
   type: {
     name: "Composite",
@@ -1430,7 +1431,7 @@ export const LROSADsBeginPutNonRetry400OptionalParams = {
   }
 };
 
-export const LROSADsBeginPutNonRetry201Creating400OptionalParams = {
+export const LROSADsBeginPutNonRetry201Creating400OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutNonRetry201Creating400Options",
   type: {
     name: "Composite",
@@ -1447,7 +1448,7 @@ export const LROSADsBeginPutNonRetry201Creating400OptionalParams = {
   }
 };
 
-export const LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams = {
+export const LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutNonRetry201Creating400InvalidJsonOptions",
   type: {
     name: "Composite",
@@ -1464,7 +1465,7 @@ export const LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams = {
   }
 };
 
-export const LROSADsBeginPutAsyncRelativeRetry400OptionalParams = {
+export const LROSADsBeginPutAsyncRelativeRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncRelativeRetry400Options",
   type: {
     name: "Composite",
@@ -1481,7 +1482,7 @@ export const LROSADsBeginPutAsyncRelativeRetry400OptionalParams = {
   }
 };
 
-export const LROSADsBeginPostNonRetry400OptionalParams = {
+export const LROSADsBeginPostNonRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostNonRetry400Options",
   type: {
     name: "Composite",
@@ -1498,7 +1499,7 @@ export const LROSADsBeginPostNonRetry400OptionalParams = {
   }
 };
 
-export const LROSADsBeginPost202NonRetry400OptionalParams = {
+export const LROSADsBeginPost202NonRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPost202NonRetry400Options",
   type: {
     name: "Composite",
@@ -1515,7 +1516,7 @@ export const LROSADsBeginPost202NonRetry400OptionalParams = {
   }
 };
 
-export const LROSADsBeginPostAsyncRelativeRetry400OptionalParams = {
+export const LROSADsBeginPostAsyncRelativeRetry400OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncRelativeRetry400Options",
   type: {
     name: "Composite",
@@ -1532,7 +1533,7 @@ export const LROSADsBeginPostAsyncRelativeRetry400OptionalParams = {
   }
 };
 
-export const LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams = {
+export const LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutError201NoProvisioningStatePayloadOptions",
   type: {
     name: "Composite",
@@ -1549,7 +1550,7 @@ export const LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams = {
   }
 };
 
-export const LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams = {
+export const LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncRelativeRetryNoStatusOptions",
   type: {
     name: "Composite",
@@ -1566,7 +1567,7 @@ export const LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams = {
   }
 };
 
-export const LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams = {
+export const LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncRelativeRetryNoStatusPayloadOptions",
   type: {
     name: "Composite",
@@ -1583,7 +1584,7 @@ export const LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams = {
   }
 };
 
-export const LROSADsBeginPost202NoLocationOptionalParams = {
+export const LROSADsBeginPost202NoLocationOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPost202NoLocationOptions",
   type: {
     name: "Composite",
@@ -1600,7 +1601,7 @@ export const LROSADsBeginPost202NoLocationOptionalParams = {
   }
 };
 
-export const LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams = {
+export const LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncRelativeRetryNoPayloadOptions",
   type: {
     name: "Composite",
@@ -1617,7 +1618,7 @@ export const LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams = {
   }
 };
 
-export const LROSADsBeginPut200InvalidJsonOptionalParams = {
+export const LROSADsBeginPut200InvalidJsonOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut200InvalidJsonOptions",
   type: {
     name: "Composite",
@@ -1634,7 +1635,7 @@ export const LROSADsBeginPut200InvalidJsonOptionalParams = {
   }
 };
 
-export const LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams = {
+export const LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncRelativeRetryInvalidHeaderOptions",
   type: {
     name: "Composite",
@@ -1651,7 +1652,7 @@ export const LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams = {
   }
 };
 
-export const LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
+export const LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncRelativeRetryInvalidJsonPollingOptions",
   type: {
     name: "Composite",
@@ -1668,7 +1669,7 @@ export const LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams =
   }
 };
 
-export const LROSADsBeginPost202RetryInvalidHeaderOptionalParams = {
+export const LROSADsBeginPost202RetryInvalidHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPost202RetryInvalidHeaderOptions",
   type: {
     name: "Composite",
@@ -1685,7 +1686,7 @@ export const LROSADsBeginPost202RetryInvalidHeaderOptionalParams = {
   }
 };
 
-export const LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams = {
+export const LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncRelativeRetryInvalidHeaderOptions",
   type: {
     name: "Composite",
@@ -1702,7 +1703,7 @@ export const LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams = {
   }
 };
 
-export const LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
+export const LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncRelativeRetryInvalidJsonPollingOptions",
   type: {
     name: "Composite",
@@ -1719,7 +1720,7 @@ export const LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams 
   }
 };
 
-export const LROsCustomHeaderPutAsyncRetrySucceededOptionalParams = {
+export const LROsCustomHeaderPutAsyncRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutAsyncRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -1736,7 +1737,7 @@ export const LROsCustomHeaderPutAsyncRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsCustomHeaderPut201CreatingSucceeded200OptionalParams = {
+export const LROsCustomHeaderPut201CreatingSucceeded200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Put201CreatingSucceeded200Options",
   type: {
     name: "Composite",
@@ -1753,7 +1754,7 @@ export const LROsCustomHeaderPut201CreatingSucceeded200OptionalParams = {
   }
 };
 
-export const LROsCustomHeaderPost202Retry200OptionalParams = {
+export const LROsCustomHeaderPost202Retry200OptionalParams: msRest.CompositeMapper = {
   serializedName: "Post202Retry200Options",
   type: {
     name: "Composite",
@@ -1770,7 +1771,7 @@ export const LROsCustomHeaderPost202Retry200OptionalParams = {
   }
 };
 
-export const LROsCustomHeaderPostAsyncRetrySucceededOptionalParams = {
+export const LROsCustomHeaderPostAsyncRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostAsyncRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -1787,7 +1788,7 @@ export const LROsCustomHeaderPostAsyncRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams = {
+export const LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPutAsyncRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -1804,7 +1805,7 @@ export const LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams = {
+export const LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPut201CreatingSucceeded200Options",
   type: {
     name: "Composite",
@@ -1821,7 +1822,7 @@ export const LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams = {
   }
 };
 
-export const LROsCustomHeaderBeginPost202Retry200OptionalParams = {
+export const LROsCustomHeaderBeginPost202Retry200OptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPost202Retry200Options",
   type: {
     name: "Composite",
@@ -1838,7 +1839,7 @@ export const LROsCustomHeaderBeginPost202Retry200OptionalParams = {
   }
 };
 
-export const LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams = {
+export const LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginPostAsyncRetrySucceededOptions",
   type: {
     name: "Composite",
@@ -1855,7 +1856,7 @@ export const LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams = {
   }
 };
 
-export const LROsPutNoHeaderInRetryHeaders = {
+export const LROsPutNoHeaderInRetryHeaders: msRest.CompositeMapper = {
   serializedName: "lros-putnoheaderinretry-headers",
   type: {
     name: "Composite",
@@ -1871,7 +1872,7 @@ export const LROsPutNoHeaderInRetryHeaders = {
   }
 };
 
-export const LROsPutAsyncRetrySucceededHeaders = {
+export const LROsPutAsyncRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lros-putasyncretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -1899,7 +1900,7 @@ export const LROsPutAsyncRetrySucceededHeaders = {
   }
 };
 
-export const LROsPutAsyncNoRetrySucceededHeaders = {
+export const LROsPutAsyncNoRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lros-putasyncnoretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -1921,7 +1922,7 @@ export const LROsPutAsyncNoRetrySucceededHeaders = {
   }
 };
 
-export const LROsPutAsyncRetryFailedHeaders = {
+export const LROsPutAsyncRetryFailedHeaders: msRest.CompositeMapper = {
   serializedName: "lros-putasyncretryfailed-headers",
   type: {
     name: "Composite",
@@ -1949,7 +1950,7 @@ export const LROsPutAsyncRetryFailedHeaders = {
   }
 };
 
-export const LROsPutAsyncNoRetrycanceledHeaders = {
+export const LROsPutAsyncNoRetrycanceledHeaders: msRest.CompositeMapper = {
   serializedName: "lros-putasyncnoretrycanceled-headers",
   type: {
     name: "Composite",
@@ -1971,7 +1972,7 @@ export const LROsPutAsyncNoRetrycanceledHeaders = {
   }
 };
 
-export const LROsPutAsyncNoHeaderInRetryHeaders = {
+export const LROsPutAsyncNoHeaderInRetryHeaders: msRest.CompositeMapper = {
   serializedName: "lros-putasyncnoheaderinretry-headers",
   type: {
     name: "Composite",
@@ -1987,7 +1988,7 @@ export const LROsPutAsyncNoHeaderInRetryHeaders = {
   }
 };
 
-export const LROsDeleteProvisioning202Accepted200SucceededHeaders = {
+export const LROsDeleteProvisioning202Accepted200SucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lros-deleteprovisioning202accepted200succeeded-headers",
   type: {
     name: "Composite",
@@ -2009,7 +2010,7 @@ export const LROsDeleteProvisioning202Accepted200SucceededHeaders = {
   }
 };
 
-export const LROsDeleteProvisioning202DeletingFailed200Headers = {
+export const LROsDeleteProvisioning202DeletingFailed200Headers: msRest.CompositeMapper = {
   serializedName: "lros-deleteprovisioning202deletingfailed200-headers",
   type: {
     name: "Composite",
@@ -2031,7 +2032,7 @@ export const LROsDeleteProvisioning202DeletingFailed200Headers = {
   }
 };
 
-export const LROsDeleteProvisioning202Deletingcanceled200Headers = {
+export const LROsDeleteProvisioning202Deletingcanceled200Headers: msRest.CompositeMapper = {
   serializedName: "lros-deleteprovisioning202deletingcanceled200-headers",
   type: {
     name: "Composite",
@@ -2053,7 +2054,7 @@ export const LROsDeleteProvisioning202Deletingcanceled200Headers = {
   }
 };
 
-export const LROsDelete202Retry200Headers = {
+export const LROsDelete202Retry200Headers: msRest.CompositeMapper = {
   serializedName: "lros-delete202retry200-headers",
   type: {
     name: "Composite",
@@ -2075,7 +2076,7 @@ export const LROsDelete202Retry200Headers = {
   }
 };
 
-export const LROsDelete202NoRetry204Headers = {
+export const LROsDelete202NoRetry204Headers: msRest.CompositeMapper = {
   serializedName: "lros-delete202noretry204-headers",
   type: {
     name: "Composite",
@@ -2097,7 +2098,7 @@ export const LROsDelete202NoRetry204Headers = {
   }
 };
 
-export const LROsDeleteNoHeaderInRetryHeaders = {
+export const LROsDeleteNoHeaderInRetryHeaders: msRest.CompositeMapper = {
   serializedName: "lros-deletenoheaderinretry-headers",
   type: {
     name: "Composite",
@@ -2113,7 +2114,7 @@ export const LROsDeleteNoHeaderInRetryHeaders = {
   }
 };
 
-export const LROsDeleteAsyncNoHeaderInRetryHeaders = {
+export const LROsDeleteAsyncNoHeaderInRetryHeaders: msRest.CompositeMapper = {
   serializedName: "lros-deleteasyncnoheaderinretry-headers",
   type: {
     name: "Composite",
@@ -2129,7 +2130,7 @@ export const LROsDeleteAsyncNoHeaderInRetryHeaders = {
   }
 };
 
-export const LROsDeleteAsyncRetrySucceededHeaders = {
+export const LROsDeleteAsyncRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lros-deleteasyncretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -2157,7 +2158,7 @@ export const LROsDeleteAsyncRetrySucceededHeaders = {
   }
 };
 
-export const LROsDeleteAsyncNoRetrySucceededHeaders = {
+export const LROsDeleteAsyncNoRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lros-deleteasyncnoretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -2185,7 +2186,7 @@ export const LROsDeleteAsyncNoRetrySucceededHeaders = {
   }
 };
 
-export const LROsDeleteAsyncRetryFailedHeaders = {
+export const LROsDeleteAsyncRetryFailedHeaders: msRest.CompositeMapper = {
   serializedName: "lros-deleteasyncretryfailed-headers",
   type: {
     name: "Composite",
@@ -2213,7 +2214,7 @@ export const LROsDeleteAsyncRetryFailedHeaders = {
   }
 };
 
-export const LROsDeleteAsyncRetrycanceledHeaders = {
+export const LROsDeleteAsyncRetrycanceledHeaders: msRest.CompositeMapper = {
   serializedName: "lros-deleteasyncretrycanceled-headers",
   type: {
     name: "Composite",
@@ -2241,7 +2242,7 @@ export const LROsDeleteAsyncRetrycanceledHeaders = {
   }
 };
 
-export const LROsPost202Retry200Headers = {
+export const LROsPost202Retry200Headers: msRest.CompositeMapper = {
   serializedName: "lros-post202retry200-headers",
   type: {
     name: "Composite",
@@ -2263,7 +2264,7 @@ export const LROsPost202Retry200Headers = {
   }
 };
 
-export const LROsPost202NoRetry204Headers = {
+export const LROsPost202NoRetry204Headers: msRest.CompositeMapper = {
   serializedName: "lros-post202noretry204-headers",
   type: {
     name: "Composite",
@@ -2285,7 +2286,7 @@ export const LROsPost202NoRetry204Headers = {
   }
 };
 
-export const LROsPostAsyncRetrySucceededHeaders = {
+export const LROsPostAsyncRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lros-postasyncretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -2313,7 +2314,7 @@ export const LROsPostAsyncRetrySucceededHeaders = {
   }
 };
 
-export const LROsPostAsyncNoRetrySucceededHeaders = {
+export const LROsPostAsyncNoRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lros-postasyncnoretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -2341,7 +2342,7 @@ export const LROsPostAsyncNoRetrySucceededHeaders = {
   }
 };
 
-export const LROsPostAsyncRetryFailedHeaders = {
+export const LROsPostAsyncRetryFailedHeaders: msRest.CompositeMapper = {
   serializedName: "lros-postasyncretryfailed-headers",
   type: {
     name: "Composite",
@@ -2369,7 +2370,7 @@ export const LROsPostAsyncRetryFailedHeaders = {
   }
 };
 
-export const LROsPostAsyncRetrycanceledHeaders = {
+export const LROsPostAsyncRetrycanceledHeaders: msRest.CompositeMapper = {
   serializedName: "lros-postasyncretrycanceled-headers",
   type: {
     name: "Composite",
@@ -2397,7 +2398,7 @@ export const LROsPostAsyncRetrycanceledHeaders = {
   }
 };
 
-export const LRORetrysPutAsyncRelativeRetrySucceededHeaders = {
+export const LRORetrysPutAsyncRelativeRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lroretrys-putasyncrelativeretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -2425,7 +2426,7 @@ export const LRORetrysPutAsyncRelativeRetrySucceededHeaders = {
   }
 };
 
-export const LRORetrysDeleteProvisioning202Accepted200SucceededHeaders = {
+export const LRORetrysDeleteProvisioning202Accepted200SucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lroretrys-deleteprovisioning202accepted200succeeded-headers",
   type: {
     name: "Composite",
@@ -2447,7 +2448,7 @@ export const LRORetrysDeleteProvisioning202Accepted200SucceededHeaders = {
   }
 };
 
-export const LRORetrysDelete202Retry200Headers = {
+export const LRORetrysDelete202Retry200Headers: msRest.CompositeMapper = {
   serializedName: "lroretrys-delete202retry200-headers",
   type: {
     name: "Composite",
@@ -2469,7 +2470,7 @@ export const LRORetrysDelete202Retry200Headers = {
   }
 };
 
-export const LRORetrysDeleteAsyncRelativeRetrySucceededHeaders = {
+export const LRORetrysDeleteAsyncRelativeRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lroretrys-deleteasyncrelativeretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -2497,7 +2498,7 @@ export const LRORetrysDeleteAsyncRelativeRetrySucceededHeaders = {
   }
 };
 
-export const LRORetrysPost202Retry200Headers = {
+export const LRORetrysPost202Retry200Headers: msRest.CompositeMapper = {
   serializedName: "lroretrys-post202retry200-headers",
   type: {
     name: "Composite",
@@ -2519,7 +2520,7 @@ export const LRORetrysPost202Retry200Headers = {
   }
 };
 
-export const LRORetrysPostAsyncRelativeRetrySucceededHeaders = {
+export const LRORetrysPostAsyncRelativeRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lroretrys-postasyncrelativeretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -2547,7 +2548,7 @@ export const LRORetrysPostAsyncRelativeRetrySucceededHeaders = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetry400Headers = {
+export const LROSADsPutAsyncRelativeRetry400Headers: msRest.CompositeMapper = {
   serializedName: "lrosads-putasyncrelativeretry400-headers",
   type: {
     name: "Composite",
@@ -2575,7 +2576,7 @@ export const LROSADsPutAsyncRelativeRetry400Headers = {
   }
 };
 
-export const LROSADsDeleteNonRetry400Headers = {
+export const LROSADsDeleteNonRetry400Headers: msRest.CompositeMapper = {
   serializedName: "lrosads-deletenonretry400-headers",
   type: {
     name: "Composite",
@@ -2597,7 +2598,7 @@ export const LROSADsDeleteNonRetry400Headers = {
   }
 };
 
-export const LROSADsDelete202NonRetry400Headers = {
+export const LROSADsDelete202NonRetry400Headers: msRest.CompositeMapper = {
   serializedName: "lrosads-delete202nonretry400-headers",
   type: {
     name: "Composite",
@@ -2619,7 +2620,7 @@ export const LROSADsDelete202NonRetry400Headers = {
   }
 };
 
-export const LROSADsDeleteAsyncRelativeRetry400Headers = {
+export const LROSADsDeleteAsyncRelativeRetry400Headers: msRest.CompositeMapper = {
   serializedName: "lrosads-deleteasyncrelativeretry400-headers",
   type: {
     name: "Composite",
@@ -2647,7 +2648,7 @@ export const LROSADsDeleteAsyncRelativeRetry400Headers = {
   }
 };
 
-export const LROSADsPostNonRetry400Headers = {
+export const LROSADsPostNonRetry400Headers: msRest.CompositeMapper = {
   serializedName: "lrosads-postnonretry400-headers",
   type: {
     name: "Composite",
@@ -2669,7 +2670,7 @@ export const LROSADsPostNonRetry400Headers = {
   }
 };
 
-export const LROSADsPost202NonRetry400Headers = {
+export const LROSADsPost202NonRetry400Headers: msRest.CompositeMapper = {
   serializedName: "lrosads-post202nonretry400-headers",
   type: {
     name: "Composite",
@@ -2691,7 +2692,7 @@ export const LROSADsPost202NonRetry400Headers = {
   }
 };
 
-export const LROSADsPostAsyncRelativeRetry400Headers = {
+export const LROSADsPostAsyncRelativeRetry400Headers: msRest.CompositeMapper = {
   serializedName: "lrosads-postasyncrelativeretry400-headers",
   type: {
     name: "Composite",
@@ -2719,7 +2720,7 @@ export const LROSADsPostAsyncRelativeRetry400Headers = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetryNoStatusHeaders = {
+export const LROSADsPutAsyncRelativeRetryNoStatusHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-putasyncrelativeretrynostatus-headers",
   type: {
     name: "Composite",
@@ -2747,7 +2748,7 @@ export const LROSADsPutAsyncRelativeRetryNoStatusHeaders = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders = {
+export const LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-putasyncrelativeretrynostatuspayload-headers",
   type: {
     name: "Composite",
@@ -2775,7 +2776,7 @@ export const LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders = {
   }
 };
 
-export const LROSADsDeleteAsyncRelativeRetryNoStatusHeaders = {
+export const LROSADsDeleteAsyncRelativeRetryNoStatusHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-deleteasyncrelativeretrynostatus-headers",
   type: {
     name: "Composite",
@@ -2803,7 +2804,7 @@ export const LROSADsDeleteAsyncRelativeRetryNoStatusHeaders = {
   }
 };
 
-export const LROSADsPost202NoLocationHeaders = {
+export const LROSADsPost202NoLocationHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-post202nolocation-headers",
   type: {
     name: "Composite",
@@ -2825,7 +2826,7 @@ export const LROSADsPost202NoLocationHeaders = {
   }
 };
 
-export const LROSADsPostAsyncRelativeRetryNoPayloadHeaders = {
+export const LROSADsPostAsyncRelativeRetryNoPayloadHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-postasyncrelativeretrynopayload-headers",
   type: {
     name: "Composite",
@@ -2853,7 +2854,7 @@ export const LROSADsPostAsyncRelativeRetryNoPayloadHeaders = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders = {
+export const LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-putasyncrelativeretryinvalidheader-headers",
   type: {
     name: "Composite",
@@ -2881,7 +2882,7 @@ export const LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders = {
   }
 };
 
-export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders = {
+export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-putasyncrelativeretryinvalidjsonpolling-headers",
   type: {
     name: "Composite",
@@ -2909,7 +2910,7 @@ export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders = {
   }
 };
 
-export const LROSADsDelete202RetryInvalidHeaderHeaders = {
+export const LROSADsDelete202RetryInvalidHeaderHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-delete202retryinvalidheader-headers",
   type: {
     name: "Composite",
@@ -2931,7 +2932,7 @@ export const LROSADsDelete202RetryInvalidHeaderHeaders = {
   }
 };
 
-export const LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders = {
+export const LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-deleteasyncrelativeretryinvalidheader-headers",
   type: {
     name: "Composite",
@@ -2959,7 +2960,7 @@ export const LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders = {
   }
 };
 
-export const LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders = {
+export const LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-deleteasyncrelativeretryinvalidjsonpolling-headers",
   type: {
     name: "Composite",
@@ -2987,7 +2988,7 @@ export const LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders = {
   }
 };
 
-export const LROSADsPost202RetryInvalidHeaderHeaders = {
+export const LROSADsPost202RetryInvalidHeaderHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-post202retryinvalidheader-headers",
   type: {
     name: "Composite",
@@ -3009,7 +3010,7 @@ export const LROSADsPost202RetryInvalidHeaderHeaders = {
   }
 };
 
-export const LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders = {
+export const LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-postasyncrelativeretryinvalidheader-headers",
   type: {
     name: "Composite",
@@ -3037,7 +3038,7 @@ export const LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders = {
   }
 };
 
-export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders = {
+export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders: msRest.CompositeMapper = {
   serializedName: "lrosads-postasyncrelativeretryinvalidjsonpolling-headers",
   type: {
     name: "Composite",
@@ -3065,7 +3066,7 @@ export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders = {
   }
 };
 
-export const LROsCustomHeaderPutAsyncRetrySucceededHeaders = {
+export const LROsCustomHeaderPutAsyncRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lroscustomheader-putasyncretrysucceeded-headers",
   type: {
     name: "Composite",
@@ -3093,7 +3094,7 @@ export const LROsCustomHeaderPutAsyncRetrySucceededHeaders = {
   }
 };
 
-export const LROsCustomHeaderPost202Retry200Headers = {
+export const LROsCustomHeaderPost202Retry200Headers: msRest.CompositeMapper = {
   serializedName: "lroscustomheader-post202retry200-headers",
   type: {
     name: "Composite",
@@ -3115,7 +3116,7 @@ export const LROsCustomHeaderPost202Retry200Headers = {
   }
 };
 
-export const LROsCustomHeaderPostAsyncRetrySucceededHeaders = {
+export const LROsCustomHeaderPostAsyncRetrySucceededHeaders: msRest.CompositeMapper = {
   serializedName: "lroscustomheader-postasyncretrysucceeded-headers",
   type: {
     name: "Composite",

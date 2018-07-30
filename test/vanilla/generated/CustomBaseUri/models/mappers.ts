@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const ErrorModel = {
+
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +33,7 @@ export const ErrorModel = {
   }
 };
 
-export const AutoRestParameterizedHostTestClientOptions = {
+export const AutoRestParameterizedHostTestClientOptions: msRest.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutoRestParameterizedHostTestClientOptions",

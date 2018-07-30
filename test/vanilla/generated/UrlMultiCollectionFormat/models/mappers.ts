@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const ErrorModel = {
+
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +33,7 @@ export const ErrorModel = {
   }
 };
 
-export const QueriesArrayStringMultiNullOptionalParams = {
+export const QueriesArrayStringMultiNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "ArrayStringMultiNullOptions",
   type: {
     name: "Composite",
@@ -52,7 +54,7 @@ export const QueriesArrayStringMultiNullOptionalParams = {
   }
 };
 
-export const QueriesArrayStringMultiEmptyOptionalParams = {
+export const QueriesArrayStringMultiEmptyOptionalParams: msRest.CompositeMapper = {
   serializedName: "ArrayStringMultiEmptyOptions",
   type: {
     name: "Composite",
@@ -73,7 +75,7 @@ export const QueriesArrayStringMultiEmptyOptionalParams = {
   }
 };
 
-export const QueriesArrayStringMultiValidOptionalParams = {
+export const QueriesArrayStringMultiValidOptionalParams: msRest.CompositeMapper = {
   serializedName: "ArrayStringMultiValidOptions",
   type: {
     name: "Composite",

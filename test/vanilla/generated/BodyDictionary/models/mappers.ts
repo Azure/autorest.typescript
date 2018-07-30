@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const Widget = {
+
+export const Widget: msRest.CompositeMapper = {
   serializedName: "Widget",
   type: {
     name: "Composite",
@@ -31,7 +33,7 @@ export const Widget = {
   }
 };
 
-export const ErrorModel = {
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
