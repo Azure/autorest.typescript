@@ -149,11 +149,11 @@ describe('typescript', function () {
 
       rootList[0].name.should.equal('Cavendish');
       rootList[0].flavor.should.equal('Sweet');
-      rootList[0].expiration.valueOf().should.equal(new Date('2018-02-28T00:40:00Z').valueOf());
+      rootList[0].expiration.valueOf().should.be.oneOf(new Date('2018-02-28T00:40:00Z').valueOf(), new Date('2018-02-28T00:40:00.123Z').valueOf());
 
       rootList[1].name.should.equal('Plantain');
       rootList[1].flavor.should.equal('Savory');
-      rootList[1].expiration.valueOf().should.equal(new Date('2018-02-28T00:40:00Z').valueOf());
+      rootList[1].expiration.valueOf().should.be.oneOf(new Date('2018-02-28T00:40:00Z').valueOf(), new Date('2018-02-28T00:40:00.123Z').valueOf());
     });
 
     it('should correctly serialize a root XML list', async function () {
@@ -161,12 +161,12 @@ describe('typescript', function () {
         {
           name: 'Cavendish',
           flavor: 'Sweet',
-          expiration: new Date('2018-02-28T00:40:00Z')
+          expiration: new Date('2018-02-28T00:40:00.123Z')
         },
         {
           name: 'Plantain',
           flavor: 'Savory',
-          expiration: new Date('2018-02-28T00:40:00Z')
+          expiration: new Date('2018-02-28T00:40:00.123Z')
         }
       ];
 
@@ -182,7 +182,7 @@ describe('typescript', function () {
       rootList[0].name.should.equal('Cavendish');
       rootList[0].flavor.should.equal('Sweet');
 
-      rootList[0].expiration.valueOf().should.equal(new Date('2018-02-28T00:40:00Z').valueOf());
+      rootList[0].expiration.valueOf().should.be.oneOf(new Date('2018-02-28T00:40:00Z').valueOf(), new Date('2018-02-28T00:40:00.123Z').valueOf());
     });
 
     it('should correctly serialize a root XML list of one element', async function () {
@@ -190,7 +190,7 @@ describe('typescript', function () {
         {
           name: 'Cavendish',
           flavor: 'Sweet',
-          expiration: new Date('2018-02-28T00:40:00Z')
+          expiration: new Date('2018-02-28T00:40:00.123Z')
         }
       ];
 
@@ -224,13 +224,13 @@ describe('typescript', function () {
       await testClient.xml.putEmptyChildElement(banana);
     });
 
-    it('should get a complex type ref with no XML metadata', async function() {
+    it('should get a complex type ref with no XML metadata', async function () {
       const result = await testClient.xml.getComplexTypeRefNoMeta();
       result.refToModel.id.should.equal('myid');
       result.something.should.equal('else');
     });
 
-    it('should put a complex type ref with no XML metadata', async function() {
+    it('should put a complex type ref with no XML metadata', async function () {
       const arg = {
         refToModel: {
           id: 'myid'
@@ -240,13 +240,13 @@ describe('typescript', function () {
       await testClient.xml.putComplexTypeRefNoMeta(arg);
     });
 
-    it('should get a complex type ref with XML metadata', async function() {
+    it('should get a complex type ref with XML metadata', async function () {
       const result = await testClient.xml.getComplexTypeRefWithMeta();
       result.refToModel.id.should.equal('myid');
       result.something.should.equal('else');
     });
 
-    it('should put a complex type ref with XML metadata', async function() {
+    it('should put a complex type ref with XML metadata', async function () {
       const arg = {
         refToModel: {
           id: 'myid'
