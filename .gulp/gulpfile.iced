@@ -31,7 +31,12 @@ task 'install_common',"", (done) ->
   execute "npm install",{cwd:"#{basefolder}/autorest.common", silent:false }, done
 
 # Run language-specific tests:
-task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/chrome-unit', 'test/nodejs-unit', 'test/metadata', 'test/azure-metadata'], (done) ->
+task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/metadata', 'test/azure-metadata'], (done) ->
+  await run 'test/nodejs-unit', defer _
+  # Running the browser tests works the first time on Windows, but subsequent runs will start
+  # causing the Node.js tests to fail. I'm disabling the browser tests in this context until we can
+  # figure the problem out.
+  # await run 'test/chrome-unit', defer _
   done();
 
 task 'testci/generator-unit', '', [], (done) ->
@@ -81,7 +86,7 @@ task 'testci/chrome-unit', '', [], (done) ->
   await execute "node #{basefolder}/.scripts/coverage", defer _
   done()
 
-task 'test/chrome-unit', 'run browser unit tests', ['test/nodejs-unit'], (done) ->
+task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
   webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/ts-node", ["#{basefolder}/testserver"], { shell: true })
   cleanupDevServer = () ->
     webpackDevServer.stderr.destroy()
