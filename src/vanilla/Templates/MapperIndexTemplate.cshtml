@@ -5,6 +5,11 @@
 @Header(" * ")
  */
 @EmptyLine
+@if (Model.OrderedModelTemplateModels.Any())
+{
+@:import * as msRest from "ms-rest-js";
+}
+@EmptyLine
 @foreach (var model in Model.OrderedModelTemplateModels)
 {
 @EmptyLine
