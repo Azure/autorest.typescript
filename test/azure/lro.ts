@@ -261,8 +261,6 @@ describe('typescript', function () {
     testClient.longRunningOperationRetryTimeout = 0;
     var product = { location: 'West US' };
 
-    //TODO: Port more C# test case over after 4103936 Fix exception type
-
     it('should throw on PutNonRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry400({ product: product }));
       error.message.should.containEql('Expected bad request message');
