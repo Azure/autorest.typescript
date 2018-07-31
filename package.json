@@ -47,7 +47,6 @@
     "@types/glob": "^5.0.35",
     "@types/mocha": "^2.2.48",
     "@types/node": "^8.0.28",
-    "@types/should": "^13.0.0",
     "@types/webpack": "^4.4.5",
     "@types/webpack-dev-server": "^2.9.5",
     "abortcontroller-polyfill": "^1.1.9",
