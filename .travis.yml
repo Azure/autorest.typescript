@@ -18,11 +18,11 @@ jobs:
       install: npm install --ignore-scripts
       script: gulp testci/nodejs-unit
 
-    - env: CHECK_NAME="Chrome Tests"
-      addons:
-        chrome: stable
-      install: npm install --ignore-scripts
-      script: gulp testci/chrome-unit
+    # - env: CHECK_NAME="Chrome Tests"
+    #   addons:
+    #     chrome: stable
+    #   install: npm install --ignore-scripts
+    #   script: gulp testci/chrome-unit
 
     - env: CHECK_NAME=".NET Core Unit Tests"
       install:
