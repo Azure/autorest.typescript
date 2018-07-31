@@ -9,11 +9,12 @@
  */
 
 import {CloudErrorMapper, BaseResourceMapper } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const ErrorModel = {
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -35,7 +36,7 @@ export const ErrorModel = {
   }
 };
 
-export const Resource = {
+export const Resource: msRest.CompositeMapper = {
   serializedName: "Resource",
   type: {
     name: "Composite",
@@ -60,7 +61,6 @@ export const Resource = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -84,7 +84,7 @@ export const Resource = {
   }
 };
 
-export const FlattenedProduct = {
+export const FlattenedProduct: msRest.CompositeMapper = {
   serializedName: "FlattenedProduct",
   type: {
     name: "Composite",
@@ -113,7 +113,7 @@ export const FlattenedProduct = {
   }
 };
 
-export const ResourceCollection = {
+export const ResourceCollection: msRest.CompositeMapper = {
   serializedName: "ResourceCollection",
   type: {
     name: "Composite",
@@ -131,7 +131,6 @@ export const ResourceCollection = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"
@@ -144,7 +143,6 @@ export const ResourceCollection = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"
@@ -156,7 +154,7 @@ export const ResourceCollection = {
   }
 };
 
-export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
+export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutArrayOptions",
   type: {
     name: "Composite",
@@ -167,7 +165,6 @@ export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ResourceElementType",
             type: {
               name: "Composite",
               className: "Resource"
@@ -179,7 +176,7 @@ export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
   }
 };
 
-export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = {
+export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutDictionaryOptions",
   type: {
     name: "Composite",
@@ -190,7 +187,6 @@ export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = 
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"
@@ -202,7 +198,7 @@ export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = 
   }
 };
 
-export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams = {
+export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutResourceCollectionOptions",
   type: {
     name: "Composite",

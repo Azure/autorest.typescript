@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const ErrorModel = {
+
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +33,7 @@ export const ErrorModel = {
   }
 };
 
-export const RefColorConstant = {
+export const RefColorConstant: msRest.CompositeMapper = {
   serializedName: "RefColorConstant",
   type: {
     name: "Composite",
@@ -56,7 +58,7 @@ export const RefColorConstant = {
   }
 };
 
-export const StringPutNullOptionalParams = {
+export const StringPutNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutNullOptions",
   type: {
     name: "Composite",
@@ -72,7 +74,7 @@ export const StringPutNullOptionalParams = {
   }
 };
 
-export const EnumModelPutReferencedConstantOptionalParams = {
+export const EnumModelPutReferencedConstantOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutReferencedConstantOptions",
   type: {
     name: "Composite",

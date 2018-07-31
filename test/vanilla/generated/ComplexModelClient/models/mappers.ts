@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const Product = {
+
+export const Product: msRest.CompositeMapper = {
   serializedName: "Product",
   type: {
     name: "Composite",
@@ -50,7 +52,7 @@ export const Product = {
   }
 };
 
-export const CatalogDictionary = {
+export const CatalogDictionary: msRest.CompositeMapper = {
   serializedName: "CatalogDictionary",
   type: {
     name: "Composite",
@@ -61,7 +63,6 @@ export const CatalogDictionary = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"
@@ -73,7 +74,7 @@ export const CatalogDictionary = {
   }
 };
 
-export const CatalogArray = {
+export const CatalogArray: msRest.CompositeMapper = {
   serializedName: "CatalogArray",
   type: {
     name: "Composite",
@@ -84,7 +85,6 @@ export const CatalogArray = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"
@@ -96,7 +96,7 @@ export const CatalogArray = {
   }
 };
 
-export const CatalogArrayOfDictionary = {
+export const CatalogArrayOfDictionary: msRest.CompositeMapper = {
   serializedName: "CatalogArrayOfDictionary",
   type: {
     name: "Composite",
@@ -107,11 +107,9 @@ export const CatalogArrayOfDictionary = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -125,7 +123,7 @@ export const CatalogArrayOfDictionary = {
   }
 };
 
-export const CatalogDictionaryOfArray = {
+export const CatalogDictionaryOfArray: msRest.CompositeMapper = {
   serializedName: "CatalogDictionaryOfArray",
   type: {
     name: "Composite",
@@ -136,11 +134,9 @@ export const CatalogDictionaryOfArray = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -154,7 +150,7 @@ export const CatalogDictionaryOfArray = {
   }
 };
 
-export const ErrorModel = {
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -176,7 +172,7 @@ export const ErrorModel = {
   }
 };
 
-export const ComplexModelClientCreateOptionalParams = {
+export const ComplexModelClientCreateOptionalParams: msRest.CompositeMapper = {
   serializedName: "CreateOptions",
   type: {
     name: "Composite",
@@ -187,11 +183,9 @@ export const ComplexModelClientCreateOptionalParams = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -205,7 +199,7 @@ export const ComplexModelClientCreateOptionalParams = {
   }
 };
 
-export const ComplexModelClientUpdateOptionalParams = {
+export const ComplexModelClientUpdateOptionalParams: msRest.CompositeMapper = {
   serializedName: "UpdateOptions",
   type: {
     name: "Composite",
@@ -216,11 +210,9 @@ export const ComplexModelClientUpdateOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"

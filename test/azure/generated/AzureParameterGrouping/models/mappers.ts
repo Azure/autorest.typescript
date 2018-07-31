@@ -9,11 +9,12 @@
  */
 
 import {CloudErrorMapper, BaseResourceMapper } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const ErrorModel = {
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -35,7 +36,7 @@ export const ErrorModel = {
   }
 };
 
-export const ParameterGroupingPostRequiredParameters = {
+export const ParameterGroupingPostRequiredParameters: msRest.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ParameterGroupingPostRequiredParameters",
@@ -67,7 +68,7 @@ export const ParameterGroupingPostRequiredParameters = {
   }
 };
 
-export const ParameterGroupingPostOptionalParameters = {
+export const ParameterGroupingPostOptionalParameters: msRest.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ParameterGroupingPostOptionalParameters",
@@ -87,7 +88,7 @@ export const ParameterGroupingPostOptionalParameters = {
   }
 };
 
-export const FirstParameterGroup = {
+export const FirstParameterGroup: msRest.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FirstParameterGroup",
@@ -107,7 +108,7 @@ export const FirstParameterGroup = {
   }
 };
 
-export const ParameterGroupingPostMultiParamGroupsSecondParamGroup = {
+export const ParameterGroupingPostMultiParamGroupsSecondParamGroup: msRest.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ParameterGroupingPostMultiParamGroupsSecondParamGroup",
@@ -127,7 +128,7 @@ export const ParameterGroupingPostMultiParamGroupsSecondParamGroup = {
   }
 };
 
-export const ParameterGroupingPostOptionalOptionalParams = {
+export const ParameterGroupingPostOptionalOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalOptions",
   type: {
     name: "Composite",
@@ -144,7 +145,7 @@ export const ParameterGroupingPostOptionalOptionalParams = {
   }
 };
 
-export const ParameterGroupingPostMultiParamGroupsOptionalParams = {
+export const ParameterGroupingPostMultiParamGroupsOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostMultiParamGroupsOptions",
   type: {
     name: "Composite",
@@ -168,7 +169,7 @@ export const ParameterGroupingPostMultiParamGroupsOptionalParams = {
   }
 };
 
-export const ParameterGroupingPostSharedParameterGroupObjectOptionalParams = {
+export const ParameterGroupingPostSharedParameterGroupObjectOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostSharedParameterGroupObjectOptions",
   type: {
     name: "Composite",

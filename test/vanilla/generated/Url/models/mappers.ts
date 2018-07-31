@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const ErrorModel = {
+
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +33,7 @@ export const ErrorModel = {
   }
 };
 
-export const AutoRestUrlTestServiceOptions = {
+export const AutoRestUrlTestServiceOptions: msRest.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutoRestUrlTestServiceOptions",
@@ -46,7 +48,7 @@ export const AutoRestUrlTestServiceOptions = {
   }
 };
 
-export const QueriesGetBooleanNullOptionalParams = {
+export const QueriesGetBooleanNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetBooleanNullOptions",
   type: {
     name: "Composite",
@@ -62,7 +64,7 @@ export const QueriesGetBooleanNullOptionalParams = {
   }
 };
 
-export const QueriesGetIntNullOptionalParams = {
+export const QueriesGetIntNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetIntNullOptions",
   type: {
     name: "Composite",
@@ -78,7 +80,7 @@ export const QueriesGetIntNullOptionalParams = {
   }
 };
 
-export const QueriesGetLongNullOptionalParams = {
+export const QueriesGetLongNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetLongNullOptions",
   type: {
     name: "Composite",
@@ -94,7 +96,7 @@ export const QueriesGetLongNullOptionalParams = {
   }
 };
 
-export const QueriesFloatNullOptionalParams = {
+export const QueriesFloatNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "FloatNullOptions",
   type: {
     name: "Composite",
@@ -110,7 +112,7 @@ export const QueriesFloatNullOptionalParams = {
   }
 };
 
-export const QueriesDoubleNullOptionalParams = {
+export const QueriesDoubleNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "DoubleNullOptions",
   type: {
     name: "Composite",
@@ -126,7 +128,7 @@ export const QueriesDoubleNullOptionalParams = {
   }
 };
 
-export const QueriesStringNullOptionalParams = {
+export const QueriesStringNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "StringNullOptions",
   type: {
     name: "Composite",
@@ -142,7 +144,7 @@ export const QueriesStringNullOptionalParams = {
   }
 };
 
-export const QueriesEnumValidOptionalParams = {
+export const QueriesEnumValidOptionalParams: msRest.CompositeMapper = {
   serializedName: "EnumValidOptions",
   type: {
     name: "Composite",
@@ -163,7 +165,7 @@ export const QueriesEnumValidOptionalParams = {
   }
 };
 
-export const QueriesEnumNullOptionalParams = {
+export const QueriesEnumNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "EnumNullOptions",
   type: {
     name: "Composite",
@@ -184,7 +186,7 @@ export const QueriesEnumNullOptionalParams = {
   }
 };
 
-export const QueriesByteMultiByteOptionalParams = {
+export const QueriesByteMultiByteOptionalParams: msRest.CompositeMapper = {
   serializedName: "ByteMultiByteOptions",
   type: {
     name: "Composite",
@@ -200,7 +202,7 @@ export const QueriesByteMultiByteOptionalParams = {
   }
 };
 
-export const QueriesByteNullOptionalParams = {
+export const QueriesByteNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "ByteNullOptions",
   type: {
     name: "Composite",
@@ -216,7 +218,7 @@ export const QueriesByteNullOptionalParams = {
   }
 };
 
-export const QueriesDateNullOptionalParams = {
+export const QueriesDateNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "DateNullOptions",
   type: {
     name: "Composite",
@@ -232,7 +234,7 @@ export const QueriesDateNullOptionalParams = {
   }
 };
 
-export const QueriesDateTimeNullOptionalParams = {
+export const QueriesDateTimeNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "DateTimeNullOptions",
   type: {
     name: "Composite",
@@ -248,7 +250,7 @@ export const QueriesDateTimeNullOptionalParams = {
   }
 };
 
-export const QueriesArrayStringCsvValidOptionalParams = {
+export const QueriesArrayStringCsvValidOptionalParams: msRest.CompositeMapper = {
   serializedName: "ArrayStringCsvValidOptions",
   type: {
     name: "Composite",
@@ -259,7 +261,6 @@ export const QueriesArrayStringCsvValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -270,7 +271,7 @@ export const QueriesArrayStringCsvValidOptionalParams = {
   }
 };
 
-export const QueriesArrayStringCsvNullOptionalParams = {
+export const QueriesArrayStringCsvNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "ArrayStringCsvNullOptions",
   type: {
     name: "Composite",
@@ -281,7 +282,6 @@ export const QueriesArrayStringCsvNullOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -292,7 +292,7 @@ export const QueriesArrayStringCsvNullOptionalParams = {
   }
 };
 
-export const QueriesArrayStringCsvEmptyOptionalParams = {
+export const QueriesArrayStringCsvEmptyOptionalParams: msRest.CompositeMapper = {
   serializedName: "ArrayStringCsvEmptyOptions",
   type: {
     name: "Composite",
@@ -303,7 +303,6 @@ export const QueriesArrayStringCsvEmptyOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -314,7 +313,7 @@ export const QueriesArrayStringCsvEmptyOptionalParams = {
   }
 };
 
-export const QueriesArrayStringSsvValidOptionalParams = {
+export const QueriesArrayStringSsvValidOptionalParams: msRest.CompositeMapper = {
   serializedName: "ArrayStringSsvValidOptions",
   type: {
     name: "Composite",
@@ -325,7 +324,6 @@ export const QueriesArrayStringSsvValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -336,7 +334,7 @@ export const QueriesArrayStringSsvValidOptionalParams = {
   }
 };
 
-export const QueriesArrayStringTsvValidOptionalParams = {
+export const QueriesArrayStringTsvValidOptionalParams: msRest.CompositeMapper = {
   serializedName: "ArrayStringTsvValidOptions",
   type: {
     name: "Composite",
@@ -347,7 +345,6 @@ export const QueriesArrayStringTsvValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -358,7 +355,7 @@ export const QueriesArrayStringTsvValidOptionalParams = {
   }
 };
 
-export const QueriesArrayStringPipesValidOptionalParams = {
+export const QueriesArrayStringPipesValidOptionalParams: msRest.CompositeMapper = {
   serializedName: "ArrayStringPipesValidOptions",
   type: {
     name: "Composite",
@@ -369,7 +366,6 @@ export const QueriesArrayStringPipesValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -380,7 +376,7 @@ export const QueriesArrayStringPipesValidOptionalParams = {
   }
 };
 
-export const PathItemsGetAllWithValuesOptionalParams = {
+export const PathItemsGetAllWithValuesOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetAllWithValuesOptions",
   type: {
     name: "Composite",
@@ -402,7 +398,7 @@ export const PathItemsGetAllWithValuesOptionalParams = {
   }
 };
 
-export const PathItemsGetGlobalQueryNullOptionalParams = {
+export const PathItemsGetGlobalQueryNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetGlobalQueryNullOptions",
   type: {
     name: "Composite",
@@ -424,7 +420,7 @@ export const PathItemsGetGlobalQueryNullOptionalParams = {
   }
 };
 
-export const PathItemsGetGlobalAndLocalQueryNullOptionalParams = {
+export const PathItemsGetGlobalAndLocalQueryNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetGlobalAndLocalQueryNullOptions",
   type: {
     name: "Composite",
@@ -446,7 +442,7 @@ export const PathItemsGetGlobalAndLocalQueryNullOptionalParams = {
   }
 };
 
-export const PathItemsGetLocalPathItemQueryNullOptionalParams = {
+export const PathItemsGetLocalPathItemQueryNullOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetLocalPathItemQueryNullOptions",
   type: {
     name: "Composite",

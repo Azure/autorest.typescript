@@ -9,11 +9,12 @@
  */
 
 import {CloudErrorMapper, BaseResourceMapper } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const ErrorModel = {
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -35,7 +36,7 @@ export const ErrorModel = {
   }
 };
 
-export const AutoRestReportServiceForAzureGetReportOptionalParams = {
+export const AutoRestReportServiceForAzureGetReportOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetReportOptions",
   type: {
     name: "Composite",

@@ -293,7 +293,7 @@ namespace AutoRest.TypeScript.Model
         public virtual string ConstructModelMapper()
         {
             TSBuilder builder = new TSBuilder();
-            builder.Text($"export const {Name} = ");
+            builder.Text($"export const {Name}: msRest.CompositeMapper = ");
             bool isHeaders = CodeModel.HeaderTypes.Contains(this) == true;
             bool isXML = !isHeaders && CodeModel.ShouldGenerateXmlSerialization == true;
             ClientModelExtensions.ConstructMapper(builder, this, SerializedName, null, isPageable: false, expandComposite: true, isXML: isXML, isCaseSensitive: !isHeaders, xmlName: isXML ? XmlName : null);

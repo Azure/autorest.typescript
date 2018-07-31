@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const AvailabilitySetUpdateParameters = {
+
+export const AvailabilitySetUpdateParameters: msRest.CompositeMapper = {
   serializedName: "AvailabilitySetUpdateParameters",
   type: {
     name: "Composite",
@@ -21,7 +23,6 @@ export const AvailabilitySetUpdateParameters = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }

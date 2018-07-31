@@ -20,7 +20,6 @@ export const arrayQuery: msRest.OperationQueryParameter = {
     type: {
       name: "Sequence",
       element: {
-        serializedName: "stringElementType",
         type: {
           name: "String"
         }

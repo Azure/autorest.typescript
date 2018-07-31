@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const ErrorModel = {
+
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -38,7 +40,7 @@ export const ErrorModel = {
   }
 };
 
-export const Resource = {
+export const Resource: msRest.CompositeMapper = {
   serializedName: "Resource",
   type: {
     name: "Composite",
@@ -63,7 +65,6 @@ export const Resource = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -87,7 +88,7 @@ export const Resource = {
   }
 };
 
-export const FlattenedProduct = {
+export const FlattenedProduct: msRest.CompositeMapper = {
   serializedName: "FlattenedProduct",
   type: {
     name: "Composite",
@@ -123,7 +124,7 @@ export const FlattenedProduct = {
   }
 };
 
-export const ResourceCollection = {
+export const ResourceCollection: msRest.CompositeMapper = {
   serializedName: "ResourceCollection",
   type: {
     name: "Composite",
@@ -141,7 +142,6 @@ export const ResourceCollection = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"
@@ -154,7 +154,6 @@ export const ResourceCollection = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"
@@ -166,7 +165,7 @@ export const ResourceCollection = {
   }
 };
 
-export const BaseProduct = {
+export const BaseProduct: msRest.CompositeMapper = {
   serializedName: "BaseProduct",
   type: {
     name: "Composite",
@@ -189,7 +188,7 @@ export const BaseProduct = {
   }
 };
 
-export const SimpleProduct = {
+export const SimpleProduct: msRest.CompositeMapper = {
   serializedName: "SimpleProduct",
   type: {
     name: "Composite",
@@ -228,7 +227,7 @@ export const SimpleProduct = {
   }
 };
 
-export const GenericUrl = {
+export const GenericUrl: msRest.CompositeMapper = {
   serializedName: "GenericUrl",
   type: {
     name: "Composite",
@@ -244,7 +243,7 @@ export const GenericUrl = {
   }
 };
 
-export const WrappedProduct = {
+export const WrappedProduct: msRest.CompositeMapper = {
   serializedName: "WrappedProduct",
   type: {
     name: "Composite",
@@ -260,7 +259,7 @@ export const WrappedProduct = {
   }
 };
 
-export const ProductWrapper = {
+export const ProductWrapper: msRest.CompositeMapper = {
   serializedName: "ProductWrapper",
   type: {
     name: "Composite",
@@ -276,7 +275,7 @@ export const ProductWrapper = {
   }
 };
 
-export const FlattenParameterGroup = {
+export const FlattenParameterGroup: msRest.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FlattenParameterGroup",
@@ -318,7 +317,7 @@ export const FlattenParameterGroup = {
   }
 };
 
-export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
+export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutArrayOptions",
   type: {
     name: "Composite",
@@ -329,7 +328,6 @@ export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ResourceElementType",
             type: {
               name: "Composite",
               className: "Resource"
@@ -341,7 +339,7 @@ export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
   }
 };
 
-export const AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams = {
+export const AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutWrappedArrayOptions",
   type: {
     name: "Composite",
@@ -352,7 +350,6 @@ export const AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams 
         type: {
           name: "Sequence",
           element: {
-            serializedName: "WrappedProductElementType",
             type: {
               name: "Composite",
               className: "WrappedProduct"
@@ -364,7 +361,7 @@ export const AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams 
   }
 };
 
-export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = {
+export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutDictionaryOptions",
   type: {
     name: "Composite",
@@ -375,7 +372,6 @@ export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = 
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "FlattenedProductElementType",
             type: {
               name: "Composite",
               className: "FlattenedProduct"
@@ -387,7 +383,7 @@ export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = 
   }
 };
 
-export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams = {
+export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutResourceCollectionOptions",
   type: {
     name: "Composite",
@@ -404,7 +400,7 @@ export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalP
   }
 };
 
-export const AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams = {
+export const AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutSimpleProductOptions",
   type: {
     name: "Composite",
@@ -421,7 +417,7 @@ export const AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams
   }
 };
 
-export const AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams = {
+export const AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostFlattenedSimpleProductOptions",
   type: {
     name: "Composite",

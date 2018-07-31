@@ -9,11 +9,12 @@
  */
 
 import {CloudErrorMapper, BaseResourceMapper } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const Product = {
+export const Product: msRest.CompositeMapper = {
   serializedName: "Product",
   type: {
     name: "Composite",
@@ -54,7 +55,7 @@ export const Product = {
   }
 };
 
-export const CatalogDictionary = {
+export const CatalogDictionary: msRest.CompositeMapper = {
   serializedName: "CatalogDictionary",
   type: {
     name: "Composite",
@@ -65,7 +66,6 @@ export const CatalogDictionary = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"
@@ -77,7 +77,7 @@ export const CatalogDictionary = {
   }
 };
 
-export const CatalogArray = {
+export const CatalogArray: msRest.CompositeMapper = {
   serializedName: "CatalogArray",
   type: {
     name: "Composite",
@@ -88,7 +88,6 @@ export const CatalogArray = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProductElementType",
             type: {
               name: "Composite",
               className: "Product"
@@ -100,7 +99,7 @@ export const CatalogArray = {
   }
 };
 
-export const CatalogArrayOfDictionary = {
+export const CatalogArrayOfDictionary: msRest.CompositeMapper = {
   serializedName: "CatalogArrayOfDictionary",
   type: {
     name: "Composite",
@@ -111,11 +110,9 @@ export const CatalogArrayOfDictionary = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -129,7 +126,7 @@ export const CatalogArrayOfDictionary = {
   }
 };
 
-export const CatalogDictionaryOfArray = {
+export const CatalogDictionaryOfArray: msRest.CompositeMapper = {
   serializedName: "CatalogDictionaryOfArray",
   type: {
     name: "Composite",
@@ -140,11 +137,9 @@ export const CatalogDictionaryOfArray = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -158,7 +153,7 @@ export const CatalogDictionaryOfArray = {
   }
 };
 
-export const ErrorModel = {
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -180,7 +175,7 @@ export const ErrorModel = {
   }
 };
 
-export const Basic = {
+export const Basic: msRest.CompositeMapper = {
   serializedName: "basic",
   type: {
     name: "Composite",
@@ -208,7 +203,7 @@ export const Basic = {
   }
 };
 
-export const Pet = {
+export const Pet: msRest.CompositeMapper = {
   serializedName: "pet",
   type: {
     name: "Composite",
@@ -230,7 +225,7 @@ export const Pet = {
   }
 };
 
-export const Dog = {
+export const Dog: msRest.CompositeMapper = {
   serializedName: "dog",
   type: {
     name: "Composite",
@@ -247,7 +242,7 @@ export const Dog = {
   }
 };
 
-export const Cat = {
+export const Cat: msRest.CompositeMapper = {
   serializedName: "cat",
   type: {
     name: "Composite",
@@ -265,7 +260,6 @@ export const Cat = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "DogElementType",
             type: {
               name: "Composite",
               className: "Dog"
@@ -277,7 +271,7 @@ export const Cat = {
   }
 };
 
-export const Siamese = {
+export const Siamese: msRest.CompositeMapper = {
   serializedName: "siamese",
   type: {
     name: "Composite",
@@ -294,7 +288,7 @@ export const Siamese = {
   }
 };
 
-export const Fish = {
+export const Fish: msRest.CompositeMapper = {
   serializedName: "Fish",
   type: {
     name: "Composite",
@@ -323,7 +317,6 @@ export const Fish = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FishElementType",
             type: {
               name: "Composite",
               polymorphicDiscriminator: {
@@ -347,7 +340,7 @@ export const Fish = {
   }
 };
 
-export const Salmon = {
+export const Salmon: msRest.CompositeMapper = {
   serializedName: "salmon",
   type: {
     name: "Composite",
@@ -370,7 +363,7 @@ export const Salmon = {
   }
 };
 
-export const SmartSalmon = {
+export const SmartSalmon: msRest.CompositeMapper = {
   serializedName: "smart_salmon",
   type: {
     name: "Composite",
@@ -381,7 +374,6 @@ export const SmartSalmon = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Object"
             }
@@ -398,7 +390,7 @@ export const SmartSalmon = {
   }
 };
 
-export const Shark = {
+export const Shark: msRest.CompositeMapper = {
   serializedName: "shark",
   type: {
     name: "Composite",
@@ -422,7 +414,7 @@ export const Shark = {
   }
 };
 
-export const Sawshark = {
+export const Sawshark: msRest.CompositeMapper = {
   serializedName: "sawshark",
   type: {
     name: "Composite",
@@ -439,7 +431,7 @@ export const Sawshark = {
   }
 };
 
-export const Goblinshark = {
+export const Goblinshark: msRest.CompositeMapper = {
   serializedName: "goblin",
   type: {
     name: "Composite",
@@ -463,7 +455,7 @@ export const Goblinshark = {
   }
 };
 
-export const Cookiecuttershark = {
+export const Cookiecuttershark: msRest.CompositeMapper = {
   serializedName: "cookiecuttershark",
   type: {
     name: "Composite",
@@ -474,7 +466,7 @@ export const Cookiecuttershark = {
   }
 };
 
-export const IntWrapper = {
+export const IntWrapper: msRest.CompositeMapper = {
   serializedName: "int-wrapper",
   type: {
     name: "Composite",
@@ -496,7 +488,7 @@ export const IntWrapper = {
   }
 };
 
-export const LongWrapper = {
+export const LongWrapper: msRest.CompositeMapper = {
   serializedName: "long-wrapper",
   type: {
     name: "Composite",
@@ -518,7 +510,7 @@ export const LongWrapper = {
   }
 };
 
-export const FloatWrapper = {
+export const FloatWrapper: msRest.CompositeMapper = {
   serializedName: "float-wrapper",
   type: {
     name: "Composite",
@@ -540,7 +532,7 @@ export const FloatWrapper = {
   }
 };
 
-export const DoubleWrapper = {
+export const DoubleWrapper: msRest.CompositeMapper = {
   serializedName: "double-wrapper",
   type: {
     name: "Composite",
@@ -562,7 +554,7 @@ export const DoubleWrapper = {
   }
 };
 
-export const BooleanWrapper = {
+export const BooleanWrapper: msRest.CompositeMapper = {
   serializedName: "boolean-wrapper",
   type: {
     name: "Composite",
@@ -584,7 +576,7 @@ export const BooleanWrapper = {
   }
 };
 
-export const StringWrapper = {
+export const StringWrapper: msRest.CompositeMapper = {
   serializedName: "string-wrapper",
   type: {
     name: "Composite",
@@ -612,7 +604,7 @@ export const StringWrapper = {
   }
 };
 
-export const DateWrapper = {
+export const DateWrapper: msRest.CompositeMapper = {
   serializedName: "date-wrapper",
   type: {
     name: "Composite",
@@ -634,7 +626,7 @@ export const DateWrapper = {
   }
 };
 
-export const DatetimeWrapper = {
+export const DatetimeWrapper: msRest.CompositeMapper = {
   serializedName: "datetime-wrapper",
   type: {
     name: "Composite",
@@ -656,7 +648,7 @@ export const DatetimeWrapper = {
   }
 };
 
-export const Datetimerfc1123Wrapper = {
+export const Datetimerfc1123Wrapper: msRest.CompositeMapper = {
   serializedName: "datetimerfc1123-wrapper",
   type: {
     name: "Composite",
@@ -678,7 +670,7 @@ export const Datetimerfc1123Wrapper = {
   }
 };
 
-export const DurationWrapper = {
+export const DurationWrapper: msRest.CompositeMapper = {
   serializedName: "duration-wrapper",
   type: {
     name: "Composite",
@@ -694,7 +686,7 @@ export const DurationWrapper = {
   }
 };
 
-export const ByteWrapper = {
+export const ByteWrapper: msRest.CompositeMapper = {
   serializedName: "byte-wrapper",
   type: {
     name: "Composite",
@@ -710,7 +702,7 @@ export const ByteWrapper = {
   }
 };
 
-export const ArrayWrapper = {
+export const ArrayWrapper: msRest.CompositeMapper = {
   serializedName: "array-wrapper",
   type: {
     name: "Composite",
@@ -721,7 +713,6 @@ export const ArrayWrapper = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -732,7 +723,7 @@ export const ArrayWrapper = {
   }
 };
 
-export const DictionaryWrapper = {
+export const DictionaryWrapper: msRest.CompositeMapper = {
   serializedName: "dictionary-wrapper",
   type: {
     name: "Composite",
@@ -743,7 +734,6 @@ export const DictionaryWrapper = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -754,7 +744,7 @@ export const DictionaryWrapper = {
   }
 };
 
-export const ReadonlyObj = {
+export const ReadonlyObj: msRest.CompositeMapper = {
   serializedName: "readonly-obj",
   type: {
     name: "Composite",
@@ -777,7 +767,7 @@ export const ReadonlyObj = {
   }
 };
 
-export const MyBaseType = {
+export const MyBaseType: msRest.CompositeMapper = {
   serializedName: "MyBaseType",
   type: {
     name: "Composite",
@@ -811,7 +801,7 @@ export const MyBaseType = {
   }
 };
 
-export const MyDerivedType = {
+export const MyDerivedType: msRest.CompositeMapper = {
   serializedName: "Kind1",
   type: {
     name: "Composite",
@@ -828,7 +818,7 @@ export const MyDerivedType = {
   }
 };
 
-export const AzureCompositeModelCreateOptionalParams = {
+export const AzureCompositeModelCreateOptionalParams: msRest.CompositeMapper = {
   serializedName: "CreateOptions",
   type: {
     name: "Composite",
@@ -839,11 +829,9 @@ export const AzureCompositeModelCreateOptionalParams = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -857,7 +845,7 @@ export const AzureCompositeModelCreateOptionalParams = {
   }
 };
 
-export const AzureCompositeModelUpdateOptionalParams = {
+export const AzureCompositeModelUpdateOptionalParams: msRest.CompositeMapper = {
   serializedName: "UpdateOptions",
   type: {
     name: "Composite",
@@ -868,11 +856,9 @@ export const AzureCompositeModelUpdateOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "ProductElementType",
                 type: {
                   name: "Composite",
                   className: "Product"
@@ -886,7 +872,7 @@ export const AzureCompositeModelUpdateOptionalParams = {
   }
 };
 
-export const PrimitivePutDurationOptionalParams = {
+export const PrimitivePutDurationOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutDurationOptions",
   type: {
     name: "Composite",
@@ -902,7 +888,7 @@ export const PrimitivePutDurationOptionalParams = {
   }
 };
 
-export const PrimitivePutByteOptionalParams = {
+export const PrimitivePutByteOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutByteOptions",
   type: {
     name: "Composite",
@@ -918,7 +904,7 @@ export const PrimitivePutByteOptionalParams = {
   }
 };
 
-export const ArrayModelPutValidOptionalParams = {
+export const ArrayModelPutValidOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutValidOptions",
   type: {
     name: "Composite",
@@ -929,7 +915,6 @@ export const ArrayModelPutValidOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -940,7 +925,7 @@ export const ArrayModelPutValidOptionalParams = {
   }
 };
 
-export const ArrayModelPutEmptyOptionalParams = {
+export const ArrayModelPutEmptyOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutEmptyOptions",
   type: {
     name: "Composite",
@@ -951,7 +936,6 @@ export const ArrayModelPutEmptyOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -962,7 +946,7 @@ export const ArrayModelPutEmptyOptionalParams = {
   }
 };
 
-export const DictionaryPutValidOptionalParams = {
+export const DictionaryPutValidOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutValidOptions",
   type: {
     name: "Composite",
@@ -973,7 +957,6 @@ export const DictionaryPutValidOptionalParams = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -984,7 +967,7 @@ export const DictionaryPutValidOptionalParams = {
   }
 };
 
-export const DictionaryPutEmptyOptionalParams = {
+export const DictionaryPutEmptyOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutEmptyOptions",
   type: {
     name: "Composite",
@@ -995,7 +978,6 @@ export const DictionaryPutEmptyOptionalParams = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -1006,7 +988,7 @@ export const DictionaryPutEmptyOptionalParams = {
   }
 };
 
-export const ReadonlypropertyPutValidOptionalParams = {
+export const ReadonlypropertyPutValidOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutValidOptions",
   type: {
     name: "Composite",

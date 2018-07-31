@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const ChildProduct = {
+
+export const ChildProduct: msRest.CompositeMapper = {
   serializedName: "ChildProduct",
   type: {
     name: "Composite",
@@ -34,7 +36,7 @@ export const ChildProduct = {
   }
 };
 
-export const ConstantProduct = {
+export const ConstantProduct: msRest.CompositeMapper = {
   serializedName: "ConstantProduct",
   type: {
     name: "Composite",
@@ -62,7 +64,7 @@ export const ConstantProduct = {
   }
 };
 
-export const Product = {
+export const Product: msRest.CompositeMapper = {
   serializedName: "Product",
   type: {
     name: "Composite",
@@ -78,7 +80,6 @@ export const Product = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -154,7 +155,7 @@ export const Product = {
   }
 };
 
-export const ErrorModel = {
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -182,7 +183,7 @@ export const ErrorModel = {
   }
 };
 
-export const AutoRestValidationTestValidationOfBodyOptionalParams = {
+export const AutoRestValidationTestValidationOfBodyOptionalParams: msRest.CompositeMapper = {
   serializedName: "ValidationOfBodyOptions",
   type: {
     name: "Composite",
@@ -199,7 +200,7 @@ export const AutoRestValidationTestValidationOfBodyOptionalParams = {
   }
 };
 
-export const AutoRestValidationTestPostWithConstantInBodyOptionalParams = {
+export const AutoRestValidationTestPostWithConstantInBodyOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostWithConstantInBodyOptions",
   type: {
     name: "Composite",

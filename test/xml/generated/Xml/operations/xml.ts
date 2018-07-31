@@ -1419,7 +1419,6 @@ const getRootListOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BananaElementType",
             type: {
               name: "Composite",
               className: "Banana"
@@ -1446,7 +1445,6 @@ const putRootListOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Sequence",
         element: {
-          serializedName: "BananaElementType",
           type: {
             name: "Composite",
             className: "Banana"
@@ -1475,7 +1473,6 @@ const getRootListSingleItemOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BananaElementType",
             type: {
               name: "Composite",
               className: "Banana"
@@ -1502,7 +1499,6 @@ const putRootListSingleItemOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Sequence",
         element: {
-          serializedName: "BananaElementType",
           type: {
             name: "Composite",
             className: "Banana"
@@ -1531,7 +1527,6 @@ const getEmptyRootListOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BananaElementType",
             type: {
               name: "Composite",
               className: "Banana"
@@ -1558,7 +1553,6 @@ const putEmptyRootListOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Sequence",
         element: {
-          serializedName: "BananaElementType",
           type: {
             name: "Composite",
             className: "Banana"
@@ -1679,7 +1673,6 @@ const getAclsOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SignedIdentifierElementType",
             type: {
               name: "Composite",
               className: "SignedIdentifier"
@@ -1711,7 +1704,6 @@ const putAclsOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Sequence",
         element: {
-          serializedName: "SignedIdentifierElementType",
           type: {
             name: "Composite",
             className: "SignedIdentifier"

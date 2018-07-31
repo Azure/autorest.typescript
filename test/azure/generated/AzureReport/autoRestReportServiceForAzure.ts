@@ -107,7 +107,6 @@ const getReportOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }

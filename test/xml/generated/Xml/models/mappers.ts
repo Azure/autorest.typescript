@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const ErrorModel = {
+
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -33,7 +35,7 @@ export const ErrorModel = {
   }
 };
 
-export const Slide = {
+export const Slide: msRest.CompositeMapper = {
   xmlName: "slide",
   serializedName: "Slide",
   type: {
@@ -62,7 +64,6 @@ export const Slide = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -73,7 +74,7 @@ export const Slide = {
   }
 };
 
-export const Slideshow = {
+export const Slideshow: msRest.CompositeMapper = {
   xmlName: "slideshow",
   serializedName: "Slideshow",
   type: {
@@ -111,7 +112,6 @@ export const Slideshow = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SlideElementType",
             type: {
               name: "Composite",
               className: "Slide"
@@ -123,7 +123,7 @@ export const Slideshow = {
   }
 };
 
-export const AppleBarrel = {
+export const AppleBarrel: msRest.CompositeMapper = {
   serializedName: "AppleBarrel",
   type: {
     name: "Composite",
@@ -137,7 +137,6 @@ export const AppleBarrel = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -152,7 +151,6 @@ export const AppleBarrel = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -163,7 +161,7 @@ export const AppleBarrel = {
   }
 };
 
-export const Banana = {
+export const Banana: msRest.CompositeMapper = {
   xmlName: "banana",
   serializedName: "Banana",
   type: {
@@ -195,7 +193,7 @@ export const Banana = {
   }
 };
 
-export const ContainerProperties = {
+export const ContainerProperties: msRest.CompositeMapper = {
   serializedName: "ContainerProperties",
   type: {
     name: "Composite",
@@ -264,7 +262,7 @@ export const ContainerProperties = {
   }
 };
 
-export const Container = {
+export const Container: msRest.CompositeMapper = {
   serializedName: "Container",
   type: {
     name: "Composite",
@@ -293,7 +291,6 @@ export const Container = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -304,7 +301,7 @@ export const Container = {
   }
 };
 
-export const ListContainersResponse = {
+export const ListContainersResponse: msRest.CompositeMapper = {
   xmlName: "EnumerationResults",
   serializedName: "ListContainersResponse",
   type: {
@@ -351,7 +348,6 @@ export const ListContainersResponse = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ContainerElementType",
             type: {
               name: "Composite",
               className: "Container"
@@ -371,7 +367,7 @@ export const ListContainersResponse = {
   }
 };
 
-export const CorsRule = {
+export const CorsRule: msRest.CompositeMapper = {
   serializedName: "CorsRule",
   type: {
     name: "Composite",
@@ -424,7 +420,7 @@ export const CorsRule = {
   }
 };
 
-export const BlobProperties = {
+export const BlobProperties: msRest.CompositeMapper = {
   serializedName: "BlobProperties",
   type: {
     name: "Composite",
@@ -658,7 +654,7 @@ export const BlobProperties = {
   }
 };
 
-export const Blob = {
+export const Blob: msRest.CompositeMapper = {
   serializedName: "Blob",
   type: {
     name: "Composite",
@@ -703,7 +699,6 @@ export const Blob = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -714,7 +709,7 @@ export const Blob = {
   }
 };
 
-export const RetentionPolicy = {
+export const RetentionPolicy: msRest.CompositeMapper = {
   serializedName: "RetentionPolicy",
   type: {
     name: "Composite",
@@ -742,7 +737,7 @@ export const RetentionPolicy = {
   }
 };
 
-export const Logging = {
+export const Logging: msRest.CompositeMapper = {
   serializedName: "Logging",
   type: {
     name: "Composite",
@@ -793,7 +788,7 @@ export const Logging = {
   }
 };
 
-export const Metrics = {
+export const Metrics: msRest.CompositeMapper = {
   serializedName: "Metrics",
   type: {
     name: "Composite",
@@ -833,7 +828,7 @@ export const Metrics = {
   }
 };
 
-export const BlobPrefix = {
+export const BlobPrefix: msRest.CompositeMapper = {
   serializedName: "BlobPrefix",
   type: {
     name: "Composite",
@@ -851,7 +846,7 @@ export const BlobPrefix = {
   }
 };
 
-export const Blobs = {
+export const Blobs: msRest.CompositeMapper = {
   serializedName: "Blobs",
   type: {
     name: "Composite",
@@ -864,7 +859,6 @@ export const Blobs = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BlobPrefixElementType",
             type: {
               name: "Composite",
               className: "BlobPrefix"
@@ -879,7 +873,6 @@ export const Blobs = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BlobElementType",
             type: {
               name: "Composite",
               className: "Blob"
@@ -891,7 +884,7 @@ export const Blobs = {
   }
 };
 
-export const ListBlobsResponse = {
+export const ListBlobsResponse: msRest.CompositeMapper = {
   xmlName: "EnumerationResults",
   serializedName: "ListBlobsResponse",
   type: {
@@ -969,7 +962,7 @@ export const ListBlobsResponse = {
   }
 };
 
-export const AccessPolicy = {
+export const AccessPolicy: msRest.CompositeMapper = {
   serializedName: "AccessPolicy",
   type: {
     name: "Composite",
@@ -1003,7 +996,7 @@ export const AccessPolicy = {
   }
 };
 
-export const SignedIdentifier = {
+export const SignedIdentifier: msRest.CompositeMapper = {
   serializedName: "SignedIdentifier",
   type: {
     name: "Composite",
@@ -1030,7 +1023,7 @@ export const SignedIdentifier = {
   }
 };
 
-export const StorageServiceProperties = {
+export const StorageServiceProperties: msRest.CompositeMapper = {
   serializedName: "StorageServiceProperties",
   type: {
     name: "Composite",
@@ -1068,7 +1061,6 @@ export const StorageServiceProperties = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "CorsRuleElementType",
             type: {
               name: "Composite",
               className: "CorsRule"
@@ -1095,7 +1087,7 @@ export const StorageServiceProperties = {
   }
 };
 
-export const ComplexTypeNoMeta = {
+export const ComplexTypeNoMeta: msRest.CompositeMapper = {
   serializedName: "ComplexTypeNoMeta",
   type: {
     name: "Composite",
@@ -1112,7 +1104,7 @@ export const ComplexTypeNoMeta = {
   }
 };
 
-export const ComplexTypeWithMeta = {
+export const ComplexTypeWithMeta: msRest.CompositeMapper = {
   xmlName: "XMLComplexTypeWithMeta",
   serializedName: "ComplexTypeWithMeta",
   type: {
@@ -1130,7 +1122,7 @@ export const ComplexTypeWithMeta = {
   }
 };
 
-export const RootWithRefAndNoMeta = {
+export const RootWithRefAndNoMeta: msRest.CompositeMapper = {
   serializedName: "RootWithRefAndNoMeta",
   type: {
     name: "Composite",
@@ -1155,7 +1147,7 @@ export const RootWithRefAndNoMeta = {
   }
 };
 
-export const RootWithRefAndMeta = {
+export const RootWithRefAndMeta: msRest.CompositeMapper = {
   serializedName: "RootWithRefAndMeta",
   type: {
     name: "Composite",
@@ -1180,7 +1172,7 @@ export const RootWithRefAndMeta = {
   }
 };
 
-export const XmlGetHeadersHeaders = {
+export const XmlGetHeadersHeaders: msRest.CompositeMapper = {
   serializedName: "xml-getheaders-headers",
   type: {
     name: "Composite",

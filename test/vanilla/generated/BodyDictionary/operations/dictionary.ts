@@ -2817,7 +2817,6 @@ const getNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -2842,7 +2841,6 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -2868,7 +2866,6 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "stringElementType",
           type: {
             name: "String"
           }
@@ -2895,7 +2892,6 @@ const getNullValueOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -2920,7 +2916,6 @@ const getNullKeyOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -2945,7 +2940,6 @@ const getEmptyStringKeyOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -2970,7 +2964,6 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -2995,7 +2988,6 @@ const getBooleanTfftOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "booleanElementType",
             type: {
               name: "Boolean"
             }
@@ -3021,7 +3013,6 @@ const putBooleanTfftOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "booleanElementType",
           type: {
             name: "Boolean"
           }
@@ -3048,7 +3039,6 @@ const getBooleanInvalidNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "booleanElementType",
             type: {
               name: "Boolean"
             }
@@ -3073,7 +3063,6 @@ const getBooleanInvalidStringOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "booleanElementType",
             type: {
               name: "Boolean"
             }
@@ -3098,7 +3087,6 @@ const getIntegerValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3124,7 +3112,6 @@ const putIntegerValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "numberElementType",
           type: {
             name: "Number"
           }
@@ -3151,7 +3138,6 @@ const getIntInvalidNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3176,7 +3162,6 @@ const getIntInvalidStringOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3201,7 +3186,6 @@ const getLongValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3227,7 +3211,6 @@ const putLongValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "numberElementType",
           type: {
             name: "Number"
           }
@@ -3254,7 +3237,6 @@ const getLongInvalidNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3279,7 +3261,6 @@ const getLongInvalidStringOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3304,7 +3285,6 @@ const getFloatValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3330,7 +3310,6 @@ const putFloatValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "numberElementType",
           type: {
             name: "Number"
           }
@@ -3357,7 +3336,6 @@ const getFloatInvalidNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3382,7 +3360,6 @@ const getFloatInvalidStringOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3407,7 +3384,6 @@ const getDoubleValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3433,7 +3409,6 @@ const putDoubleValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "numberElementType",
           type: {
             name: "Number"
           }
@@ -3460,7 +3435,6 @@ const getDoubleInvalidNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3485,7 +3459,6 @@ const getDoubleInvalidStringOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -3510,7 +3483,6 @@ const getStringValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3536,7 +3508,6 @@ const putStringValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "stringElementType",
           type: {
             name: "String"
           }
@@ -3563,7 +3534,6 @@ const getStringWithNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3588,7 +3558,6 @@ const getStringWithInvalidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3613,7 +3582,6 @@ const getDateValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "DateElementType",
             type: {
               name: "Date"
             }
@@ -3639,7 +3607,6 @@ const putDateValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "DateElementType",
           type: {
             name: "Date"
           }
@@ -3666,7 +3633,6 @@ const getDateInvalidNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "DateElementType",
             type: {
               name: "Date"
             }
@@ -3691,7 +3657,6 @@ const getDateInvalidCharsOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "DateElementType",
             type: {
               name: "Date"
             }
@@ -3716,7 +3681,6 @@ const getDateTimeValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "DateElementType",
             type: {
               name: "DateTime"
             }
@@ -3742,7 +3706,6 @@ const putDateTimeValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "DateElementType",
           type: {
             name: "DateTime"
           }
@@ -3769,7 +3732,6 @@ const getDateTimeInvalidNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "DateElementType",
             type: {
               name: "DateTime"
             }
@@ -3794,7 +3756,6 @@ const getDateTimeInvalidCharsOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "DateElementType",
             type: {
               name: "DateTime"
             }
@@ -3819,7 +3780,6 @@ const getDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "DateElementType",
             type: {
               name: "DateTimeRfc1123"
             }
@@ -3845,7 +3805,6 @@ const putDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "DateElementType",
           type: {
             name: "DateTimeRfc1123"
           }
@@ -3872,7 +3831,6 @@ const getDurationValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "TimeSpan"
             }
@@ -3898,7 +3856,6 @@ const putDurationValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "stringElementType",
           type: {
             name: "TimeSpan"
           }
@@ -3925,7 +3882,6 @@ const getByteValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "Uint8ArrayElementType",
             type: {
               name: "ByteArray"
             }
@@ -3951,7 +3907,6 @@ const putByteValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "Uint8ArrayElementType",
           type: {
             name: "ByteArray"
           }
@@ -3978,7 +3933,6 @@ const getByteInvalidNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "Uint8ArrayElementType",
             type: {
               name: "ByteArray"
             }
@@ -4003,7 +3957,6 @@ const getBase64UrlOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "Uint8ArrayElementType",
             type: {
               name: "Base64Url"
             }
@@ -4028,7 +3981,6 @@ const getComplexNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "WidgetElementType",
             type: {
               name: "Composite",
               className: "Widget"
@@ -4054,7 +4006,6 @@ const getComplexEmptyOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "WidgetElementType",
             type: {
               name: "Composite",
               className: "Widget"
@@ -4080,7 +4031,6 @@ const getComplexItemNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "WidgetElementType",
             type: {
               name: "Composite",
               className: "Widget"
@@ -4106,7 +4056,6 @@ const getComplexItemEmptyOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "WidgetElementType",
             type: {
               name: "Composite",
               className: "Widget"
@@ -4132,7 +4081,6 @@ const getComplexValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "WidgetElementType",
             type: {
               name: "Composite",
               className: "Widget"
@@ -4159,7 +4107,6 @@ const putComplexValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "WidgetElementType",
           type: {
             name: "Composite",
             className: "Widget"
@@ -4187,11 +4134,9 @@ const getArrayNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4218,11 +4163,9 @@ const getArrayEmptyOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4249,11 +4192,9 @@ const getArrayItemNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4280,11 +4221,9 @@ const getArrayItemEmptyOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4311,11 +4250,9 @@ const getArrayValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4343,11 +4280,9 @@ const putArrayValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "ArrayElementType",
           type: {
             name: "Sequence",
             element: {
-              serializedName: "stringElementType",
               type: {
                 name: "String"
               }
@@ -4376,11 +4311,9 @@ const getDictionaryNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4407,11 +4340,9 @@ const getDictionaryEmptyOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4438,11 +4369,9 @@ const getDictionaryItemNullOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4469,11 +4398,9 @@ const getDictionaryItemEmptyOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4500,11 +4427,9 @@ const getDictionaryValidOperationSpec: msRest.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -4532,11 +4457,9 @@ const putDictionaryValidOperationSpec: msRest.OperationSpec = {
       type: {
         name: "Dictionary",
         value: {
-          serializedName: "ObjectElementType",
           type: {
             name: "Dictionary",
             value: {
-              serializedName: "stringElementType",
               type: {
                 name: "String"
               }

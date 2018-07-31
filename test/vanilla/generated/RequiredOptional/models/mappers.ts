@@ -8,8 +8,10 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
-export const ErrorModel = {
+
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +33,7 @@ export const ErrorModel = {
   }
 };
 
-export const IntWrapper = {
+export const IntWrapper: msRest.CompositeMapper = {
   serializedName: "int-wrapper",
   type: {
     name: "Composite",
@@ -48,7 +50,7 @@ export const IntWrapper = {
   }
 };
 
-export const IntOptionalWrapper = {
+export const IntOptionalWrapper: msRest.CompositeMapper = {
   serializedName: "int-optional-wrapper",
   type: {
     name: "Composite",
@@ -64,7 +66,7 @@ export const IntOptionalWrapper = {
   }
 };
 
-export const StringWrapper = {
+export const StringWrapper: msRest.CompositeMapper = {
   serializedName: "string-wrapper",
   type: {
     name: "Composite",
@@ -81,7 +83,7 @@ export const StringWrapper = {
   }
 };
 
-export const StringOptionalWrapper = {
+export const StringOptionalWrapper: msRest.CompositeMapper = {
   serializedName: "string-optional-wrapper",
   type: {
     name: "Composite",
@@ -97,7 +99,7 @@ export const StringOptionalWrapper = {
   }
 };
 
-export const ArrayWrapper = {
+export const ArrayWrapper: msRest.CompositeMapper = {
   serializedName: "array-wrapper",
   type: {
     name: "Composite",
@@ -109,7 +111,6 @@ export const ArrayWrapper = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -120,7 +121,7 @@ export const ArrayWrapper = {
   }
 };
 
-export const ArrayOptionalWrapper = {
+export const ArrayOptionalWrapper: msRest.CompositeMapper = {
   serializedName: "array-optional-wrapper",
   type: {
     name: "Composite",
@@ -131,7 +132,6 @@ export const ArrayOptionalWrapper = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -142,7 +142,7 @@ export const ArrayOptionalWrapper = {
   }
 };
 
-export const Product = {
+export const Product: msRest.CompositeMapper = {
   serializedName: "product",
   type: {
     name: "Composite",
@@ -165,7 +165,7 @@ export const Product = {
   }
 };
 
-export const ClassWrapper = {
+export const ClassWrapper: msRest.CompositeMapper = {
   serializedName: "class-wrapper",
   type: {
     name: "Composite",
@@ -183,7 +183,7 @@ export const ClassWrapper = {
   }
 };
 
-export const ClassOptionalWrapper = {
+export const ClassOptionalWrapper: msRest.CompositeMapper = {
   serializedName: "class-optional-wrapper",
   type: {
     name: "Composite",
@@ -200,7 +200,7 @@ export const ClassOptionalWrapper = {
   }
 };
 
-export const AutoRestRequiredOptionalTestServiceOptions = {
+export const AutoRestRequiredOptionalTestServiceOptions: msRest.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutoRestRequiredOptionalTestServiceOptions",
@@ -215,7 +215,7 @@ export const AutoRestRequiredOptionalTestServiceOptions = {
   }
 };
 
-export const ImplicitPutOptionalQueryOptionalParams = {
+export const ImplicitPutOptionalQueryOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutOptionalQueryOptions",
   type: {
     name: "Composite",
@@ -231,7 +231,7 @@ export const ImplicitPutOptionalQueryOptionalParams = {
   }
 };
 
-export const ImplicitPutOptionalHeaderOptionalParams = {
+export const ImplicitPutOptionalHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutOptionalHeaderOptions",
   type: {
     name: "Composite",
@@ -247,7 +247,7 @@ export const ImplicitPutOptionalHeaderOptionalParams = {
   }
 };
 
-export const ImplicitPutOptionalBodyOptionalParams = {
+export const ImplicitPutOptionalBodyOptionalParams: msRest.CompositeMapper = {
   serializedName: "PutOptionalBodyOptions",
   type: {
     name: "Composite",
@@ -263,7 +263,7 @@ export const ImplicitPutOptionalBodyOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalIntegerParameterOptionalParams = {
+export const ExplicitPostOptionalIntegerParameterOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalIntegerParameterOptions",
   type: {
     name: "Composite",
@@ -279,7 +279,7 @@ export const ExplicitPostOptionalIntegerParameterOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalIntegerPropertyOptionalParams = {
+export const ExplicitPostOptionalIntegerPropertyOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalIntegerPropertyOptions",
   type: {
     name: "Composite",
@@ -295,7 +295,7 @@ export const ExplicitPostOptionalIntegerPropertyOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalIntegerHeaderOptionalParams = {
+export const ExplicitPostOptionalIntegerHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalIntegerHeaderOptions",
   type: {
     name: "Composite",
@@ -311,7 +311,7 @@ export const ExplicitPostOptionalIntegerHeaderOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalStringParameterOptionalParams = {
+export const ExplicitPostOptionalStringParameterOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalStringParameterOptions",
   type: {
     name: "Composite",
@@ -327,7 +327,7 @@ export const ExplicitPostOptionalStringParameterOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalStringPropertyOptionalParams = {
+export const ExplicitPostOptionalStringPropertyOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalStringPropertyOptions",
   type: {
     name: "Composite",
@@ -343,7 +343,7 @@ export const ExplicitPostOptionalStringPropertyOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalStringHeaderOptionalParams = {
+export const ExplicitPostOptionalStringHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalStringHeaderOptions",
   type: {
     name: "Composite",
@@ -359,7 +359,7 @@ export const ExplicitPostOptionalStringHeaderOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalClassParameterOptionalParams = {
+export const ExplicitPostOptionalClassParameterOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalClassParameterOptions",
   type: {
     name: "Composite",
@@ -376,7 +376,7 @@ export const ExplicitPostOptionalClassParameterOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalClassPropertyOptionalParams = {
+export const ExplicitPostOptionalClassPropertyOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalClassPropertyOptions",
   type: {
     name: "Composite",
@@ -393,7 +393,7 @@ export const ExplicitPostOptionalClassPropertyOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalArrayParameterOptionalParams = {
+export const ExplicitPostOptionalArrayParameterOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalArrayParameterOptions",
   type: {
     name: "Composite",
@@ -404,7 +404,6 @@ export const ExplicitPostOptionalArrayParameterOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -415,7 +414,7 @@ export const ExplicitPostOptionalArrayParameterOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalArrayPropertyOptionalParams = {
+export const ExplicitPostOptionalArrayPropertyOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalArrayPropertyOptions",
   type: {
     name: "Composite",
@@ -426,7 +425,6 @@ export const ExplicitPostOptionalArrayPropertyOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -437,7 +435,7 @@ export const ExplicitPostOptionalArrayPropertyOptionalParams = {
   }
 };
 
-export const ExplicitPostOptionalArrayHeaderOptionalParams = {
+export const ExplicitPostOptionalArrayHeaderOptionalParams: msRest.CompositeMapper = {
   serializedName: "PostOptionalArrayHeaderOptions",
   type: {
     name: "Composite",
@@ -448,7 +446,6 @@ export const ExplicitPostOptionalArrayHeaderOptionalParams = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
