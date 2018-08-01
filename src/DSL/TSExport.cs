@@ -13,7 +13,6 @@ namespace AutoRest.TypeScript.DSL
     public class TSExport : IDisposable
     {
         private readonly TSBuilder builder;
-        private string propertyBeingConstructed;
         private State currentState = State.Start;
 
         private enum State
