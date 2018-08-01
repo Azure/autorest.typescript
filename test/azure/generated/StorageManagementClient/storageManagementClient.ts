@@ -57,4 +57,10 @@ class StorageManagementClient extends StorageManagementClientContext {
 
 // Operation Specifications
 
-export { StorageManagementClient, Models as StorageManagementModels, Mappers as StorageManagementMappers };
+export {
+  StorageManagementClient,
+  StorageManagementClientContext,
+  Models as StorageManagementModels,
+  Mappers as StorageManagementMappers,
+  operations as StorageManagementOperations
+};

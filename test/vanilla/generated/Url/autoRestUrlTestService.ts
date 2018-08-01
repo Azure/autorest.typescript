@@ -48,4 +48,10 @@ class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
 
 // Operation Specifications
 
-export { AutoRestUrlTestService, Models as AutoRestUrlTestServiceModels, Mappers as AutoRestUrlTestServiceMappers };
+export {
+  AutoRestUrlTestService,
+  AutoRestUrlTestServiceContext,
+  Models as AutoRestUrlTestServiceModels,
+  Mappers as AutoRestUrlTestServiceMappers,
+  operations as AutoRestUrlTestServiceOperations
+};

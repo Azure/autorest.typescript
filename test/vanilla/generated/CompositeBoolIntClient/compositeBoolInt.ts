@@ -45,4 +45,10 @@ class CompositeBoolInt extends CompositeBoolIntContext {
 
 // Operation Specifications
 
-export { CompositeBoolInt, Models as CompositeBoolIntModels, Mappers as CompositeBoolIntMappers };
+export {
+  CompositeBoolInt,
+  CompositeBoolIntContext,
+  Models as CompositeBoolIntModels,
+  Mappers as CompositeBoolIntMappers,
+  operations as CompositeBoolIntOperations
+};

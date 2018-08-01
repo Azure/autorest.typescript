@@ -53,4 +53,10 @@ class AutoRestPagingTestService extends AutoRestPagingTestServiceContext {
 
 // Operation Specifications
 
-export { AutoRestPagingTestService, Models as AutoRestPagingTestServiceModels, Mappers as AutoRestPagingTestServiceMappers };
+export {
+  AutoRestPagingTestService,
+  AutoRestPagingTestServiceContext,
+  Models as AutoRestPagingTestServiceModels,
+  Mappers as AutoRestPagingTestServiceMappers,
+  operations as AutoRestPagingTestServiceOperations
+};

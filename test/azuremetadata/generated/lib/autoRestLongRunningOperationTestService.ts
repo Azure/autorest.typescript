@@ -59,4 +59,10 @@ class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperati
 
 // Operation Specifications
 
-export { AutoRestLongRunningOperationTestService, Models as AutoRestLongRunningOperationTestServiceModels, Mappers as AutoRestLongRunningOperationTestServiceMappers };
+export {
+  AutoRestLongRunningOperationTestService,
+  AutoRestLongRunningOperationTestServiceContext,
+  Models as AutoRestLongRunningOperationTestServiceModels,
+  Mappers as AutoRestLongRunningOperationTestServiceMappers,
+  operations as AutoRestLongRunningOperationTestServiceOperations
+};

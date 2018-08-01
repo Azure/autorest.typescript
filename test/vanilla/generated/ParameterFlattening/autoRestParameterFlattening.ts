@@ -43,4 +43,10 @@ class AutoRestParameterFlattening extends AutoRestParameterFlatteningContext {
 
 // Operation Specifications
 
-export { AutoRestParameterFlattening, Models as AutoRestParameterFlatteningModels, Mappers as AutoRestParameterFlatteningMappers };
+export {
+  AutoRestParameterFlattening,
+  AutoRestParameterFlatteningContext,
+  Models as AutoRestParameterFlatteningModels,
+  Mappers as AutoRestParameterFlatteningMappers,
+  operations as AutoRestParameterFlatteningOperations
+};

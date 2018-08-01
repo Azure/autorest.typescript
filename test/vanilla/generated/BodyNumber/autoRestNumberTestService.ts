@@ -43,4 +43,10 @@ class AutoRestNumberTestService extends AutoRestNumberTestServiceContext {
 
 // Operation Specifications
 
-export { AutoRestNumberTestService, Models as AutoRestNumberTestServiceModels, Mappers as AutoRestNumberTestServiceMappers };
+export {
+  AutoRestNumberTestService,
+  AutoRestNumberTestServiceContext,
+  Models as AutoRestNumberTestServiceModels,
+  Mappers as AutoRestNumberTestServiceMappers,
+  operations as AutoRestNumberTestServiceOperations
+};

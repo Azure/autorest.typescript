@@ -43,4 +43,10 @@ class AutoRestSwaggerBATArrayService extends AutoRestSwaggerBATArrayServiceConte
 
 // Operation Specifications
 
-export { AutoRestSwaggerBATArrayService, Models as AutoRestSwaggerBATArrayServiceModels, Mappers as AutoRestSwaggerBATArrayServiceMappers };
+export {
+  AutoRestSwaggerBATArrayService,
+  AutoRestSwaggerBATArrayServiceContext,
+  Models as AutoRestSwaggerBATArrayServiceModels,
+  Mappers as AutoRestSwaggerBATArrayServiceMappers,
+  operations as AutoRestSwaggerBATArrayServiceOperations
+};

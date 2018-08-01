@@ -43,4 +43,10 @@ class AutoRestSwaggerBATFileService extends AutoRestSwaggerBATFileServiceContext
 
 // Operation Specifications
 
-export { AutoRestSwaggerBATFileService, Models as AutoRestSwaggerBATFileServiceModels, Mappers as AutoRestSwaggerBATFileServiceMappers };
+export {
+  AutoRestSwaggerBATFileService,
+  AutoRestSwaggerBATFileServiceContext,
+  Models as AutoRestSwaggerBATFileServiceModels,
+  Mappers as AutoRestSwaggerBATFileServiceMappers,
+  operations as AutoRestSwaggerBATFileServiceOperations
+};

@@ -43,4 +43,10 @@ class AutoRestUrlMutliCollectionFormatTestService extends AutoRestUrlMutliCollec
 
 // Operation Specifications
 
-export { AutoRestUrlMutliCollectionFormatTestService, Models as AutoRestUrlMutliCollectionFormatTestServiceModels, Mappers as AutoRestUrlMutliCollectionFormatTestServiceMappers };
+export {
+  AutoRestUrlMutliCollectionFormatTestService,
+  AutoRestUrlMutliCollectionFormatTestServiceContext,
+  Models as AutoRestUrlMutliCollectionFormatTestServiceModels,
+  Mappers as AutoRestUrlMutliCollectionFormatTestServiceMappers,
+  operations as AutoRestUrlMutliCollectionFormatTestServiceOperations
+};

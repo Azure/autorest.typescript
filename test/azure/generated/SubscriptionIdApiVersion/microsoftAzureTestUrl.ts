@@ -55,4 +55,10 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
 
 // Operation Specifications
 
-export { MicrosoftAzureTestUrl, Models as MicrosoftAzureTestUrlModels, Mappers as MicrosoftAzureTestUrlMappers };
+export {
+  MicrosoftAzureTestUrl,
+  MicrosoftAzureTestUrlContext,
+  Models as MicrosoftAzureTestUrlModels,
+  Mappers as MicrosoftAzureTestUrlMappers,
+  operations as MicrosoftAzureTestUrlOperations
+};
