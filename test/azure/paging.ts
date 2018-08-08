@@ -22,7 +22,7 @@ describe('typescript', function () {
   describe('Swagger Pageable BAT', function () {
 
     describe('Pageable Operations', function () {
-      clientOptions.requestPolicyCreators = [
+      clientOptions.requestPolicyFactories = [
         msRest.exponentialRetryPolicy(3, 0, 0, 0),
         msRest.deserializationPolicy()
       ];
