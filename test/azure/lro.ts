@@ -14,7 +14,7 @@ var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
 var clientOptions: msRestAzure.AzureServiceClientOptions = {
-  requestPolicyCreators: [
+  requestPolicyFactories: [
     msRest.exponentialRetryPolicy(3, 0, 0, 0),
     msRest.deserializationPolicy()
   ],
