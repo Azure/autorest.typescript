@@ -659,11 +659,6 @@ namespace AutoRest.TypeScript
                 }
             }
 
-            if (!isCaseSensitive)
-            {
-                serializedName = serializedName.ToLower();
-            }
-
             CompositeType composite = type as CompositeType;
             if (composite != null && composite.ContainsConstantProperties && (parameter != null && parameter.IsRequired))
             {
@@ -714,6 +709,10 @@ namespace AutoRest.TypeScript
 
             if (serializedName != null)
             {
+                if (!isCaseSensitive)
+                {
+                    serializedName = serializedName.ToLower();
+                }
                 mapper.QuotedStringProperty("serializedName", serializedName);
             }
 
