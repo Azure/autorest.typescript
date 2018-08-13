@@ -149,11 +149,11 @@ describe('typescript', function () {
 
       rootList[0].name.should.equal('Cavendish');
       rootList[0].flavor.should.equal('Sweet');
-      rootList[0].expiration.valueOf().should.be.oneOf(new Date('2018-02-28T00:40:00Z').valueOf(), new Date('2018-02-28T00:40:00.123Z').valueOf());
+      rootList[0].expiration.valueOf().should.equal(new Date('2018-02-28T00:40:00.123Z').valueOf());
 
       rootList[1].name.should.equal('Plantain');
       rootList[1].flavor.should.equal('Savory');
-      rootList[1].expiration.valueOf().should.be.oneOf(new Date('2018-02-28T00:40:00Z').valueOf(), new Date('2018-02-28T00:40:00.123Z').valueOf());
+      rootList[1].expiration.valueOf().should.equal(new Date('2018-02-28T00:40:00.123Z').valueOf());
     });
 
     it('should correctly serialize a root XML list', async function () {
@@ -182,7 +182,7 @@ describe('typescript', function () {
       rootList[0].name.should.equal('Cavendish');
       rootList[0].flavor.should.equal('Sweet');
 
-      rootList[0].expiration.valueOf().should.be.oneOf(new Date('2018-02-28T00:40:00Z').valueOf(), new Date('2018-02-28T00:40:00.123Z').valueOf());
+      rootList[0].expiration.valueOf().should.equal(new Date('2018-02-28T00:40:00.123Z').valueOf());
     });
 
     it('should correctly serialize a root XML list of one element', async function () {
