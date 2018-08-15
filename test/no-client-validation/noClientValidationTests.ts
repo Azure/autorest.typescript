@@ -1,26 +1,16 @@
-import { AutoRestComplexTestService } from "./generated/BodyComplex/autoRestComplexTestService";
-import { RestError } from 'ms-rest-js';
-import { AutoRestSwaggerBATXMLService } from './generated/Xml/autoRestSwaggerBATXMLService';
+import * as assert from "assert";
+
+import { RestError } from "ms-rest-js";
+import { AutoRestValidationTest } from './generated/Validation/autoRestValidationTest';
 
 describe("--client-side-validation=false", function () {
-  it("should not perform client-side validation", async function () {
+  it("should not validate constraints", async function () {
     try {
-      const client = new AutoRestComplexTestService();
-      await client.primitive.putDate({ field: "not-a-date" as any });
+      const client = new AutoRestValidationTest("abc123", "12-34-5678");
+      await client.validationOfMethodParameters("a", 3);
       throw new Error("operation did not throw an exception");
     } catch (err) {
-      (err as RestError).response.status.should.equal(400);
-    }
-  });
-
-  it("should not perform client-side validation for XML clients", async function () {
-    try {
-      const client = new AutoRestSwaggerBATXMLService();
-      await client.xml.putSimple({ prop: 42 } as any, { timeout: 100 });
-      throw new Error("operation did not throw an exception");
-    } catch (err) {
-      err.should.be.instanceof(RestError);
-      (err as RestError).response.status.should.equal(400);
+      assert((err as RestError).response);
     }
   });
 });
