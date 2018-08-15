@@ -12,11 +12,14 @@ using AutoRest.Extensions;
 using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript;
 using Newtonsoft.Json;
+using AutoRest.Core;
 
 namespace AutoRest.TypeScript.Model
 {
     public class CodeModelTS : CodeModel
     {
+        public const string ClientSideValidationSettingName = "ClientSideValidation";
+
         private const string ServiceClientOptions = "ServiceClientOptions";
 
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
@@ -390,7 +393,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.18.377\"";
+            return "\"ms-rest-js\": \"~0.18.378\"";
         }
 
         public virtual Method GetSampleMethod()
