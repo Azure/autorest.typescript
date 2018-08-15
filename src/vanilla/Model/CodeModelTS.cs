@@ -18,6 +18,8 @@ namespace AutoRest.TypeScript.Model
 {
     public class CodeModelTS : CodeModel
     {
+        public const string ClientSideValidationSettingName = "ClientSideValidation";
+
         private const string ServiceClientOptions = "ServiceClientOptions";
 
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";

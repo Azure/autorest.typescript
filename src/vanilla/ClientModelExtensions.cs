@@ -728,7 +728,7 @@ namespace AutoRest.TypeScript
 
             void applyConstraints(TSObject obj)
             {
-                bool useClientSideValidation = (bool) Settings.Instance.CustomSettings["ClientSideValidation"];
+                bool useClientSideValidation = (bool) Settings.Instance.CustomSettings[CodeModelTS.ClientSideValidationSettingName];
                 if (useClientSideValidation && constraints != null && constraints.Any())
                 {
                     obj.ObjectProperty("constraints", constraintsObject =>
