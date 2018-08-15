@@ -183,8 +183,6 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public bool UseClientSideValidation => (bool) Settings.Instance.CustomSettings["ClientSideValidation"];
-
         public bool ContainsDurationProperty()
         {
             Core.Model.Property prop = Properties.FirstOrDefault(p =>
