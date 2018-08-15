@@ -45,20 +45,39 @@ namespace AutoRest.TypeScript.Model
             HttpOperationResponse
         }
 
+        private const string baseHttpOperationResponseName = "msRest.BaseHttpOperationResponse";
+
         public string HttpOperationResponseName
         {
             get
             {
-                if (ReturnType.Headers == null)
+                if (ReturnType.Headers != null)
                 {
-                    return $"msRest.HttpOperationResponse<{ReturnTypeTSString}>";
+                    return Regex.Replace(ReturnType.Headers.Name, "Headers$", "Response");
+                }
+                else if (ReturnType.Body != null)
+                {
+                    return MethodGroup.Name.Value.ToPascalCase() + Name.Value.ToPascalCase() + "Response";
                 }
                 else
                 {
-                    return $"Models.{Regex.Replace(ReturnType.Headers.Name, "Headers$", "Response")}";
+                    return baseHttpOperationResponseName;
                 }
             }
         }
+
+        public string HttpOperationResponseReferenceName
+        {
+            get
+            {
+                string responseName = HttpOperationResponseName;
+                return responseName == baseHttpOperationResponseName
+                    ? baseHttpOperationResponseName
+                    : "Models." + responseName;
+            }
+        }
+
+        public bool HasCustomHttpResponseType => HttpOperationResponseName != baseHttpOperationResponseName;
 
         private CodeModelTS CodeModelTS => (CodeModelTS)CodeModel;
 
@@ -494,8 +513,9 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
+            string responseName = HttpOperationResponseReferenceName;
             builder.Line(GenerateWithHttpOperationResponseMethodComment());
-            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{HttpOperationResponseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
+            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{responseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
             {
                 methodBody.Return(returnValue =>
                 {
@@ -526,6 +546,11 @@ namespace AutoRest.TypeScript.Model
                                 });
                             });
                         }
+                    }
+
+                    if (responseName != baseHttpOperationResponseName)
+                    {
+                        returnValue.Text($" as Promise<{responseName}>");
                     }
                 });
             });
@@ -736,6 +761,49 @@ namespace AutoRest.TypeScript.Model
                     });
                 }
             }
+        }
+
+        public string GenerateResponseType(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.ExportInterface(HttpOperationResponseName, "msRest.BaseHttpOperationResponse", iface =>
+            {
+                if (ReturnType.Headers != null)
+                {
+                    iface.DocumentationComment(
+                        "The parsed HTTP response headers.");
+                    iface.Property("parsedHeaders", ReturnType.Headers.Name);
+                }
+
+                if (HasStreamResponseType())
+                {
+                    iface.DocumentationComment(
+                        "BROWSER ONLY",
+                        "",
+                        "The response body as a browser Blob.",
+                        "Always undefined in node.js.");
+
+                    iface.Property("blobBody", "() => Promise<Blob>", optional: true);
+
+                    iface.DocumentationComment(
+                        "NODEJS ONLY",
+                        "",
+                        "The response body as a node.js Readable stream.",
+                        "Always undefined in the browser.");
+
+                    iface.Property("readableStreamBody", "NodeJS.ReadableStream", optional: true);
+                }
+                else if (ReturnType.Body != null)
+                {
+                    iface.DocumentationComment("The response body as text (string format)");
+                    iface.Property("bodyAsText", "string");
+
+                    string bodyType = ReturnType.Body?.TSType(inModelsModule: true) ?? "void";
+                    iface.DocumentationComment("The response body as parsed JSON or XML");
+                    iface.Property("parsedBody", bodyType);
+                }
+            });
+            return builder.ToString();
         }
 
         public bool HasStreamResponseType()

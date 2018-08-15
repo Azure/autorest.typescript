@@ -487,6 +487,15 @@ namespace AutoRest.TypeScript.DSL
             valueAction?.Invoke(new TSValue(this));
         }
 
+        public void ExportInterface(string interfaceName, string baseInterfaceName, Action<TSInterface> interfaceAction)
+        {
+            this.Line($"export interface {interfaceName} extends {baseInterfaceName} {{");
+            this.IncreaseIndent();
+            interfaceAction?.Invoke(new TSInterface(this));
+            this.DecreaseIndent();
+            this.Line("}");
+        }
+
         /// <summary>
         /// Add a function call with the provided functionName to this TSBuilder. The provided
         /// action will be used to create the arguments for the function call.
