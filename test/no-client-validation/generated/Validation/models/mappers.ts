@@ -72,11 +72,6 @@ export const Product: msRest.CompositeMapper = {
     modelProperties: {
       displayNames: {
         serializedName: "display_names",
-        constraints: {
-          MaxItems: 6,
-          MinItems: 0,
-          UniqueItems: true
-        },
         type: {
           name: "Sequence",
           element: {
@@ -88,19 +83,12 @@ export const Product: msRest.CompositeMapper = {
       },
       capacity: {
         serializedName: "capacity",
-        constraints: {
-          ExclusiveMaximum: 100,
-          ExclusiveMinimum: 0
-        },
         type: {
           name: "Number"
         }
       },
       image: {
         serializedName: "image",
-        constraints: {
-          Pattern: /http:\/\/\w+/
-        },
         type: {
           name: "String"
         }
