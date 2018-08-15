@@ -50,6 +50,9 @@ regenExpected = (opts,done) ->
     if (opts.generateBodyMethods == false)
       args.push("--generate-body-methods=false")
 
+    if (opts.clientSideValidation == false)
+      args.push("--client-side-validation=false")
+
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
         args.push("--#{opts.language}.namespace=#{optsMappingsValue[1]}")
@@ -144,6 +147,10 @@ noBodyMethodsMappings = {
   'BodyString': 'body-string.json'
 }
 
+noClientValidationMappings = {
+  'Validation': 'validation.json'
+}
+
 swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
 
 task 'regenerate-tscomposite', '', (done) ->
@@ -228,6 +235,19 @@ task 'regenerate-ts-no-body-methods', '', [], (done) ->
     'nsPrefix': 'Fixtures',
     'flatteningThreshold': '1',
     'generateBodyMethods': false
+  },done
+  return null
+
+task 'regenerate-ts-no-client-validation', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/no-client-validation',
+    'inputBaseDir': swaggerDir,
+    'mappings': noClientValidationMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures',
+    'flatteningThreshold': '1',
+    'clientSideValidation': false
   },done
   return null
 

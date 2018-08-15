@@ -12,6 +12,7 @@ using AutoRest.Extensions;
 using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript;
 using Newtonsoft.Json;
+using AutoRest.Core;
 
 namespace AutoRest.TypeScript.Model
 {
@@ -181,6 +182,8 @@ namespace AutoRest.TypeScript.Model
                 return clientIndex > 0 ? Name.Substring(0, clientIndex) : Name;
             }
         }
+
+        public bool UseClientSideValidation => (bool) Settings.Instance.CustomSettings["ClientSideValidation"];
 
         public bool ContainsDurationProperty()
         {
@@ -390,7 +393,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.18.377\"";
+            return "\"ms-rest-js\": \"/Users/rigibson/src/ms-rest-js\"";
         }
 
         public virtual Method GetSampleMethod()
