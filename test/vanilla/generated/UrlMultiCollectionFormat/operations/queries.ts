@@ -37,7 +37,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringMultiNullWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  arrayStringMultiNullWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -56,7 +56,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringMultiEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  arrayStringMultiEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -76,7 +76,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringMultiValidWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  arrayStringMultiValidWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options

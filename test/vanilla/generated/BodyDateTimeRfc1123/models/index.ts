@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
 
 /**
@@ -23,4 +24,102 @@ export interface ErrorModel {
    * @member {string} [message]
    */
   message?: string;
+}
+
+/**
+ * Contains response data for the getNull operation.
+ */
+export interface Datetimerfc1123GetNullResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getInvalid operation.
+ */
+export interface Datetimerfc1123GetInvalidResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getOverflow operation.
+ */
+export interface Datetimerfc1123GetOverflowResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getUnderflow operation.
+ */
+export interface Datetimerfc1123GetUnderflowResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getUtcLowercaseMaxDateTime operation.
+ */
+export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getUtcUppercaseMaxDateTime operation.
+ */
+export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getUtcMinDateTime operation.
+ */
+export interface Datetimerfc1123GetUtcMinDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
 }

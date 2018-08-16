@@ -243,12 +243,12 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.LRORetrysBeginPut201CreatingSucceeded200Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      beginPut201CreatingSucceeded200OperationSpec);
+      beginPut201CreatingSucceeded200OperationSpec) as Promise<Models.LRORetrysBeginPut201CreatingSucceeded200Response>;
   }
 
   /**
@@ -270,7 +270,7 @@ export class LRORetrys {
       {
         options
       },
-      beginPutAsyncRelativeRetrySucceededOperationSpec);
+      beginPutAsyncRelativeRetrySucceededOperationSpec) as Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse>;
   }
 
   /**
@@ -291,7 +291,7 @@ export class LRORetrys {
       {
         options
       },
-      beginDeleteProvisioning202Accepted200SucceededOperationSpec);
+      beginDeleteProvisioning202Accepted200SucceededOperationSpec) as Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse>;
   }
 
   /**
@@ -311,7 +311,7 @@ export class LRORetrys {
       {
         options
       },
-      beginDelete202Retry200OperationSpec);
+      beginDelete202Retry200OperationSpec) as Promise<Models.LRORetrysDelete202Retry200Response>;
   }
 
   /**
@@ -331,7 +331,7 @@ export class LRORetrys {
       {
         options
       },
-      beginDeleteAsyncRelativeRetrySucceededOperationSpec);
+      beginDeleteAsyncRelativeRetrySucceededOperationSpec) as Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse>;
   }
 
   /**
@@ -351,7 +351,7 @@ export class LRORetrys {
       {
         options
       },
-      beginPost202Retry200OperationSpec);
+      beginPost202Retry200OperationSpec) as Promise<Models.LRORetrysPost202Retry200Response>;
   }
 
   /**
@@ -373,7 +373,7 @@ export class LRORetrys {
       {
         options
       },
-      beginPostAsyncRelativeRetrySucceededOperationSpec);
+      beginPostAsyncRelativeRetrySucceededOperationSpec) as Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse>;
   }
 
   /**

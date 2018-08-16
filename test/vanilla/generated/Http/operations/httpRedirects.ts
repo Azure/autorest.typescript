@@ -41,7 +41,7 @@ export class HttpRedirects {
       {
         options
       },
-      head300OperationSpec);
+      head300OperationSpec) as Promise<Models.HttpRedirectsHead300Response>;
   }
 
   /**
@@ -60,7 +60,7 @@ export class HttpRedirects {
       {
         options
       },
-      get300OperationSpec);
+      get300OperationSpec) as Promise<Models.HttpRedirectsGet300Response>;
   }
 
   /**
@@ -79,7 +79,7 @@ export class HttpRedirects {
       {
         options
       },
-      head301OperationSpec);
+      head301OperationSpec) as Promise<Models.HttpRedirectsHead301Response>;
   }
 
   /**
@@ -98,7 +98,7 @@ export class HttpRedirects {
       {
         options
       },
-      get301OperationSpec);
+      get301OperationSpec) as Promise<Models.HttpRedirectsGet301Response>;
   }
 
   /**
@@ -118,7 +118,7 @@ export class HttpRedirects {
       {
         options
       },
-      put301OperationSpec);
+      put301OperationSpec) as Promise<Models.HttpRedirectsPut301Response>;
   }
 
   /**
@@ -137,7 +137,7 @@ export class HttpRedirects {
       {
         options
       },
-      head302OperationSpec);
+      head302OperationSpec) as Promise<Models.HttpRedirectsHead302Response>;
   }
 
   /**
@@ -156,7 +156,7 @@ export class HttpRedirects {
       {
         options
       },
-      get302OperationSpec);
+      get302OperationSpec) as Promise<Models.HttpRedirectsGet302Response>;
   }
 
   /**
@@ -176,7 +176,7 @@ export class HttpRedirects {
       {
         options
       },
-      patch302OperationSpec);
+      patch302OperationSpec) as Promise<Models.HttpRedirectsPatch302Response>;
   }
 
   /**
@@ -196,7 +196,7 @@ export class HttpRedirects {
       {
         options
       },
-      post303OperationSpec);
+      post303OperationSpec) as Promise<Models.HttpRedirectsPost303Response>;
   }
 
   /**
@@ -215,7 +215,7 @@ export class HttpRedirects {
       {
         options
       },
-      head307OperationSpec);
+      head307OperationSpec) as Promise<Models.HttpRedirectsHead307Response>;
   }
 
   /**
@@ -234,7 +234,7 @@ export class HttpRedirects {
       {
         options
       },
-      get307OperationSpec);
+      get307OperationSpec) as Promise<Models.HttpRedirectsGet307Response>;
   }
 
   /**
@@ -253,7 +253,7 @@ export class HttpRedirects {
       {
         options
       },
-      put307OperationSpec);
+      put307OperationSpec) as Promise<Models.HttpRedirectsPut307Response>;
   }
 
   /**
@@ -272,7 +272,7 @@ export class HttpRedirects {
       {
         options
       },
-      patch307OperationSpec);
+      patch307OperationSpec) as Promise<Models.HttpRedirectsPatch307Response>;
   }
 
   /**
@@ -291,7 +291,7 @@ export class HttpRedirects {
       {
         options
       },
-      post307OperationSpec);
+      post307OperationSpec) as Promise<Models.HttpRedirectsPost307Response>;
   }
 
   /**
@@ -310,7 +310,7 @@ export class HttpRedirects {
       {
         options
       },
-      delete307OperationSpec);
+      delete307OperationSpec) as Promise<Models.HttpRedirectsDelete307Response>;
   }
 
   /**

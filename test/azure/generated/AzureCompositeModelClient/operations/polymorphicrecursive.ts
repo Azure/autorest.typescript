@@ -37,12 +37,12 @@ export class Polymorphicrecursive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FishUnion>> {
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec);
+      getValidOperationSpec) as Promise<Models.PolymorphicrecursiveGetValidResponse>;
   }
 
   /**
@@ -110,7 +110,7 @@ export class Polymorphicrecursive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,

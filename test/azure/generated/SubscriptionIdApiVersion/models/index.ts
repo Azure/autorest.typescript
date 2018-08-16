@@ -9,6 +9,7 @@
  */
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
 
@@ -43,3 +44,17 @@ export interface ErrorModel {
   message?: string;
 }
 
+
+/**
+ * Contains response data for the getSampleResourceGroup operation.
+ */
+export interface GroupGetSampleResourceGroupResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SampleResourceGroup;
+}

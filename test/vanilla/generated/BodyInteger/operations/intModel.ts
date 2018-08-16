@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/intModelMappers";
 import { AutoRestIntegerTestServiceContext } from "../autoRestIntegerTestServiceContext";
 
@@ -35,12 +36,12 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.IntModelGetNullResponse>;
   }
 
   /**
@@ -54,12 +55,12 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidOperationSpec);
+      getInvalidOperationSpec) as Promise<Models.IntModelGetInvalidResponse>;
   }
 
   /**
@@ -73,12 +74,12 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getOverflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getOverflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt32Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getOverflowInt32OperationSpec);
+      getOverflowInt32OperationSpec) as Promise<Models.IntModelGetOverflowInt32Response>;
   }
 
   /**
@@ -92,12 +93,12 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUnderflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getUnderflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt32Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUnderflowInt32OperationSpec);
+      getUnderflowInt32OperationSpec) as Promise<Models.IntModelGetUnderflowInt32Response>;
   }
 
   /**
@@ -111,12 +112,12 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getOverflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getOverflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt64Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getOverflowInt64OperationSpec);
+      getOverflowInt64OperationSpec) as Promise<Models.IntModelGetOverflowInt64Response>;
   }
 
   /**
@@ -130,12 +131,12 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUnderflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getUnderflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt64Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUnderflowInt64OperationSpec);
+      getUnderflowInt64OperationSpec) as Promise<Models.IntModelGetUnderflowInt64Response>;
   }
 
   /**
@@ -151,7 +152,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMax32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putMax32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -173,7 +174,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMax64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putMax64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -195,7 +196,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMin32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putMin32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -217,7 +218,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMin64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putMin64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -237,12 +238,12 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnixTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUnixTimeOperationSpec);
+      getUnixTimeOperationSpec) as Promise<Models.IntModelGetUnixTimeResponse>;
   }
 
   /**
@@ -258,7 +259,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUnixTimeDateWithHttpOperationResponse(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putUnixTimeDateWithHttpOperationResponse(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -278,12 +279,12 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getInvalidUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidUnixTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidUnixTimeOperationSpec);
+      getInvalidUnixTimeOperationSpec) as Promise<Models.IntModelGetInvalidUnixTimeResponse>;
   }
 
   /**
@@ -297,12 +298,12 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getNullUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullUnixTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullUnixTimeOperationSpec);
+      getNullUnixTimeOperationSpec) as Promise<Models.IntModelGetNullUnixTimeResponse>;
   }
 
   /**

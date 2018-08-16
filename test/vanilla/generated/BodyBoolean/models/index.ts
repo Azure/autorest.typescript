@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
 
 /**
@@ -23,4 +24,60 @@ export interface ErrorModel {
    * @member {string} [message]
    */
   message?: string;
+}
+
+/**
+ * Contains response data for the getTrue operation.
+ */
+export interface BoolGetTrueResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean;
+}
+
+/**
+ * Contains response data for the getFalse operation.
+ */
+export interface BoolGetFalseResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean;
+}
+
+/**
+ * Contains response data for the getNull operation.
+ */
+export interface BoolGetNullResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean;
+}
+
+/**
+ * Contains response data for the getInvalid operation.
+ */
+export interface BoolGetInvalidResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean;
 }

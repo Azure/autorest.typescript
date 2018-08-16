@@ -36,12 +36,12 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNull(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GetNullOKResponse>> {
+  getNull(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.StringGetNullResponse>;
   }
 
   /**
@@ -55,7 +55,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNull(options?: Models.StringPutNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putNull(options?: Models.StringPutNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -74,12 +74,12 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GetEmptyOKResponse>> {
+  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.StringGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyOperationSpec);
+      getEmptyOperationSpec) as Promise<Models.StringGetEmptyResponse>;
   }
 
   /**
@@ -93,7 +93,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -112,12 +112,12 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getMbcs(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GetMbcsOKResponse>> {
+  getMbcs(options?: msRest.RequestOptionsBase): Promise<Models.StringGetMbcsResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getMbcsOperationSpec);
+      getMbcsOperationSpec) as Promise<Models.StringGetMbcsResponse>;
   }
 
   /**
@@ -131,7 +131,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMbcs(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putMbcs(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -151,12 +151,12 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWhitespace(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GetWhitespaceOKResponse>> {
+  getWhitespace(options?: msRest.RequestOptionsBase): Promise<Models.StringGetWhitespaceResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getWhitespaceOperationSpec);
+      getWhitespaceOperationSpec) as Promise<Models.StringGetWhitespaceResponse>;
   }
 
   /**
@@ -171,7 +171,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putWhitespace(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putWhitespace(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -190,12 +190,12 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNotProvided(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  getNotProvided(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNotProvidedOperationSpec);
+      getNotProvidedOperationSpec) as Promise<Models.StringGetNotProvidedResponse>;
   }
 
   /**
@@ -209,12 +209,12 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBase64Encoded(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
+  getBase64Encoded(options?: msRest.RequestOptionsBase): Promise<Models.StringGetBase64EncodedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBase64EncodedOperationSpec);
+      getBase64EncodedOperationSpec) as Promise<Models.StringGetBase64EncodedResponse>;
   }
 
   /**
@@ -228,12 +228,12 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBase64UrlEncoded(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
+  getBase64UrlEncoded(options?: msRest.RequestOptionsBase): Promise<Models.StringGetBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBase64UrlEncodedOperationSpec);
+      getBase64UrlEncodedOperationSpec) as Promise<Models.StringGetBase64UrlEncodedResponse>;
   }
 
   /**
@@ -249,7 +249,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         stringBody,
@@ -269,12 +269,12 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
+  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNullBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullBase64UrlEncodedOperationSpec);
+      getNullBase64UrlEncodedOperationSpec) as Promise<Models.StringGetNullBase64UrlEncodedResponse>;
   }
 
 }

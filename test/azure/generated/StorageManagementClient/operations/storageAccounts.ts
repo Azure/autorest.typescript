@@ -41,13 +41,13 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  checkNameAvailabilityWithHttpOperationResponse(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CheckNameAvailabilityResult>> {
+  checkNameAvailabilityWithHttpOperationResponse(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCheckNameAvailabilityResponse> {
     return this.client.sendOperationRequest(
       {
         accountName,
         options
       },
-      checkNameAvailabilityOperationSpec);
+      checkNameAvailabilityOperationSpec) as Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
   }
 
 
@@ -114,7 +114,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -143,14 +143,14 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getPropertiesWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
+  getPropertiesWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsGetPropertiesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         accountName,
         options
       },
-      getPropertiesOperationSpec);
+      getPropertiesOperationSpec) as Promise<Models.StorageAccountsGetPropertiesResponse>;
   }
 
   /**
@@ -179,7 +179,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
+  updateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -187,7 +187,7 @@ export class StorageAccounts {
         parameters,
         options
       },
-      updateOperationSpec);
+      updateOperationSpec) as Promise<Models.StorageAccountsUpdateResponse>;
   }
 
   /**
@@ -205,14 +205,14 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listKeysWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountKeys>> {
+  listKeysWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListKeysResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         accountName,
         options
       },
-      listKeysOperationSpec);
+      listKeysOperationSpec) as Promise<Models.StorageAccountsListKeysResponse>;
   }
 
   /**
@@ -227,12 +227,12 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountListResult>> {
+  listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.StorageAccountsListResponse>;
   }
 
   /**
@@ -249,13 +249,13 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountListResult>> {
+  listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listByResourceGroupOperationSpec);
+      listByResourceGroupOperationSpec) as Promise<Models.StorageAccountsListByResourceGroupResponse>;
   }
 
   /**
@@ -275,14 +275,14 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  regenerateKeyWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<msRest.HttpOperationResponse<Models.StorageAccountKeys>> {
+  regenerateKeyWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<Models.StorageAccountsRegenerateKeyResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         accountName,
         options
       },
-      regenerateKeyOperationSpec);
+      regenerateKeyOperationSpec) as Promise<Models.StorageAccountsRegenerateKeyResponse>;
   }
 
   /**
@@ -308,7 +308,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
+  beginCreateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsBeginCreateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -316,7 +316,7 @@ export class StorageAccounts {
         parameters,
         options
       },
-      beginCreateOperationSpec);
+      beginCreateOperationSpec) as Promise<Models.StorageAccountsBeginCreateResponse>;
   }
 
   /**

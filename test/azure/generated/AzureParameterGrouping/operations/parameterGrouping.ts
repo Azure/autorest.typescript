@@ -40,7 +40,7 @@ export class ParameterGrouping {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         parameterGroupingPostRequiredParameters,
@@ -60,7 +60,7 @@ export class ParameterGrouping {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postOptionalWithHttpOperationResponse(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  postOptionalWithHttpOperationResponse(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -79,7 +79,7 @@ export class ParameterGrouping {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postMultiParamGroupsWithHttpOperationResponse(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  postMultiParamGroupsWithHttpOperationResponse(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -99,7 +99,7 @@ export class ParameterGrouping {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postSharedParameterGroupObjectWithHttpOperationResponse(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  postSharedParameterGroupObjectWithHttpOperationResponse(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options

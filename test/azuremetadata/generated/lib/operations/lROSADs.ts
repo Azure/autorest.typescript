@@ -770,12 +770,12 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  beginPutNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<Models.LROSADsBeginPutNonRetry400Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      beginPutNonRetry400OperationSpec);
+      beginPutNonRetry400OperationSpec) as Promise<Models.LROSADsBeginPutNonRetry400Response>;
   }
 
   /**
@@ -790,12 +790,12 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutNonRetry201Creating400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  beginPutNonRetry201Creating400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<Models.LROSADsBeginPutNonRetry201Creating400Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      beginPutNonRetry201Creating400OperationSpec);
+      beginPutNonRetry201Creating400OperationSpec) as Promise<Models.LROSADsBeginPutNonRetry201Creating400Response>;
   }
 
   /**
@@ -811,12 +811,12 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      beginPutNonRetry201Creating400InvalidJsonOperationSpec);
+      beginPutNonRetry201Creating400InvalidJsonOperationSpec) as Promise<Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse>;
   }
 
   /**
@@ -836,7 +836,7 @@ export class LROSADs {
       {
         options
       },
-      beginPutAsyncRelativeRetry400OperationSpec);
+      beginPutAsyncRelativeRetry400OperationSpec) as Promise<Models.LROSADsPutAsyncRelativeRetry400Response>;
   }
 
   /**
@@ -855,7 +855,7 @@ export class LROSADs {
       {
         options
       },
-      beginDeleteNonRetry400OperationSpec);
+      beginDeleteNonRetry400OperationSpec) as Promise<Models.LROSADsDeleteNonRetry400Response>;
   }
 
   /**
@@ -874,7 +874,7 @@ export class LROSADs {
       {
         options
       },
-      beginDelete202NonRetry400OperationSpec);
+      beginDelete202NonRetry400OperationSpec) as Promise<Models.LROSADsDelete202NonRetry400Response>;
   }
 
   /**
@@ -894,7 +894,7 @@ export class LROSADs {
       {
         options
       },
-      beginDeleteAsyncRelativeRetry400OperationSpec);
+      beginDeleteAsyncRelativeRetry400OperationSpec) as Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response>;
   }
 
   /**
@@ -913,7 +913,7 @@ export class LROSADs {
       {
         options
       },
-      beginPostNonRetry400OperationSpec);
+      beginPostNonRetry400OperationSpec) as Promise<Models.LROSADsPostNonRetry400Response>;
   }
 
   /**
@@ -932,7 +932,7 @@ export class LROSADs {
       {
         options
       },
-      beginPost202NonRetry400OperationSpec);
+      beginPost202NonRetry400OperationSpec) as Promise<Models.LROSADsPost202NonRetry400Response>;
   }
 
   /**
@@ -952,7 +952,7 @@ export class LROSADs {
       {
         options
       },
-      beginPostAsyncRelativeRetry400OperationSpec);
+      beginPostAsyncRelativeRetry400OperationSpec) as Promise<Models.LROSADsPostAsyncRelativeRetry400Response>;
   }
 
   /**
@@ -967,12 +967,12 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.LROSADsBeginPutError201NoProvisioningStatePayloadResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      beginPutError201NoProvisioningStatePayloadOperationSpec);
+      beginPutError201NoProvisioningStatePayloadOperationSpec) as Promise<Models.LROSADsBeginPutError201NoProvisioningStatePayloadResponse>;
   }
 
   /**
@@ -993,7 +993,7 @@ export class LROSADs {
       {
         options
       },
-      beginPutAsyncRelativeRetryNoStatusOperationSpec);
+      beginPutAsyncRelativeRetryNoStatusOperationSpec) as Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse>;
   }
 
   /**
@@ -1015,7 +1015,7 @@ export class LROSADs {
       {
         options
       },
-      beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec);
+      beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec) as Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse>;
   }
 
   /**
@@ -1029,7 +1029,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1054,7 +1054,7 @@ export class LROSADs {
       {
         options
       },
-      beginDeleteAsyncRelativeRetryNoStatusOperationSpec);
+      beginDeleteAsyncRelativeRetryNoStatusOperationSpec) as Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse>;
   }
 
   /**
@@ -1074,7 +1074,7 @@ export class LROSADs {
       {
         options
       },
-      beginPost202NoLocationOperationSpec);
+      beginPost202NoLocationOperationSpec) as Promise<Models.LROSADsPost202NoLocationResponse>;
   }
 
   /**
@@ -1096,7 +1096,7 @@ export class LROSADs {
       {
         options
       },
-      beginPostAsyncRelativeRetryNoPayloadOperationSpec);
+      beginPostAsyncRelativeRetryNoPayloadOperationSpec) as Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse>;
   }
 
   /**
@@ -1111,12 +1111,12 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut200InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  beginPut200InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<Models.LROSADsBeginPut200InvalidJsonResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      beginPut200InvalidJsonOperationSpec);
+      beginPut200InvalidJsonOperationSpec) as Promise<Models.LROSADsBeginPut200InvalidJsonResponse>;
   }
 
   /**
@@ -1138,7 +1138,7 @@ export class LROSADs {
       {
         options
       },
-      beginPutAsyncRelativeRetryInvalidHeaderOperationSpec);
+      beginPutAsyncRelativeRetryInvalidHeaderOperationSpec) as Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse>;
   }
 
   /**
@@ -1160,7 +1160,7 @@ export class LROSADs {
       {
         options
       },
-      beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec);
+      beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec) as Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
 
   /**
@@ -1180,7 +1180,7 @@ export class LROSADs {
       {
         options
       },
-      beginDelete202RetryInvalidHeaderOperationSpec);
+      beginDelete202RetryInvalidHeaderOperationSpec) as Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse>;
   }
 
   /**
@@ -1200,7 +1200,7 @@ export class LROSADs {
       {
         options
       },
-      beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec);
+      beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec) as Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse>;
   }
 
   /**
@@ -1220,7 +1220,7 @@ export class LROSADs {
       {
         options
       },
-      beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec);
+      beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec) as Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
 
   /**
@@ -1240,7 +1240,7 @@ export class LROSADs {
       {
         options
       },
-      beginPost202RetryInvalidHeaderOperationSpec);
+      beginPost202RetryInvalidHeaderOperationSpec) as Promise<Models.LROSADsPost202RetryInvalidHeaderResponse>;
   }
 
   /**
@@ -1262,7 +1262,7 @@ export class LROSADs {
       {
         options
       },
-      beginPostAsyncRelativeRetryInvalidHeaderOperationSpec);
+      beginPostAsyncRelativeRetryInvalidHeaderOperationSpec) as Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse>;
   }
 
   /**
@@ -1284,7 +1284,7 @@ export class LROSADs {
       {
         options
       },
-      beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec);
+      beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec) as Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
 
   /**

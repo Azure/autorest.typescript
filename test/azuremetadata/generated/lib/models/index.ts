@@ -2704,547 +2704,2044 @@ export enum Status {
 }
 
 /**
+ * Contains response data for the put200Succeeded operation.
+ */
+export interface LROsPut200SucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the put200SucceededNoState operation.
+ */
+export interface LROsPut200SucceededNoStateResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the put202Retry200 operation.
+ */
+export interface LROsPut202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the put201CreatingSucceeded200 operation.
+ */
+export interface LROsPut201CreatingSucceeded200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the put200UpdatingSucceeded204 operation.
+ */
+export interface LROsPut200UpdatingSucceeded204Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the put201CreatingFailed200 operation.
+ */
+export interface LROsPut201CreatingFailed200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the put200Acceptedcanceled200 operation.
+ */
+export interface LROsPut200Acceptedcanceled200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
  * Contains response data for the putNoHeaderInRetry operation.
  */
-export interface LROsPutNoHeaderInRetryResponse extends msRest.HttpOperationResponse<Product, LROsPutNoHeaderInRetryHeaders> {};
+export interface LROsPutNoHeaderInRetryResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutNoHeaderInRetryHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncRetrySucceeded operation.
  */
-export interface LROsPutAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncRetrySucceededHeaders> {};
+export interface LROsPutAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncNoRetrySucceeded operation.
  */
-export interface LROsPutAsyncNoRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncNoRetrySucceededHeaders> {};
+export interface LROsPutAsyncNoRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncNoRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncRetryFailed operation.
  */
-export interface LROsPutAsyncRetryFailedResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncRetryFailedHeaders> {};
+export interface LROsPutAsyncRetryFailedResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncRetryFailedHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncNoRetrycanceled operation.
  */
-export interface LROsPutAsyncNoRetrycanceledResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncNoRetrycanceledHeaders> {};
+export interface LROsPutAsyncNoRetrycanceledResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncNoRetrycanceledHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncNoHeaderInRetry operation.
  */
-export interface LROsPutAsyncNoHeaderInRetryResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncNoHeaderInRetryHeaders> {};
+export interface LROsPutAsyncNoHeaderInRetryResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncNoHeaderInRetryHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the putNonResource operation.
+ */
+export interface LROsPutNonResourceResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Sku;
+}
+
+/**
+ * Contains response data for the putAsyncNonResource operation.
+ */
+export interface LROsPutAsyncNonResourceResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Sku;
+}
+
+/**
+ * Contains response data for the putSubResource operation.
+ */
+export interface LROsPutSubResourceResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SubProduct;
+}
+
+/**
+ * Contains response data for the putAsyncSubResource operation.
+ */
+export interface LROsPutAsyncSubResourceResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SubProduct;
+}
 
 /**
  * Contains response data for the deleteProvisioning202Accepted200Succeeded
  * operation.
  */
-export interface LROsDeleteProvisioning202Accepted200SucceededResponse extends msRest.HttpOperationResponse<Product, LROsDeleteProvisioning202Accepted200SucceededHeaders> {};
+export interface LROsDeleteProvisioning202Accepted200SucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteProvisioning202Accepted200SucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the deleteProvisioning202DeletingFailed200
  * operation.
  */
-export interface LROsDeleteProvisioning202DeletingFailed200Response extends msRest.HttpOperationResponse<Product, LROsDeleteProvisioning202DeletingFailed200Headers> {};
+export interface LROsDeleteProvisioning202DeletingFailed200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteProvisioning202DeletingFailed200Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the deleteProvisioning202Deletingcanceled200
  * operation.
  */
-export interface LROsDeleteProvisioning202Deletingcanceled200Response extends msRest.HttpOperationResponse<Product, LROsDeleteProvisioning202Deletingcanceled200Headers> {};
+export interface LROsDeleteProvisioning202Deletingcanceled200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteProvisioning202Deletingcanceled200Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the delete202Retry200 operation.
  */
-export interface LROsDelete202Retry200Response extends msRest.HttpOperationResponse<Product, LROsDelete202Retry200Headers> {};
+export interface LROsDelete202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDelete202Retry200Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the delete202NoRetry204 operation.
  */
-export interface LROsDelete202NoRetry204Response extends msRest.HttpOperationResponse<Product, LROsDelete202NoRetry204Headers> {};
+export interface LROsDelete202NoRetry204Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDelete202NoRetry204Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the deleteNoHeaderInRetry operation.
  */
-export interface LROsDeleteNoHeaderInRetryResponse extends msRest.HttpOperationResponse<void, LROsDeleteNoHeaderInRetryHeaders> {};
+export interface LROsDeleteNoHeaderInRetryResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
+}
 
 /**
  * Contains response data for the deleteAsyncNoHeaderInRetry operation.
  */
-export interface LROsDeleteAsyncNoHeaderInRetryResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncNoHeaderInRetryHeaders> {};
+export interface LROsDeleteAsyncNoHeaderInRetryResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
+}
 
 /**
  * Contains response data for the deleteAsyncRetrySucceeded operation.
  */
-export interface LROsDeleteAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncRetrySucceededHeaders> {};
+export interface LROsDeleteAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncRetrySucceededHeaders;
+}
 
 /**
  * Contains response data for the deleteAsyncNoRetrySucceeded operation.
  */
-export interface LROsDeleteAsyncNoRetrySucceededResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncNoRetrySucceededHeaders> {};
+export interface LROsDeleteAsyncNoRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncNoRetrySucceededHeaders;
+}
 
 /**
  * Contains response data for the deleteAsyncRetryFailed operation.
  */
-export interface LROsDeleteAsyncRetryFailedResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncRetryFailedHeaders> {};
+export interface LROsDeleteAsyncRetryFailedResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncRetryFailedHeaders;
+}
 
 /**
  * Contains response data for the deleteAsyncRetrycanceled operation.
  */
-export interface LROsDeleteAsyncRetrycanceledResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncRetrycanceledHeaders> {};
+export interface LROsDeleteAsyncRetrycanceledResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncRetrycanceledHeaders;
+}
+
+/**
+ * Contains response data for the post200WithPayload operation.
+ */
+export interface LROsPost200WithPayloadResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Sku;
+}
 
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export interface LROsPost202Retry200Response extends msRest.HttpOperationResponse<void, LROsPost202Retry200Headers> {};
+export interface LROsPost202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPost202Retry200Headers;
+}
 
 /**
  * Contains response data for the post202NoRetry204 operation.
  */
-export interface LROsPost202NoRetry204Response extends msRest.HttpOperationResponse<Product, LROsPost202NoRetry204Headers> {};
+export interface LROsPost202NoRetry204Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPost202NoRetry204Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the postDoubleHeadersFinalLocationGet operation.
+ */
+export interface LROsPostDoubleHeadersFinalLocationGetResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the postDoubleHeadersFinalAzureHeaderGet
+ * operation.
+ */
+export interface LROsPostDoubleHeadersFinalAzureHeaderGetResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the postDoubleHeadersFinalAzureHeaderGetDefault
+ * operation.
+ */
+export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the postAsyncRetrySucceeded operation.
  */
-export interface LROsPostAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsPostAsyncRetrySucceededHeaders> {};
+export interface LROsPostAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPostAsyncRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the postAsyncNoRetrySucceeded operation.
  */
-export interface LROsPostAsyncNoRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsPostAsyncNoRetrySucceededHeaders> {};
+export interface LROsPostAsyncNoRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPostAsyncNoRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the postAsyncRetryFailed operation.
  */
-export interface LROsPostAsyncRetryFailedResponse extends msRest.HttpOperationResponse<void, LROsPostAsyncRetryFailedHeaders> {};
+export interface LROsPostAsyncRetryFailedResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPostAsyncRetryFailedHeaders;
+}
 
 /**
  * Contains response data for the postAsyncRetrycanceled operation.
  */
-export interface LROsPostAsyncRetrycanceledResponse extends msRest.HttpOperationResponse<void, LROsPostAsyncRetrycanceledHeaders> {};
+export interface LROsPostAsyncRetrycanceledResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPostAsyncRetrycanceledHeaders;
+}
+
+/**
+ * Contains response data for the beginPut200Succeeded operation.
+ */
+export interface LROsBeginPut200SucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPut200SucceededNoState operation.
+ */
+export interface LROsBeginPut200SucceededNoStateResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPut202Retry200 operation.
+ */
+export interface LROsBeginPut202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPut201CreatingSucceeded200 operation.
+ */
+export interface LROsBeginPut201CreatingSucceeded200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPut200UpdatingSucceeded204 operation.
+ */
+export interface LROsBeginPut200UpdatingSucceeded204Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPut201CreatingFailed200 operation.
+ */
+export interface LROsBeginPut201CreatingFailed200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPut200Acceptedcanceled200 operation.
+ */
+export interface LROsBeginPut200Acceptedcanceled200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutNoHeaderInRetry operation.
  */
-export interface LROsPutNoHeaderInRetryResponse extends msRest.HttpOperationResponse<Product, LROsPutNoHeaderInRetryHeaders> {};
+export interface LROsPutNoHeaderInRetryResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutNoHeaderInRetryHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncRetrySucceeded operation.
  */
-export interface LROsPutAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncRetrySucceededHeaders> {};
+export interface LROsPutAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncNoRetrySucceeded operation.
  */
-export interface LROsPutAsyncNoRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncNoRetrySucceededHeaders> {};
+export interface LROsPutAsyncNoRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncNoRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncRetryFailed operation.
  */
-export interface LROsPutAsyncRetryFailedResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncRetryFailedHeaders> {};
+export interface LROsPutAsyncRetryFailedResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncRetryFailedHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncNoRetrycanceled operation.
  */
-export interface LROsPutAsyncNoRetrycanceledResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncNoRetrycanceledHeaders> {};
+export interface LROsPutAsyncNoRetrycanceledResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncNoRetrycanceledHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncNoHeaderInRetry operation.
  */
-export interface LROsPutAsyncNoHeaderInRetryResponse extends msRest.HttpOperationResponse<Product, LROsPutAsyncNoHeaderInRetryHeaders> {};
+export interface LROsPutAsyncNoHeaderInRetryResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPutAsyncNoHeaderInRetryHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPutNonResource operation.
+ */
+export interface LROsBeginPutNonResourceResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Sku;
+}
+
+/**
+ * Contains response data for the beginPutAsyncNonResource operation.
+ */
+export interface LROsBeginPutAsyncNonResourceResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Sku;
+}
+
+/**
+ * Contains response data for the beginPutSubResource operation.
+ */
+export interface LROsBeginPutSubResourceResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SubProduct;
+}
+
+/**
+ * Contains response data for the beginPutAsyncSubResource operation.
+ */
+export interface LROsBeginPutAsyncSubResourceResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SubProduct;
+}
 
 /**
  * Contains response data for the
  * beginDeleteProvisioning202Accepted200Succeeded operation.
  */
-export interface LROsDeleteProvisioning202Accepted200SucceededResponse extends msRest.HttpOperationResponse<Product, LROsDeleteProvisioning202Accepted200SucceededHeaders> {};
+export interface LROsDeleteProvisioning202Accepted200SucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteProvisioning202Accepted200SucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginDeleteProvisioning202DeletingFailed200
  * operation.
  */
-export interface LROsDeleteProvisioning202DeletingFailed200Response extends msRest.HttpOperationResponse<Product, LROsDeleteProvisioning202DeletingFailed200Headers> {};
+export interface LROsDeleteProvisioning202DeletingFailed200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteProvisioning202DeletingFailed200Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginDeleteProvisioning202Deletingcanceled200
  * operation.
  */
-export interface LROsDeleteProvisioning202Deletingcanceled200Response extends msRest.HttpOperationResponse<Product, LROsDeleteProvisioning202Deletingcanceled200Headers> {};
+export interface LROsDeleteProvisioning202Deletingcanceled200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteProvisioning202Deletingcanceled200Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginDelete202Retry200 operation.
  */
-export interface LROsDelete202Retry200Response extends msRest.HttpOperationResponse<Product, LROsDelete202Retry200Headers> {};
+export interface LROsDelete202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDelete202Retry200Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginDelete202NoRetry204 operation.
  */
-export interface LROsDelete202NoRetry204Response extends msRest.HttpOperationResponse<Product, LROsDelete202NoRetry204Headers> {};
+export interface LROsDelete202NoRetry204Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDelete202NoRetry204Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginDeleteNoHeaderInRetry operation.
  */
-export interface LROsDeleteNoHeaderInRetryResponse extends msRest.HttpOperationResponse<void, LROsDeleteNoHeaderInRetryHeaders> {};
+export interface LROsDeleteNoHeaderInRetryResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
+}
 
 /**
  * Contains response data for the beginDeleteAsyncNoHeaderInRetry operation.
  */
-export interface LROsDeleteAsyncNoHeaderInRetryResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncNoHeaderInRetryHeaders> {};
+export interface LROsDeleteAsyncNoHeaderInRetryResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
+}
 
 /**
  * Contains response data for the beginDeleteAsyncRetrySucceeded operation.
  */
-export interface LROsDeleteAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncRetrySucceededHeaders> {};
+export interface LROsDeleteAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncRetrySucceededHeaders;
+}
 
 /**
  * Contains response data for the beginDeleteAsyncNoRetrySucceeded operation.
  */
-export interface LROsDeleteAsyncNoRetrySucceededResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncNoRetrySucceededHeaders> {};
+export interface LROsDeleteAsyncNoRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncNoRetrySucceededHeaders;
+}
 
 /**
  * Contains response data for the beginDeleteAsyncRetryFailed operation.
  */
-export interface LROsDeleteAsyncRetryFailedResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncRetryFailedHeaders> {};
+export interface LROsDeleteAsyncRetryFailedResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncRetryFailedHeaders;
+}
 
 /**
  * Contains response data for the beginDeleteAsyncRetrycanceled operation.
  */
-export interface LROsDeleteAsyncRetrycanceledResponse extends msRest.HttpOperationResponse<void, LROsDeleteAsyncRetrycanceledHeaders> {};
+export interface LROsDeleteAsyncRetrycanceledResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsDeleteAsyncRetrycanceledHeaders;
+}
+
+/**
+ * Contains response data for the beginPost200WithPayload operation.
+ */
+export interface LROsBeginPost200WithPayloadResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Sku;
+}
 
 /**
  * Contains response data for the beginPost202Retry200 operation.
  */
-export interface LROsPost202Retry200Response extends msRest.HttpOperationResponse<void, LROsPost202Retry200Headers> {};
+export interface LROsPost202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPost202Retry200Headers;
+}
 
 /**
  * Contains response data for the beginPost202NoRetry204 operation.
  */
-export interface LROsPost202NoRetry204Response extends msRest.HttpOperationResponse<Product, LROsPost202NoRetry204Headers> {};
+export interface LROsPost202NoRetry204Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPost202NoRetry204Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPostDoubleHeadersFinalLocationGet
+ * operation.
+ */
+export interface LROsBeginPostDoubleHeadersFinalLocationGetResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPostDoubleHeadersFinalAzureHeaderGet
+ * operation.
+ */
+export interface LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the
+ * beginPostDoubleHeadersFinalAzureHeaderGetDefault operation.
+ */
+export interface LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPostAsyncRetrySucceeded operation.
  */
-export interface LROsPostAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsPostAsyncRetrySucceededHeaders> {};
+export interface LROsPostAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPostAsyncRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPostAsyncNoRetrySucceeded operation.
  */
-export interface LROsPostAsyncNoRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsPostAsyncNoRetrySucceededHeaders> {};
+export interface LROsPostAsyncNoRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPostAsyncNoRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPostAsyncRetryFailed operation.
  */
-export interface LROsPostAsyncRetryFailedResponse extends msRest.HttpOperationResponse<void, LROsPostAsyncRetryFailedHeaders> {};
+export interface LROsPostAsyncRetryFailedResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPostAsyncRetryFailedHeaders;
+}
 
 /**
  * Contains response data for the beginPostAsyncRetrycanceled operation.
  */
-export interface LROsPostAsyncRetrycanceledResponse extends msRest.HttpOperationResponse<void, LROsPostAsyncRetrycanceledHeaders> {};
+export interface LROsPostAsyncRetrycanceledResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsPostAsyncRetrycanceledHeaders;
+}
+
+/**
+ * Contains response data for the put201CreatingSucceeded200 operation.
+ */
+export interface LRORetrysPut201CreatingSucceeded200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncRelativeRetrySucceeded operation.
  */
-export interface LRORetrysPutAsyncRelativeRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LRORetrysPutAsyncRelativeRetrySucceededHeaders> {};
+export interface LRORetrysPutAsyncRelativeRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysPutAsyncRelativeRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the deleteProvisioning202Accepted200Succeeded
  * operation.
  */
-export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse extends msRest.HttpOperationResponse<Product, LRORetrysDeleteProvisioning202Accepted200SucceededHeaders> {};
+export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysDeleteProvisioning202Accepted200SucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the delete202Retry200 operation.
  */
-export interface LRORetrysDelete202Retry200Response extends msRest.HttpOperationResponse<void, LRORetrysDelete202Retry200Headers> {};
+export interface LRORetrysDelete202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysDelete202Retry200Headers;
+}
 
 /**
  * Contains response data for the deleteAsyncRelativeRetrySucceeded operation.
  */
-export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse extends msRest.HttpOperationResponse<void, LRORetrysDeleteAsyncRelativeRetrySucceededHeaders> {};
+export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
+}
 
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export interface LRORetrysPost202Retry200Response extends msRest.HttpOperationResponse<void, LRORetrysPost202Retry200Headers> {};
+export interface LRORetrysPost202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysPost202Retry200Headers;
+}
 
 /**
  * Contains response data for the postAsyncRelativeRetrySucceeded operation.
  */
-export interface LRORetrysPostAsyncRelativeRetrySucceededResponse extends msRest.HttpOperationResponse<void, LRORetrysPostAsyncRelativeRetrySucceededHeaders> {};
+export interface LRORetrysPostAsyncRelativeRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysPostAsyncRelativeRetrySucceededHeaders;
+}
+
+/**
+ * Contains response data for the beginPut201CreatingSucceeded200 operation.
+ */
+export interface LRORetrysBeginPut201CreatingSucceeded200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetrySucceeded
  * operation.
  */
-export interface LRORetrysPutAsyncRelativeRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LRORetrysPutAsyncRelativeRetrySucceededHeaders> {};
+export interface LRORetrysPutAsyncRelativeRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysPutAsyncRelativeRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the
  * beginDeleteProvisioning202Accepted200Succeeded operation.
  */
-export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse extends msRest.HttpOperationResponse<Product, LRORetrysDeleteProvisioning202Accepted200SucceededHeaders> {};
+export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysDeleteProvisioning202Accepted200SucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginDelete202Retry200 operation.
  */
-export interface LRORetrysDelete202Retry200Response extends msRest.HttpOperationResponse<void, LRORetrysDelete202Retry200Headers> {};
+export interface LRORetrysDelete202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysDelete202Retry200Headers;
+}
 
 /**
  * Contains response data for the beginDeleteAsyncRelativeRetrySucceeded
  * operation.
  */
-export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse extends msRest.HttpOperationResponse<void, LRORetrysDeleteAsyncRelativeRetrySucceededHeaders> {};
+export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
+}
 
 /**
  * Contains response data for the beginPost202Retry200 operation.
  */
-export interface LRORetrysPost202Retry200Response extends msRest.HttpOperationResponse<void, LRORetrysPost202Retry200Headers> {};
+export interface LRORetrysPost202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysPost202Retry200Headers;
+}
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetrySucceeded
  * operation.
  */
-export interface LRORetrysPostAsyncRelativeRetrySucceededResponse extends msRest.HttpOperationResponse<void, LRORetrysPostAsyncRelativeRetrySucceededHeaders> {};
+export interface LRORetrysPostAsyncRelativeRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LRORetrysPostAsyncRelativeRetrySucceededHeaders;
+}
+
+/**
+ * Contains response data for the putNonRetry400 operation.
+ */
+export interface LROSADsPutNonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the putNonRetry201Creating400 operation.
+ */
+export interface LROSADsPutNonRetry201Creating400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the putNonRetry201Creating400InvalidJson
+ * operation.
+ */
+export interface LROSADsPutNonRetry201Creating400InvalidJsonResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncRelativeRetry400 operation.
  */
-export interface LROSADsPutAsyncRelativeRetry400Response extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetry400Headers> {};
+export interface LROSADsPutAsyncRelativeRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetry400Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the deleteNonRetry400 operation.
  */
-export interface LROSADsDeleteNonRetry400Response extends msRest.HttpOperationResponse<void, LROSADsDeleteNonRetry400Headers> {};
+export interface LROSADsDeleteNonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteNonRetry400Headers;
+}
 
 /**
  * Contains response data for the delete202NonRetry400 operation.
  */
-export interface LROSADsDelete202NonRetry400Response extends msRest.HttpOperationResponse<void, LROSADsDelete202NonRetry400Headers> {};
+export interface LROSADsDelete202NonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDelete202NonRetry400Headers;
+}
 
 /**
  * Contains response data for the deleteAsyncRelativeRetry400 operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetry400Response extends msRest.HttpOperationResponse<void, LROSADsDeleteAsyncRelativeRetry400Headers> {};
+export interface LROSADsDeleteAsyncRelativeRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteAsyncRelativeRetry400Headers;
+}
 
 /**
  * Contains response data for the postNonRetry400 operation.
  */
-export interface LROSADsPostNonRetry400Response extends msRest.HttpOperationResponse<void, LROSADsPostNonRetry400Headers> {};
+export interface LROSADsPostNonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostNonRetry400Headers;
+}
 
 /**
  * Contains response data for the post202NonRetry400 operation.
  */
-export interface LROSADsPost202NonRetry400Response extends msRest.HttpOperationResponse<void, LROSADsPost202NonRetry400Headers> {};
+export interface LROSADsPost202NonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPost202NonRetry400Headers;
+}
 
 /**
  * Contains response data for the postAsyncRelativeRetry400 operation.
  */
-export interface LROSADsPostAsyncRelativeRetry400Response extends msRest.HttpOperationResponse<void, LROSADsPostAsyncRelativeRetry400Headers> {};
+export interface LROSADsPostAsyncRelativeRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostAsyncRelativeRetry400Headers;
+}
+
+/**
+ * Contains response data for the putError201NoProvisioningStatePayload
+ * operation.
+ */
+export interface LROSADsPutError201NoProvisioningStatePayloadResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncRelativeRetryNoStatus operation.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusResponse extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetryNoStatusHeaders> {};
+export interface LROSADsPutAsyncRelativeRetryNoStatusResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncRelativeRetryNoStatusPayload
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders> {};
+export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryNoStatus operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse extends msRest.HttpOperationResponse<void, LROSADsDeleteAsyncRelativeRetryNoStatusHeaders> {};
+export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteAsyncRelativeRetryNoStatusHeaders;
+}
 
 /**
  * Contains response data for the post202NoLocation operation.
  */
-export interface LROSADsPost202NoLocationResponse extends msRest.HttpOperationResponse<void, LROSADsPost202NoLocationHeaders> {};
+export interface LROSADsPost202NoLocationResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPost202NoLocationHeaders;
+}
 
 /**
  * Contains response data for the postAsyncRelativeRetryNoPayload operation.
  */
-export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse extends msRest.HttpOperationResponse<void, LROSADsPostAsyncRelativeRetryNoPayloadHeaders> {};
+export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostAsyncRelativeRetryNoPayloadHeaders;
+}
+
+/**
+ * Contains response data for the put200InvalidJson operation.
+ */
+export interface LROSADsPut200InvalidJsonResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncRelativeRetryInvalidHeader operation.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders> {};
+export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the putAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders> {};
+export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the delete202RetryInvalidHeader operation.
  */
-export interface LROSADsDelete202RetryInvalidHeaderResponse extends msRest.HttpOperationResponse<void, LROSADsDelete202RetryInvalidHeaderHeaders> {};
+export interface LROSADsDelete202RetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDelete202RetryInvalidHeaderHeaders;
+}
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpOperationResponse<void, LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders> {};
+export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
+}
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpOperationResponse<void, LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders> {};
+export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
+}
 
 /**
  * Contains response data for the post202RetryInvalidHeader operation.
  */
-export interface LROSADsPost202RetryInvalidHeaderResponse extends msRest.HttpOperationResponse<void, LROSADsPost202RetryInvalidHeaderHeaders> {};
+export interface LROSADsPost202RetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPost202RetryInvalidHeaderHeaders;
+}
 
 /**
  * Contains response data for the postAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpOperationResponse<void, LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders> {};
+export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders;
+}
 
 /**
  * Contains response data for the postAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpOperationResponse<void, LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders> {};
+export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
+}
+
+/**
+ * Contains response data for the beginPutNonRetry400 operation.
+ */
+export interface LROSADsBeginPutNonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPutNonRetry201Creating400 operation.
+ */
+export interface LROSADsBeginPutNonRetry201Creating400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPutNonRetry201Creating400InvalidJson
+ * operation.
+ */
+export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetry400 operation.
  */
-export interface LROSADsPutAsyncRelativeRetry400Response extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetry400Headers> {};
+export interface LROSADsPutAsyncRelativeRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetry400Headers;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginDeleteNonRetry400 operation.
  */
-export interface LROSADsDeleteNonRetry400Response extends msRest.HttpOperationResponse<void, LROSADsDeleteNonRetry400Headers> {};
+export interface LROSADsDeleteNonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteNonRetry400Headers;
+}
 
 /**
  * Contains response data for the beginDelete202NonRetry400 operation.
  */
-export interface LROSADsDelete202NonRetry400Response extends msRest.HttpOperationResponse<void, LROSADsDelete202NonRetry400Headers> {};
+export interface LROSADsDelete202NonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDelete202NonRetry400Headers;
+}
 
 /**
  * Contains response data for the beginDeleteAsyncRelativeRetry400 operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetry400Response extends msRest.HttpOperationResponse<void, LROSADsDeleteAsyncRelativeRetry400Headers> {};
+export interface LROSADsDeleteAsyncRelativeRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteAsyncRelativeRetry400Headers;
+}
 
 /**
  * Contains response data for the beginPostNonRetry400 operation.
  */
-export interface LROSADsPostNonRetry400Response extends msRest.HttpOperationResponse<void, LROSADsPostNonRetry400Headers> {};
+export interface LROSADsPostNonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostNonRetry400Headers;
+}
 
 /**
  * Contains response data for the beginPost202NonRetry400 operation.
  */
-export interface LROSADsPost202NonRetry400Response extends msRest.HttpOperationResponse<void, LROSADsPost202NonRetry400Headers> {};
+export interface LROSADsPost202NonRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPost202NonRetry400Headers;
+}
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetry400 operation.
  */
-export interface LROSADsPostAsyncRelativeRetry400Response extends msRest.HttpOperationResponse<void, LROSADsPostAsyncRelativeRetry400Headers> {};
+export interface LROSADsPostAsyncRelativeRetry400Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostAsyncRelativeRetry400Headers;
+}
+
+/**
+ * Contains response data for the beginPutError201NoProvisioningStatePayload
+ * operation.
+ */
+export interface LROSADsBeginPutError201NoProvisioningStatePayloadResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetryNoStatus operation.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusResponse extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetryNoStatusHeaders> {};
+export interface LROSADsPutAsyncRelativeRetryNoStatusResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetryNoStatusPayload
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders> {};
+export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginDeleteAsyncRelativeRetryNoStatus
  * operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse extends msRest.HttpOperationResponse<void, LROSADsDeleteAsyncRelativeRetryNoStatusHeaders> {};
+export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteAsyncRelativeRetryNoStatusHeaders;
+}
 
 /**
  * Contains response data for the beginPost202NoLocation operation.
  */
-export interface LROSADsPost202NoLocationResponse extends msRest.HttpOperationResponse<void, LROSADsPost202NoLocationHeaders> {};
+export interface LROSADsPost202NoLocationResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPost202NoLocationHeaders;
+}
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetryNoPayload
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse extends msRest.HttpOperationResponse<void, LROSADsPostAsyncRelativeRetryNoPayloadHeaders> {};
+export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostAsyncRelativeRetryNoPayloadHeaders;
+}
+
+/**
+ * Contains response data for the beginPut200InvalidJson operation.
+ */
+export interface LROSADsBeginPut200InvalidJsonResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders> {};
+export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpOperationResponse<Product, LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders> {};
+export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginDelete202RetryInvalidHeader operation.
  */
-export interface LROSADsDelete202RetryInvalidHeaderResponse extends msRest.HttpOperationResponse<void, LROSADsDelete202RetryInvalidHeaderHeaders> {};
+export interface LROSADsDelete202RetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDelete202RetryInvalidHeaderHeaders;
+}
 
 /**
  * Contains response data for the beginDeleteAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpOperationResponse<void, LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders> {};
+export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
+}
 
 /**
  * Contains response data for the
  * beginDeleteAsyncRelativeRetryInvalidJsonPolling operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpOperationResponse<void, LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders> {};
+export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
+}
 
 /**
  * Contains response data for the beginPost202RetryInvalidHeader operation.
  */
-export interface LROSADsPost202RetryInvalidHeaderResponse extends msRest.HttpOperationResponse<void, LROSADsPost202RetryInvalidHeaderHeaders> {};
+export interface LROSADsPost202RetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPost202RetryInvalidHeaderHeaders;
+}
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpOperationResponse<void, LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders> {};
+export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders;
+}
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpOperationResponse<void, LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders> {};
+export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
+}
 
 /**
  * Contains response data for the putAsyncRetrySucceeded operation.
  */
-export interface LROsCustomHeaderPutAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsCustomHeaderPutAsyncRetrySucceededHeaders> {};
+export interface LROsCustomHeaderPutAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsCustomHeaderPutAsyncRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the put201CreatingSucceeded200 operation.
+ */
+export interface LROsCustomHeaderPut201CreatingSucceeded200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export interface LROsCustomHeaderPost202Retry200Response extends msRest.HttpOperationResponse<void, LROsCustomHeaderPost202Retry200Headers> {};
+export interface LROsCustomHeaderPost202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsCustomHeaderPost202Retry200Headers;
+}
 
 /**
  * Contains response data for the postAsyncRetrySucceeded operation.
  */
-export interface LROsCustomHeaderPostAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<void, LROsCustomHeaderPostAsyncRetrySucceededHeaders> {};
+export interface LROsCustomHeaderPostAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsCustomHeaderPostAsyncRetrySucceededHeaders;
+}
 
 /**
  * Contains response data for the beginPutAsyncRetrySucceeded operation.
  */
-export interface LROsCustomHeaderPutAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<Product, LROsCustomHeaderPutAsyncRetrySucceededHeaders> {};
+export interface LROsCustomHeaderPutAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsCustomHeaderPutAsyncRetrySucceededHeaders;
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the beginPut201CreatingSucceeded200 operation.
+ */
+export interface LROsCustomHeaderBeginPut201CreatingSucceeded200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
 
 /**
  * Contains response data for the beginPost202Retry200 operation.
  */
-export interface LROsCustomHeaderPost202Retry200Response extends msRest.HttpOperationResponse<void, LROsCustomHeaderPost202Retry200Headers> {};
+export interface LROsCustomHeaderPost202Retry200Response extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsCustomHeaderPost202Retry200Headers;
+}
 
 /**
  * Contains response data for the beginPostAsyncRetrySucceeded operation.
  */
-export interface LROsCustomHeaderPostAsyncRetrySucceededResponse extends msRest.HttpOperationResponse<void, LROsCustomHeaderPostAsyncRetrySucceededHeaders> {};
+export interface LROsCustomHeaderPostAsyncRetrySucceededResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: LROsCustomHeaderPostAsyncRetrySucceededHeaders;
+}

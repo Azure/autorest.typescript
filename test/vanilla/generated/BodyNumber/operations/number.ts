@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/numberMappers";
 import { AutoRestNumberTestServiceContext } from "../autoRestNumberTestServiceContext";
 
@@ -35,12 +36,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.NumberGetNullResponse>;
   }
 
   /**
@@ -54,12 +55,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getInvalidFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidFloatResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidFloatOperationSpec);
+      getInvalidFloatOperationSpec) as Promise<Models.NumberGetInvalidFloatResponse>;
   }
 
   /**
@@ -73,12 +74,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getInvalidDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidDoubleResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidDoubleOperationSpec);
+      getInvalidDoubleOperationSpec) as Promise<Models.NumberGetInvalidDoubleResponse>;
   }
 
   /**
@@ -92,12 +93,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getInvalidDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidDecimalResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidDecimalOperationSpec);
+      getInvalidDecimalOperationSpec) as Promise<Models.NumberGetInvalidDecimalResponse>;
   }
 
   /**
@@ -113,7 +114,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         numberBody,
@@ -133,12 +134,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBigFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getBigFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigFloatResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBigFloatOperationSpec);
+      getBigFloatOperationSpec) as Promise<Models.NumberGetBigFloatResponse>;
   }
 
   /**
@@ -154,7 +155,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         numberBody,
@@ -174,12 +175,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBigDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getBigDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoubleResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBigDoubleOperationSpec);
+      getBigDoubleOperationSpec) as Promise<Models.NumberGetBigDoubleResponse>;
   }
 
   /**
@@ -193,7 +194,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -212,12 +213,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoublePositiveDecimalResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBigDoublePositiveDecimalOperationSpec);
+      getBigDoublePositiveDecimalOperationSpec) as Promise<Models.NumberGetBigDoublePositiveDecimalResponse>;
   }
 
   /**
@@ -231,7 +232,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -250,12 +251,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoubleNegativeDecimalResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBigDoubleNegativeDecimalOperationSpec);
+      getBigDoubleNegativeDecimalOperationSpec) as Promise<Models.NumberGetBigDoubleNegativeDecimalResponse>;
   }
 
   /**
@@ -271,7 +272,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         numberBody,
@@ -291,12 +292,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBigDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getBigDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBigDecimalOperationSpec);
+      getBigDecimalOperationSpec) as Promise<Models.NumberGetBigDecimalResponse>;
   }
 
   /**
@@ -310,7 +311,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -329,12 +330,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalPositiveDecimalResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBigDecimalPositiveDecimalOperationSpec);
+      getBigDecimalPositiveDecimalOperationSpec) as Promise<Models.NumberGetBigDecimalPositiveDecimalResponse>;
   }
 
   /**
@@ -348,7 +349,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -367,12 +368,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalNegativeDecimalResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBigDecimalNegativeDecimalOperationSpec);
+      getBigDecimalNegativeDecimalOperationSpec) as Promise<Models.NumberGetBigDecimalNegativeDecimalResponse>;
   }
 
   /**
@@ -388,7 +389,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putSmallFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putSmallFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         numberBody,
@@ -408,12 +409,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSmallFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getSmallFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallFloatResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getSmallFloatOperationSpec);
+      getSmallFloatOperationSpec) as Promise<Models.NumberGetSmallFloatResponse>;
   }
 
   /**
@@ -429,7 +430,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putSmallDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putSmallDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         numberBody,
@@ -449,12 +450,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSmallDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getSmallDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallDoubleResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getSmallDoubleOperationSpec);
+      getSmallDoubleOperationSpec) as Promise<Models.NumberGetSmallDoubleResponse>;
   }
 
   /**
@@ -470,7 +471,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putSmallDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putSmallDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         numberBody,
@@ -490,12 +491,12 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSmallDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
+  getSmallDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallDecimalResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getSmallDecimalOperationSpec);
+      getSmallDecimalOperationSpec) as Promise<Models.NumberGetSmallDecimalResponse>;
   }
 
   /**

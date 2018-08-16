@@ -43,7 +43,7 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getAllWithValuesWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  getAllWithValuesWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         localStringPath,
@@ -70,7 +70,7 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getGlobalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  getGlobalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         localStringPath,
@@ -97,7 +97,7 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getGlobalAndLocalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  getGlobalAndLocalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         localStringPath,
@@ -124,7 +124,7 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLocalPathItemQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  getLocalPathItemQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         localStringPath,

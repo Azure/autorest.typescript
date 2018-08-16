@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
 
 /**
@@ -23,4 +24,190 @@ export interface ErrorModel {
    * @member {string} [message]
    */
   message?: string;
+}
+
+/**
+ * Contains response data for the getNull operation.
+ */
+export interface DatetimeGetNullResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getInvalid operation.
+ */
+export interface DatetimeGetInvalidResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getOverflow operation.
+ */
+export interface DatetimeGetOverflowResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getUnderflow operation.
+ */
+export interface DatetimeGetUnderflowResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getUtcLowercaseMaxDateTime operation.
+ */
+export interface DatetimeGetUtcLowercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getUtcUppercaseMaxDateTime operation.
+ */
+export interface DatetimeGetUtcUppercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getLocalPositiveOffsetLowercaseMaxDateTime
+ * operation.
+ */
+export interface DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getLocalPositiveOffsetUppercaseMaxDateTime
+ * operation.
+ */
+export interface DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getLocalNegativeOffsetUppercaseMaxDateTime
+ * operation.
+ */
+export interface DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getLocalNegativeOffsetLowercaseMaxDateTime
+ * operation.
+ */
+export interface DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getUtcMinDateTime operation.
+ */
+export interface DatetimeGetUtcMinDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getLocalPositiveOffsetMinDateTime operation.
+ */
+export interface DatetimeGetLocalPositiveOffsetMinDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getLocalNegativeOffsetMinDateTime operation.
+ */
+export interface DatetimeGetLocalNegativeOffsetMinDateTimeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
 }

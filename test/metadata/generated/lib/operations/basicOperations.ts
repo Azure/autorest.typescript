@@ -37,12 +37,12 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Basic>> {
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec);
+      getValidOperationSpec) as Promise<Models.BasicGetValidResponse>;
   }
 
   /**
@@ -58,7 +58,7 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.Basic, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putValidWithHttpOperationResponse(complexBody: Models.Basic, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -78,12 +78,12 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Basic>> {
+  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidOperationSpec);
+      getInvalidOperationSpec) as Promise<Models.BasicGetInvalidResponse>;
   }
 
   /**
@@ -97,12 +97,12 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Basic>> {
+  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyOperationSpec);
+      getEmptyOperationSpec) as Promise<Models.BasicGetEmptyResponse>;
   }
 
   /**
@@ -116,12 +116,12 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Basic>> {
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.BasicGetNullResponse>;
   }
 
   /**
@@ -135,12 +135,12 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Basic>> {
+  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNotProvidedOperationSpec);
+      getNotProvidedOperationSpec) as Promise<Models.BasicGetNotProvidedResponse>;
   }
 
   /**

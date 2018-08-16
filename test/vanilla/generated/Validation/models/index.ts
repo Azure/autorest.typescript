@@ -120,3 +120,45 @@ export interface AutoRestValidationTestPostWithConstantInBodyOptionalParams exte
 export enum EnumConst {
   ConstantStringAsEnum = 'constant_string_as_enum',
 }
+
+/**
+ * Contains response data for the validationOfMethodParameters operation.
+ */
+export interface ValidationOfMethodParametersResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the validationOfBody operation.
+ */
+export interface ValidationOfBodyResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}
+
+/**
+ * Contains response data for the postWithConstantInBody operation.
+ */
+export interface PostWithConstantInBodyResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product;
+}

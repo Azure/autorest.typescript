@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/datetimerfc1123Mappers";
 import { AutoRestRFC1123DateTimeTestServiceContext } from "../autoRestRFC1123DateTimeTestServiceContext";
 
@@ -35,12 +36,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.Datetimerfc1123GetNullResponse>;
   }
 
   /**
@@ -54,12 +55,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidOperationSpec);
+      getInvalidOperationSpec) as Promise<Models.Datetimerfc1123GetInvalidResponse>;
   }
 
   /**
@@ -73,12 +74,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getOverflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getOverflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetOverflowResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getOverflowOperationSpec);
+      getOverflowOperationSpec) as Promise<Models.Datetimerfc1123GetOverflowResponse>;
   }
 
   /**
@@ -92,12 +93,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUnderflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getUnderflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUnderflowResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUnderflowOperationSpec);
+      getUnderflowOperationSpec) as Promise<Models.Datetimerfc1123GetUnderflowResponse>;
   }
 
   /**
@@ -113,7 +114,7 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -133,12 +134,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUtcLowercaseMaxDateTimeOperationSpec);
+      getUtcLowercaseMaxDateTimeOperationSpec) as Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -152,12 +153,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUtcUppercaseMaxDateTimeOperationSpec);
+      getUtcUppercaseMaxDateTimeOperationSpec) as Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -173,7 +174,7 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -193,12 +194,12 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUtcMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getUtcMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUtcMinDateTimeOperationSpec);
+      getUtcMinDateTimeOperationSpec) as Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse>;
   }
 
   /**

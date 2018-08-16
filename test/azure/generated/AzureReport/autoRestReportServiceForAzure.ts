@@ -58,12 +58,12 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
+  getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<Models.GetReportResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      getReportOperationSpec);
+      getReportOperationSpec) as Promise<Models.GetReportResponse>;
   }
 
   /**

@@ -37,7 +37,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -56,7 +56,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -75,7 +75,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -94,7 +94,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -113,7 +113,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -132,7 +132,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -151,7 +151,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -170,7 +170,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -189,7 +189,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -208,7 +208,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -227,7 +227,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -246,7 +246,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -265,7 +265,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -286,7 +286,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringNullWithHttpOperationResponse(stringPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  stringNullWithHttpOperationResponse(stringPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         stringPath,
@@ -309,7 +309,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  enumValidWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  enumValidWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         enumPath,
@@ -332,7 +332,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  enumNullWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  enumNullWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         enumPath,
@@ -354,7 +354,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  byteMultiByteWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  byteMultiByteWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         bytePath,
@@ -374,7 +374,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -395,7 +395,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  byteNullWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  byteNullWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         bytePath,
@@ -415,7 +415,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -437,7 +437,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateNullWithHttpOperationResponse(datePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  dateNullWithHttpOperationResponse(datePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         datePath,
@@ -457,7 +457,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -478,7 +478,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateTimeNullWithHttpOperationResponse(dateTimePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  dateTimeNullWithHttpOperationResponse(dateTimePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         dateTimePath,
@@ -500,7 +500,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  base64UrlWithHttpOperationResponse(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  base64UrlWithHttpOperationResponse(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         base64UrlPath,
@@ -524,7 +524,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayCsvInPathWithHttpOperationResponse(arrayPath: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  arrayCsvInPathWithHttpOperationResponse(arrayPath: string[], options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         arrayPath,
@@ -546,7 +546,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  unixTimeUrlWithHttpOperationResponse(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  unixTimeUrlWithHttpOperationResponse(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
     return this.client.sendOperationRequest(
       {
         unixTimeUrlPath,

@@ -85,13 +85,13 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
+  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ListResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.ListResponse>;
   }
   // methods on the client.
 
@@ -112,14 +112,14 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
+  createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams): Promise<Models.CreateResponse> {
     return this.sendOperationRequest(
       {
         subscriptionId,
         resourceGroupName,
         options
       },
-      createOperationSpec);
+      createOperationSpec) as Promise<Models.CreateResponse>;
   }
   // methods on the client.
 
@@ -140,14 +140,14 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
+  updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams): Promise<Models.UpdateResponse> {
     return this.sendOperationRequest(
       {
         subscriptionId,
         resourceGroupName,
         options
       },
-      updateOperationSpec);
+      updateOperationSpec) as Promise<Models.UpdateResponse>;
   }
 
   /**

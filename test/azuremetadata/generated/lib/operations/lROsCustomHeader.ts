@@ -171,7 +171,7 @@ export class LROsCustomHeader {
       {
         options
       },
-      beginPutAsyncRetrySucceededOperationSpec);
+      beginPutAsyncRetrySucceededOperationSpec) as Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse>;
   }
 
   /**
@@ -189,12 +189,12 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsCustomHeaderBeginPut201CreatingSucceeded200Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      beginPut201CreatingSucceeded200OperationSpec);
+      beginPut201CreatingSucceeded200OperationSpec) as Promise<Models.LROsCustomHeaderBeginPut201CreatingSucceeded200Response>;
   }
 
   /**
@@ -215,7 +215,7 @@ export class LROsCustomHeader {
       {
         options
       },
-      beginPost202Retry200OperationSpec);
+      beginPost202Retry200OperationSpec) as Promise<Models.LROsCustomHeaderPost202Retry200Response>;
   }
 
   /**
@@ -238,7 +238,7 @@ export class LROsCustomHeader {
       {
         options
       },
-      beginPostAsyncRetrySucceededOperationSpec);
+      beginPostAsyncRetrySucceededOperationSpec) as Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse>;
   }
 
   /**

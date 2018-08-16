@@ -817,6 +817,207 @@ export enum ArchiveStatus {
 }
 
 /**
+ * Contains response data for the getComplexTypeRefNoMeta operation.
+ */
+export interface XmlGetComplexTypeRefNoMetaResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RootWithRefAndNoMeta;
+}
+
+/**
+ * Contains response data for the getComplexTypeRefWithMeta operation.
+ */
+export interface XmlGetComplexTypeRefWithMetaResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RootWithRefAndMeta;
+}
+
+/**
+ * Contains response data for the getSimple operation.
+ */
+export interface XmlGetSimpleResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Slideshow;
+}
+
+/**
+ * Contains response data for the getWrappedLists operation.
+ */
+export interface XmlGetWrappedListsResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: AppleBarrel;
+}
+
+/**
  * Contains response data for the getHeaders operation.
  */
-export interface XmlGetHeadersResponse extends msRest.HttpOperationResponse<void, XmlGetHeadersHeaders> {};
+export interface XmlGetHeadersResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The parsed HTTP response headers.
+   */
+  parsedHeaders: XmlGetHeadersHeaders;
+}
+
+/**
+ * Contains response data for the getEmptyList operation.
+ */
+export interface XmlGetEmptyListResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Slideshow;
+}
+
+/**
+ * Contains response data for the getEmptyWrappedLists operation.
+ */
+export interface XmlGetEmptyWrappedListsResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: AppleBarrel;
+}
+
+/**
+ * Contains response data for the getRootList operation.
+ */
+export interface XmlGetRootListResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Banana[];
+}
+
+/**
+ * Contains response data for the getRootListSingleItem operation.
+ */
+export interface XmlGetRootListSingleItemResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Banana[];
+}
+
+/**
+ * Contains response data for the getEmptyRootList operation.
+ */
+export interface XmlGetEmptyRootListResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Banana[];
+}
+
+/**
+ * Contains response data for the getEmptyChildElement operation.
+ */
+export interface XmlGetEmptyChildElementResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Banana;
+}
+
+/**
+ * Contains response data for the listContainers operation.
+ */
+export interface XmlListContainersResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ListContainersResponse;
+}
+
+/**
+ * Contains response data for the getServiceProperties operation.
+ */
+export interface XmlGetServicePropertiesResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: StorageServiceProperties;
+}
+
+/**
+ * Contains response data for the getAcls operation.
+ */
+export interface XmlGetAclsResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SignedIdentifier[];
+}
+
+/**
+ * Contains response data for the listBlobs operation.
+ */
+export interface XmlListBlobsResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ListBlobsResponse;
+}

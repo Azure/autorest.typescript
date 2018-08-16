@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
 
 /**
@@ -23,4 +24,64 @@ export interface ErrorModel {
    * @member {string} [message]
    */
   message?: string;
+}
+
+/**
+ * Contains response data for the getFile operation.
+ */
+export interface FilesGetFileResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always undefined in node.js.
+   */
+  blobBody?: () => Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always undefined in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+}
+
+/**
+ * Contains response data for the getFileLarge operation.
+ */
+export interface FilesGetFileLargeResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always undefined in node.js.
+   */
+  blobBody?: () => Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always undefined in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+}
+
+/**
+ * Contains response data for the getEmptyFile operation.
+ */
+export interface FilesGetEmptyFileResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always undefined in node.js.
+   */
+  blobBody?: () => Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always undefined in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
 }

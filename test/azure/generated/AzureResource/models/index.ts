@@ -143,3 +143,45 @@ export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptio
   resourceComplexObject?: ResourceCollection;
 }
 
+
+/**
+ * Contains response data for the getArray operation.
+ */
+export interface GetArrayResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: FlattenedProduct[];
+}
+
+/**
+ * Contains response data for the getDictionary operation.
+ */
+export interface GetDictionaryResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: { [propertyName: string]: FlattenedProduct };
+}
+
+/**
+ * Contains response data for the getResourceCollection operation.
+ */
+export interface GetResourceCollectionResponse extends msRest.BaseHttpOperationResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ResourceCollection;
+}

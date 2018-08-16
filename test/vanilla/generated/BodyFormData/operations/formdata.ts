@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/formdataMappers";
 import * as Parameters from "../models/parameters";
 import { AutoRestSwaggerBATFormDataServiceContext } from "../autoRestSwaggerBATFormDataServiceContext";
@@ -40,14 +41,14 @@ export class Formdata {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  uploadFileWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, fileName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  uploadFileWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, fileName: string, options?: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileResponse> {
     return this.client.sendOperationRequest(
       {
         fileContent,
         fileName,
         options
       },
-      uploadFileOperationSpec);
+      uploadFileOperationSpec) as Promise<Models.FormdataUploadFileResponse>;
   }
 
   /**
@@ -63,13 +64,13 @@ export class Formdata {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  uploadFileViaBodyWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  uploadFileViaBodyWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, options?: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileViaBodyResponse> {
     return this.client.sendOperationRequest(
       {
         fileContent,
         options
       },
-      uploadFileViaBodyOperationSpec);
+      uploadFileViaBodyOperationSpec) as Promise<Models.FormdataUploadFileViaBodyResponse>;
   }
 
 }
