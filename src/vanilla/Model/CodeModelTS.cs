@@ -575,11 +575,12 @@ namespace AutoRest.TypeScript.Model
                 exports.Export(ContextName);
                 exports.ExportAs("Models", $"{ClientPrefix}Models");
                 exports.ExportAs("Mappers", $"{ClientPrefix}Mappers");
-                if (MethodGroupModels.Any())
-                {
-                    exports.ExportAs("operations", $"{ClientPrefix}Operations");
-                }
             });
+
+            if (MethodGroupModels.Any())
+            {
+                builder.ExportAll("./operations");
+            }
             return builder.ToString();
         }
     }

@@ -619,7 +619,7 @@ namespace AutoRest.TypeScript.DSL
 
         public void Export(Action<TSExport> exportAction)
         {
-            Text($"export {{");
+            Line($"export {{");
             Indent(() =>
             {
                 using (TSExport tsExport = new TSExport(this))
@@ -627,7 +627,15 @@ namespace AutoRest.TypeScript.DSL
                     exportAction.Invoke(tsExport);
                 }
             });
-            Text($"}};");
+            Line($"}};");
+        }
+
+        /// <summary>
+        /// Exports all the exports from the given module.
+        /// </summary>
+        public void ExportAll(string modulePath)
+        {
+            Line($"export * from \"{modulePath}\";");
         }
     }
 }
