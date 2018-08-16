@@ -36,12 +36,12 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNotExpandableWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Colors>> {
+  getNotExpandableWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.EnumModelGetNotExpandableResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNotExpandableOperationSpec);
+      getNotExpandableOperationSpec) as Promise<Models.EnumModelGetNotExpandableResponse>;
   }
 
   /**
@@ -57,7 +57,7 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNotExpandableWithHttpOperationResponse(stringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putNotExpandableWithHttpOperationResponse(stringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         stringBody,
@@ -77,12 +77,12 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getReferencedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Colors>> {
+  getReferencedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.EnumModelGetReferencedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getReferencedOperationSpec);
+      getReferencedOperationSpec) as Promise<Models.EnumModelGetReferencedResponse>;
   }
 
   /**
@@ -98,7 +98,7 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putReferencedWithHttpOperationResponse(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putReferencedWithHttpOperationResponse(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         enumStringBody,
@@ -118,12 +118,12 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getReferencedConstantWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RefColorConstant>> {
+  getReferencedConstantWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.EnumModelGetReferencedConstantResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getReferencedConstantOperationSpec);
+      getReferencedConstantOperationSpec) as Promise<Models.EnumModelGetReferencedConstantResponse>;
   }
 
   /**
@@ -137,7 +137,7 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putReferencedConstantWithHttpOperationResponse(options?: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putReferencedConstantWithHttpOperationResponse(options?: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

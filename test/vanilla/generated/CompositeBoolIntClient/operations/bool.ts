@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/boolMappers";
 import { CompositeBoolIntContext } from "../compositeBoolIntContext";
 
@@ -35,12 +36,12 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+  getTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetTrueResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getTrueOperationSpec);
+      getTrueOperationSpec) as Promise<Models.BoolGetTrueResponse>;
   }
 
   /**
@@ -54,7 +55,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -73,12 +74,12 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+  getFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetFalseResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getFalseOperationSpec);
+      getFalseOperationSpec) as Promise<Models.BoolGetFalseResponse>;
   }
 
   /**
@@ -92,7 +93,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -111,12 +112,12 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.BoolGetNullResponse>;
   }
 
   /**
@@ -130,12 +131,12 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidOperationSpec);
+      getInvalidOperationSpec) as Promise<Models.BoolGetInvalidResponse>;
   }
 
   /**

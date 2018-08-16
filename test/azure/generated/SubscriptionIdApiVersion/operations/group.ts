@@ -39,13 +39,13 @@ export class Group {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSampleResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SampleResourceGroup>> {
+  getSampleResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.GroupGetSampleResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      getSampleResourceGroupOperationSpec);
+      getSampleResourceGroupOperationSpec) as Promise<Models.GroupGetSampleResourceGroupResponse>;
   }
 
   /**

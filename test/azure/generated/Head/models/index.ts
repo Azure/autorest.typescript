@@ -9,7 +9,50 @@
  */
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
 
 
+
+/**
+ * Contains response data for the head200 operation.
+ */
+export interface HttpSuccessHead200Response extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean;
+}
+
+/**
+ * Contains response data for the head204 operation.
+ */
+export interface HttpSuccessHead204Response extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean;
+}
+
+/**
+ * Contains response data for the head404 operation.
+ */
+export interface HttpSuccessHead404Response extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean;
+}

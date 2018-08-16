@@ -134,3 +134,45 @@ export interface ComplexModelClientUpdateOptionalParams extends msRest.RequestOp
    */
   productArrayOfDictionary?: { [propertyName: string]: Product }[];
 }
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: CatalogArray;
+}
+
+/**
+ * Contains response data for the create operation.
+ */
+export interface CreateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: CatalogDictionary;
+}
+
+/**
+ * Contains response data for the update operation.
+ */
+export interface UpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: CatalogArray;
+}

@@ -12,7 +12,7 @@ else
 <text>
 @EmptyLine
 @(Model.GenerateWithHttpOperationResponseMethodComment())
-@(Model.Name.ToCamelCase())@(Model.ResponseMethodSuffix)(@(Model.MethodParameterDeclarationTS(true, true))): Promise<msRest.HttpOperationResponse> {
+@(Model.Name.ToCamelCase())@(Model.ResponseMethodSuffix)(@(Model.MethodParameterDeclarationTS(true, true))): Promise<@(Model.HttpResponseReferenceName)> {
   return this.begin@(Model.Name.ToPascalCase())@(Model.ResponseMethodSuffix)(@(Model.MethodParameterDeclaration))
     .then(initialResult => @(Model.ClientReference).getLongRunningOperationResult(initialResult, options))
     .then(operationRes => {
@@ -31,7 +31,14 @@ else
 @:      @(Model.DeserializeResponse(Model.DefaultResponse.Body))
 }
       return operationRes;
-    });
+@if (Model.HasCustomHttpResponseType)
+{
+@:    }) as Promise<@(Model.HttpResponseReferenceName)>;
+}
+else
+{
+@:    });
+}
 }
 </text>
 }

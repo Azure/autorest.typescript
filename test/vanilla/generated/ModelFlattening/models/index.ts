@@ -340,3 +340,101 @@ export enum ProvisioningStateValues {
   Deleted = 'Deleted',
   OK = 'OK',
 }
+
+/**
+ * Contains response data for the getArray operation.
+ */
+export interface GetArrayResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: FlattenedProduct[];
+}
+
+/**
+ * Contains response data for the getWrappedArray operation.
+ */
+export interface GetWrappedArrayResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ProductWrapper[];
+}
+
+/**
+ * Contains response data for the getDictionary operation.
+ */
+export interface GetDictionaryResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: { [propertyName: string]: FlattenedProduct };
+}
+
+/**
+ * Contains response data for the getResourceCollection operation.
+ */
+export interface GetResourceCollectionResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ResourceCollection;
+}
+
+/**
+ * Contains response data for the putSimpleProduct operation.
+ */
+export interface PutSimpleProductResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SimpleProduct;
+}
+
+/**
+ * Contains response data for the postFlattenedSimpleProduct operation.
+ */
+export interface PostFlattenedSimpleProductResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SimpleProduct;
+}
+
+/**
+ * Contains response data for the putSimpleProductWithGrouping operation.
+ */
+export interface PutSimpleProductWithGroupingResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SimpleProduct;
+}

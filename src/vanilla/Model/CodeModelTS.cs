@@ -121,7 +121,7 @@ namespace AutoRest.TypeScript.Model
         public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
             MethodTemplateModels.Where(method => !method.ReturnType.Body.IsStream());
 
-        public virtual IEnumerable<MethodTS> MethodsWithHeaders => Methods.Cast<MethodTS>().Where(m => m.ReturnType.Headers != null);
+        public IEnumerable<MethodTS> MethodsWithCustomResponseType => Methods.Cast<MethodTS>().Where(m => m.ReturnType.Headers != null || m.ReturnType.Body != null);
 
         /// <summary>
         /// Provides an ordered ModelTemplateModel list such that the parent
@@ -393,7 +393,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.18.378\"";
+            return "\"ms-rest-js\": \"~0.19.379\"";
         }
 
         public virtual Method GetSampleMethod()

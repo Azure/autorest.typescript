@@ -54,13 +54,13 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
+  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ListResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.ListResponse>;
   }
   // methods on the client.
 
@@ -81,14 +81,14 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
+  createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams): Promise<Models.CreateResponse> {
     return this.sendOperationRequest(
       {
         subscriptionId,
         resourceGroupName,
         options
       },
-      createOperationSpec);
+      createOperationSpec) as Promise<Models.CreateResponse>;
   }
   // methods on the client.
 
@@ -109,14 +109,14 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
+  updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams): Promise<Models.UpdateResponse> {
     return this.sendOperationRequest(
       {
         subscriptionId,
         resourceGroupName,
         options
       },
-      updateOperationSpec);
+      updateOperationSpec) as Promise<Models.UpdateResponse>;
   }
 
   /**

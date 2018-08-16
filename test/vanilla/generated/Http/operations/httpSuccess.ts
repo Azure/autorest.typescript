@@ -36,7 +36,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -55,12 +55,12 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+  get200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessGet200Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      get200OperationSpec);
+      get200OperationSpec) as Promise<Models.HttpSuccessGet200Response>;
   }
 
   /**
@@ -74,7 +74,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put200WithHttpOperationResponse(options?: Models.HttpSuccessPut200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  put200WithHttpOperationResponse(options?: Models.HttpSuccessPut200OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -93,7 +93,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  patch200WithHttpOperationResponse(options?: Models.HttpSuccessPatch200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  patch200WithHttpOperationResponse(options?: Models.HttpSuccessPatch200OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -112,7 +112,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post200WithHttpOperationResponse(options?: Models.HttpSuccessPost200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  post200WithHttpOperationResponse(options?: Models.HttpSuccessPost200OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -131,7 +131,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete200WithHttpOperationResponse(options?: Models.HttpSuccessDelete200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  delete200WithHttpOperationResponse(options?: Models.HttpSuccessDelete200OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -150,7 +150,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put201WithHttpOperationResponse(options?: Models.HttpSuccessPut201OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  put201WithHttpOperationResponse(options?: Models.HttpSuccessPut201OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -169,7 +169,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post201WithHttpOperationResponse(options?: Models.HttpSuccessPost201OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  post201WithHttpOperationResponse(options?: Models.HttpSuccessPost201OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -188,7 +188,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put202WithHttpOperationResponse(options?: Models.HttpSuccessPut202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  put202WithHttpOperationResponse(options?: Models.HttpSuccessPut202OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -207,7 +207,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  patch202WithHttpOperationResponse(options?: Models.HttpSuccessPatch202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  patch202WithHttpOperationResponse(options?: Models.HttpSuccessPatch202OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -226,7 +226,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post202WithHttpOperationResponse(options?: Models.HttpSuccessPost202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  post202WithHttpOperationResponse(options?: Models.HttpSuccessPost202OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -245,7 +245,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete202WithHttpOperationResponse(options?: Models.HttpSuccessDelete202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  delete202WithHttpOperationResponse(options?: Models.HttpSuccessDelete202OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -264,7 +264,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -283,7 +283,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put204WithHttpOperationResponse(options?: Models.HttpSuccessPut204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  put204WithHttpOperationResponse(options?: Models.HttpSuccessPut204OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -302,7 +302,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  patch204WithHttpOperationResponse(options?: Models.HttpSuccessPatch204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  patch204WithHttpOperationResponse(options?: Models.HttpSuccessPatch204OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -321,7 +321,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post204WithHttpOperationResponse(options?: Models.HttpSuccessPost204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  post204WithHttpOperationResponse(options?: Models.HttpSuccessPost204OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -340,7 +340,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete204WithHttpOperationResponse(options?: Models.HttpSuccessDelete204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  delete204WithHttpOperationResponse(options?: Models.HttpSuccessDelete204OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -359,7 +359,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

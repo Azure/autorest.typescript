@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/datetimeMappers";
 import { AutoRestDateTimeTestServiceContext } from "../autoRestDateTimeTestServiceContext";
 
@@ -35,12 +36,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.DatetimeGetNullResponse>;
   }
 
   /**
@@ -54,12 +55,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidOperationSpec);
+      getInvalidOperationSpec) as Promise<Models.DatetimeGetInvalidResponse>;
   }
 
   /**
@@ -73,12 +74,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getOverflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getOverflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetOverflowResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getOverflowOperationSpec);
+      getOverflowOperationSpec) as Promise<Models.DatetimeGetOverflowResponse>;
   }
 
   /**
@@ -92,12 +93,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUnderflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getUnderflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUnderflowResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUnderflowOperationSpec);
+      getUnderflowOperationSpec) as Promise<Models.DatetimeGetUnderflowResponse>;
   }
 
   /**
@@ -113,7 +114,7 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -133,12 +134,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUtcLowercaseMaxDateTimeOperationSpec);
+      getUtcLowercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -152,12 +153,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUtcUppercaseMaxDateTimeOperationSpec);
+      getUtcUppercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -173,7 +174,7 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putLocalPositiveOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putLocalPositiveOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -193,12 +194,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLocalPositiveOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getLocalPositiveOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec);
+      getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -212,12 +213,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLocalPositiveOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getLocalPositiveOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec);
+      getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -233,7 +234,7 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putLocalNegativeOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putLocalNegativeOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -253,12 +254,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLocalNegativeOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getLocalNegativeOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec);
+      getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -272,12 +273,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLocalNegativeOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getLocalNegativeOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec);
+      getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -293,7 +294,7 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -313,12 +314,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getUtcMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getUtcMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getUtcMinDateTimeOperationSpec);
+      getUtcMinDateTimeOperationSpec) as Promise<Models.DatetimeGetUtcMinDateTimeResponse>;
   }
 
   /**
@@ -334,7 +335,7 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -354,12 +355,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getLocalPositiveOffsetMinDateTimeOperationSpec);
+      getLocalPositiveOffsetMinDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
   }
 
   /**
@@ -375,7 +376,7 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -395,12 +396,12 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
+  getLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getLocalNegativeOffsetMinDateTimeOperationSpec);
+      getLocalNegativeOffsetMinDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
   }
 
   /**

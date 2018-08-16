@@ -36,12 +36,12 @@ export class HttpServerFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  head501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureHead501Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      head501OperationSpec);
+      head501OperationSpec) as Promise<Models.HttpServerFailureHead501Response>;
   }
 
   /**
@@ -55,12 +55,12 @@ export class HttpServerFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  get501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureGet501Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      get501OperationSpec);
+      get501OperationSpec) as Promise<Models.HttpServerFailureGet501Response>;
   }
 
   /**
@@ -74,12 +74,12 @@ export class HttpServerFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post505WithHttpOperationResponse(options?: Models.HttpServerFailurePost505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  post505WithHttpOperationResponse(options?: Models.HttpServerFailurePost505OptionalParams): Promise<Models.HttpServerFailurePost505Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      post505OperationSpec);
+      post505OperationSpec) as Promise<Models.HttpServerFailurePost505Response>;
   }
 
   /**
@@ -93,12 +93,12 @@ export class HttpServerFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete505WithHttpOperationResponse(options?: Models.HttpServerFailureDelete505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  delete505WithHttpOperationResponse(options?: Models.HttpServerFailureDelete505OptionalParams): Promise<Models.HttpServerFailureDelete505Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      delete505OperationSpec);
+      delete505OperationSpec) as Promise<Models.HttpServerFailureDelete505Response>;
   }
 
   /**

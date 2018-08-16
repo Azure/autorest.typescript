@@ -172,7 +172,7 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
 
             builder.ImportAllAs("msRest", "ms-rest-js");
-            if (ContainsCompositeOrEnumTypeInParametersOrReturnType())
+            if (ContainsCompositeOrEnumTypeInParametersOrReturnType() || Methods.Cast<MethodTS>().Any(m => m.HasCustomHttpResponseType))
             {
                 builder.ImportAllAs("Models", "../models");
             }

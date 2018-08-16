@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/filesMappers";
 import { AutoRestSwaggerBATFileServiceContext } from "../autoRestSwaggerBATFileServiceContext";
 
@@ -35,12 +36,12 @@ export class Files {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.FilesGetFileResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getFileOperationSpec);
+      getFileOperationSpec) as Promise<Models.FilesGetFileResponse>;
   }
 
   /**
@@ -54,12 +55,12 @@ export class Files {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getFileLargeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getFileLargeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.FilesGetFileLargeResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getFileLargeOperationSpec);
+      getFileLargeOperationSpec) as Promise<Models.FilesGetFileLargeResponse>;
   }
 
   /**
@@ -73,12 +74,12 @@ export class Files {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getEmptyFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.FilesGetEmptyFileResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyFileOperationSpec);
+      getEmptyFileOperationSpec) as Promise<Models.FilesGetEmptyFileResponse>;
   }
 
 }

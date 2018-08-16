@@ -53,14 +53,14 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<Models.ValidationOfMethodParametersResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
         id,
         options
       },
-      validationOfMethodParametersOperationSpec);
+      validationOfMethodParametersOperationSpec) as Promise<Models.ValidationOfMethodParametersResponse>;
   }
   // methods on the client.
 
@@ -80,14 +80,14 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<Models.ValidationOfBodyResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
         id,
         options
       },
-      validationOfBodyOperationSpec);
+      validationOfBodyOperationSpec) as Promise<Models.ValidationOfBodyResponse>;
   }
   // methods on the client.
 
@@ -100,7 +100,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -119,12 +119,12 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<Models.PostWithConstantInBodyResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      postWithConstantInBodyOperationSpec);
+      postWithConstantInBodyOperationSpec) as Promise<Models.PostWithConstantInBodyResponse>;
   }
 
   /**

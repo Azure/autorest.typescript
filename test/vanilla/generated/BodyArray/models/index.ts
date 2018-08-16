@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
 
 /**
@@ -50,4 +51,718 @@ export enum FooEnum {
   Foo1 = 'foo1',
   Foo2 = 'foo2',
   Foo3 = 'foo3',
+}
+
+/**
+ * Contains response data for the getNull operation.
+ */
+export interface ArrayModelGetNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getInvalid operation.
+ */
+export interface ArrayModelGetInvalidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getEmpty operation.
+ */
+export interface ArrayModelGetEmptyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getBooleanTfft operation.
+ */
+export interface ArrayModelGetBooleanTfftResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean[];
+}
+
+/**
+ * Contains response data for the getBooleanInvalidNull operation.
+ */
+export interface ArrayModelGetBooleanInvalidNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean[];
+}
+
+/**
+ * Contains response data for the getBooleanInvalidString operation.
+ */
+export interface ArrayModelGetBooleanInvalidStringResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: boolean[];
+}
+
+/**
+ * Contains response data for the getIntegerValid operation.
+ */
+export interface ArrayModelGetIntegerValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getIntInvalidNull operation.
+ */
+export interface ArrayModelGetIntInvalidNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getIntInvalidString operation.
+ */
+export interface ArrayModelGetIntInvalidStringResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getLongValid operation.
+ */
+export interface ArrayModelGetLongValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getLongInvalidNull operation.
+ */
+export interface ArrayModelGetLongInvalidNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getLongInvalidString operation.
+ */
+export interface ArrayModelGetLongInvalidStringResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getFloatValid operation.
+ */
+export interface ArrayModelGetFloatValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getFloatInvalidNull operation.
+ */
+export interface ArrayModelGetFloatInvalidNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getFloatInvalidString operation.
+ */
+export interface ArrayModelGetFloatInvalidStringResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getDoubleValid operation.
+ */
+export interface ArrayModelGetDoubleValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getDoubleInvalidNull operation.
+ */
+export interface ArrayModelGetDoubleInvalidNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getDoubleInvalidString operation.
+ */
+export interface ArrayModelGetDoubleInvalidStringResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number[];
+}
+
+/**
+ * Contains response data for the getStringValid operation.
+ */
+export interface ArrayModelGetStringValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[];
+}
+
+/**
+ * Contains response data for the getEnumValid operation.
+ */
+export interface ArrayModelGetEnumValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: FooEnum[];
+}
+
+/**
+ * Contains response data for the getStringEnumValid operation.
+ */
+export interface ArrayModelGetStringEnumValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[];
+}
+
+/**
+ * Contains response data for the getStringWithNull operation.
+ */
+export interface ArrayModelGetStringWithNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[];
+}
+
+/**
+ * Contains response data for the getStringWithInvalid operation.
+ */
+export interface ArrayModelGetStringWithInvalidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[];
+}
+
+/**
+ * Contains response data for the getUuidValid operation.
+ */
+export interface ArrayModelGetUuidValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[];
+}
+
+/**
+ * Contains response data for the getUuidInvalidChars operation.
+ */
+export interface ArrayModelGetUuidInvalidCharsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[];
+}
+
+/**
+ * Contains response data for the getDateValid operation.
+ */
+export interface ArrayModelGetDateValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date[] | string[];
+}
+
+/**
+ * Contains response data for the getDateInvalidNull operation.
+ */
+export interface ArrayModelGetDateInvalidNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date[] | string[];
+}
+
+/**
+ * Contains response data for the getDateInvalidChars operation.
+ */
+export interface ArrayModelGetDateInvalidCharsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date[] | string[];
+}
+
+/**
+ * Contains response data for the getDateTimeValid operation.
+ */
+export interface ArrayModelGetDateTimeValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date[] | string[];
+}
+
+/**
+ * Contains response data for the getDateTimeInvalidNull operation.
+ */
+export interface ArrayModelGetDateTimeInvalidNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date[] | string[];
+}
+
+/**
+ * Contains response data for the getDateTimeInvalidChars operation.
+ */
+export interface ArrayModelGetDateTimeInvalidCharsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date[] | string[];
+}
+
+/**
+ * Contains response data for the getDateTimeRfc1123Valid operation.
+ */
+export interface ArrayModelGetDateTimeRfc1123ValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date[] | string[];
+}
+
+/**
+ * Contains response data for the getDurationValid operation.
+ */
+export interface ArrayModelGetDurationValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[];
+}
+
+/**
+ * Contains response data for the getByteValid operation.
+ */
+export interface ArrayModelGetByteValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Uint8Array[];
+}
+
+/**
+ * Contains response data for the getByteInvalidNull operation.
+ */
+export interface ArrayModelGetByteInvalidNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Uint8Array[];
+}
+
+/**
+ * Contains response data for the getBase64Url operation.
+ */
+export interface ArrayModelGetBase64UrlResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Uint8Array[];
+}
+
+/**
+ * Contains response data for the getComplexNull operation.
+ */
+export interface ArrayModelGetComplexNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product[];
+}
+
+/**
+ * Contains response data for the getComplexEmpty operation.
+ */
+export interface ArrayModelGetComplexEmptyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product[];
+}
+
+/**
+ * Contains response data for the getComplexItemNull operation.
+ */
+export interface ArrayModelGetComplexItemNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product[];
+}
+
+/**
+ * Contains response data for the getComplexItemEmpty operation.
+ */
+export interface ArrayModelGetComplexItemEmptyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product[];
+}
+
+/**
+ * Contains response data for the getComplexValid operation.
+ */
+export interface ArrayModelGetComplexValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Product[];
+}
+
+/**
+ * Contains response data for the getArrayNull operation.
+ */
+export interface ArrayModelGetArrayNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[][];
+}
+
+/**
+ * Contains response data for the getArrayEmpty operation.
+ */
+export interface ArrayModelGetArrayEmptyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[][];
+}
+
+/**
+ * Contains response data for the getArrayItemNull operation.
+ */
+export interface ArrayModelGetArrayItemNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[][];
+}
+
+/**
+ * Contains response data for the getArrayItemEmpty operation.
+ */
+export interface ArrayModelGetArrayItemEmptyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[][];
+}
+
+/**
+ * Contains response data for the getArrayValid operation.
+ */
+export interface ArrayModelGetArrayValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string[][];
+}
+
+/**
+ * Contains response data for the getDictionaryNull operation.
+ */
+export interface ArrayModelGetDictionaryNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: { [propertyName: string]: string }[];
+}
+
+/**
+ * Contains response data for the getDictionaryEmpty operation.
+ */
+export interface ArrayModelGetDictionaryEmptyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: { [propertyName: string]: string }[];
+}
+
+/**
+ * Contains response data for the getDictionaryItemNull operation.
+ */
+export interface ArrayModelGetDictionaryItemNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: { [propertyName: string]: string }[];
+}
+
+/**
+ * Contains response data for the getDictionaryItemEmpty operation.
+ */
+export interface ArrayModelGetDictionaryItemEmptyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: { [propertyName: string]: string }[];
+}
+
+/**
+ * Contains response data for the getDictionaryValid operation.
+ */
+export interface ArrayModelGetDictionaryValidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: { [propertyName: string]: string }[];
 }
