@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { IntModel } from "./intModel";
-
-export { IntModel };
+export * from "./intModel";

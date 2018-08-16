@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Formdata } from "./formdata";
-
-export { Formdata };
+export * from "./formdata";

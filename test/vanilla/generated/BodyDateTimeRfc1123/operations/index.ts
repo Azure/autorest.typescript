@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Datetimerfc1123 } from "./datetimerfc1123";
-
-export { Datetimerfc1123 };
+export * from "./datetimerfc1123";

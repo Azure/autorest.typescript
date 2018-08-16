@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Paths } from "./paths";
-
-export { Paths };
+export * from "./paths";

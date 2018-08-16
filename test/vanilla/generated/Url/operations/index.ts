@@ -8,8 +8,6 @@
  * regenerated.
  */
 
-import { Paths } from "./paths";
-import { Queries } from "./queries";
-import { PathItems } from "./pathItems";
-
-export { Paths, Queries, PathItems };
+export * from "./paths";
+export * from "./queries";
+export * from "./pathItems";

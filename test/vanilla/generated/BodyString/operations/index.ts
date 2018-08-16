@@ -8,7 +8,5 @@
  * regenerated.
  */
 
-import { String } from "./string";
-import { EnumModel } from "./enumModel";
-
-export { String, EnumModel };
+export * from "./string";
+export * from "./enumModel";

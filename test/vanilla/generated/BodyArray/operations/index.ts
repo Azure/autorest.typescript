@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { ArrayModel } from "./arrayModel";
-
-export { ArrayModel };
+export * from "./arrayModel";
