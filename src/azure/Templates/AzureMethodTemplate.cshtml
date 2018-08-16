@@ -31,7 +31,14 @@ else
 @:      @(Model.DeserializeResponse(Model.DefaultResponse.Body))
 }
       return operationRes;
-    });
+@if (Model.HasCustomHttpResponseType)
+{
+@:    }) as Promise<@(Model.HttpResponseReferenceName)>;
+}
+else
+{
+@:    });
+}
 }
 </text>
 }
