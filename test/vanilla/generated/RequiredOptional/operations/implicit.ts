@@ -39,13 +39,13 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getRequiredPathWithHttpOperationResponse(pathParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  getRequiredPathWithHttpOperationResponse(pathParameter: string, options?: msRest.RequestOptionsBase): Promise<Models.ImplicitGetRequiredPathResponse> {
     return this.client.sendOperationRequest(
       {
         pathParameter,
         options
       },
-      getRequiredPathOperationSpec);
+      getRequiredPathOperationSpec) as Promise<Models.ImplicitGetRequiredPathResponse>;
   }
 
   /**
@@ -59,7 +59,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putOptionalQueryWithHttpOperationResponse(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putOptionalQueryWithHttpOperationResponse(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,7 +78,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putOptionalHeaderWithHttpOperationResponse(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putOptionalHeaderWithHttpOperationResponse(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -97,7 +97,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putOptionalBodyWithHttpOperationResponse(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putOptionalBodyWithHttpOperationResponse(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -116,12 +116,12 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getRequiredGlobalPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  getRequiredGlobalPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ImplicitGetRequiredGlobalPathResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getRequiredGlobalPathOperationSpec);
+      getRequiredGlobalPathOperationSpec) as Promise<Models.ImplicitGetRequiredGlobalPathResponse>;
   }
 
   /**
@@ -135,12 +135,12 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getRequiredGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  getRequiredGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ImplicitGetRequiredGlobalQueryResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getRequiredGlobalQueryOperationSpec);
+      getRequiredGlobalQueryOperationSpec) as Promise<Models.ImplicitGetRequiredGlobalQueryResponse>;
   }
 
   /**
@@ -154,12 +154,12 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getOptionalGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  getOptionalGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ImplicitGetOptionalGlobalQueryResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getOptionalGlobalQueryOperationSpec);
+      getOptionalGlobalQueryOperationSpec) as Promise<Models.ImplicitGetOptionalGlobalQueryResponse>;
   }
 
   /**

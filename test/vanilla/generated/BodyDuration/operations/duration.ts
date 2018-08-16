@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/durationMappers";
 import { AutoRestDurationTestServiceContext } from "../autoRestDurationTestServiceContext";
 
@@ -35,12 +36,12 @@ export class Duration {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.DurationGetNullResponse>;
   }
 
   /**
@@ -56,7 +57,7 @@ export class Duration {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putPositiveDurationWithHttpOperationResponse(durationBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putPositiveDurationWithHttpOperationResponse(durationBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         durationBody,
@@ -76,12 +77,12 @@ export class Duration {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getPositiveDurationWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  getPositiveDurationWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetPositiveDurationResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getPositiveDurationOperationSpec);
+      getPositiveDurationOperationSpec) as Promise<Models.DurationGetPositiveDurationResponse>;
   }
 
   /**
@@ -95,12 +96,12 @@ export class Duration {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidOperationSpec);
+      getInvalidOperationSpec) as Promise<Models.DurationGetInvalidResponse>;
   }
 
   /**

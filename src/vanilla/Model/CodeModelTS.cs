@@ -12,11 +12,14 @@ using AutoRest.Extensions;
 using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript;
 using Newtonsoft.Json;
+using AutoRest.Core;
 
 namespace AutoRest.TypeScript.Model
 {
     public class CodeModelTS : CodeModel
     {
+        public const string ClientSideValidationSettingName = "ClientSideValidation";
+
         private const string ServiceClientOptions = "ServiceClientOptions";
 
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
@@ -118,7 +121,7 @@ namespace AutoRest.TypeScript.Model
         public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
             MethodTemplateModels.Where(method => !method.ReturnType.Body.IsStream());
 
-        public virtual IEnumerable<MethodTS> MethodsWithHeaders => Methods.Cast<MethodTS>().Where(m => m.ReturnType.Headers != null);
+        public IEnumerable<MethodTS> MethodsWithCustomResponseType => Methods.Cast<MethodTS>().Where(m => m.ReturnType.Headers != null || m.ReturnType.Body != null);
 
         /// <summary>
         /// Provides an ordered ModelTemplateModel list such that the parent
@@ -390,7 +393,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.18.378\"";
+            return "\"ms-rest-js\": \"~0.19.379\"";
         }
 
         public virtual Method GetSampleMethod()

@@ -36,12 +36,12 @@ export class Inheritance {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Siamese>> {
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec);
+      getValidOperationSpec) as Promise<Models.InheritanceGetValidResponse>;
   }
 
   /**
@@ -59,7 +59,7 @@ export class Inheritance {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putValidWithHttpOperationResponse(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,

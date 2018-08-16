@@ -36,7 +36,7 @@ export class HeadException {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -55,7 +55,7 @@ export class HeadException {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -74,7 +74,7 @@ export class HeadException {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

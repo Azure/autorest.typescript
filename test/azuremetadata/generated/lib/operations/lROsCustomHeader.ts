@@ -41,7 +41,7 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+  putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse> {
     return this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -61,7 +61,7 @@ export class LROsCustomHeader {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse>;
   }
 
 
@@ -79,7 +79,7 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse> {
+  put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsCustomHeaderPut201CreatingSucceeded200Response> {
     return this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -99,7 +99,7 @@ export class LROsCustomHeader {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsCustomHeaderPut201CreatingSucceeded200Response>;
   }
 
 
@@ -116,14 +116,14 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPost202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
+  post202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPost202Retry200OptionalParams): Promise<Models.LROsCustomHeaderPost202Retry200Response> {
     return this.beginPost202Retry200WithHttpOperationResponse(options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsCustomHeaderPost202Retry200Response>;
   }
 
 
@@ -141,14 +141,14 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+  postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse> {
     return this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse>;
   }
 
   /**
@@ -171,7 +171,7 @@ export class LROsCustomHeader {
       {
         options
       },
-      beginPutAsyncRetrySucceededOperationSpec);
+      beginPutAsyncRetrySucceededOperationSpec) as Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse>;
   }
 
   /**
@@ -189,12 +189,12 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
+  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsCustomHeaderBeginPut201CreatingSucceeded200Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      beginPut201CreatingSucceeded200OperationSpec);
+      beginPut201CreatingSucceeded200OperationSpec) as Promise<Models.LROsCustomHeaderBeginPut201CreatingSucceeded200Response>;
   }
 
   /**
@@ -215,7 +215,7 @@ export class LROsCustomHeader {
       {
         options
       },
-      beginPost202Retry200OperationSpec);
+      beginPost202Retry200OperationSpec) as Promise<Models.LROsCustomHeaderPost202Retry200Response>;
   }
 
   /**
@@ -238,7 +238,7 @@ export class LROsCustomHeader {
       {
         options
       },
-      beginPostAsyncRetrySucceededOperationSpec);
+      beginPostAsyncRetrySucceededOperationSpec) as Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse>;
   }
 
   /**

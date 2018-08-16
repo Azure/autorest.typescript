@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/httpFailureMappers";
 import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
 
@@ -35,12 +36,12 @@ export class HttpFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+  getEmptyErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetEmptyErrorResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyErrorOperationSpec);
+      getEmptyErrorOperationSpec) as Promise<Models.HttpFailureGetEmptyErrorResponse>;
   }
 
   /**
@@ -54,12 +55,12 @@ export class HttpFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNoModelErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+  getNoModelErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelErrorResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNoModelErrorOperationSpec);
+      getNoModelErrorOperationSpec) as Promise<Models.HttpFailureGetNoModelErrorResponse>;
   }
 
   /**
@@ -73,12 +74,12 @@ export class HttpFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNoModelEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
+  getNoModelEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNoModelEmptyOperationSpec);
+      getNoModelEmptyOperationSpec) as Promise<Models.HttpFailureGetNoModelEmptyResponse>;
   }
 
   /**

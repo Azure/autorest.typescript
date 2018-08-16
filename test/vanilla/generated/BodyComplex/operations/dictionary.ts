@@ -36,12 +36,12 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec);
+      getValidOperationSpec) as Promise<Models.DictionaryGetValidResponse>;
   }
 
   /**
@@ -55,7 +55,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(options?: Models.DictionaryPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putValidWithHttpOperationResponse(options?: Models.DictionaryPutValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -74,12 +74,12 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
+  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyOperationSpec);
+      getEmptyOperationSpec) as Promise<Models.DictionaryGetEmptyResponse>;
   }
 
   /**
@@ -93,7 +93,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyWithHttpOperationResponse(options?: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putEmptyWithHttpOperationResponse(options?: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -112,12 +112,12 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.DictionaryGetNullResponse>;
   }
 
   /**
@@ -131,12 +131,12 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
+  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNotProvidedOperationSpec);
+      getNotProvidedOperationSpec) as Promise<Models.DictionaryGetNotProvidedResponse>;
   }
 
   /**

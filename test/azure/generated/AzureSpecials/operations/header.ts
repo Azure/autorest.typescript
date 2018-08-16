@@ -45,7 +45,7 @@ export class Header {
         fooClientRequestId,
         options
       },
-      customNamedRequestIdOperationSpec);
+      customNamedRequestIdOperationSpec) as Promise<Models.HeaderCustomNamedRequestIdResponse>;
   }
 
   /**
@@ -69,7 +69,7 @@ export class Header {
         headerCustomNamedRequestIdParamGroupingParameters,
         options
       },
-      customNamedRequestIdParamGroupingOperationSpec);
+      customNamedRequestIdParamGroupingOperationSpec) as Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse>;
   }
 
   /**
@@ -96,7 +96,7 @@ export class Header {
       const statusCode = operationRes.status;
       operationRes.parsedBody = (statusCode === 200);
       return operationRes;
-    });
+    }) as Promise<Models.HeaderCustomNamedRequestIdHeadResponse>;
   }
 
   /**

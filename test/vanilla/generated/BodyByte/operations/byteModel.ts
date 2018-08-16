@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/byteModelMappers";
 import { AutoRestSwaggerBATByteServiceContext } from "../autoRestSwaggerBATByteServiceContext";
 
@@ -35,12 +36,12 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
+  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec);
+      getNullOperationSpec) as Promise<Models.ByteModelGetNullResponse>;
   }
 
   /**
@@ -54,12 +55,12 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
+  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyOperationSpec);
+      getEmptyOperationSpec) as Promise<Models.ByteModelGetEmptyResponse>;
   }
 
   /**
@@ -73,12 +74,12 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNonAsciiWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
+  getNonAsciiWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNonAsciiResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNonAsciiOperationSpec);
+      getNonAsciiOperationSpec) as Promise<Models.ByteModelGetNonAsciiResponse>;
   }
 
   /**
@@ -95,7 +96,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNonAsciiWithHttpOperationResponse(byteBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  putNonAsciiWithHttpOperationResponse(byteBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         byteBody,
@@ -115,12 +116,12 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
+  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getInvalidOperationSpec);
+      getInvalidOperationSpec) as Promise<Models.ByteModelGetInvalidResponse>;
   }
 
   /**

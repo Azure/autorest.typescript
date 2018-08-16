@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
 
 /**
@@ -23,4 +24,130 @@ export interface ErrorModel {
    * @member {string} [message]
    */
   message?: string;
+}
+
+/**
+ * Contains response data for the getNull operation.
+ */
+export interface IntModelGetNullResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number;
+}
+
+/**
+ * Contains response data for the getInvalid operation.
+ */
+export interface IntModelGetInvalidResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number;
+}
+
+/**
+ * Contains response data for the getOverflowInt32 operation.
+ */
+export interface IntModelGetOverflowInt32Response extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number;
+}
+
+/**
+ * Contains response data for the getUnderflowInt32 operation.
+ */
+export interface IntModelGetUnderflowInt32Response extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number;
+}
+
+/**
+ * Contains response data for the getOverflowInt64 operation.
+ */
+export interface IntModelGetOverflowInt64Response extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number;
+}
+
+/**
+ * Contains response data for the getUnderflowInt64 operation.
+ */
+export interface IntModelGetUnderflowInt64Response extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: number;
+}
+
+/**
+ * Contains response data for the getUnixTime operation.
+ */
+export interface IntModelGetUnixTimeResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getInvalidUnixTime operation.
+ */
+export interface IntModelGetInvalidUnixTimeResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
+}
+
+/**
+ * Contains response data for the getNullUnixTime operation.
+ */
+export interface IntModelGetNullUnixTimeResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Date;
 }

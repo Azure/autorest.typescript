@@ -37,12 +37,12 @@ export class UsageOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.UsageListResult>> {
+  listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.UsageListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.UsageListResponse>;
   }
 
   /**

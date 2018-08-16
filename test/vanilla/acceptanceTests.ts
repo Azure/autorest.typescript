@@ -1875,7 +1875,7 @@ describe('typescript', function () {
           });
           reader.readAsArrayBuffer(body);
           await readPromise;
-          const actualBytes: Uint8Array = new Uint8Array(reader.result);
+          const actualBytes: Uint8Array = new Uint8Array(reader.result as ArrayBuffer);
           const expectedBytes: Uint8Array = new Uint8Array(require(`arraybuffer-loader!${__dirname}/sample.png`));
           actualBytes.length.should.equal(expectedBytes.length, "length");
           for (let i = 0; i < actualBytes.length; i++) {
@@ -1943,7 +1943,7 @@ describe('typescript', function () {
           });
           reader.readAsArrayBuffer(body);
           await readPromise;
-          const actualBytes = new Uint8Array(reader.result);
+          const actualBytes = new Uint8Array(reader.result as ArrayBuffer);
           const expectedBytes = new Uint8Array(content);
           actualBytes.length.should.equal(expectedBytes.length, 'length');
           for (let i = 0; i < actualBytes.length; i++) {
@@ -1972,7 +1972,7 @@ describe('typescript', function () {
           });
           reader.readAsArrayBuffer(await response.blobBody());
           await readPromise;
-          const actual = new Uint8Array(reader.result);
+          const actual = new Uint8Array(reader.result as ArrayBuffer);
           const expected = new Uint8Array(content);
           actual.length.should.equal(expected.length, "length");
           for (let i = 0; i < actual.length; i++) {
@@ -1999,7 +1999,7 @@ describe('typescript', function () {
         if (response.blobBody) {
           await response.blobBody();
         } else if (streamBody) {
-          streamBody.on('data', () => {});
+          streamBody.on('data', () => { });
           await new Promise((resolve, reject) => {
             streamBody.on('end', resolve);
             streamBody.on('error', reject);

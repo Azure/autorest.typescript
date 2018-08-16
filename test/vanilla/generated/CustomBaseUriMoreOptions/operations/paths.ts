@@ -43,7 +43,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyWithHttpOperationResponse(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  getEmptyWithHttpOperationResponse(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         vault,

@@ -37,12 +37,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec);
+      getValidOperationSpec) as Promise<Models.ArrayModelGetValidResponse>;
   }
 
   /**
@@ -56,7 +56,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -75,12 +75,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
+  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyOperationSpec);
+      getEmptyOperationSpec) as Promise<Models.ArrayModelGetEmptyResponse>;
   }
 
   /**
@@ -94,7 +94,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -113,12 +113,12 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
+  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNotProvidedOperationSpec);
+      getNotProvidedOperationSpec) as Promise<Models.ArrayModelGetNotProvidedResponse>;
   }
 
   /**

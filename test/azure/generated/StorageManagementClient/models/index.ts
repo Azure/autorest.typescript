@@ -488,3 +488,143 @@ export enum UsageUnit {
   CountsPerSecond = 'CountsPerSecond',
   BytesPerSecond = 'BytesPerSecond',
 }
+
+/**
+ * Contains response data for the checkNameAvailability operation.
+ */
+export interface StorageAccountsCheckNameAvailabilityResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: CheckNameAvailabilityResult;
+}
+
+/**
+ * Contains response data for the create operation.
+ */
+export interface StorageAccountsCreateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: StorageAccount;
+}
+
+/**
+ * Contains response data for the getProperties operation.
+ */
+export interface StorageAccountsGetPropertiesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: StorageAccount;
+}
+
+/**
+ * Contains response data for the update operation.
+ */
+export interface StorageAccountsUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: StorageAccount;
+}
+
+/**
+ * Contains response data for the listKeys operation.
+ */
+export interface StorageAccountsListKeysResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: StorageAccountKeys;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface StorageAccountsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: StorageAccountListResult;
+}
+
+/**
+ * Contains response data for the listByResourceGroup operation.
+ */
+export interface StorageAccountsListByResourceGroupResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: StorageAccountListResult;
+}
+
+/**
+ * Contains response data for the regenerateKey operation.
+ */
+export interface StorageAccountsRegenerateKeyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: StorageAccountKeys;
+}
+
+/**
+ * Contains response data for the beginCreate operation.
+ */
+export interface StorageAccountsBeginCreateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: StorageAccount;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface UsageListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: UsageListResult;
+}

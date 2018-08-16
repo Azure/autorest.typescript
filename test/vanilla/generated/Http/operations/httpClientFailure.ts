@@ -36,12 +36,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  head400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead400Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      head400OperationSpec);
+      head400OperationSpec) as Promise<Models.HttpClientFailureHead400Response>;
   }
 
   /**
@@ -55,12 +55,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  get400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet400Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      get400OperationSpec);
+      get400OperationSpec) as Promise<Models.HttpClientFailureGet400Response>;
   }
 
   /**
@@ -74,12 +74,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put400WithHttpOperationResponse(options?: Models.HttpClientFailurePut400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  put400WithHttpOperationResponse(options?: Models.HttpClientFailurePut400OptionalParams): Promise<Models.HttpClientFailurePut400Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      put400OperationSpec);
+      put400OperationSpec) as Promise<Models.HttpClientFailurePut400Response>;
   }
 
   /**
@@ -93,12 +93,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  patch400WithHttpOperationResponse(options?: Models.HttpClientFailurePatch400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  patch400WithHttpOperationResponse(options?: Models.HttpClientFailurePatch400OptionalParams): Promise<Models.HttpClientFailurePatch400Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      patch400OperationSpec);
+      patch400OperationSpec) as Promise<Models.HttpClientFailurePatch400Response>;
   }
 
   /**
@@ -112,12 +112,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post400WithHttpOperationResponse(options?: Models.HttpClientFailurePost400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  post400WithHttpOperationResponse(options?: Models.HttpClientFailurePost400OptionalParams): Promise<Models.HttpClientFailurePost400Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      post400OperationSpec);
+      post400OperationSpec) as Promise<Models.HttpClientFailurePost400Response>;
   }
 
   /**
@@ -131,12 +131,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete400WithHttpOperationResponse(options?: Models.HttpClientFailureDelete400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  delete400WithHttpOperationResponse(options?: Models.HttpClientFailureDelete400OptionalParams): Promise<Models.HttpClientFailureDelete400Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      delete400OperationSpec);
+      delete400OperationSpec) as Promise<Models.HttpClientFailureDelete400Response>;
   }
 
   /**
@@ -150,12 +150,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head401WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  head401WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead401Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      head401OperationSpec);
+      head401OperationSpec) as Promise<Models.HttpClientFailureHead401Response>;
   }
 
   /**
@@ -169,12 +169,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get402WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  get402WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet402Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      get402OperationSpec);
+      get402OperationSpec) as Promise<Models.HttpClientFailureGet402Response>;
   }
 
   /**
@@ -188,12 +188,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get403WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  get403WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet403Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      get403OperationSpec);
+      get403OperationSpec) as Promise<Models.HttpClientFailureGet403Response>;
   }
 
   /**
@@ -207,12 +207,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put404WithHttpOperationResponse(options?: Models.HttpClientFailurePut404OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  put404WithHttpOperationResponse(options?: Models.HttpClientFailurePut404OptionalParams): Promise<Models.HttpClientFailurePut404Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      put404OperationSpec);
+      put404OperationSpec) as Promise<Models.HttpClientFailurePut404Response>;
   }
 
   /**
@@ -226,12 +226,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  patch405WithHttpOperationResponse(options?: Models.HttpClientFailurePatch405OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  patch405WithHttpOperationResponse(options?: Models.HttpClientFailurePatch405OptionalParams): Promise<Models.HttpClientFailurePatch405Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      patch405OperationSpec);
+      patch405OperationSpec) as Promise<Models.HttpClientFailurePatch405Response>;
   }
 
   /**
@@ -245,12 +245,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post406WithHttpOperationResponse(options?: Models.HttpClientFailurePost406OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  post406WithHttpOperationResponse(options?: Models.HttpClientFailurePost406OptionalParams): Promise<Models.HttpClientFailurePost406Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      post406OperationSpec);
+      post406OperationSpec) as Promise<Models.HttpClientFailurePost406Response>;
   }
 
   /**
@@ -264,12 +264,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete407WithHttpOperationResponse(options?: Models.HttpClientFailureDelete407OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  delete407WithHttpOperationResponse(options?: Models.HttpClientFailureDelete407OptionalParams): Promise<Models.HttpClientFailureDelete407Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      delete407OperationSpec);
+      delete407OperationSpec) as Promise<Models.HttpClientFailureDelete407Response>;
   }
 
   /**
@@ -283,12 +283,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put409WithHttpOperationResponse(options?: Models.HttpClientFailurePut409OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  put409WithHttpOperationResponse(options?: Models.HttpClientFailurePut409OptionalParams): Promise<Models.HttpClientFailurePut409Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      put409OperationSpec);
+      put409OperationSpec) as Promise<Models.HttpClientFailurePut409Response>;
   }
 
   /**
@@ -302,12 +302,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head410WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  head410WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead410Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      head410OperationSpec);
+      head410OperationSpec) as Promise<Models.HttpClientFailureHead410Response>;
   }
 
   /**
@@ -321,12 +321,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get411WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  get411WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet411Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      get411OperationSpec);
+      get411OperationSpec) as Promise<Models.HttpClientFailureGet411Response>;
   }
 
   /**
@@ -340,12 +340,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get412WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  get412WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet412Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      get412OperationSpec);
+      get412OperationSpec) as Promise<Models.HttpClientFailureGet412Response>;
   }
 
   /**
@@ -359,12 +359,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put413WithHttpOperationResponse(options?: Models.HttpClientFailurePut413OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  put413WithHttpOperationResponse(options?: Models.HttpClientFailurePut413OptionalParams): Promise<Models.HttpClientFailurePut413Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      put413OperationSpec);
+      put413OperationSpec) as Promise<Models.HttpClientFailurePut413Response>;
   }
 
   /**
@@ -378,12 +378,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  patch414WithHttpOperationResponse(options?: Models.HttpClientFailurePatch414OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  patch414WithHttpOperationResponse(options?: Models.HttpClientFailurePatch414OptionalParams): Promise<Models.HttpClientFailurePatch414Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      patch414OperationSpec);
+      patch414OperationSpec) as Promise<Models.HttpClientFailurePatch414Response>;
   }
 
   /**
@@ -397,12 +397,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post415WithHttpOperationResponse(options?: Models.HttpClientFailurePost415OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  post415WithHttpOperationResponse(options?: Models.HttpClientFailurePost415OptionalParams): Promise<Models.HttpClientFailurePost415Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      post415OperationSpec);
+      post415OperationSpec) as Promise<Models.HttpClientFailurePost415Response>;
   }
 
   /**
@@ -416,12 +416,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get416WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  get416WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet416Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      get416OperationSpec);
+      get416OperationSpec) as Promise<Models.HttpClientFailureGet416Response>;
   }
 
   /**
@@ -435,12 +435,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete417WithHttpOperationResponse(options?: Models.HttpClientFailureDelete417OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  delete417WithHttpOperationResponse(options?: Models.HttpClientFailureDelete417OptionalParams): Promise<Models.HttpClientFailureDelete417Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      delete417OperationSpec);
+      delete417OperationSpec) as Promise<Models.HttpClientFailureDelete417Response>;
   }
 
   /**
@@ -454,12 +454,12 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head429WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
+  head429WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead429Response> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      head429OperationSpec);
+      head429OperationSpec) as Promise<Models.HttpClientFailureHead429Response>;
   }
 
   /**

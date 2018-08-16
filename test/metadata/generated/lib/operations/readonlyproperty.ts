@@ -36,12 +36,12 @@ export class Readonlyproperty {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ReadonlyObj>> {
+  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ReadonlypropertyGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec);
+      getValidOperationSpec) as Promise<Models.ReadonlypropertyGetValidResponse>;
   }
 
   /**
@@ -55,7 +55,7 @@ export class Readonlyproperty {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(options?: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
+  putValidWithHttpOperationResponse(options?: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
