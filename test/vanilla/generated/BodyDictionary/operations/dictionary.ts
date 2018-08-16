@@ -76,7 +76,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putEmptyWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -193,7 +193,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBooleanTfftWithHttpOperationResponse(arrayBody: { [propertyName: string]: boolean }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putBooleanTfftWithHttpOperationResponse(arrayBody: { [propertyName: string]: boolean }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -272,7 +272,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putIntegerValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putIntegerValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -351,7 +351,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putLongValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putLongValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -430,7 +430,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putFloatValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putFloatValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -509,7 +509,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDoubleValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDoubleValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -588,7 +588,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putStringValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putStringValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -667,7 +667,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDateValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDateValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -748,7 +748,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDateTimeValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDateTimeValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -829,7 +829,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -870,7 +870,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDurationValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDurationValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -913,7 +913,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putByteValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putByteValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1073,7 +1073,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putComplexValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: Models.Widget }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putComplexValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: Models.Widget }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1192,7 +1192,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putArrayValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string[] }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putArrayValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string[] }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1315,7 +1315,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDictionaryValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDictionaryValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,

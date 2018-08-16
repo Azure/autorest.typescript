@@ -56,7 +56,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -94,7 +94,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

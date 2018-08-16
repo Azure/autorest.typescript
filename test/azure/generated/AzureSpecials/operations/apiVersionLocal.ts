@@ -37,7 +37,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -56,7 +56,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getMethodLocalNullWithHttpOperationResponse(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  getMethodLocalNullWithHttpOperationResponse(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -75,7 +75,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -94,7 +94,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

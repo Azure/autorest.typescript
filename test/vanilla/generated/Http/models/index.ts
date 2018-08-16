@@ -1082,7 +1082,7 @@ export enum Location14 {
 /**
  * Contains response data for the getEmptyError operation.
  */
-export interface HttpFailureGetEmptyErrorResponse extends msRest.BaseHttpOperationResponse {
+export interface HttpFailureGetEmptyErrorResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1096,7 +1096,7 @@ export interface HttpFailureGetEmptyErrorResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getNoModelError operation.
  */
-export interface HttpFailureGetNoModelErrorResponse extends msRest.BaseHttpOperationResponse {
+export interface HttpFailureGetNoModelErrorResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1110,7 +1110,7 @@ export interface HttpFailureGetNoModelErrorResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getNoModelEmpty operation.
  */
-export interface HttpFailureGetNoModelEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface HttpFailureGetNoModelEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1124,7 +1124,7 @@ export interface HttpFailureGetNoModelEmptyResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the get200 operation.
  */
-export interface HttpSuccessGet200Response extends msRest.BaseHttpOperationResponse {
+export interface HttpSuccessGet200Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1138,7 +1138,7 @@ export interface HttpSuccessGet200Response extends msRest.BaseHttpOperationRespo
 /**
  * Contains response data for the head300 operation.
  */
-export interface HttpRedirectsHead300Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsHead300Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1148,7 +1148,7 @@ export interface HttpRedirectsHead300Response extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the get300 operation.
  */
-export interface HttpRedirectsGet300Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsGet300Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1166,7 +1166,7 @@ export interface HttpRedirectsGet300Response extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the head301 operation.
  */
-export interface HttpRedirectsHead301Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsHead301Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1176,7 +1176,7 @@ export interface HttpRedirectsHead301Response extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the get301 operation.
  */
-export interface HttpRedirectsGet301Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsGet301Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1186,7 +1186,7 @@ export interface HttpRedirectsGet301Response extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the put301 operation.
  */
-export interface HttpRedirectsPut301Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsPut301Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1196,7 +1196,7 @@ export interface HttpRedirectsPut301Response extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the head302 operation.
  */
-export interface HttpRedirectsHead302Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsHead302Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1206,7 +1206,7 @@ export interface HttpRedirectsHead302Response extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the get302 operation.
  */
-export interface HttpRedirectsGet302Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsGet302Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1216,7 +1216,7 @@ export interface HttpRedirectsGet302Response extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the patch302 operation.
  */
-export interface HttpRedirectsPatch302Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsPatch302Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1226,7 +1226,7 @@ export interface HttpRedirectsPatch302Response extends msRest.BaseHttpOperationR
 /**
  * Contains response data for the post303 operation.
  */
-export interface HttpRedirectsPost303Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsPost303Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1236,7 +1236,7 @@ export interface HttpRedirectsPost303Response extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the head307 operation.
  */
-export interface HttpRedirectsHead307Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsHead307Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1246,7 +1246,7 @@ export interface HttpRedirectsHead307Response extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the get307 operation.
  */
-export interface HttpRedirectsGet307Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsGet307Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1256,7 +1256,7 @@ export interface HttpRedirectsGet307Response extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the put307 operation.
  */
-export interface HttpRedirectsPut307Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsPut307Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1266,7 +1266,7 @@ export interface HttpRedirectsPut307Response extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the patch307 operation.
  */
-export interface HttpRedirectsPatch307Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsPatch307Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1276,7 +1276,7 @@ export interface HttpRedirectsPatch307Response extends msRest.BaseHttpOperationR
 /**
  * Contains response data for the post307 operation.
  */
-export interface HttpRedirectsPost307Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsPost307Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1286,7 +1286,7 @@ export interface HttpRedirectsPost307Response extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the delete307 operation.
  */
-export interface HttpRedirectsDelete307Response extends msRest.BaseHttpOperationResponse {
+export interface HttpRedirectsDelete307Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -1296,7 +1296,7 @@ export interface HttpRedirectsDelete307Response extends msRest.BaseHttpOperation
 /**
  * Contains response data for the head400 operation.
  */
-export interface HttpClientFailureHead400Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureHead400Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1310,7 +1310,7 @@ export interface HttpClientFailureHead400Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the get400 operation.
  */
-export interface HttpClientFailureGet400Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureGet400Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1324,7 +1324,7 @@ export interface HttpClientFailureGet400Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the put400 operation.
  */
-export interface HttpClientFailurePut400Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePut400Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1338,7 +1338,7 @@ export interface HttpClientFailurePut400Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the patch400 operation.
  */
-export interface HttpClientFailurePatch400Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePatch400Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1352,7 +1352,7 @@ export interface HttpClientFailurePatch400Response extends msRest.BaseHttpOperat
 /**
  * Contains response data for the post400 operation.
  */
-export interface HttpClientFailurePost400Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePost400Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1366,7 +1366,7 @@ export interface HttpClientFailurePost400Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the delete400 operation.
  */
-export interface HttpClientFailureDelete400Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureDelete400Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1380,7 +1380,7 @@ export interface HttpClientFailureDelete400Response extends msRest.BaseHttpOpera
 /**
  * Contains response data for the head401 operation.
  */
-export interface HttpClientFailureHead401Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureHead401Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1394,7 +1394,7 @@ export interface HttpClientFailureHead401Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the get402 operation.
  */
-export interface HttpClientFailureGet402Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureGet402Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1408,7 +1408,7 @@ export interface HttpClientFailureGet402Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the get403 operation.
  */
-export interface HttpClientFailureGet403Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureGet403Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1422,7 +1422,7 @@ export interface HttpClientFailureGet403Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the put404 operation.
  */
-export interface HttpClientFailurePut404Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePut404Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1436,7 +1436,7 @@ export interface HttpClientFailurePut404Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the patch405 operation.
  */
-export interface HttpClientFailurePatch405Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePatch405Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1450,7 +1450,7 @@ export interface HttpClientFailurePatch405Response extends msRest.BaseHttpOperat
 /**
  * Contains response data for the post406 operation.
  */
-export interface HttpClientFailurePost406Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePost406Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1464,7 +1464,7 @@ export interface HttpClientFailurePost406Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the delete407 operation.
  */
-export interface HttpClientFailureDelete407Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureDelete407Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1478,7 +1478,7 @@ export interface HttpClientFailureDelete407Response extends msRest.BaseHttpOpera
 /**
  * Contains response data for the put409 operation.
  */
-export interface HttpClientFailurePut409Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePut409Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1492,7 +1492,7 @@ export interface HttpClientFailurePut409Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the head410 operation.
  */
-export interface HttpClientFailureHead410Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureHead410Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1506,7 +1506,7 @@ export interface HttpClientFailureHead410Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the get411 operation.
  */
-export interface HttpClientFailureGet411Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureGet411Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1520,7 +1520,7 @@ export interface HttpClientFailureGet411Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the get412 operation.
  */
-export interface HttpClientFailureGet412Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureGet412Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1534,7 +1534,7 @@ export interface HttpClientFailureGet412Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the put413 operation.
  */
-export interface HttpClientFailurePut413Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePut413Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1548,7 +1548,7 @@ export interface HttpClientFailurePut413Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the patch414 operation.
  */
-export interface HttpClientFailurePatch414Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePatch414Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1562,7 +1562,7 @@ export interface HttpClientFailurePatch414Response extends msRest.BaseHttpOperat
 /**
  * Contains response data for the post415 operation.
  */
-export interface HttpClientFailurePost415Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailurePost415Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1576,7 +1576,7 @@ export interface HttpClientFailurePost415Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the get416 operation.
  */
-export interface HttpClientFailureGet416Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureGet416Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1590,7 +1590,7 @@ export interface HttpClientFailureGet416Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the delete417 operation.
  */
-export interface HttpClientFailureDelete417Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureDelete417Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1604,7 +1604,7 @@ export interface HttpClientFailureDelete417Response extends msRest.BaseHttpOpera
 /**
  * Contains response data for the head429 operation.
  */
-export interface HttpClientFailureHead429Response extends msRest.BaseHttpOperationResponse {
+export interface HttpClientFailureHead429Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1618,7 +1618,7 @@ export interface HttpClientFailureHead429Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the head501 operation.
  */
-export interface HttpServerFailureHead501Response extends msRest.BaseHttpOperationResponse {
+export interface HttpServerFailureHead501Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1632,7 +1632,7 @@ export interface HttpServerFailureHead501Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the get501 operation.
  */
-export interface HttpServerFailureGet501Response extends msRest.BaseHttpOperationResponse {
+export interface HttpServerFailureGet501Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1646,7 +1646,7 @@ export interface HttpServerFailureGet501Response extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the post505 operation.
  */
-export interface HttpServerFailurePost505Response extends msRest.BaseHttpOperationResponse {
+export interface HttpServerFailurePost505Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1660,7 +1660,7 @@ export interface HttpServerFailurePost505Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the delete505 operation.
  */
-export interface HttpServerFailureDelete505Response extends msRest.BaseHttpOperationResponse {
+export interface HttpServerFailureDelete505Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1675,7 +1675,7 @@ export interface HttpServerFailureDelete505Response extends msRest.BaseHttpOpera
  * Contains response data for the get200Model204NoModelDefaultError200Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1690,7 +1690,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError200ValidRespo
  * Contains response data for the get200Model204NoModelDefaultError204Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1705,7 +1705,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError204ValidRespo
  * Contains response data for the get200Model204NoModelDefaultError201Invalid
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1720,7 +1720,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError201InvalidRes
  * Contains response data for the get200Model204NoModelDefaultError202None
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1735,7 +1735,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError202NoneRespon
  * Contains response data for the get200Model204NoModelDefaultError400Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1750,7 +1750,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError400ValidRespo
  * Contains response data for the get200Model201ModelDefaultError200Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model201ModelDefaultError200ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError200ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1765,7 +1765,7 @@ export interface MultipleResponsesGet200Model201ModelDefaultError200ValidRespons
  * Contains response data for the get200Model201ModelDefaultError201Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model201ModelDefaultError201ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError201ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1780,7 +1780,7 @@ export interface MultipleResponsesGet200Model201ModelDefaultError201ValidRespons
  * Contains response data for the get200Model201ModelDefaultError400Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model201ModelDefaultError400ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError400ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1795,7 +1795,7 @@ export interface MultipleResponsesGet200Model201ModelDefaultError400ValidRespons
  * Contains response data for the
  * get200ModelA201ModelC404ModelDDefaultError200Valid operation.
  */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1810,7 +1810,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200V
  * Contains response data for the
  * get200ModelA201ModelC404ModelDDefaultError201Valid operation.
  */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1825,7 +1825,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201V
  * Contains response data for the
  * get200ModelA201ModelC404ModelDDefaultError404Valid operation.
  */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1840,7 +1840,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404V
  * Contains response data for the
  * get200ModelA201ModelC404ModelDDefaultError400Valid operation.
  */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1854,7 +1854,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400V
 /**
  * Contains response data for the getDefaultModelA200Valid operation.
  */
-export interface MultipleResponsesGetDefaultModelA200ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGetDefaultModelA200ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1868,7 +1868,7 @@ export interface MultipleResponsesGetDefaultModelA200ValidResponse extends msRes
 /**
  * Contains response data for the getDefaultModelA200None operation.
  */
-export interface MultipleResponsesGetDefaultModelA200NoneResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGetDefaultModelA200NoneResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1882,7 +1882,7 @@ export interface MultipleResponsesGetDefaultModelA200NoneResponse extends msRest
 /**
  * Contains response data for the getDefaultModelA400Valid operation.
  */
-export interface MultipleResponsesGetDefaultModelA400ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGetDefaultModelA400ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1896,7 +1896,7 @@ export interface MultipleResponsesGetDefaultModelA400ValidResponse extends msRes
 /**
  * Contains response data for the getDefaultModelA400None operation.
  */
-export interface MultipleResponsesGetDefaultModelA400NoneResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGetDefaultModelA400NoneResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1910,7 +1910,7 @@ export interface MultipleResponsesGetDefaultModelA400NoneResponse extends msRest
 /**
  * Contains response data for the get200ModelA200None operation.
  */
-export interface MultipleResponsesGet200ModelA200NoneResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA200NoneResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1924,7 +1924,7 @@ export interface MultipleResponsesGet200ModelA200NoneResponse extends msRest.Bas
 /**
  * Contains response data for the get200ModelA200Valid operation.
  */
-export interface MultipleResponsesGet200ModelA200ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA200ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1938,7 +1938,7 @@ export interface MultipleResponsesGet200ModelA200ValidResponse extends msRest.Ba
 /**
  * Contains response data for the get200ModelA200Invalid operation.
  */
-export interface MultipleResponsesGet200ModelA200InvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA200InvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1952,7 +1952,7 @@ export interface MultipleResponsesGet200ModelA200InvalidResponse extends msRest.
 /**
  * Contains response data for the get200ModelA400None operation.
  */
-export interface MultipleResponsesGet200ModelA400NoneResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA400NoneResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1966,7 +1966,7 @@ export interface MultipleResponsesGet200ModelA400NoneResponse extends msRest.Bas
 /**
  * Contains response data for the get200ModelA400Valid operation.
  */
-export interface MultipleResponsesGet200ModelA400ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA400ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1980,7 +1980,7 @@ export interface MultipleResponsesGet200ModelA400ValidResponse extends msRest.Ba
 /**
  * Contains response data for the get200ModelA400Invalid operation.
  */
-export interface MultipleResponsesGet200ModelA400InvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA400InvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1994,7 +1994,7 @@ export interface MultipleResponsesGet200ModelA400InvalidResponse extends msRest.
 /**
  * Contains response data for the get200ModelA202Valid operation.
  */
-export interface MultipleResponsesGet200ModelA202ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface MultipleResponsesGet200ModelA202ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

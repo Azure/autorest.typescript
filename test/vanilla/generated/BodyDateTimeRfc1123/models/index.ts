@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface Datetimerfc1123GetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface Datetimerfc1123GetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -43,7 +43,7 @@ export interface Datetimerfc1123GetNullResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface Datetimerfc1123GetInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface Datetimerfc1123GetInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -57,7 +57,7 @@ export interface Datetimerfc1123GetInvalidResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getOverflow operation.
  */
-export interface Datetimerfc1123GetOverflowResponse extends msRest.BaseHttpOperationResponse {
+export interface Datetimerfc1123GetOverflowResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -71,7 +71,7 @@ export interface Datetimerfc1123GetOverflowResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getUnderflow operation.
  */
-export interface Datetimerfc1123GetUnderflowResponse extends msRest.BaseHttpOperationResponse {
+export interface Datetimerfc1123GetUnderflowResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -85,7 +85,7 @@ export interface Datetimerfc1123GetUnderflowResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getUtcLowercaseMaxDateTime operation.
  */
-export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -99,7 +99,7 @@ export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse extends msRes
 /**
  * Contains response data for the getUtcUppercaseMaxDateTime operation.
  */
-export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -113,7 +113,7 @@ export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse extends msRes
 /**
  * Contains response data for the getUtcMinDateTime operation.
  */
-export interface Datetimerfc1123GetUtcMinDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface Datetimerfc1123GetUtcMinDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

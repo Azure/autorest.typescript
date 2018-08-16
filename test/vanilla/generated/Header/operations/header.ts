@@ -39,7 +39,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramExistingKeyWithHttpOperationResponse(userAgent: string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramExistingKeyWithHttpOperationResponse(userAgent: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         userAgent,
@@ -80,7 +80,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramProtectedKeyWithHttpOperationResponse(contentType: string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramProtectedKeyWithHttpOperationResponse(contentType: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         contentType,
@@ -125,7 +125,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramIntegerWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramIntegerWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -175,7 +175,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramLongWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramLongWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -225,7 +225,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramFloatWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramFloatWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -275,7 +275,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramDoubleWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramDoubleWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -324,7 +324,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramBoolWithHttpOperationResponse(scenario: string, value: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramBoolWithHttpOperationResponse(scenario: string, value: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -371,7 +371,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramStringWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  paramStringWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -419,7 +419,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramDateWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramDateWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -468,7 +468,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramDatetimeWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramDatetimeWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -514,7 +514,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  paramDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -561,7 +561,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramDurationWithHttpOperationResponse(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramDurationWithHttpOperationResponse(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -608,7 +608,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramByteWithHttpOperationResponse(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramByteWithHttpOperationResponse(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -655,7 +655,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramEnumWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  paramEnumWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -698,7 +698,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  customRequestIdWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  customRequestIdWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

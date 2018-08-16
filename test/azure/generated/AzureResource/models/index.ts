@@ -147,7 +147,7 @@ export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptio
 /**
  * Contains response data for the getArray operation.
  */
-export interface GetArrayResponse extends msRest.BaseHttpOperationResponse {
+export interface GetArrayResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -161,7 +161,7 @@ export interface GetArrayResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the getDictionary operation.
  */
-export interface GetDictionaryResponse extends msRest.BaseHttpOperationResponse {
+export interface GetDictionaryResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -175,7 +175,7 @@ export interface GetDictionaryResponse extends msRest.BaseHttpOperationResponse 
 /**
  * Contains response data for the getResourceCollection operation.
  */
-export interface GetResourceCollectionResponse extends msRest.BaseHttpOperationResponse {
+export interface GetResourceCollectionResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

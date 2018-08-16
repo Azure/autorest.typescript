@@ -57,7 +57,7 @@ export class Duration {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putPositiveDurationWithHttpOperationResponse(durationBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putPositiveDurationWithHttpOperationResponse(durationBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         durationBody,

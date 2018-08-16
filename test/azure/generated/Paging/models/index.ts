@@ -417,7 +417,7 @@ export enum Status {
 /**
  * Contains response data for the getSinglePages operation.
  */
-export interface PagingGetSinglePagesResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetSinglePagesResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -431,7 +431,7 @@ export interface PagingGetSinglePagesResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getMultiplePages operation.
  */
-export interface PagingGetMultiplePagesResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -445,7 +445,7 @@ export interface PagingGetMultiplePagesResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getOdataMultiplePages operation.
  */
-export interface PagingGetOdataMultiplePagesResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetOdataMultiplePagesResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -459,7 +459,7 @@ export interface PagingGetOdataMultiplePagesResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getMultiplePagesWithOffset operation.
  */
-export interface PagingGetMultiplePagesWithOffsetResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesWithOffsetResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -473,7 +473,7 @@ export interface PagingGetMultiplePagesWithOffsetResponse extends msRest.BaseHtt
 /**
  * Contains response data for the getMultiplePagesRetryFirst operation.
  */
-export interface PagingGetMultiplePagesRetryFirstResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesRetryFirstResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -487,7 +487,7 @@ export interface PagingGetMultiplePagesRetryFirstResponse extends msRest.BaseHtt
 /**
  * Contains response data for the getMultiplePagesRetrySecond operation.
  */
-export interface PagingGetMultiplePagesRetrySecondResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesRetrySecondResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -501,7 +501,7 @@ export interface PagingGetMultiplePagesRetrySecondResponse extends msRest.BaseHt
 /**
  * Contains response data for the getSinglePagesFailure operation.
  */
-export interface PagingGetSinglePagesFailureResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetSinglePagesFailureResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -515,7 +515,7 @@ export interface PagingGetSinglePagesFailureResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getMultiplePagesFailure operation.
  */
-export interface PagingGetMultiplePagesFailureResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesFailureResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -529,7 +529,7 @@ export interface PagingGetMultiplePagesFailureResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getMultiplePagesFailureUri operation.
  */
-export interface PagingGetMultiplePagesFailureUriResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesFailureUriResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -543,7 +543,7 @@ export interface PagingGetMultiplePagesFailureUriResponse extends msRest.BaseHtt
 /**
  * Contains response data for the getMultiplePagesFragmentNextLink operation.
  */
-export interface PagingGetMultiplePagesFragmentNextLinkResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesFragmentNextLinkResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -558,7 +558,7 @@ export interface PagingGetMultiplePagesFragmentNextLinkResponse extends msRest.B
  * Contains response data for the getMultiplePagesFragmentWithGroupingNextLink
  * operation.
  */
-export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -572,7 +572,7 @@ export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse exte
 /**
  * Contains response data for the getMultiplePagesLRO operation.
  */
-export interface PagingGetMultiplePagesLROResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesLROResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -586,7 +586,7 @@ export interface PagingGetMultiplePagesLROResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the nextFragment operation.
  */
-export interface PagingNextFragmentResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingNextFragmentResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -600,7 +600,7 @@ export interface PagingNextFragmentResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the nextFragmentWithGrouping operation.
  */
-export interface PagingNextFragmentWithGroupingResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingNextFragmentWithGroupingResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -614,7 +614,7 @@ export interface PagingNextFragmentWithGroupingResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the beginGetMultiplePagesLRO operation.
  */
-export interface PagingBeginGetMultiplePagesLROResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingBeginGetMultiplePagesLROResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -628,7 +628,7 @@ export interface PagingBeginGetMultiplePagesLROResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the getSinglePagesNext operation.
  */
-export interface PagingGetSinglePagesNextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetSinglePagesNextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -642,7 +642,7 @@ export interface PagingGetSinglePagesNextResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getMultiplePagesNext operation.
  */
-export interface PagingGetMultiplePagesNextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesNextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -656,7 +656,7 @@ export interface PagingGetMultiplePagesNextResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getOdataMultiplePagesNext operation.
  */
-export interface PagingGetOdataMultiplePagesNextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetOdataMultiplePagesNextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -670,7 +670,7 @@ export interface PagingGetOdataMultiplePagesNextResponse extends msRest.BaseHttp
 /**
  * Contains response data for the getMultiplePagesWithOffsetNext operation.
  */
-export interface PagingGetMultiplePagesWithOffsetNextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesWithOffsetNextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -684,7 +684,7 @@ export interface PagingGetMultiplePagesWithOffsetNextResponse extends msRest.Bas
 /**
  * Contains response data for the getMultiplePagesRetryFirstNext operation.
  */
-export interface PagingGetMultiplePagesRetryFirstNextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesRetryFirstNextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -698,7 +698,7 @@ export interface PagingGetMultiplePagesRetryFirstNextResponse extends msRest.Bas
 /**
  * Contains response data for the getMultiplePagesRetrySecondNext operation.
  */
-export interface PagingGetMultiplePagesRetrySecondNextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesRetrySecondNextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -712,7 +712,7 @@ export interface PagingGetMultiplePagesRetrySecondNextResponse extends msRest.Ba
 /**
  * Contains response data for the getSinglePagesFailureNext operation.
  */
-export interface PagingGetSinglePagesFailureNextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetSinglePagesFailureNextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -726,7 +726,7 @@ export interface PagingGetSinglePagesFailureNextResponse extends msRest.BaseHttp
 /**
  * Contains response data for the getMultiplePagesFailureNext operation.
  */
-export interface PagingGetMultiplePagesFailureNextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesFailureNextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -740,7 +740,7 @@ export interface PagingGetMultiplePagesFailureNextResponse extends msRest.BaseHt
 /**
  * Contains response data for the getMultiplePagesFailureUriNext operation.
  */
-export interface PagingGetMultiplePagesFailureUriNextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesFailureUriNextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -754,7 +754,7 @@ export interface PagingGetMultiplePagesFailureUriNextResponse extends msRest.Bas
 /**
  * Contains response data for the getMultiplePagesLRONext operation.
  */
-export interface PagingGetMultiplePagesLRONextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingGetMultiplePagesLRONextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -768,7 +768,7 @@ export interface PagingGetMultiplePagesLRONextResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the beginGetMultiplePagesLRONext operation.
  */
-export interface PagingBeginGetMultiplePagesLRONextResponse extends msRest.BaseHttpOperationResponse {
+export interface PagingBeginGetMultiplePagesLRONextResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

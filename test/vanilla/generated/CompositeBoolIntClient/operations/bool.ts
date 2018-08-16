@@ -55,7 +55,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -93,7 +93,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

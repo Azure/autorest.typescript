@@ -58,7 +58,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putIntWithHttpOperationResponse(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putIntWithHttpOperationResponse(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -99,7 +99,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putLongWithHttpOperationResponse(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putLongWithHttpOperationResponse(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -140,7 +140,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putFloatWithHttpOperationResponse(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putFloatWithHttpOperationResponse(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -182,7 +182,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDoubleWithHttpOperationResponse(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDoubleWithHttpOperationResponse(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -223,7 +223,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBoolWithHttpOperationResponse(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putBoolWithHttpOperationResponse(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -264,7 +264,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putStringWithHttpOperationResponse(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putStringWithHttpOperationResponse(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -305,7 +305,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDateWithHttpOperationResponse(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDateWithHttpOperationResponse(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -347,7 +347,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDateTimeWithHttpOperationResponse(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDateTimeWithHttpOperationResponse(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -389,7 +389,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDateTimeRfc1123WithHttpOperationResponse(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putDateTimeRfc1123WithHttpOperationResponse(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -428,7 +428,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDurationWithHttpOperationResponse(options?: Models.PrimitivePutDurationOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putDurationWithHttpOperationResponse(options?: Models.PrimitivePutDurationOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -466,7 +466,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putByteWithHttpOperationResponse(options?: Models.PrimitivePutByteOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putByteWithHttpOperationResponse(options?: Models.PrimitivePutByteOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

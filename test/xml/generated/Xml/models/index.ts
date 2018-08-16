@@ -819,7 +819,7 @@ export enum ArchiveStatus {
 /**
  * Contains response data for the getComplexTypeRefNoMeta operation.
  */
-export interface XmlGetComplexTypeRefNoMetaResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetComplexTypeRefNoMetaResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -833,7 +833,7 @@ export interface XmlGetComplexTypeRefNoMetaResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getComplexTypeRefWithMeta operation.
  */
-export interface XmlGetComplexTypeRefWithMetaResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetComplexTypeRefWithMetaResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -847,7 +847,7 @@ export interface XmlGetComplexTypeRefWithMetaResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getSimple operation.
  */
-export interface XmlGetSimpleResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetSimpleResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -861,7 +861,7 @@ export interface XmlGetSimpleResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the getWrappedLists operation.
  */
-export interface XmlGetWrappedListsResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetWrappedListsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -875,7 +875,7 @@ export interface XmlGetWrappedListsResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getHeaders operation.
  */
-export interface XmlGetHeadersResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetHeadersResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -885,7 +885,7 @@ export interface XmlGetHeadersResponse extends msRest.BaseHttpOperationResponse 
 /**
  * Contains response data for the getEmptyList operation.
  */
-export interface XmlGetEmptyListResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetEmptyListResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -899,7 +899,7 @@ export interface XmlGetEmptyListResponse extends msRest.BaseHttpOperationRespons
 /**
  * Contains response data for the getEmptyWrappedLists operation.
  */
-export interface XmlGetEmptyWrappedListsResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetEmptyWrappedListsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -913,7 +913,7 @@ export interface XmlGetEmptyWrappedListsResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getRootList operation.
  */
-export interface XmlGetRootListResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetRootListResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -927,7 +927,7 @@ export interface XmlGetRootListResponse extends msRest.BaseHttpOperationResponse
 /**
  * Contains response data for the getRootListSingleItem operation.
  */
-export interface XmlGetRootListSingleItemResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetRootListSingleItemResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -941,7 +941,7 @@ export interface XmlGetRootListSingleItemResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getEmptyRootList operation.
  */
-export interface XmlGetEmptyRootListResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetEmptyRootListResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -955,7 +955,7 @@ export interface XmlGetEmptyRootListResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the getEmptyChildElement operation.
  */
-export interface XmlGetEmptyChildElementResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetEmptyChildElementResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -969,7 +969,7 @@ export interface XmlGetEmptyChildElementResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the listContainers operation.
  */
-export interface XmlListContainersResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlListContainersResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -983,7 +983,7 @@ export interface XmlListContainersResponse extends msRest.BaseHttpOperationRespo
 /**
  * Contains response data for the getServiceProperties operation.
  */
-export interface XmlGetServicePropertiesResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetServicePropertiesResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -997,7 +997,7 @@ export interface XmlGetServicePropertiesResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getAcls operation.
  */
-export interface XmlGetAclsResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlGetAclsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1011,7 +1011,7 @@ export interface XmlGetAclsResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the listBlobs operation.
  */
-export interface XmlListBlobsResponse extends msRest.BaseHttpOperationResponse {
+export interface XmlListBlobsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

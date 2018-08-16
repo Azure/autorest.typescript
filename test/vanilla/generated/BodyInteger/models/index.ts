@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface IntModelGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface IntModelGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -43,7 +43,7 @@ export interface IntModelGetNullResponse extends msRest.BaseHttpOperationRespons
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface IntModelGetInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface IntModelGetInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -57,7 +57,7 @@ export interface IntModelGetInvalidResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getOverflowInt32 operation.
  */
-export interface IntModelGetOverflowInt32Response extends msRest.BaseHttpOperationResponse {
+export interface IntModelGetOverflowInt32Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -71,7 +71,7 @@ export interface IntModelGetOverflowInt32Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getUnderflowInt32 operation.
  */
-export interface IntModelGetUnderflowInt32Response extends msRest.BaseHttpOperationResponse {
+export interface IntModelGetUnderflowInt32Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -85,7 +85,7 @@ export interface IntModelGetUnderflowInt32Response extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getOverflowInt64 operation.
  */
-export interface IntModelGetOverflowInt64Response extends msRest.BaseHttpOperationResponse {
+export interface IntModelGetOverflowInt64Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -99,7 +99,7 @@ export interface IntModelGetOverflowInt64Response extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getUnderflowInt64 operation.
  */
-export interface IntModelGetUnderflowInt64Response extends msRest.BaseHttpOperationResponse {
+export interface IntModelGetUnderflowInt64Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -113,7 +113,7 @@ export interface IntModelGetUnderflowInt64Response extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getUnixTime operation.
  */
-export interface IntModelGetUnixTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface IntModelGetUnixTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -127,7 +127,7 @@ export interface IntModelGetUnixTimeResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the getInvalidUnixTime operation.
  */
-export interface IntModelGetInvalidUnixTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface IntModelGetInvalidUnixTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -141,7 +141,7 @@ export interface IntModelGetInvalidUnixTimeResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getNullUnixTime operation.
  */
-export interface IntModelGetNullUnixTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface IntModelGetNullUnixTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

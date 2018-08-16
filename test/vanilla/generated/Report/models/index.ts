@@ -46,7 +46,7 @@ export interface AutoRestReportServiceGetReportOptionalParams extends msRest.Req
 /**
  * Contains response data for the getReport operation.
  */
-export interface GetReportResponse extends msRest.BaseHttpOperationResponse {
+export interface GetReportResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

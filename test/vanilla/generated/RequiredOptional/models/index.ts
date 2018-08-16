@@ -341,7 +341,7 @@ export interface ExplicitPostOptionalArrayHeaderOptionalParams extends msRest.Re
 /**
  * Contains response data for the getRequiredPath operation.
  */
-export interface ImplicitGetRequiredPathResponse extends msRest.BaseHttpOperationResponse {
+export interface ImplicitGetRequiredPathResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -355,7 +355,7 @@ export interface ImplicitGetRequiredPathResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getRequiredGlobalPath operation.
  */
-export interface ImplicitGetRequiredGlobalPathResponse extends msRest.BaseHttpOperationResponse {
+export interface ImplicitGetRequiredGlobalPathResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -369,7 +369,7 @@ export interface ImplicitGetRequiredGlobalPathResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getRequiredGlobalQuery operation.
  */
-export interface ImplicitGetRequiredGlobalQueryResponse extends msRest.BaseHttpOperationResponse {
+export interface ImplicitGetRequiredGlobalQueryResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -383,7 +383,7 @@ export interface ImplicitGetRequiredGlobalQueryResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the getOptionalGlobalQuery operation.
  */
-export interface ImplicitGetOptionalGlobalQueryResponse extends msRest.BaseHttpOperationResponse {
+export interface ImplicitGetOptionalGlobalQueryResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -397,7 +397,7 @@ export interface ImplicitGetOptionalGlobalQueryResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the postRequiredIntegerParameter operation.
  */
-export interface ExplicitPostRequiredIntegerParameterResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredIntegerParameterResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -411,7 +411,7 @@ export interface ExplicitPostRequiredIntegerParameterResponse extends msRest.Bas
 /**
  * Contains response data for the postRequiredIntegerProperty operation.
  */
-export interface ExplicitPostRequiredIntegerPropertyResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredIntegerPropertyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -425,7 +425,7 @@ export interface ExplicitPostRequiredIntegerPropertyResponse extends msRest.Base
 /**
  * Contains response data for the postRequiredIntegerHeader operation.
  */
-export interface ExplicitPostRequiredIntegerHeaderResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredIntegerHeaderResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -439,7 +439,7 @@ export interface ExplicitPostRequiredIntegerHeaderResponse extends msRest.BaseHt
 /**
  * Contains response data for the postRequiredStringParameter operation.
  */
-export interface ExplicitPostRequiredStringParameterResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredStringParameterResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -453,7 +453,7 @@ export interface ExplicitPostRequiredStringParameterResponse extends msRest.Base
 /**
  * Contains response data for the postRequiredStringProperty operation.
  */
-export interface ExplicitPostRequiredStringPropertyResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredStringPropertyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -467,7 +467,7 @@ export interface ExplicitPostRequiredStringPropertyResponse extends msRest.BaseH
 /**
  * Contains response data for the postRequiredStringHeader operation.
  */
-export interface ExplicitPostRequiredStringHeaderResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredStringHeaderResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -481,7 +481,7 @@ export interface ExplicitPostRequiredStringHeaderResponse extends msRest.BaseHtt
 /**
  * Contains response data for the postRequiredClassParameter operation.
  */
-export interface ExplicitPostRequiredClassParameterResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredClassParameterResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -495,7 +495,7 @@ export interface ExplicitPostRequiredClassParameterResponse extends msRest.BaseH
 /**
  * Contains response data for the postRequiredClassProperty operation.
  */
-export interface ExplicitPostRequiredClassPropertyResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredClassPropertyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -509,7 +509,7 @@ export interface ExplicitPostRequiredClassPropertyResponse extends msRest.BaseHt
 /**
  * Contains response data for the postRequiredArrayParameter operation.
  */
-export interface ExplicitPostRequiredArrayParameterResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredArrayParameterResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -523,7 +523,7 @@ export interface ExplicitPostRequiredArrayParameterResponse extends msRest.BaseH
 /**
  * Contains response data for the postRequiredArrayProperty operation.
  */
-export interface ExplicitPostRequiredArrayPropertyResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredArrayPropertyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -537,7 +537,7 @@ export interface ExplicitPostRequiredArrayPropertyResponse extends msRest.BaseHt
 /**
  * Contains response data for the postRequiredArrayHeader operation.
  */
-export interface ExplicitPostRequiredArrayHeaderResponse extends msRest.BaseHttpOperationResponse {
+export interface ExplicitPostRequiredArrayHeaderResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

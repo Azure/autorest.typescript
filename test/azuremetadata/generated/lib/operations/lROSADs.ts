@@ -58,7 +58,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPutNonRetry400Response>;
   }
 
 
@@ -94,7 +94,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPutNonRetry201Creating400Response>;
   }
 
 
@@ -131,7 +131,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPutNonRetry201Creating400InvalidJsonResponse>;
   }
 
 
@@ -167,7 +167,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPutAsyncRelativeRetry400Response>;
   }
 
 
@@ -189,7 +189,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsDeleteNonRetry400Response>;
   }
 
 
@@ -211,7 +211,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsDelete202NonRetry400Response>;
   }
 
 
@@ -234,7 +234,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response>;
   }
 
 
@@ -256,7 +256,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPostNonRetry400Response>;
   }
 
 
@@ -278,7 +278,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPost202NonRetry400Response>;
   }
 
 
@@ -301,7 +301,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPostAsyncRelativeRetry400Response>;
   }
 
 
@@ -337,7 +337,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPutError201NoProvisioningStatePayloadResponse>;
   }
 
 
@@ -374,7 +374,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse>;
   }
 
 
@@ -412,7 +412,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse>;
   }
 
 
@@ -427,7 +427,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDelete204SucceededWithHttpOperationResponse(options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -457,7 +457,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse>;
   }
 
 
@@ -480,7 +480,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPost202NoLocationResponse>;
   }
 
 
@@ -504,7 +504,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse>;
   }
 
 
@@ -540,7 +540,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPut200InvalidJsonResponse>;
   }
 
 
@@ -577,7 +577,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse>;
   }
 
 
@@ -615,7 +615,7 @@ export class LROSADs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
 
 
@@ -638,7 +638,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse>;
   }
 
 
@@ -661,7 +661,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse>;
   }
 
 
@@ -684,7 +684,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
 
 
@@ -707,7 +707,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPost202RetryInvalidHeaderResponse>;
   }
 
 
@@ -731,7 +731,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse>;
   }
 
 
@@ -756,7 +756,7 @@ export class LROSADs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
 
   /**
@@ -1029,7 +1029,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

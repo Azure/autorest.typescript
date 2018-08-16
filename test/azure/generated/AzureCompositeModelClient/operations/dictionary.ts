@@ -56,7 +56,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(options?: Models.DictionaryPutValidOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putValidWithHttpOperationResponse(options?: Models.DictionaryPutValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -94,7 +94,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyWithHttpOperationResponse(options?: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putEmptyWithHttpOperationResponse(options?: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

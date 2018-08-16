@@ -43,7 +43,7 @@ export class AvailabilitySets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateWithHttpOperationResponse(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  updateWithHttpOperationResponse(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,

@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface ByteModelGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ByteModelGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -43,7 +43,7 @@ export interface ByteModelGetNullResponse extends msRest.BaseHttpOperationRespon
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface ByteModelGetEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface ByteModelGetEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -57,7 +57,7 @@ export interface ByteModelGetEmptyResponse extends msRest.BaseHttpOperationRespo
 /**
  * Contains response data for the getNonAscii operation.
  */
-export interface ByteModelGetNonAsciiResponse extends msRest.BaseHttpOperationResponse {
+export interface ByteModelGetNonAsciiResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -71,7 +71,7 @@ export interface ByteModelGetNonAsciiResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface ByteModelGetInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface ByteModelGetInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

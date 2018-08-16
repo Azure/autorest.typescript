@@ -276,7 +276,7 @@ export enum GreyscaleColors {
 /**
  * Contains response data for the responseExistingKey operation.
  */
-export interface HeaderResponseExistingKeyResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseExistingKeyResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -286,7 +286,7 @@ export interface HeaderResponseExistingKeyResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the responseProtectedKey operation.
  */
-export interface HeaderResponseProtectedKeyResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseProtectedKeyResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -296,7 +296,7 @@ export interface HeaderResponseProtectedKeyResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the responseInteger operation.
  */
-export interface HeaderResponseIntegerResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseIntegerResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -306,7 +306,7 @@ export interface HeaderResponseIntegerResponse extends msRest.BaseHttpOperationR
 /**
  * Contains response data for the responseLong operation.
  */
-export interface HeaderResponseLongResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseLongResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -316,7 +316,7 @@ export interface HeaderResponseLongResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the responseFloat operation.
  */
-export interface HeaderResponseFloatResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseFloatResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -326,7 +326,7 @@ export interface HeaderResponseFloatResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the responseDouble operation.
  */
-export interface HeaderResponseDoubleResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseDoubleResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -336,7 +336,7 @@ export interface HeaderResponseDoubleResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the responseBool operation.
  */
-export interface HeaderResponseBoolResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseBoolResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -346,7 +346,7 @@ export interface HeaderResponseBoolResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the responseString operation.
  */
-export interface HeaderResponseStringResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseStringResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -356,7 +356,7 @@ export interface HeaderResponseStringResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the responseDate operation.
  */
-export interface HeaderResponseDateResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseDateResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -366,7 +366,7 @@ export interface HeaderResponseDateResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the responseDatetime operation.
  */
-export interface HeaderResponseDatetimeResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseDatetimeResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -376,7 +376,7 @@ export interface HeaderResponseDatetimeResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the responseDatetimeRfc1123 operation.
  */
-export interface HeaderResponseDatetimeRfc1123Response extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseDatetimeRfc1123Response extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -386,7 +386,7 @@ export interface HeaderResponseDatetimeRfc1123Response extends msRest.BaseHttpOp
 /**
  * Contains response data for the responseDuration operation.
  */
-export interface HeaderResponseDurationResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseDurationResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -396,7 +396,7 @@ export interface HeaderResponseDurationResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the responseByte operation.
  */
-export interface HeaderResponseByteResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseByteResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -406,7 +406,7 @@ export interface HeaderResponseByteResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the responseEnum operation.
  */
-export interface HeaderResponseEnumResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderResponseEnumResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */

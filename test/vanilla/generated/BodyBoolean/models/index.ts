@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getTrue operation.
  */
-export interface BoolGetTrueResponse extends msRest.BaseHttpOperationResponse {
+export interface BoolGetTrueResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -43,7 +43,7 @@ export interface BoolGetTrueResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the getFalse operation.
  */
-export interface BoolGetFalseResponse extends msRest.BaseHttpOperationResponse {
+export interface BoolGetFalseResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -57,7 +57,7 @@ export interface BoolGetFalseResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the getNull operation.
  */
-export interface BoolGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface BoolGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -71,7 +71,7 @@ export interface BoolGetNullResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface BoolGetInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface BoolGetInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

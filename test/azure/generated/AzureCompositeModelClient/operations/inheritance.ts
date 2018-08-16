@@ -60,7 +60,7 @@ export class Inheritance {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putValidWithHttpOperationResponse(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,

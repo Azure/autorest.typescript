@@ -114,7 +114,7 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -174,7 +174,7 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,

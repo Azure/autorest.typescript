@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface NumberGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -43,7 +43,7 @@ export interface NumberGetNullResponse extends msRest.BaseHttpOperationResponse 
 /**
  * Contains response data for the getInvalidFloat operation.
  */
-export interface NumberGetInvalidFloatResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetInvalidFloatResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -57,7 +57,7 @@ export interface NumberGetInvalidFloatResponse extends msRest.BaseHttpOperationR
 /**
  * Contains response data for the getInvalidDouble operation.
  */
-export interface NumberGetInvalidDoubleResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetInvalidDoubleResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -71,7 +71,7 @@ export interface NumberGetInvalidDoubleResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getInvalidDecimal operation.
  */
-export interface NumberGetInvalidDecimalResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetInvalidDecimalResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -85,7 +85,7 @@ export interface NumberGetInvalidDecimalResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getBigFloat operation.
  */
-export interface NumberGetBigFloatResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetBigFloatResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -99,7 +99,7 @@ export interface NumberGetBigFloatResponse extends msRest.BaseHttpOperationRespo
 /**
  * Contains response data for the getBigDouble operation.
  */
-export interface NumberGetBigDoubleResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetBigDoubleResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -113,7 +113,7 @@ export interface NumberGetBigDoubleResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getBigDoublePositiveDecimal operation.
  */
-export interface NumberGetBigDoublePositiveDecimalResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetBigDoublePositiveDecimalResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -127,7 +127,7 @@ export interface NumberGetBigDoublePositiveDecimalResponse extends msRest.BaseHt
 /**
  * Contains response data for the getBigDoubleNegativeDecimal operation.
  */
-export interface NumberGetBigDoubleNegativeDecimalResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetBigDoubleNegativeDecimalResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -141,7 +141,7 @@ export interface NumberGetBigDoubleNegativeDecimalResponse extends msRest.BaseHt
 /**
  * Contains response data for the getBigDecimal operation.
  */
-export interface NumberGetBigDecimalResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetBigDecimalResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -155,7 +155,7 @@ export interface NumberGetBigDecimalResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the getBigDecimalPositiveDecimal operation.
  */
-export interface NumberGetBigDecimalPositiveDecimalResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetBigDecimalPositiveDecimalResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -169,7 +169,7 @@ export interface NumberGetBigDecimalPositiveDecimalResponse extends msRest.BaseH
 /**
  * Contains response data for the getBigDecimalNegativeDecimal operation.
  */
-export interface NumberGetBigDecimalNegativeDecimalResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetBigDecimalNegativeDecimalResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -183,7 +183,7 @@ export interface NumberGetBigDecimalNegativeDecimalResponse extends msRest.BaseH
 /**
  * Contains response data for the getSmallFloat operation.
  */
-export interface NumberGetSmallFloatResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetSmallFloatResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -197,7 +197,7 @@ export interface NumberGetSmallFloatResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the getSmallDouble operation.
  */
-export interface NumberGetSmallDoubleResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetSmallDoubleResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -211,7 +211,7 @@ export interface NumberGetSmallDoubleResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getSmallDecimal operation.
  */
-export interface NumberGetSmallDecimalResponse extends msRest.BaseHttpOperationResponse {
+export interface NumberGetSmallDecimalResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

@@ -37,7 +37,7 @@ export class Odata {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithFilterWithHttpOperationResponse(options?: Models.OdataGetWithFilterOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  getWithFilterWithHttpOperationResponse(options?: Models.OdataGetWithFilterOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

@@ -58,7 +58,7 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.Basic, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putValidWithHttpOperationResponse(complexBody: Models.Basic, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,

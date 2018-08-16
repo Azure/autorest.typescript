@@ -55,7 +55,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNullWithHttpOperationResponse(options?: Models.StringPutNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putNullWithHttpOperationResponse(options?: Models.StringPutNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -93,7 +93,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -131,7 +131,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMbcsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putMbcsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -171,7 +171,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putWhitespaceWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putWhitespaceWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -249,7 +249,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBase64UrlEncodedWithHttpOperationResponse(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putBase64UrlEncodedWithHttpOperationResponse(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         stringBody,

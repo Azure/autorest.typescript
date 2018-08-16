@@ -138,7 +138,7 @@ export interface ComplexModelClientUpdateOptionalParams extends msRest.RequestOp
 /**
  * Contains response data for the list operation.
  */
-export interface ListResponse extends msRest.BaseHttpOperationResponse {
+export interface ListResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -152,7 +152,7 @@ export interface ListResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the create operation.
  */
-export interface CreateResponse extends msRest.BaseHttpOperationResponse {
+export interface CreateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -166,7 +166,7 @@ export interface CreateResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the update operation.
  */
-export interface UpdateResponse extends msRest.BaseHttpOperationResponse {
+export interface UpdateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

@@ -264,7 +264,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  get202None204NoneDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -283,7 +283,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultError204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  get202None204NoneDefaultError204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -302,7 +302,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  get202None204NoneDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -321,7 +321,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultNone202InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  get202None204NoneDefaultNone202InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -340,7 +340,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultNone204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  get202None204NoneDefaultNone204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -359,7 +359,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  get202None204NoneDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -378,7 +378,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  get202None204NoneDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -473,7 +473,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getDefaultNone200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getDefaultNone200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -492,7 +492,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getDefaultNone200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getDefaultNone200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -511,7 +511,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -530,7 +530,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

@@ -55,7 +55,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNull(options?: Models.StringPutNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putNull(options?: Models.StringPutNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -93,7 +93,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -131,7 +131,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMbcs(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putMbcs(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -171,7 +171,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putWhitespace(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putWhitespace(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -249,7 +249,7 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         stringBody,

@@ -44,7 +44,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface DictionaryGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -58,7 +58,7 @@ export interface DictionaryGetNullResponse extends msRest.BaseHttpOperationRespo
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface DictionaryGetEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -72,7 +72,7 @@ export interface DictionaryGetEmptyResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getNullValue operation.
  */
-export interface DictionaryGetNullValueResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetNullValueResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -86,7 +86,7 @@ export interface DictionaryGetNullValueResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getNullKey operation.
  */
-export interface DictionaryGetNullKeyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetNullKeyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -100,7 +100,7 @@ export interface DictionaryGetNullKeyResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getEmptyStringKey operation.
  */
-export interface DictionaryGetEmptyStringKeyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetEmptyStringKeyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -114,7 +114,7 @@ export interface DictionaryGetEmptyStringKeyResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface DictionaryGetInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -128,7 +128,7 @@ export interface DictionaryGetInvalidResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getBooleanTfft operation.
  */
-export interface DictionaryGetBooleanTfftResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetBooleanTfftResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -142,7 +142,7 @@ export interface DictionaryGetBooleanTfftResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getBooleanInvalidNull operation.
  */
-export interface DictionaryGetBooleanInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetBooleanInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -156,7 +156,7 @@ export interface DictionaryGetBooleanInvalidNullResponse extends msRest.BaseHttp
 /**
  * Contains response data for the getBooleanInvalidString operation.
  */
-export interface DictionaryGetBooleanInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetBooleanInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -170,7 +170,7 @@ export interface DictionaryGetBooleanInvalidStringResponse extends msRest.BaseHt
 /**
  * Contains response data for the getIntegerValid operation.
  */
-export interface DictionaryGetIntegerValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetIntegerValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -184,7 +184,7 @@ export interface DictionaryGetIntegerValidResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getIntInvalidNull operation.
  */
-export interface DictionaryGetIntInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetIntInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -198,7 +198,7 @@ export interface DictionaryGetIntInvalidNullResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getIntInvalidString operation.
  */
-export interface DictionaryGetIntInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetIntInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -212,7 +212,7 @@ export interface DictionaryGetIntInvalidStringResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getLongValid operation.
  */
-export interface DictionaryGetLongValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetLongValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -226,7 +226,7 @@ export interface DictionaryGetLongValidResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getLongInvalidNull operation.
  */
-export interface DictionaryGetLongInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetLongInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -240,7 +240,7 @@ export interface DictionaryGetLongInvalidNullResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getLongInvalidString operation.
  */
-export interface DictionaryGetLongInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetLongInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -254,7 +254,7 @@ export interface DictionaryGetLongInvalidStringResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the getFloatValid operation.
  */
-export interface DictionaryGetFloatValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetFloatValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -268,7 +268,7 @@ export interface DictionaryGetFloatValidResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getFloatInvalidNull operation.
  */
-export interface DictionaryGetFloatInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetFloatInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -282,7 +282,7 @@ export interface DictionaryGetFloatInvalidNullResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getFloatInvalidString operation.
  */
-export interface DictionaryGetFloatInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetFloatInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -296,7 +296,7 @@ export interface DictionaryGetFloatInvalidStringResponse extends msRest.BaseHttp
 /**
  * Contains response data for the getDoubleValid operation.
  */
-export interface DictionaryGetDoubleValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDoubleValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -310,7 +310,7 @@ export interface DictionaryGetDoubleValidResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getDoubleInvalidNull operation.
  */
-export interface DictionaryGetDoubleInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDoubleInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -324,7 +324,7 @@ export interface DictionaryGetDoubleInvalidNullResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the getDoubleInvalidString operation.
  */
-export interface DictionaryGetDoubleInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDoubleInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -338,7 +338,7 @@ export interface DictionaryGetDoubleInvalidStringResponse extends msRest.BaseHtt
 /**
  * Contains response data for the getStringValid operation.
  */
-export interface DictionaryGetStringValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetStringValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -352,7 +352,7 @@ export interface DictionaryGetStringValidResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getStringWithNull operation.
  */
-export interface DictionaryGetStringWithNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetStringWithNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -366,7 +366,7 @@ export interface DictionaryGetStringWithNullResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getStringWithInvalid operation.
  */
-export interface DictionaryGetStringWithInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetStringWithInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -380,7 +380,7 @@ export interface DictionaryGetStringWithInvalidResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the getDateValid operation.
  */
-export interface DictionaryGetDateValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDateValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -394,7 +394,7 @@ export interface DictionaryGetDateValidResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getDateInvalidNull operation.
  */
-export interface DictionaryGetDateInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDateInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -408,7 +408,7 @@ export interface DictionaryGetDateInvalidNullResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getDateInvalidChars operation.
  */
-export interface DictionaryGetDateInvalidCharsResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDateInvalidCharsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -422,7 +422,7 @@ export interface DictionaryGetDateInvalidCharsResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getDateTimeValid operation.
  */
-export interface DictionaryGetDateTimeValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDateTimeValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -436,7 +436,7 @@ export interface DictionaryGetDateTimeValidResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getDateTimeInvalidNull operation.
  */
-export interface DictionaryGetDateTimeInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDateTimeInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -450,7 +450,7 @@ export interface DictionaryGetDateTimeInvalidNullResponse extends msRest.BaseHtt
 /**
  * Contains response data for the getDateTimeInvalidChars operation.
  */
-export interface DictionaryGetDateTimeInvalidCharsResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDateTimeInvalidCharsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -464,7 +464,7 @@ export interface DictionaryGetDateTimeInvalidCharsResponse extends msRest.BaseHt
 /**
  * Contains response data for the getDateTimeRfc1123Valid operation.
  */
-export interface DictionaryGetDateTimeRfc1123ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDateTimeRfc1123ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -478,7 +478,7 @@ export interface DictionaryGetDateTimeRfc1123ValidResponse extends msRest.BaseHt
 /**
  * Contains response data for the getDurationValid operation.
  */
-export interface DictionaryGetDurationValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDurationValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -492,7 +492,7 @@ export interface DictionaryGetDurationValidResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getByteValid operation.
  */
-export interface DictionaryGetByteValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetByteValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -506,7 +506,7 @@ export interface DictionaryGetByteValidResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getByteInvalidNull operation.
  */
-export interface DictionaryGetByteInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetByteInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -520,7 +520,7 @@ export interface DictionaryGetByteInvalidNullResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getBase64Url operation.
  */
-export interface DictionaryGetBase64UrlResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetBase64UrlResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -534,7 +534,7 @@ export interface DictionaryGetBase64UrlResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getComplexNull operation.
  */
-export interface DictionaryGetComplexNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetComplexNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -548,7 +548,7 @@ export interface DictionaryGetComplexNullResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getComplexEmpty operation.
  */
-export interface DictionaryGetComplexEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetComplexEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -562,7 +562,7 @@ export interface DictionaryGetComplexEmptyResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getComplexItemNull operation.
  */
-export interface DictionaryGetComplexItemNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetComplexItemNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -576,7 +576,7 @@ export interface DictionaryGetComplexItemNullResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getComplexItemEmpty operation.
  */
-export interface DictionaryGetComplexItemEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetComplexItemEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -590,7 +590,7 @@ export interface DictionaryGetComplexItemEmptyResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getComplexValid operation.
  */
-export interface DictionaryGetComplexValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetComplexValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -604,7 +604,7 @@ export interface DictionaryGetComplexValidResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getArrayNull operation.
  */
-export interface DictionaryGetArrayNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetArrayNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -618,7 +618,7 @@ export interface DictionaryGetArrayNullResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getArrayEmpty operation.
  */
-export interface DictionaryGetArrayEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetArrayEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -632,7 +632,7 @@ export interface DictionaryGetArrayEmptyResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getArrayItemNull operation.
  */
-export interface DictionaryGetArrayItemNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetArrayItemNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -646,7 +646,7 @@ export interface DictionaryGetArrayItemNullResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getArrayItemEmpty operation.
  */
-export interface DictionaryGetArrayItemEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetArrayItemEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -660,7 +660,7 @@ export interface DictionaryGetArrayItemEmptyResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getArrayValid operation.
  */
-export interface DictionaryGetArrayValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetArrayValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -674,7 +674,7 @@ export interface DictionaryGetArrayValidResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getDictionaryNull operation.
  */
-export interface DictionaryGetDictionaryNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDictionaryNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -688,7 +688,7 @@ export interface DictionaryGetDictionaryNullResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getDictionaryEmpty operation.
  */
-export interface DictionaryGetDictionaryEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDictionaryEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -702,7 +702,7 @@ export interface DictionaryGetDictionaryEmptyResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getDictionaryItemNull operation.
  */
-export interface DictionaryGetDictionaryItemNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDictionaryItemNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -716,7 +716,7 @@ export interface DictionaryGetDictionaryItemNullResponse extends msRest.BaseHttp
 /**
  * Contains response data for the getDictionaryItemEmpty operation.
  */
-export interface DictionaryGetDictionaryItemEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDictionaryItemEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -730,7 +730,7 @@ export interface DictionaryGetDictionaryItemEmptyResponse extends msRest.BaseHtt
 /**
  * Contains response data for the getDictionaryValid operation.
  */
-export interface DictionaryGetDictionaryValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetDictionaryValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

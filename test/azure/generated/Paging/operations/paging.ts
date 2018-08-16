@@ -282,7 +282,7 @@ export class Paging {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.PagingGetMultiplePagesLROResponse>;
   }
 
   /**
@@ -591,7 +591,7 @@ export class Paging {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.PagingGetMultiplePagesLRONextResponse>;
   }
 
   /**

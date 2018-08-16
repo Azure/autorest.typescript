@@ -743,7 +743,7 @@ export enum MyKind {
 /**
  * Contains response data for the getValid operation.
  */
-export interface BasicGetValidResponse extends msRest.BaseHttpOperationResponse {
+export interface BasicGetValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -757,7 +757,7 @@ export interface BasicGetValidResponse extends msRest.BaseHttpOperationResponse 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface BasicGetInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface BasicGetInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -771,7 +771,7 @@ export interface BasicGetInvalidResponse extends msRest.BaseHttpOperationRespons
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface BasicGetEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface BasicGetEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -785,7 +785,7 @@ export interface BasicGetEmptyResponse extends msRest.BaseHttpOperationResponse 
 /**
  * Contains response data for the getNull operation.
  */
-export interface BasicGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface BasicGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -799,7 +799,7 @@ export interface BasicGetNullResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface BasicGetNotProvidedResponse extends msRest.BaseHttpOperationResponse {
+export interface BasicGetNotProvidedResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -813,7 +813,7 @@ export interface BasicGetNotProvidedResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the getInt operation.
  */
-export interface PrimitiveGetIntResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetIntResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -827,7 +827,7 @@ export interface PrimitiveGetIntResponse extends msRest.BaseHttpOperationRespons
 /**
  * Contains response data for the getLong operation.
  */
-export interface PrimitiveGetLongResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetLongResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -841,7 +841,7 @@ export interface PrimitiveGetLongResponse extends msRest.BaseHttpOperationRespon
 /**
  * Contains response data for the getFloat operation.
  */
-export interface PrimitiveGetFloatResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetFloatResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -855,7 +855,7 @@ export interface PrimitiveGetFloatResponse extends msRest.BaseHttpOperationRespo
 /**
  * Contains response data for the getDouble operation.
  */
-export interface PrimitiveGetDoubleResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetDoubleResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -869,7 +869,7 @@ export interface PrimitiveGetDoubleResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getBool operation.
  */
-export interface PrimitiveGetBoolResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetBoolResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -883,7 +883,7 @@ export interface PrimitiveGetBoolResponse extends msRest.BaseHttpOperationRespon
 /**
  * Contains response data for the getString operation.
  */
-export interface PrimitiveGetStringResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -897,7 +897,7 @@ export interface PrimitiveGetStringResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getDate operation.
  */
-export interface PrimitiveGetDateResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetDateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -911,7 +911,7 @@ export interface PrimitiveGetDateResponse extends msRest.BaseHttpOperationRespon
 /**
  * Contains response data for the getDateTime operation.
  */
-export interface PrimitiveGetDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -925,7 +925,7 @@ export interface PrimitiveGetDateTimeResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getDateTimeRfc1123 operation.
  */
-export interface PrimitiveGetDateTimeRfc1123Response extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetDateTimeRfc1123Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -939,7 +939,7 @@ export interface PrimitiveGetDateTimeRfc1123Response extends msRest.BaseHttpOper
 /**
  * Contains response data for the getDuration operation.
  */
-export interface PrimitiveGetDurationResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetDurationResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -953,7 +953,7 @@ export interface PrimitiveGetDurationResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getByte operation.
  */
-export interface PrimitiveGetByteResponse extends msRest.BaseHttpOperationResponse {
+export interface PrimitiveGetByteResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -967,7 +967,7 @@ export interface PrimitiveGetByteResponse extends msRest.BaseHttpOperationRespon
 /**
  * Contains response data for the getValid operation.
  */
-export interface ArrayModelGetValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -981,7 +981,7 @@ export interface ArrayModelGetValidResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface ArrayModelGetEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -995,7 +995,7 @@ export interface ArrayModelGetEmptyResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface ArrayModelGetNotProvidedResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetNotProvidedResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1009,7 +1009,7 @@ export interface ArrayModelGetNotProvidedResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getValid operation.
  */
-export interface DictionaryGetValidResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1023,7 +1023,7 @@ export interface DictionaryGetValidResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface DictionaryGetEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1037,7 +1037,7 @@ export interface DictionaryGetEmptyResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getNull operation.
  */
-export interface DictionaryGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1051,7 +1051,7 @@ export interface DictionaryGetNullResponse extends msRest.BaseHttpOperationRespo
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface DictionaryGetNotProvidedResponse extends msRest.BaseHttpOperationResponse {
+export interface DictionaryGetNotProvidedResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1065,7 +1065,7 @@ export interface DictionaryGetNotProvidedResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getValid operation.
  */
-export interface InheritanceGetValidResponse extends msRest.BaseHttpOperationResponse {
+export interface InheritanceGetValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1079,7 +1079,7 @@ export interface InheritanceGetValidResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the getValid operation.
  */
-export interface PolymorphismGetValidResponse extends msRest.BaseHttpOperationResponse {
+export interface PolymorphismGetValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1093,7 +1093,7 @@ export interface PolymorphismGetValidResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getComplicated operation.
  */
-export interface PolymorphismGetComplicatedResponse extends msRest.BaseHttpOperationResponse {
+export interface PolymorphismGetComplicatedResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1107,7 +1107,7 @@ export interface PolymorphismGetComplicatedResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the putMissingDiscriminator operation.
  */
-export interface PolymorphismPutMissingDiscriminatorResponse extends msRest.BaseHttpOperationResponse {
+export interface PolymorphismPutMissingDiscriminatorResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1121,7 +1121,7 @@ export interface PolymorphismPutMissingDiscriminatorResponse extends msRest.Base
 /**
  * Contains response data for the getValid operation.
  */
-export interface PolymorphicrecursiveGetValidResponse extends msRest.BaseHttpOperationResponse {
+export interface PolymorphicrecursiveGetValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1135,7 +1135,7 @@ export interface PolymorphicrecursiveGetValidResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getValid operation.
  */
-export interface ReadonlypropertyGetValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ReadonlypropertyGetValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -1149,7 +1149,7 @@ export interface ReadonlypropertyGetValidResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getValid operation.
  */
-export interface FlattencomplexGetValidResponse extends msRest.BaseHttpOperationResponse {
+export interface FlattencomplexGetValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

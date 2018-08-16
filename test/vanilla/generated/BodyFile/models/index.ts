@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getFile operation.
  */
-export interface FilesGetFileResponse extends msRest.BaseHttpOperationResponse {
+export interface FilesGetFileResponse extends msRest.HttpResponse {
   /**
    * BROWSER ONLY
    *
@@ -49,7 +49,7 @@ export interface FilesGetFileResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the getFileLarge operation.
  */
-export interface FilesGetFileLargeResponse extends msRest.BaseHttpOperationResponse {
+export interface FilesGetFileLargeResponse extends msRest.HttpResponse {
   /**
    * BROWSER ONLY
    *
@@ -69,7 +69,7 @@ export interface FilesGetFileLargeResponse extends msRest.BaseHttpOperationRespo
 /**
  * Contains response data for the getEmptyFile operation.
  */
-export interface FilesGetEmptyFileResponse extends msRest.BaseHttpOperationResponse {
+export interface FilesGetEmptyFileResponse extends msRest.HttpResponse {
   /**
    * BROWSER ONLY
    *

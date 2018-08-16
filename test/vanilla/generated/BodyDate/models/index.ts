@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface DateModelGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DateModelGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -43,7 +43,7 @@ export interface DateModelGetNullResponse extends msRest.BaseHttpOperationRespon
 /**
  * Contains response data for the getInvalidDate operation.
  */
-export interface DateModelGetInvalidDateResponse extends msRest.BaseHttpOperationResponse {
+export interface DateModelGetInvalidDateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -57,7 +57,7 @@ export interface DateModelGetInvalidDateResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getOverflowDate operation.
  */
-export interface DateModelGetOverflowDateResponse extends msRest.BaseHttpOperationResponse {
+export interface DateModelGetOverflowDateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -71,7 +71,7 @@ export interface DateModelGetOverflowDateResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getUnderflowDate operation.
  */
-export interface DateModelGetUnderflowDateResponse extends msRest.BaseHttpOperationResponse {
+export interface DateModelGetUnderflowDateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -85,7 +85,7 @@ export interface DateModelGetUnderflowDateResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getMaxDate operation.
  */
-export interface DateModelGetMaxDateResponse extends msRest.BaseHttpOperationResponse {
+export interface DateModelGetMaxDateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -99,7 +99,7 @@ export interface DateModelGetMaxDateResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the getMinDate operation.
  */
-export interface DateModelGetMinDateResponse extends msRest.BaseHttpOperationResponse {
+export interface DateModelGetMinDateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

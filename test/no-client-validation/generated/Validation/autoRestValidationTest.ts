@@ -100,7 +100,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.sendOperationRequest(
       {
         options

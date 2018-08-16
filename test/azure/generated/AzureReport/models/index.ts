@@ -50,7 +50,7 @@ export interface AutoRestReportServiceForAzureGetReportOptionalParams extends ms
 /**
  * Contains response data for the getReport operation.
  */
-export interface GetReportResponse extends msRest.BaseHttpOperationResponse {
+export interface GetReportResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

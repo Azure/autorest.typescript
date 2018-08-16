@@ -90,7 +90,7 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -133,7 +133,7 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putComplicatedWithHttpOperationResponse(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putComplicatedWithHttpOperationResponse(complexBody: Models.SalmonUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -204,7 +204,7 @@ export class Polymorphism {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidMissingRequiredWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putValidMissingRequiredWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,

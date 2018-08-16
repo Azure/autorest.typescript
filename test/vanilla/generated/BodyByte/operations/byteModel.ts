@@ -96,7 +96,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNonAsciiWithHttpOperationResponse(byteBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putNonAsciiWithHttpOperationResponse(byteBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         byteBody,

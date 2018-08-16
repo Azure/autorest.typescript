@@ -114,7 +114,7 @@ export class DateModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMaxDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putMaxDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         dateBody,
@@ -155,7 +155,7 @@ export class DateModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMinDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putMinDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         dateBody,

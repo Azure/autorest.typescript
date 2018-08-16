@@ -56,7 +56,7 @@ export enum FooEnum {
 /**
  * Contains response data for the getNull operation.
  */
-export interface ArrayModelGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -70,7 +70,7 @@ export interface ArrayModelGetNullResponse extends msRest.BaseHttpOperationRespo
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface ArrayModelGetInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -84,7 +84,7 @@ export interface ArrayModelGetInvalidResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface ArrayModelGetEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -98,7 +98,7 @@ export interface ArrayModelGetEmptyResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getBooleanTfft operation.
  */
-export interface ArrayModelGetBooleanTfftResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetBooleanTfftResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -112,7 +112,7 @@ export interface ArrayModelGetBooleanTfftResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getBooleanInvalidNull operation.
  */
-export interface ArrayModelGetBooleanInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetBooleanInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -126,7 +126,7 @@ export interface ArrayModelGetBooleanInvalidNullResponse extends msRest.BaseHttp
 /**
  * Contains response data for the getBooleanInvalidString operation.
  */
-export interface ArrayModelGetBooleanInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetBooleanInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -140,7 +140,7 @@ export interface ArrayModelGetBooleanInvalidStringResponse extends msRest.BaseHt
 /**
  * Contains response data for the getIntegerValid operation.
  */
-export interface ArrayModelGetIntegerValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetIntegerValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -154,7 +154,7 @@ export interface ArrayModelGetIntegerValidResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getIntInvalidNull operation.
  */
-export interface ArrayModelGetIntInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetIntInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -168,7 +168,7 @@ export interface ArrayModelGetIntInvalidNullResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getIntInvalidString operation.
  */
-export interface ArrayModelGetIntInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetIntInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -182,7 +182,7 @@ export interface ArrayModelGetIntInvalidStringResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getLongValid operation.
  */
-export interface ArrayModelGetLongValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetLongValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -196,7 +196,7 @@ export interface ArrayModelGetLongValidResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getLongInvalidNull operation.
  */
-export interface ArrayModelGetLongInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetLongInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -210,7 +210,7 @@ export interface ArrayModelGetLongInvalidNullResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getLongInvalidString operation.
  */
-export interface ArrayModelGetLongInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetLongInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -224,7 +224,7 @@ export interface ArrayModelGetLongInvalidStringResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the getFloatValid operation.
  */
-export interface ArrayModelGetFloatValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetFloatValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -238,7 +238,7 @@ export interface ArrayModelGetFloatValidResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getFloatInvalidNull operation.
  */
-export interface ArrayModelGetFloatInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetFloatInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -252,7 +252,7 @@ export interface ArrayModelGetFloatInvalidNullResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getFloatInvalidString operation.
  */
-export interface ArrayModelGetFloatInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetFloatInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -266,7 +266,7 @@ export interface ArrayModelGetFloatInvalidStringResponse extends msRest.BaseHttp
 /**
  * Contains response data for the getDoubleValid operation.
  */
-export interface ArrayModelGetDoubleValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDoubleValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -280,7 +280,7 @@ export interface ArrayModelGetDoubleValidResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getDoubleInvalidNull operation.
  */
-export interface ArrayModelGetDoubleInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDoubleInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -294,7 +294,7 @@ export interface ArrayModelGetDoubleInvalidNullResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the getDoubleInvalidString operation.
  */
-export interface ArrayModelGetDoubleInvalidStringResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDoubleInvalidStringResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -308,7 +308,7 @@ export interface ArrayModelGetDoubleInvalidStringResponse extends msRest.BaseHtt
 /**
  * Contains response data for the getStringValid operation.
  */
-export interface ArrayModelGetStringValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetStringValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -322,7 +322,7 @@ export interface ArrayModelGetStringValidResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getEnumValid operation.
  */
-export interface ArrayModelGetEnumValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetEnumValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -336,7 +336,7 @@ export interface ArrayModelGetEnumValidResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getStringEnumValid operation.
  */
-export interface ArrayModelGetStringEnumValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetStringEnumValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -350,7 +350,7 @@ export interface ArrayModelGetStringEnumValidResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getStringWithNull operation.
  */
-export interface ArrayModelGetStringWithNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetStringWithNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -364,7 +364,7 @@ export interface ArrayModelGetStringWithNullResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getStringWithInvalid operation.
  */
-export interface ArrayModelGetStringWithInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetStringWithInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -378,7 +378,7 @@ export interface ArrayModelGetStringWithInvalidResponse extends msRest.BaseHttpO
 /**
  * Contains response data for the getUuidValid operation.
  */
-export interface ArrayModelGetUuidValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetUuidValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -392,7 +392,7 @@ export interface ArrayModelGetUuidValidResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getUuidInvalidChars operation.
  */
-export interface ArrayModelGetUuidInvalidCharsResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetUuidInvalidCharsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -406,7 +406,7 @@ export interface ArrayModelGetUuidInvalidCharsResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getDateValid operation.
  */
-export interface ArrayModelGetDateValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDateValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -420,7 +420,7 @@ export interface ArrayModelGetDateValidResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getDateInvalidNull operation.
  */
-export interface ArrayModelGetDateInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDateInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -434,7 +434,7 @@ export interface ArrayModelGetDateInvalidNullResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getDateInvalidChars operation.
  */
-export interface ArrayModelGetDateInvalidCharsResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDateInvalidCharsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -448,7 +448,7 @@ export interface ArrayModelGetDateInvalidCharsResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getDateTimeValid operation.
  */
-export interface ArrayModelGetDateTimeValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDateTimeValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -462,7 +462,7 @@ export interface ArrayModelGetDateTimeValidResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getDateTimeInvalidNull operation.
  */
-export interface ArrayModelGetDateTimeInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDateTimeInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -476,7 +476,7 @@ export interface ArrayModelGetDateTimeInvalidNullResponse extends msRest.BaseHtt
 /**
  * Contains response data for the getDateTimeInvalidChars operation.
  */
-export interface ArrayModelGetDateTimeInvalidCharsResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDateTimeInvalidCharsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -490,7 +490,7 @@ export interface ArrayModelGetDateTimeInvalidCharsResponse extends msRest.BaseHt
 /**
  * Contains response data for the getDateTimeRfc1123Valid operation.
  */
-export interface ArrayModelGetDateTimeRfc1123ValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDateTimeRfc1123ValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -504,7 +504,7 @@ export interface ArrayModelGetDateTimeRfc1123ValidResponse extends msRest.BaseHt
 /**
  * Contains response data for the getDurationValid operation.
  */
-export interface ArrayModelGetDurationValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDurationValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -518,7 +518,7 @@ export interface ArrayModelGetDurationValidResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getByteValid operation.
  */
-export interface ArrayModelGetByteValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetByteValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -532,7 +532,7 @@ export interface ArrayModelGetByteValidResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getByteInvalidNull operation.
  */
-export interface ArrayModelGetByteInvalidNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetByteInvalidNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -546,7 +546,7 @@ export interface ArrayModelGetByteInvalidNullResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getBase64Url operation.
  */
-export interface ArrayModelGetBase64UrlResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetBase64UrlResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -560,7 +560,7 @@ export interface ArrayModelGetBase64UrlResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getComplexNull operation.
  */
-export interface ArrayModelGetComplexNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetComplexNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -574,7 +574,7 @@ export interface ArrayModelGetComplexNullResponse extends msRest.BaseHttpOperati
 /**
  * Contains response data for the getComplexEmpty operation.
  */
-export interface ArrayModelGetComplexEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetComplexEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -588,7 +588,7 @@ export interface ArrayModelGetComplexEmptyResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getComplexItemNull operation.
  */
-export interface ArrayModelGetComplexItemNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetComplexItemNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -602,7 +602,7 @@ export interface ArrayModelGetComplexItemNullResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getComplexItemEmpty operation.
  */
-export interface ArrayModelGetComplexItemEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetComplexItemEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -616,7 +616,7 @@ export interface ArrayModelGetComplexItemEmptyResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getComplexValid operation.
  */
-export interface ArrayModelGetComplexValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetComplexValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -630,7 +630,7 @@ export interface ArrayModelGetComplexValidResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getArrayNull operation.
  */
-export interface ArrayModelGetArrayNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetArrayNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -644,7 +644,7 @@ export interface ArrayModelGetArrayNullResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getArrayEmpty operation.
  */
-export interface ArrayModelGetArrayEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetArrayEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -658,7 +658,7 @@ export interface ArrayModelGetArrayEmptyResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getArrayItemNull operation.
  */
-export interface ArrayModelGetArrayItemNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetArrayItemNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -672,7 +672,7 @@ export interface ArrayModelGetArrayItemNullResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the getArrayItemEmpty operation.
  */
-export interface ArrayModelGetArrayItemEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetArrayItemEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -686,7 +686,7 @@ export interface ArrayModelGetArrayItemEmptyResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getArrayValid operation.
  */
-export interface ArrayModelGetArrayValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetArrayValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -700,7 +700,7 @@ export interface ArrayModelGetArrayValidResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the getDictionaryNull operation.
  */
-export interface ArrayModelGetDictionaryNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDictionaryNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -714,7 +714,7 @@ export interface ArrayModelGetDictionaryNullResponse extends msRest.BaseHttpOper
 /**
  * Contains response data for the getDictionaryEmpty operation.
  */
-export interface ArrayModelGetDictionaryEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDictionaryEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -728,7 +728,7 @@ export interface ArrayModelGetDictionaryEmptyResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the getDictionaryItemNull operation.
  */
-export interface ArrayModelGetDictionaryItemNullResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDictionaryItemNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -742,7 +742,7 @@ export interface ArrayModelGetDictionaryItemNullResponse extends msRest.BaseHttp
 /**
  * Contains response data for the getDictionaryItemEmpty operation.
  */
-export interface ArrayModelGetDictionaryItemEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDictionaryItemEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -756,7 +756,7 @@ export interface ArrayModelGetDictionaryItemEmptyResponse extends msRest.BaseHtt
 /**
  * Contains response data for the getDictionaryValid operation.
  */
-export interface ArrayModelGetDictionaryValidResponse extends msRest.BaseHttpOperationResponse {
+export interface ArrayModelGetDictionaryValidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

@@ -492,7 +492,7 @@ export enum UsageUnit {
 /**
  * Contains response data for the checkNameAvailability operation.
  */
-export interface StorageAccountsCheckNameAvailabilityResponse extends msRest.BaseHttpOperationResponse {
+export interface StorageAccountsCheckNameAvailabilityResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -506,7 +506,7 @@ export interface StorageAccountsCheckNameAvailabilityResponse extends msRest.Bas
 /**
  * Contains response data for the create operation.
  */
-export interface StorageAccountsCreateResponse extends msRest.BaseHttpOperationResponse {
+export interface StorageAccountsCreateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -520,7 +520,7 @@ export interface StorageAccountsCreateResponse extends msRest.BaseHttpOperationR
 /**
  * Contains response data for the getProperties operation.
  */
-export interface StorageAccountsGetPropertiesResponse extends msRest.BaseHttpOperationResponse {
+export interface StorageAccountsGetPropertiesResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -534,7 +534,7 @@ export interface StorageAccountsGetPropertiesResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the update operation.
  */
-export interface StorageAccountsUpdateResponse extends msRest.BaseHttpOperationResponse {
+export interface StorageAccountsUpdateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -548,7 +548,7 @@ export interface StorageAccountsUpdateResponse extends msRest.BaseHttpOperationR
 /**
  * Contains response data for the listKeys operation.
  */
-export interface StorageAccountsListKeysResponse extends msRest.BaseHttpOperationResponse {
+export interface StorageAccountsListKeysResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -562,7 +562,7 @@ export interface StorageAccountsListKeysResponse extends msRest.BaseHttpOperatio
 /**
  * Contains response data for the list operation.
  */
-export interface StorageAccountsListResponse extends msRest.BaseHttpOperationResponse {
+export interface StorageAccountsListResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -576,7 +576,7 @@ export interface StorageAccountsListResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the listByResourceGroup operation.
  */
-export interface StorageAccountsListByResourceGroupResponse extends msRest.BaseHttpOperationResponse {
+export interface StorageAccountsListByResourceGroupResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -590,7 +590,7 @@ export interface StorageAccountsListByResourceGroupResponse extends msRest.BaseH
 /**
  * Contains response data for the regenerateKey operation.
  */
-export interface StorageAccountsRegenerateKeyResponse extends msRest.BaseHttpOperationResponse {
+export interface StorageAccountsRegenerateKeyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -604,7 +604,7 @@ export interface StorageAccountsRegenerateKeyResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the beginCreate operation.
  */
-export interface StorageAccountsBeginCreateResponse extends msRest.BaseHttpOperationResponse {
+export interface StorageAccountsBeginCreateResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -618,7 +618,7 @@ export interface StorageAccountsBeginCreateResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the list operation.
  */
-export interface UsageListResponse extends msRest.BaseHttpOperationResponse {
+export interface UsageListResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

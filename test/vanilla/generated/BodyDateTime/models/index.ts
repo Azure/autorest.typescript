@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface DatetimeGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -43,7 +43,7 @@ export interface DatetimeGetNullResponse extends msRest.BaseHttpOperationRespons
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface DatetimeGetInvalidResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -57,7 +57,7 @@ export interface DatetimeGetInvalidResponse extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the getOverflow operation.
  */
-export interface DatetimeGetOverflowResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetOverflowResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -71,7 +71,7 @@ export interface DatetimeGetOverflowResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the getUnderflow operation.
  */
-export interface DatetimeGetUnderflowResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetUnderflowResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -85,7 +85,7 @@ export interface DatetimeGetUnderflowResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getUtcLowercaseMaxDateTime operation.
  */
-export interface DatetimeGetUtcLowercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetUtcLowercaseMaxDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -99,7 +99,7 @@ export interface DatetimeGetUtcLowercaseMaxDateTimeResponse extends msRest.BaseH
 /**
  * Contains response data for the getUtcUppercaseMaxDateTime operation.
  */
-export interface DatetimeGetUtcUppercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetUtcUppercaseMaxDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -114,7 +114,7 @@ export interface DatetimeGetUtcUppercaseMaxDateTimeResponse extends msRest.BaseH
  * Contains response data for the getLocalPositiveOffsetLowercaseMaxDateTime
  * operation.
  */
-export interface DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -129,7 +129,7 @@ export interface DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse exte
  * Contains response data for the getLocalPositiveOffsetUppercaseMaxDateTime
  * operation.
  */
-export interface DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -144,7 +144,7 @@ export interface DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse exte
  * Contains response data for the getLocalNegativeOffsetUppercaseMaxDateTime
  * operation.
  */
-export interface DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -159,7 +159,7 @@ export interface DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse exte
  * Contains response data for the getLocalNegativeOffsetLowercaseMaxDateTime
  * operation.
  */
-export interface DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -173,7 +173,7 @@ export interface DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse exte
 /**
  * Contains response data for the getUtcMinDateTime operation.
  */
-export interface DatetimeGetUtcMinDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetUtcMinDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -187,7 +187,7 @@ export interface DatetimeGetUtcMinDateTimeResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getLocalPositiveOffsetMinDateTime operation.
  */
-export interface DatetimeGetLocalPositiveOffsetMinDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetLocalPositiveOffsetMinDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -201,7 +201,7 @@ export interface DatetimeGetLocalPositiveOffsetMinDateTimeResponse extends msRes
 /**
  * Contains response data for the getLocalNegativeOffsetMinDateTime operation.
  */
-export interface DatetimeGetLocalNegativeOffsetMinDateTimeResponse extends msRest.BaseHttpOperationResponse {
+export interface DatetimeGetLocalNegativeOffsetMinDateTimeResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

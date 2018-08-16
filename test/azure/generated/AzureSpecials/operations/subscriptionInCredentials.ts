@@ -37,7 +37,7 @@ export class SubscriptionInCredentials {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postMethodGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  postMethodGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -57,7 +57,7 @@ export class SubscriptionInCredentials {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postMethodGlobalNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  postMethodGlobalNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -77,7 +77,7 @@ export class SubscriptionInCredentials {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postMethodGlobalNotProvidedValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  postMethodGlobalNotProvidedValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -97,7 +97,7 @@ export class SubscriptionInCredentials {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postPathGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  postPathGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -117,7 +117,7 @@ export class SubscriptionInCredentials {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postSwaggerGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  postSwaggerGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

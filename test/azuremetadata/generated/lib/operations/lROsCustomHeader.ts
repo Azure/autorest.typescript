@@ -61,7 +61,7 @@ export class LROsCustomHeader {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse>;
   }
 
 
@@ -99,7 +99,7 @@ export class LROsCustomHeader {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsCustomHeaderPut201CreatingSucceeded200Response>;
   }
 
 
@@ -123,7 +123,7 @@ export class LROsCustomHeader {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsCustomHeaderPost202Retry200Response>;
   }
 
 
@@ -148,7 +148,7 @@ export class LROsCustomHeader {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse>;
   }
 
   /**

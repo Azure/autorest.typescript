@@ -152,7 +152,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMax32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putMax32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -174,7 +174,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMax64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putMax64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -196,7 +196,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMin32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putMin32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -218,7 +218,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMin64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putMin64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -259,7 +259,7 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUnixTimeDateWithHttpOperationResponse(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putUnixTimeDateWithHttpOperationResponse(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,

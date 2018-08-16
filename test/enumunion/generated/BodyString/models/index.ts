@@ -142,7 +142,7 @@ export type GetWhitespaceOKResponse = '    Now is the time for all good men to c
 /**
  * Contains response data for the getNull operation.
  */
-export interface StringGetNullResponse extends msRest.BaseHttpOperationResponse {
+export interface StringGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -156,7 +156,7 @@ export interface StringGetNullResponse extends msRest.BaseHttpOperationResponse 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface StringGetEmptyResponse extends msRest.BaseHttpOperationResponse {
+export interface StringGetEmptyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -170,7 +170,7 @@ export interface StringGetEmptyResponse extends msRest.BaseHttpOperationResponse
 /**
  * Contains response data for the getMbcs operation.
  */
-export interface StringGetMbcsResponse extends msRest.BaseHttpOperationResponse {
+export interface StringGetMbcsResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -184,7 +184,7 @@ export interface StringGetMbcsResponse extends msRest.BaseHttpOperationResponse 
 /**
  * Contains response data for the getWhitespace operation.
  */
-export interface StringGetWhitespaceResponse extends msRest.BaseHttpOperationResponse {
+export interface StringGetWhitespaceResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -198,7 +198,7 @@ export interface StringGetWhitespaceResponse extends msRest.BaseHttpOperationRes
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface StringGetNotProvidedResponse extends msRest.BaseHttpOperationResponse {
+export interface StringGetNotProvidedResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -212,7 +212,7 @@ export interface StringGetNotProvidedResponse extends msRest.BaseHttpOperationRe
 /**
  * Contains response data for the getBase64Encoded operation.
  */
-export interface StringGetBase64EncodedResponse extends msRest.BaseHttpOperationResponse {
+export interface StringGetBase64EncodedResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -226,7 +226,7 @@ export interface StringGetBase64EncodedResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getBase64UrlEncoded operation.
  */
-export interface StringGetBase64UrlEncodedResponse extends msRest.BaseHttpOperationResponse {
+export interface StringGetBase64UrlEncodedResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -240,7 +240,7 @@ export interface StringGetBase64UrlEncodedResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getNullBase64UrlEncoded operation.
  */
-export interface StringGetNullBase64UrlEncodedResponse extends msRest.BaseHttpOperationResponse {
+export interface StringGetNullBase64UrlEncodedResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -254,7 +254,7 @@ export interface StringGetNullBase64UrlEncodedResponse extends msRest.BaseHttpOp
 /**
  * Contains response data for the getNotExpandable operation.
  */
-export interface EnumModelGetNotExpandableResponse extends msRest.BaseHttpOperationResponse {
+export interface EnumModelGetNotExpandableResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -268,7 +268,7 @@ export interface EnumModelGetNotExpandableResponse extends msRest.BaseHttpOperat
 /**
  * Contains response data for the getReferenced operation.
  */
-export interface EnumModelGetReferencedResponse extends msRest.BaseHttpOperationResponse {
+export interface EnumModelGetReferencedResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -282,7 +282,7 @@ export interface EnumModelGetReferencedResponse extends msRest.BaseHttpOperation
 /**
  * Contains response data for the getReferencedConstant operation.
  */
-export interface EnumModelGetReferencedConstantResponse extends msRest.BaseHttpOperationResponse {
+export interface EnumModelGetReferencedConstantResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

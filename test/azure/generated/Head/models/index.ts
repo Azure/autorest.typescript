@@ -18,7 +18,7 @@ export { BaseResource, CloudError };
 /**
  * Contains response data for the head200 operation.
  */
-export interface HttpSuccessHead200Response extends msRest.BaseHttpOperationResponse {
+export interface HttpSuccessHead200Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -32,7 +32,7 @@ export interface HttpSuccessHead200Response extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the head204 operation.
  */
-export interface HttpSuccessHead204Response extends msRest.BaseHttpOperationResponse {
+export interface HttpSuccessHead204Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -46,7 +46,7 @@ export interface HttpSuccessHead204Response extends msRest.BaseHttpOperationResp
 /**
  * Contains response data for the head404 operation.
  */
-export interface HttpSuccessHead404Response extends msRest.BaseHttpOperationResponse {
+export interface HttpSuccessHead404Response extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

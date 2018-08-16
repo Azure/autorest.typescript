@@ -94,7 +94,7 @@ export class StorageAccounts {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.StorageAccountsCreateResponse>;
   }
 
   /**
@@ -114,7 +114,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,

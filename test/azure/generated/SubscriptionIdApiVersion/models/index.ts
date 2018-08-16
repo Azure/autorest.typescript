@@ -48,7 +48,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getSampleResourceGroup operation.
  */
-export interface GroupGetSampleResourceGroupResponse extends msRest.BaseHttpOperationResponse {
+export interface GroupGetSampleResourceGroupResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

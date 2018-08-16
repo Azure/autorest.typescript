@@ -37,7 +37,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -56,7 +56,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -75,7 +75,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBooleanNullWithHttpOperationResponse(options?: Models.QueriesGetBooleanNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  getBooleanNullWithHttpOperationResponse(options?: Models.QueriesGetBooleanNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -94,7 +94,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -113,7 +113,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -132,7 +132,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getIntNullWithHttpOperationResponse(options?: Models.QueriesGetIntNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  getIntNullWithHttpOperationResponse(options?: Models.QueriesGetIntNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -151,7 +151,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -170,7 +170,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -189,7 +189,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLongNullWithHttpOperationResponse(options?: Models.QueriesGetLongNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  getLongNullWithHttpOperationResponse(options?: Models.QueriesGetLongNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -208,7 +208,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -227,7 +227,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -246,7 +246,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  floatNullWithHttpOperationResponse(options?: Models.QueriesFloatNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  floatNullWithHttpOperationResponse(options?: Models.QueriesFloatNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -265,7 +265,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -284,7 +284,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -303,7 +303,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  doubleNullWithHttpOperationResponse(options?: Models.QueriesDoubleNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  doubleNullWithHttpOperationResponse(options?: Models.QueriesDoubleNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -322,7 +322,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -341,7 +341,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -360,7 +360,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -379,7 +379,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringNullWithHttpOperationResponse(options?: Models.QueriesStringNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  stringNullWithHttpOperationResponse(options?: Models.QueriesStringNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -398,7 +398,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  enumValidWithHttpOperationResponse(options?: Models.QueriesEnumValidOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  enumValidWithHttpOperationResponse(options?: Models.QueriesEnumValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -417,7 +417,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  enumNullWithHttpOperationResponse(options?: Models.QueriesEnumNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  enumNullWithHttpOperationResponse(options?: Models.QueriesEnumNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -436,7 +436,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  byteMultiByteWithHttpOperationResponse(options?: Models.QueriesByteMultiByteOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  byteMultiByteWithHttpOperationResponse(options?: Models.QueriesByteMultiByteOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -455,7 +455,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -474,7 +474,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  byteNullWithHttpOperationResponse(options?: Models.QueriesByteNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  byteNullWithHttpOperationResponse(options?: Models.QueriesByteNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -493,7 +493,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -512,7 +512,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateNullWithHttpOperationResponse(options?: Models.QueriesDateNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  dateNullWithHttpOperationResponse(options?: Models.QueriesDateNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -531,7 +531,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -550,7 +550,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateTimeNullWithHttpOperationResponse(options?: Models.QueriesDateTimeNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  dateTimeNullWithHttpOperationResponse(options?: Models.QueriesDateTimeNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -570,7 +570,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringCsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvValidOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  arrayStringCsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -589,7 +589,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringCsvNullWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvNullOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  arrayStringCsvNullWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvNullOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -608,7 +608,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringCsvEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  arrayStringCsvEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -628,7 +628,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringSsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringSsvValidOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  arrayStringSsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringSsvValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -648,7 +648,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringTsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringTsvValidOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  arrayStringTsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringTsvValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -668,7 +668,7 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringPipesValidWithHttpOperationResponse(options?: Models.QueriesArrayStringPipesValidOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  arrayStringPipesValidWithHttpOperationResponse(options?: Models.QueriesArrayStringPipesValidOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

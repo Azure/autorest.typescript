@@ -59,7 +59,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPut200SucceededResponse>;
   }
 
 
@@ -95,7 +95,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPut200SucceededNoStateResponse>;
   }
 
 
@@ -132,7 +132,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPut202Retry200Response>;
   }
 
 
@@ -169,7 +169,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPut201CreatingSucceeded200Response>;
   }
 
 
@@ -206,7 +206,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPut200UpdatingSucceeded204Response>;
   }
 
 
@@ -243,7 +243,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPut201CreatingFailed200Response>;
   }
 
 
@@ -280,7 +280,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPut200Acceptedcanceled200Response>;
   }
 
 
@@ -316,7 +316,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutNoHeaderInRetryResponse>;
   }
 
 
@@ -353,7 +353,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutAsyncRetrySucceededResponse>;
   }
 
 
@@ -390,7 +390,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutAsyncNoRetrySucceededResponse>;
   }
 
 
@@ -427,7 +427,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutAsyncRetryFailedResponse>;
   }
 
 
@@ -464,7 +464,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutAsyncNoRetrycanceledResponse>;
   }
 
 
@@ -500,7 +500,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutAsyncNoHeaderInRetryResponse>;
   }
 
 
@@ -535,7 +535,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutNonResourceResponse>;
   }
 
 
@@ -570,7 +570,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutAsyncNonResourceResponse>;
   }
 
 
@@ -605,7 +605,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutSubResourceResponse>;
   }
 
 
@@ -640,7 +640,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPutAsyncSubResourceResponse>;
   }
 
 
@@ -677,7 +677,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse>;
   }
 
 
@@ -714,7 +714,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response>;
   }
 
 
@@ -751,7 +751,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response>;
   }
 
 
@@ -766,7 +766,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDelete204SucceededWithHttpOperationResponse(options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -809,7 +809,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsDelete202Retry200Response>;
   }
 
 
@@ -845,7 +845,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsDelete202NoRetry204Response>;
   }
 
 
@@ -868,7 +868,7 @@ export class LROs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsDeleteNoHeaderInRetryResponse>;
   }
 
 
@@ -891,7 +891,7 @@ export class LROs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse>;
   }
 
 
@@ -914,7 +914,7 @@ export class LROs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsDeleteAsyncRetrySucceededResponse>;
   }
 
 
@@ -937,7 +937,7 @@ export class LROs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse>;
   }
 
 
@@ -960,7 +960,7 @@ export class LROs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsDeleteAsyncRetryFailedResponse>;
   }
 
 
@@ -983,7 +983,7 @@ export class LROs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsDeleteAsyncRetrycanceledResponse>;
   }
 
 
@@ -1019,7 +1019,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPost200WithPayloadResponse>;
   }
 
 
@@ -1042,7 +1042,7 @@ export class LROs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsPost202Retry200Response>;
   }
 
 
@@ -1078,7 +1078,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPost202NoRetry204Response>;
   }
 
 
@@ -1115,7 +1115,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse>;
   }
 
 
@@ -1152,7 +1152,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse>;
   }
 
 
@@ -1189,7 +1189,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>;
   }
 
 
@@ -1226,7 +1226,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPostAsyncRetrySucceededResponse>;
   }
 
 
@@ -1263,7 +1263,7 @@ export class LROs {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LROsPostAsyncNoRetrySucceededResponse>;
   }
 
 
@@ -1287,7 +1287,7 @@ export class LROs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsPostAsyncRetryFailedResponse>;
   }
 
 
@@ -1311,7 +1311,7 @@ export class LROs {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LROsPostAsyncRetrycanceledResponse>;
   }
 
   /**
@@ -1733,7 +1733,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

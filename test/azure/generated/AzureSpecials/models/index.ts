@@ -152,7 +152,7 @@ export interface HeaderCustomNamedRequestIdHeadHeaders {
 /**
  * Contains response data for the customNamedRequestId operation.
  */
-export interface HeaderCustomNamedRequestIdResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderCustomNamedRequestIdResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -162,7 +162,7 @@ export interface HeaderCustomNamedRequestIdResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the customNamedRequestIdParamGrouping operation.
  */
-export interface HeaderCustomNamedRequestIdParamGroupingResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderCustomNamedRequestIdParamGroupingResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */
@@ -172,7 +172,7 @@ export interface HeaderCustomNamedRequestIdParamGroupingResponse extends msRest.
 /**
  * Contains response data for the customNamedRequestIdHead operation.
  */
-export interface HeaderCustomNamedRequestIdHeadResponse extends msRest.BaseHttpOperationResponse {
+export interface HeaderCustomNamedRequestIdHeadResponse extends msRest.HttpResponse {
   /**
    * The parsed HTTP response headers.
    */

@@ -124,7 +124,7 @@ export enum EnumConst {
 /**
  * Contains response data for the validationOfMethodParameters operation.
  */
-export interface ValidationOfMethodParametersResponse extends msRest.BaseHttpOperationResponse {
+export interface ValidationOfMethodParametersResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -138,7 +138,7 @@ export interface ValidationOfMethodParametersResponse extends msRest.BaseHttpOpe
 /**
  * Contains response data for the validationOfBody operation.
  */
-export interface ValidationOfBodyResponse extends msRest.BaseHttpOperationResponse {
+export interface ValidationOfBodyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -152,7 +152,7 @@ export interface ValidationOfBodyResponse extends msRest.BaseHttpOperationRespon
 /**
  * Contains response data for the postWithConstantInBody operation.
  */
-export interface PostWithConstantInBodyResponse extends msRest.BaseHttpOperationResponse {
+export interface PostWithConstantInBodyResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

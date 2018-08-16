@@ -37,7 +37,7 @@ export class XMsClientRequestId {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  getWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -60,7 +60,7 @@ export class XMsClientRequestId {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramGetWithHttpOperationResponse(xMsClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  paramGetWithHttpOperationResponse(xMsClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         xMsClientRequestId,

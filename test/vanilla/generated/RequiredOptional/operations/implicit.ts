@@ -59,7 +59,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putOptionalQueryWithHttpOperationResponse(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putOptionalQueryWithHttpOperationResponse(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,7 +78,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putOptionalHeaderWithHttpOperationResponse(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putOptionalHeaderWithHttpOperationResponse(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -97,7 +97,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putOptionalBodyWithHttpOperationResponse(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.BaseHttpOperationResponse> {
+  putOptionalBodyWithHttpOperationResponse(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         options

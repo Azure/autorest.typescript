@@ -109,7 +109,7 @@ export class Polymorphicrecursive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.BaseHttpOperationResponse> {
+  putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,

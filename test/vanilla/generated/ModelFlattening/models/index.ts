@@ -344,7 +344,7 @@ export enum ProvisioningStateValues {
 /**
  * Contains response data for the getArray operation.
  */
-export interface GetArrayResponse extends msRest.BaseHttpOperationResponse {
+export interface GetArrayResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -358,7 +358,7 @@ export interface GetArrayResponse extends msRest.BaseHttpOperationResponse {
 /**
  * Contains response data for the getWrappedArray operation.
  */
-export interface GetWrappedArrayResponse extends msRest.BaseHttpOperationResponse {
+export interface GetWrappedArrayResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -372,7 +372,7 @@ export interface GetWrappedArrayResponse extends msRest.BaseHttpOperationRespons
 /**
  * Contains response data for the getDictionary operation.
  */
-export interface GetDictionaryResponse extends msRest.BaseHttpOperationResponse {
+export interface GetDictionaryResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -386,7 +386,7 @@ export interface GetDictionaryResponse extends msRest.BaseHttpOperationResponse 
 /**
  * Contains response data for the getResourceCollection operation.
  */
-export interface GetResourceCollectionResponse extends msRest.BaseHttpOperationResponse {
+export interface GetResourceCollectionResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -400,7 +400,7 @@ export interface GetResourceCollectionResponse extends msRest.BaseHttpOperationR
 /**
  * Contains response data for the putSimpleProduct operation.
  */
-export interface PutSimpleProductResponse extends msRest.BaseHttpOperationResponse {
+export interface PutSimpleProductResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -414,7 +414,7 @@ export interface PutSimpleProductResponse extends msRest.BaseHttpOperationRespon
 /**
  * Contains response data for the postFlattenedSimpleProduct operation.
  */
-export interface PostFlattenedSimpleProductResponse extends msRest.BaseHttpOperationResponse {
+export interface PostFlattenedSimpleProductResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */
@@ -428,7 +428,7 @@ export interface PostFlattenedSimpleProductResponse extends msRest.BaseHttpOpera
 /**
  * Contains response data for the putSimpleProductWithGrouping operation.
  */
-export interface PutSimpleProductWithGroupingResponse extends msRest.BaseHttpOperationResponse {
+export interface PutSimpleProductWithGroupingResponse extends msRest.HttpResponse {
   /**
    * The response body as text (string format)
    */

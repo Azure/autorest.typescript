@@ -60,7 +60,7 @@ export class LRORetrys {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LRORetrysPut201CreatingSucceeded200Response>;
   }
 
 
@@ -97,7 +97,7 @@ export class LRORetrys {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse>;
   }
 
 
@@ -134,7 +134,7 @@ export class LRORetrys {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse>;
   }
 
 
@@ -157,7 +157,7 @@ export class LRORetrys {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LRORetrysDelete202Retry200Response>;
   }
 
 
@@ -180,7 +180,7 @@ export class LRORetrys {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse>;
   }
 
 
@@ -203,7 +203,7 @@ export class LRORetrys {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LRORetrysPost202Retry200Response>;
   }
 
 
@@ -227,7 +227,7 @@ export class LRORetrys {
 
         // Deserialize Response
         return operationRes;
-      });
+      }) as Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse>;
   }
 
   /**
