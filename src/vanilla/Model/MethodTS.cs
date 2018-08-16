@@ -45,9 +45,9 @@ namespace AutoRest.TypeScript.Model
             HttpOperationResponse
         }
 
-        private const string baseHttpOperationResponseName = "msRest.BaseHttpOperationResponse";
+        private const string baseHttpResponseName = "msRest.HttpResponse";
 
-        public string HttpOperationResponseName
+        public string HttpResponseName
         {
             get
             {
@@ -61,23 +61,23 @@ namespace AutoRest.TypeScript.Model
                 }
                 else
                 {
-                    return baseHttpOperationResponseName;
+                    return baseHttpResponseName;
                 }
             }
         }
 
-        public string HttpOperationResponseReferenceName
+        public string HttpResponseReferenceName
         {
             get
             {
-                string responseName = HttpOperationResponseName;
-                return responseName == baseHttpOperationResponseName
-                    ? baseHttpOperationResponseName
+                string responseName = HttpResponseName;
+                return responseName == baseHttpResponseName
+                    ? baseHttpResponseName
                     : "Models." + responseName;
             }
         }
 
-        public bool HasCustomHttpResponseType => HttpOperationResponseName != baseHttpOperationResponseName;
+        public bool HasCustomHttpResponseType => HttpResponseName != baseHttpResponseName;
 
         private CodeModelTS CodeModelTS => (CodeModelTS)CodeModel;
 
@@ -513,7 +513,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            string responseName = HttpOperationResponseReferenceName;
+            string responseName = HttpResponseReferenceName;
             builder.Line(GenerateWithHttpOperationResponseMethodComment());
             builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{responseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
             {
@@ -548,7 +548,7 @@ namespace AutoRest.TypeScript.Model
                         }
                     }
 
-                    if (responseName != baseHttpOperationResponseName)
+                    if (HasCustomHttpResponseType)
                     {
                         returnValue.Text($" as Promise<{responseName}>");
                     }
@@ -766,7 +766,7 @@ namespace AutoRest.TypeScript.Model
         public string GenerateResponseType(string emptyLine)
         {
             TSBuilder builder = new TSBuilder();
-            builder.ExportInterface(HttpOperationResponseName, "msRest.BaseHttpOperationResponse", iface =>
+            builder.ExportInterface(HttpResponseName, baseHttpResponseName, iface =>
             {
                 if (ReturnType.Headers != null)
                 {
