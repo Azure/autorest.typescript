@@ -337,6 +337,6 @@ export {
   AzureCompositeModel,
   AzureCompositeModelContext,
   Models as AzureCompositeModelModels,
-  Mappers as AzureCompositeModelMappers,
-  operations as AzureCompositeModelOperations
+  Mappers as AzureCompositeModelMappers
 };
+export * from "./operations";

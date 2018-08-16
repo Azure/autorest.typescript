@@ -49,6 +49,6 @@ export {
   CompositeBoolInt,
   CompositeBoolIntContext,
   Models as CompositeBoolIntModels,
-  Mappers as CompositeBoolIntMappers,
-  operations as CompositeBoolIntOperations
+  Mappers as CompositeBoolIntMappers
 };
+export * from "./operations";

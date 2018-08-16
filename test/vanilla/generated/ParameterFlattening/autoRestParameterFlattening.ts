@@ -47,6 +47,6 @@ export {
   AutoRestParameterFlattening,
   AutoRestParameterFlatteningContext,
   Models as AutoRestParameterFlatteningModels,
-  Mappers as AutoRestParameterFlatteningMappers,
-  operations as AutoRestParameterFlatteningOperations
+  Mappers as AutoRestParameterFlatteningMappers
 };
+export * from "./operations";

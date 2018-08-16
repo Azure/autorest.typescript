@@ -47,6 +47,6 @@ export {
   AutoRestRFC1123DateTimeTestService,
   AutoRestRFC1123DateTimeTestServiceContext,
   Models as AutoRestRFC1123DateTimeTestServiceModels,
-  Mappers as AutoRestRFC1123DateTimeTestServiceMappers,
-  operations as AutoRestRFC1123DateTimeTestServiceOperations
+  Mappers as AutoRestRFC1123DateTimeTestServiceMappers
 };
+export * from "./operations";

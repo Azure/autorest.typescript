@@ -47,6 +47,6 @@ export {
   AutoRestNumberTestService,
   AutoRestNumberTestServiceContext,
   Models as AutoRestNumberTestServiceModels,
-  Mappers as AutoRestNumberTestServiceMappers,
-  operations as AutoRestNumberTestServiceOperations
+  Mappers as AutoRestNumberTestServiceMappers
 };
+export * from "./operations";

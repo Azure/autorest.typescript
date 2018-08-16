@@ -52,6 +52,6 @@ export {
   AutoRestUrlTestService,
   AutoRestUrlTestServiceContext,
   Models as AutoRestUrlTestServiceModels,
-  Mappers as AutoRestUrlTestServiceMappers,
-  operations as AutoRestUrlTestServiceOperations
+  Mappers as AutoRestUrlTestServiceMappers
 };
+export * from "./operations";

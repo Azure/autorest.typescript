@@ -57,6 +57,6 @@ export {
   AutoRestPagingTestService,
   AutoRestPagingTestServiceContext,
   Models as AutoRestPagingTestServiceModels,
-  Mappers as AutoRestPagingTestServiceMappers,
-  operations as AutoRestPagingTestServiceOperations
+  Mappers as AutoRestPagingTestServiceMappers
 };
+export * from "./operations";

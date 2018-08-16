@@ -59,6 +59,6 @@ export {
   MicrosoftAzureTestUrl,
   MicrosoftAzureTestUrlContext,
   Models as MicrosoftAzureTestUrlModels,
-  Mappers as MicrosoftAzureTestUrlMappers,
-  operations as MicrosoftAzureTestUrlOperations
+  Mappers as MicrosoftAzureTestUrlMappers
 };
+export * from "./operations";

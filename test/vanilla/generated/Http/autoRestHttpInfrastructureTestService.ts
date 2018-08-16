@@ -59,6 +59,6 @@ export {
   AutoRestHttpInfrastructureTestService,
   AutoRestHttpInfrastructureTestServiceContext,
   Models as AutoRestHttpInfrastructureTestServiceModels,
-  Mappers as AutoRestHttpInfrastructureTestServiceMappers,
-  operations as AutoRestHttpInfrastructureTestServiceOperations
+  Mappers as AutoRestHttpInfrastructureTestServiceMappers
 };
+export * from "./operations";

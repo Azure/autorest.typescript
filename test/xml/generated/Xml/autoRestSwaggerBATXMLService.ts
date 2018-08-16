@@ -47,6 +47,6 @@ export {
   AutoRestSwaggerBATXMLService,
   AutoRestSwaggerBATXMLServiceContext,
   Models as AutoRestSwaggerBATXMLServiceModels,
-  Mappers as AutoRestSwaggerBATXMLServiceMappers,
-  operations as AutoRestSwaggerBATXMLServiceOperations
+  Mappers as AutoRestSwaggerBATXMLServiceMappers
 };
+export * from "./operations";

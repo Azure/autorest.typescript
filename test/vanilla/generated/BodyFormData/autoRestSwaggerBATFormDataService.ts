@@ -47,6 +47,6 @@ export {
   AutoRestSwaggerBATFormDataService,
   AutoRestSwaggerBATFormDataServiceContext,
   Models as AutoRestSwaggerBATFormDataServiceModels,
-  Mappers as AutoRestSwaggerBATFormDataServiceMappers,
-  operations as AutoRestSwaggerBATFormDataServiceOperations
+  Mappers as AutoRestSwaggerBATFormDataServiceMappers
 };
+export * from "./operations";

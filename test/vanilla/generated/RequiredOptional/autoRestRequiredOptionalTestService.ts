@@ -50,6 +50,6 @@ export {
   AutoRestRequiredOptionalTestService,
   AutoRestRequiredOptionalTestServiceContext,
   Models as AutoRestRequiredOptionalTestServiceModels,
-  Mappers as AutoRestRequiredOptionalTestServiceMappers,
-  operations as AutoRestRequiredOptionalTestServiceOperations
+  Mappers as AutoRestRequiredOptionalTestServiceMappers
 };
+export * from "./operations";

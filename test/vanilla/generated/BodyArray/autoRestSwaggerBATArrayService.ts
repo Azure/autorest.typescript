@@ -47,6 +47,6 @@ export {
   AutoRestSwaggerBATArrayService,
   AutoRestSwaggerBATArrayServiceContext,
   Models as AutoRestSwaggerBATArrayServiceModels,
-  Mappers as AutoRestSwaggerBATArrayServiceMappers,
-  operations as AutoRestSwaggerBATArrayServiceOperations
+  Mappers as AutoRestSwaggerBATArrayServiceMappers
 };
+export * from "./operations";

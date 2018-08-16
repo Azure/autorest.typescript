@@ -46,6 +46,6 @@ export {
   AutoRestParameterizedHostTestClient,
   AutoRestParameterizedHostTestClientContext,
   Models as AutoRestParameterizedHostTestModels,
-  Mappers as AutoRestParameterizedHostTestMappers,
-  operations as AutoRestParameterizedHostTestOperations
+  Mappers as AutoRestParameterizedHostTestMappers
 };
+export * from "./operations";

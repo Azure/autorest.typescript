@@ -63,6 +63,6 @@ export {
   AutoRestLongRunningOperationTestService,
   AutoRestLongRunningOperationTestServiceContext,
   Models as AutoRestLongRunningOperationTestServiceModels,
-  Mappers as AutoRestLongRunningOperationTestServiceMappers,
-  operations as AutoRestLongRunningOperationTestServiceOperations
+  Mappers as AutoRestLongRunningOperationTestServiceMappers
 };
+export * from "./operations";

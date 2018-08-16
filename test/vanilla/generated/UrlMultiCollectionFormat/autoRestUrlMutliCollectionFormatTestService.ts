@@ -47,6 +47,6 @@ export {
   AutoRestUrlMutliCollectionFormatTestService,
   AutoRestUrlMutliCollectionFormatTestServiceContext,
   Models as AutoRestUrlMutliCollectionFormatTestServiceModels,
-  Mappers as AutoRestUrlMutliCollectionFormatTestServiceMappers,
-  operations as AutoRestUrlMutliCollectionFormatTestServiceOperations
+  Mappers as AutoRestUrlMutliCollectionFormatTestServiceMappers
 };
+export * from "./operations";

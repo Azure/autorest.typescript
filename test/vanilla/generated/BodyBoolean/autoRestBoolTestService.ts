@@ -47,6 +47,6 @@ export {
   AutoRestBoolTestService,
   AutoRestBoolTestServiceContext,
   Models as AutoRestBoolTestServiceModels,
-  Mappers as AutoRestBoolTestServiceMappers,
-  operations as AutoRestBoolTestServiceOperations
+  Mappers as AutoRestBoolTestServiceMappers
 };
+export * from "./operations";

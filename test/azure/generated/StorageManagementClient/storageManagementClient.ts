@@ -61,6 +61,6 @@ export {
   StorageManagementClient,
   StorageManagementClientContext,
   Models as StorageManagementModels,
-  Mappers as StorageManagementMappers,
-  operations as StorageManagementOperations
+  Mappers as StorageManagementMappers
 };
+export * from "./operations";

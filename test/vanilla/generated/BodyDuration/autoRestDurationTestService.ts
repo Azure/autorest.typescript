@@ -47,6 +47,6 @@ export {
   AutoRestDurationTestService,
   AutoRestDurationTestServiceContext,
   Models as AutoRestDurationTestServiceModels,
-  Mappers as AutoRestDurationTestServiceMappers,
-  operations as AutoRestDurationTestServiceOperations
+  Mappers as AutoRestDurationTestServiceMappers
 };
+export * from "./operations";

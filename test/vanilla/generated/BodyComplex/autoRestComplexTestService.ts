@@ -63,6 +63,6 @@ export {
   AutoRestComplexTestService,
   AutoRestComplexTestServiceContext,
   Models as AutoRestComplexTestServiceModels,
-  Mappers as AutoRestComplexTestServiceMappers,
-  operations as AutoRestComplexTestServiceOperations
+  Mappers as AutoRestComplexTestServiceMappers
 };
+export * from "./operations";

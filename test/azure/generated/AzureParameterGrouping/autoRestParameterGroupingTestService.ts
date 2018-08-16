@@ -57,6 +57,6 @@ export {
   AutoRestParameterGroupingTestService,
   AutoRestParameterGroupingTestServiceContext,
   Models as AutoRestParameterGroupingTestServiceModels,
-  Mappers as AutoRestParameterGroupingTestServiceMappers,
-  operations as AutoRestParameterGroupingTestServiceOperations
+  Mappers as AutoRestParameterGroupingTestServiceMappers
 };
+export * from "./operations";

@@ -57,6 +57,6 @@ export {
   AutoRestHeadExceptionTestService,
   AutoRestHeadExceptionTestServiceContext,
   Models as AutoRestHeadExceptionTestServiceModels,
-  Mappers as AutoRestHeadExceptionTestServiceMappers,
-  operations as AutoRestHeadExceptionTestServiceOperations
+  Mappers as AutoRestHeadExceptionTestServiceMappers
 };
+export * from "./operations";
