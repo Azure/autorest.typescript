@@ -31,7 +31,8 @@ task 'install_common',"", (done) ->
   execute "npm install",{cwd:"#{basefolder}/autorest.common", silent:false }, done
 
 # Run language-specific tests:
-task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/metadata', 'test/azure-metadata'], (done) ->
+task 'test', '', ['test/generator-unit', 'test/typecheck'], (done) ->
+  await run 'test/metadata', defer _
   await run 'test/nodejs-unit', defer _
   # Running the browser tests works the first time on Windows, but subsequent runs will start
   # causing the Node.js tests to fail. I'm disabling the browser tests in this context until we can
@@ -53,17 +54,24 @@ task 'testci/typecheck', '', [], (done) ->
   await run "test/typecheck", defer _
   done()
 
-task 'testci/metadata', '', ['test/metadata', 'test/azure-metadata'], (done) ->
+task 'testci/metadata', '', ['test/metadata'], (done) ->
   done()
 
-task 'test/metadata', '', [], (done) ->
-  await execute "npm install",{cwd:"#{basefolder}/test/metadata/generated", silent:false }, defer _
-  await execute "npm run build",{cwd:"#{basefolder}/test/metadata/generated", silent:false }, defer _
+task 'test/metadata', '', ['test/vanilla-metadata', 'test/azure-metadata'], (done) ->
+  done()
+
+task 'test/vanilla-metadata', '', [], (done) ->
+  cwd = "#{basefolder}/test/metadata/generated"
+  await execute "npm install", { cwd: cwd, silent: false }, defer _
+  await execute "npm run build", { cwd: cwd, silent: false }, defer _
+  await execute "git clean -xdf", { cwd: cwd, silent: false }, defer _
   done()
 
 task 'test/azure-metadata', '', [], (done) ->
-  await execute "npm install",{cwd:"#{basefolder}/test/azuremetadata/generated", silent:false }, defer _
-  await execute "npm run build",{cwd:"#{basefolder}/test/azuremetadata/generated", silent:false }, defer _
+  cwd = "#{basefolder}/test/metadata/generated"
+  await execute "npm install", {cwd: cwd, silent: false }, defer _
+  await execute "npm run build", {cwd: cwd, silent: false }, defer _
+  await execute "git clean -xdf", { cwd: cwd, silent: false }, defer _
   done()
 
 task 'test/typecheck', 'type check generated code', [], (done) ->
