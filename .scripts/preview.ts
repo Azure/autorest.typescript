@@ -1,4 +1,4 @@
-const dependencies = require("./dependencies");
+import * as dependencies from "./dependencies";
 
 const localDependencies = dependencies.getDependenciesWithClonedRepositories();
 for (const localDependency of localDependencies) {

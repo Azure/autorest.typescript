@@ -1,6 +1,16 @@
-const fs = require("fs");
-const path = require("path");
-const { execSync } = require("child_process");
+import * as fs from "fs";
+import * as path from "path";
+import { execSync } from "child_process";
+
+export interface PackageFolder {
+  folderPath: string;
+  toClean: string[];
+  toUpdate: string[];
+}
+
+export interface RefreshNodeModulesOptions {
+  ignoreScripts?: boolean;
+}
 
 /**
  * Get whether or not the node_modules folder should be refreshed based on the command line
@@ -8,7 +18,7 @@ const { execSync } = require("child_process");
  * @param {string} argv The command line arguments that were provided.
  * @returns {boolean} Whether or not the node_modules folder should be refreshed.
  */
-function shouldForceRefresh(argv) {
+export function shouldForceRefresh(argv) {
   let result = false;
   if (argv) {
     for (const arg of argv) {
@@ -21,7 +31,6 @@ function shouldForceRefresh(argv) {
   }
   return result;
 }
-exports.shouldForceRefresh = shouldForceRefresh;
 
 /**
  * Replace all of the instances of searchValue in text with replaceValue.
@@ -31,8 +40,12 @@ exports.shouldForceRefresh = shouldForceRefresh;
  * @returns {string} The value of text after all of the instances of searchValue have been replaced
  * by replaceValue.
  */
-function replaceAll(text, searchValue, replaceValue) {
+function replaceAll(text: string, searchValue: string, replaceValue: string): string {
   return text.split(searchValue).join(replaceValue);
+}
+
+export function resolvePath(...paths: string[]): string {
+  return normalizePath(path.resolve(...paths));
 }
 
 /**
@@ -40,7 +53,7 @@ function replaceAll(text, searchValue, replaceValue) {
  * @param {string} pathString The path to normalize.
  * @returns {string} The normalized path.
  */
-function normalizePath(pathString) {
+export function normalizePath(pathString: string): string {
   return replaceAll(pathString, "\\", "/")
 }
 
@@ -48,7 +61,7 @@ function normalizePath(pathString) {
  * Delete the file at the provided file path.
  * @param {string} filePath The path to the file to delete.
  */
-function deleteFile(filePath) {
+function deleteFile(filePath: string): void {
   fs.unlinkSync(filePath);
 }
 
@@ -56,14 +69,14 @@ function deleteFile(filePath) {
  * Delete the folder at the provided folder path.
  * @param {string} folderPath The path to the folder to delete.
  */
-function deleteFolder(folderPath) {
+function deleteFolder(folderPath: string): void {
   try {
     fs.rmdirSync(folderPath);
   } catch (error) {
     if (error.code === "ENOTEMPTY") {
       const folderEntryPaths = fs.readdirSync(folderPath);
       for (const entryName of folderEntryPaths) {
-        const entryPath = normalizePath(path.resolve(folderPath, entryName));
+        const entryPath = resolvePath(folderPath, entryName);
         const entryStats = fs.lstatSync(entryPath);
         if (entryStats.isDirectory()) {
           deleteFolder(entryPath);
@@ -83,7 +96,7 @@ function deleteFolder(folderPath) {
  * @param {string} filePath The path to the text file to read.
  * @returns {string} The text contents of the text file at the provided filePath.
  */
-function readTextFileContents(filePath) {
+function readTextFileContents(filePath: string): string {
   return fs.readFileSync(filePath, { encoding: "utf8" });
 }
 
@@ -93,7 +106,7 @@ function readTextFileContents(filePath) {
  * @param {string} workingDirectory The working directory to execute the command in.
  * @returns {void}
  */
-function execute(command, workingDirectory) {
+function execute(command: string, workingDirectory: string): void {
   console.log(`Running "${command}" in "${workingDirectory}"...`);
   execSync(command, { cwd: workingDirectory, stdio: [0, 1, 2] });
 }
@@ -102,16 +115,16 @@ function execute(command, workingDirectory) {
  * Get the absolute path to this repository's folder path.
  * @returns {string} The absolute path to this repository's folder path.
  */
-function getThisRepositoryFolderPath() {
-  return normalizePath(path.resolve(__dirname, ".."));
+export function getThisRepositoryFolderPath(): string {
+  return resolvePath(__dirname, "..");
 }
 
 /**
  * Get the absolute path to the package.json in this repository.
  * @returns {string} The absolute path to the package.json.
  */
-function getPackageJsonFilePath() {
-  return normalizePath(path.resolve(__dirname, "../package.json"));
+function getPackageJsonFilePath(): string {
+  return resolvePath(getThisRepositoryFolderPath(), "package.json");
 }
 
 /**
@@ -119,10 +132,9 @@ function getPackageJsonFilePath() {
  * @param {string} repoName The name of the repository.
  * @returns {string} The absolute path to the local clone of the repository.
  */
-function getLocalRepositoryPath(repoName) {
-  return normalizePath(path.resolve(__dirname, "..", "..", repoName));
+export function getLocalRepositoryPath(repoName: string): string {
+  return resolvePath(getThisRepositoryFolderPath(), "..", repoName);
 }
-exports.getLocalRepositoryPath = getLocalRepositoryPath;
 
 /**
  * Get the package.json file contents parsed as a JSON object.
@@ -130,7 +142,7 @@ exports.getLocalRepositoryPath = getLocalRepositoryPath;
  * provided, then the package.json file at the root of this repository will be used.
  * @returns {{}} The parsed package.json file contents.
  */
-function getPackageJson(packageJsonFilePath) {
+function getPackageJson(packageJsonFilePath?: string): any {
   if (!packageJsonFilePath) {
     packageJsonFilePath = getPackageJsonFilePath();
   }
@@ -145,7 +157,7 @@ function getPackageJson(packageJsonFilePath) {
  * repositories into.
  * @returns {void}
  */
-function getClonedRepositories(dependencies, clonedRepositoryNames) {
+function getClonedRepositories(dependencies: { [packageName: string]: string }, clonedRepositoryNames: string[]): void {
   if (clonedRepositoryNames && dependencies) {
     for (const dependencyName in dependencies) {
       if (clonedRepositoryNames.indexOf(dependencyName) === -1) {
@@ -162,17 +174,16 @@ function getClonedRepositories(dependencies, clonedRepositoryNames) {
  * Get the names of the dependencies of this repository that have local clones.
  * @returns {string[]} The names of the dependencies of this repository that have local clones.
  */
-function getDependenciesWithClonedRepositories() {
+export function getDependenciesWithClonedRepositories(): string[] {
   const clonedRepositoryNames = [];
 
-  const packageJson = getPackageJson();
+  const packageJson: any = getPackageJson();
 
   getClonedRepositories(packageJson.dependencies, clonedRepositoryNames);
   getClonedRepositories(packageJson.devDependencies, clonedRepositoryNames);
 
   return clonedRepositoryNames;
 }
-exports.getDependenciesWithClonedRepositories = getDependenciesWithClonedRepositories;
 
 /**
  * Run a script with the provided name in the local clone of the repository with the provided name.
@@ -180,18 +191,17 @@ exports.getDependenciesWithClonedRepositories = getDependenciesWithClonedReposit
  * @param {string} scriptName The name of the script to run in the local repository.
  * @returns {void}
  */
-function runLocalRepositoryNPMScript(repoName, scriptName) {
-  const repoFolderPath = getLocalRepositoryPath(repoName);
-  const packageJsonFilePath = path.join(repoFolderPath, "package.json");
-  const packageJson = getPackageJson(packageJsonFilePath);
-  const repoScripts = packageJson.scripts;
+export function runLocalRepositoryNPMScript(repoName: string, scriptName: string): void {
+  const repoFolderPath: string = getLocalRepositoryPath(repoName);
+  const packageJsonFilePath: string = path.join(repoFolderPath, "package.json");
+  const packageJson: any = getPackageJson(packageJsonFilePath);
+  const repoScripts: any = packageJson.scripts;
   if (repoScripts && repoScripts[scriptName]) {
     execute(`npm run ${scriptName}`, repoFolderPath);
   } else {
     console.log(`No script named "${scriptName}" is specified in "${packageJsonFilePath}".`);
   }
 }
-exports.runLocalRepositoryNPMScript = runLocalRepositoryNPMScript;
 
 /**
  * Update this repository's package.json file's dependency version with the provided name to the
@@ -201,12 +211,12 @@ exports.runLocalRepositoryNPMScript = runLocalRepositoryNPMScript;
  * @param {string} dependencyVersion The version to update the dependency to.
  * @returns {boolean} Whether or not the dependency changed.
  */
-function updatePackageJsonDependency(dependencyName, dependencyVersion) {
+export function updatePackageJsonDependency(dependencyName: string, dependencyVersion: string): boolean {
   let dependencyChanged = false;
 
-  const packageJsonFilePath = getPackageJsonFilePath();
+  const packageJsonFilePath: string = getPackageJsonFilePath();
 
-  const packageJson = getPackageJson(packageJsonFilePath);
+  const packageJson: any = getPackageJson(packageJsonFilePath);
   if (packageJson.devDependencies[dependencyName] == dependencyVersion) {
     console.log(`"${dependencyName}" is already set to "${dependencyVersion}" in "${packageJsonFilePath}".`);
   } else {
@@ -220,7 +230,6 @@ function updatePackageJsonDependency(dependencyName, dependencyVersion) {
 
   return dependencyChanged;
 }
-exports.updatePackageJsonDependency = updatePackageJsonDependency;
 
 /**
  * Run NPM install in this repository
@@ -228,12 +237,12 @@ exports.updatePackageJsonDependency = updatePackageJsonDependency;
  * @param {boolean} options.ignoreScripts whether to ignore scripts in npm install (skips dotnet build)
  * @returns {void}
  */
-function refreshNodeModules(options) {
+export function refreshNodeModules(options?: RefreshNodeModulesOptions) {
   const thisRepositoryFolderPath = getThisRepositoryFolderPath();
-  const nodeModulesFolderPath = normalizePath(path.resolve(thisRepositoryFolderPath, "node_modules"));
+  const nodeModulesFolderPath = resolvePath(thisRepositoryFolderPath, "node_modules");
   if (fs.existsSync(nodeModulesFolderPath)) {
 
-    const packageLockFilePath = normalizePath(path.resolve(thisRepositoryFolderPath, "package-lock.json"));
+    const packageLockFilePath = resolvePath(thisRepositoryFolderPath, "package-lock.json");
     if (fs.existsSync(packageLockFilePath)) {
       console.log(`Deleting "${packageLockFilePath}"...`);
       deleteFile(packageLockFilePath);
@@ -245,7 +254,6 @@ function refreshNodeModules(options) {
   const ignoreScripts = options && options.ignoreScripts;
   execute("npm install" + (ignoreScripts ? " --ignore-scripts" : ""), getThisRepositoryFolderPath());
 }
-exports.refreshNodeModules = refreshNodeModules;
 
 /**
  * Get the npm package version of the package with the provided name at the provided tag.
@@ -253,18 +261,17 @@ exports.refreshNodeModules = refreshNodeModules;
  * @param {string} tag The tag of the version to retrieve.
  * @returns {string?} The version of the provided package at the provided tag.
  */
-function getNpmPackageVersion(packageName, tag) {
-  const npmViewResult = JSON.parse(execSync(`npm view ${packageName} --json`, { stdio: ['pipe', 'pipe', 'ignore'] }));
+export function getNpmPackageVersion(packageName: string, tag: string): string | undefined {
+  const npmViewResult: any = JSON.parse(execSync(`npm view ${packageName} --json`, { stdio: ['pipe', 'pipe', 'ignore'] }).toString());
   return npmViewResult['dist-tags'][tag];
 }
-exports.getNpmPackageVersion = getNpmPackageVersion;
 
 /**
  * Update the package.json property values for "main".
  * @param {string} mainValue The value that will be used for "main".
  * @returns {void}
  */
-function updatePackageJsonMain(mainValue) {
+export function updatePackageJsonMain(mainValue: string): void {
   const packageJsonFilePath = getPackageJsonFilePath();
 
   const packageJson = getPackageJson(packageJsonFilePath);
@@ -278,7 +285,6 @@ function updatePackageJsonMain(mainValue) {
     writePackageJson(packageJson, packageJsonFilePath);
   }
 }
-exports.updatePackageJsonMain = updatePackageJsonMain;
 
 
 /**
@@ -292,13 +298,13 @@ exports.updatePackageJsonMain = updatePackageJsonMain;
  * @param {string} newDependencyVersion The version of the dependency to set in the provided code
  * files.
  */
-function updateGeneratedPackageDependencyVersion(codeFilePath, dependencyName, regularExpression, newValue, newDependencyVersion) {
+function updateGeneratedPackageDependencyVersion(codeFilePath: string, dependencyName: string, regularExpression: RegExp, newValue: string, newDependencyVersion: string): void {
   codeFilePath = normalizePath(codeFilePath);
-  const codeFileContents = readTextFileContents(codeFilePath);
-  const match = codeFileContents.match(regularExpression);
+  const codeFileContents: string = readTextFileContents(codeFilePath);
+  const match: RegExpMatchArray = codeFileContents.match(regularExpression);
   if (match && match[1] !== newDependencyVersion) {
     console.log(`In ${codeFilePath}, changing "${dependencyName}" version from "${match[1]}" to "${newDependencyVersion}".`);
-    const updatedCodeFileContents = codeFileContents.replace(regularExpression, newValue);
+    const updatedCodeFileContents: string = codeFileContents.replace(regularExpression, newValue);
     fs.writeFileSync(codeFilePath, updatedCodeFileContents);
   }
 }
@@ -309,21 +315,20 @@ function updateGeneratedPackageDependencyVersion(codeFilePath, dependencyName, r
  * @param {string} newDependencyVersion The version of ms-rest-js that generated package.json files
  * will depend on.
  */
-function updateGeneratedPackageJsonMsRestJsDependencyVersion(newDependencyVersion) {
+export function updateGeneratedPackageJsonMsRestJsDependencyVersion(newDependencyVersion: string): void {
   updateGeneratedPackageDependencyVersion(
-    path.resolve(getThisRepositoryFolderPath(), "src", "vanilla", "Model", "CodeModelTS.cs"),
+    resolvePath(getThisRepositoryFolderPath(), "src", "vanilla", "Model", "CodeModelTS.cs"),
     "ms-rest-js",
     /\\"ms-rest-js\\": \\"(.*)\\"/,
     `\\"ms-rest-js\\": \\"${newDependencyVersion}\\"`,
     newDependencyVersion);
   updateGeneratedPackageDependencyVersion(
-    path.resolve(getThisRepositoryFolderPath(), "README.md"),
+    resolvePath(getThisRepositoryFolderPath(), "README.md"),
     "ms-rest-js",
     /"ms-rest-js": "(.*)"/,
     `"ms-rest-js": "${newDependencyVersion}"`,
     newDependencyVersion);
 }
-exports.updateGeneratedPackageJsonMsRestJsDependencyVersion = updateGeneratedPackageJsonMsRestJsDependencyVersion;
 
 /**
  * Update the code used to generate package.json files so that the ms-rest-azure-js dependency version is
@@ -331,21 +336,20 @@ exports.updateGeneratedPackageJsonMsRestJsDependencyVersion = updateGeneratedPac
  * @param {string} newDependencyVersion The version of ms-rest-js that generated package.json files
  * will depend on.
  */
-function updateGeneratedPackageJsonMsRestAzureJsDependencyVersion(newDependencyVersion) {
+export function updateGeneratedPackageJsonMsRestAzureJsDependencyVersion(newDependencyVersion: string): void {
   updateGeneratedPackageDependencyVersion(
-    path.resolve(getThisRepositoryFolderPath(), "src", "azure", "Model", "CodeModelTSa.cs"),
+    resolvePath(getThisRepositoryFolderPath(), "src", "azure", "Model", "CodeModelTSa.cs"),
     "ms-rest-azure-js",
     /\\"ms-rest-azure-js\\": \\"(.*)\\"/,
     `\\"ms-rest-azure-js\\": \\"${newDependencyVersion}\\"`,
     newDependencyVersion);
   updateGeneratedPackageDependencyVersion(
-    path.resolve(getThisRepositoryFolderPath(), "README.md"),
+    resolvePath(getThisRepositoryFolderPath(), "README.md"),
     "ms-rest-azure-js",
     /"ms-rest-azure-js": "(.*)"/,
     `"ms-rest-azure-js": "${newDependencyVersion}"`,
     newDependencyVersion);
 }
-exports.updateGeneratedPackageJsonMsRestAzureJsDependencyVersion = updateGeneratedPackageJsonMsRestAzureJsDependencyVersion;
 
 /**
  * Write the provided packageJSON object to the file at the provided packageJsonFilePath.
@@ -353,6 +357,6 @@ exports.updateGeneratedPackageJsonMsRestAzureJsDependencyVersion = updateGenerat
  * @param {string} packageJsonFilePath The path to the package.json file.
  * @returns {void}
  */
-function writePackageJson(packageJson, packageJsonFilePath) {
+function writePackageJson(packageJson: any, packageJsonFilePath: string): void {
   fs.writeFileSync(packageJsonFilePath, JSON.stringify(packageJson, undefined, "  ") + "\n");
 }

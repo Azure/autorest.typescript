@@ -17,9 +17,9 @@
     "regenerate": "gulp regenerate",
     "clean": "gulp clean",
     "nuke": "git clean -xdf",
-    "local": "node ./.scripts/local.js",
-    "preview": "node ./.scripts/preview.js",
-    "latest": "node ./.scripts/latest.js",
+    "local": "ts-node ./.scripts/local.ts",
+    "preview": "ts-node ./.scripts/preview.ts",
+    "latest": "ts-node ./.scripts/latest.ts",
     "bundle-size": "node ./.scripts/bundlesize.js"
   },
   "repository": {
