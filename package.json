@@ -20,7 +20,7 @@
     "local": "ts-node ./.scripts/local.ts",
     "preview": "ts-node ./.scripts/preview.ts",
     "latest": "ts-node ./.scripts/latest.ts",
-    "bundle-size": "node ./.scripts/bundlesize.js"
+    "bundle-size": "ts-node ./.scripts/bundlesize.ts"
   },
   "repository": {
     "type": "git",
