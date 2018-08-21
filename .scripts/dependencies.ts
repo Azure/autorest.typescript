@@ -4,10 +4,15 @@ import { execSync } from "child_process";
 
 export interface PackageFolder {
   folderPath: string;
+  extraFilePaths?: string[];
 }
 
 export interface RefreshNodeModulesOptions {
   ignoreScripts?: boolean;
+}
+
+function log(filePath: string, message: string): void {
+  console.log(`[${filePath}] - ${message}`);
 }
 
 /**
@@ -88,7 +93,7 @@ function readTextFileContents(filePath: string): string {
  * @returns {void}
  */
 function execute(command: string, workingDirectory: string): void {
-  console.log(`Running "${command}" in "${workingDirectory}"...`);
+  log(workingDirectory, `Running "${command}"...`);
   execSync(command, { cwd: workingDirectory, stdio: [0, 1, 2] });
 }
 
@@ -164,7 +169,7 @@ export function runLocalRepositoryNPMScript(repoName: string, scriptName: string
   if (repoScripts && repoScripts[scriptName]) {
     execute(`npm run ${scriptName}`, repoFolderPath);
   } else {
-    console.log(`No script named "${scriptName}" is specified in "${packageJsonFilePath}".`);
+    log(packageJsonFilePath, `No script named "${scriptName}" is defined.`);
   }
 }
 
@@ -190,9 +195,9 @@ export function updatePackageJsonMain(packageFolderPath: string, mainValue: stri
   const packageJson: any = getPackageJson(packageJsonFilePath);
 
   if (packageJson.main == mainValue) {
-    console.log(`"main" is already set to "${mainValue}" in "${packageJsonFilePath}".`);
+    log(packageJsonFilePath, `"main" is already set to "${mainValue}".`);
   } else {
-    console.log(`Changing "main" to "${mainValue}" in "${packageJsonFilePath}"`)
+    log(packageJsonFilePath, `Changing "main" to "${mainValue}".`);
     packageJson.main = mainValue;
 
     writePackageJson(packageJson, packageJsonFilePath);
@@ -210,17 +215,49 @@ export function updatePackageJsonMain(packageFolderPath: string, mainValue: stri
  * @param {string} newDependencyVersion The version of the dependency to set in the provided code
  * files.
  */
-function updateGeneratedPackageDependencyVersion(codeFilePath: string, dependencyName: string, regularExpression: RegExp, newValue: string, newDependencyVersion: string): void {
+function updateGeneratedPackageDependencyVersion(codeFilePath: string, dependencyName: string, newDependencyVersion: string): boolean {
+  let fileChanged = false;
   codeFilePath = resolvePath(codeFilePath);
   if (exists(codeFilePath)) {
-    const codeFileContents: string = readTextFileContents(codeFilePath);
-    const match: RegExpMatchArray = codeFileContents.match(regularExpression);
-    if (match && match[1] !== newDependencyVersion) {
-      console.log(`In ${codeFilePath}, changing "${dependencyName}" version from "${match[1]}" to "${newDependencyVersion}".`);
-      const updatedCodeFileContents: string = codeFileContents.replace(regularExpression, newValue);
-      fs.writeFileSync(codeFilePath, updatedCodeFileContents);
+    const originalCodeFileContents: string = readTextFileContents(codeFilePath);
+    let codeFileContents: string = originalCodeFileContents;
+
+    codeFileContents = regularExpressionReplace(
+      codeFilePath,
+      codeFileContents,
+      dependencyName,
+      new RegExp(`\\\\"${dependencyName}\\\\": \\\\"(.*)\\\\"`),
+      `\\"${dependencyName}\\": \\"${newDependencyVersion}\\"`,
+      newDependencyVersion);
+
+    codeFileContents = regularExpressionReplace(
+      codeFilePath,
+      codeFileContents,
+      dependencyName,
+      new RegExp(`"${dependencyName}": "(.*)"`),
+      `"${dependencyName}": "${newDependencyVersion}"`,
+      newDependencyVersion);
+
+    if (codeFileContents !== originalCodeFileContents) {
+      fileChanged = true;
+      fs.writeFileSync(codeFilePath, codeFileContents);
     }
   }
+  return fileChanged;
+}
+
+function regularExpressionReplace(filePath: string, fileContents: string, dependencyName: string, regularExpression: RegExp, newValue: string, newDependencyVersion: string): string {
+  let newFileContents: string = fileContents;
+  const match: RegExpMatchArray = fileContents.match(regularExpression);
+  if (match) {
+    if (match[1] === newDependencyVersion) {
+      log(filePath, `"${dependencyName}" is already set to "${newDependencyVersion}".`);
+    } else {
+      log(filePath, `Changing "${dependencyName}" version from "${match[1]}" to "${newDependencyVersion}".`);
+      newFileContents = fileContents.replace(regularExpression, newValue);
+    }
+  }
+  return newFileContents;
 }
 
 /**
@@ -253,7 +290,7 @@ export function updateLocalDependencies(packageFolders: PackageFolder[], localDe
     }
 
     for (const localDependency of allLocalDependencies) {
-      if (updateLocalDependency(packageFolderPath, localDependencies.indexOf(localDependency) >= 0 ? "dependencies" : "devDependencies", localDependency, getNewDependencyVersion)) {
+      if (updateLocalDependency(packageFolder, localDependency, getNewDependencyVersion)) {
         refreshPackageFolder = true;
       }
     }
@@ -261,13 +298,13 @@ export function updateLocalDependencies(packageFolders: PackageFolder[], localDe
     if (refreshPackageFolder) {
       const packageLockFilePath = resolvePath(packageFolderPath, "package-lock.json");
       if (exists(packageLockFilePath)) {
-        console.log(`Deleting "${packageLockFilePath}"...`);
+        log(packageLockFilePath, `Deleting...`);
         deleteFile(packageLockFilePath);
       }
 
       const nodeModulesFolderPath = resolvePath(packageFolderPath, "node_modules");
       if (exists(nodeModulesFolderPath)) {
-        console.log(`Deleting "${nodeModulesFolderPath}"...`);
+        log(nodeModulesFolderPath, `Deleting...`);
         deleteFolder(nodeModulesFolderPath);
       }
 
@@ -276,51 +313,28 @@ export function updateLocalDependencies(packageFolders: PackageFolder[], localDe
   }
 }
 
-function updateLocalDependency(packageFolderPath: string, dependencyType: "dependencies" | "devDependencies", dependencyName: string, getNewDependencyVersion: (dependencyName: string) => string): boolean {
-  let localDependencyUpdated = false;
-
+function updateLocalDependency(packageFolder: PackageFolder, dependencyName: string, getNewDependencyVersion: (dependencyName: string) => string): boolean {
   const newDependencyVersion: string = getNewDependencyVersion(dependencyName);
 
-  const packageJsonFilePath: string = getPackageJsonFilePath(packageFolderPath);
+  const packageFolderPath: string = packageFolder.folderPath;
 
-  const packageJson: any = getPackageJson(packageJsonFilePath);
-  if (packageJson[dependencyType][dependencyName] === newDependencyVersion) {
-    console.log(`"${dependencyName}" is already set to "${newDependencyVersion}" in "${packageJsonFilePath}".`);
-  } else {
-    console.log(`Changing "${dependencyName}" to "${newDependencyVersion}" in "${packageJsonFilePath}"`)
-    packageJson[dependencyType][dependencyName] = newDependencyVersion;
+  const localDependencyUpdated = updateGeneratedPackageDependencyVersion(
+    resolvePath(packageFolderPath, "package.json"),
+    dependencyName,
+    newDependencyVersion);
 
-    writePackageJson(packageJson, packageJsonFilePath);
+  updateGeneratedPackageDependencyVersion(
+    resolvePath(packageFolderPath, "README.md"),
+    dependencyName,
+    newDependencyVersion);
 
-    localDependencyUpdated = true;
-  }
-
-  if (dependencyName === "ms-rest-js") {
-    updateGeneratedPackageDependencyVersion(
-      resolvePath(packageFolderPath, "src", "vanilla", "Model", "CodeModelTS.cs"),
-      "ms-rest-js",
-      /\\"ms-rest-js\\": \\"(.*)\\"/,
-      `\\"ms-rest-js\\": \\"${newDependencyVersion}\\"`,
-      newDependencyVersion);
-    updateGeneratedPackageDependencyVersion(
-      resolvePath(packageFolderPath, "README.md"),
-      "ms-rest-js",
-      /"ms-rest-js": "(.*)"/,
-      `"ms-rest-js": "${newDependencyVersion}"`,
-      newDependencyVersion);
-  } else if (dependencyName === "ms-rest-azure-js") {
-    updateGeneratedPackageDependencyVersion(
-      resolvePath(packageFolderPath, "src", "azure", "Model", "CodeModelTSa.cs"),
-      "ms-rest-azure-js",
-      /\\"ms-rest-azure-js\\": \\"(.*)\\"/,
-      `\\"ms-rest-azure-js\\": \\"${newDependencyVersion}\\"`,
-      newDependencyVersion);
-    updateGeneratedPackageDependencyVersion(
-      resolvePath(packageFolderPath, "README.md"),
-      "ms-rest-azure-js",
-      /"ms-rest-azure-js": "(.*)"/,
-      `"ms-rest-azure-js": "${newDependencyVersion}"`,
-      newDependencyVersion);
+  if (packageFolder.extraFilePaths) {
+    for (const extraFilePath of packageFolder.extraFilePaths) {
+      updateGeneratedPackageDependencyVersion(
+        resolvePath(packageFolderPath, extraFilePath),
+        dependencyName,
+        newDependencyVersion);
+    }
   }
 
   return localDependencyUpdated;
