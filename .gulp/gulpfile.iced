@@ -67,7 +67,7 @@ task 'test/vanilla-metadata', '', [], (done) ->
   done()
 
 task 'test/azure-metadata', '', [], (done) ->
-  cwd = "#{basefolder}/test/metadata/generated"
+  cwd = "#{basefolder}/test/azuremetadata/generated"
   await execute "npm install", {cwd: cwd, silent: false }, defer _
   await execute "npm run build", {cwd: cwd, silent: false }, defer _
   done()

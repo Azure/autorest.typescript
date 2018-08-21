@@ -4,7 +4,7 @@
   "description": "AutoRestComplexTestService Library with typescript type definitions for node.js and browser.",
   "version": "",
   "dependencies": {
-    "ms-rest-js": "~0.19.379"
+    "ms-rest-js": "~0.19.380"
   },
   "keywords": [
     "node",
