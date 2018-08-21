@@ -180,8 +180,8 @@ export function runLocalRepositoryNPMScript(repoName: string, scriptName: string
  * @returns {string?} The version of the provided package at the provided tag.
  */
 export function getNpmPackageVersion(packageName: string, tag: string): string | undefined {
-  const npmViewResult: any = JSON.parse(execSync(`npm view ${packageName} --json`, { stdio: ['pipe', 'pipe', 'ignore'] }).toString());
-  return npmViewResult['dist-tags'][tag];
+  const npmViewResult: any = JSON.parse(execSync(`npm view ${packageName} --json`, { stdio: ["pipe", "pipe", "ignore"] }).toString());
+  return npmViewResult["dist-tags"][tag];
 }
 
 /**
@@ -194,7 +194,7 @@ export function updatePackageJsonMain(packageFolderPath: string, mainValue: stri
 
   const packageJson: any = getPackageJson(packageJsonFilePath);
 
-  if (packageJson.main == mainValue) {
+  if (packageJson.main === mainValue) {
     log(packageJsonFilePath, `"main" is already set to "${mainValue}".`);
   } else {
     log(packageJsonFilePath, `Changing "main" to "${mainValue}".`);
