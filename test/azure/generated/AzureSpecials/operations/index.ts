@@ -8,14 +8,11 @@
  * regenerated.
  */
 
-import { XMsClientRequestId } from "./xMsClientRequestId";
-import { SubscriptionInCredentials } from "./subscriptionInCredentials";
-import { SubscriptionInMethod } from "./subscriptionInMethod";
-import { ApiVersionDefault } from "./apiVersionDefault";
-import { ApiVersionLocal } from "./apiVersionLocal";
-import { SkipUrlEncoding } from "./skipUrlEncoding";
-import { Odata } from "./odata";
-import { Header } from "./header";
-
-export { XMsClientRequestId, SubscriptionInCredentials, SubscriptionInMethod,
-ApiVersionDefault, ApiVersionLocal, SkipUrlEncoding, Odata, Header };
+export * from "./xMsClientRequestId";
+export * from "./subscriptionInCredentials";
+export * from "./subscriptionInMethod";
+export * from "./apiVersionDefault";
+export * from "./apiVersionLocal";
+export * from "./skipUrlEncoding";
+export * from "./odata";
+export * from "./header";

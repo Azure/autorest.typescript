@@ -565,5 +565,23 @@ namespace AutoRest.TypeScript.Model
 
             return builder.ToString();
         }
+
+        public string GenerateServiceClientExports()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Export(exports =>
+            {
+                exports.Export(Name);
+                exports.Export(ContextName);
+                exports.ExportAs("Models", $"{ClientPrefix}Models");
+                exports.ExportAs("Mappers", $"{ClientPrefix}Mappers");
+            });
+
+            if (MethodGroupModels.Any())
+            {
+                builder.ExportAll("./operations");
+            }
+            return builder.ToString();
+        }
     }
 }

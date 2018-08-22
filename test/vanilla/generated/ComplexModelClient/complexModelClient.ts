@@ -293,4 +293,9 @@ const updateOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-export { ComplexModelClient, Models as ComplexModelModels, Mappers as ComplexModelMappers };
+export {
+  ComplexModelClient,
+  ComplexModelClientContext,
+  Models as ComplexModelModels,
+  Mappers as ComplexModelMappers
+};

@@ -43,4 +43,10 @@ class AutoRestSwaggerBATByteService extends AutoRestSwaggerBATByteServiceContext
 
 // Operation Specifications
 
-export { AutoRestSwaggerBATByteService, Models as AutoRestSwaggerBATByteServiceModels, Mappers as AutoRestSwaggerBATByteServiceMappers };
+export {
+  AutoRestSwaggerBATByteService,
+  AutoRestSwaggerBATByteServiceContext,
+  Models as AutoRestSwaggerBATByteServiceModels,
+  Mappers as AutoRestSwaggerBATByteServiceMappers
+};
+export * from "./operations";

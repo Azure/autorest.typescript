@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { DateModel } from "./dateModel";
-
-export { DateModel };
+export * from "./dateModel";

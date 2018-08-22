@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Dictionary } from "./dictionary";
-
-export { Dictionary };
+export * from "./dictionary";

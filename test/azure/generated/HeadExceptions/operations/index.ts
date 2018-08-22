@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { HeadException } from "./headException";
-
-export { HeadException };
+export * from "./headException";

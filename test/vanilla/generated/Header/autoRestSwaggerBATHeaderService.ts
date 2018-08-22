@@ -43,4 +43,10 @@ class AutoRestSwaggerBATHeaderService extends AutoRestSwaggerBATHeaderServiceCon
 
 // Operation Specifications
 
-export { AutoRestSwaggerBATHeaderService, Models as AutoRestSwaggerBATHeaderServiceModels, Mappers as AutoRestSwaggerBATHeaderServiceMappers };
+export {
+  AutoRestSwaggerBATHeaderService,
+  AutoRestSwaggerBATHeaderServiceContext,
+  Models as AutoRestSwaggerBATHeaderServiceModels,
+  Mappers as AutoRestSwaggerBATHeaderServiceMappers
+};
+export * from "./operations";

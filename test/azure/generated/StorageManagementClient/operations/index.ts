@@ -8,7 +8,5 @@
  * regenerated.
  */
 
-import { StorageAccounts } from "./storageAccounts";
-import { UsageOperations } from "./usageOperations";
-
-export { StorageAccounts, UsageOperations };
+export * from "./storageAccounts";
+export * from "./usageOperations";

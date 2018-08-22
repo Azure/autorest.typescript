@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Group } from "./group";
-
-export { Group };
+export * from "./group";

@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Xml } from "./xml";
-
-export { Xml };
+export * from "./xml";

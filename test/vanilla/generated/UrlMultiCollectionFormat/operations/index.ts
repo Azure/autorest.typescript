@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Queries } from "./queries";
-
-export { Queries };
+export * from "./queries";

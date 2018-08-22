@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Datetime } from "./datetime";
-
-export { Datetime };
+export * from "./datetime";

@@ -43,4 +43,10 @@ class AutoRestSwaggerBATdictionaryService extends AutoRestSwaggerBATdictionarySe
 
 // Operation Specifications
 
-export { AutoRestSwaggerBATdictionaryService, Models as AutoRestSwaggerBATdictionaryServiceModels, Mappers as AutoRestSwaggerBATdictionaryServiceMappers };
+export {
+  AutoRestSwaggerBATdictionaryService,
+  AutoRestSwaggerBATdictionaryServiceContext,
+  Models as AutoRestSwaggerBATdictionaryServiceModels,
+  Mappers as AutoRestSwaggerBATdictionaryServiceMappers
+};
+export * from "./operations";

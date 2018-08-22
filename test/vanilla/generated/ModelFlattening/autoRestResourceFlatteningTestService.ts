@@ -830,4 +830,9 @@ const putSimpleProductWithGroupingOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-export { AutoRestResourceFlatteningTestService, Models as AutoRestResourceFlatteningTestServiceModels, Mappers as AutoRestResourceFlatteningTestServiceMappers };
+export {
+  AutoRestResourceFlatteningTestService,
+  AutoRestResourceFlatteningTestServiceContext,
+  Models as AutoRestResourceFlatteningTestServiceModels,
+  Mappers as AutoRestResourceFlatteningTestServiceMappers
+};

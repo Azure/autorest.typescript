@@ -53,4 +53,10 @@ class AutoRestHeadTestService extends AutoRestHeadTestServiceContext {
 
 // Operation Specifications
 
-export { AutoRestHeadTestService, Models as AutoRestHeadTestServiceModels, Mappers as AutoRestHeadTestServiceMappers };
+export {
+  AutoRestHeadTestService,
+  AutoRestHeadTestServiceContext,
+  Models as AutoRestHeadTestServiceModels,
+  Mappers as AutoRestHeadTestServiceMappers
+};
+export * from "./operations";

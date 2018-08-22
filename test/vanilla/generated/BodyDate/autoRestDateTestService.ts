@@ -43,4 +43,10 @@ class AutoRestDateTestService extends AutoRestDateTestServiceContext {
 
 // Operation Specifications
 
-export { AutoRestDateTestService, Models as AutoRestDateTestServiceModels, Mappers as AutoRestDateTestServiceMappers };
+export {
+  AutoRestDateTestService,
+  AutoRestDateTestServiceContext,
+  Models as AutoRestDateTestServiceModels,
+  Mappers as AutoRestDateTestServiceMappers
+};
+export * from "./operations";

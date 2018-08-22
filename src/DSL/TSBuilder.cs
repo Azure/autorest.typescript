@@ -616,5 +616,26 @@ namespace AutoRest.TypeScript.DSL
         {
             Line($"import {{ {string.Join(", ", importedTypeNames)} }} from \"{importSource}\";");
         }
+
+        public void Export(Action<TSExport> exportAction)
+        {
+            Line($"export {{");
+            Indent(() =>
+            {
+                using (TSExport tsExport = new TSExport(this))
+                {
+                    exportAction.Invoke(tsExport);
+                }
+            });
+            Line($"}};");
+        }
+
+        /// <summary>
+        /// Exports all the exports from the given module.
+        /// </summary>
+        public void ExportAll(string modulePath)
+        {
+            Line($"export * from \"{modulePath}\";");
+        }
     }
 }

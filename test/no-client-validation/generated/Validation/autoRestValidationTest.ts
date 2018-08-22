@@ -311,4 +311,9 @@ const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-export { AutoRestValidationTest, Models as AutoRestValidationTestModels, Mappers as AutoRestValidationTestMappers };
+export {
+  AutoRestValidationTest,
+  AutoRestValidationTestContext,
+  Models as AutoRestValidationTestModels,
+  Mappers as AutoRestValidationTestMappers
+};

@@ -79,4 +79,4 @@ foreach (var methodGroup in Model.MethodGroupModels)
 @EmptyLine
 @(Model.GenerateOperationSpecDefinitions(EmptyLine))
 @EmptyLine
-export { @(Model.Name), Models as @(Model.ClientPrefix)Models, Mappers as @(Model.ClientPrefix)Mappers };
+@(Model.GenerateServiceClientExports())

@@ -69,4 +69,10 @@ class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParam
 
 // Operation Specifications
 
-export { AutoRestAzureSpecialParametersTestClient, Models as AutoRestAzureSpecialParametersTestModels, Mappers as AutoRestAzureSpecialParametersTestMappers };
+export {
+  AutoRestAzureSpecialParametersTestClient,
+  AutoRestAzureSpecialParametersTestClientContext,
+  Models as AutoRestAzureSpecialParametersTestModels,
+  Mappers as AutoRestAzureSpecialParametersTestMappers
+};
+export * from "./operations";

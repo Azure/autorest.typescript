@@ -43,4 +43,10 @@ class AutoRestRFC1123DateTimeTestService extends AutoRestRFC1123DateTimeTestServ
 
 // Operation Specifications
 
-export { AutoRestRFC1123DateTimeTestService, Models as AutoRestRFC1123DateTimeTestServiceModels, Mappers as AutoRestRFC1123DateTimeTestServiceMappers };
+export {
+  AutoRestRFC1123DateTimeTestService,
+  AutoRestRFC1123DateTimeTestServiceContext,
+  Models as AutoRestRFC1123DateTimeTestServiceModels,
+  Mappers as AutoRestRFC1123DateTimeTestServiceMappers
+};
+export * from "./operations";

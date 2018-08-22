@@ -43,4 +43,10 @@ class AutoRestBoolTestService extends AutoRestBoolTestServiceContext {
 
 // Operation Specifications
 
-export { AutoRestBoolTestService, Models as AutoRestBoolTestServiceModels, Mappers as AutoRestBoolTestServiceMappers };
+export {
+  AutoRestBoolTestService,
+  AutoRestBoolTestServiceContext,
+  Models as AutoRestBoolTestServiceModels,
+  Mappers as AutoRestBoolTestServiceMappers
+};
+export * from "./operations";

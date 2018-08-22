@@ -108,4 +108,9 @@ const getReportOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-export { AutoRestReportService, Models as AutoRestReportServiceModels, Mappers as AutoRestReportServiceMappers };
+export {
+  AutoRestReportService,
+  AutoRestReportServiceContext,
+  Models as AutoRestReportServiceModels,
+  Mappers as AutoRestReportServiceMappers
+};

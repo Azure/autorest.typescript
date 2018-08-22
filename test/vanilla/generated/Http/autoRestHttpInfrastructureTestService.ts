@@ -55,4 +55,10 @@ class AutoRestHttpInfrastructureTestService extends AutoRestHttpInfrastructureTe
 
 // Operation Specifications
 
-export { AutoRestHttpInfrastructureTestService, Models as AutoRestHttpInfrastructureTestServiceModels, Mappers as AutoRestHttpInfrastructureTestServiceMappers };
+export {
+  AutoRestHttpInfrastructureTestService,
+  AutoRestHttpInfrastructureTestServiceContext,
+  Models as AutoRestHttpInfrastructureTestServiceModels,
+  Mappers as AutoRestHttpInfrastructureTestServiceMappers
+};
+export * from "./operations";

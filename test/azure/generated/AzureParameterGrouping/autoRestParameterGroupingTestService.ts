@@ -53,4 +53,10 @@ class AutoRestParameterGroupingTestService extends AutoRestParameterGroupingTest
 
 // Operation Specifications
 
-export { AutoRestParameterGroupingTestService, Models as AutoRestParameterGroupingTestServiceModels, Mappers as AutoRestParameterGroupingTestServiceMappers };
+export {
+  AutoRestParameterGroupingTestService,
+  AutoRestParameterGroupingTestServiceContext,
+  Models as AutoRestParameterGroupingTestServiceModels,
+  Mappers as AutoRestParameterGroupingTestServiceMappers
+};
+export * from "./operations";

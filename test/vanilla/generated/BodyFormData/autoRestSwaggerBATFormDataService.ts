@@ -43,4 +43,10 @@ class AutoRestSwaggerBATFormDataService extends AutoRestSwaggerBATFormDataServic
 
 // Operation Specifications
 
-export { AutoRestSwaggerBATFormDataService, Models as AutoRestSwaggerBATFormDataServiceModels, Mappers as AutoRestSwaggerBATFormDataServiceMappers };
+export {
+  AutoRestSwaggerBATFormDataService,
+  AutoRestSwaggerBATFormDataServiceContext,
+  Models as AutoRestSwaggerBATFormDataServiceModels,
+  Mappers as AutoRestSwaggerBATFormDataServiceMappers
+};
+export * from "./operations";

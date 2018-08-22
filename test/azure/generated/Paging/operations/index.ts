@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Paging } from "./paging";
-
-export { Paging };
+export * from "./paging";
