@@ -946,28 +946,6 @@ export class Paging {
   }
 
   /**
-   * A long-running paging operation that includes a nextLink that has 10 pages
-   *
-   * @param {PagingBeginGetMultiplePagesLROOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ProductResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetMultiplePagesLRO(): Promise<Models.ProductResult>;
-  beginGetMultiplePagesLRO(options: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<Models.ProductResult>;
-  beginGetMultiplePagesLRO(callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRO(options: Models.PagingBeginGetMultiplePagesLROOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRO(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    return msRest.responseToBody(this.beginGetMultiplePagesLROWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
    * A paging operation that finishes on the first call without a nextlink
    *
    * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
@@ -1207,30 +1185,6 @@ export class Paging {
   getMultiplePagesLRONext(nextPageLink: string, options: Models.PagingGetMultiplePagesLRONextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
     return msRest.responseToBody(this.getMultiplePagesLRONextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
-  }
-
-  /**
-   * A long-running paging operation that includes a nextLink that has 10 pages
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {PagingBeginGetMultiplePagesLRONextOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ProductResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetMultiplePagesLRONext(nextPageLink: string): Promise<Models.ProductResult>;
-  beginGetMultiplePagesLRONext(nextPageLink: string, options: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<Models.ProductResult>;
-  beginGetMultiplePagesLRONext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRONext(nextPageLink: string, options: Models.PagingBeginGetMultiplePagesLRONextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    return msRest.responseToBody(this.beginGetMultiplePagesLRONextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }

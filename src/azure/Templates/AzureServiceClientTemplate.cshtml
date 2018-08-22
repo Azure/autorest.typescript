@@ -65,11 +65,11 @@ foreach (var methodGroup in Model.MethodGroupModels)
 {
 @:  // methods on the client.
 @EmptyLine
-@:  @(method.GenerateWithHttpOperationResponseMethod(EmptyLine))
+@:  @(method.Generate(EmptyLine))
 }
 @if (@Model.GenerateBodyMethods)
 {
-@foreach (var method in Model.MethodWrappableTemplateModels)
+@foreach (MethodTS method in Model.MethodWrappableTemplateModels)
 {
   @EmptyLine
   @:@(Include(new MethodCallbackWrapperTemplate(), method))

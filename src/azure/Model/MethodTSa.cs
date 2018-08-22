@@ -31,6 +31,10 @@ namespace AutoRest.TypeScript.Azure.Model
         [JsonIgnore]
         public override bool IsLongRunningOperation => Extensions.ContainsKey(AzureExtensions.LongRunningExtension);
 
+        /// <summary>
+        /// Whether or not this is a LROPoller method version for a long running operation.
+        /// </summary>
+        public bool IsLongRunningOperationPoller => CodeModel.Methods.Any((Method method) => $"begin{method.Name.ToPascalCase()}" == Name.ToString());
 
         [JsonIgnore]
         public override string InitializeResult
@@ -71,14 +75,33 @@ namespace AutoRest.TypeScript.Azure.Model
             return builder.ToString();
         }
 
-        public string GenerateLongRunningOperationMethod(string emptyLine)
+        public override string Generate(string emptyLine)
+        {
+            string result;
+            string methodName = this.Name.ToString();
+            if (IsLongRunningOperation)
+            {
+                result = GenerateLongRunningOperationMethod(emptyLine);
+            }
+            else if (IsLongRunningOperationPoller)
+            {
+                result = base.Generate(emptyLine);
+            }
+            else
+            {
+                result = base.Generate(emptyLine);
+            }
+            return result;
+        }
+
+        private string GenerateLongRunningOperationMethod(string emptyLine)
         {
             TSBuilder builder = new TSBuilder();
 
             builder.Line(emptyLine);
             builder.Line(GenerateWithHttpOperationResponseMethodComment());
 
-            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", "Promise<msRest.HttpOperationResponse>", MethodParameterDeclarationTS(true, true), methodBody =>
+            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{HttpResponseReferenceName}>", MethodParameterDeclarationTS(true, true), methodBody =>
             {
                 methodBody.Line($"return this.begin{Name.ToPascalCase()}{ResponseMethodSuffix}({MethodParameterDeclaration})");
                 methodBody.Indent(() =>
@@ -103,11 +126,43 @@ namespace AutoRest.TypeScript.Azure.Model
                         }
                         methodBody.Line("return operationRes;");
                     });
-                    methodBody.Line("});");
+
+                    methodBody.Text("})");
+                    if (HasCustomHttpResponseType)
+                    {
+                        methodBody.Text($" as Promise<{HttpResponseReferenceName}>");
+                    }
+                    methodBody.Line(";");
                 });
             });
 
             return builder.ToString();
+        }
+
+        private string GenerateLongRunningOperationPollerMethod(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            string responseName = HttpResponseReferenceName;
+            builder.Line(GenerateWithHttpOperationResponseMethodComment());
+            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<LROPoller>", MethodParameterDeclarationTS(true, true), methodBody =>
+            {
+                methodBody.Return(returnValue =>
+                {
+                    returnValue.FunctionCall($"{ClientReference}.sendLRORequest", argumentList =>
+                    {
+                        argumentList.Object(GenerateOperationArguments);
+                        argumentList.Text(GetOperationSpecVariableName());
+                    });
+                });
+            });
+
+            return builder.ToString();
+        }
+
+        public override bool IsWrappable()
+        {
+            return base.IsWrappable() && !IsLongRunningOperationPoller;
         }
     }
 }

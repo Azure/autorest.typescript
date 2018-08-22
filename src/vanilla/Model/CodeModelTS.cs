@@ -13,6 +13,7 @@ using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript;
 using Newtonsoft.Json;
 using AutoRest.Core;
+using AutoRest.TypeScript.Azure.Model;
 
 namespace AutoRest.TypeScript.Model
 {
@@ -119,7 +120,7 @@ namespace AutoRest.TypeScript.Model
 
         [JsonIgnore]
         public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
-            MethodTemplateModels.Where(method => !method.ReturnType.Body.IsStream());
+            MethodTemplateModels.Where(method => method.IsWrappable());
 
         public IEnumerable<MethodTS> MethodsWithCustomResponseType => Methods.Cast<MethodTS>().Where(m => m.ReturnType.Headers != null || m.ReturnType.Body != null);
 

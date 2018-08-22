@@ -509,55 +509,6 @@ namespace AutoRest.TypeScript.Model
 
         public string ResponseMethodSuffix => CodeModelTS.GenerateBodyMethods ? "WithHttpOperationResponse" : "";
 
-        public string GenerateWithHttpOperationResponseMethod(string emptyLine)
-        {
-            TSBuilder builder = new TSBuilder();
-
-            string responseName = HttpResponseReferenceName;
-            builder.Line(GenerateWithHttpOperationResponseMethodComment());
-            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{responseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
-            {
-                methodBody.Return(returnValue =>
-                {
-                    returnValue.FunctionCall($"{ClientReference}.sendOperationRequest", argumentList =>
-                    {
-                        argumentList.Object(GenerateOperationArguments);
-                        argumentList.Text(GetOperationSpecVariableName());
-                    });
-
-                    if (!HasStreamResponseType())
-                    {
-                        string resultInitializer = InitializeResult;
-                        if (!string.IsNullOrEmpty(resultInitializer))
-                        {
-                            returnValue.FunctionCall(".then", argumentList =>
-                            {
-                                argumentList.Lambda("operationRes", lambda =>
-                                {
-                                    lambda.LineComment("Deserialize Response");
-                                    lambda.Line("const statusCode = operationRes.status;");
-                                    lambda.Line(InitializeResult);
-
-                                    if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
-                                    {
-                                        DeserializeResponse(lambda, DefaultResponse.Body);
-                                    }
-                                    lambda.Return("operationRes");
-                                });
-                            });
-                        }
-                    }
-
-                    if (HasCustomHttpResponseType)
-                    {
-                        returnValue.Text($" as Promise<{responseName}>");
-                    }
-                });
-            });
-
-            return builder.ToString();
-        }
-
         public void GenerateOperationArguments(TSObject operationArguments)
         {
             ParameterTransformations transformations = GetParameterTransformations();
@@ -816,7 +767,7 @@ namespace AutoRest.TypeScript.Model
             builder.ConstObjectVariable(GetOperationSpecVariableName(), "msRest.OperationSpec", GenerateOperationSpec);
         }
 
-        private string GetOperationSpecVariableName()
+        protected string GetOperationSpecVariableName()
         {
             return Name.ToCamelCase() + "OperationSpec";
         }
@@ -824,6 +775,60 @@ namespace AutoRest.TypeScript.Model
         public static bool IsInOptionsParameter(Parameter parameter)
         {
             return parameter != null && !parameter.IsClientProperty && !string.IsNullOrWhiteSpace(parameter.Name) && !parameter.IsConstant && !parameter.IsRequired;
+        }
+
+        public virtual string Generate(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            string responseName = HttpResponseReferenceName;
+            builder.Line(GenerateWithHttpOperationResponseMethodComment());
+            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{responseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
+            {
+                methodBody.Return(returnValue =>
+                {
+                    returnValue.FunctionCall($"{ClientReference}.sendOperationRequest", argumentList =>
+                    {
+                        argumentList.Object(GenerateOperationArguments);
+                        argumentList.Text(GetOperationSpecVariableName());
+                    });
+
+                    if (!HasStreamResponseType())
+                    {
+                        string resultInitializer = InitializeResult;
+                        if (!string.IsNullOrEmpty(resultInitializer))
+                        {
+                            returnValue.FunctionCall(".then", argumentList =>
+                            {
+                                argumentList.Lambda("operationRes", lambda =>
+                                {
+                                    lambda.LineComment("Deserialize Response");
+                                    lambda.Line("const statusCode = operationRes.status;");
+                                    lambda.Line(InitializeResult);
+
+                                    if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
+                                    {
+                                        DeserializeResponse(lambda, DefaultResponse.Body);
+                                    }
+                                    lambda.Return("operationRes");
+                                });
+                            });
+                        }
+                    }
+
+                    if (HasCustomHttpResponseType)
+                    {
+                        returnValue.Text($" as Promise<{responseName}>");
+                    }
+                });
+            });
+
+            return builder.ToString();
+        }
+
+        public virtual bool IsWrappable()
+        {
+            return !ReturnType.Body.IsStream();
         }
     }
 }
