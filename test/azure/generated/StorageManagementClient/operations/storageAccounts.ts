@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/storageAccountsMappers";
 import * as Parameters from "../models/parameters";
@@ -75,12 +76,10 @@ export class StorageAccounts {
    * @reject {Error|ServiceError} The error object.
    */
   createWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCreateResponse> {
-    return this.beginCreateWithHttpOperationResponse(resourceGroupName, accountName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginCreate(resourceGroupName, accountName, parameters, options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -308,15 +307,16 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsBeginCreateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         accountName,
         parameters,
         options
       },
-      beginCreateOperationSpec) as Promise<Models.StorageAccountsBeginCreateResponse>;
+      beginCreateOperationSpec,
+      options);
   }
 
   /**

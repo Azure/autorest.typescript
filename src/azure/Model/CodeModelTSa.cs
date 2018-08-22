@@ -87,7 +87,7 @@ namespace AutoRest.TypeScript.Azure.Model
             builder.ImportAllAs("msRest", "ms-rest-js");
 
             bool usesAzureOptionsType = OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
-            if (usesAzureOptionsType)
+            if (usesAzureOptionsType || MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
             {
                 builder.ImportAllAs("msRestAzure", "ms-rest-azure-js");
             }

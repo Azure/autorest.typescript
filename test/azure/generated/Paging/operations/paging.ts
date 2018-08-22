@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/pagingMappers";
 import * as Parameters from "../models/parameters";
@@ -263,12 +264,10 @@ export class Paging {
    * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesLROOptionalParams): Promise<Models.PagingGetMultiplePagesLROResponse> {
-    return this.beginGetMultiplePagesLROWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginGetMultiplePagesLRO(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -349,12 +348,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<Models.PagingBeginGetMultiplePagesLROResponse> {
-    return this.client.sendOperationRequest(
+  beginGetMultiplePagesLRO(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginGetMultiplePagesLROOperationSpec) as Promise<Models.PagingBeginGetMultiplePagesLROResponse>;
+      beginGetMultiplePagesLROOperationSpec,
+      options);
   }
 
   /**
@@ -572,12 +572,10 @@ export class Paging {
    * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<Models.PagingGetMultiplePagesLRONextResponse> {
-    return this.beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginGetMultiplePagesLRONext(nextPageLink, options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -607,13 +605,14 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<Models.PagingBeginGetMultiplePagesLRONextResponse> {
-    return this.client.sendOperationRequest(
+  beginGetMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         nextPageLink,
         options
       },
-      beginGetMultiplePagesLRONextOperationSpec) as Promise<Models.PagingBeginGetMultiplePagesLRONextResponse>;
+      beginGetMultiplePagesLRONextOperationSpec,
+      options);
   }
 
   /**

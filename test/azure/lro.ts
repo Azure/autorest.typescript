@@ -273,7 +273,7 @@ describe('typescript', function () {
 
     it('should throw on PutAsyncRelativeRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putAsyncRelativeRetry400({ product: product }));
-      error.message.should.equal(`Invalid status code with response body "" occurred when polling for operation status.`);
+      error.message.should.equal(`Invalid status code (400) with response body "" occurred when polling for operation status.`);
     });
 
     it('should throw on DeleteNonRetry400', async () => {

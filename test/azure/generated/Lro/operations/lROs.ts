@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/lROsMappers";
 import * as Parameters from "../models/parameters";
@@ -40,12 +41,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put200SucceededWithHttpOperationResponse(options?: Models.LROsPut200SucceededOptionalParams): Promise<Models.LROsPut200SucceededResponse> {
-    return this.beginPut200SucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPut200Succeeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -76,12 +75,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsPut200SucceededNoStateOptionalParams): Promise<Models.LROsPut200SucceededNoStateResponse> {
-    return this.beginPut200SucceededNoStateWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPut200SucceededNoState(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -113,12 +110,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put202Retry200WithHttpOperationResponse(options?: Models.LROsPut202Retry200OptionalParams): Promise<Models.LROsPut202Retry200Response> {
-    return this.beginPut202Retry200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPut202Retry200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -150,12 +145,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsPut201CreatingSucceeded200Response> {
-    return this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPut201CreatingSucceeded200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -187,12 +180,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsPut200UpdatingSucceeded204OptionalParams): Promise<Models.LROsPut200UpdatingSucceeded204Response> {
-    return this.beginPut200UpdatingSucceeded204WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPut200UpdatingSucceeded204(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -224,12 +215,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsPut201CreatingFailed200OptionalParams): Promise<Models.LROsPut201CreatingFailed200Response> {
-    return this.beginPut201CreatingFailed200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPut201CreatingFailed200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -261,12 +250,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsPut200Acceptedcanceled200OptionalParams): Promise<Models.LROsPut200Acceptedcanceled200Response> {
-    return this.beginPut200Acceptedcanceled200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPut200Acceptedcanceled200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -297,12 +284,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
-    return this.beginPutNoHeaderInRetryWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutNoHeaderInRetry(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -334,12 +319,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
-    return this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutAsyncRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -371,12 +354,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
-    return this.beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutAsyncNoRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -408,12 +389,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
-    return this.beginPutAsyncRetryFailedWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutAsyncRetryFailed(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -445,12 +424,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
-    return this.beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutAsyncNoRetrycanceled(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -481,12 +458,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
-    return this.beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutAsyncNoHeaderInRetry(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -516,12 +491,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putNonResourceWithHttpOperationResponse(options?: Models.LROsPutNonResourceOptionalParams): Promise<Models.LROsPutNonResourceResponse> {
-    return this.beginPutNonResourceWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutNonResource(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -551,12 +524,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsPutAsyncNonResourceOptionalParams): Promise<Models.LROsPutAsyncNonResourceResponse> {
-    return this.beginPutAsyncNonResourceWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutAsyncNonResource(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -586,12 +557,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putSubResourceWithHttpOperationResponse(options?: Models.LROsPutSubResourceOptionalParams): Promise<Models.LROsPutSubResourceResponse> {
-    return this.beginPutSubResourceWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutSubResource(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -621,12 +590,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsPutAsyncSubResourceOptionalParams): Promise<Models.LROsPutAsyncSubResourceResponse> {
-    return this.beginPutAsyncSubResourceWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutAsyncSubResource(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -658,12 +625,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
-    return this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginDeleteProvisioning202Accepted200Succeeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -695,12 +660,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
-    return this.beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginDeleteProvisioning202DeletingFailed200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -732,12 +695,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
-    return this.beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginDeleteProvisioning202Deletingcanceled200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -767,13 +728,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.beginDelete204SucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+    return this.beginDelete204Succeeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
 
@@ -790,12 +746,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   delete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
-    return this.beginDelete202Retry200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginDelete202Retry200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -826,12 +780,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   delete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
-    return this.beginDelete202NoRetry204WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginDelete202NoRetry204(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -862,13 +814,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
-    return this.beginDeleteNoHeaderInRetryWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteNoHeaderInRetryResponse>;
+    return this.beginDeleteNoHeaderInRetry(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteNoHeaderInRetryResponse>;
   }
 
 
@@ -885,13 +832,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
-    return this.beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse>;
+    return this.beginDeleteAsyncNoHeaderInRetry(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse>;
   }
 
 
@@ -908,13 +850,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
-    return this.beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncRetrySucceededResponse>;
+    return this.beginDeleteAsyncRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncRetrySucceededResponse>;
   }
 
 
@@ -931,13 +868,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
-    return this.beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse>;
+    return this.beginDeleteAsyncNoRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse>;
   }
 
 
@@ -954,13 +886,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
-    return this.beginDeleteAsyncRetryFailedWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncRetryFailedResponse>;
+    return this.beginDeleteAsyncRetryFailed(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncRetryFailedResponse>;
   }
 
 
@@ -977,13 +904,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
-    return this.beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncRetrycanceledResponse>;
+    return this.beginDeleteAsyncRetrycanceled(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncRetrycanceledResponse>;
   }
 
 
@@ -1000,12 +922,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   post200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsPost200WithPayloadResponse> {
-    return this.beginPost200WithPayloadWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPost200WithPayload(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -1036,13 +956,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   post202Retry200WithHttpOperationResponse(options?: Models.LROsPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
-    return this.beginPost202Retry200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsPost202Retry200Response>;
+    return this.beginPost202Retry200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPost202Retry200Response>;
   }
 
 
@@ -1059,12 +974,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   post202NoRetry204WithHttpOperationResponse(options?: Models.LROsPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
-    return this.beginPost202NoRetry204WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPost202NoRetry204(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -1096,12 +1009,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse> {
-    return this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPostDoubleHeadersFinalLocationGet(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -1133,12 +1044,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse> {
-    return this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPostDoubleHeadersFinalAzureHeaderGet(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -1170,12 +1079,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> {
-    return this.beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPostDoubleHeadersFinalAzureHeaderGetDefault(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -1207,12 +1114,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
-    return this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPostAsyncRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -1244,12 +1149,10 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
-    return this.beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPostAsyncNoRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -1281,13 +1184,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
-    return this.beginPostAsyncRetryFailedWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsPostAsyncRetryFailedResponse>;
+    return this.beginPostAsyncRetryFailed(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostAsyncRetryFailedResponse>;
   }
 
 
@@ -1305,13 +1203,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
-    return this.beginPostAsyncRetrycanceledWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsPostAsyncRetrycanceledResponse>;
+    return this.beginPostAsyncRetrycanceled(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostAsyncRetrycanceledResponse>;
   }
 
   /**
@@ -1326,12 +1219,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut200SucceededWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<Models.LROsBeginPut200SucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPut200Succeeded(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut200SucceededOperationSpec) as Promise<Models.LROsBeginPut200SucceededResponse>;
+      beginPut200SucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1346,12 +1240,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<Models.LROsBeginPut200SucceededNoStateResponse> {
-    return this.client.sendOperationRequest(
+  beginPut200SucceededNoState(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut200SucceededNoStateOperationSpec) as Promise<Models.LROsBeginPut200SucceededNoStateResponse>;
+      beginPut200SucceededNoStateOperationSpec,
+      options);
   }
 
   /**
@@ -1367,12 +1262,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<Models.LROsBeginPut202Retry200Response> {
-    return this.client.sendOperationRequest(
+  beginPut202Retry200(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut202Retry200OperationSpec) as Promise<Models.LROsBeginPut202Retry200Response>;
+      beginPut202Retry200OperationSpec,
+      options);
   }
 
   /**
@@ -1388,12 +1284,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsBeginPut201CreatingSucceeded200Response> {
-    return this.client.sendOperationRequest(
+  beginPut201CreatingSucceeded200(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut201CreatingSucceeded200OperationSpec) as Promise<Models.LROsBeginPut201CreatingSucceeded200Response>;
+      beginPut201CreatingSucceeded200OperationSpec,
+      options);
   }
 
   /**
@@ -1409,12 +1306,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<Models.LROsBeginPut200UpdatingSucceeded204Response> {
-    return this.client.sendOperationRequest(
+  beginPut200UpdatingSucceeded204(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut200UpdatingSucceeded204OperationSpec) as Promise<Models.LROsBeginPut200UpdatingSucceeded204Response>;
+      beginPut200UpdatingSucceeded204OperationSpec,
+      options);
   }
 
   /**
@@ -1430,12 +1328,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<Models.LROsBeginPut201CreatingFailed200Response> {
-    return this.client.sendOperationRequest(
+  beginPut201CreatingFailed200(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut201CreatingFailed200OperationSpec) as Promise<Models.LROsBeginPut201CreatingFailed200Response>;
+      beginPut201CreatingFailed200OperationSpec,
+      options);
   }
 
   /**
@@ -1451,12 +1350,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<Models.LROsBeginPut200Acceptedcanceled200Response> {
-    return this.client.sendOperationRequest(
+  beginPut200Acceptedcanceled200(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut200Acceptedcanceled200OperationSpec) as Promise<Models.LROsBeginPut200Acceptedcanceled200Response>;
+      beginPut200Acceptedcanceled200OperationSpec,
+      options);
   }
 
   /**
@@ -1471,12 +1371,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
-    return this.client.sendOperationRequest(
+  beginPutNoHeaderInRetry(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutNoHeaderInRetryOperationSpec) as Promise<Models.LROsPutNoHeaderInRetryResponse>;
+      beginPutNoHeaderInRetryOperationSpec,
+      options);
   }
 
   /**
@@ -1492,12 +1393,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncRetrySucceeded(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncRetrySucceededOperationSpec) as Promise<Models.LROsPutAsyncRetrySucceededResponse>;
+      beginPutAsyncRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1513,12 +1415,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncNoRetrySucceeded(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncNoRetrySucceededOperationSpec) as Promise<Models.LROsPutAsyncNoRetrySucceededResponse>;
+      beginPutAsyncNoRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1534,12 +1437,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncRetryFailed(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncRetryFailedOperationSpec) as Promise<Models.LROsPutAsyncRetryFailedResponse>;
+      beginPutAsyncRetryFailedOperationSpec,
+      options);
   }
 
   /**
@@ -1555,12 +1459,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncNoRetrycanceled(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncNoRetrycanceledOperationSpec) as Promise<Models.LROsPutAsyncNoRetrycanceledResponse>;
+      beginPutAsyncNoRetrycanceledOperationSpec,
+      options);
   }
 
   /**
@@ -1575,12 +1480,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncNoHeaderInRetry(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncNoHeaderInRetryOperationSpec) as Promise<Models.LROsPutAsyncNoHeaderInRetryResponse>;
+      beginPutAsyncNoHeaderInRetryOperationSpec,
+      options);
   }
 
   /**
@@ -1594,12 +1500,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<Models.LROsBeginPutNonResourceResponse> {
-    return this.client.sendOperationRequest(
+  beginPutNonResource(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutNonResourceOperationSpec) as Promise<Models.LROsBeginPutNonResourceResponse>;
+      beginPutNonResourceOperationSpec,
+      options);
   }
 
   /**
@@ -1613,12 +1520,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<Models.LROsBeginPutAsyncNonResourceResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncNonResource(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncNonResourceOperationSpec) as Promise<Models.LROsBeginPutAsyncNonResourceResponse>;
+      beginPutAsyncNonResourceOperationSpec,
+      options);
   }
 
   /**
@@ -1632,12 +1540,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<Models.LROsBeginPutSubResourceResponse> {
-    return this.client.sendOperationRequest(
+  beginPutSubResource(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutSubResourceOperationSpec) as Promise<Models.LROsBeginPutSubResourceResponse>;
+      beginPutSubResourceOperationSpec,
+      options);
   }
 
   /**
@@ -1651,12 +1560,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<Models.LROsBeginPutAsyncSubResourceResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncSubResource(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncSubResourceOperationSpec) as Promise<Models.LROsBeginPutAsyncSubResourceResponse>;
+      beginPutAsyncSubResourceOperationSpec,
+      options);
   }
 
   /**
@@ -1672,12 +1582,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteProvisioning202Accepted200SucceededOperationSpec) as Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse>;
+      beginDeleteProvisioning202Accepted200SucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1693,12 +1604,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
-    return this.client.sendOperationRequest(
+  beginDeleteProvisioning202DeletingFailed200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteProvisioning202DeletingFailed200OperationSpec) as Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response>;
+      beginDeleteProvisioning202DeletingFailed200OperationSpec,
+      options);
   }
 
   /**
@@ -1714,12 +1626,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
-    return this.client.sendOperationRequest(
+  beginDeleteProvisioning202Deletingcanceled200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteProvisioning202Deletingcanceled200OperationSpec) as Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response>;
+      beginDeleteProvisioning202Deletingcanceled200OperationSpec,
+      options);
   }
 
   /**
@@ -1733,12 +1646,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDelete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDelete204SucceededOperationSpec);
+      beginDelete204SucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1753,12 +1667,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
-    return this.client.sendOperationRequest(
+  beginDelete202Retry200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDelete202Retry200OperationSpec) as Promise<Models.LROsDelete202Retry200Response>;
+      beginDelete202Retry200OperationSpec,
+      options);
   }
 
   /**
@@ -1773,12 +1688,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
-    return this.client.sendOperationRequest(
+  beginDelete202NoRetry204(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDelete202NoRetry204OperationSpec) as Promise<Models.LROsDelete202NoRetry204Response>;
+      beginDelete202NoRetry204OperationSpec,
+      options);
   }
 
   /**
@@ -1793,12 +1709,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteNoHeaderInRetryOperationSpec) as Promise<Models.LROsDeleteNoHeaderInRetryResponse>;
+      beginDeleteNoHeaderInRetryOperationSpec,
+      options);
   }
 
   /**
@@ -1813,12 +1730,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncNoHeaderInRetryOperationSpec) as Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse>;
+      beginDeleteAsyncNoHeaderInRetryOperationSpec,
+      options);
   }
 
   /**
@@ -1833,12 +1751,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncRetrySucceededOperationSpec) as Promise<Models.LROsDeleteAsyncRetrySucceededResponse>;
+      beginDeleteAsyncRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1853,12 +1772,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncNoRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncNoRetrySucceededOperationSpec) as Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse>;
+      beginDeleteAsyncNoRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1873,12 +1793,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncRetryFailed(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncRetryFailedOperationSpec) as Promise<Models.LROsDeleteAsyncRetryFailedResponse>;
+      beginDeleteAsyncRetryFailedOperationSpec,
+      options);
   }
 
   /**
@@ -1893,12 +1814,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncRetrycanceled(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncRetrycanceledOperationSpec) as Promise<Models.LROsDeleteAsyncRetrycanceledResponse>;
+      beginDeleteAsyncRetrycanceledOperationSpec,
+      options);
   }
 
   /**
@@ -1913,12 +1835,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPost200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsBeginPost200WithPayloadResponse> {
-    return this.client.sendOperationRequest(
+  beginPost200WithPayload(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPost200WithPayloadOperationSpec) as Promise<Models.LROsBeginPost200WithPayloadResponse>;
+      beginPost200WithPayloadOperationSpec,
+      options);
   }
 
   /**
@@ -1933,12 +1856,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
-    return this.client.sendOperationRequest(
+  beginPost202Retry200(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPost202Retry200OperationSpec) as Promise<Models.LROsPost202Retry200Response>;
+      beginPost202Retry200OperationSpec,
+      options);
   }
 
   /**
@@ -1953,12 +1877,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPost202NoRetry204WithHttpOperationResponse(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
-    return this.client.sendOperationRequest(
+  beginPost202NoRetry204(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPost202NoRetry204OperationSpec) as Promise<Models.LROsPost202NoRetry204Response>;
+      beginPost202NoRetry204OperationSpec,
+      options);
   }
 
   /**
@@ -1974,12 +1899,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsBeginPostDoubleHeadersFinalLocationGetResponse> {
-    return this.client.sendOperationRequest(
+  beginPostDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostDoubleHeadersFinalLocationGetOperationSpec) as Promise<Models.LROsBeginPostDoubleHeadersFinalLocationGetResponse>;
+      beginPostDoubleHeadersFinalLocationGetOperationSpec,
+      options);
   }
 
   /**
@@ -1995,12 +1921,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse> {
-    return this.client.sendOperationRequest(
+  beginPostDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec) as Promise<Models.LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse>;
+      beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec,
+      options);
   }
 
   /**
@@ -2016,12 +1943,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> {
-    return this.client.sendOperationRequest(
+  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec) as Promise<Models.LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>;
+      beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec,
+      options);
   }
 
   /**
@@ -2037,12 +1965,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncRetrySucceeded(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncRetrySucceededOperationSpec) as Promise<Models.LROsPostAsyncRetrySucceededResponse>;
+      beginPostAsyncRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -2058,12 +1987,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncNoRetrySucceeded(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncNoRetrySucceededOperationSpec) as Promise<Models.LROsPostAsyncNoRetrySucceededResponse>;
+      beginPostAsyncNoRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -2079,12 +2009,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncRetryFailed(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncRetryFailedOperationSpec) as Promise<Models.LROsPostAsyncRetryFailedResponse>;
+      beginPostAsyncRetryFailedOperationSpec,
+      options);
   }
 
   /**
@@ -2100,12 +2031,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncRetrycanceled(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncRetrycanceledOperationSpec) as Promise<Models.LROsPostAsyncRetrycanceledResponse>;
+      beginPostAsyncRetrycanceledOperationSpec,
+      options);
   }
 
   /**

@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/lROsCustomHeaderMappers";
 import * as Parameters from "../models/parameters";
@@ -42,12 +43,10 @@ export class LROsCustomHeader {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse> {
-    return this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutAsyncRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -80,12 +79,10 @@ export class LROsCustomHeader {
    * @reject {Error|ServiceError} The error object.
    */
   put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsCustomHeaderPut201CreatingSucceeded200Response> {
-    return this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPut201CreatingSucceeded200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -117,13 +114,8 @@ export class LROsCustomHeader {
    * @reject {Error|ServiceError} The error object.
    */
   post202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPost202Retry200OptionalParams): Promise<Models.LROsCustomHeaderPost202Retry200Response> {
-    return this.beginPost202Retry200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsCustomHeaderPost202Retry200Response>;
+    return this.beginPost202Retry200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsCustomHeaderPost202Retry200Response>;
   }
 
 
@@ -142,13 +134,8 @@ export class LROsCustomHeader {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse> {
-    return this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse>;
+    return this.beginPostAsyncRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse>;
   }
 
   /**
@@ -166,12 +153,13 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncRetrySucceeded(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncRetrySucceededOperationSpec) as Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse>;
+      beginPutAsyncRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -189,12 +177,13 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsCustomHeaderBeginPut201CreatingSucceeded200Response> {
-    return this.client.sendOperationRequest(
+  beginPut201CreatingSucceeded200(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut201CreatingSucceeded200OperationSpec) as Promise<Models.LROsCustomHeaderBeginPut201CreatingSucceeded200Response>;
+      beginPut201CreatingSucceeded200OperationSpec,
+      options);
   }
 
   /**
@@ -210,12 +199,13 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<Models.LROsCustomHeaderPost202Retry200Response> {
-    return this.client.sendOperationRequest(
+  beginPost202Retry200(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPost202Retry200OperationSpec) as Promise<Models.LROsCustomHeaderPost202Retry200Response>;
+      beginPost202Retry200OperationSpec,
+      options);
   }
 
   /**
@@ -233,12 +223,13 @@ export class LROsCustomHeader {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncRetrySucceeded(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncRetrySucceededOperationSpec) as Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse>;
+      beginPostAsyncRetrySucceededOperationSpec,
+      options);
   }
 
   /**

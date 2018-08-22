@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/lRORetrysMappers";
 import * as Parameters from "../models/parameters";
@@ -41,12 +42,10 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LRORetrysPut201CreatingSucceeded200OptionalParams): Promise<Models.LRORetrysPut201CreatingSucceeded200Response> {
-    return this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPut201CreatingSucceeded200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -78,12 +77,10 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse> {
-    return this.beginPutAsyncRelativeRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginPutAsyncRelativeRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -115,12 +112,10 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   deleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
-    return this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+    return this.beginDeleteProvisioning202Accepted200Succeeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished())
       .then(operationRes => {
         let httpRequest = operationRes.request;
-
-        // Deserialize Response
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         if (parsedResponse != undefined) {
           try {
@@ -151,13 +146,8 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   delete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDelete202Retry200Response> {
-    return this.beginDelete202Retry200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LRORetrysDelete202Retry200Response>;
+    return this.beginDelete202Retry200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysDelete202Retry200Response>;
   }
 
 
@@ -174,13 +164,8 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
-    return this.beginDeleteAsyncRelativeRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse>;
+    return this.beginDeleteAsyncRelativeRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse>;
   }
 
 
@@ -197,13 +182,8 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   post202Retry200WithHttpOperationResponse(options?: Models.LRORetrysPost202Retry200OptionalParams): Promise<Models.LRORetrysPost202Retry200Response> {
-    return this.beginPost202Retry200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LRORetrysPost202Retry200Response>;
+    return this.beginPost202Retry200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysPost202Retry200Response>;
   }
 
 
@@ -221,13 +201,8 @@ export class LRORetrys {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysPostAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse> {
-    return this.beginPostAsyncRelativeRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse>;
+    return this.beginPostAsyncRelativeRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse>;
   }
 
   /**
@@ -243,12 +218,13 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.LRORetrysBeginPut201CreatingSucceeded200Response> {
-    return this.client.sendOperationRequest(
+  beginPut201CreatingSucceeded200(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut201CreatingSucceeded200OperationSpec) as Promise<Models.LRORetrysBeginPut201CreatingSucceeded200Response>;
+      beginPut201CreatingSucceeded200OperationSpec,
+      options);
   }
 
   /**
@@ -265,12 +241,13 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncRelativeRetrySucceededOperationSpec) as Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse>;
+      beginPutAsyncRelativeRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -286,12 +263,13 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteProvisioning202Accepted200SucceededOperationSpec) as Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse>;
+      beginDeleteProvisioning202Accepted200SucceededOperationSpec,
+      options);
   }
 
   /**
@@ -306,12 +284,13 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDelete202Retry200Response> {
-    return this.client.sendOperationRequest(
+  beginDelete202Retry200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDelete202Retry200OperationSpec) as Promise<Models.LRORetrysDelete202Retry200Response>;
+      beginDelete202Retry200OperationSpec,
+      options);
   }
 
   /**
@@ -326,12 +305,13 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncRelativeRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncRelativeRetrySucceededOperationSpec) as Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse>;
+      beginDeleteAsyncRelativeRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -346,12 +326,13 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPost202Retry200WithHttpOperationResponse(options?: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<Models.LRORetrysPost202Retry200Response> {
-    return this.client.sendOperationRequest(
+  beginPost202Retry200(options?: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPost202Retry200OperationSpec) as Promise<Models.LRORetrysPost202Retry200Response>;
+      beginPost202Retry200OperationSpec,
+      options);
   }
 
   /**
@@ -368,12 +349,13 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncRelativeRetrySucceededOperationSpec) as Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse>;
+      beginPostAsyncRelativeRetrySucceededOperationSpec,
+      options);
   }
 
   /**
