@@ -66,6 +66,11 @@ namespace AutoRest.TypeScript
                 convertModel(model);
             }
 
+            foreach (var property in codeModel.Properties)
+            {
+                convertModel(property.ModelType);
+            }
+
             var allMethods = codeModel.MethodGroupModels.SelectMany(g => g.MethodTemplateModels).Concat(codeModel.MethodTemplateModels);
             foreach (var method in allMethods)
             {
