@@ -40,8 +40,6 @@ namespace AutoRest.TypeScript.Azure
                 throw new InvalidCastException("CodeModel is not a Azure TypeScript code model.");
             }
 
-            InitializeSettings(codeModel);
-
             // Service client
             var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel };
             await Write(serviceClientTemplate, codeModel.Name.ToCamelCase() + ".ts");

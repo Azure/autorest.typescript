@@ -150,6 +150,8 @@ namespace AutoRest.TypeScript.Model
 
         public bool ModelEnumAsUnion { get; set; }
 
+        public bool ModelDateAsString { get; set; }
+
         public bool GenerateMetadata { get; set; }
 
         public bool GenerateBodyMethods { get; set; }
@@ -393,7 +395,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.19.380\"";
+            return "\"ms-rest-js\": \"~0.19.388\"";
         }
 
         public virtual Method GetSampleMethod()

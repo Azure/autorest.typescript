@@ -10,7 +10,7 @@ using AutoRest.Core.Parsing;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.Model;
 using Microsoft.Perks.JsonRPC;
-
+using static AutoRest.Core.Utilities.DependencyInjection;
 using IAnyPlugin = AutoRest.Core.Extensibility.IPlugin<AutoRest.Core.Extensibility.IGeneratorSettings, AutoRest.Core.IModelSerializer<AutoRest.Core.Model.CodeModel>, AutoRest.Core.ITransformer<AutoRest.Core.Model.CodeModel>, AutoRest.Core.CodeGenerator, AutoRest.Core.CodeNamer, AutoRest.Core.Model.CodeModel>;
 
 namespace AutoRest.TypeScript
@@ -158,10 +158,23 @@ namespace AutoRest.TypeScript
                 (await GetValue<bool?>("testgen") ?? false ? ".TestGen" : ""));
             Settings.PopulateSettings(plugin.Settings, Settings.Instance.CustomSettings);
 
+            void initializeSettings(CodeModelTS codeModel)
+            {
+                GeneratorSettingsTS generatorSettings = Singleton<GeneratorSettingsTS>.Instance;
+                codeModel.PackageName = Settings.Instance.PackageName;
+                codeModel.PackageVersion = Settings.Instance.PackageVersion;
+                codeModel.OutputFolder = generatorSettings.OutputFolder;
+                codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
+                codeModel.ModelDateAsString = generatorSettings.ModelDateAsString;
+                codeModel.GenerateMetadata = generatorSettings.GenerateMetadata;
+                codeModel.GenerateBodyMethods = generatorSettings.GenerateBodyMethods;
+            }
+
             using (plugin.Activate())
             {
                 Settings.Instance.Namespace = Settings.Instance.Namespace ?? CodeNamer.Instance.GetNamespaceName(altNamespace);
                 var codeModel = plugin.Serializer.Load(modelAsJson);
+                initializeSettings((CodeModelTS) codeModel);
                 codeModel = plugin.Transformer.TransformCodeModel(codeModel);
                 if (await GetValue<bool?>("sample-generation") ?? false)
                 {
