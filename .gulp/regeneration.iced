@@ -300,7 +300,7 @@ task 'regenerate-tsazure-metadata', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union', 'regenerate-ts-no-body-methods', 'regenerate-ts-metadata', 'regenerate-ts-no-client-validation'], (done) ->
+task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union', 'regenerate-ts-no-body-methods', 'regenerate-ts-metadata', 'regenerate-ts-no-client-validation', 'regenerate-ts-date-as-string'], (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]
   regenExpected {
