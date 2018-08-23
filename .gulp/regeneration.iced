@@ -44,6 +44,9 @@ regenExpected = (opts,done) ->
     if (opts.modelEnumAsUnion)
       args.push("--model-enum-as-union=true")
 
+    if (opts.modelDateAsString)
+      args.push("--model-date-as-string=true")
+
     if (opts.generateMetadata)
       args.push("--generate-metadata=true")
 
@@ -135,6 +138,12 @@ enumUnionMappings = {
   'BodyString': 'body-string.json'
 }
 
+dateAsStringMappings = {
+  'BodyDate': 'body-date.json',
+  'BodyDateTime': 'body-datetime.json',
+  'BodyDateTimeRfc1123': 'body-datetime-rfc1123.json',
+}
+
 metadataMappings = {
   'lib': 'body-complex.json',
 }
@@ -222,6 +231,19 @@ task 'regenerate-ts-enum-union', '', [], (done) ->
     'nsPrefix': 'Fixtures',
     'flatteningThreshold': '1',
     'modelEnumAsUnion': true
+  },done
+  return null
+
+task 'regenerate-ts-date-as-string', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/date-as-string',
+    'inputBaseDir': swaggerDir,
+    'mappings': dateAsStringMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures',
+    'flatteningThreshold': '1',
+    'modelDateAsString': true
   },done
   return null
 

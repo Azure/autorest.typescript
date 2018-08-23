@@ -33,7 +33,59 @@ namespace AutoRest.TypeScript
             EnsureParameterMethodSet(codeModel);
             CreateUniqueParameterMapperNames(codeModel);
 
+            if (codeModel.ModelDateAsString)
+            {
+                ConvertDateToString(codeModel);
+            }
+
             return codeModel;
+        }
+
+        private void ConvertDateToString(CodeModelTS codeModel)
+        {
+            void convertModel(IModelType modelType)
+            {
+                if (modelType is CompositeType composite)
+                {
+                    foreach (var property in composite.Properties)
+                    {
+                        convertModel(property.ModelType);
+                    }
+                }
+                else if (modelType is PrimaryType pt &&
+                         (pt.KnownPrimaryType == KnownPrimaryType.Date ||
+                          pt.KnownPrimaryType == KnownPrimaryType.DateTime ||
+                          pt.KnownPrimaryType == KnownPrimaryType.DateTimeRfc1123))
+                {
+                    pt.KnownPrimaryType = KnownPrimaryType.String;
+                }
+            }
+
+            foreach (var model in codeModel.AllModelTypes)
+            {
+                convertModel(model);
+            }
+
+            var allMethods = codeModel.MethodGroupModels.SelectMany(g => g.MethodTemplateModels).Concat(codeModel.MethodTemplateModels);
+            foreach (var method in allMethods)
+            {
+                foreach (var parameter in method.Parameters)
+                {
+                    convertModel(parameter.ModelType);
+                }
+
+                foreach (var response in method.Responses.Values)
+                {
+                    convertModel(response.Body);
+                    convertModel(response.Headers);
+                }
+
+                convertModel(method.DefaultResponse.Body);
+                convertModel(method.DefaultResponse.Headers);
+
+                convertModel(method.ReturnType.Body);
+                convertModel(method.ReturnType.Headers);
+            }
         }
 
         private void EnsureParameterMethodSet(CodeModelTS codeModel)

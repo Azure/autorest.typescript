@@ -26,6 +26,11 @@ namespace AutoRest.TypeScript
         public bool ModelEnumAsUnion { get; set; }
 
         /// <summary>
+        /// If true, models Date parameters as string in parameters and properties.
+        /// </summary>
+        public bool ModelDateAsString { get; set; }
+
+        /// <summary>
         /// If true, generates "body" and "response" methods for each operation.
         /// Otherwise, generates only the "response" method without the "WithHttpOperationResponse" suffix.
         /// Defaults to true.
