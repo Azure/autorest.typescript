@@ -1,14 +1,15 @@
-const { join } = require("path");
-const { promisify } = require("util");
-const cp = require("child_process");
+import { join } from "path";
+import { promisify } from "util";
+import cp = require("child_process");
+import fs = require("fs");
+import filesize = require("filesize");
+
 const exec = promisify(cp.exec);
-const fs = require("fs");
-const filesize = require("filesize");
-const dependencies = require("./dependencies");
 
 async function getBundleSize() {
   await new Promise((resolve) => {
-    const child = cp.spawn(join(__dirname, "../node_modules/.bin/webpack"), ['-p'], { maxBuffer: 1024 * 1024, stdio: 'inherit' });
+    const opts = { maxBuffer: 1024 * 1024, stdio: 'inherit' };
+    const child = cp.spawn(join(__dirname, "../node_modules/.bin/webpack"), ['-p'], opts);
     child.on('exit', () => resolve());
   });
   const status = fs.statSync(join(__dirname, "../testBundle.js"));
@@ -42,15 +43,15 @@ async function main() {
   let headSize = undefined;
 
   const branch = process.env.TRAVIS_BRANCH;
-  const prCommit = process.env.TRAVIS_PULL_REQUEST_SHA
+  const prCommit = process.env.TRAVIS_PULL_REQUEST_SHA;
 
   try {
     await execVerbose("git reset --hard " + branch);
-    dependencies.refreshNodeModules({ ignoreScripts: true });
+    await execVerbose("npm i --ignore-scripts");
     baseSize = await getBundleSize();
 
     await execVerbose("git reset --hard " + prCommit);
-    dependencies.refreshNodeModules({ ignoreScripts: true });
+    await execVerbose("npm i --ignore-scripts");
     headSize = await getBundleSize();
 
     const change = (headSize / baseSize) - 1;
@@ -65,6 +66,7 @@ async function main() {
     } else {
       outputErrorMessage(`Unrecognized error`, error);
     }
+    throw error;
   }
 }
 
