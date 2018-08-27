@@ -135,6 +135,7 @@ checkRegeneration = (taskName) ->
 task 'testci', '', [], (done) ->
   # VSTS can't handle regenerating after running browser tests
   await checkRegeneration "regenerate", defer _
+  await run "build", defer _
   await run "test", defer _
   done();
 
