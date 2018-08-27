@@ -47,11 +47,11 @@ async function main() {
 
   try {
     await execVerbose("git reset --hard " + branch);
-    await execVerbose("npm i");
+    await execVerbose("npm i --ignore-scripts");
     baseSize = await getBundleSize();
 
     await execVerbose("git reset --hard " + prCommit);
-    await execVerbose("npm i");
+    await execVerbose("npm i --ignore-scripts");
     headSize = await getBundleSize();
 
     const change = (headSize / baseSize) - 1;
