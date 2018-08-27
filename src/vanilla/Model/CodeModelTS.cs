@@ -394,7 +394,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.19.384\"";
+            return "\"ms-rest-js\": \"~0.20.403\"";
         }
 
         public virtual Method GetSampleMethod()

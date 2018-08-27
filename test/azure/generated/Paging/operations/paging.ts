@@ -265,23 +265,7 @@ export class Paging {
    */
   getMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesLROOptionalParams): Promise<Models.PagingGetMultiplePagesLROResponse> {
     return this.beginGetMultiplePagesLRO(options)
-      .then(lroPoller => lroPoller.pollUntilFinished())
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ProductResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.PagingGetMultiplePagesLROResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.PagingGetMultiplePagesLROResponse>;
   }
 
   /**
@@ -573,23 +557,7 @@ export class Paging {
    */
   getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<Models.PagingGetMultiplePagesLRONextResponse> {
     return this.beginGetMultiplePagesLRONext(nextPageLink, options)
-      .then(lroPoller => lroPoller.pollUntilFinished())
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ProductResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.PagingGetMultiplePagesLRONextResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.PagingGetMultiplePagesLRONextResponse>;
   }
 
   /**

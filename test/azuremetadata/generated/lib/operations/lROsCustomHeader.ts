@@ -44,23 +44,7 @@ export class LROsCustomHeader {
    */
   putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse> {
     return this.beginPutAsyncRetrySucceeded(options)
-      .then(lroPoller => lroPoller.pollUntilFinished())
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse>;
   }
 
 
@@ -80,23 +64,7 @@ export class LROsCustomHeader {
    */
   put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsCustomHeaderPut201CreatingSucceeded200Response> {
     return this.beginPut201CreatingSucceeded200(options)
-      .then(lroPoller => lroPoller.pollUntilFinished())
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsCustomHeaderPut201CreatingSucceeded200Response>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsCustomHeaderPut201CreatingSucceeded200Response>;
   }
 
 

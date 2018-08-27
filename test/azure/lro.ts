@@ -48,7 +48,8 @@ describe('typescript', function () {
     });
 
     it('should work with PutAsyncNoRetrySucceeded', async () => {
-      await testClient.lROs.putAsyncNoRetrySucceeded({ product: product });
+      const result = await testClient.lROs.putAsyncNoRetrySucceeded({ product: product });
+      should(result).eql({ id: '100', name: 'foo', provisioningState: "Succeeded" });
     });
 
     it('should work with PutNoHeaderInRetry', async () => {
@@ -107,17 +108,18 @@ describe('typescript', function () {
 
     it('should work with put202Retry200', async () => {
       const result = await testClient.lROs.put202Retry200({ product: product });
-      result.id.should.be.exactly('100');
+      should(result.id).be.exactly('100');
     });
 
     it('should work with Put200Succeeded', async () => {
       const result = await testClient.lROs.put200Succeeded({ product: product });
-      result.provisioningState.should.be.exactly('Succeeded');
+      should.exist(result);
+      should(result.provisioningState).be.exactly('Succeeded');
     });
 
     it('should work with Put200SucceededNoState', async () => {
       const result = await testClient.lROs.put200SucceededNoState({ product: product });
-      result.id.should.be.exactly('100');
+      should(result.id).be.exactly('100');
     });
 
     it('should work with PutAsyncRetrySucceeded', async () => {

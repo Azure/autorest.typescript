@@ -43,23 +43,7 @@ export class LRORetrys {
    */
   put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LRORetrysPut201CreatingSucceeded200OptionalParams): Promise<Models.LRORetrysPut201CreatingSucceeded200Response> {
     return this.beginPut201CreatingSucceeded200(options)
-      .then(lroPoller => lroPoller.pollUntilFinished())
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LRORetrysPut201CreatingSucceeded200Response>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysPut201CreatingSucceeded200Response>;
   }
 
 
@@ -78,23 +62,7 @@ export class LRORetrys {
    */
   putAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse> {
     return this.beginPutAsyncRelativeRetrySucceeded(options)
-      .then(lroPoller => lroPoller.pollUntilFinished())
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse>;
   }
 
 
@@ -113,23 +81,7 @@ export class LRORetrys {
    */
   deleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
     return this.beginDeleteProvisioning202Accepted200Succeeded(options)
-      .then(lroPoller => lroPoller.pollUntilFinished())
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse>;
   }
 
 

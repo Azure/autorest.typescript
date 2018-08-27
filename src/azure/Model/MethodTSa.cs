@@ -98,22 +98,6 @@ namespace AutoRest.TypeScript.Azure.Model
                 methodBody.Indent(() =>
                 {
                     methodBody.Text($".then(lroPoller => lroPoller.pollUntilFinished())");
-                    if (ReturnType.Body != null)
-                    {
-                        methodBody.Line();
-                        methodBody.Line($".then(operationRes => {{");
-                        methodBody.Indent(() =>
-                        {
-                            methodBody.Line("let httpRequest = operationRes.request;");
-                            methodBody.Line(DeserializeResponse(ReturnType.Body));
-                            if (DefaultResponse.Body != null && !Responses.Any())
-                            {
-                                methodBody.Line(DeserializeResponse(DefaultResponse.Body));
-                            }
-                            methodBody.Line("return operationRes;");
-                        });
-                        methodBody.Text("})");
-                    }
                     if (HasCustomHttpResponseType)
                     {
                         methodBody.Text($" as Promise<{HttpResponseReferenceName}>");
