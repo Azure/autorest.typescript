@@ -17,10 +17,7 @@
       "args": [],
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "internalConsoleOptions": "openOnSessionStart",
-      "env": {
-        // This has to be set or else ts-node won't find const enum values.
-        "TS_NODE_TYPE_CHECK": "Y"
-      }
+      "smartStep": true
     },
     {
       "type": "node",

@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/storageAccountsMappers";
 import * as Parameters from "../models/parameters";
@@ -75,26 +76,8 @@ export class StorageAccounts {
    * @reject {Error|ServiceError} The error object.
    */
   createWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCreateResponse> {
-    return this.beginCreateWithHttpOperationResponse(resourceGroupName, accountName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.StorageAccount, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.StorageAccountsCreateResponse>;
+    return this.beginCreate(resourceGroupName, accountName, parameters, options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.StorageAccountsCreateResponse>;
   }
 
   /**
@@ -308,15 +291,16 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsBeginCreateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         accountName,
         parameters,
         options
       },
-      beginCreateOperationSpec) as Promise<Models.StorageAccountsBeginCreateResponse>;
+      beginCreateOperationSpec,
+      options);
   }
 
   /**
@@ -574,40 +558,6 @@ export class StorageAccounts {
   regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
   regenerateKey(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): any {
     return msRest.responseToBody(this.regenerateKeyWithHttpOperationResponse.bind(this), resourceGroupName, accountName, options, callback);
-  }
-
-  /**
-   * Asynchronously creates a new storage account with the specified parameters. Existing accounts
-   * cannot be updated with this API and should instead use the Update Storage Account API. If an
-   * account is already created and subsequent PUT request is issued with exact same set of
-   * properties, then HTTP 200 would be returned.
-   *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
-   *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
-   *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
-   * account.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StorageAccount} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccount} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters): Promise<Models.StorageAccount>;
-  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccount>;
-  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): any {
-    return msRest.responseToBody(this.beginCreateWithHttpOperationResponse.bind(this), resourceGroupName, accountName, parameters, options, callback);
   }
 
 }

@@ -77,7 +77,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public override string PackageDependencies()
         {
-            return "\"ms-rest-azure-js\": \"~0.14.145\"";
+            return "\"ms-rest-azure-js\": \"~0.15.152\"";
         }
 
         public string GenerateAzureServiceClientImports()
@@ -87,7 +87,7 @@ namespace AutoRest.TypeScript.Azure.Model
             builder.ImportAllAs("msRest", "ms-rest-js");
 
             bool usesAzureOptionsType = OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
-            if (usesAzureOptionsType)
+            if (usesAzureOptionsType || MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
             {
                 builder.ImportAllAs("msRestAzure", "ms-rest-azure-js");
             }

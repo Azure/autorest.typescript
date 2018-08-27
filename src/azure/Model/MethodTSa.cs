@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Linq;
-using System.Net;
 using AutoRest.Core.Model;
+using AutoRest.Core.Utilities;
 using AutoRest.Extensions.Azure;
 using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript.Model;
 using Newtonsoft.Json;
+using System.Linq;
+using System.Net;
 
 namespace AutoRest.TypeScript.Azure.Model
 {
@@ -30,6 +31,16 @@ namespace AutoRest.TypeScript.Azure.Model
         [JsonIgnore]
         public override bool IsLongRunningOperation => Extensions.ContainsKey(AzureExtensions.LongRunningExtension);
 
+        /// <summary>
+        /// Whether or not this is a LROPoller method version for a long running operation.
+        /// </summary>
+        public bool IsLongRunningOperationPoller()
+            => CodeModel.Methods.Any((Method method) => GetPollerMethodName(method) == Name.ToString());
+
+        private static string GetPollerMethodName(Method method)
+        {
+            return $"begin{method.Name.ToPascalCase()}";
+        }
 
         [JsonIgnore]
         public override string InitializeResult
@@ -46,20 +57,6 @@ namespace AutoRest.TypeScript.Azure.Model
             }
         }
 
-        [JsonIgnore]
-        public string LongRunningOperationMethodNameInRuntime
-        {
-            get
-            {
-                string result = null;
-                if (this.IsLongRunningOperation)
-                {
-                    result = "getLongRunningOperationResult";
-                }
-                return result;
-            }
-        }
-
         public string DeserializeResponse(IModelType type)
         {
             TSBuilder builder = new TSBuilder();
@@ -68,6 +65,75 @@ namespace AutoRest.TypeScript.Azure.Model
                 DeserializeResponse(block, type);
             }
             return builder.ToString();
+        }
+
+        public override string Generate(string emptyLine)
+        {
+            string result;
+            if (IsLongRunningOperation)
+            {
+                result = GenerateLongRunningOperationMethod(emptyLine);
+            }
+            else if (IsLongRunningOperationPoller())
+            {
+                result = GenerateLongRunningOperationPollerMethod(emptyLine);
+            }
+            else
+            {
+                result = base.Generate(emptyLine);
+            }
+            return result;
+        }
+
+        private string GenerateLongRunningOperationMethod(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.Line(emptyLine);
+            builder.Line(GenerateWithHttpOperationResponseMethodComment());
+
+            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{HttpResponseReferenceName}>", MethodParameterDeclarationTS(true, true), methodBody =>
+            {
+                methodBody.Line($"return this.{GetPollerMethodName(this)}({MethodParameterDeclaration})");
+                methodBody.Indent(() =>
+                {
+                    methodBody.Text($".then(lroPoller => lroPoller.pollUntilFinished())");
+                    if (HasCustomHttpResponseType)
+                    {
+                        methodBody.Text($" as Promise<{HttpResponseReferenceName}>");
+                    }
+                    methodBody.Line(";");
+                });
+            });
+
+            return builder.ToString();
+        }
+
+        private string GenerateLongRunningOperationPollerMethod(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            string responseName = HttpResponseReferenceName;
+            builder.Line(GenerateWithHttpOperationResponseMethodComment());
+            builder.Method(Name.ToString(), "Promise<msRestAzure.LROPoller>", MethodParameterDeclarationTS(true, true), methodBody =>
+            {
+                methodBody.Return(returnValue =>
+                {
+                    returnValue.FunctionCall($"{ClientReference}.sendLRORequest", argumentList =>
+                    {
+                        argumentList.Object(GenerateOperationArguments);
+                        argumentList.Text(GetOperationSpecVariableName());
+                        argumentList.Text("options");
+                    });
+                });
+            });
+
+            return builder.ToString();
+        }
+
+        public override bool IsWrappable()
+        {
+            return base.IsWrappable() && !IsLongRunningOperationPoller();
         }
     }
 }

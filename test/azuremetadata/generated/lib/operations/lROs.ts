@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/lROsMappers";
 import * as Parameters from "../models/parameters";
@@ -40,26 +41,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put200SucceededWithHttpOperationResponse(options?: Models.LROsPut200SucceededOptionalParams): Promise<Models.LROsPut200SucceededResponse> {
-    return this.beginPut200SucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPut200SucceededResponse>;
+    return this.beginPut200Succeeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPut200SucceededResponse>;
   }
 
 
@@ -76,26 +59,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsPut200SucceededNoStateOptionalParams): Promise<Models.LROsPut200SucceededNoStateResponse> {
-    return this.beginPut200SucceededNoStateWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPut200SucceededNoStateResponse>;
+    return this.beginPut200SucceededNoState(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPut200SucceededNoStateResponse>;
   }
 
 
@@ -113,26 +78,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put202Retry200WithHttpOperationResponse(options?: Models.LROsPut202Retry200OptionalParams): Promise<Models.LROsPut202Retry200Response> {
-    return this.beginPut202Retry200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPut202Retry200Response>;
+    return this.beginPut202Retry200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPut202Retry200Response>;
   }
 
 
@@ -150,26 +97,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsPut201CreatingSucceeded200Response> {
-    return this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPut201CreatingSucceeded200Response>;
+    return this.beginPut201CreatingSucceeded200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPut201CreatingSucceeded200Response>;
   }
 
 
@@ -187,26 +116,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsPut200UpdatingSucceeded204OptionalParams): Promise<Models.LROsPut200UpdatingSucceeded204Response> {
-    return this.beginPut200UpdatingSucceeded204WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPut200UpdatingSucceeded204Response>;
+    return this.beginPut200UpdatingSucceeded204(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPut200UpdatingSucceeded204Response>;
   }
 
 
@@ -224,26 +135,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsPut201CreatingFailed200OptionalParams): Promise<Models.LROsPut201CreatingFailed200Response> {
-    return this.beginPut201CreatingFailed200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPut201CreatingFailed200Response>;
+    return this.beginPut201CreatingFailed200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPut201CreatingFailed200Response>;
   }
 
 
@@ -261,26 +154,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   put200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsPut200Acceptedcanceled200OptionalParams): Promise<Models.LROsPut200Acceptedcanceled200Response> {
-    return this.beginPut200Acceptedcanceled200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPut200Acceptedcanceled200Response>;
+    return this.beginPut200Acceptedcanceled200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPut200Acceptedcanceled200Response>;
   }
 
 
@@ -297,26 +172,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
-    return this.beginPutNoHeaderInRetryWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutNoHeaderInRetryResponse>;
+    return this.beginPutNoHeaderInRetry(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutNoHeaderInRetryResponse>;
   }
 
 
@@ -334,26 +191,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
-    return this.beginPutAsyncRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutAsyncRetrySucceededResponse>;
+    return this.beginPutAsyncRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutAsyncRetrySucceededResponse>;
   }
 
 
@@ -371,26 +210,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
-    return this.beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutAsyncNoRetrySucceededResponse>;
+    return this.beginPutAsyncNoRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutAsyncNoRetrySucceededResponse>;
   }
 
 
@@ -408,26 +229,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
-    return this.beginPutAsyncRetryFailedWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutAsyncRetryFailedResponse>;
+    return this.beginPutAsyncRetryFailed(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutAsyncRetryFailedResponse>;
   }
 
 
@@ -445,26 +248,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
-    return this.beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutAsyncNoRetrycanceledResponse>;
+    return this.beginPutAsyncNoRetrycanceled(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutAsyncNoRetrycanceledResponse>;
   }
 
 
@@ -481,26 +266,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
-    return this.beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutAsyncNoHeaderInRetryResponse>;
+    return this.beginPutAsyncNoHeaderInRetry(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutAsyncNoHeaderInRetryResponse>;
   }
 
 
@@ -516,26 +283,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putNonResourceWithHttpOperationResponse(options?: Models.LROsPutNonResourceOptionalParams): Promise<Models.LROsPutNonResourceResponse> {
-    return this.beginPutNonResourceWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Sku, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutNonResourceResponse>;
+    return this.beginPutNonResource(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutNonResourceResponse>;
   }
 
 
@@ -551,26 +300,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsPutAsyncNonResourceOptionalParams): Promise<Models.LROsPutAsyncNonResourceResponse> {
-    return this.beginPutAsyncNonResourceWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Sku, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutAsyncNonResourceResponse>;
+    return this.beginPutAsyncNonResource(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutAsyncNonResourceResponse>;
   }
 
 
@@ -586,26 +317,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putSubResourceWithHttpOperationResponse(options?: Models.LROsPutSubResourceOptionalParams): Promise<Models.LROsPutSubResourceResponse> {
-    return this.beginPutSubResourceWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.SubProduct, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutSubResourceResponse>;
+    return this.beginPutSubResource(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutSubResourceResponse>;
   }
 
 
@@ -621,26 +334,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   putAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsPutAsyncSubResourceOptionalParams): Promise<Models.LROsPutAsyncSubResourceResponse> {
-    return this.beginPutAsyncSubResourceWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.SubProduct, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPutAsyncSubResourceResponse>;
+    return this.beginPutAsyncSubResource(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPutAsyncSubResourceResponse>;
   }
 
 
@@ -658,26 +353,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
-    return this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse>;
+    return this.beginDeleteProvisioning202Accepted200Succeeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse>;
   }
 
 
@@ -695,26 +372,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
-    return this.beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response>;
+    return this.beginDeleteProvisioning202DeletingFailed200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response>;
   }
 
 
@@ -732,26 +391,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
-    return this.beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response>;
+    return this.beginDeleteProvisioning202Deletingcanceled200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response>;
   }
 
 
@@ -767,13 +408,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.beginDelete204SucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+    return this.beginDelete204Succeeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
 
@@ -790,26 +426,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   delete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
-    return this.beginDelete202Retry200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsDelete202Retry200Response>;
+    return this.beginDelete202Retry200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDelete202Retry200Response>;
   }
 
 
@@ -826,26 +444,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   delete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
-    return this.beginDelete202NoRetry204WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsDelete202NoRetry204Response>;
+    return this.beginDelete202NoRetry204(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDelete202NoRetry204Response>;
   }
 
 
@@ -862,13 +462,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
-    return this.beginDeleteNoHeaderInRetryWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteNoHeaderInRetryResponse>;
+    return this.beginDeleteNoHeaderInRetry(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteNoHeaderInRetryResponse>;
   }
 
 
@@ -885,13 +480,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
-    return this.beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse>;
+    return this.beginDeleteAsyncNoHeaderInRetry(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse>;
   }
 
 
@@ -908,13 +498,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
-    return this.beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncRetrySucceededResponse>;
+    return this.beginDeleteAsyncRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncRetrySucceededResponse>;
   }
 
 
@@ -931,13 +516,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
-    return this.beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse>;
+    return this.beginDeleteAsyncNoRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse>;
   }
 
 
@@ -954,13 +534,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
-    return this.beginDeleteAsyncRetryFailedWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncRetryFailedResponse>;
+    return this.beginDeleteAsyncRetryFailed(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncRetryFailedResponse>;
   }
 
 
@@ -977,13 +552,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
-    return this.beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsDeleteAsyncRetrycanceledResponse>;
+    return this.beginDeleteAsyncRetrycanceled(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncRetrycanceledResponse>;
   }
 
 
@@ -1000,26 +570,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   post200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsPost200WithPayloadResponse> {
-    return this.beginPost200WithPayloadWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Sku, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPost200WithPayloadResponse>;
+    return this.beginPost200WithPayload(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPost200WithPayloadResponse>;
   }
 
 
@@ -1036,13 +588,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   post202Retry200WithHttpOperationResponse(options?: Models.LROsPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
-    return this.beginPost202Retry200WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsPost202Retry200Response>;
+    return this.beginPost202Retry200(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPost202Retry200Response>;
   }
 
 
@@ -1059,26 +606,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   post202NoRetry204WithHttpOperationResponse(options?: Models.LROsPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
-    return this.beginPost202NoRetry204WithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPost202NoRetry204Response>;
+    return this.beginPost202NoRetry204(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPost202NoRetry204Response>;
   }
 
 
@@ -1096,26 +625,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse> {
-    return this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse>;
+    return this.beginPostDoubleHeadersFinalLocationGet(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse>;
   }
 
 
@@ -1133,26 +644,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse> {
-    return this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse>;
+    return this.beginPostDoubleHeadersFinalAzureHeaderGet(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse>;
   }
 
 
@@ -1170,26 +663,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> {
-    return this.beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>;
+    return this.beginPostDoubleHeadersFinalAzureHeaderGetDefault(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>;
   }
 
 
@@ -1207,26 +682,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
-    return this.beginPostAsyncRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPostAsyncRetrySucceededResponse>;
+    return this.beginPostAsyncRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostAsyncRetrySucceededResponse>;
   }
 
 
@@ -1244,26 +701,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
-    return this.beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Product, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LROsPostAsyncNoRetrySucceededResponse>;
+    return this.beginPostAsyncNoRetrySucceeded(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostAsyncNoRetrySucceededResponse>;
   }
 
 
@@ -1281,13 +720,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
-    return this.beginPostAsyncRetryFailedWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsPostAsyncRetryFailedResponse>;
+    return this.beginPostAsyncRetryFailed(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostAsyncRetryFailedResponse>;
   }
 
 
@@ -1305,13 +739,8 @@ export class LROs {
    * @reject {Error|ServiceError} The error object.
    */
   postAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
-    return this.beginPostAsyncRetrycanceledWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      }) as Promise<Models.LROsPostAsyncRetrycanceledResponse>;
+    return this.beginPostAsyncRetrycanceled(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostAsyncRetrycanceledResponse>;
   }
 
   /**
@@ -1326,12 +755,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut200SucceededWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<Models.LROsBeginPut200SucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPut200Succeeded(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut200SucceededOperationSpec) as Promise<Models.LROsBeginPut200SucceededResponse>;
+      beginPut200SucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1346,12 +776,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<Models.LROsBeginPut200SucceededNoStateResponse> {
-    return this.client.sendOperationRequest(
+  beginPut200SucceededNoState(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut200SucceededNoStateOperationSpec) as Promise<Models.LROsBeginPut200SucceededNoStateResponse>;
+      beginPut200SucceededNoStateOperationSpec,
+      options);
   }
 
   /**
@@ -1367,12 +798,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<Models.LROsBeginPut202Retry200Response> {
-    return this.client.sendOperationRequest(
+  beginPut202Retry200(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut202Retry200OperationSpec) as Promise<Models.LROsBeginPut202Retry200Response>;
+      beginPut202Retry200OperationSpec,
+      options);
   }
 
   /**
@@ -1388,12 +820,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsBeginPut201CreatingSucceeded200Response> {
-    return this.client.sendOperationRequest(
+  beginPut201CreatingSucceeded200(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut201CreatingSucceeded200OperationSpec) as Promise<Models.LROsBeginPut201CreatingSucceeded200Response>;
+      beginPut201CreatingSucceeded200OperationSpec,
+      options);
   }
 
   /**
@@ -1409,12 +842,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<Models.LROsBeginPut200UpdatingSucceeded204Response> {
-    return this.client.sendOperationRequest(
+  beginPut200UpdatingSucceeded204(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut200UpdatingSucceeded204OperationSpec) as Promise<Models.LROsBeginPut200UpdatingSucceeded204Response>;
+      beginPut200UpdatingSucceeded204OperationSpec,
+      options);
   }
 
   /**
@@ -1430,12 +864,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<Models.LROsBeginPut201CreatingFailed200Response> {
-    return this.client.sendOperationRequest(
+  beginPut201CreatingFailed200(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut201CreatingFailed200OperationSpec) as Promise<Models.LROsBeginPut201CreatingFailed200Response>;
+      beginPut201CreatingFailed200OperationSpec,
+      options);
   }
 
   /**
@@ -1451,12 +886,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPut200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<Models.LROsBeginPut200Acceptedcanceled200Response> {
-    return this.client.sendOperationRequest(
+  beginPut200Acceptedcanceled200(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPut200Acceptedcanceled200OperationSpec) as Promise<Models.LROsBeginPut200Acceptedcanceled200Response>;
+      beginPut200Acceptedcanceled200OperationSpec,
+      options);
   }
 
   /**
@@ -1471,12 +907,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
-    return this.client.sendOperationRequest(
+  beginPutNoHeaderInRetry(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutNoHeaderInRetryOperationSpec) as Promise<Models.LROsPutNoHeaderInRetryResponse>;
+      beginPutNoHeaderInRetryOperationSpec,
+      options);
   }
 
   /**
@@ -1492,12 +929,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncRetrySucceeded(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncRetrySucceededOperationSpec) as Promise<Models.LROsPutAsyncRetrySucceededResponse>;
+      beginPutAsyncRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1513,12 +951,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncNoRetrySucceeded(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncNoRetrySucceededOperationSpec) as Promise<Models.LROsPutAsyncNoRetrySucceededResponse>;
+      beginPutAsyncNoRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1534,12 +973,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncRetryFailed(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncRetryFailedOperationSpec) as Promise<Models.LROsPutAsyncRetryFailedResponse>;
+      beginPutAsyncRetryFailedOperationSpec,
+      options);
   }
 
   /**
@@ -1555,12 +995,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncNoRetrycanceled(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncNoRetrycanceledOperationSpec) as Promise<Models.LROsPutAsyncNoRetrycanceledResponse>;
+      beginPutAsyncNoRetrycanceledOperationSpec,
+      options);
   }
 
   /**
@@ -1575,12 +1016,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncNoHeaderInRetry(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncNoHeaderInRetryOperationSpec) as Promise<Models.LROsPutAsyncNoHeaderInRetryResponse>;
+      beginPutAsyncNoHeaderInRetryOperationSpec,
+      options);
   }
 
   /**
@@ -1594,12 +1036,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<Models.LROsBeginPutNonResourceResponse> {
-    return this.client.sendOperationRequest(
+  beginPutNonResource(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutNonResourceOperationSpec) as Promise<Models.LROsBeginPutNonResourceResponse>;
+      beginPutNonResourceOperationSpec,
+      options);
   }
 
   /**
@@ -1613,12 +1056,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<Models.LROsBeginPutAsyncNonResourceResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncNonResource(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncNonResourceOperationSpec) as Promise<Models.LROsBeginPutAsyncNonResourceResponse>;
+      beginPutAsyncNonResourceOperationSpec,
+      options);
   }
 
   /**
@@ -1632,12 +1076,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<Models.LROsBeginPutSubResourceResponse> {
-    return this.client.sendOperationRequest(
+  beginPutSubResource(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutSubResourceOperationSpec) as Promise<Models.LROsBeginPutSubResourceResponse>;
+      beginPutSubResourceOperationSpec,
+      options);
   }
 
   /**
@@ -1651,12 +1096,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPutAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<Models.LROsBeginPutAsyncSubResourceResponse> {
-    return this.client.sendOperationRequest(
+  beginPutAsyncSubResource(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPutAsyncSubResourceOperationSpec) as Promise<Models.LROsBeginPutAsyncSubResourceResponse>;
+      beginPutAsyncSubResourceOperationSpec,
+      options);
   }
 
   /**
@@ -1672,12 +1118,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteProvisioning202Accepted200SucceededOperationSpec) as Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse>;
+      beginDeleteProvisioning202Accepted200SucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1693,12 +1140,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
-    return this.client.sendOperationRequest(
+  beginDeleteProvisioning202DeletingFailed200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteProvisioning202DeletingFailed200OperationSpec) as Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response>;
+      beginDeleteProvisioning202DeletingFailed200OperationSpec,
+      options);
   }
 
   /**
@@ -1714,12 +1162,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
-    return this.client.sendOperationRequest(
+  beginDeleteProvisioning202Deletingcanceled200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteProvisioning202Deletingcanceled200OperationSpec) as Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response>;
+      beginDeleteProvisioning202Deletingcanceled200OperationSpec,
+      options);
   }
 
   /**
@@ -1733,12 +1182,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDelete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDelete204SucceededOperationSpec);
+      beginDelete204SucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1753,12 +1203,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
-    return this.client.sendOperationRequest(
+  beginDelete202Retry200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDelete202Retry200OperationSpec) as Promise<Models.LROsDelete202Retry200Response>;
+      beginDelete202Retry200OperationSpec,
+      options);
   }
 
   /**
@@ -1773,12 +1224,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDelete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
-    return this.client.sendOperationRequest(
+  beginDelete202NoRetry204(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDelete202NoRetry204OperationSpec) as Promise<Models.LROsDelete202NoRetry204Response>;
+      beginDelete202NoRetry204OperationSpec,
+      options);
   }
 
   /**
@@ -1793,12 +1245,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteNoHeaderInRetryOperationSpec) as Promise<Models.LROsDeleteNoHeaderInRetryResponse>;
+      beginDeleteNoHeaderInRetryOperationSpec,
+      options);
   }
 
   /**
@@ -1813,12 +1266,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncNoHeaderInRetryOperationSpec) as Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse>;
+      beginDeleteAsyncNoHeaderInRetryOperationSpec,
+      options);
   }
 
   /**
@@ -1833,12 +1287,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncRetrySucceededOperationSpec) as Promise<Models.LROsDeleteAsyncRetrySucceededResponse>;
+      beginDeleteAsyncRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1853,12 +1308,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncNoRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncNoRetrySucceededOperationSpec) as Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse>;
+      beginDeleteAsyncNoRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -1873,12 +1329,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncRetryFailed(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncRetryFailedOperationSpec) as Promise<Models.LROsDeleteAsyncRetryFailedResponse>;
+      beginDeleteAsyncRetryFailedOperationSpec,
+      options);
   }
 
   /**
@@ -1893,12 +1350,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteAsyncRetrycanceled(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginDeleteAsyncRetrycanceledOperationSpec) as Promise<Models.LROsDeleteAsyncRetrycanceledResponse>;
+      beginDeleteAsyncRetrycanceledOperationSpec,
+      options);
   }
 
   /**
@@ -1913,12 +1371,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPost200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsBeginPost200WithPayloadResponse> {
-    return this.client.sendOperationRequest(
+  beginPost200WithPayload(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPost200WithPayloadOperationSpec) as Promise<Models.LROsBeginPost200WithPayloadResponse>;
+      beginPost200WithPayloadOperationSpec,
+      options);
   }
 
   /**
@@ -1933,12 +1392,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
-    return this.client.sendOperationRequest(
+  beginPost202Retry200(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPost202Retry200OperationSpec) as Promise<Models.LROsPost202Retry200Response>;
+      beginPost202Retry200OperationSpec,
+      options);
   }
 
   /**
@@ -1953,12 +1413,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPost202NoRetry204WithHttpOperationResponse(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
-    return this.client.sendOperationRequest(
+  beginPost202NoRetry204(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPost202NoRetry204OperationSpec) as Promise<Models.LROsPost202NoRetry204Response>;
+      beginPost202NoRetry204OperationSpec,
+      options);
   }
 
   /**
@@ -1974,12 +1435,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsBeginPostDoubleHeadersFinalLocationGetResponse> {
-    return this.client.sendOperationRequest(
+  beginPostDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostDoubleHeadersFinalLocationGetOperationSpec) as Promise<Models.LROsBeginPostDoubleHeadersFinalLocationGetResponse>;
+      beginPostDoubleHeadersFinalLocationGetOperationSpec,
+      options);
   }
 
   /**
@@ -1995,12 +1457,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse> {
-    return this.client.sendOperationRequest(
+  beginPostDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec) as Promise<Models.LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse>;
+      beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec,
+      options);
   }
 
   /**
@@ -2016,12 +1479,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> {
-    return this.client.sendOperationRequest(
+  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec) as Promise<Models.LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>;
+      beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec,
+      options);
   }
 
   /**
@@ -2037,12 +1501,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncRetrySucceeded(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncRetrySucceededOperationSpec) as Promise<Models.LROsPostAsyncRetrySucceededResponse>;
+      beginPostAsyncRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -2058,12 +1523,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncNoRetrySucceeded(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncNoRetrySucceededOperationSpec) as Promise<Models.LROsPostAsyncNoRetrySucceededResponse>;
+      beginPostAsyncNoRetrySucceededOperationSpec,
+      options);
   }
 
   /**
@@ -2079,12 +1545,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncRetryFailed(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncRetryFailedOperationSpec) as Promise<Models.LROsPostAsyncRetryFailedResponse>;
+      beginPostAsyncRetryFailedOperationSpec,
+      options);
   }
 
   /**
@@ -2100,12 +1567,13 @@ export class LROs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginPostAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
-    return this.client.sendOperationRequest(
+  beginPostAsyncRetrycanceled(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginPostAsyncRetrycanceledOperationSpec) as Promise<Models.LROsPostAsyncRetrycanceledResponse>;
+      beginPostAsyncRetrycanceledOperationSpec,
+      options);
   }
 
   /**
@@ -3017,917 +2485,6 @@ export class LROs {
   postAsyncRetrycanceled(options: Models.LROsPostAsyncRetrycanceledOptionalParams, callback: msRest.ServiceCallback<void>): void;
   postAsyncRetrycanceled(options?: Models.LROsPostAsyncRetrycanceledOptionalParams, callback?: msRest.ServiceCallback<void>): any {
     return msRest.responseToBody(this.postAsyncRetrycanceledWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that
-   * contains ProvisioningState=’Succeeded’.
-   *
-   * @param {LROsBeginPut200SucceededOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPut200Succeeded(): Promise<Models.Product>;
-  beginPut200Succeeded(options: Models.LROsBeginPut200SucceededOptionalParams): Promise<Models.Product>;
-  beginPut200Succeeded(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200Succeeded(options: Models.LROsBeginPut200SucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200Succeeded(options?: Models.LROsBeginPut200SucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPut200SucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that does
-   * not contain ProvisioningState=’Succeeded’.
-   *
-   * @param {LROsBeginPut200SucceededNoStateOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPut200SucceededNoState(): Promise<Models.Product>;
-  beginPut200SucceededNoState(options: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<Models.Product>;
-  beginPut200SucceededNoState(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200SucceededNoState(options: Models.LROsBeginPut200SucceededNoStateOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200SucceededNoState(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPut200SucceededNoStateWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 202 to the initial request, with a location header
-   * that points to a polling URL that returns a 200 and an entity that doesn't contains
-   * ProvisioningState
-   *
-   * @param {LROsBeginPut202Retry200OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPut202Retry200(): Promise<Models.Product>;
-  beginPut202Retry200(options: Models.LROsBeginPut202Retry200OptionalParams): Promise<Models.Product>;
-  beginPut202Retry200(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut202Retry200(options: Models.LROsBeginPut202Retry200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut202Retry200(options?: Models.LROsBeginPut202Retry200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPut202Retry200WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 201 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
-   * ‘200’ with ProvisioningState=’Succeeded’
-   *
-   * @param {LROsBeginPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPut201CreatingSucceeded200(): Promise<Models.Product>;
-  beginPut201CreatingSucceeded200(options: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
-  beginPut201CreatingSucceeded200(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut201CreatingSucceeded200(options: Models.LROsBeginPut201CreatingSucceeded200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut201CreatingSucceeded200(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPut201CreatingSucceeded200WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 201 to the initial request, with an entity that
-   * contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
-   * ‘200’ with ProvisioningState=’Succeeded’
-   *
-   * @param {LROsBeginPut200UpdatingSucceeded204OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPut200UpdatingSucceeded204(): Promise<Models.Product>;
-  beginPut200UpdatingSucceeded204(options: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<Models.Product>;
-  beginPut200UpdatingSucceeded204(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200UpdatingSucceeded204(options: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200UpdatingSucceeded204(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPut200UpdatingSucceeded204WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 201 to the initial request, with an entity that
-   * contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
-   * ‘200’ with ProvisioningState=’Failed’
-   *
-   * @param {LROsBeginPut201CreatingFailed200OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPut201CreatingFailed200(): Promise<Models.Product>;
-  beginPut201CreatingFailed200(options: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<Models.Product>;
-  beginPut201CreatingFailed200(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut201CreatingFailed200(options: Models.LROsBeginPut201CreatingFailed200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut201CreatingFailed200(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPut201CreatingFailed200WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 201 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
-   * ‘200’ with ProvisioningState=’Canceled’
-   *
-   * @param {LROsBeginPut200Acceptedcanceled200OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPut200Acceptedcanceled200(): Promise<Models.Product>;
-  beginPut200Acceptedcanceled200(options: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<Models.Product>;
-  beginPut200Acceptedcanceled200(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200Acceptedcanceled200(options: Models.LROsBeginPut200Acceptedcanceled200OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPut200Acceptedcanceled200(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPut200Acceptedcanceled200WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 202 to the initial request with location header.
-   * Subsequent calls to operation status do not contain location header.
-   *
-   * @param {LROsBeginPutNoHeaderInRetryOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutNoHeaderInRetry(): Promise<Models.Product>;
-  beginPutNoHeaderInRetry(options: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<Models.Product>;
-  beginPutNoHeaderInRetry(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutNoHeaderInRetry(options: Models.LROsBeginPutNoHeaderInRetryOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutNoHeaderInRetry(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPutNoHeaderInRetryWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROsBeginPutAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutAsyncRetrySucceeded(): Promise<Models.Product>;
-  beginPutAsyncRetrySucceeded(options: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
-  beginPutAsyncRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRetrySucceeded(options: Models.LROsBeginPutAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRetrySucceeded(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPutAsyncRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROsBeginPutAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutAsyncNoRetrySucceeded(): Promise<Models.Product>;
-  beginPutAsyncNoRetrySucceeded(options: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<Models.Product>;
-  beginPutAsyncNoRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncNoRetrySucceeded(options: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncNoRetrySucceeded(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPutAsyncNoRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROsBeginPutAsyncRetryFailedOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutAsyncRetryFailed(): Promise<Models.Product>;
-  beginPutAsyncRetryFailed(options: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<Models.Product>;
-  beginPutAsyncRetryFailed(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRetryFailed(options: Models.LROsBeginPutAsyncRetryFailedOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncRetryFailed(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPutAsyncRetryFailedWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROsBeginPutAsyncNoRetrycanceledOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutAsyncNoRetrycanceled(): Promise<Models.Product>;
-  beginPutAsyncNoRetrycanceled(options: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<Models.Product>;
-  beginPutAsyncNoRetrycanceled(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncNoRetrycanceled(options: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncNoRetrycanceled(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPutAsyncNoRetrycanceledWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation
-   * header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
-   *
-   * @param {LROsBeginPutAsyncNoHeaderInRetryOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutAsyncNoHeaderInRetry(): Promise<Models.Product>;
-  beginPutAsyncNoHeaderInRetry(options: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.Product>;
-  beginPutAsyncNoHeaderInRetry(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncNoHeaderInRetry(options: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPutAsyncNoHeaderInRetry(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPutAsyncNoHeaderInRetryWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request with non resource.
-   *
-   * @param {LROsBeginPutNonResourceOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Sku} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Sku} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutNonResource(): Promise<Models.Sku>;
-  beginPutNonResource(options: Models.LROsBeginPutNonResourceOptionalParams): Promise<Models.Sku>;
-  beginPutNonResource(callback: msRest.ServiceCallback<Models.Sku>): void;
-  beginPutNonResource(options: Models.LROsBeginPutNonResourceOptionalParams, callback: msRest.ServiceCallback<Models.Sku>): void;
-  beginPutNonResource(options?: Models.LROsBeginPutNonResourceOptionalParams, callback?: msRest.ServiceCallback<Models.Sku>): any {
-    return msRest.responseToBody(this.beginPutNonResourceWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request with non resource.
-   *
-   * @param {LROsBeginPutAsyncNonResourceOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Sku} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Sku} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutAsyncNonResource(): Promise<Models.Sku>;
-  beginPutAsyncNonResource(options: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<Models.Sku>;
-  beginPutAsyncNonResource(callback: msRest.ServiceCallback<Models.Sku>): void;
-  beginPutAsyncNonResource(options: Models.LROsBeginPutAsyncNonResourceOptionalParams, callback: msRest.ServiceCallback<Models.Sku>): void;
-  beginPutAsyncNonResource(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams, callback?: msRest.ServiceCallback<Models.Sku>): any {
-    return msRest.responseToBody(this.beginPutAsyncNonResourceWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request with sub resource.
-   *
-   * @param {LROsBeginPutSubResourceOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.SubProduct} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SubProduct} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutSubResource(): Promise<Models.SubProduct>;
-  beginPutSubResource(options: Models.LROsBeginPutSubResourceOptionalParams): Promise<Models.SubProduct>;
-  beginPutSubResource(callback: msRest.ServiceCallback<Models.SubProduct>): void;
-  beginPutSubResource(options: Models.LROsBeginPutSubResourceOptionalParams, callback: msRest.ServiceCallback<Models.SubProduct>): void;
-  beginPutSubResource(options?: Models.LROsBeginPutSubResourceOptionalParams, callback?: msRest.ServiceCallback<Models.SubProduct>): any {
-    return msRest.responseToBody(this.beginPutSubResourceWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request with sub resource.
-   *
-   * @param {LROsBeginPutAsyncSubResourceOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.SubProduct} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SubProduct} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPutAsyncSubResource(): Promise<Models.SubProduct>;
-  beginPutAsyncSubResource(options: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<Models.SubProduct>;
-  beginPutAsyncSubResource(callback: msRest.ServiceCallback<Models.SubProduct>): void;
-  beginPutAsyncSubResource(options: Models.LROsBeginPutAsyncSubResourceOptionalParams, callback: msRest.ServiceCallback<Models.SubProduct>): void;
-  beginPutAsyncSubResource(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams, callback?: msRest.ServiceCallback<Models.SubProduct>): any {
-    return msRest.responseToBody(this.beginPutAsyncSubResourceWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
-   * ‘200’ with ProvisioningState=’Succeeded’
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteProvisioning202Accepted200Succeeded(): Promise<Models.Product>;
-  beginDeleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase): Promise<Models.Product>;
-  beginDeleteProvisioning202Accepted200Succeeded(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
-   * ‘200’ with ProvisioningState=’Failed’
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteProvisioning202DeletingFailed200(): Promise<Models.Product>;
-  beginDeleteProvisioning202DeletingFailed200(options: msRest.RequestOptionsBase): Promise<Models.Product>;
-  beginDeleteProvisioning202DeletingFailed200(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202DeletingFailed200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202DeletingFailed200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
-   * ‘200’ with ProvisioningState=’Canceled’
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteProvisioning202Deletingcanceled200(): Promise<Models.Product>;
-  beginDeleteProvisioning202Deletingcanceled200(options: msRest.RequestOptionsBase): Promise<Models.Product>;
-  beginDeleteProvisioning202Deletingcanceled200(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202Deletingcanceled200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDeleteProvisioning202Deletingcanceled200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete succeeds and returns right away
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDelete204Succeeded(): Promise<void>;
-  beginDelete204Succeeded(options: msRest.RequestOptionsBase): Promise<void>;
-  beginDelete204Succeeded(callback: msRest.ServiceCallback<void>): void;
-  beginDelete204Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDelete204Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDelete204SucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. Polls return this
-   * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDelete202Retry200(): Promise<Models.Product>;
-  beginDelete202Retry200(options: msRest.RequestOptionsBase): Promise<Models.Product>;
-  beginDelete202Retry200(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDelete202Retry200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDelete202Retry200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginDelete202Retry200WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. Polls return this
-   * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDelete202NoRetry204(): Promise<Models.Product>;
-  beginDelete202NoRetry204(options: msRest.RequestOptionsBase): Promise<Models.Product>;
-  beginDelete202NoRetry204(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDelete202NoRetry204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginDelete202NoRetry204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginDelete202NoRetry204WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a location header in the initial request.
-   * Subsequent calls to operation status do not contain location header.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteNoHeaderInRetry(): Promise<void>;
-  beginDeleteNoHeaderInRetry(options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteNoHeaderInRetry(callback: msRest.ServiceCallback<void>): void;
-  beginDeleteNoHeaderInRetry(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteNoHeaderInRetry(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteNoHeaderInRetryWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns an Azure-AsyncOperation header in the initial
-   * request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteAsyncNoHeaderInRetry(): Promise<void>;
-  beginDeleteAsyncNoHeaderInRetry(options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteAsyncNoHeaderInRetry(callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncNoHeaderInRetry(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncNoHeaderInRetry(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteAsyncRetrySucceeded(): Promise<void>;
-  beginDeleteAsyncRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteAsyncRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRetrySucceeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRetrySucceeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteAsyncRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteAsyncNoRetrySucceeded(): Promise<void>;
-  beginDeleteAsyncNoRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteAsyncNoRetrySucceeded(callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncNoRetrySucceeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncNoRetrySucceeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteAsyncRetryFailed(): Promise<void>;
-  beginDeleteAsyncRetryFailed(options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteAsyncRetryFailed(callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRetryFailed(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRetryFailed(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteAsyncRetryFailedWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteAsyncRetrycanceled(): Promise<void>;
-  beginDeleteAsyncRetrycanceled(options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteAsyncRetrycanceled(callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRetrycanceled(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteAsyncRetrycanceled(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteAsyncRetrycanceledWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with 'Location' header.
-   * Poll returns a 200 with a response body after success.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Sku} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Sku} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPost200WithPayload(): Promise<Models.Sku>;
-  beginPost200WithPayload(options: msRest.RequestOptionsBase): Promise<Models.Sku>;
-  beginPost200WithPayload(callback: msRest.ServiceCallback<Models.Sku>): void;
-  beginPost200WithPayload(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Sku>): void;
-  beginPost200WithPayload(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Sku>): any {
-    return msRest.responseToBody(this.beginPost200WithPayloadWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with 'Location' and
-   * 'Retry-After' headers, Polls return a 200 with a response body after success
-   *
-   * @param {LROsBeginPost202Retry200OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPost202Retry200(): Promise<void>;
-  beginPost202Retry200(options: Models.LROsBeginPost202Retry200OptionalParams): Promise<void>;
-  beginPost202Retry200(callback: msRest.ServiceCallback<void>): void;
-  beginPost202Retry200(options: Models.LROsBeginPost202Retry200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPost202Retry200(options?: Models.LROsBeginPost202Retry200OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginPost202Retry200WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with 'Location' header,
-   * 204 with noresponse body after success
-   *
-   * @param {LROsBeginPost202NoRetry204OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPost202NoRetry204(): Promise<Models.Product>;
-  beginPost202NoRetry204(options: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<Models.Product>;
-  beginPost202NoRetry204(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPost202NoRetry204(options: Models.LROsBeginPost202NoRetry204OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPost202NoRetry204(options?: Models.LROsBeginPost202NoRetry204OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPost202NoRetry204WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request with both Location and
-   * Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
-   * object
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPostDoubleHeadersFinalLocationGet(): Promise<Models.Product>;
-  beginPostDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
-  beginPostDoubleHeadersFinalLocationGet(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request with both Location and
-   * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
-   * object
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPostDoubleHeadersFinalAzureHeaderGet(): Promise<Models.Product>;
-  beginPostDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
-  beginPostDoubleHeadersFinalAzureHeaderGet(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request with both Location and
-   * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
-   * object if you support initial Autorest behavior.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPostDoubleHeadersFinalAzureHeaderGetDefault(): Promise<Models.Product>;
-  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options: msRest.RequestOptionsBase): Promise<Models.Product>;
-  beginPostDoubleHeadersFinalAzureHeaderGetDefault(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPostDoubleHeadersFinalAzureHeaderGetDefaultWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROsBeginPostAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPostAsyncRetrySucceeded(): Promise<Models.Product>;
-  beginPostAsyncRetrySucceeded(options: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
-  beginPostAsyncRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostAsyncRetrySucceeded(options: Models.LROsBeginPostAsyncRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostAsyncRetrySucceeded(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPostAsyncRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROsBeginPostAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPostAsyncNoRetrySucceeded(): Promise<Models.Product>;
-  beginPostAsyncNoRetrySucceeded(options: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<Models.Product>;
-  beginPostAsyncNoRetrySucceeded(callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostAsyncNoRetrySucceeded(options: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  beginPostAsyncNoRetrySucceeded(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.beginPostAsyncNoRetrySucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROsBeginPostAsyncRetryFailedOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPostAsyncRetryFailed(): Promise<void>;
-  beginPostAsyncRetryFailed(options: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<void>;
-  beginPostAsyncRetryFailed(callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRetryFailed(options: Models.LROsBeginPostAsyncRetryFailedOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRetryFailed(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginPostAsyncRetryFailedWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROsBeginPostAsyncRetrycanceledOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginPostAsyncRetrycanceled(): Promise<void>;
-  beginPostAsyncRetrycanceled(options: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<void>;
-  beginPostAsyncRetrycanceled(callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRetrycanceled(options: Models.LROsBeginPostAsyncRetrycanceledOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  beginPostAsyncRetrycanceled(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginPostAsyncRetrycanceledWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

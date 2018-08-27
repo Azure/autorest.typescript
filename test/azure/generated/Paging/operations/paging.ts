@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/pagingMappers";
 import * as Parameters from "../models/parameters";
@@ -263,26 +264,8 @@ export class Paging {
    * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesLROOptionalParams): Promise<Models.PagingGetMultiplePagesLROResponse> {
-    return this.beginGetMultiplePagesLROWithHttpOperationResponse(options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ProductResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.PagingGetMultiplePagesLROResponse>;
+    return this.beginGetMultiplePagesLRO(options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.PagingGetMultiplePagesLROResponse>;
   }
 
   /**
@@ -349,12 +332,13 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<Models.PagingBeginGetMultiplePagesLROResponse> {
-    return this.client.sendOperationRequest(
+  beginGetMultiplePagesLRO(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         options
       },
-      beginGetMultiplePagesLROOperationSpec) as Promise<Models.PagingBeginGetMultiplePagesLROResponse>;
+      beginGetMultiplePagesLROOperationSpec,
+      options);
   }
 
   /**
@@ -572,26 +556,8 @@ export class Paging {
    * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<Models.PagingGetMultiplePagesLRONextResponse> {
-    return this.beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ProductResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.PagingGetMultiplePagesLRONextResponse>;
+    return this.beginGetMultiplePagesLRONext(nextPageLink, options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.PagingGetMultiplePagesLRONextResponse>;
   }
 
   /**
@@ -607,13 +573,14 @@ export class Paging {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<Models.PagingBeginGetMultiplePagesLRONextResponse> {
-    return this.client.sendOperationRequest(
+  beginGetMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         nextPageLink,
         options
       },
-      beginGetMultiplePagesLRONextOperationSpec) as Promise<Models.PagingBeginGetMultiplePagesLRONextResponse>;
+      beginGetMultiplePagesLRONextOperationSpec,
+      options);
   }
 
   /**
@@ -946,28 +913,6 @@ export class Paging {
   }
 
   /**
-   * A long-running paging operation that includes a nextLink that has 10 pages
-   *
-   * @param {PagingBeginGetMultiplePagesLROOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ProductResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetMultiplePagesLRO(): Promise<Models.ProductResult>;
-  beginGetMultiplePagesLRO(options: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<Models.ProductResult>;
-  beginGetMultiplePagesLRO(callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRO(options: Models.PagingBeginGetMultiplePagesLROOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRO(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    return msRest.responseToBody(this.beginGetMultiplePagesLROWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
    * A paging operation that finishes on the first call without a nextlink
    *
    * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
@@ -1207,30 +1152,6 @@ export class Paging {
   getMultiplePagesLRONext(nextPageLink: string, options: Models.PagingGetMultiplePagesLRONextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
     return msRest.responseToBody(this.getMultiplePagesLRONextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
-  }
-
-  /**
-   * A long-running paging operation that includes a nextLink that has 10 pages
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {PagingBeginGetMultiplePagesLRONextOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ProductResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetMultiplePagesLRONext(nextPageLink: string): Promise<Models.ProductResult>;
-  beginGetMultiplePagesLRONext(nextPageLink: string, options: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<Models.ProductResult>;
-  beginGetMultiplePagesLRONext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRONext(nextPageLink: string, options: Models.PagingBeginGetMultiplePagesLRONextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
-  beginGetMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
-    return msRest.responseToBody(this.beginGetMultiplePagesLRONextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
+using AutoRest.TypeScript.Azure.Model;
 using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
 
@@ -100,20 +101,7 @@ namespace AutoRest.TypeScript.Model
 
         [JsonIgnore]
         public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
-            MethodTemplateModels.Where(method => !method.ReturnType.Body.IsStream());
-
-        [JsonIgnore]
-        public bool ContainsTimeSpan
-        {
-            get
-            {
-                Method method = MethodTemplateModels.FirstOrDefault(m => m.Parameters.FirstOrDefault(p =>
-                    p.ModelType.IsPrimaryType(KnownPrimaryType.TimeSpan) ||
-                    (p.ModelType is Core.Model.SequenceType && (p.ModelType as Core.Model.SequenceType).ElementType.IsPrimaryType(KnownPrimaryType.TimeSpan)) ||
-                    (p.ModelType is Core.Model.DictionaryType && (p.ModelType as Core.Model.DictionaryType).ValueType.IsPrimaryType(KnownPrimaryType.TimeSpan))) != null);
-                return  method != null;
-            }
-        }
+            MethodTemplateModels.Where(method => method.IsWrappable());
 
         public bool ContainsCompositeOrEnumTypeInParametersOrReturnType()
         {
@@ -172,7 +160,11 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
 
             builder.ImportAllAs("msRest", "ms-rest-js");
-            if (ContainsCompositeOrEnumTypeInParametersOrReturnType() || Methods.Cast<MethodTS>().Any(m => m.HasCustomHttpResponseType))
+            if (MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
+            {
+                builder.ImportAllAs("msRestAzure", "ms-rest-azure-js");
+            }
+            if (ContainsCompositeOrEnumTypeInParametersOrReturnType() || MethodTemplateModels.Any(m => m.HasCustomHttpResponseType))
             {
                 builder.ImportAllAs("Models", "../models");
             }

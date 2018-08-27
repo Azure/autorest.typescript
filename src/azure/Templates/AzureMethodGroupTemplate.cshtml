@@ -1,7 +1,5 @@
-﻿@using AutoRest.Core.Utilities
-@using AutoRest.TypeScript.Azure.Model
+﻿@using AutoRest.TypeScript.Model
 @using AutoRest.TypeScript.vanilla.Templates
-@using AutoRest.TypeScript.azure.Templates
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodGroupTS>
 /*
 @Header(" * ")
@@ -21,9 +19,9 @@ export class @(Model.TypeName) {
     this.client = client;
   }
 @EmptyLine
-@foreach (var method in Model.MethodTemplateModels)
+@foreach (MethodTS method in Model.MethodTemplateModels)
 {
-  @:@(Include(new AzureMethodTemplate(), method as MethodTSa))
+@:  @(method.Generate(EmptyLine))
   @EmptyLine
 }
 @if (@Model.CodeModelTS.GenerateBodyMethods)
