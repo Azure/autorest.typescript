@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { AvailabilitySets } from "./availabilitySets";
-
-export { AvailabilitySets };
+export * from "./availabilitySets";

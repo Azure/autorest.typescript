@@ -333,4 +333,10 @@ const updateOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-export { AzureCompositeModel, Models as AzureCompositeModelModels, Mappers as AzureCompositeModelMappers };
+export {
+  AzureCompositeModel,
+  AzureCompositeModelContext,
+  Models as AzureCompositeModelModels,
+  Mappers as AzureCompositeModelMappers
+};
+export * from "./operations";

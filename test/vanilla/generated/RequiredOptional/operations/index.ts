@@ -8,7 +8,5 @@
  * regenerated.
  */
 
-import { Implicit } from "./implicit";
-import { Explicit } from "./explicit";
-
-export { Implicit, Explicit };
+export * from "./implicit";
+export * from "./explicit";

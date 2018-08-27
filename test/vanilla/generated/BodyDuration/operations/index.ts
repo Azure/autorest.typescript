@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Duration } from "./duration";
-
-export { Duration };
+export * from "./duration";

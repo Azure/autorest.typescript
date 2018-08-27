@@ -82,4 +82,4 @@ foreach (var method in Model.MethodWrappableTemplateModels)
 @EmptyLine
 @(Model.GenerateOperationSpecDefinitions(EmptyLine))
 @EmptyLine
-export { @(Model.Name), Models as @(Model.ClientPrefix)Models, Mappers as @(Model.ClientPrefix)Mappers };
+@(Model.GenerateServiceClientExports())

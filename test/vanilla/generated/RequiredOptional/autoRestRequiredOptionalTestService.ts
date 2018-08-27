@@ -46,4 +46,10 @@ class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestSe
 
 // Operation Specifications
 
-export { AutoRestRequiredOptionalTestService, Models as AutoRestRequiredOptionalTestServiceModels, Mappers as AutoRestRequiredOptionalTestServiceMappers };
+export {
+  AutoRestRequiredOptionalTestService,
+  AutoRestRequiredOptionalTestServiceContext,
+  Models as AutoRestRequiredOptionalTestServiceModels,
+  Mappers as AutoRestRequiredOptionalTestServiceMappers
+};
+export * from "./operations";

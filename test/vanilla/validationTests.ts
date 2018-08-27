@@ -18,12 +18,13 @@ describe('typescript', function () {
   describe('Swagger BAT Validation', function () {
     var testClient = new AutoRestValidationTest("abc123", "12-34-5678", baseUri, clientOptions);
     describe('Of Method Parameters', function () {
-      it('should test the minimum length constraint on resourceGroupName', function (done) {
-        testClient.validationOfMethodParameters("1", 100, function (err, result) {
-          should.exist(err);
-          err.should.match(/.*resourceGroupName.*constraint.*MinLength.*3/ig);
-          done();
-        });
+      it('should test the minimum length constraint on resourceGroupName', async function () {
+        try {
+          await testClient.validationOfMethodParameters("1", 100);
+          throw new Error("validation did not fail as expected");
+        } catch (err) {
+          err.message.should.match(/.*resourceGroupName.*constraint.*MinLength.*3/ig);
+        }
       });
 
       it('should test the maximum length constraint on resourceGroupName', function (done) {

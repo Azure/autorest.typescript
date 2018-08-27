@@ -42,4 +42,10 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
 
 // Operation Specifications
 
-export { AutoRestParameterizedHostTestClient, Models as AutoRestParameterizedHostTestModels, Mappers as AutoRestParameterizedHostTestMappers };
+export {
+  AutoRestParameterizedHostTestClient,
+  AutoRestParameterizedHostTestClientContext,
+  Models as AutoRestParameterizedHostTestModels,
+  Mappers as AutoRestParameterizedHostTestMappers
+};
+export * from "./operations";

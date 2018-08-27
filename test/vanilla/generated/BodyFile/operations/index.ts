@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Files } from "./files";
-
-export { Files };
+export * from "./files";

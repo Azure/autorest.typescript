@@ -8,6 +8,4 @@
  * regenerated.
  */
 
-import { Number } from "./number";
-
-export { Number };
+export * from "./number";

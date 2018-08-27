@@ -8,9 +8,7 @@
  * regenerated.
  */
 
-import { LROs } from "./lROs";
-import { LRORetrys } from "./lRORetrys";
-import { LROSADs } from "./lROSADs";
-import { LROsCustomHeader } from "./lROsCustomHeader";
-
-export { LROs, LRORetrys, LROSADs, LROsCustomHeader };
+export * from "./lROs";
+export * from "./lRORetrys";
+export * from "./lROSADs";
+export * from "./lROsCustomHeader";

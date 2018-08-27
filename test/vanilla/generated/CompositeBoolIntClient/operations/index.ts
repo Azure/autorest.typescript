@@ -8,7 +8,5 @@
  * regenerated.
  */
 
-import { Bool } from "./bool";
-import { IntModel } from "./intModel";
-
-export { Bool, IntModel };
+export * from "./bool";
+export * from "./intModel";

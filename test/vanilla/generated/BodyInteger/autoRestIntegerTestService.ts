@@ -43,4 +43,10 @@ class AutoRestIntegerTestService extends AutoRestIntegerTestServiceContext {
 
 // Operation Specifications
 
-export { AutoRestIntegerTestService, Models as AutoRestIntegerTestServiceModels, Mappers as AutoRestIntegerTestServiceMappers };
+export {
+  AutoRestIntegerTestService,
+  AutoRestIntegerTestServiceContext,
+  Models as AutoRestIntegerTestServiceModels,
+  Mappers as AutoRestIntegerTestServiceMappers
+};
+export * from "./operations";

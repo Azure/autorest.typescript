@@ -151,6 +151,8 @@ namespace AutoRest.TypeScript.Model
 
         public bool ModelEnumAsUnion { get; set; }
 
+        public bool ModelDateAsString { get; set; }
+
         public bool GenerateMetadata { get; set; }
 
         public bool GenerateBodyMethods { get; set; }
@@ -564,6 +566,24 @@ namespace AutoRest.TypeScript.Model
             }
             builder.Import(new string[] { ContextName }, $"./{ContextName.ToCamelCase()}");
 
+            return builder.ToString();
+        }
+
+        public string GenerateServiceClientExports()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Export(exports =>
+            {
+                exports.Export(Name);
+                exports.Export(ContextName);
+                exports.ExportAs("Models", $"{ClientPrefix}Models");
+                exports.ExportAs("Mappers", $"{ClientPrefix}Mappers");
+            });
+
+            if (MethodGroupModels.Any())
+            {
+                builder.ExportAll("./operations");
+            }
             return builder.ToString();
         }
     }
