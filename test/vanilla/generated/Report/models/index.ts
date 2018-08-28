@@ -50,7 +50,7 @@ export interface GetReportResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */

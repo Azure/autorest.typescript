@@ -33,7 +33,7 @@ export interface DurationGetNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -47,7 +47,7 @@ export interface DurationGetPositiveDurationResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -61,7 +61,7 @@ export interface DurationGetInvalidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */

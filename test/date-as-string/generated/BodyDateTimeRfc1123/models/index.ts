@@ -33,7 +33,7 @@ export interface Datetimerfc1123GetNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -47,7 +47,7 @@ export interface Datetimerfc1123GetInvalidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -61,7 +61,7 @@ export interface Datetimerfc1123GetOverflowResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -75,7 +75,7 @@ export interface Datetimerfc1123GetUnderflowResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -89,7 +89,7 @@ export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -103,7 +103,7 @@ export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -117,7 +117,7 @@ export interface Datetimerfc1123GetUtcMinDateTimeResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */

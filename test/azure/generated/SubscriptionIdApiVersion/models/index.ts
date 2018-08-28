@@ -52,7 +52,7 @@ export interface GroupGetSampleResourceGroupResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * resource group name 'testgroup101'
    */

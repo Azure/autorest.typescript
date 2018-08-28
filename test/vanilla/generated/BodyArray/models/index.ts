@@ -60,7 +60,7 @@ export interface ArrayModelGetNullResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -70,7 +70,7 @@ export interface ArrayModelGetInvalidResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -80,7 +80,7 @@ export interface ArrayModelGetEmptyResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -90,7 +90,7 @@ export interface ArrayModelGetBooleanTfftResponse extends Array<boolean> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -100,7 +100,7 @@ export interface ArrayModelGetBooleanInvalidNullResponse extends Array<boolean> 
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -110,7 +110,7 @@ export interface ArrayModelGetBooleanInvalidStringResponse extends Array<boolean
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -120,7 +120,7 @@ export interface ArrayModelGetIntegerValidResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -130,7 +130,7 @@ export interface ArrayModelGetIntInvalidNullResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -140,7 +140,7 @@ export interface ArrayModelGetIntInvalidStringResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -150,7 +150,7 @@ export interface ArrayModelGetLongValidResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -160,7 +160,7 @@ export interface ArrayModelGetLongInvalidNullResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -170,7 +170,7 @@ export interface ArrayModelGetLongInvalidStringResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -180,7 +180,7 @@ export interface ArrayModelGetFloatValidResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -190,7 +190,7 @@ export interface ArrayModelGetFloatInvalidNullResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -200,7 +200,7 @@ export interface ArrayModelGetFloatInvalidStringResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -210,7 +210,7 @@ export interface ArrayModelGetDoubleValidResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -220,7 +220,7 @@ export interface ArrayModelGetDoubleInvalidNullResponse extends Array<number> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -230,7 +230,7 @@ export interface ArrayModelGetDoubleInvalidStringResponse extends Array<number> 
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -240,7 +240,7 @@ export interface ArrayModelGetStringValidResponse extends Array<string> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -250,7 +250,7 @@ export interface ArrayModelGetEnumValidResponse extends Array<FooEnum> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -260,7 +260,7 @@ export interface ArrayModelGetStringEnumValidResponse extends Array<string> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -270,7 +270,7 @@ export interface ArrayModelGetStringWithNullResponse extends Array<string> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -280,7 +280,7 @@ export interface ArrayModelGetStringWithInvalidResponse extends Array<string> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -290,7 +290,7 @@ export interface ArrayModelGetUuidValidResponse extends Array<string> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -300,7 +300,7 @@ export interface ArrayModelGetUuidInvalidCharsResponse extends Array<string> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -310,7 +310,7 @@ export interface ArrayModelGetDateValidResponse extends Array<Date> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -320,7 +320,7 @@ export interface ArrayModelGetDateInvalidNullResponse extends Array<Date> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -330,7 +330,7 @@ export interface ArrayModelGetDateInvalidCharsResponse extends Array<Date> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -340,7 +340,7 @@ export interface ArrayModelGetDateTimeValidResponse extends Array<Date> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -350,7 +350,7 @@ export interface ArrayModelGetDateTimeInvalidNullResponse extends Array<Date> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -360,7 +360,7 @@ export interface ArrayModelGetDateTimeInvalidCharsResponse extends Array<Date> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -370,7 +370,7 @@ export interface ArrayModelGetDateTimeRfc1123ValidResponse extends Array<Date> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -380,7 +380,7 @@ export interface ArrayModelGetDurationValidResponse extends Array<string> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -390,7 +390,7 @@ export interface ArrayModelGetByteValidResponse extends Array<Uint8Array> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -400,7 +400,7 @@ export interface ArrayModelGetByteInvalidNullResponse extends Array<Uint8Array> 
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -410,7 +410,7 @@ export interface ArrayModelGetBase64UrlResponse extends Array<Uint8Array> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -420,7 +420,7 @@ export interface ArrayModelGetComplexNullResponse extends Array<Product> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -430,7 +430,7 @@ export interface ArrayModelGetComplexEmptyResponse extends Array<Product> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -440,7 +440,7 @@ export interface ArrayModelGetComplexItemNullResponse extends Array<Product> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -450,7 +450,7 @@ export interface ArrayModelGetComplexItemEmptyResponse extends Array<Product> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -460,7 +460,7 @@ export interface ArrayModelGetComplexValidResponse extends Array<Product> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -470,7 +470,7 @@ export interface ArrayModelGetArrayNullResponse extends Array<string[]> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -480,7 +480,7 @@ export interface ArrayModelGetArrayEmptyResponse extends Array<string[]> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -490,7 +490,7 @@ export interface ArrayModelGetArrayItemNullResponse extends Array<string[]> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -500,7 +500,7 @@ export interface ArrayModelGetArrayItemEmptyResponse extends Array<string[]> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -510,7 +510,7 @@ export interface ArrayModelGetArrayValidResponse extends Array<string[]> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -520,7 +520,7 @@ export interface ArrayModelGetDictionaryNullResponse extends Array<{ [propertyNa
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -530,7 +530,7 @@ export interface ArrayModelGetDictionaryEmptyResponse extends Array<{ [propertyN
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -540,7 +540,7 @@ export interface ArrayModelGetDictionaryItemNullResponse extends Array<{ [proper
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -550,7 +550,7 @@ export interface ArrayModelGetDictionaryItemEmptyResponse extends Array<{ [prope
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -560,5 +560,5 @@ export interface ArrayModelGetDictionaryValidResponse extends Array<{ [propertyN
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }

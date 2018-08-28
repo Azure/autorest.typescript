@@ -33,7 +33,7 @@ export interface NumberGetNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -47,7 +47,7 @@ export interface NumberGetInvalidFloatResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -61,7 +61,7 @@ export interface NumberGetInvalidDoubleResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -75,7 +75,7 @@ export interface NumberGetInvalidDecimalResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -89,7 +89,7 @@ export interface NumberGetBigFloatResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -103,7 +103,7 @@ export interface NumberGetBigDoubleResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -117,7 +117,7 @@ export interface NumberGetBigDoublePositiveDecimalResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -131,7 +131,7 @@ export interface NumberGetBigDoubleNegativeDecimalResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -145,7 +145,7 @@ export interface NumberGetBigDecimalResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -159,7 +159,7 @@ export interface NumberGetBigDecimalPositiveDecimalResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -173,7 +173,7 @@ export interface NumberGetBigDecimalNegativeDecimalResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -187,7 +187,7 @@ export interface NumberGetSmallFloatResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -201,7 +201,7 @@ export interface NumberGetSmallDoubleResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -215,7 +215,7 @@ export interface NumberGetSmallDecimalResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */

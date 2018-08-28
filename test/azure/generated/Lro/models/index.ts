@@ -2710,7 +2710,7 @@ export interface LROsPut200SucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -2743,7 +2743,7 @@ export interface LROsPut200SucceededNoStateResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -2776,7 +2776,7 @@ export interface LROsPut202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -2809,7 +2809,7 @@ export interface LROsPut201CreatingSucceeded200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -2842,7 +2842,7 @@ export interface LROsPut200UpdatingSucceeded204Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -2875,7 +2875,7 @@ export interface LROsPut201CreatingFailed200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -2908,7 +2908,7 @@ export interface LROsPut200Acceptedcanceled200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -2941,7 +2941,7 @@ export interface LROsPutNoHeaderInRetryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/noheader/202/200/operationResults
@@ -2979,7 +2979,7 @@ export interface LROsPutAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -3026,7 +3026,7 @@ export interface LROsPutAsyncNoRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/noretry/succeeded/operationResults/200
@@ -3069,7 +3069,7 @@ export interface LROsPutAsyncRetryFailedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/failed/operationResults/200
@@ -3116,7 +3116,7 @@ export interface LROsPutAsyncNoRetrycanceledResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/noretry/canceled/operationResults/200
@@ -3159,7 +3159,7 @@ export interface LROsPutAsyncNoHeaderInRetryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   azureAsyncOperation: string;
   /**
    * Resource Id
@@ -3193,7 +3193,7 @@ export interface LROsPutNonResourceResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
 }
@@ -3205,7 +3205,7 @@ export interface LROsPutAsyncNonResourceResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
 }
@@ -3217,7 +3217,7 @@ export interface LROsPutSubResourceResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Sub Resource Id
    */
@@ -3237,7 +3237,7 @@ export interface LROsPutAsyncSubResourceResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Sub Resource Id
    */
@@ -3258,7 +3258,7 @@ export interface LROsDeleteProvisioning202Accepted200SucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/delete/provisioning/202/accepted/200/succeeded
@@ -3301,7 +3301,7 @@ export interface LROsDeleteProvisioning202DeletingFailed200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/delete/provisioning/202/deleting/200/failed
@@ -3344,7 +3344,7 @@ export interface LROsDeleteProvisioning202Deletingcanceled200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/delete/provisioning/202/deleting/200/canceled
@@ -3386,7 +3386,7 @@ export interface LROsDelete202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/delete/202/retry/200
    */
@@ -3427,7 +3427,7 @@ export interface LROsDelete202NoRetry204Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/delete/202/noretry/204
    */
@@ -3468,7 +3468,7 @@ export interface LROsDeleteNoHeaderInRetryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
    */
@@ -3482,7 +3482,7 @@ export interface LROsDeleteAsyncNoHeaderInRetryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
    */
@@ -3496,7 +3496,7 @@ export interface LROsDeleteAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/succeeded/operationResults/200
@@ -3520,7 +3520,7 @@ export interface LROsDeleteAsyncNoRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/noretry/succeeded/operationResults/200
@@ -3544,7 +3544,7 @@ export interface LROsDeleteAsyncRetryFailedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/failed/operationResults/200
@@ -3568,7 +3568,7 @@ export interface LROsDeleteAsyncRetrycanceledResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/canceled/operationResults/200
@@ -3592,7 +3592,7 @@ export interface LROsPost200WithPayloadResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
 }
@@ -3604,7 +3604,7 @@ export interface LROsPost202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/post/202/retry/200
    */
@@ -3622,7 +3622,7 @@ export interface LROsPost202NoRetry204Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/post/202/noretry/204
    */
@@ -3663,7 +3663,7 @@ export interface LROsPostDoubleHeadersFinalLocationGetResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -3697,7 +3697,7 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGetResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -3731,7 +3731,7 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -3764,7 +3764,7 @@ export interface LROsPostAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -3811,7 +3811,7 @@ export interface LROsPostAsyncNoRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -3858,7 +3858,7 @@ export interface LROsPostAsyncRetryFailedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/failed/operationResults/200
@@ -3882,7 +3882,7 @@ export interface LROsPostAsyncRetrycanceledResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/canceled/operationResults/200
@@ -3906,7 +3906,7 @@ export interface LROsBeginPut200SucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -3939,7 +3939,7 @@ export interface LROsBeginPut200SucceededNoStateResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -3972,7 +3972,7 @@ export interface LROsBeginPut202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -4005,7 +4005,7 @@ export interface LROsBeginPut201CreatingSucceeded200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -4038,7 +4038,7 @@ export interface LROsBeginPut200UpdatingSucceeded204Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -4071,7 +4071,7 @@ export interface LROsBeginPut201CreatingFailed200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -4104,7 +4104,7 @@ export interface LROsBeginPut200Acceptedcanceled200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -4137,7 +4137,7 @@ export interface LROsPutNoHeaderInRetryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/noheader/202/200/operationResults
@@ -4175,7 +4175,7 @@ export interface LROsPutAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -4222,7 +4222,7 @@ export interface LROsPutAsyncNoRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/noretry/succeeded/operationResults/200
@@ -4265,7 +4265,7 @@ export interface LROsPutAsyncRetryFailedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/failed/operationResults/200
@@ -4312,7 +4312,7 @@ export interface LROsPutAsyncNoRetrycanceledResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/noretry/canceled/operationResults/200
@@ -4355,7 +4355,7 @@ export interface LROsPutAsyncNoHeaderInRetryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   azureAsyncOperation: string;
   /**
    * Resource Id
@@ -4389,7 +4389,7 @@ export interface LROsBeginPutNonResourceResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
 }
@@ -4401,7 +4401,7 @@ export interface LROsBeginPutAsyncNonResourceResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
 }
@@ -4413,7 +4413,7 @@ export interface LROsBeginPutSubResourceResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Sub Resource Id
    */
@@ -4433,7 +4433,7 @@ export interface LROsBeginPutAsyncSubResourceResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Sub Resource Id
    */
@@ -4454,7 +4454,7 @@ export interface LROsDeleteProvisioning202Accepted200SucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/delete/provisioning/202/accepted/200/succeeded
@@ -4497,7 +4497,7 @@ export interface LROsDeleteProvisioning202DeletingFailed200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/delete/provisioning/202/deleting/200/failed
@@ -4540,7 +4540,7 @@ export interface LROsDeleteProvisioning202Deletingcanceled200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/delete/provisioning/202/deleting/200/canceled
@@ -4582,7 +4582,7 @@ export interface LROsDelete202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/delete/202/retry/200
    */
@@ -4623,7 +4623,7 @@ export interface LROsDelete202NoRetry204Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/delete/202/noretry/204
    */
@@ -4664,7 +4664,7 @@ export interface LROsDeleteNoHeaderInRetryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
    */
@@ -4678,7 +4678,7 @@ export interface LROsDeleteAsyncNoHeaderInRetryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
    */
@@ -4692,7 +4692,7 @@ export interface LROsDeleteAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/succeeded/operationResults/200
@@ -4716,7 +4716,7 @@ export interface LROsDeleteAsyncNoRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/noretry/succeeded/operationResults/200
@@ -4740,7 +4740,7 @@ export interface LROsDeleteAsyncRetryFailedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/failed/operationResults/200
@@ -4764,7 +4764,7 @@ export interface LROsDeleteAsyncRetrycanceledResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/canceled/operationResults/200
@@ -4788,7 +4788,7 @@ export interface LROsBeginPost200WithPayloadResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
 }
@@ -4800,7 +4800,7 @@ export interface LROsPost202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/post/202/retry/200
    */
@@ -4818,7 +4818,7 @@ export interface LROsPost202NoRetry204Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/post/202/noretry/204
    */
@@ -4860,7 +4860,7 @@ export interface LROsBeginPostDoubleHeadersFinalLocationGetResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -4894,7 +4894,7 @@ export interface LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -4928,7 +4928,7 @@ export interface LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -4961,7 +4961,7 @@ export interface LROsPostAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -5008,7 +5008,7 @@ export interface LROsPostAsyncNoRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -5055,7 +5055,7 @@ export interface LROsPostAsyncRetryFailedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/failed/operationResults/200
@@ -5079,7 +5079,7 @@ export interface LROsPostAsyncRetrycanceledResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/canceled/operationResults/200
@@ -5103,7 +5103,7 @@ export interface LRORetrysPut201CreatingSucceeded200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -5136,7 +5136,7 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/putasync/retry/succeeded/operationResults/200
@@ -5184,7 +5184,7 @@ export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
@@ -5226,7 +5226,7 @@ export interface LRORetrysDelete202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
    */
@@ -5244,7 +5244,7 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
@@ -5268,7 +5268,7 @@ export interface LRORetrysPost202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
    */
@@ -5286,7 +5286,7 @@ export interface LRORetrysPostAsyncRelativeRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/putasync/retry/succeeded/operationResults/200
@@ -5310,7 +5310,7 @@ export interface LRORetrysBeginPut201CreatingSucceeded200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -5344,7 +5344,7 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/putasync/retry/succeeded/operationResults/200
@@ -5392,7 +5392,7 @@ export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
@@ -5434,7 +5434,7 @@ export interface LRORetrysDelete202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
    */
@@ -5453,7 +5453,7 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
@@ -5477,7 +5477,7 @@ export interface LRORetrysPost202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
    */
@@ -5496,7 +5496,7 @@ export interface LRORetrysPostAsyncRelativeRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/putasync/retry/succeeded/operationResults/200
@@ -5520,7 +5520,7 @@ export interface LROSADsPutNonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -5553,7 +5553,7 @@ export interface LROSADsPutNonRetry201Creating400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -5587,7 +5587,7 @@ export interface LROSADsPutNonRetry201Creating400InvalidJsonResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -5620,7 +5620,7 @@ export interface LROSADsPutAsyncRelativeRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/nonretryerror/putasync/retry/operationResults/400
@@ -5667,7 +5667,7 @@ export interface LROSADsDeleteNonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
    */
@@ -5685,7 +5685,7 @@ export interface LROSADsDelete202NonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
    */
@@ -5703,7 +5703,7 @@ export interface LROSADsDeleteAsyncRelativeRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/nonretryerror/deleteasync/retry/operationResults/400
@@ -5727,7 +5727,7 @@ export interface LROSADsPostNonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
    */
@@ -5745,7 +5745,7 @@ export interface LROSADsPost202NonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
    */
@@ -5763,7 +5763,7 @@ export interface LROSADsPostAsyncRelativeRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/nonretryerror/putasync/retry/operationResults/400
@@ -5788,7 +5788,7 @@ export interface LROSADsPutError201NoProvisioningStatePayloadResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -5821,7 +5821,7 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -5869,7 +5869,7 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -5916,7 +5916,7 @@ export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/succeeded/operationResults/200
@@ -5940,7 +5940,7 @@ export interface LROSADsPost202NoLocationResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will not be set
    */
@@ -5958,7 +5958,7 @@ export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/error/putasync/retry/failed/operationResults/nopayload
@@ -5982,7 +5982,7 @@ export interface LROSADsPut200InvalidJsonResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -6015,7 +6015,7 @@ export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -6063,7 +6063,7 @@ export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/failed/operationResults/200
@@ -6110,7 +6110,7 @@ export interface LROSADsDelete202RetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /foo
    */
@@ -6129,7 +6129,7 @@ export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /foo
    */
@@ -6152,7 +6152,7 @@ export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
@@ -6176,7 +6176,7 @@ export interface LROSADsPost202RetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /foo
    */
@@ -6195,7 +6195,7 @@ export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to foo
    */
@@ -6218,7 +6218,7 @@ export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
@@ -6242,7 +6242,7 @@ export interface LROSADsBeginPutNonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -6275,7 +6275,7 @@ export interface LROSADsBeginPutNonRetry201Creating400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -6309,7 +6309,7 @@ export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -6342,7 +6342,7 @@ export interface LROSADsPutAsyncRelativeRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/nonretryerror/putasync/retry/operationResults/400
@@ -6389,7 +6389,7 @@ export interface LROSADsDeleteNonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
    */
@@ -6407,7 +6407,7 @@ export interface LROSADsDelete202NonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
    */
@@ -6425,7 +6425,7 @@ export interface LROSADsDeleteAsyncRelativeRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/nonretryerror/deleteasync/retry/operationResults/400
@@ -6449,7 +6449,7 @@ export interface LROSADsPostNonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
    */
@@ -6467,7 +6467,7 @@ export interface LROSADsPost202NonRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
    */
@@ -6485,7 +6485,7 @@ export interface LROSADsPostAsyncRelativeRetry400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/nonretryerror/putasync/retry/operationResults/400
@@ -6510,7 +6510,7 @@ export interface LROSADsBeginPutError201NoProvisioningStatePayloadResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -6543,7 +6543,7 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -6591,7 +6591,7 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -6639,7 +6639,7 @@ export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/succeeded/operationResults/200
@@ -6663,7 +6663,7 @@ export interface LROSADsPost202NoLocationResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will not be set
    */
@@ -6682,7 +6682,7 @@ export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/error/putasync/retry/failed/operationResults/nopayload
@@ -6706,7 +6706,7 @@ export interface LROSADsBeginPut200InvalidJsonResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -6740,7 +6740,7 @@ export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -6788,7 +6788,7 @@ export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/failed/operationResults/200
@@ -6835,7 +6835,7 @@ export interface LROSADsDelete202RetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /foo
    */
@@ -6854,7 +6854,7 @@ export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /foo
    */
@@ -6877,7 +6877,7 @@ export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
@@ -6901,7 +6901,7 @@ export interface LROSADsPost202RetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /foo
    */
@@ -6920,7 +6920,7 @@ export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to foo
    */
@@ -6943,7 +6943,7 @@ export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
@@ -6967,7 +6967,7 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/customheader/putasync/retry/succeeded/operationResults/200
@@ -7014,7 +7014,7 @@ export interface LROsCustomHeaderPut201CreatingSucceeded200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -7047,7 +7047,7 @@ export interface LROsCustomHeaderPost202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/customheader/post/202/retry/200
    */
@@ -7065,7 +7065,7 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/customheader/putasync/retry/succeeded/operationResults/200
@@ -7089,7 +7089,7 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/customheader/putasync/retry/succeeded/operationResults/200
@@ -7136,7 +7136,7 @@ export interface LROsCustomHeaderBeginPut201CreatingSucceeded200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -7169,7 +7169,7 @@ export interface LROsCustomHeaderPost202Retry200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/customheader/post/202/retry/200
    */
@@ -7187,7 +7187,7 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/customheader/putasync/retry/succeeded/operationResults/200

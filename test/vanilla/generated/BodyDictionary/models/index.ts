@@ -48,7 +48,7 @@ export interface DictionaryGetNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -62,7 +62,7 @@ export interface DictionaryGetEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -76,7 +76,7 @@ export interface DictionaryGetNullValueResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -90,7 +90,7 @@ export interface DictionaryGetNullKeyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -104,7 +104,7 @@ export interface DictionaryGetEmptyStringKeyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -118,7 +118,7 @@ export interface DictionaryGetInvalidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -132,7 +132,7 @@ export interface DictionaryGetBooleanTfftResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -146,7 +146,7 @@ export interface DictionaryGetBooleanInvalidNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -160,7 +160,7 @@ export interface DictionaryGetBooleanInvalidStringResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -174,7 +174,7 @@ export interface DictionaryGetIntegerValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -188,7 +188,7 @@ export interface DictionaryGetIntInvalidNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -202,7 +202,7 @@ export interface DictionaryGetIntInvalidStringResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -216,7 +216,7 @@ export interface DictionaryGetLongValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -230,7 +230,7 @@ export interface DictionaryGetLongInvalidNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -244,7 +244,7 @@ export interface DictionaryGetLongInvalidStringResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -258,7 +258,7 @@ export interface DictionaryGetFloatValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -272,7 +272,7 @@ export interface DictionaryGetFloatInvalidNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -286,7 +286,7 @@ export interface DictionaryGetFloatInvalidStringResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -300,7 +300,7 @@ export interface DictionaryGetDoubleValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -314,7 +314,7 @@ export interface DictionaryGetDoubleInvalidNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -328,7 +328,7 @@ export interface DictionaryGetDoubleInvalidStringResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -342,7 +342,7 @@ export interface DictionaryGetStringValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -356,7 +356,7 @@ export interface DictionaryGetStringWithNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -370,7 +370,7 @@ export interface DictionaryGetStringWithInvalidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -384,7 +384,7 @@ export interface DictionaryGetDateValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -398,7 +398,7 @@ export interface DictionaryGetDateInvalidNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -412,7 +412,7 @@ export interface DictionaryGetDateInvalidCharsResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -426,7 +426,7 @@ export interface DictionaryGetDateTimeValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -440,7 +440,7 @@ export interface DictionaryGetDateTimeInvalidNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -454,7 +454,7 @@ export interface DictionaryGetDateTimeInvalidCharsResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -468,7 +468,7 @@ export interface DictionaryGetDateTimeRfc1123ValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -482,7 +482,7 @@ export interface DictionaryGetDurationValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -496,7 +496,7 @@ export interface DictionaryGetByteValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -510,7 +510,7 @@ export interface DictionaryGetByteInvalidNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -524,7 +524,7 @@ export interface DictionaryGetBase64UrlResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -538,7 +538,7 @@ export interface DictionaryGetComplexNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -552,7 +552,7 @@ export interface DictionaryGetComplexEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -566,7 +566,7 @@ export interface DictionaryGetComplexItemNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -580,7 +580,7 @@ export interface DictionaryGetComplexItemEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -594,7 +594,7 @@ export interface DictionaryGetComplexValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -608,7 +608,7 @@ export interface DictionaryGetArrayNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -622,7 +622,7 @@ export interface DictionaryGetArrayEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -636,7 +636,7 @@ export interface DictionaryGetArrayItemNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -650,7 +650,7 @@ export interface DictionaryGetArrayItemEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -664,7 +664,7 @@ export interface DictionaryGetArrayValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -678,7 +678,7 @@ export interface DictionaryGetDictionaryNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -692,7 +692,7 @@ export interface DictionaryGetDictionaryEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -706,7 +706,7 @@ export interface DictionaryGetDictionaryItemNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -720,7 +720,7 @@ export interface DictionaryGetDictionaryItemEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -734,7 +734,7 @@ export interface DictionaryGetDictionaryValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */

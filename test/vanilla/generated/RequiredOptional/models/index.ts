@@ -345,7 +345,7 @@ export interface ImplicitGetRequiredPathResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -357,7 +357,7 @@ export interface ImplicitGetRequiredGlobalPathResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -369,7 +369,7 @@ export interface ImplicitGetRequiredGlobalQueryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -381,7 +381,7 @@ export interface ImplicitGetOptionalGlobalQueryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -393,7 +393,7 @@ export interface ExplicitPostRequiredIntegerParameterResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -405,7 +405,7 @@ export interface ExplicitPostRequiredIntegerPropertyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -417,7 +417,7 @@ export interface ExplicitPostRequiredIntegerHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -429,7 +429,7 @@ export interface ExplicitPostRequiredStringParameterResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -441,7 +441,7 @@ export interface ExplicitPostRequiredStringPropertyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -453,7 +453,7 @@ export interface ExplicitPostRequiredStringHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -465,7 +465,7 @@ export interface ExplicitPostRequiredClassParameterResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -477,7 +477,7 @@ export interface ExplicitPostRequiredClassPropertyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -489,7 +489,7 @@ export interface ExplicitPostRequiredArrayParameterResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -501,7 +501,7 @@ export interface ExplicitPostRequiredArrayPropertyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -513,7 +513,7 @@ export interface ExplicitPostRequiredArrayHeaderResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }

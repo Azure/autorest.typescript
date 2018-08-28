@@ -151,7 +151,7 @@ export interface GetArrayResponse extends Array<FlattenedProduct> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -161,7 +161,7 @@ export interface GetDictionaryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -175,7 +175,7 @@ export interface GetResourceCollectionResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   productresource: FlattenedProduct;
   arrayofresources: FlattenedProduct[];
   dictionaryofresources: { [propertyName: string]: FlattenedProduct };

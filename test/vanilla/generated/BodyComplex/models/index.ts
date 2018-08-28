@@ -747,7 +747,7 @@ export interface BasicGetValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Basic Id
    */
@@ -770,7 +770,7 @@ export interface BasicGetInvalidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Basic Id
    */
@@ -793,7 +793,7 @@ export interface BasicGetEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Basic Id
    */
@@ -816,7 +816,7 @@ export interface BasicGetNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Basic Id
    */
@@ -839,7 +839,7 @@ export interface BasicGetNotProvidedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Basic Id
    */
@@ -862,7 +862,7 @@ export interface PrimitiveGetIntResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field1: number;
   field2: number;
 }
@@ -874,7 +874,7 @@ export interface PrimitiveGetLongResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field1: number;
   field2: number;
 }
@@ -886,7 +886,7 @@ export interface PrimitiveGetFloatResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field1: number;
   field2: number;
 }
@@ -898,7 +898,7 @@ export interface PrimitiveGetDoubleResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field1: number;
   field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: number;
 }
@@ -910,7 +910,7 @@ export interface PrimitiveGetBoolResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   fieldTrue: boolean;
   fieldFalse: boolean;
 }
@@ -922,7 +922,7 @@ export interface PrimitiveGetStringResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field: string;
   empty: string;
   nullProperty: string;
@@ -935,7 +935,7 @@ export interface PrimitiveGetDateResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field: Date;
   leap: Date;
 }
@@ -947,7 +947,7 @@ export interface PrimitiveGetDateTimeResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field: Date;
   now: Date;
 }
@@ -959,7 +959,7 @@ export interface PrimitiveGetDateTimeRfc1123Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field: Date;
   now: Date;
 }
@@ -971,7 +971,7 @@ export interface PrimitiveGetDurationResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field: string;
 }
 
@@ -982,7 +982,7 @@ export interface PrimitiveGetByteResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   field: Uint8Array;
 }
 
@@ -993,7 +993,7 @@ export interface ArrayModelGetValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   arrayProperty: string[];
 }
 
@@ -1004,7 +1004,7 @@ export interface ArrayModelGetEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   arrayProperty: string[];
 }
 
@@ -1015,7 +1015,7 @@ export interface ArrayModelGetNotProvidedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   arrayProperty: string[];
 }
 
@@ -1026,7 +1026,7 @@ export interface DictionaryGetValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
 }
 
@@ -1037,7 +1037,7 @@ export interface DictionaryGetEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
 }
 
@@ -1048,7 +1048,7 @@ export interface DictionaryGetNullResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
 }
 
@@ -1059,7 +1059,7 @@ export interface DictionaryGetNotProvidedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
 }
 
@@ -1070,7 +1070,7 @@ export interface InheritanceGetValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   id: number;
   name: string;
   color: string;
@@ -1085,7 +1085,7 @@ export interface PolymorphismGetValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   species: string;
   length: number;
   siblings: FishUnion[];
@@ -1102,7 +1102,7 @@ export interface PolymorphismGetComplicatedResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   species: string;
   length: number;
   siblings: FishUnion[];
@@ -1121,7 +1121,7 @@ export interface PolymorphismPutMissingDiscriminatorResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   species: string;
   length: number;
   siblings: FishUnion[];
@@ -1140,7 +1140,7 @@ export interface PolymorphicrecursiveGetValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   species: string;
   length: number;
   siblings: FishUnion[];
@@ -1157,7 +1157,7 @@ export interface ReadonlypropertyGetValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   id: string;
   size: number;
 }
@@ -1169,7 +1169,7 @@ export interface FlattencomplexGetValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   propB1: string;
   /**
    * Polymorphic Discriminator

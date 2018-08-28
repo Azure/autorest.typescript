@@ -421,7 +421,7 @@ export interface PagingGetSinglePagesResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -433,7 +433,7 @@ export interface PagingGetMultiplePagesResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -445,7 +445,7 @@ export interface PagingGetOdataMultiplePagesResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
 }
@@ -457,7 +457,7 @@ export interface PagingGetMultiplePagesWithOffsetResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -469,7 +469,7 @@ export interface PagingGetMultiplePagesRetryFirstResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -481,7 +481,7 @@ export interface PagingGetMultiplePagesRetrySecondResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -493,7 +493,7 @@ export interface PagingGetSinglePagesFailureResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -505,7 +505,7 @@ export interface PagingGetMultiplePagesFailureResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -517,7 +517,7 @@ export interface PagingGetMultiplePagesFailureUriResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -529,7 +529,7 @@ export interface PagingGetMultiplePagesFragmentNextLinkResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
 }
@@ -542,7 +542,7 @@ export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
 }
@@ -554,7 +554,7 @@ export interface PagingGetMultiplePagesLROResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -566,7 +566,7 @@ export interface PagingNextFragmentResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
 }
@@ -578,7 +578,7 @@ export interface PagingNextFragmentWithGroupingResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
 }
@@ -590,7 +590,7 @@ export interface PagingBeginGetMultiplePagesLROResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -602,7 +602,7 @@ export interface PagingGetSinglePagesNextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -614,7 +614,7 @@ export interface PagingGetMultiplePagesNextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -626,7 +626,7 @@ export interface PagingGetOdataMultiplePagesNextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
 }
@@ -638,7 +638,7 @@ export interface PagingGetMultiplePagesWithOffsetNextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -650,7 +650,7 @@ export interface PagingGetMultiplePagesRetryFirstNextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -662,7 +662,7 @@ export interface PagingGetMultiplePagesRetrySecondNextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -674,7 +674,7 @@ export interface PagingGetSinglePagesFailureNextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -686,7 +686,7 @@ export interface PagingGetMultiplePagesFailureNextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -698,7 +698,7 @@ export interface PagingGetMultiplePagesFailureUriNextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -710,7 +710,7 @@ export interface PagingGetMultiplePagesLRONextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }
@@ -722,7 +722,7 @@ export interface PagingBeginGetMultiplePagesLRONextResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
 }

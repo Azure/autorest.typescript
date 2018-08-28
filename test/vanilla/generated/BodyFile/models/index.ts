@@ -33,7 +33,7 @@ export interface FilesGetFileResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * BROWSER ONLY
    *
@@ -57,7 +57,7 @@ export interface FilesGetFileLargeResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * BROWSER ONLY
    *
@@ -81,7 +81,7 @@ export interface FilesGetEmptyFileResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * BROWSER ONLY
    *

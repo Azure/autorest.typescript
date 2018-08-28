@@ -128,7 +128,7 @@ export interface ValidationOfMethodParametersResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Non required array of unique items from 0 to 6 elements.
    */
@@ -164,7 +164,7 @@ export interface ValidationOfBodyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Non required array of unique items from 0 to 6 elements.
    */
@@ -200,7 +200,7 @@ export interface PostWithConstantInBodyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Non required array of unique items from 0 to 6 elements.
    */

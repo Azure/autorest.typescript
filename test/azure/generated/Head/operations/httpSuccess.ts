@@ -47,12 +47,7 @@ export class HttpSuccess {
         options
       },
       head200OperationSpec,
-      callback).then(operationRes => {
-      // Deserialize Response
-      const statusCode = operationRes.status;
-      operationRes.parsedBody = (statusCode === 200);
-      return operationRes;
-    }) as Promise<Models.HttpSuccessHead200Response>;
+      callback) as Promise<Models.HttpSuccessHead200Response>;
   }
 
   /**
@@ -76,12 +71,7 @@ export class HttpSuccess {
         options
       },
       head204OperationSpec,
-      callback).then(operationRes => {
-      // Deserialize Response
-      const statusCode = operationRes.status;
-      operationRes.parsedBody = (statusCode === 204);
-      return operationRes;
-    }) as Promise<Models.HttpSuccessHead204Response>;
+      callback) as Promise<Models.HttpSuccessHead204Response>;
   }
 
   /**
@@ -105,12 +95,7 @@ export class HttpSuccess {
         options
       },
       head404OperationSpec,
-      callback).then(operationRes => {
-      // Deserialize Response
-      const statusCode = operationRes.status;
-      operationRes.parsedBody = (statusCode === 204);
-      return operationRes;
-    }) as Promise<Models.HttpSuccessHead404Response>;
+      callback) as Promise<Models.HttpSuccessHead404Response>;
   }
 
 }

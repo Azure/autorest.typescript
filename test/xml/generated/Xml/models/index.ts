@@ -823,7 +823,7 @@ export interface XmlGetComplexTypeRefNoMetaResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * XML will use RefToModel
    */
@@ -841,7 +841,7 @@ export interface XmlGetComplexTypeRefWithMetaResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * XML will use XMLComplexTypeWithMeta
    */
@@ -859,7 +859,7 @@ export interface XmlGetSimpleResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   title: string;
   date: string;
   author: string;
@@ -873,7 +873,7 @@ export interface XmlGetWrappedListsResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   goodApples: string[];
   badApples: string[];
 }
@@ -885,7 +885,7 @@ export interface XmlGetHeadersResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * A custom response header.
    */
@@ -899,7 +899,7 @@ export interface XmlGetEmptyListResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   title: string;
   date: string;
   author: string;
@@ -913,7 +913,7 @@ export interface XmlGetEmptyWrappedListsResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   goodApples: string[];
   badApples: string[];
 }
@@ -925,7 +925,7 @@ export interface XmlGetRootListResponse extends Array<Banana> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -935,7 +935,7 @@ export interface XmlGetRootListSingleItemResponse extends Array<Banana> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -945,7 +945,7 @@ export interface XmlGetEmptyRootListResponse extends Array<Banana> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -955,7 +955,7 @@ export interface XmlGetEmptyChildElementResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   name: string;
   flavor: string;
   /**
@@ -971,7 +971,7 @@ export interface XmlListContainersResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   serviceEndpoint: string;
   prefix: string;
   marker: string;
@@ -987,7 +987,7 @@ export interface XmlGetServicePropertiesResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Azure Analytics Logging settings
    */
@@ -1022,7 +1022,7 @@ export interface XmlGetAclsResponse extends Array<SignedIdentifier> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -1032,7 +1032,7 @@ export interface XmlListBlobsResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   serviceEndpoint: string;
   containerName: string;
   prefix: string;

@@ -106,12 +106,7 @@ export class Header {
         options
       },
       customNamedRequestIdHeadOperationSpec,
-      callback).then(operationRes => {
-      // Deserialize Response
-      const statusCode = operationRes.status;
-      operationRes.parsedBody = (statusCode === 200);
-      return operationRes;
-    }) as Promise<Models.HeaderCustomNamedRequestIdHeadResponse>;
+      callback) as Promise<Models.HeaderCustomNamedRequestIdHeadResponse>;
   }
 
 }

@@ -348,7 +348,7 @@ export interface GetArrayResponse extends Array<FlattenedProduct> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -358,7 +358,7 @@ export interface GetWrappedArrayResponse extends Array<ProductWrapper> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
 }
 
 /**
@@ -368,7 +368,7 @@ export interface GetDictionaryResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -382,7 +382,7 @@ export interface GetResourceCollectionResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   productresource: FlattenedProduct;
   arrayofresources: FlattenedProduct[];
   dictionaryofresources: { [propertyName: string]: FlattenedProduct };
@@ -395,7 +395,7 @@ export interface PutSimpleProductResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Unique identifier representing a specific product for a given latitude & longitude. For
    * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
@@ -430,7 +430,7 @@ export interface PostFlattenedSimpleProductResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Unique identifier representing a specific product for a given latitude & longitude. For
    * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
@@ -465,7 +465,7 @@ export interface PutSimpleProductWithGroupingResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Unique identifier representing a specific product for a given latitude & longitude. For
    * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.

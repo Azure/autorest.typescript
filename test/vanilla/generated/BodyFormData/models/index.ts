@@ -33,7 +33,7 @@ export interface FormdataUploadFileResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * BROWSER ONLY
    *
@@ -57,7 +57,7 @@ export interface FormdataUploadFileViaBodyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * BROWSER ONLY
    *

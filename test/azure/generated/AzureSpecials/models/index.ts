@@ -156,7 +156,7 @@ export interface HeaderCustomNamedRequestIdResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Gets the foo-request-id.
    */
@@ -170,7 +170,7 @@ export interface HeaderCustomNamedRequestIdParamGroupingResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Gets the foo-request-id.
    */
@@ -184,7 +184,7 @@ export interface HeaderCustomNamedRequestIdHeadResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Gets the foo-request-id.
    */

@@ -1086,7 +1086,7 @@ export interface HttpFailureGetEmptyErrorResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -1100,7 +1100,7 @@ export interface HttpFailureGetNoModelErrorResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -1114,7 +1114,7 @@ export interface HttpFailureGetNoModelEmptyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -1128,7 +1128,7 @@ export interface HttpSuccessGet200Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -1142,7 +1142,7 @@ export interface HttpRedirectsHead300Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/head/200'
    */
@@ -1156,7 +1156,7 @@ export interface HttpRedirectsGet300Response extends Array<string> {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
@@ -1170,7 +1170,7 @@ export interface HttpRedirectsHead301Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/head/200'
    */
@@ -1184,7 +1184,7 @@ export interface HttpRedirectsGet301Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
@@ -1198,7 +1198,7 @@ export interface HttpRedirectsPut301Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/failure/500'
    */
@@ -1212,7 +1212,7 @@ export interface HttpRedirectsHead302Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/head/200'
    */
@@ -1226,7 +1226,7 @@ export interface HttpRedirectsGet302Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
@@ -1240,7 +1240,7 @@ export interface HttpRedirectsPatch302Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/failure/500'
    */
@@ -1254,7 +1254,7 @@ export interface HttpRedirectsPost303Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
@@ -1268,7 +1268,7 @@ export interface HttpRedirectsHead307Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/head/200'
    */
@@ -1282,7 +1282,7 @@ export interface HttpRedirectsGet307Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
@@ -1296,7 +1296,7 @@ export interface HttpRedirectsPut307Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/put/200'
    */
@@ -1310,7 +1310,7 @@ export interface HttpRedirectsPatch307Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/patch/200'
    */
@@ -1324,7 +1324,7 @@ export interface HttpRedirectsPost307Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/post/200'
    */
@@ -1338,7 +1338,7 @@ export interface HttpRedirectsDelete307Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The redirect location for this request. Possible values include: '/http/success/delete/200'
    */
@@ -1352,7 +1352,7 @@ export interface HttpClientFailureHead400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1364,7 +1364,7 @@ export interface HttpClientFailureGet400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1376,7 +1376,7 @@ export interface HttpClientFailurePut400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1388,7 +1388,7 @@ export interface HttpClientFailurePatch400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1400,7 +1400,7 @@ export interface HttpClientFailurePost400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1412,7 +1412,7 @@ export interface HttpClientFailureDelete400Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1424,7 +1424,7 @@ export interface HttpClientFailureHead401Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1436,7 +1436,7 @@ export interface HttpClientFailureGet402Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1448,7 +1448,7 @@ export interface HttpClientFailureGet403Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1460,7 +1460,7 @@ export interface HttpClientFailurePut404Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1472,7 +1472,7 @@ export interface HttpClientFailurePatch405Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1484,7 +1484,7 @@ export interface HttpClientFailurePost406Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1496,7 +1496,7 @@ export interface HttpClientFailureDelete407Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1508,7 +1508,7 @@ export interface HttpClientFailurePut409Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1520,7 +1520,7 @@ export interface HttpClientFailureHead410Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1532,7 +1532,7 @@ export interface HttpClientFailureGet411Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1544,7 +1544,7 @@ export interface HttpClientFailureGet412Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1556,7 +1556,7 @@ export interface HttpClientFailurePut413Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1568,7 +1568,7 @@ export interface HttpClientFailurePatch414Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1580,7 +1580,7 @@ export interface HttpClientFailurePost415Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1592,7 +1592,7 @@ export interface HttpClientFailureGet416Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1604,7 +1604,7 @@ export interface HttpClientFailureDelete417Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1616,7 +1616,7 @@ export interface HttpClientFailureHead429Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1628,7 +1628,7 @@ export interface HttpServerFailureHead501Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1640,7 +1640,7 @@ export interface HttpServerFailureGet501Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1652,7 +1652,7 @@ export interface HttpServerFailurePost505Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1664,7 +1664,7 @@ export interface HttpServerFailureDelete505Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
 }
@@ -1677,7 +1677,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError200ValidRespo
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1689,7 +1689,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError204ValidRespo
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1701,7 +1701,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError201InvalidRes
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1713,7 +1713,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError202NoneRespon
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1725,7 +1725,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError400ValidRespo
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1737,7 +1737,7 @@ export interface MultipleResponsesGet200Model201ModelDefaultError200ValidRespons
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1749,7 +1749,7 @@ export interface MultipleResponsesGet200Model201ModelDefaultError201ValidRespons
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1761,7 +1761,7 @@ export interface MultipleResponsesGet200Model201ModelDefaultError400ValidRespons
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1773,7 +1773,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200V
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -1788,7 +1788,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201V
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -1803,7 +1803,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404V
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -1818,7 +1818,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400V
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * The parsed response body.
    */
@@ -1832,7 +1832,7 @@ export interface MultipleResponsesGetDefaultModelA200ValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1843,7 +1843,7 @@ export interface MultipleResponsesGetDefaultModelA200NoneResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1854,7 +1854,7 @@ export interface MultipleResponsesGetDefaultModelA400ValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1865,7 +1865,7 @@ export interface MultipleResponsesGetDefaultModelA400NoneResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1876,7 +1876,7 @@ export interface MultipleResponsesGet200ModelA200NoneResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1887,7 +1887,7 @@ export interface MultipleResponsesGet200ModelA200ValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1898,7 +1898,7 @@ export interface MultipleResponsesGet200ModelA200InvalidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1909,7 +1909,7 @@ export interface MultipleResponsesGet200ModelA400NoneResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1920,7 +1920,7 @@ export interface MultipleResponsesGet200ModelA400ValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1931,7 +1931,7 @@ export interface MultipleResponsesGet200ModelA400InvalidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }
 
@@ -1942,6 +1942,6 @@ export interface MultipleResponsesGet200ModelA202ValidResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   statusCode: string;
 }

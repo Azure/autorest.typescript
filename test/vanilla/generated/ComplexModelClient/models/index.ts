@@ -142,7 +142,7 @@ export interface ListResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Array of products
    */
@@ -156,7 +156,7 @@ export interface CreateResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Dictionary of products
    */
@@ -170,7 +170,7 @@ export interface UpdateResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Array of products
    */

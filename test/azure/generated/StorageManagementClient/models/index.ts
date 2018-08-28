@@ -496,7 +496,7 @@ export interface StorageAccountsCheckNameAvailabilityResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Gets a boolean value that indicates whether the name is available for you to use. If true, the
    * name is available. If false, the name has already been taken or invalid and cannot be used.
@@ -521,7 +521,7 @@ export interface StorageAccountsCreateResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -606,7 +606,7 @@ export interface StorageAccountsGetPropertiesResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -691,7 +691,7 @@ export interface StorageAccountsUpdateResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -776,7 +776,7 @@ export interface StorageAccountsListKeysResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Gets the value of key 1.
    */
@@ -794,7 +794,7 @@ export interface StorageAccountsListResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Gets the list of storage accounts and their properties.
    */
@@ -813,7 +813,7 @@ export interface StorageAccountsListByResourceGroupResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Gets the list of storage accounts and their properties.
    */
@@ -832,7 +832,7 @@ export interface StorageAccountsRegenerateKeyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Gets the value of key 1.
    */
@@ -850,7 +850,7 @@ export interface StorageAccountsBeginCreateResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -935,7 +935,7 @@ export interface UsageListResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * Gets or sets the list Storage Resource Usages.
    */

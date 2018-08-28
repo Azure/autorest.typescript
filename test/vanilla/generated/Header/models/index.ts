@@ -280,7 +280,7 @@ export interface HeaderResponseExistingKeyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header value "User-Agent": "overwrite"
    */
@@ -294,7 +294,7 @@ export interface HeaderResponseProtectedKeyResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header value "Content-Type": "text/html"
    */
@@ -308,7 +308,7 @@ export interface HeaderResponseIntegerResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header value "value": 1 or -2
    */
@@ -322,7 +322,7 @@ export interface HeaderResponseLongResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header value "value": 105 or -2
    */
@@ -336,7 +336,7 @@ export interface HeaderResponseFloatResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header value "value": 0.07 or -3.0
    */
@@ -350,7 +350,7 @@ export interface HeaderResponseDoubleResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header value "value": 7e120 or -3.0
    */
@@ -364,7 +364,7 @@ export interface HeaderResponseBoolResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header value "value": true or false
    */
@@ -378,7 +378,7 @@ export interface HeaderResponseStringResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header values "The quick brown fox jumps over the lazy dog" or null or ""
    */
@@ -392,7 +392,7 @@ export interface HeaderResponseDateResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header values "2010-01-01" or "0001-01-01"
    */
@@ -406,7 +406,7 @@ export interface HeaderResponseDatetimeResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    */
@@ -420,7 +420,7 @@ export interface HeaderResponseDatetimeRfc1123Response {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
    */
@@ -434,7 +434,7 @@ export interface HeaderResponseDurationResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header values "P123DT22H14M12.011S"
    */
@@ -448,7 +448,7 @@ export interface HeaderResponseByteResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header values "啊齄丂狛狜隣郎隣兀﨩"
    */
@@ -462,7 +462,7 @@ export interface HeaderResponseEnumResponse {
   /**
    * The raw HTTP response.
    */
-  response: msRest.HttpOperationResponse;
+  _response: msRest.HttpOperationResponse;
   /**
    * response with header values "GREY" or null. Possible values include: 'White', 'black', 'GREY'
    */
