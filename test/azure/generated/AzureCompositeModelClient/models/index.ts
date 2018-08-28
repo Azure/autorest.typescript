@@ -856,7 +856,7 @@ export enum MyKind {
 /**
  * Contains response data for the list operation.
  */
-export interface ListResponse {
+export type ListResponse = {
   /**
    * The raw HTTP response.
    */
@@ -865,12 +865,12 @@ export interface ListResponse {
    * Array of products
    */
   productArray: Product[];
-}
+};
 
 /**
  * Contains response data for the create operation.
  */
-export interface CreateResponse {
+export type CreateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -879,12 +879,12 @@ export interface CreateResponse {
    * Dictionary of products
    */
   productDictionary: { [propertyName: string]: Product };
-}
+};
 
 /**
  * Contains response data for the update operation.
  */
-export interface UpdateResponse {
+export type UpdateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -893,12 +893,12 @@ export interface UpdateResponse {
    * Array of products
    */
   productArray: Product[];
-}
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface BasicGetValidResponse {
+export type BasicGetValidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -916,12 +916,12 @@ export interface BasicGetValidResponse {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
-}
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface BasicGetInvalidResponse {
+export type BasicGetInvalidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -939,12 +939,12 @@ export interface BasicGetInvalidResponse {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
-}
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface BasicGetEmptyResponse {
+export type BasicGetEmptyResponse = {
   /**
    * The raw HTTP response.
    */
@@ -962,12 +962,12 @@ export interface BasicGetEmptyResponse {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
-}
+};
 
 /**
  * Contains response data for the getNull operation.
  */
-export interface BasicGetNullResponse {
+export type BasicGetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -985,12 +985,12 @@ export interface BasicGetNullResponse {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
-}
+};
 
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface BasicGetNotProvidedResponse {
+export type BasicGetNotProvidedResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1008,72 +1008,72 @@ export interface BasicGetNotProvidedResponse {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
-}
+};
 
 /**
  * Contains response data for the getInt operation.
  */
-export interface PrimitiveGetIntResponse {
+export type PrimitiveGetIntResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   field1: number;
   field2: number;
-}
+};
 
 /**
  * Contains response data for the getLong operation.
  */
-export interface PrimitiveGetLongResponse {
+export type PrimitiveGetLongResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   field1: number;
   field2: number;
-}
+};
 
 /**
  * Contains response data for the getFloat operation.
  */
-export interface PrimitiveGetFloatResponse {
+export type PrimitiveGetFloatResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   field1: number;
   field2: number;
-}
+};
 
 /**
  * Contains response data for the getDouble operation.
  */
-export interface PrimitiveGetDoubleResponse {
+export type PrimitiveGetDoubleResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   field1: number;
   field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: number;
-}
+};
 
 /**
  * Contains response data for the getBool operation.
  */
-export interface PrimitiveGetBoolResponse {
+export type PrimitiveGetBoolResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   fieldTrue: boolean;
   fieldFalse: boolean;
-}
+};
 
 /**
  * Contains response data for the getString operation.
  */
-export interface PrimitiveGetStringResponse {
+export type PrimitiveGetStringResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1081,147 +1081,147 @@ export interface PrimitiveGetStringResponse {
   field: string;
   empty: string;
   nullProperty: string;
-}
+};
 
 /**
  * Contains response data for the getDate operation.
  */
-export interface PrimitiveGetDateResponse {
+export type PrimitiveGetDateResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   field: Date;
   leap: Date;
-}
+};
 
 /**
  * Contains response data for the getDateTime operation.
  */
-export interface PrimitiveGetDateTimeResponse {
+export type PrimitiveGetDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   field: Date;
   now: Date;
-}
+};
 
 /**
  * Contains response data for the getDateTimeRfc1123 operation.
  */
-export interface PrimitiveGetDateTimeRfc1123Response {
+export type PrimitiveGetDateTimeRfc1123Response = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   field: Date;
   now: Date;
-}
+};
 
 /**
  * Contains response data for the getDuration operation.
  */
-export interface PrimitiveGetDurationResponse {
+export type PrimitiveGetDurationResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   field: string;
-}
+};
 
 /**
  * Contains response data for the getByte operation.
  */
-export interface PrimitiveGetByteResponse {
+export type PrimitiveGetByteResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   field: Uint8Array;
-}
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface ArrayModelGetValidResponse {
+export type ArrayModelGetValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   arrayProperty: string[];
-}
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface ArrayModelGetEmptyResponse {
+export type ArrayModelGetEmptyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   arrayProperty: string[];
-}
+};
 
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface ArrayModelGetNotProvidedResponse {
+export type ArrayModelGetNotProvidedResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   arrayProperty: string[];
-}
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface DictionaryGetValidResponse {
+export type DictionaryGetValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
-}
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface DictionaryGetEmptyResponse {
+export type DictionaryGetEmptyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
-}
+};
 
 /**
  * Contains response data for the getNull operation.
  */
-export interface DictionaryGetNullResponse {
+export type DictionaryGetNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
-}
+};
 
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface DictionaryGetNotProvidedResponse {
+export type DictionaryGetNotProvidedResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
-}
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface InheritanceGetValidResponse {
+export type InheritanceGetValidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1231,12 +1231,12 @@ export interface InheritanceGetValidResponse {
   color: string;
   hates: Dog[];
   breed: string;
-}
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface PolymorphismGetValidResponse {
+export type PolymorphismGetValidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1248,12 +1248,12 @@ export interface PolymorphismGetValidResponse {
    * Polymorphic Discriminator
    */
   fishtype: string;
-}
+};
 
 /**
  * Contains response data for the getComplicated operation.
  */
-export interface PolymorphismGetComplicatedResponse {
+export type PolymorphismGetComplicatedResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1267,12 +1267,12 @@ export interface PolymorphismGetComplicatedResponse {
   fishtype: string;
   location: string;
   iswild: boolean;
-}
+};
 
 /**
  * Contains response data for the putMissingDiscriminator operation.
  */
-export interface PolymorphismPutMissingDiscriminatorResponse {
+export type PolymorphismPutMissingDiscriminatorResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1286,12 +1286,12 @@ export interface PolymorphismPutMissingDiscriminatorResponse {
   fishtype: string;
   location: string;
   iswild: boolean;
-}
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface PolymorphicrecursiveGetValidResponse {
+export type PolymorphicrecursiveGetValidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1303,24 +1303,24 @@ export interface PolymorphicrecursiveGetValidResponse {
    * Polymorphic Discriminator
    */
   fishtype: string;
-}
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface ReadonlypropertyGetValidResponse {
+export type ReadonlypropertyGetValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   id: string;
   size: number;
-}
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface FlattencomplexGetValidResponse {
+export type FlattencomplexGetValidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1331,4 +1331,4 @@ export interface FlattencomplexGetValidResponse {
    */
   kind: string;
   propBH1: string;
-}
+};

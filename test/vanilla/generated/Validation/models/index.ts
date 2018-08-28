@@ -124,7 +124,7 @@ export enum EnumConst {
 /**
  * Contains response data for the validationOfMethodParameters operation.
  */
-export interface ValidationOfMethodParametersResponse {
+export type ValidationOfMethodParametersResponse = {
   /**
    * The raw HTTP response.
    */
@@ -155,12 +155,12 @@ export interface ValidationOfMethodParametersResponse {
    * Constant string as Enum. Possible values include: 'constant_string_as_enum'
    */
   constStringAsEnum: EnumConst;
-}
+};
 
 /**
  * Contains response data for the validationOfBody operation.
  */
-export interface ValidationOfBodyResponse {
+export type ValidationOfBodyResponse = {
   /**
    * The raw HTTP response.
    */
@@ -191,12 +191,12 @@ export interface ValidationOfBodyResponse {
    * Constant string as Enum. Possible values include: 'constant_string_as_enum'
    */
   constStringAsEnum: EnumConst;
-}
+};
 
 /**
  * Contains response data for the postWithConstantInBody operation.
  */
-export interface PostWithConstantInBodyResponse {
+export type PostWithConstantInBodyResponse = {
   /**
    * The raw HTTP response.
    */
@@ -227,4 +227,4 @@ export interface PostWithConstantInBodyResponse {
    * Constant string as Enum. Possible values include: 'constant_string_as_enum'
    */
   constStringAsEnum: EnumConst;
-}
+};

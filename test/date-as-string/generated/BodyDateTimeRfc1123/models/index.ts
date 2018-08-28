@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface Datetimerfc1123GetNullResponse {
+export type Datetimerfc1123GetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -38,12 +38,12 @@ export interface Datetimerfc1123GetNullResponse {
    * The parsed response body.
    */
   body: string;
-}
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface Datetimerfc1123GetInvalidResponse {
+export type Datetimerfc1123GetInvalidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -52,12 +52,12 @@ export interface Datetimerfc1123GetInvalidResponse {
    * The parsed response body.
    */
   body: string;
-}
+};
 
 /**
  * Contains response data for the getOverflow operation.
  */
-export interface Datetimerfc1123GetOverflowResponse {
+export type Datetimerfc1123GetOverflowResponse = {
   /**
    * The raw HTTP response.
    */
@@ -66,12 +66,12 @@ export interface Datetimerfc1123GetOverflowResponse {
    * The parsed response body.
    */
   body: string;
-}
+};
 
 /**
  * Contains response data for the getUnderflow operation.
  */
-export interface Datetimerfc1123GetUnderflowResponse {
+export type Datetimerfc1123GetUnderflowResponse = {
   /**
    * The raw HTTP response.
    */
@@ -80,12 +80,12 @@ export interface Datetimerfc1123GetUnderflowResponse {
    * The parsed response body.
    */
   body: string;
-}
+};
 
 /**
  * Contains response data for the getUtcLowercaseMaxDateTime operation.
  */
-export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse {
+export type Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -94,12 +94,12 @@ export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse {
    * The parsed response body.
    */
   body: string;
-}
+};
 
 /**
  * Contains response data for the getUtcUppercaseMaxDateTime operation.
  */
-export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse {
+export type Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -108,12 +108,12 @@ export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse {
    * The parsed response body.
    */
   body: string;
-}
+};
 
 /**
  * Contains response data for the getUtcMinDateTime operation.
  */
-export interface Datetimerfc1123GetUtcMinDateTimeResponse {
+export type Datetimerfc1123GetUtcMinDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -122,4 +122,4 @@ export interface Datetimerfc1123GetUtcMinDateTimeResponse {
    * The parsed response body.
    */
   body: string;
-}
+};

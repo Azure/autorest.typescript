@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface DateModelGetNullResponse {
+export type DateModelGetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -38,12 +38,12 @@ export interface DateModelGetNullResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getInvalidDate operation.
  */
-export interface DateModelGetInvalidDateResponse {
+export type DateModelGetInvalidDateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -52,12 +52,12 @@ export interface DateModelGetInvalidDateResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getOverflowDate operation.
  */
-export interface DateModelGetOverflowDateResponse {
+export type DateModelGetOverflowDateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -66,12 +66,12 @@ export interface DateModelGetOverflowDateResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getUnderflowDate operation.
  */
-export interface DateModelGetUnderflowDateResponse {
+export type DateModelGetUnderflowDateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -80,12 +80,12 @@ export interface DateModelGetUnderflowDateResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getMaxDate operation.
  */
-export interface DateModelGetMaxDateResponse {
+export type DateModelGetMaxDateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -94,12 +94,12 @@ export interface DateModelGetMaxDateResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getMinDate operation.
  */
-export interface DateModelGetMinDateResponse {
+export type DateModelGetMinDateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -108,4 +108,4 @@ export interface DateModelGetMinDateResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};

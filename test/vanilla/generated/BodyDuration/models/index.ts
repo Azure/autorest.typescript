@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface DurationGetNullResponse {
+export type DurationGetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -38,12 +38,12 @@ export interface DurationGetNullResponse {
    * The parsed response body.
    */
   body: string;
-}
+};
 
 /**
  * Contains response data for the getPositiveDuration operation.
  */
-export interface DurationGetPositiveDurationResponse {
+export type DurationGetPositiveDurationResponse = {
   /**
    * The raw HTTP response.
    */
@@ -52,12 +52,12 @@ export interface DurationGetPositiveDurationResponse {
    * The parsed response body.
    */
   body: string;
-}
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface DurationGetInvalidResponse {
+export type DurationGetInvalidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -66,4 +66,4 @@ export interface DurationGetInvalidResponse {
    * The parsed response body.
    */
   body: string;
-}
+};

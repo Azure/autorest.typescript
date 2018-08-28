@@ -18,7 +18,7 @@ export { BaseResource, CloudError };
 /**
  * Contains response data for the head200 operation.
  */
-export interface HttpSuccessHead200Response {
+export type HttpSuccessHead200Response = {
   /**
    * The raw HTTP response.
    */
@@ -27,12 +27,12 @@ export interface HttpSuccessHead200Response {
    * The parsed response body.
    */
   body: boolean;
-}
+};
 
 /**
  * Contains response data for the head204 operation.
  */
-export interface HttpSuccessHead204Response {
+export type HttpSuccessHead204Response = {
   /**
    * The raw HTTP response.
    */
@@ -41,12 +41,12 @@ export interface HttpSuccessHead204Response {
    * The parsed response body.
    */
   body: boolean;
-}
+};
 
 /**
  * Contains response data for the head404 operation.
  */
-export interface HttpSuccessHead404Response {
+export type HttpSuccessHead404Response = {
   /**
    * The raw HTTP response.
    */
@@ -55,4 +55,4 @@ export interface HttpSuccessHead404Response {
    * The parsed response body.
    */
   body: boolean;
-}
+};

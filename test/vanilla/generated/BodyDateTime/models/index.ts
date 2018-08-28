@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface DatetimeGetNullResponse {
+export type DatetimeGetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -38,12 +38,12 @@ export interface DatetimeGetNullResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface DatetimeGetInvalidResponse {
+export type DatetimeGetInvalidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -52,12 +52,12 @@ export interface DatetimeGetInvalidResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getOverflow operation.
  */
-export interface DatetimeGetOverflowResponse {
+export type DatetimeGetOverflowResponse = {
   /**
    * The raw HTTP response.
    */
@@ -66,12 +66,12 @@ export interface DatetimeGetOverflowResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getUnderflow operation.
  */
-export interface DatetimeGetUnderflowResponse {
+export type DatetimeGetUnderflowResponse = {
   /**
    * The raw HTTP response.
    */
@@ -80,12 +80,12 @@ export interface DatetimeGetUnderflowResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getUtcLowercaseMaxDateTime operation.
  */
-export interface DatetimeGetUtcLowercaseMaxDateTimeResponse {
+export type DatetimeGetUtcLowercaseMaxDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -94,12 +94,12 @@ export interface DatetimeGetUtcLowercaseMaxDateTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getUtcUppercaseMaxDateTime operation.
  */
-export interface DatetimeGetUtcUppercaseMaxDateTimeResponse {
+export type DatetimeGetUtcUppercaseMaxDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -108,13 +108,13 @@ export interface DatetimeGetUtcUppercaseMaxDateTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getLocalPositiveOffsetLowercaseMaxDateTime
  * operation.
  */
-export interface DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse {
+export type DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -123,13 +123,13 @@ export interface DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getLocalPositiveOffsetUppercaseMaxDateTime
  * operation.
  */
-export interface DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse {
+export type DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -138,13 +138,13 @@ export interface DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getLocalNegativeOffsetUppercaseMaxDateTime
  * operation.
  */
-export interface DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse {
+export type DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -153,13 +153,13 @@ export interface DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getLocalNegativeOffsetLowercaseMaxDateTime
  * operation.
  */
-export interface DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse {
+export type DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -168,12 +168,12 @@ export interface DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getUtcMinDateTime operation.
  */
-export interface DatetimeGetUtcMinDateTimeResponse {
+export type DatetimeGetUtcMinDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -182,12 +182,12 @@ export interface DatetimeGetUtcMinDateTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getLocalPositiveOffsetMinDateTime operation.
  */
-export interface DatetimeGetLocalPositiveOffsetMinDateTimeResponse {
+export type DatetimeGetLocalPositiveOffsetMinDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -196,12 +196,12 @@ export interface DatetimeGetLocalPositiveOffsetMinDateTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getLocalNegativeOffsetMinDateTime operation.
  */
-export interface DatetimeGetLocalNegativeOffsetMinDateTimeResponse {
+export type DatetimeGetLocalNegativeOffsetMinDateTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -210,4 +210,4 @@ export interface DatetimeGetLocalNegativeOffsetMinDateTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};

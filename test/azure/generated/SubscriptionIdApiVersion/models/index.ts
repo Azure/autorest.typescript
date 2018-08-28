@@ -48,7 +48,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getSampleResourceGroup operation.
  */
-export interface GroupGetSampleResourceGroupResponse {
+export type GroupGetSampleResourceGroupResponse = {
   /**
    * The raw HTTP response.
    */
@@ -61,4 +61,4 @@ export interface GroupGetSampleResourceGroupResponse {
    * resource group location 'West US'
    */
   location: string;
-}
+};

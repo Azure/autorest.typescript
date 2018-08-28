@@ -417,312 +417,312 @@ export enum Status {
 /**
  * Contains response data for the getSinglePages operation.
  */
-export interface PagingGetSinglePagesResponse {
+export type PagingGetSinglePagesResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePages operation.
  */
-export interface PagingGetMultiplePagesResponse {
+export type PagingGetMultiplePagesResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getOdataMultiplePages operation.
  */
-export interface PagingGetOdataMultiplePagesResponse {
+export type PagingGetOdataMultiplePagesResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesWithOffset operation.
  */
-export interface PagingGetMultiplePagesWithOffsetResponse {
+export type PagingGetMultiplePagesWithOffsetResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesRetryFirst operation.
  */
-export interface PagingGetMultiplePagesRetryFirstResponse {
+export type PagingGetMultiplePagesRetryFirstResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesRetrySecond operation.
  */
-export interface PagingGetMultiplePagesRetrySecondResponse {
+export type PagingGetMultiplePagesRetrySecondResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getSinglePagesFailure operation.
  */
-export interface PagingGetSinglePagesFailureResponse {
+export type PagingGetSinglePagesFailureResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesFailure operation.
  */
-export interface PagingGetMultiplePagesFailureResponse {
+export type PagingGetMultiplePagesFailureResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesFailureUri operation.
  */
-export interface PagingGetMultiplePagesFailureUriResponse {
+export type PagingGetMultiplePagesFailureUriResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesFragmentNextLink operation.
  */
-export interface PagingGetMultiplePagesFragmentNextLinkResponse {
+export type PagingGetMultiplePagesFragmentNextLinkResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesFragmentWithGroupingNextLink
  * operation.
  */
-export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse {
+export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesLRO operation.
  */
-export interface PagingGetMultiplePagesLROResponse {
+export type PagingGetMultiplePagesLROResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the nextFragment operation.
  */
-export interface PagingNextFragmentResponse {
+export type PagingNextFragmentResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
-}
+};
 
 /**
  * Contains response data for the nextFragmentWithGrouping operation.
  */
-export interface PagingNextFragmentWithGroupingResponse {
+export type PagingNextFragmentWithGroupingResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
-}
+};
 
 /**
  * Contains response data for the beginGetMultiplePagesLRO operation.
  */
-export interface PagingBeginGetMultiplePagesLROResponse {
+export type PagingBeginGetMultiplePagesLROResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getSinglePagesNext operation.
  */
-export interface PagingGetSinglePagesNextResponse {
+export type PagingGetSinglePagesNextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesNext operation.
  */
-export interface PagingGetMultiplePagesNextResponse {
+export type PagingGetMultiplePagesNextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getOdataMultiplePagesNext operation.
  */
-export interface PagingGetOdataMultiplePagesNextResponse {
+export type PagingGetOdataMultiplePagesNextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesWithOffsetNext operation.
  */
-export interface PagingGetMultiplePagesWithOffsetNextResponse {
+export type PagingGetMultiplePagesWithOffsetNextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesRetryFirstNext operation.
  */
-export interface PagingGetMultiplePagesRetryFirstNextResponse {
+export type PagingGetMultiplePagesRetryFirstNextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesRetrySecondNext operation.
  */
-export interface PagingGetMultiplePagesRetrySecondNextResponse {
+export type PagingGetMultiplePagesRetrySecondNextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getSinglePagesFailureNext operation.
  */
-export interface PagingGetSinglePagesFailureNextResponse {
+export type PagingGetSinglePagesFailureNextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesFailureNext operation.
  */
-export interface PagingGetMultiplePagesFailureNextResponse {
+export type PagingGetMultiplePagesFailureNextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesFailureUriNext operation.
  */
-export interface PagingGetMultiplePagesFailureUriNextResponse {
+export type PagingGetMultiplePagesFailureUriNextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the getMultiplePagesLRONext operation.
  */
-export interface PagingGetMultiplePagesLRONextResponse {
+export type PagingGetMultiplePagesLRONextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the beginGetMultiplePagesLRONext operation.
  */
-export interface PagingBeginGetMultiplePagesLRONextResponse {
+export type PagingBeginGetMultiplePagesLRONextResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
-}
+};

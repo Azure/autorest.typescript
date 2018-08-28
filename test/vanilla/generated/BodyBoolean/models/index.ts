@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getTrue operation.
  */
-export interface BoolGetTrueResponse {
+export type BoolGetTrueResponse = {
   /**
    * The raw HTTP response.
    */
@@ -38,12 +38,12 @@ export interface BoolGetTrueResponse {
    * The parsed response body.
    */
   body: boolean;
-}
+};
 
 /**
  * Contains response data for the getFalse operation.
  */
-export interface BoolGetFalseResponse {
+export type BoolGetFalseResponse = {
   /**
    * The raw HTTP response.
    */
@@ -52,12 +52,12 @@ export interface BoolGetFalseResponse {
    * The parsed response body.
    */
   body: boolean;
-}
+};
 
 /**
  * Contains response data for the getNull operation.
  */
-export interface BoolGetNullResponse {
+export type BoolGetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -66,12 +66,12 @@ export interface BoolGetNullResponse {
    * The parsed response body.
    */
   body: boolean;
-}
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface BoolGetInvalidResponse {
+export type BoolGetInvalidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -80,4 +80,4 @@ export interface BoolGetInvalidResponse {
    * The parsed response body.
    */
   body: boolean;
-}
+};

@@ -56,509 +56,509 @@ export enum FooEnum {
 /**
  * Contains response data for the getNull operation.
  */
-export interface ArrayModelGetNullResponse extends Array<number> {
+export type ArrayModelGetNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface ArrayModelGetInvalidResponse extends Array<number> {
+export type ArrayModelGetInvalidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface ArrayModelGetEmptyResponse extends Array<number> {
+export type ArrayModelGetEmptyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getBooleanTfft operation.
  */
-export interface ArrayModelGetBooleanTfftResponse extends Array<boolean> {
+export type ArrayModelGetBooleanTfftResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<boolean>;
 
 /**
  * Contains response data for the getBooleanInvalidNull operation.
  */
-export interface ArrayModelGetBooleanInvalidNullResponse extends Array<boolean> {
+export type ArrayModelGetBooleanInvalidNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<boolean>;
 
 /**
  * Contains response data for the getBooleanInvalidString operation.
  */
-export interface ArrayModelGetBooleanInvalidStringResponse extends Array<boolean> {
+export type ArrayModelGetBooleanInvalidStringResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<boolean>;
 
 /**
  * Contains response data for the getIntegerValid operation.
  */
-export interface ArrayModelGetIntegerValidResponse extends Array<number> {
+export type ArrayModelGetIntegerValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getIntInvalidNull operation.
  */
-export interface ArrayModelGetIntInvalidNullResponse extends Array<number> {
+export type ArrayModelGetIntInvalidNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getIntInvalidString operation.
  */
-export interface ArrayModelGetIntInvalidStringResponse extends Array<number> {
+export type ArrayModelGetIntInvalidStringResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getLongValid operation.
  */
-export interface ArrayModelGetLongValidResponse extends Array<number> {
+export type ArrayModelGetLongValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getLongInvalidNull operation.
  */
-export interface ArrayModelGetLongInvalidNullResponse extends Array<number> {
+export type ArrayModelGetLongInvalidNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getLongInvalidString operation.
  */
-export interface ArrayModelGetLongInvalidStringResponse extends Array<number> {
+export type ArrayModelGetLongInvalidStringResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getFloatValid operation.
  */
-export interface ArrayModelGetFloatValidResponse extends Array<number> {
+export type ArrayModelGetFloatValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getFloatInvalidNull operation.
  */
-export interface ArrayModelGetFloatInvalidNullResponse extends Array<number> {
+export type ArrayModelGetFloatInvalidNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getFloatInvalidString operation.
  */
-export interface ArrayModelGetFloatInvalidStringResponse extends Array<number> {
+export type ArrayModelGetFloatInvalidStringResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getDoubleValid operation.
  */
-export interface ArrayModelGetDoubleValidResponse extends Array<number> {
+export type ArrayModelGetDoubleValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getDoubleInvalidNull operation.
  */
-export interface ArrayModelGetDoubleInvalidNullResponse extends Array<number> {
+export type ArrayModelGetDoubleInvalidNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getDoubleInvalidString operation.
  */
-export interface ArrayModelGetDoubleInvalidStringResponse extends Array<number> {
+export type ArrayModelGetDoubleInvalidStringResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<number>;
 
 /**
  * Contains response data for the getStringValid operation.
  */
-export interface ArrayModelGetStringValidResponse extends Array<string> {
+export type ArrayModelGetStringValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string>;
 
 /**
  * Contains response data for the getEnumValid operation.
  */
-export interface ArrayModelGetEnumValidResponse extends Array<FooEnum> {
+export type ArrayModelGetEnumValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<FooEnum>;
 
 /**
  * Contains response data for the getStringEnumValid operation.
  */
-export interface ArrayModelGetStringEnumValidResponse extends Array<string> {
+export type ArrayModelGetStringEnumValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string>;
 
 /**
  * Contains response data for the getStringWithNull operation.
  */
-export interface ArrayModelGetStringWithNullResponse extends Array<string> {
+export type ArrayModelGetStringWithNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string>;
 
 /**
  * Contains response data for the getStringWithInvalid operation.
  */
-export interface ArrayModelGetStringWithInvalidResponse extends Array<string> {
+export type ArrayModelGetStringWithInvalidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string>;
 
 /**
  * Contains response data for the getUuidValid operation.
  */
-export interface ArrayModelGetUuidValidResponse extends Array<string> {
+export type ArrayModelGetUuidValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string>;
 
 /**
  * Contains response data for the getUuidInvalidChars operation.
  */
-export interface ArrayModelGetUuidInvalidCharsResponse extends Array<string> {
+export type ArrayModelGetUuidInvalidCharsResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string>;
 
 /**
  * Contains response data for the getDateValid operation.
  */
-export interface ArrayModelGetDateValidResponse extends Array<Date> {
+export type ArrayModelGetDateValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Date>;
 
 /**
  * Contains response data for the getDateInvalidNull operation.
  */
-export interface ArrayModelGetDateInvalidNullResponse extends Array<Date> {
+export type ArrayModelGetDateInvalidNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Date>;
 
 /**
  * Contains response data for the getDateInvalidChars operation.
  */
-export interface ArrayModelGetDateInvalidCharsResponse extends Array<Date> {
+export type ArrayModelGetDateInvalidCharsResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Date>;
 
 /**
  * Contains response data for the getDateTimeValid operation.
  */
-export interface ArrayModelGetDateTimeValidResponse extends Array<Date> {
+export type ArrayModelGetDateTimeValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Date>;
 
 /**
  * Contains response data for the getDateTimeInvalidNull operation.
  */
-export interface ArrayModelGetDateTimeInvalidNullResponse extends Array<Date> {
+export type ArrayModelGetDateTimeInvalidNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Date>;
 
 /**
  * Contains response data for the getDateTimeInvalidChars operation.
  */
-export interface ArrayModelGetDateTimeInvalidCharsResponse extends Array<Date> {
+export type ArrayModelGetDateTimeInvalidCharsResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Date>;
 
 /**
  * Contains response data for the getDateTimeRfc1123Valid operation.
  */
-export interface ArrayModelGetDateTimeRfc1123ValidResponse extends Array<Date> {
+export type ArrayModelGetDateTimeRfc1123ValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Date>;
 
 /**
  * Contains response data for the getDurationValid operation.
  */
-export interface ArrayModelGetDurationValidResponse extends Array<string> {
+export type ArrayModelGetDurationValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string>;
 
 /**
  * Contains response data for the getByteValid operation.
  */
-export interface ArrayModelGetByteValidResponse extends Array<Uint8Array> {
+export type ArrayModelGetByteValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Uint8Array>;
 
 /**
  * Contains response data for the getByteInvalidNull operation.
  */
-export interface ArrayModelGetByteInvalidNullResponse extends Array<Uint8Array> {
+export type ArrayModelGetByteInvalidNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Uint8Array>;
 
 /**
  * Contains response data for the getBase64Url operation.
  */
-export interface ArrayModelGetBase64UrlResponse extends Array<Uint8Array> {
+export type ArrayModelGetBase64UrlResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Uint8Array>;
 
 /**
  * Contains response data for the getComplexNull operation.
  */
-export interface ArrayModelGetComplexNullResponse extends Array<Product> {
+export type ArrayModelGetComplexNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Product>;
 
 /**
  * Contains response data for the getComplexEmpty operation.
  */
-export interface ArrayModelGetComplexEmptyResponse extends Array<Product> {
+export type ArrayModelGetComplexEmptyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Product>;
 
 /**
  * Contains response data for the getComplexItemNull operation.
  */
-export interface ArrayModelGetComplexItemNullResponse extends Array<Product> {
+export type ArrayModelGetComplexItemNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Product>;
 
 /**
  * Contains response data for the getComplexItemEmpty operation.
  */
-export interface ArrayModelGetComplexItemEmptyResponse extends Array<Product> {
+export type ArrayModelGetComplexItemEmptyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Product>;
 
 /**
  * Contains response data for the getComplexValid operation.
  */
-export interface ArrayModelGetComplexValidResponse extends Array<Product> {
+export type ArrayModelGetComplexValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Product>;
 
 /**
  * Contains response data for the getArrayNull operation.
  */
-export interface ArrayModelGetArrayNullResponse extends Array<string[]> {
+export type ArrayModelGetArrayNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string[]>;
 
 /**
  * Contains response data for the getArrayEmpty operation.
  */
-export interface ArrayModelGetArrayEmptyResponse extends Array<string[]> {
+export type ArrayModelGetArrayEmptyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string[]>;
 
 /**
  * Contains response data for the getArrayItemNull operation.
  */
-export interface ArrayModelGetArrayItemNullResponse extends Array<string[]> {
+export type ArrayModelGetArrayItemNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string[]>;
 
 /**
  * Contains response data for the getArrayItemEmpty operation.
  */
-export interface ArrayModelGetArrayItemEmptyResponse extends Array<string[]> {
+export type ArrayModelGetArrayItemEmptyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string[]>;
 
 /**
  * Contains response data for the getArrayValid operation.
  */
-export interface ArrayModelGetArrayValidResponse extends Array<string[]> {
+export type ArrayModelGetArrayValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<string[]>;
 
 /**
  * Contains response data for the getDictionaryNull operation.
  */
-export interface ArrayModelGetDictionaryNullResponse extends Array<{ [propertyName: string]: string }> {
+export type ArrayModelGetDictionaryNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<{ [propertyName: string]: string }>;
 
 /**
  * Contains response data for the getDictionaryEmpty operation.
  */
-export interface ArrayModelGetDictionaryEmptyResponse extends Array<{ [propertyName: string]: string }> {
+export type ArrayModelGetDictionaryEmptyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<{ [propertyName: string]: string }>;
 
 /**
  * Contains response data for the getDictionaryItemNull operation.
  */
-export interface ArrayModelGetDictionaryItemNullResponse extends Array<{ [propertyName: string]: string }> {
+export type ArrayModelGetDictionaryItemNullResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<{ [propertyName: string]: string }>;
 
 /**
  * Contains response data for the getDictionaryItemEmpty operation.
  */
-export interface ArrayModelGetDictionaryItemEmptyResponse extends Array<{ [propertyName: string]: string }> {
+export type ArrayModelGetDictionaryItemEmptyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<{ [propertyName: string]: string }>;
 
 /**
  * Contains response data for the getDictionaryValid operation.
  */
-export interface ArrayModelGetDictionaryValidResponse extends Array<{ [propertyName: string]: string }> {
+export type ArrayModelGetDictionaryValidResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<{ [propertyName: string]: string }>;

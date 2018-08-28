@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getFile operation.
  */
-export interface FilesGetFileResponse {
+export type FilesGetFileResponse = {
   /**
    * The raw HTTP response.
    */
@@ -48,12 +48,12 @@ export interface FilesGetFileResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+};
 
 /**
  * Contains response data for the getFileLarge operation.
  */
-export interface FilesGetFileLargeResponse {
+export type FilesGetFileLargeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -72,12 +72,12 @@ export interface FilesGetFileLargeResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+};
 
 /**
  * Contains response data for the getEmptyFile operation.
  */
-export interface FilesGetEmptyFileResponse {
+export type FilesGetEmptyFileResponse = {
   /**
    * The raw HTTP response.
    */
@@ -96,4 +96,4 @@ export interface FilesGetEmptyFileResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+};

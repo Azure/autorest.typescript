@@ -344,41 +344,42 @@ export enum ProvisioningStateValues {
 /**
  * Contains response data for the getArray operation.
  */
-export interface GetArrayResponse extends Array<FlattenedProduct> {
+export type GetArrayResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<FlattenedProduct>;
 
 /**
  * Contains response data for the getWrappedArray operation.
  */
-export interface GetWrappedArrayResponse extends Array<ProductWrapper> {
+export type GetWrappedArrayResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<ProductWrapper>;
 
 /**
  * Contains response data for the getDictionary operation.
  */
-export interface GetDictionaryResponse {
+export type GetDictionaryResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
+} & {
   /**
-   * The parsed response body.
+   * The response body properties.
    */
-  body: { [propertyName: string]: FlattenedProduct };
-}
+  [propertyName: string]: FlattenedProduct;
+};
 
 /**
  * Contains response data for the getResourceCollection operation.
  */
-export interface GetResourceCollectionResponse {
+export type GetResourceCollectionResponse = {
   /**
    * The raw HTTP response.
    */
@@ -386,12 +387,12 @@ export interface GetResourceCollectionResponse {
   productresource: FlattenedProduct;
   arrayofresources: FlattenedProduct[];
   dictionaryofresources: { [propertyName: string]: FlattenedProduct };
-}
+};
 
 /**
  * Contains response data for the putSimpleProduct operation.
  */
-export interface PutSimpleProductResponse {
+export type PutSimpleProductResponse = {
   /**
    * The raw HTTP response.
    */
@@ -421,12 +422,12 @@ export interface PutSimpleProductResponse {
    * URL value.
    */
   odatavalue: string;
-}
+};
 
 /**
  * Contains response data for the postFlattenedSimpleProduct operation.
  */
-export interface PostFlattenedSimpleProductResponse {
+export type PostFlattenedSimpleProductResponse = {
   /**
    * The raw HTTP response.
    */
@@ -456,12 +457,12 @@ export interface PostFlattenedSimpleProductResponse {
    * URL value.
    */
   odatavalue: string;
-}
+};
 
 /**
  * Contains response data for the putSimpleProductWithGrouping operation.
  */
-export interface PutSimpleProductWithGroupingResponse {
+export type PutSimpleProductWithGroupingResponse = {
   /**
    * The raw HTTP response.
    */
@@ -491,4 +492,4 @@ export interface PutSimpleProductWithGroupingResponse {
    * URL value.
    */
   odatavalue: string;
-}
+};

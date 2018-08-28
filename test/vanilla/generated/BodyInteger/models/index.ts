@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface IntModelGetNullResponse {
+export type IntModelGetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -38,12 +38,12 @@ export interface IntModelGetNullResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface IntModelGetInvalidResponse {
+export type IntModelGetInvalidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -52,12 +52,12 @@ export interface IntModelGetInvalidResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getOverflowInt32 operation.
  */
-export interface IntModelGetOverflowInt32Response {
+export type IntModelGetOverflowInt32Response = {
   /**
    * The raw HTTP response.
    */
@@ -66,12 +66,12 @@ export interface IntModelGetOverflowInt32Response {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getUnderflowInt32 operation.
  */
-export interface IntModelGetUnderflowInt32Response {
+export type IntModelGetUnderflowInt32Response = {
   /**
    * The raw HTTP response.
    */
@@ -80,12 +80,12 @@ export interface IntModelGetUnderflowInt32Response {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getOverflowInt64 operation.
  */
-export interface IntModelGetOverflowInt64Response {
+export type IntModelGetOverflowInt64Response = {
   /**
    * The raw HTTP response.
    */
@@ -94,12 +94,12 @@ export interface IntModelGetOverflowInt64Response {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getUnderflowInt64 operation.
  */
-export interface IntModelGetUnderflowInt64Response {
+export type IntModelGetUnderflowInt64Response = {
   /**
    * The raw HTTP response.
    */
@@ -108,12 +108,12 @@ export interface IntModelGetUnderflowInt64Response {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getUnixTime operation.
  */
-export interface IntModelGetUnixTimeResponse {
+export type IntModelGetUnixTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -122,12 +122,12 @@ export interface IntModelGetUnixTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getInvalidUnixTime operation.
  */
-export interface IntModelGetInvalidUnixTimeResponse {
+export type IntModelGetInvalidUnixTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -136,12 +136,12 @@ export interface IntModelGetInvalidUnixTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};
 
 /**
  * Contains response data for the getNullUnixTime operation.
  */
-export interface IntModelGetNullUnixTimeResponse {
+export type IntModelGetNullUnixTimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -150,4 +150,4 @@ export interface IntModelGetNullUnixTimeResponse {
    * The parsed response body.
    */
   body: Date;
-}
+};

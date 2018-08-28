@@ -492,7 +492,7 @@ export enum UsageUnit {
 /**
  * Contains response data for the checkNameAvailability operation.
  */
-export interface StorageAccountsCheckNameAvailabilityResponse {
+export type StorageAccountsCheckNameAvailabilityResponse = {
   /**
    * The raw HTTP response.
    */
@@ -512,12 +512,12 @@ export interface StorageAccountsCheckNameAvailabilityResponse {
    * Gets an error message explaining the Reason value in more detail.
    */
   message: string;
-}
+};
 
 /**
  * Contains response data for the create operation.
  */
-export interface StorageAccountsCreateResponse {
+export type StorageAccountsCreateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -597,12 +597,12 @@ export interface StorageAccountsCreateResponse {
    * StandardRAGRS.
    */
   secondaryEndpoints: Endpoints;
-}
+};
 
 /**
  * Contains response data for the getProperties operation.
  */
-export interface StorageAccountsGetPropertiesResponse {
+export type StorageAccountsGetPropertiesResponse = {
   /**
    * The raw HTTP response.
    */
@@ -682,12 +682,12 @@ export interface StorageAccountsGetPropertiesResponse {
    * StandardRAGRS.
    */
   secondaryEndpoints: Endpoints;
-}
+};
 
 /**
  * Contains response data for the update operation.
  */
-export interface StorageAccountsUpdateResponse {
+export type StorageAccountsUpdateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -767,12 +767,12 @@ export interface StorageAccountsUpdateResponse {
    * StandardRAGRS.
    */
   secondaryEndpoints: Endpoints;
-}
+};
 
 /**
  * Contains response data for the listKeys operation.
  */
-export interface StorageAccountsListKeysResponse {
+export type StorageAccountsListKeysResponse = {
   /**
    * The raw HTTP response.
    */
@@ -785,12 +785,12 @@ export interface StorageAccountsListKeysResponse {
    * Gets the value of key 2.
    */
   key2: string;
-}
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface StorageAccountsListResponse {
+export type StorageAccountsListResponse = {
   /**
    * The raw HTTP response.
    */
@@ -804,12 +804,12 @@ export interface StorageAccountsListResponse {
    * not support pagination.
    */
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the listByResourceGroup operation.
  */
-export interface StorageAccountsListByResourceGroupResponse {
+export type StorageAccountsListByResourceGroupResponse = {
   /**
    * The raw HTTP response.
    */
@@ -823,12 +823,12 @@ export interface StorageAccountsListByResourceGroupResponse {
    * not support pagination.
    */
   nextLink: string;
-}
+};
 
 /**
  * Contains response data for the regenerateKey operation.
  */
-export interface StorageAccountsRegenerateKeyResponse {
+export type StorageAccountsRegenerateKeyResponse = {
   /**
    * The raw HTTP response.
    */
@@ -841,12 +841,12 @@ export interface StorageAccountsRegenerateKeyResponse {
    * Gets the value of key 2.
    */
   key2: string;
-}
+};
 
 /**
  * Contains response data for the beginCreate operation.
  */
-export interface StorageAccountsBeginCreateResponse {
+export type StorageAccountsBeginCreateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -926,12 +926,12 @@ export interface StorageAccountsBeginCreateResponse {
    * StandardRAGRS.
    */
   secondaryEndpoints: Endpoints;
-}
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface UsageListResponse {
+export type UsageListResponse = {
   /**
    * The raw HTTP response.
    */
@@ -940,4 +940,4 @@ export interface UsageListResponse {
    * Gets or sets the list Storage Resource Usages.
    */
   value: Usage[];
-}
+};

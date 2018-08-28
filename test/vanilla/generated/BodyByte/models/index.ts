@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface ByteModelGetNullResponse {
+export type ByteModelGetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -38,12 +38,12 @@ export interface ByteModelGetNullResponse {
    * The parsed response body.
    */
   body: Uint8Array;
-}
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface ByteModelGetEmptyResponse {
+export type ByteModelGetEmptyResponse = {
   /**
    * The raw HTTP response.
    */
@@ -52,12 +52,12 @@ export interface ByteModelGetEmptyResponse {
    * The parsed response body.
    */
   body: Uint8Array;
-}
+};
 
 /**
  * Contains response data for the getNonAscii operation.
  */
-export interface ByteModelGetNonAsciiResponse {
+export type ByteModelGetNonAsciiResponse = {
   /**
    * The raw HTTP response.
    */
@@ -66,12 +66,12 @@ export interface ByteModelGetNonAsciiResponse {
    * The parsed response body.
    */
   body: Uint8Array;
-}
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface ByteModelGetInvalidResponse {
+export type ByteModelGetInvalidResponse = {
   /**
    * The raw HTTP response.
    */
@@ -80,4 +80,4 @@ export interface ByteModelGetInvalidResponse {
    * The parsed response body.
    */
   body: Uint8Array;
-}
+};

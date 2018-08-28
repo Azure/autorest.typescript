@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the uploadFile operation.
  */
-export interface FormdataUploadFileResponse {
+export type FormdataUploadFileResponse = {
   /**
    * The raw HTTP response.
    */
@@ -48,12 +48,12 @@ export interface FormdataUploadFileResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+};
 
 /**
  * Contains response data for the uploadFileViaBody operation.
  */
-export interface FormdataUploadFileViaBodyResponse {
+export type FormdataUploadFileViaBodyResponse = {
   /**
    * The raw HTTP response.
    */
@@ -72,4 +72,4 @@ export interface FormdataUploadFileViaBodyResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+};

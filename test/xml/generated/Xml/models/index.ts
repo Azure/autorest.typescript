@@ -819,7 +819,7 @@ export enum ArchiveStatus {
 /**
  * Contains response data for the getComplexTypeRefNoMeta operation.
  */
-export interface XmlGetComplexTypeRefNoMetaResponse {
+export type XmlGetComplexTypeRefNoMetaResponse = {
   /**
    * The raw HTTP response.
    */
@@ -832,12 +832,12 @@ export interface XmlGetComplexTypeRefNoMetaResponse {
    * Something else (just to avoid flattening)
    */
   something: string;
-}
+};
 
 /**
  * Contains response data for the getComplexTypeRefWithMeta operation.
  */
-export interface XmlGetComplexTypeRefWithMetaResponse {
+export type XmlGetComplexTypeRefWithMetaResponse = {
   /**
    * The raw HTTP response.
    */
@@ -850,12 +850,12 @@ export interface XmlGetComplexTypeRefWithMetaResponse {
    * Something else (just to avoid flattening)
    */
   something: string;
-}
+};
 
 /**
  * Contains response data for the getSimple operation.
  */
-export interface XmlGetSimpleResponse {
+export type XmlGetSimpleResponse = {
   /**
    * The raw HTTP response.
    */
@@ -864,24 +864,24 @@ export interface XmlGetSimpleResponse {
   date: string;
   author: string;
   slides: Slide[];
-}
+};
 
 /**
  * Contains response data for the getWrappedLists operation.
  */
-export interface XmlGetWrappedListsResponse {
+export type XmlGetWrappedListsResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   goodApples: string[];
   badApples: string[];
-}
+};
 
 /**
  * Contains response data for the getHeaders operation.
  */
-export interface XmlGetHeadersResponse {
+export type XmlGetHeadersResponse = {
   /**
    * The raw HTTP response.
    */
@@ -890,12 +890,12 @@ export interface XmlGetHeadersResponse {
    * A custom response header.
    */
   customHeader: string;
-}
+};
 
 /**
  * Contains response data for the getEmptyList operation.
  */
-export interface XmlGetEmptyListResponse {
+export type XmlGetEmptyListResponse = {
   /**
    * The raw HTTP response.
    */
@@ -904,54 +904,54 @@ export interface XmlGetEmptyListResponse {
   date: string;
   author: string;
   slides: Slide[];
-}
+};
 
 /**
  * Contains response data for the getEmptyWrappedLists operation.
  */
-export interface XmlGetEmptyWrappedListsResponse {
+export type XmlGetEmptyWrappedListsResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   goodApples: string[];
   badApples: string[];
-}
+};
 
 /**
  * Contains response data for the getRootList operation.
  */
-export interface XmlGetRootListResponse extends Array<Banana> {
+export type XmlGetRootListResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Banana>;
 
 /**
  * Contains response data for the getRootListSingleItem operation.
  */
-export interface XmlGetRootListSingleItemResponse extends Array<Banana> {
+export type XmlGetRootListSingleItemResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Banana>;
 
 /**
  * Contains response data for the getEmptyRootList operation.
  */
-export interface XmlGetEmptyRootListResponse extends Array<Banana> {
+export type XmlGetEmptyRootListResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<Banana>;
 
 /**
  * Contains response data for the getEmptyChildElement operation.
  */
-export interface XmlGetEmptyChildElementResponse {
+export type XmlGetEmptyChildElementResponse = {
   /**
    * The raw HTTP response.
    */
@@ -962,12 +962,12 @@ export interface XmlGetEmptyChildElementResponse {
    * The time at which you should reconsider eating this banana
    */
   expiration: Date;
-}
+};
 
 /**
  * Contains response data for the listContainers operation.
  */
-export interface XmlListContainersResponse {
+export type XmlListContainersResponse = {
   /**
    * The raw HTTP response.
    */
@@ -978,12 +978,12 @@ export interface XmlListContainersResponse {
   maxResults: number;
   containers: Container[];
   nextMarker: string;
-}
+};
 
 /**
  * Contains response data for the getServiceProperties operation.
  */
-export interface XmlGetServicePropertiesResponse {
+export type XmlGetServicePropertiesResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1013,22 +1013,22 @@ export interface XmlGetServicePropertiesResponse {
    * The Delete Retention Policy for the service
    */
   deleteRetentionPolicy: RetentionPolicy;
-}
+};
 
 /**
  * Contains response data for the getAcls operation.
  */
-export interface XmlGetAclsResponse extends Array<SignedIdentifier> {
+export type XmlGetAclsResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
-}
+} & Array<SignedIdentifier>;
 
 /**
  * Contains response data for the listBlobs operation.
  */
-export interface XmlListBlobsResponse {
+export type XmlListBlobsResponse = {
   /**
    * The raw HTTP response.
    */
@@ -1041,4 +1041,4 @@ export interface XmlListBlobsResponse {
   delimiter: string;
   blobs: Blobs;
   nextMarker: string;
-}
+};

@@ -276,7 +276,7 @@ export enum GreyscaleColors {
 /**
  * Contains response data for the responseExistingKey operation.
  */
-export interface HeaderResponseExistingKeyResponse {
+export type HeaderResponseExistingKeyResponse = {
   /**
    * The raw HTTP response.
    */
@@ -285,12 +285,12 @@ export interface HeaderResponseExistingKeyResponse {
    * response with header value "User-Agent": "overwrite"
    */
   userAgent: string;
-}
+};
 
 /**
  * Contains response data for the responseProtectedKey operation.
  */
-export interface HeaderResponseProtectedKeyResponse {
+export type HeaderResponseProtectedKeyResponse = {
   /**
    * The raw HTTP response.
    */
@@ -299,12 +299,12 @@ export interface HeaderResponseProtectedKeyResponse {
    * response with header value "Content-Type": "text/html"
    */
   contentType: string;
-}
+};
 
 /**
  * Contains response data for the responseInteger operation.
  */
-export interface HeaderResponseIntegerResponse {
+export type HeaderResponseIntegerResponse = {
   /**
    * The raw HTTP response.
    */
@@ -313,12 +313,12 @@ export interface HeaderResponseIntegerResponse {
    * response with header value "value": 1 or -2
    */
   value: number;
-}
+};
 
 /**
  * Contains response data for the responseLong operation.
  */
-export interface HeaderResponseLongResponse {
+export type HeaderResponseLongResponse = {
   /**
    * The raw HTTP response.
    */
@@ -327,12 +327,12 @@ export interface HeaderResponseLongResponse {
    * response with header value "value": 105 or -2
    */
   value: number;
-}
+};
 
 /**
  * Contains response data for the responseFloat operation.
  */
-export interface HeaderResponseFloatResponse {
+export type HeaderResponseFloatResponse = {
   /**
    * The raw HTTP response.
    */
@@ -341,12 +341,12 @@ export interface HeaderResponseFloatResponse {
    * response with header value "value": 0.07 or -3.0
    */
   value: number;
-}
+};
 
 /**
  * Contains response data for the responseDouble operation.
  */
-export interface HeaderResponseDoubleResponse {
+export type HeaderResponseDoubleResponse = {
   /**
    * The raw HTTP response.
    */
@@ -355,12 +355,12 @@ export interface HeaderResponseDoubleResponse {
    * response with header value "value": 7e120 or -3.0
    */
   value: number;
-}
+};
 
 /**
  * Contains response data for the responseBool operation.
  */
-export interface HeaderResponseBoolResponse {
+export type HeaderResponseBoolResponse = {
   /**
    * The raw HTTP response.
    */
@@ -369,12 +369,12 @@ export interface HeaderResponseBoolResponse {
    * response with header value "value": true or false
    */
   value: boolean;
-}
+};
 
 /**
  * Contains response data for the responseString operation.
  */
-export interface HeaderResponseStringResponse {
+export type HeaderResponseStringResponse = {
   /**
    * The raw HTTP response.
    */
@@ -383,12 +383,12 @@ export interface HeaderResponseStringResponse {
    * response with header values "The quick brown fox jumps over the lazy dog" or null or ""
    */
   value: string;
-}
+};
 
 /**
  * Contains response data for the responseDate operation.
  */
-export interface HeaderResponseDateResponse {
+export type HeaderResponseDateResponse = {
   /**
    * The raw HTTP response.
    */
@@ -397,12 +397,12 @@ export interface HeaderResponseDateResponse {
    * response with header values "2010-01-01" or "0001-01-01"
    */
   value: Date;
-}
+};
 
 /**
  * Contains response data for the responseDatetime operation.
  */
-export interface HeaderResponseDatetimeResponse {
+export type HeaderResponseDatetimeResponse = {
   /**
    * The raw HTTP response.
    */
@@ -411,12 +411,12 @@ export interface HeaderResponseDatetimeResponse {
    * response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    */
   value: Date;
-}
+};
 
 /**
  * Contains response data for the responseDatetimeRfc1123 operation.
  */
-export interface HeaderResponseDatetimeRfc1123Response {
+export type HeaderResponseDatetimeRfc1123Response = {
   /**
    * The raw HTTP response.
    */
@@ -425,12 +425,12 @@ export interface HeaderResponseDatetimeRfc1123Response {
    * response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
    */
   value: Date;
-}
+};
 
 /**
  * Contains response data for the responseDuration operation.
  */
-export interface HeaderResponseDurationResponse {
+export type HeaderResponseDurationResponse = {
   /**
    * The raw HTTP response.
    */
@@ -439,12 +439,12 @@ export interface HeaderResponseDurationResponse {
    * response with header values "P123DT22H14M12.011S"
    */
   value: string;
-}
+};
 
 /**
  * Contains response data for the responseByte operation.
  */
-export interface HeaderResponseByteResponse {
+export type HeaderResponseByteResponse = {
   /**
    * The raw HTTP response.
    */
@@ -453,12 +453,12 @@ export interface HeaderResponseByteResponse {
    * response with header values "啊齄丂狛狜隣郎隣兀﨩"
    */
   value: Uint8Array;
-}
+};
 
 /**
  * Contains response data for the responseEnum operation.
  */
-export interface HeaderResponseEnumResponse {
+export type HeaderResponseEnumResponse = {
   /**
    * The raw HTTP response.
    */
@@ -467,4 +467,4 @@ export interface HeaderResponseEnumResponse {
    * response with header values "GREY" or null. Possible values include: 'White', 'black', 'GREY'
    */
   value: GreyscaleColors;
-}
+};

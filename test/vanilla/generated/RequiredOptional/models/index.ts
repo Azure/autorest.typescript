@@ -341,179 +341,179 @@ export interface ExplicitPostOptionalArrayHeaderOptionalParams extends msRest.Re
 /**
  * Contains response data for the getRequiredPath operation.
  */
-export interface ImplicitGetRequiredPathResponse {
+export type ImplicitGetRequiredPathResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the getRequiredGlobalPath operation.
  */
-export interface ImplicitGetRequiredGlobalPathResponse {
+export type ImplicitGetRequiredGlobalPathResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the getRequiredGlobalQuery operation.
  */
-export interface ImplicitGetRequiredGlobalQueryResponse {
+export type ImplicitGetRequiredGlobalQueryResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the getOptionalGlobalQuery operation.
  */
-export interface ImplicitGetOptionalGlobalQueryResponse {
+export type ImplicitGetOptionalGlobalQueryResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredIntegerParameter operation.
  */
-export interface ExplicitPostRequiredIntegerParameterResponse {
+export type ExplicitPostRequiredIntegerParameterResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredIntegerProperty operation.
  */
-export interface ExplicitPostRequiredIntegerPropertyResponse {
+export type ExplicitPostRequiredIntegerPropertyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredIntegerHeader operation.
  */
-export interface ExplicitPostRequiredIntegerHeaderResponse {
+export type ExplicitPostRequiredIntegerHeaderResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredStringParameter operation.
  */
-export interface ExplicitPostRequiredStringParameterResponse {
+export type ExplicitPostRequiredStringParameterResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredStringProperty operation.
  */
-export interface ExplicitPostRequiredStringPropertyResponse {
+export type ExplicitPostRequiredStringPropertyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredStringHeader operation.
  */
-export interface ExplicitPostRequiredStringHeaderResponse {
+export type ExplicitPostRequiredStringHeaderResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredClassParameter operation.
  */
-export interface ExplicitPostRequiredClassParameterResponse {
+export type ExplicitPostRequiredClassParameterResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredClassProperty operation.
  */
-export interface ExplicitPostRequiredClassPropertyResponse {
+export type ExplicitPostRequiredClassPropertyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredArrayParameter operation.
  */
-export interface ExplicitPostRequiredArrayParameterResponse {
+export type ExplicitPostRequiredArrayParameterResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredArrayProperty operation.
  */
-export interface ExplicitPostRequiredArrayPropertyResponse {
+export type ExplicitPostRequiredArrayPropertyResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};
 
 /**
  * Contains response data for the postRequiredArrayHeader operation.
  */
-export interface ExplicitPostRequiredArrayHeaderResponse {
+export type ExplicitPostRequiredArrayHeaderResponse = {
   /**
    * The raw HTTP response.
    */
   _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
-}
+};

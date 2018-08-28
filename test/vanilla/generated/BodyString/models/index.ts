@@ -156,7 +156,7 @@ export enum GetWhitespaceOKResponse {
 /**
  * Contains response data for the getNull operation.
  */
-export interface StringGetNullResponse {
+export type StringGetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -165,12 +165,12 @@ export interface StringGetNullResponse {
    * The parsed response body.
    */
   body: GetNullOKResponse;
-}
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface StringGetEmptyResponse {
+export type StringGetEmptyResponse = {
   /**
    * The raw HTTP response.
    */
@@ -179,12 +179,12 @@ export interface StringGetEmptyResponse {
    * The parsed response body.
    */
   body: GetEmptyOKResponse;
-}
+};
 
 /**
  * Contains response data for the getMbcs operation.
  */
-export interface StringGetMbcsResponse {
+export type StringGetMbcsResponse = {
   /**
    * The raw HTTP response.
    */
@@ -193,12 +193,12 @@ export interface StringGetMbcsResponse {
    * The parsed response body.
    */
   body: GetMbcsOKResponse;
-}
+};
 
 /**
  * Contains response data for the getWhitespace operation.
  */
-export interface StringGetWhitespaceResponse {
+export type StringGetWhitespaceResponse = {
   /**
    * The raw HTTP response.
    */
@@ -207,12 +207,12 @@ export interface StringGetWhitespaceResponse {
    * The parsed response body.
    */
   body: GetWhitespaceOKResponse;
-}
+};
 
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface StringGetNotProvidedResponse {
+export type StringGetNotProvidedResponse = {
   /**
    * The raw HTTP response.
    */
@@ -221,12 +221,12 @@ export interface StringGetNotProvidedResponse {
    * The parsed response body.
    */
   body: string;
-}
+};
 
 /**
  * Contains response data for the getBase64Encoded operation.
  */
-export interface StringGetBase64EncodedResponse {
+export type StringGetBase64EncodedResponse = {
   /**
    * The raw HTTP response.
    */
@@ -235,12 +235,12 @@ export interface StringGetBase64EncodedResponse {
    * The parsed response body.
    */
   body: Uint8Array;
-}
+};
 
 /**
  * Contains response data for the getBase64UrlEncoded operation.
  */
-export interface StringGetBase64UrlEncodedResponse {
+export type StringGetBase64UrlEncodedResponse = {
   /**
    * The raw HTTP response.
    */
@@ -249,12 +249,12 @@ export interface StringGetBase64UrlEncodedResponse {
    * The parsed response body.
    */
   body: Uint8Array;
-}
+};
 
 /**
  * Contains response data for the getNullBase64UrlEncoded operation.
  */
-export interface StringGetNullBase64UrlEncodedResponse {
+export type StringGetNullBase64UrlEncodedResponse = {
   /**
    * The raw HTTP response.
    */
@@ -263,12 +263,12 @@ export interface StringGetNullBase64UrlEncodedResponse {
    * The parsed response body.
    */
   body: Uint8Array;
-}
+};
 
 /**
  * Contains response data for the getNotExpandable operation.
  */
-export interface EnumModelGetNotExpandableResponse {
+export type EnumModelGetNotExpandableResponse = {
   /**
    * The raw HTTP response.
    */
@@ -277,12 +277,12 @@ export interface EnumModelGetNotExpandableResponse {
    * The parsed response body.
    */
   body: Colors;
-}
+};
 
 /**
  * Contains response data for the getReferenced operation.
  */
-export interface EnumModelGetReferencedResponse {
+export type EnumModelGetReferencedResponse = {
   /**
    * The raw HTTP response.
    */
@@ -291,12 +291,12 @@ export interface EnumModelGetReferencedResponse {
    * The parsed response body.
    */
   body: Colors;
-}
+};
 
 /**
  * Contains response data for the getReferencedConstant operation.
  */
-export interface EnumModelGetReferencedConstantResponse {
+export type EnumModelGetReferencedConstantResponse = {
   /**
    * The raw HTTP response.
    */
@@ -309,4 +309,4 @@ export interface EnumModelGetReferencedConstantResponse {
    * Sample string.
    */
   field1: string;
-}
+};

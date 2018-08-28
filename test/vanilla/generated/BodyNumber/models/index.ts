@@ -29,7 +29,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface NumberGetNullResponse {
+export type NumberGetNullResponse = {
   /**
    * The raw HTTP response.
    */
@@ -38,12 +38,12 @@ export interface NumberGetNullResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getInvalidFloat operation.
  */
-export interface NumberGetInvalidFloatResponse {
+export type NumberGetInvalidFloatResponse = {
   /**
    * The raw HTTP response.
    */
@@ -52,12 +52,12 @@ export interface NumberGetInvalidFloatResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getInvalidDouble operation.
  */
-export interface NumberGetInvalidDoubleResponse {
+export type NumberGetInvalidDoubleResponse = {
   /**
    * The raw HTTP response.
    */
@@ -66,12 +66,12 @@ export interface NumberGetInvalidDoubleResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getInvalidDecimal operation.
  */
-export interface NumberGetInvalidDecimalResponse {
+export type NumberGetInvalidDecimalResponse = {
   /**
    * The raw HTTP response.
    */
@@ -80,12 +80,12 @@ export interface NumberGetInvalidDecimalResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getBigFloat operation.
  */
-export interface NumberGetBigFloatResponse {
+export type NumberGetBigFloatResponse = {
   /**
    * The raw HTTP response.
    */
@@ -94,12 +94,12 @@ export interface NumberGetBigFloatResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getBigDouble operation.
  */
-export interface NumberGetBigDoubleResponse {
+export type NumberGetBigDoubleResponse = {
   /**
    * The raw HTTP response.
    */
@@ -108,12 +108,12 @@ export interface NumberGetBigDoubleResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getBigDoublePositiveDecimal operation.
  */
-export interface NumberGetBigDoublePositiveDecimalResponse {
+export type NumberGetBigDoublePositiveDecimalResponse = {
   /**
    * The raw HTTP response.
    */
@@ -122,12 +122,12 @@ export interface NumberGetBigDoublePositiveDecimalResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getBigDoubleNegativeDecimal operation.
  */
-export interface NumberGetBigDoubleNegativeDecimalResponse {
+export type NumberGetBigDoubleNegativeDecimalResponse = {
   /**
    * The raw HTTP response.
    */
@@ -136,12 +136,12 @@ export interface NumberGetBigDoubleNegativeDecimalResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getBigDecimal operation.
  */
-export interface NumberGetBigDecimalResponse {
+export type NumberGetBigDecimalResponse = {
   /**
    * The raw HTTP response.
    */
@@ -150,12 +150,12 @@ export interface NumberGetBigDecimalResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getBigDecimalPositiveDecimal operation.
  */
-export interface NumberGetBigDecimalPositiveDecimalResponse {
+export type NumberGetBigDecimalPositiveDecimalResponse = {
   /**
    * The raw HTTP response.
    */
@@ -164,12 +164,12 @@ export interface NumberGetBigDecimalPositiveDecimalResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getBigDecimalNegativeDecimal operation.
  */
-export interface NumberGetBigDecimalNegativeDecimalResponse {
+export type NumberGetBigDecimalNegativeDecimalResponse = {
   /**
    * The raw HTTP response.
    */
@@ -178,12 +178,12 @@ export interface NumberGetBigDecimalNegativeDecimalResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getSmallFloat operation.
  */
-export interface NumberGetSmallFloatResponse {
+export type NumberGetSmallFloatResponse = {
   /**
    * The raw HTTP response.
    */
@@ -192,12 +192,12 @@ export interface NumberGetSmallFloatResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getSmallDouble operation.
  */
-export interface NumberGetSmallDoubleResponse {
+export type NumberGetSmallDoubleResponse = {
   /**
    * The raw HTTP response.
    */
@@ -206,12 +206,12 @@ export interface NumberGetSmallDoubleResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
 
 /**
  * Contains response data for the getSmallDecimal operation.
  */
-export interface NumberGetSmallDecimalResponse {
+export type NumberGetSmallDecimalResponse = {
   /**
    * The raw HTTP response.
    */
@@ -220,4 +220,4 @@ export interface NumberGetSmallDecimalResponse {
    * The parsed response body.
    */
   body: number;
-}
+};
