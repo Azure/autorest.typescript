@@ -26,11 +26,17 @@ dotnet = (cmd) ->
 # ==============================================================================
 # Tasks
 
+task 'build/scripts', '', [], (done) ->
+  execute "tsc -p ./.scripts/", (code, stdout, stderr) ->
+    done()
 
-task 'build','dotnet',['restore', 'version-number'], (done) ->
+task 'build/generator','dotnet',['restore', 'version-number'], (done) ->
   execute "dotnet build -c #{configuration} #{solution} /nologo /clp:NoSummary /p:VersionPrefix=#{version}", (code, stdout, stderr) ->
     execute "dotnet publish -c #{configuration} #{sourceFolder} --output #{sourceFolder}/bin/netcoreapp2.0 /nologo /clp:NoSummary /p:VersionPrefix=#{version}", (code, stdout, stderr) ->
       done()
+
+task 'build', '', ['build/scripts', 'build/generator'], (done) ->
+  done()
 
 task 'clear-cache-on-force', '', (done)->
   if global.force 
