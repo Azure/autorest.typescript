@@ -49,7 +49,7 @@ describe('typescript', function () {
 
     it('should work with PutAsyncNoRetrySucceeded', async () => {
       const result = await testClient.lROs.putAsyncNoRetrySucceeded({ product: product });
-      should(result).eql({ id: '100', name: 'foo', provisioningState: "Succeeded" });
+      should(result._response.parsedBody).eql({ id: '100', name: 'foo', provisioningState: "Succeeded" });
     });
 
     it('should work with PutNoHeaderInRetry', async () => {

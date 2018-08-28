@@ -5,7 +5,7 @@ const testClient = new AutoRestDateTestService();
 describe("--model-date-as-string=false", function () {
   it("should get a string date", async function () {
     const date = await testClient.dateModel.getMaxDate();
-    assert.strictEqual(typeof date, "string");
+    assert.strictEqual(typeof date.body, "string");
 
     const reallyADate = new Date(date.body);
     assert.strictEqual(isNaN(reallyADate.valueOf()), false);
