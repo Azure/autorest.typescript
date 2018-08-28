@@ -489,7 +489,14 @@ namespace AutoRest.TypeScript.DSL
 
         public void ExportInterface(string interfaceName, string baseInterfaceName, Action<TSInterface> interfaceAction)
         {
-            this.Line($"export interface {interfaceName} extends {baseInterfaceName} {{");
+            if (string.IsNullOrEmpty(baseInterfaceName))
+            {
+                this.Line($"export interface {interfaceName} {{");
+            }
+            else
+            {
+                this.Line($"export interface {interfaceName} extends {baseInterfaceName} {{");
+            }
             this.IncreaseIndent();
             interfaceAction?.Invoke(new TSInterface(this));
             this.DecreaseIndent();
@@ -510,6 +517,11 @@ namespace AutoRest.TypeScript.DSL
                 argumentListAction.Invoke(argumentList);
             }
             Text(")");
+        }
+
+        public void MethodOverload(string methodName, string returnType, string parameterList)
+        {
+            Line($"{methodName}({parameterList}): {returnType};");
         }
 
         public void Method(string methodName, string returnType, string parameterList, Action<TSBlock> methodBodyAction)

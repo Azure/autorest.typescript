@@ -92,7 +92,7 @@ namespace AutoRest.TypeScript.Azure.Model
             builder.Line(emptyLine);
             builder.Line(GenerateWithHttpOperationResponseMethodComment());
 
-            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{HttpResponseReferenceName}>", MethodParameterDeclarationTS(true, true), methodBody =>
+            builder.Method(Name.ToCamelCase(), $"Promise<{HttpResponseReferenceName}>", MethodParameterDeclarationTS(true, true), methodBody =>
             {
                 methodBody.Line($"return this.{GetPollerMethodName(this)}({MethodParameterDeclaration})");
                 methodBody.Indent(() =>

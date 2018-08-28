@@ -45,7 +45,7 @@ namespace AutoRest.TypeScript.Model
             HttpOperationResponse
         }
 
-        private const string baseHttpResponseName = "msRest.HttpResponse";
+        private const string baseHttpResponseName = "msRest.RestResponse";
 
         public string HttpResponseName
         {
@@ -507,8 +507,6 @@ namespace AutoRest.TypeScript.Model
             return GenerateMethodDocumentation(MethodFlavor.HttpOperationResponse);
         }
 
-        public string ResponseMethodSuffix => CodeModelTS.GenerateBodyMethods ? "WithHttpOperationResponse" : "";
-
         public void GenerateOperationArguments(TSObject operationArguments)
         {
             ParameterTransformations transformations = GetParameterTransformations();
@@ -714,16 +712,42 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        internal sealed class PropertyNameComparer : IEqualityComparer<Property>
+        {
+            internal static PropertyNameComparer Instance { get; } = new PropertyNameComparer();
+
+            public bool Equals(Property x, Property y)
+            {
+                return x.Name.Value == y.Name.Value;
+            }
+
+            public int GetHashCode(Property obj)
+            {
+                return obj.Name.Value.GetHashCode();
+            }
+        }
+
         public string GenerateResponseType(string emptyLine)
         {
             TSBuilder builder = new TSBuilder();
-            builder.ExportInterface(HttpResponseName, baseHttpResponseName, iface =>
+
+            // if the response body is a sequence, the generated response type will extend array
+            string baseClassName = ReturnType.Body is SequenceTypeTS sequence
+                ? $"Array<{sequence.ElementType.TSType(inModelsModule: true)}>"
+                : null;
+
+            builder.ExportInterface(HttpResponseName, baseClassName, iface =>
             {
+                iface.DocumentationComment("The raw HTTP response.");
+                iface.Property("response", "msRest.HttpOperationResponse");
+
                 if (ReturnType.Headers != null)
                 {
-                    iface.DocumentationComment(
-                        "The parsed HTTP response headers.");
-                    iface.Property("parsedHeaders", ReturnType.Headers.Name);
+                    foreach (var property in ((CompositeTypeTS)ReturnType.Headers).Properties)
+                    {
+                        iface.DocumentationComment(property.Documentation);
+                        iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true));
+                    }
                 }
 
                 if (HasStreamResponseType())
@@ -744,14 +768,19 @@ namespace AutoRest.TypeScript.Model
 
                     iface.Property("readableStreamBody", "NodeJS.ReadableStream", optional: true);
                 }
-                else if (ReturnType.Body != null)
+                else if (ReturnType.Body is CompositeTypeTS compositeBody)
                 {
-                    iface.DocumentationComment("The response body as text (string format)");
-                    iface.Property("bodyAsText", "string");
-
-                    string bodyType = ReturnType.Body?.TSType(inModelsModule: true) ?? "void";
-                    iface.DocumentationComment("The response body as parsed JSON or XML");
-                    iface.Property("parsedBody", bodyType);
+                    foreach (var property in compositeBody.ComposedProperties.Distinct(PropertyNameComparer.Instance))
+                    {
+                        iface.DocumentationComment(property.Documentation);
+                        iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true));
+                    }
+                }
+                else if (ReturnType.Body != null && !(ReturnType.Body is SequenceTypeTS))
+                {
+                    // todo: document primitive body property
+                    iface.DocumentationComment("The parsed response body.");
+                    iface.Property("body", ReturnType.Body.TSType(inModelsModule: true));
                 }
             });
             return builder.ToString();
@@ -782,8 +811,14 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
 
             string responseName = HttpResponseReferenceName;
+            // todo fix doc comment
             builder.Line(GenerateWithHttpOperationResponseMethodComment());
-            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{responseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
+            builder.MethodOverload(Name.ToCamelCase(), $"Promise<{responseName}>", MethodParameterDeclarationTS(false, false));
+            builder.MethodOverload(Name.ToCamelCase(), $"Promise<{responseName}>", MethodParameterDeclarationTS(true, false));
+            builder.MethodOverload(Name.ToCamelCase(), $"void", MethodParameterDeclarationWithCallbackTS(includeOptions: false));
+            builder.MethodOverload(Name.ToCamelCase(), $"void", MethodParameterDeclarationWithCallbackTS(includeOptions: true));
+            string parameterDecl = $"{MethodParameterDeclarationTS(true, true)}, callback?: msRest.ServiceCallback<{ReturnTypeTSString}>";
+            builder.Method(Name.ToCamelCase(), $"Promise<{responseName}>", parameterDecl, methodBody =>
             {
                 methodBody.Return(returnValue =>
                 {
@@ -791,6 +826,7 @@ namespace AutoRest.TypeScript.Model
                     {
                         argumentList.Object(GenerateOperationArguments);
                         argumentList.Text(GetOperationSpecVariableName());
+                        argumentList.Text("callback");
                     });
 
                     if (!HasStreamResponseType())
