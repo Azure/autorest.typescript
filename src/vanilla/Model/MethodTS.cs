@@ -377,15 +377,6 @@ namespace AutoRest.TypeScript.Model
         public string ClientReference => MethodGroup.IsCodeModelMethodGroup ? "this" : "this.client";
 
         [JsonIgnore]
-        public virtual string InitializeResult
-        {
-            get
-            {
-                return string.Empty;
-            }
-        }
-
-        [JsonIgnore]
         public string ReturnTypeInfo
         {
             get
@@ -727,6 +718,9 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        public const string rawHttpResponsePropertyName = "_response";
+        public const string primitiveHttpBodyPropertyName = "body";
+
         public string GenerateResponseType(string emptyLine)
         {
             TSBuilder builder = new TSBuilder();
@@ -736,51 +730,66 @@ namespace AutoRest.TypeScript.Model
                 ? $"Array<{sequence.ElementType.TSType(inModelsModule: true)}>"
                 : null;
 
-            builder.ExportInterface(HttpResponseName, baseClassName, iface =>
+            builder.ExportIntersectionType(HttpResponseName, type =>
             {
-                iface.DocumentationComment("The raw HTTP response.");
-                iface.Property("response", "msRest.HttpOperationResponse");
-
-                if (ReturnType.Headers != null)
+                type.ObjectType(iface =>
                 {
-                    foreach (var property in ((CompositeTypeTS)ReturnType.Headers).Properties)
+                    iface.DocumentationComment("The raw HTTP response.");
+                    iface.Property(rawHttpResponsePropertyName, "msRest.HttpOperationResponse");
+
+                    if (ReturnType.Headers != null)
                     {
-                        iface.DocumentationComment(property.Documentation);
-                        iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true));
+                        foreach (var property in ((CompositeTypeTS)ReturnType.Headers).Properties)
+                        {
+                            iface.DocumentationComment(property.Documentation);
+                            iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true));
+                        }
                     }
-                }
 
-                if (HasStreamResponseType())
-                {
-                    iface.DocumentationComment(
-                        "BROWSER ONLY",
-                        "",
-                        "The response body as a browser Blob.",
-                        "Always undefined in node.js.");
-
-                    iface.Property("blobBody", "() => Promise<Blob>", optional: true);
-
-                    iface.DocumentationComment(
-                        "NODEJS ONLY",
-                        "",
-                        "The response body as a node.js Readable stream.",
-                        "Always undefined in the browser.");
-
-                    iface.Property("readableStreamBody", "NodeJS.ReadableStream", optional: true);
-                }
-                else if (ReturnType.Body is CompositeTypeTS compositeBody)
-                {
-                    foreach (var property in compositeBody.ComposedProperties.Distinct(PropertyNameComparer.Instance))
+                    if (HasStreamResponseType())
                     {
-                        iface.DocumentationComment(property.Documentation);
-                        iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true));
+                        iface.DocumentationComment(
+                            "BROWSER ONLY",
+                            "",
+                            "The response body as a browser Blob.",
+                            "Always undefined in node.js.");
+
+                        iface.Property("blobBody", "() => Promise<Blob>", optional: true);
+
+                        iface.DocumentationComment(
+                            "NODEJS ONLY",
+                            "",
+                            "The response body as a node.js Readable stream.",
+                            "Always undefined in the browser.");
+
+                        iface.Property("readableStreamBody", "NodeJS.ReadableStream", optional: true);
                     }
-                }
-                else if (ReturnType.Body != null && !(ReturnType.Body is SequenceTypeTS))
+                    else if (ReturnType.Body is CompositeTypeTS compositeBody)
+                    {
+                        foreach (var property in compositeBody.ComposedProperties.Distinct(PropertyNameComparer.Instance))
+                        {
+                            iface.DocumentationComment(property.Documentation);
+                            iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true));
+                        }
+                    }
+                    else if (ReturnType.Body != null && !(ReturnType.Body is SequenceTypeTS || ReturnType.Body is DictionaryTypeTS))
+                    {
+                        iface.DocumentationComment("The parsed response body.");
+                        iface.Property(primitiveHttpBodyPropertyName, ReturnType.Body.TSType(inModelsModule: true));
+                    }
+                });
+
+                if (ReturnType.Body is DictionaryTypeTS dictionaryBody)
                 {
-                    // todo: document primitive body property
-                    iface.DocumentationComment("The parsed response body.");
-                    iface.Property("body", ReturnType.Body.TSType(inModelsModule: true));
+                    type.ObjectType(dict =>
+                    {
+                        dict.DocumentationComment("The response body properties.");
+                        dict.IndexSignature(dictionaryBody.ValueType.TSType(inModelsModule: true));
+                    });
+                }
+                else if (ReturnType.Body is SequenceTypeTS sequenceBody)
+                {
+                    type.NamedType($"Array<{sequenceBody.ElementType.TSType(inModelsModule: true)}>");
                 }
             });
             return builder.ToString();
@@ -828,29 +837,6 @@ namespace AutoRest.TypeScript.Model
                         argumentList.Text(GetOperationSpecVariableName());
                         argumentList.Text("callback");
                     });
-
-                    if (!HasStreamResponseType())
-                    {
-                        string resultInitializer = InitializeResult;
-                        if (!string.IsNullOrEmpty(resultInitializer))
-                        {
-                            returnValue.FunctionCall(".then", argumentList =>
-                            {
-                                argumentList.Lambda("operationRes", lambda =>
-                                {
-                                    lambda.LineComment("Deserialize Response");
-                                    lambda.Line("const statusCode = operationRes.status;");
-                                    lambda.Line(InitializeResult);
-
-                                    if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
-                                    {
-                                        DeserializeResponse(lambda, DefaultResponse.Body);
-                                    }
-                                    lambda.Return("operationRes");
-                                });
-                            });
-                        }
-                    }
 
                     if (HasCustomHttpResponseType)
                     {

@@ -109,7 +109,8 @@ namespace AutoRest.TypeScript
                     {
                         headerProp.Name = headerProp.Name + "Header";
                     }
-                    else if (headerProp.Name == "body" || headerProp.Name == "response")
+                    else if (headerProp.Name == MethodTS.primitiveHttpBodyPropertyName ||
+                        headerProp.Name == MethodTS.rawHttpResponsePropertyName)
                     {
                         headerProp.Name = headerProp.Name + "Header";
                     }

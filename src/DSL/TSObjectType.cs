@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AutoRest.TypeScript.DSL
 {
-    public class TSInterface
+    public class TSObjectType
     {
         private readonly TSBuilder builder;
 
@@ -19,7 +19,7 @@ namespace AutoRest.TypeScript.DSL
             PropertyDeclaration
         }
 
-        public TSInterface(TSBuilder builder)
+        public TSObjectType(TSBuilder builder)
         {
             this.builder = builder;
             currentState = State.Start;
@@ -49,6 +49,12 @@ namespace AutoRest.TypeScript.DSL
         {
             SetCurrentState(State.PropertyDeclaration);
             builder.Line($"{propertyName}{(optional ? "?" : "")}: {propertyType};");
+        }
+
+        public void IndexSignature(string propertyType)
+        {
+            SetCurrentState(State.PropertyDeclaration);
+            builder.Line($"[propertyName: string]: {propertyType};");
         }
     }
 }

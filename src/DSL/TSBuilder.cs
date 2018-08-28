@@ -487,20 +487,11 @@ namespace AutoRest.TypeScript.DSL
             valueAction?.Invoke(new TSValue(this));
         }
 
-        public void ExportInterface(string interfaceName, string baseInterfaceName, Action<TSInterface> interfaceAction)
+        public void ExportIntersectionType(string typeName, Action<TSIntersectionType> typeAction)
         {
-            if (string.IsNullOrEmpty(baseInterfaceName))
-            {
-                this.Line($"export interface {interfaceName} {{");
-            }
-            else
-            {
-                this.Line($"export interface {interfaceName} extends {baseInterfaceName} {{");
-            }
-            this.IncreaseIndent();
-            interfaceAction?.Invoke(new TSInterface(this));
-            this.DecreaseIndent();
-            this.Line("}");
+            this.Text($"export type {typeName} = ");
+            typeAction?.Invoke(new TSIntersectionType(this));
+            this.Line(";");
         }
 
         /// <summary>
