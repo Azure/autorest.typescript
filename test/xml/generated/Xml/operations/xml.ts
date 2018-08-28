@@ -37,12 +37,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getComplexTypeRefNoMetaWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefNoMetaResponse> {
+  getComplexTypeRefNoMeta(): Promise<Models.XmlGetComplexTypeRefNoMetaResponse>;
+  getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefNoMetaResponse>;
+  getComplexTypeRefNoMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
+  getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
+  getComplexTypeRefNoMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): Promise<Models.XmlGetComplexTypeRefNoMetaResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getComplexTypeRefNoMetaOperationSpec) as Promise<Models.XmlGetComplexTypeRefNoMetaResponse>;
+      getComplexTypeRefNoMetaOperationSpec,
+      callback) as Promise<Models.XmlGetComplexTypeRefNoMetaResponse>;
   }
 
   /**
@@ -58,13 +63,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putComplexTypeRefNoMetaWithHttpOperationResponse(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta): Promise<msRest.RestResponse>;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         model,
         options
       },
-      putComplexTypeRefNoMetaOperationSpec);
+      putComplexTypeRefNoMetaOperationSpec,
+      callback);
   }
 
   /**
@@ -78,12 +88,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getComplexTypeRefWithMetaWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefWithMetaResponse> {
+  getComplexTypeRefWithMeta(): Promise<Models.XmlGetComplexTypeRefWithMetaResponse>;
+  getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefWithMetaResponse>;
+  getComplexTypeRefWithMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
+  getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
+  getComplexTypeRefWithMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndMeta>): Promise<Models.XmlGetComplexTypeRefWithMetaResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getComplexTypeRefWithMetaOperationSpec) as Promise<Models.XmlGetComplexTypeRefWithMetaResponse>;
+      getComplexTypeRefWithMetaOperationSpec,
+      callback) as Promise<Models.XmlGetComplexTypeRefWithMetaResponse>;
   }
 
   /**
@@ -99,13 +114,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putComplexTypeRefWithMetaWithHttpOperationResponse(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta): Promise<msRest.RestResponse>;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         model,
         options
       },
-      putComplexTypeRefWithMetaOperationSpec);
+      putComplexTypeRefWithMetaOperationSpec,
+      callback);
   }
 
   /**
@@ -119,12 +139,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSimpleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetSimpleResponse> {
+  getSimple(): Promise<Models.XmlGetSimpleResponse>;
+  getSimple(options: msRest.RequestOptionsBase): Promise<Models.XmlGetSimpleResponse>;
+  getSimple(callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getSimple(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getSimple(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): Promise<Models.XmlGetSimpleResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getSimpleOperationSpec) as Promise<Models.XmlGetSimpleResponse>;
+      getSimpleOperationSpec,
+      callback) as Promise<Models.XmlGetSimpleResponse>;
   }
 
   /**
@@ -140,13 +165,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putSimpleWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putSimple(slideshow: Models.Slideshow): Promise<msRest.RestResponse>;
+  putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putSimple(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
+  putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putSimple(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         slideshow,
         options
       },
-      putSimpleOperationSpec);
+      putSimpleOperationSpec,
+      callback);
   }
 
   /**
@@ -160,12 +190,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetWrappedListsResponse> {
+  getWrappedLists(): Promise<Models.XmlGetWrappedListsResponse>;
+  getWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.XmlGetWrappedListsResponse>;
+  getWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): Promise<Models.XmlGetWrappedListsResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getWrappedListsOperationSpec) as Promise<Models.XmlGetWrappedListsResponse>;
+      getWrappedListsOperationSpec,
+      callback) as Promise<Models.XmlGetWrappedListsResponse>;
   }
 
   /**
@@ -181,13 +216,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putWrappedListsWithHttpOperationResponse(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putWrappedLists(wrappedLists: Models.AppleBarrel): Promise<msRest.RestResponse>;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         wrappedLists,
         options
       },
-      putWrappedListsOperationSpec);
+      putWrappedListsOperationSpec,
+      callback);
   }
 
   /**
@@ -201,12 +241,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getHeadersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetHeadersResponse> {
+  getHeaders(): Promise<Models.XmlGetHeadersResponse>;
+  getHeaders(options: msRest.RequestOptionsBase): Promise<Models.XmlGetHeadersResponse>;
+  getHeaders(callback: msRest.ServiceCallback<void>): void;
+  getHeaders(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getHeaders(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.XmlGetHeadersResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getHeadersOperationSpec) as Promise<Models.XmlGetHeadersResponse>;
+      getHeadersOperationSpec,
+      callback) as Promise<Models.XmlGetHeadersResponse>;
   }
 
   /**
@@ -220,12 +265,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyListResponse> {
+  getEmptyList(): Promise<Models.XmlGetEmptyListResponse>;
+  getEmptyList(options: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyListResponse>;
+  getEmptyList(callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getEmptyList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getEmptyList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): Promise<Models.XmlGetEmptyListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyListOperationSpec) as Promise<Models.XmlGetEmptyListResponse>;
+      getEmptyListOperationSpec,
+      callback) as Promise<Models.XmlGetEmptyListResponse>;
   }
 
   /**
@@ -241,13 +291,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyListWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putEmptyList(slideshow: Models.Slideshow): Promise<msRest.RestResponse>;
+  putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmptyList(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
+  putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmptyList(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         slideshow,
         options
       },
-      putEmptyListOperationSpec);
+      putEmptyListOperationSpec,
+      callback);
   }
 
   /**
@@ -261,12 +316,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyWrappedListsResponse> {
+  getEmptyWrappedLists(): Promise<Models.XmlGetEmptyWrappedListsResponse>;
+  getEmptyWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyWrappedListsResponse>;
+  getEmptyWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getEmptyWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getEmptyWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): Promise<Models.XmlGetEmptyWrappedListsResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyWrappedListsOperationSpec) as Promise<Models.XmlGetEmptyWrappedListsResponse>;
+      getEmptyWrappedListsOperationSpec,
+      callback) as Promise<Models.XmlGetEmptyWrappedListsResponse>;
   }
 
   /**
@@ -282,13 +342,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyWrappedListsWithHttpOperationResponse(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel): Promise<msRest.RestResponse>;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         appleBarrel,
         options
       },
-      putEmptyWrappedListsOperationSpec);
+      putEmptyWrappedListsOperationSpec,
+      callback);
   }
 
   /**
@@ -302,12 +367,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetRootListResponse> {
+  getRootList(): Promise<Models.XmlGetRootListResponse>;
+  getRootList(options: msRest.RequestOptionsBase): Promise<Models.XmlGetRootListResponse>;
+  getRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): Promise<Models.XmlGetRootListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getRootListOperationSpec) as Promise<Models.XmlGetRootListResponse>;
+      getRootListOperationSpec,
+      callback) as Promise<Models.XmlGetRootListResponse>;
   }
 
   /**
@@ -323,13 +393,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putRootList(bananas: Models.Banana[]): Promise<msRest.RestResponse>;
+  putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
+  putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bananas,
         options
       },
-      putRootListOperationSpec);
+      putRootListOperationSpec,
+      callback);
   }
 
   /**
@@ -343,12 +418,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getRootListSingleItemWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetRootListSingleItemResponse> {
+  getRootListSingleItem(): Promise<Models.XmlGetRootListSingleItemResponse>;
+  getRootListSingleItem(options: msRest.RequestOptionsBase): Promise<Models.XmlGetRootListSingleItemResponse>;
+  getRootListSingleItem(callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootListSingleItem(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootListSingleItem(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): Promise<Models.XmlGetRootListSingleItemResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getRootListSingleItemOperationSpec) as Promise<Models.XmlGetRootListSingleItemResponse>;
+      getRootListSingleItemOperationSpec,
+      callback) as Promise<Models.XmlGetRootListSingleItemResponse>;
   }
 
   /**
@@ -364,13 +444,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putRootListSingleItemWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putRootListSingleItem(bananas: Models.Banana[]): Promise<msRest.RestResponse>;
+  putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putRootListSingleItem(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
+  putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putRootListSingleItem(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bananas,
         options
       },
-      putRootListSingleItemOperationSpec);
+      putRootListSingleItemOperationSpec,
+      callback);
   }
 
   /**
@@ -384,12 +469,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyRootListResponse> {
+  getEmptyRootList(): Promise<Models.XmlGetEmptyRootListResponse>;
+  getEmptyRootList(options: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyRootListResponse>;
+  getEmptyRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getEmptyRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getEmptyRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): Promise<Models.XmlGetEmptyRootListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyRootListOperationSpec) as Promise<Models.XmlGetEmptyRootListResponse>;
+      getEmptyRootListOperationSpec,
+      callback) as Promise<Models.XmlGetEmptyRootListResponse>;
   }
 
   /**
@@ -405,13 +495,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putEmptyRootList(bananas: Models.Banana[]): Promise<msRest.RestResponse>;
+  putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmptyRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
+  putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmptyRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bananas,
         options
       },
-      putEmptyRootListOperationSpec);
+      putEmptyRootListOperationSpec,
+      callback);
   }
 
   /**
@@ -425,12 +520,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyChildElementWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyChildElementResponse> {
+  getEmptyChildElement(): Promise<Models.XmlGetEmptyChildElementResponse>;
+  getEmptyChildElement(options: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyChildElementResponse>;
+  getEmptyChildElement(callback: msRest.ServiceCallback<Models.Banana>): void;
+  getEmptyChildElement(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana>): void;
+  getEmptyChildElement(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana>): Promise<Models.XmlGetEmptyChildElementResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyChildElementOperationSpec) as Promise<Models.XmlGetEmptyChildElementResponse>;
+      getEmptyChildElementOperationSpec,
+      callback) as Promise<Models.XmlGetEmptyChildElementResponse>;
   }
 
   /**
@@ -446,13 +546,18 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyChildElementWithHttpOperationResponse(banana: Models.Banana, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putEmptyChildElement(banana: Models.Banana): Promise<msRest.RestResponse>;
+  putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmptyChildElement(banana: Models.Banana, callback: msRest.ServiceCallback<void>): void;
+  putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmptyChildElement(banana: Models.Banana, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         banana,
         options
       },
-      putEmptyChildElementOperationSpec);
+      putEmptyChildElementOperationSpec,
+      callback);
   }
 
   /**
@@ -466,617 +571,17 @@ export class Xml {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listContainersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlListContainersResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      listContainersOperationSpec) as Promise<Models.XmlListContainersResponse>;
-  }
-
-  /**
-   * Gets storage service properties.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getServicePropertiesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetServicePropertiesResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getServicePropertiesOperationSpec) as Promise<Models.XmlGetServicePropertiesResponse>;
-  }
-
-  /**
-   * Puts storage service properties.
-   *
-   * @param {StorageServiceProperties} properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putServicePropertiesWithHttpOperationResponse(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        properties,
-        options
-      },
-      putServicePropertiesOperationSpec);
-  }
-
-  /**
-   * Gets storage ACLs for a container.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getAclsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetAclsResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getAclsOperationSpec) as Promise<Models.XmlGetAclsResponse>;
-  }
-
-  /**
-   * Puts storage ACLs for a container.
-   *
-   * @param {SignedIdentifier[]} properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putAclsWithHttpOperationResponse(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        properties,
-        options
-      },
-      putAclsOperationSpec);
-  }
-
-  /**
-   * Lists blobs in a storage container.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  listBlobsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlListBlobsResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      listBlobsOperationSpec) as Promise<Models.XmlListBlobsResponse>;
-  }
-
-  /**
-   * Get a complex type that has a ref to a complex type with no XML node
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.RootWithRefAndNoMeta} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.RootWithRefAndNoMeta} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getComplexTypeRefNoMeta(): Promise<Models.RootWithRefAndNoMeta>;
-  getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase): Promise<Models.RootWithRefAndNoMeta>;
-  getComplexTypeRefNoMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
-  getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
-  getComplexTypeRefNoMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): any {
-    return msRest.responseToBody(this.getComplexTypeRefNoMetaWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Puts a complex type that has a ref to a complex type with no XML node
-   *
-   * @param {RootWithRefAndNoMeta} model
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta): Promise<void>;
-  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase): Promise<void>;
-  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, callback: msRest.ServiceCallback<void>): void;
-  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putComplexTypeRefNoMetaWithHttpOperationResponse.bind(this), model, options, callback);
-  }
-
-  /**
-   * Get a complex type that has a ref to a complex type with XML node
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.RootWithRefAndMeta} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.RootWithRefAndMeta} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getComplexTypeRefWithMeta(): Promise<Models.RootWithRefAndMeta>;
-  getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase): Promise<Models.RootWithRefAndMeta>;
-  getComplexTypeRefWithMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
-  getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
-  getComplexTypeRefWithMeta(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RootWithRefAndMeta>): any {
-    return msRest.responseToBody(this.getComplexTypeRefWithMetaWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Puts a complex type that has a ref to a complex type with XML node
-   *
-   * @param {RootWithRefAndMeta} model
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta): Promise<void>;
-  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase): Promise<void>;
-  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, callback: msRest.ServiceCallback<void>): void;
-  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putComplexTypeRefWithMetaWithHttpOperationResponse.bind(this), model, options, callback);
-  }
-
-  /**
-   * Get a simple XML document
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Slideshow} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Slideshow} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getSimple(): Promise<Models.Slideshow>;
-  getSimple(options: msRest.RequestOptionsBase): Promise<Models.Slideshow>;
-  getSimple(callback: msRest.ServiceCallback<Models.Slideshow>): void;
-  getSimple(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
-  getSimple(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): any {
-    return msRest.responseToBody(this.getSimpleWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put a simple XML document
-   *
-   * @param {Slideshow} slideshow
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putSimple(slideshow: Models.Slideshow): Promise<void>;
-  putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<void>;
-  putSimple(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
-  putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSimple(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putSimpleWithHttpOperationResponse.bind(this), slideshow, options, callback);
-  }
-
-  /**
-   * Get an XML document with multiple wrapped lists
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.AppleBarrel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.AppleBarrel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getWrappedLists(): Promise<Models.AppleBarrel>;
-  getWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.AppleBarrel>;
-  getWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
-  getWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
-  getWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): any {
-    return msRest.responseToBody(this.getWrappedListsWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put an XML document with multiple wrapped lists
-   *
-   * @param {AppleBarrel} wrappedLists
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putWrappedLists(wrappedLists: Models.AppleBarrel): Promise<void>;
-  putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<void>;
-  putWrappedLists(wrappedLists: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
-  putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putWrappedLists(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putWrappedListsWithHttpOperationResponse.bind(this), wrappedLists, options, callback);
-  }
-
-  /**
-   * Get strongly-typed response headers.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getHeaders(): Promise<void>;
-  getHeaders(options: msRest.RequestOptionsBase): Promise<void>;
-  getHeaders(callback: msRest.ServiceCallback<void>): void;
-  getHeaders(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getHeaders(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getHeadersWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get an empty list.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Slideshow} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Slideshow} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getEmptyList(): Promise<Models.Slideshow>;
-  getEmptyList(options: msRest.RequestOptionsBase): Promise<Models.Slideshow>;
-  getEmptyList(callback: msRest.ServiceCallback<Models.Slideshow>): void;
-  getEmptyList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
-  getEmptyList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): any {
-    return msRest.responseToBody(this.getEmptyListWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Puts an empty list.
-   *
-   * @param {Slideshow} slideshow
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putEmptyList(slideshow: Models.Slideshow): Promise<void>;
-  putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<void>;
-  putEmptyList(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
-  putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyList(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyListWithHttpOperationResponse.bind(this), slideshow, options, callback);
-  }
-
-  /**
-   * Gets some empty wrapped lists.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.AppleBarrel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.AppleBarrel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getEmptyWrappedLists(): Promise<Models.AppleBarrel>;
-  getEmptyWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.AppleBarrel>;
-  getEmptyWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
-  getEmptyWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
-  getEmptyWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): any {
-    return msRest.responseToBody(this.getEmptyWrappedListsWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Puts some empty wrapped lists.
-   *
-   * @param {AppleBarrel} appleBarrel
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel): Promise<void>;
-  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<void>;
-  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
-  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyWrappedListsWithHttpOperationResponse.bind(this), appleBarrel, options, callback);
-  }
-
-  /**
-   * Gets a list as the root element.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Banana[]} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getRootList(): Promise<Models.Banana[]>;
-  getRootList(options: msRest.RequestOptionsBase): Promise<Models.Banana[]>;
-  getRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
-    return msRest.responseToBody(this.getRootListWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Puts a list as the root element.
-   *
-   * @param {Banana[]} bananas
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putRootList(bananas: Models.Banana[]): Promise<void>;
-  putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<void>;
-  putRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
-  putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putRootListWithHttpOperationResponse.bind(this), bananas, options, callback);
-  }
-
-  /**
-   * Gets a list with a single item.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Banana[]} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getRootListSingleItem(): Promise<Models.Banana[]>;
-  getRootListSingleItem(options: msRest.RequestOptionsBase): Promise<Models.Banana[]>;
-  getRootListSingleItem(callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getRootListSingleItem(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getRootListSingleItem(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
-    return msRest.responseToBody(this.getRootListSingleItemWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Puts a list with a single item.
-   *
-   * @param {Banana[]} bananas
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putRootListSingleItem(bananas: Models.Banana[]): Promise<void>;
-  putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<void>;
-  putRootListSingleItem(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
-  putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putRootListSingleItem(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putRootListSingleItemWithHttpOperationResponse.bind(this), bananas, options, callback);
-  }
-
-  /**
-   * Gets an empty list as the root element.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Banana[]} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getEmptyRootList(): Promise<Models.Banana[]>;
-  getEmptyRootList(options: msRest.RequestOptionsBase): Promise<Models.Banana[]>;
-  getEmptyRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getEmptyRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getEmptyRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
-    return msRest.responseToBody(this.getEmptyRootListWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Puts an empty list as the root element.
-   *
-   * @param {Banana[]} bananas
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putEmptyRootList(bananas: Models.Banana[]): Promise<void>;
-  putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<void>;
-  putEmptyRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
-  putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyRootListWithHttpOperationResponse.bind(this), bananas, options, callback);
-  }
-
-  /**
-   * Gets an XML document with an empty child element.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Banana} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Banana} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getEmptyChildElement(): Promise<Models.Banana>;
-  getEmptyChildElement(options: msRest.RequestOptionsBase): Promise<Models.Banana>;
-  getEmptyChildElement(callback: msRest.ServiceCallback<Models.Banana>): void;
-  getEmptyChildElement(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana>): void;
-  getEmptyChildElement(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana>): any {
-    return msRest.responseToBody(this.getEmptyChildElementWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Puts a value with an empty child element.
-   *
-   * @param {Banana} banana
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putEmptyChildElement(banana: Models.Banana): Promise<void>;
-  putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase): Promise<void>;
-  putEmptyChildElement(banana: Models.Banana, callback: msRest.ServiceCallback<void>): void;
-  putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyChildElement(banana: Models.Banana, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyChildElementWithHttpOperationResponse.bind(this), banana, options, callback);
-  }
-
-  /**
-   * Lists containers in a storage account.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ListContainersResponse} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ListContainersResponse} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listContainers(): Promise<Models.ListContainersResponse>;
-  listContainers(options: msRest.RequestOptionsBase): Promise<Models.ListContainersResponse>;
+  listContainers(): Promise<Models.XmlListContainersResponse>;
+  listContainers(options: msRest.RequestOptionsBase): Promise<Models.XmlListContainersResponse>;
   listContainers(callback: msRest.ServiceCallback<Models.ListContainersResponse>): void;
   listContainers(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ListContainersResponse>): void;
-  listContainers(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ListContainersResponse>): any {
-    return msRest.responseToBody(this.listContainersWithHttpOperationResponse.bind(this), options, callback);
+  listContainers(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ListContainersResponse>): Promise<Models.XmlListContainersResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      listContainersOperationSpec,
+      callback) as Promise<Models.XmlListContainersResponse>;
   }
 
   /**
@@ -1084,21 +589,23 @@ export class Xml {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StorageServiceProperties} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageServiceProperties} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getServiceProperties(): Promise<Models.StorageServiceProperties>;
-  getServiceProperties(options: msRest.RequestOptionsBase): Promise<Models.StorageServiceProperties>;
+  getServiceProperties(): Promise<Models.XmlGetServicePropertiesResponse>;
+  getServiceProperties(options: msRest.RequestOptionsBase): Promise<Models.XmlGetServicePropertiesResponse>;
   getServiceProperties(callback: msRest.ServiceCallback<Models.StorageServiceProperties>): void;
   getServiceProperties(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageServiceProperties>): void;
-  getServiceProperties(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageServiceProperties>): any {
-    return msRest.responseToBody(this.getServicePropertiesWithHttpOperationResponse.bind(this), options, callback);
+  getServiceProperties(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageServiceProperties>): Promise<Models.XmlGetServicePropertiesResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getServicePropertiesOperationSpec,
+      callback) as Promise<Models.XmlGetServicePropertiesResponse>;
   }
 
   /**
@@ -1108,21 +615,24 @@ export class Xml {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putServiceProperties(properties: Models.StorageServiceProperties): Promise<void>;
-  putServiceProperties(properties: Models.StorageServiceProperties, options: msRest.RequestOptionsBase): Promise<void>;
+  putServiceProperties(properties: Models.StorageServiceProperties): Promise<msRest.RestResponse>;
+  putServiceProperties(properties: Models.StorageServiceProperties, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putServiceProperties(properties: Models.StorageServiceProperties, callback: msRest.ServiceCallback<void>): void;
   putServiceProperties(properties: Models.StorageServiceProperties, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putServiceProperties(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putServicePropertiesWithHttpOperationResponse.bind(this), properties, options, callback);
+  putServiceProperties(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        properties,
+        options
+      },
+      putServicePropertiesOperationSpec,
+      callback);
   }
 
   /**
@@ -1130,21 +640,23 @@ export class Xml {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.SignedIdentifier[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getAcls(): Promise<Models.SignedIdentifier[]>;
-  getAcls(options: msRest.RequestOptionsBase): Promise<Models.SignedIdentifier[]>;
+  getAcls(): Promise<Models.XmlGetAclsResponse>;
+  getAcls(options: msRest.RequestOptionsBase): Promise<Models.XmlGetAclsResponse>;
   getAcls(callback: msRest.ServiceCallback<Models.SignedIdentifier[]>): void;
   getAcls(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SignedIdentifier[]>): void;
-  getAcls(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SignedIdentifier[]>): any {
-    return msRest.responseToBody(this.getAclsWithHttpOperationResponse.bind(this), options, callback);
+  getAcls(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SignedIdentifier[]>): Promise<Models.XmlGetAclsResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getAclsOperationSpec,
+      callback) as Promise<Models.XmlGetAclsResponse>;
   }
 
   /**
@@ -1154,21 +666,24 @@ export class Xml {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putAcls(properties: Models.SignedIdentifier[]): Promise<void>;
-  putAcls(properties: Models.SignedIdentifier[], options: msRest.RequestOptionsBase): Promise<void>;
+  putAcls(properties: Models.SignedIdentifier[]): Promise<msRest.RestResponse>;
+  putAcls(properties: Models.SignedIdentifier[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putAcls(properties: Models.SignedIdentifier[], callback: msRest.ServiceCallback<void>): void;
   putAcls(properties: Models.SignedIdentifier[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putAcls(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putAclsWithHttpOperationResponse.bind(this), properties, options, callback);
+  putAcls(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        properties,
+        options
+      },
+      putAclsOperationSpec,
+      callback);
   }
 
   /**
@@ -1176,21 +691,23 @@ export class Xml {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ListBlobsResponse} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ListBlobsResponse} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  listBlobs(): Promise<Models.ListBlobsResponse>;
-  listBlobs(options: msRest.RequestOptionsBase): Promise<Models.ListBlobsResponse>;
+  listBlobs(): Promise<Models.XmlListBlobsResponse>;
+  listBlobs(options: msRest.RequestOptionsBase): Promise<Models.XmlListBlobsResponse>;
   listBlobs(callback: msRest.ServiceCallback<Models.ListBlobsResponse>): void;
   listBlobs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ListBlobsResponse>): void;
-  listBlobs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ListBlobsResponse>): any {
-    return msRest.responseToBody(this.listBlobsWithHttpOperationResponse.bind(this), options, callback);
+  listBlobs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ListBlobsResponse>): Promise<Models.XmlListBlobsResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      listBlobsOperationSpec,
+      callback) as Promise<Models.XmlListBlobsResponse>;
   }
 
 }

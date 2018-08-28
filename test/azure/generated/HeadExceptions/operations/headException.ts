@@ -36,72 +36,17 @@ export class HeadException {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head200OperationSpec);
-  }
-
-  /**
-   * Return 204 status code if successful
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head204OperationSpec);
-  }
-
-  /**
-   * Return 404 status code if successful
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head404OperationSpec);
-  }
-
-  /**
-   * Return 200 status code if successful
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  head200(): Promise<void>;
-  head200(options: msRest.RequestOptionsBase): Promise<void>;
+  head200(): Promise<msRest.RestResponse>;
+  head200(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   head200(callback: msRest.ServiceCallback<void>): void;
   head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.head200WithHttpOperationResponse.bind(this), options, callback);
+  head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head200OperationSpec,
+      callback);
   }
 
   /**
@@ -109,21 +54,23 @@ export class HeadException {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  head204(): Promise<void>;
-  head204(options: msRest.RequestOptionsBase): Promise<void>;
+  head204(): Promise<msRest.RestResponse>;
+  head204(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   head204(callback: msRest.ServiceCallback<void>): void;
   head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.head204WithHttpOperationResponse.bind(this), options, callback);
+  head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head204OperationSpec,
+      callback);
   }
 
   /**
@@ -131,21 +78,23 @@ export class HeadException {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  head404(): Promise<void>;
-  head404(options: msRest.RequestOptionsBase): Promise<void>;
+  head404(): Promise<msRest.RestResponse>;
+  head404(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   head404(callback: msRest.ServiceCallback<void>): void;
   head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.head404WithHttpOperationResponse.bind(this), options, callback);
+  head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head404OperationSpec,
+      callback);
   }
 
 }

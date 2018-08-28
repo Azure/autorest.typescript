@@ -29,55 +29,55 @@ export interface ErrorModel {
 /**
  * Contains response data for the getTrue operation.
  */
-export interface BoolGetTrueResponse extends msRest.HttpResponse {
+export interface BoolGetTrueResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }
 
 /**
  * Contains response data for the getFalse operation.
  */
-export interface BoolGetFalseResponse extends msRest.HttpResponse {
+export interface BoolGetFalseResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }
 
 /**
  * Contains response data for the getNull operation.
  */
-export interface BoolGetNullResponse extends msRest.HttpResponse {
+export interface BoolGetNullResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface BoolGetInvalidResponse extends msRest.HttpResponse {
+export interface BoolGetInvalidResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }

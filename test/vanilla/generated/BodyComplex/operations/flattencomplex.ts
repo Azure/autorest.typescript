@@ -34,32 +34,17 @@ export class Flattencomplex {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.FlattencomplexGetValidResponse> {
+  getValid(): Promise<Models.FlattencomplexGetValidResponse>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.FlattencomplexGetValidResponse>;
+  getValid(callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.MyBaseTypeUnion>): Promise<Models.FlattencomplexGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec) as Promise<Models.FlattencomplexGetValidResponse>;
-  }
-
-  /**
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.MyBaseTypeUnion} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.MyBaseTypeUnion} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getValid(): Promise<Models.MyBaseTypeUnion>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.MyBaseTypeUnion>;
-  getValid(callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.MyBaseTypeUnion>): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
+      getValidOperationSpec,
+      callback) as Promise<Models.FlattencomplexGetValidResponse>;
   }
 
 }

@@ -634,7 +634,7 @@ describe('typescript', function () {
           this.skip();
         }
 
-        const date = await testClient.datetime.getUtcUppercaseMaxDateTime();
+        const date = (await testClient.datetime.getUtcUppercaseMaxDateTime()).body;
         date.getUTCFullYear().should.equal(9999);
         date.getUTCMonth().should.equal(11);
         date.getUTCDate().should.equal(31);
@@ -643,7 +643,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(59);
         date.getUTCMilliseconds().should.equal(999);
 
-        const date2 = await testClient.datetime.getUtcLowercaseMaxDateTime();
+        const date2 = (await testClient.datetime.getUtcLowercaseMaxDateTime()).body;
         date2.getUTCFullYear().should.equal(9999);
         date2.getUTCMonth().should.equal(11);
         date2.getUTCDate().should.equal(31);
@@ -653,7 +653,7 @@ describe('typescript', function () {
       });
 
       it('should get UTC min dateTime value', async function () {
-        const date = await testClient.datetime.getUtcMinDateTime();
+        const date = (await testClient.datetime.getUtcMinDateTime()).body;
         date.getUTCFullYear().should.equal(1);
         date.getUTCMonth().should.equal(0);
         date.getUTCDate().should.equal(1);
@@ -664,7 +664,7 @@ describe('typescript', function () {
       });
 
       it('should get local negative and positive offset Min DateTime value', async function () {
-        const date = await testClient.datetime.getLocalNegativeOffsetMinDateTime();
+        const date = (await testClient.datetime.getLocalNegativeOffsetMinDateTime()).body;
         date.getUTCFullYear().should.equal(1);
         date.getUTCMonth().should.equal(0);
         date.getUTCDate().should.equal(1);
@@ -673,7 +673,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(0);
         date.getUTCMilliseconds().should.equal(0);
 
-        const date2 = await testClient.datetime.getLocalPositiveOffsetMinDateTime();
+        const date2 = (await testClient.datetime.getLocalPositiveOffsetMinDateTime()).body;
         date2.getUTCFullYear().should.equal(0);
         date2.getUTCMonth().should.equal(11);
         date2.getUTCDate().should.equal(31);
@@ -689,7 +689,7 @@ describe('typescript', function () {
           this.skip();
         }
 
-        const date = await testClient.datetime.getLocalNegativeOffsetLowercaseMaxDateTime();
+        const date = (await testClient.datetime.getLocalNegativeOffsetLowercaseMaxDateTime()).body;
         date.getUTCFullYear().should.equal(10000);
         date.getUTCMonth().should.equal(0);
         date.getUTCDate().should.equal(1);
@@ -698,7 +698,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(59);
         date.getUTCMilliseconds().should.equal(999);
 
-        const date2 = await testClient.datetime.getLocalNegativeOffsetUppercaseMaxDateTime();
+        const date2 = (await testClient.datetime.getLocalNegativeOffsetUppercaseMaxDateTime()).body;
         assert.deepEqual(date2, new Date('9999-12-31T23:59:59.9999999-14:00'));
         date2.getUTCFullYear().should.equal(10000);
         date2.getUTCMonth().should.equal(0);
@@ -715,7 +715,7 @@ describe('typescript', function () {
           this.skip();
         }
 
-        const date = await testClient.datetime.getLocalPositiveOffsetLowercaseMaxDateTime();
+        const date = (await testClient.datetime.getLocalPositiveOffsetLowercaseMaxDateTime()).body;
         date.getUTCFullYear().should.equal(9999);
         date.getUTCMonth().should.equal(11);
         date.getUTCDate().should.equal(31);
@@ -724,7 +724,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(59);
         date.getUTCMilliseconds().should.equal(999);
 
-        const date2 = await testClient.datetime.getLocalPositiveOffsetUppercaseMaxDateTime();
+        const date2 = (await testClient.datetime.getLocalPositiveOffsetUppercaseMaxDateTime()).body;
         assert.deepEqual(date2, new Date('9999-12-31T23:59:59.9999999+14:00'));
         date2.getUTCFullYear().should.equal(9999);
         date2.getUTCMonth().should.equal(11);
@@ -741,7 +741,7 @@ describe('typescript', function () {
           this.skip();
         }
 
-        const date = await testClient.datetime.getOverflow();
+        const date = (await testClient.datetime.getOverflow()).body;
         date.getUTCFullYear().should.equal(10000);
         date.getUTCMonth().should.equal(0);
         date.getUTCDate().should.equal(1);
@@ -750,7 +750,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(59);
         date.getUTCMilliseconds().should.equal(999);
 
-        const date2 = await testClient.datetime.getUnderflow();
+        const date2 = (await testClient.datetime.getUnderflow()).body;
         isNaN(date2.valueOf()).should.equal(true);
       });
 
@@ -1831,7 +1831,7 @@ describe('typescript', function () {
 
       if (msRest.isNode) {
         it('nodejs should correctly deserialize binary streams', async function () {
-          const result = await testClient.files.getFileWithHttpOperationResponse()
+          const result = await testClient.files.getFile()
           const buf = await readStreamToBuffer(result.readableStreamBody);
           assert.deepEqual(buf, fs.readFileSync(__dirname + '/sample.png'));
         });
@@ -1839,7 +1839,7 @@ describe('typescript', function () {
 
       if (!msRest.isNode) {
         it('browser should correctly deserialize binary streams', async function () {
-          const result = await testClient.files.getFileWithHttpOperationResponse();
+          const result = await testClient.files.getFile();
           should.exist(result);
           should.exist(result.blobBody);
           const body = await result.blobBody();
@@ -1862,7 +1862,7 @@ describe('typescript', function () {
 
       if (msRest.isNode) {
         it('nodejs should correctly deserialize empty streams', async function () {
-          const result = await testClient.files.getEmptyFileWithHttpOperationResponse()
+          const result = await testClient.files.getEmptyFile()
           const byteCount = await readStreamCountBytes(result.readableStreamBody as any);
           byteCount.should.equal(0);
         });
@@ -1870,7 +1870,7 @@ describe('typescript', function () {
 
       if (!msRest.isNode) {
         it('browser should correctly deserialize empty streams', async function () {
-          const result = await testClient.files.getEmptyFileWithHttpOperationResponse();
+          const result = await testClient.files.getEmptyFile();
           const body = await result.blobBody();
           body.size.should.equal(0);
         });
@@ -1878,7 +1878,7 @@ describe('typescript', function () {
 
       if (msRest.isNode) {
         it('nodejs should correctly deserialize large streams', async function () {
-          const result = await testClient.files.getFileLargeWithHttpOperationResponse();
+          const result = await testClient.files.getFileLarge();
           const byteCount = await readStreamCountBytes(result.readableStreamBody);
           byteCount.should.equal(3000 * 1024 * 1024);
         });
@@ -1887,7 +1887,7 @@ describe('typescript', function () {
       if (!msRest.isNode) {
         it('browser should correctly deserialize large streams', async function () {
           this.timeout(1000 * 60 * 10);
-          const result = await testClient.files.getFileLargeWithHttpOperationResponse();
+          const result = await testClient.files.getFileLarge();
           const body = await result.blobBody();
           body.size.should.equal(3000 * 1024 * 1024);
         });
@@ -1899,7 +1899,7 @@ describe('typescript', function () {
 
       if (msRest.isNode) {
         it('nodejs should correctly accept file via form-dat', async function () {
-          const result = await testClient.formdata.uploadFileWithHttpOperationResponse(() => fs.createReadStream(__dirname + '/sample.png'), 'sample.png');
+          const result = await testClient.formdata.uploadFile(() => fs.createReadStream(__dirname + '/sample.png'), 'sample.png');
           const buff = await readStreamToBuffer(result.readableStreamBody)
           assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
         });
@@ -1909,7 +1909,7 @@ describe('typescript', function () {
         it('browser should correctly accept file via form-dat', async function () {
           const content = require(`arraybuffer-loader!${__dirname}/sample.png`);
           const blob = new Blob([content]);
-          const response = await testClient.formdata.uploadFileWithHttpOperationResponse(blob, 'sample.png');
+          const response = await testClient.formdata.uploadFile(blob, 'sample.png');
           const body = await response.blobBody();
           const reader = new FileReader();
           const readPromise = new Promise(function (resolve, reject) {
@@ -1930,7 +1930,7 @@ describe('typescript', function () {
 
       if (msRest.isNode) {
         it('nodejs should correctly accept file via body', async function () {
-          const result = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(() => fs.createReadStream(__dirname + '/sample.png'));
+          const result = await testClient.formdata.uploadFileViaBody(() => fs.createReadStream(__dirname + '/sample.png'));
           const buff = await readStreamToBuffer(result.readableStreamBody);
           assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
         });
@@ -1939,7 +1939,7 @@ describe('typescript', function () {
       if (!msRest.isNode) {
         it('browser should correctly accept file via body', async function () {
           const content = require(`arraybuffer-loader!${__dirname}/sample.png`);
-          const response = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(new Blob([content]));
+          const response = await testClient.formdata.uploadFileViaBody(new Blob([content]));
           const reader = new FileReader();
           const readPromise = new Promise((resolve, reject) => {
             reader.addEventListener("abort", reject);
@@ -1961,7 +1961,7 @@ describe('typescript', function () {
         const content = new Uint8Array(1024 * 1024 * 1);
         let uploadNotified = false;
         let downloadNotified = false;
-        const response = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(content, {
+        const response = await testClient.formdata.uploadFileViaBody(content, {
           onUploadProgress: ev => {
             uploadNotified = true;
             ev.loadedBytes.should.be.a.Number;
@@ -2616,15 +2616,15 @@ describe('typescript', function () {
 
         const result4 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError200Valid();
         should.exist(result4);
-        result4.statusCode.should.equal("200");
+        result4.response.status.should.equal("200");
 
         const result5 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError201Valid();
         should.exist(result5);
-        result5.httpCode.should.equal("201");
+        result5.response.status.should.equal("201");
 
         const result6 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError404Valid();
         should.exist(result6);
-        result6.httpStatusCode.should.equal("404");
+        result6.response.status.should.equal("404");
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError400Valid(),
           (error: msRest.RestError) => error.statusCode.should.equal(400));

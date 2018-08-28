@@ -39,13 +39,18 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramExistingKeyWithHttpOperationResponse(userAgent: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  paramExistingKey(userAgent: string): Promise<msRest.RestResponse>;
+  paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramExistingKey(userAgent: string, callback: msRest.ServiceCallback<void>): void;
+  paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  paramExistingKey(userAgent: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         userAgent,
         options
       },
-      paramExistingKeyOperationSpec);
+      paramExistingKeyOperationSpec,
+      callback);
   }
 
   /**
@@ -59,12 +64,17 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  responseExistingKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseExistingKeyResponse> {
+  responseExistingKey(): Promise<Models.HeaderResponseExistingKeyResponse>;
+  responseExistingKey(options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseExistingKeyResponse>;
+  responseExistingKey(callback: msRest.ServiceCallback<void>): void;
+  responseExistingKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  responseExistingKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseExistingKeyResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      responseExistingKeyOperationSpec) as Promise<Models.HeaderResponseExistingKeyResponse>;
+      responseExistingKeyOperationSpec,
+      callback) as Promise<Models.HeaderResponseExistingKeyResponse>;
   }
 
   /**
@@ -80,13 +90,18 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramProtectedKeyWithHttpOperationResponse(contentType: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  paramProtectedKey(contentType: string): Promise<msRest.RestResponse>;
+  paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramProtectedKey(contentType: string, callback: msRest.ServiceCallback<void>): void;
+  paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  paramProtectedKey(contentType: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         contentType,
         options
       },
-      paramProtectedKeyOperationSpec);
+      paramProtectedKeyOperationSpec,
+      callback);
   }
 
   /**
@@ -100,702 +115,17 @@ export class Header {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  responseProtectedKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseProtectedKeyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      responseProtectedKeyOperationSpec) as Promise<Models.HeaderResponseProtectedKeyResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
-   * "negative", "value": -2
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
-   *
-   * @param {number} value Send a post request with header values 1 or -2
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramIntegerWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        value,
-        options
-      },
-      paramIntegerOperationSpec);
-  }
-
-  /**
-   * Get a response with header value "value": 1 or -2
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseIntegerWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseIntegerOperationSpec) as Promise<Models.HeaderResponseIntegerResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
-   * "negative", "value": -2
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
-   *
-   * @param {number} value Send a post request with header values 105 or -2
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramLongWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        value,
-        options
-      },
-      paramLongOperationSpec);
-  }
-
-  /**
-   * Get a response with header value "value": 105 or -2
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseLongWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseLongOperationSpec) as Promise<Models.HeaderResponseLongResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
-   * "negative", "value": -3.0
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
-   *
-   * @param {number} value Send a post request with header values 0.07 or -3.0
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramFloatWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        value,
-        options
-      },
-      paramFloatOperationSpec);
-  }
-
-  /**
-   * Get a response with header value "value": 0.07 or -3.0
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseFloatWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseFloatOperationSpec) as Promise<Models.HeaderResponseFloatResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
-   * "negative", "value": -3.0
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
-   *
-   * @param {number} value Send a post request with header values 7e120 or -3.0
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramDoubleWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        value,
-        options
-      },
-      paramDoubleOperationSpec);
-  }
-
-  /**
-   * Get a response with header value "value": 7e120 or -3.0
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseDoubleWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseDoubleOperationSpec) as Promise<Models.HeaderResponseDoubleResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "true", "value": true or "scenario": "false",
-   * "value": false
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
-   *
-   * @param {boolean} value Send a post request with header values true or false
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramBoolWithHttpOperationResponse(scenario: string, value: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        value,
-        options
-      },
-      paramBoolOperationSpec);
-  }
-
-  /**
-   * Get a response with header value "value": true or false
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseBoolWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseBoolOperationSpec) as Promise<Models.HeaderResponseBoolResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
-   * over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": ""
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
-   *
-   * @param {HeaderParamStringOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramStringWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      paramStringOperationSpec);
-  }
-
-  /**
-   * Get a response with header values "The quick brown fox jumps over the lazy dog" or null or ""
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseStringWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseStringOperationSpec) as Promise<Models.HeaderResponseStringResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario":
-   * "min", "value": "0001-01-01"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
-   *
-   * @param {Date | string} value Send a post request with header values "2010-01-01" or "0001-01-01"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramDateWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        value,
-        options
-      },
-      paramDateOperationSpec);
-  }
-
-  /**
-   * Get a response with header values "2010-01-01" or "0001-01-01"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseDateWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseDateOperationSpec) as Promise<Models.HeaderResponseDateResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
-   * "scenario": "min", "value": "0001-01-01T00:00:00Z"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
-   *
-   * @param {Date | string} value Send a post request with header values "2010-01-01T12:34:56Z" or
-   * "0001-01-01T00:00:00Z"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramDatetimeWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        value,
-        options
-      },
-      paramDatetimeOperationSpec);
-  }
-
-  /**
-   * Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseDatetimeWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseDatetimeOperationSpec) as Promise<Models.HeaderResponseDatetimeResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
-   * GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
-   *
-   * @param {HeaderParamDatetimeRfc1123OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      paramDatetimeRfc1123OperationSpec);
-  }
-
-  /**
-   * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
-   * GMT"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseDatetimeRfc1123OperationSpec) as Promise<Models.HeaderResponseDatetimeRfc1123Response>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
-   *
-   * @param {string} value Send a post request with header values "P123DT22H14M12.011S"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramDurationWithHttpOperationResponse(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        value,
-        options
-      },
-      paramDurationOperationSpec);
-  }
-
-  /**
-   * Get a response with header values "P123DT22H14M12.011S"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseDurationWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseDurationOperationSpec) as Promise<Models.HeaderResponseDurationResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
-   *
-   * @param {Uint8Array} value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramByteWithHttpOperationResponse(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        value,
-        options
-      },
-      paramByteOperationSpec);
-  }
-
-  /**
-   * Get a response with header values "啊齄丂狛狜隣郎隣兀﨩"
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseByteWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseByteOperationSpec) as Promise<Models.HeaderResponseByteResponse>;
-  }
-
-  /**
-   * Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
-   * "null", "value": null
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
-   *
-   * @param {HeaderParamEnumOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  paramEnumWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      paramEnumOperationSpec);
-  }
-
-  /**
-   * Get a response with header values "GREY" or null
-   *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  responseEnumWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse> {
-    return this.client.sendOperationRequest(
-      {
-        scenario,
-        options
-      },
-      responseEnumOperationSpec) as Promise<Models.HeaderResponseEnumResponse>;
-  }
-
-  /**
-   * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  customRequestIdWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      customRequestIdOperationSpec);
-  }
-
-  /**
-   * Send a post request with header value "User-Agent": "overwrite"
-   *
-   * @param {string} userAgent Send a post request with header value "User-Agent": "overwrite"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  paramExistingKey(userAgent: string): Promise<void>;
-  paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase): Promise<void>;
-  paramExistingKey(userAgent: string, callback: msRest.ServiceCallback<void>): void;
-  paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramExistingKey(userAgent: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramExistingKeyWithHttpOperationResponse.bind(this), userAgent, options, callback);
-  }
-
-  /**
-   * Get a response with header value "User-Agent": "overwrite"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  responseExistingKey(): Promise<void>;
-  responseExistingKey(options: msRest.RequestOptionsBase): Promise<void>;
-  responseExistingKey(callback: msRest.ServiceCallback<void>): void;
-  responseExistingKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseExistingKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseExistingKeyWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Send a post request with header value "Content-Type": "text/html"
-   *
-   * @param {string} contentType Send a post request with header value "Content-Type": "text/html"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  paramProtectedKey(contentType: string): Promise<void>;
-  paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase): Promise<void>;
-  paramProtectedKey(contentType: string, callback: msRest.ServiceCallback<void>): void;
-  paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramProtectedKey(contentType: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramProtectedKeyWithHttpOperationResponse.bind(this), contentType, options, callback);
-  }
-
-  /**
-   * Get a response with header value "Content-Type": "text/html"
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  responseProtectedKey(): Promise<void>;
-  responseProtectedKey(options: msRest.RequestOptionsBase): Promise<void>;
+  responseProtectedKey(): Promise<Models.HeaderResponseProtectedKeyResponse>;
+  responseProtectedKey(options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseProtectedKeyResponse>;
   responseProtectedKey(callback: msRest.ServiceCallback<void>): void;
   responseProtectedKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseProtectedKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseProtectedKeyWithHttpOperationResponse.bind(this), options, callback);
+  responseProtectedKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseProtectedKeyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      responseProtectedKeyOperationSpec,
+      callback) as Promise<Models.HeaderResponseProtectedKeyResponse>;
   }
 
   /**
@@ -809,21 +139,25 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramInteger(scenario: string, value: number): Promise<void>;
-  paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
+  paramInteger(scenario: string, value: number): Promise<msRest.RestResponse>;
+  paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   paramInteger(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramInteger(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramIntegerWithHttpOperationResponse.bind(this), scenario, value, options, callback);
+  paramInteger(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        value,
+        options
+      },
+      paramIntegerOperationSpec,
+      callback);
   }
 
   /**
@@ -834,21 +168,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseInteger(scenario: string): Promise<void>;
-  responseInteger(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseInteger(scenario: string): Promise<Models.HeaderResponseIntegerResponse>;
+  responseInteger(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse>;
   responseInteger(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseInteger(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseInteger(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseIntegerWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseInteger(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseIntegerResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseIntegerOperationSpec,
+      callback) as Promise<Models.HeaderResponseIntegerResponse>;
   }
 
   /**
@@ -862,21 +199,25 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramLong(scenario: string, value: number): Promise<void>;
-  paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
+  paramLong(scenario: string, value: number): Promise<msRest.RestResponse>;
+  paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   paramLong(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramLong(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramLongWithHttpOperationResponse.bind(this), scenario, value, options, callback);
+  paramLong(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        value,
+        options
+      },
+      paramLongOperationSpec,
+      callback);
   }
 
   /**
@@ -887,21 +228,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseLong(scenario: string): Promise<void>;
-  responseLong(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseLong(scenario: string): Promise<Models.HeaderResponseLongResponse>;
+  responseLong(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse>;
   responseLong(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseLong(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseLong(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseLongWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseLong(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseLongResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseLongOperationSpec,
+      callback) as Promise<Models.HeaderResponseLongResponse>;
   }
 
   /**
@@ -915,21 +259,25 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramFloat(scenario: string, value: number): Promise<void>;
-  paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
+  paramFloat(scenario: string, value: number): Promise<msRest.RestResponse>;
+  paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   paramFloat(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramFloat(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramFloatWithHttpOperationResponse.bind(this), scenario, value, options, callback);
+  paramFloat(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        value,
+        options
+      },
+      paramFloatOperationSpec,
+      callback);
   }
 
   /**
@@ -940,21 +288,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseFloat(scenario: string): Promise<void>;
-  responseFloat(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseFloat(scenario: string): Promise<Models.HeaderResponseFloatResponse>;
+  responseFloat(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse>;
   responseFloat(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseFloat(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseFloat(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseFloatWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseFloat(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseFloatResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseFloatOperationSpec,
+      callback) as Promise<Models.HeaderResponseFloatResponse>;
   }
 
   /**
@@ -968,21 +319,25 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramDouble(scenario: string, value: number): Promise<void>;
-  paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<void>;
+  paramDouble(scenario: string, value: number): Promise<msRest.RestResponse>;
+  paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   paramDouble(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
   paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDouble(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramDoubleWithHttpOperationResponse.bind(this), scenario, value, options, callback);
+  paramDouble(scenario: string, value: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        value,
+        options
+      },
+      paramDoubleOperationSpec,
+      callback);
   }
 
   /**
@@ -993,21 +348,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseDouble(scenario: string): Promise<void>;
-  responseDouble(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseDouble(scenario: string): Promise<Models.HeaderResponseDoubleResponse>;
+  responseDouble(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse>;
   responseDouble(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDouble(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDouble(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseDoubleWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseDouble(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDoubleResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseDoubleOperationSpec,
+      callback) as Promise<Models.HeaderResponseDoubleResponse>;
   }
 
   /**
@@ -1020,21 +378,25 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramBool(scenario: string, value: boolean): Promise<void>;
-  paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase): Promise<void>;
+  paramBool(scenario: string, value: boolean): Promise<msRest.RestResponse>;
+  paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   paramBool(scenario: string, value: boolean, callback: msRest.ServiceCallback<void>): void;
   paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramBool(scenario: string, value: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramBoolWithHttpOperationResponse.bind(this), scenario, value, options, callback);
+  paramBool(scenario: string, value: boolean, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        value,
+        options
+      },
+      paramBoolOperationSpec,
+      callback);
   }
 
   /**
@@ -1044,21 +406,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseBool(scenario: string): Promise<void>;
-  responseBool(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseBool(scenario: string): Promise<Models.HeaderResponseBoolResponse>;
+  responseBool(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse>;
   responseBool(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseBool(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseBool(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseBoolWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseBool(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseBoolResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseBoolOperationSpec,
+      callback) as Promise<Models.HeaderResponseBoolResponse>;
   }
 
   /**
@@ -1070,21 +435,24 @@ export class Header {
    *
    * @param {HeaderParamStringOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramString(scenario: string): Promise<void>;
-  paramString(scenario: string, options: Models.HeaderParamStringOptionalParams): Promise<void>;
+  paramString(scenario: string): Promise<msRest.RestResponse>;
+  paramString(scenario: string, options: Models.HeaderParamStringOptionalParams): Promise<msRest.RestResponse>;
   paramString(scenario: string, callback: msRest.ServiceCallback<void>): void;
   paramString(scenario: string, options: Models.HeaderParamStringOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramString(scenario: string, options?: Models.HeaderParamStringOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramStringWithHttpOperationResponse.bind(this), scenario, options, callback);
+  paramString(scenario: string, options?: Models.HeaderParamStringOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      paramStringOperationSpec,
+      callback);
   }
 
   /**
@@ -1095,21 +463,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseString(scenario: string): Promise<void>;
-  responseString(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseString(scenario: string): Promise<Models.HeaderResponseStringResponse>;
+  responseString(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse>;
   responseString(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseString(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseString(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseStringWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseString(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseStringOperationSpec,
+      callback) as Promise<Models.HeaderResponseStringResponse>;
   }
 
   /**
@@ -1122,21 +493,25 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramDate(scenario: string, value: Date | string): Promise<void>;
-  paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
+  paramDate(scenario: string, value: Date | string): Promise<msRest.RestResponse>;
+  paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   paramDate(scenario: string, value: Date | string, callback: msRest.ServiceCallback<void>): void;
   paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDate(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramDateWithHttpOperationResponse.bind(this), scenario, value, options, callback);
+  paramDate(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        value,
+        options
+      },
+      paramDateOperationSpec,
+      callback);
   }
 
   /**
@@ -1146,21 +521,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseDate(scenario: string): Promise<void>;
-  responseDate(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseDate(scenario: string): Promise<Models.HeaderResponseDateResponse>;
+  responseDate(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse>;
   responseDate(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDate(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDate(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseDateWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseDate(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDateResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseDateOperationSpec,
+      callback) as Promise<Models.HeaderResponseDateResponse>;
   }
 
   /**
@@ -1174,21 +552,25 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramDatetime(scenario: string, value: Date | string): Promise<void>;
-  paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
+  paramDatetime(scenario: string, value: Date | string): Promise<msRest.RestResponse>;
+  paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   paramDatetime(scenario: string, value: Date | string, callback: msRest.ServiceCallback<void>): void;
   paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDatetime(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramDatetimeWithHttpOperationResponse.bind(this), scenario, value, options, callback);
+  paramDatetime(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        value,
+        options
+      },
+      paramDatetimeOperationSpec,
+      callback);
   }
 
   /**
@@ -1198,21 +580,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseDatetime(scenario: string): Promise<void>;
-  responseDatetime(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseDatetime(scenario: string): Promise<Models.HeaderResponseDatetimeResponse>;
+  responseDatetime(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse>;
   responseDatetime(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDatetime(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetime(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseDatetimeWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseDatetime(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseDatetimeOperationSpec,
+      callback) as Promise<Models.HeaderResponseDatetimeResponse>;
   }
 
   /**
@@ -1223,21 +608,24 @@ export class Header {
    *
    * @param {HeaderParamDatetimeRfc1123OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramDatetimeRfc1123(scenario: string): Promise<void>;
-  paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<void>;
+  paramDatetimeRfc1123(scenario: string): Promise<msRest.RestResponse>;
+  paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.RestResponse>;
   paramDatetimeRfc1123(scenario: string, callback: msRest.ServiceCallback<void>): void;
   paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramDatetimeRfc1123(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramDatetimeRfc1123WithHttpOperationResponse.bind(this), scenario, options, callback);
+  paramDatetimeRfc1123(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      paramDatetimeRfc1123OperationSpec,
+      callback);
   }
 
   /**
@@ -1248,21 +636,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseDatetimeRfc1123(scenario: string): Promise<void>;
-  responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseDatetimeRfc1123(scenario: string): Promise<Models.HeaderResponseDatetimeRfc1123Response>;
+  responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response>;
   responseDatetimeRfc1123(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetimeRfc1123(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseDatetimeRfc1123WithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseDatetimeRfc1123(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseDatetimeRfc1123OperationSpec,
+      callback) as Promise<Models.HeaderResponseDatetimeRfc1123Response>;
   }
 
   /**
@@ -1274,21 +665,25 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramDuration(scenario: string, value: string): Promise<void>;
-  paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase): Promise<void>;
+  paramDuration(scenario: string, value: string): Promise<msRest.RestResponse>;
+  paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   paramDuration(scenario: string, value: string, callback: msRest.ServiceCallback<void>): void;
   paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDuration(scenario: string, value: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramDurationWithHttpOperationResponse.bind(this), scenario, value, options, callback);
+  paramDuration(scenario: string, value: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        value,
+        options
+      },
+      paramDurationOperationSpec,
+      callback);
   }
 
   /**
@@ -1298,21 +693,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseDuration(scenario: string): Promise<void>;
-  responseDuration(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseDuration(scenario: string): Promise<Models.HeaderResponseDurationResponse>;
+  responseDuration(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse>;
   responseDuration(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseDuration(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDuration(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseDurationWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseDuration(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDurationResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseDurationOperationSpec,
+      callback) as Promise<Models.HeaderResponseDurationResponse>;
   }
 
   /**
@@ -1324,21 +722,25 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramByte(scenario: string, value: Uint8Array): Promise<void>;
-  paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
+  paramByte(scenario: string, value: Uint8Array): Promise<msRest.RestResponse>;
+  paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   paramByte(scenario: string, value: Uint8Array, callback: msRest.ServiceCallback<void>): void;
   paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramByte(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramByteWithHttpOperationResponse.bind(this), scenario, value, options, callback);
+  paramByte(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        value,
+        options
+      },
+      paramByteOperationSpec,
+      callback);
   }
 
   /**
@@ -1348,21 +750,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseByte(scenario: string): Promise<void>;
-  responseByte(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseByte(scenario: string): Promise<Models.HeaderResponseByteResponse>;
+  responseByte(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse>;
   responseByte(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseByte(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseByte(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseByteWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseByte(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseByteResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseByteOperationSpec,
+      callback) as Promise<Models.HeaderResponseByteResponse>;
   }
 
   /**
@@ -1374,21 +779,24 @@ export class Header {
    *
    * @param {HeaderParamEnumOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  paramEnum(scenario: string): Promise<void>;
-  paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams): Promise<void>;
+  paramEnum(scenario: string): Promise<msRest.RestResponse>;
+  paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams): Promise<msRest.RestResponse>;
   paramEnum(scenario: string, callback: msRest.ServiceCallback<void>): void;
   paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramEnum(scenario: string, options?: Models.HeaderParamEnumOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramEnumWithHttpOperationResponse.bind(this), scenario, options, callback);
+  paramEnum(scenario: string, options?: Models.HeaderParamEnumOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      paramEnumOperationSpec,
+      callback);
   }
 
   /**
@@ -1399,21 +807,24 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  responseEnum(scenario: string): Promise<void>;
-  responseEnum(scenario: string, options: msRest.RequestOptionsBase): Promise<void>;
+  responseEnum(scenario: string): Promise<Models.HeaderResponseEnumResponse>;
+  responseEnum(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse>;
   responseEnum(scenario: string, callback: msRest.ServiceCallback<void>): void;
   responseEnum(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseEnum(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.responseEnumWithHttpOperationResponse.bind(this), scenario, options, callback);
+  responseEnum(scenario: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseEnumResponse> {
+    return this.client.sendOperationRequest(
+      {
+        scenario,
+        options
+      },
+      responseEnumOperationSpec,
+      callback) as Promise<Models.HeaderResponseEnumResponse>;
   }
 
   /**
@@ -1421,21 +832,23 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  customRequestId(): Promise<void>;
-  customRequestId(options: msRest.RequestOptionsBase): Promise<void>;
+  customRequestId(): Promise<msRest.RestResponse>;
+  customRequestId(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   customRequestId(callback: msRest.ServiceCallback<void>): void;
   customRequestId(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customRequestId(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.customRequestIdWithHttpOperationResponse.bind(this), options, callback);
+  customRequestId(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      customRequestIdOperationSpec,
+      callback);
   }
 
 }

@@ -36,173 +36,17 @@ export class DateModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DateModelGetNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullOperationSpec) as Promise<Models.DateModelGetNullResponse>;
-  }
-
-  /**
-   * Get invalid date value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DateModelGetInvalidDateResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidDateOperationSpec) as Promise<Models.DateModelGetInvalidDateResponse>;
-  }
-
-  /**
-   * Get overflow date value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getOverflowDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DateModelGetOverflowDateResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getOverflowDateOperationSpec) as Promise<Models.DateModelGetOverflowDateResponse>;
-  }
-
-  /**
-   * Get underflow date value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUnderflowDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DateModelGetUnderflowDateResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUnderflowDateOperationSpec) as Promise<Models.DateModelGetUnderflowDateResponse>;
-  }
-
-  /**
-   * Put max date value 9999-12-31
-   *
-   * @param {string} dateBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putMaxDateWithHttpOperationResponse(dateBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        dateBody,
-        options
-      },
-      putMaxDateOperationSpec);
-  }
-
-  /**
-   * Get max date value 9999-12-31
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getMaxDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DateModelGetMaxDateResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getMaxDateOperationSpec) as Promise<Models.DateModelGetMaxDateResponse>;
-  }
-
-  /**
-   * Put min date value 0000-01-01
-   *
-   * @param {string} dateBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putMinDateWithHttpOperationResponse(dateBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        dateBody,
-        options
-      },
-      putMinDateOperationSpec);
-  }
-
-  /**
-   * Get min date value 0000-01-01
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getMinDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DateModelGetMinDateResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getMinDateOperationSpec) as Promise<Models.DateModelGetMinDateResponse>;
-  }
-
-  /**
-   * Get null date value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNull(): Promise<string>;
-  getNull(options: msRest.RequestOptionsBase): Promise<string>;
+  getNull(): Promise<Models.DateModelGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetNullResponse>;
   getNull(callback: msRest.ServiceCallback<string>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DateModelGetNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec,
+      callback) as Promise<Models.DateModelGetNullResponse>;
   }
 
   /**
@@ -210,21 +54,23 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalidDate(): Promise<string>;
-  getInvalidDate(options: msRest.RequestOptionsBase): Promise<string>;
+  getInvalidDate(): Promise<Models.DateModelGetInvalidDateResponse>;
+  getInvalidDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetInvalidDateResponse>;
   getInvalidDate(callback: msRest.ServiceCallback<string>): void;
   getInvalidDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getInvalidDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getInvalidDateWithHttpOperationResponse.bind(this), options, callback);
+  getInvalidDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DateModelGetInvalidDateResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidDateOperationSpec,
+      callback) as Promise<Models.DateModelGetInvalidDateResponse>;
   }
 
   /**
@@ -232,21 +78,23 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getOverflowDate(): Promise<string>;
-  getOverflowDate(options: msRest.RequestOptionsBase): Promise<string>;
+  getOverflowDate(): Promise<Models.DateModelGetOverflowDateResponse>;
+  getOverflowDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetOverflowDateResponse>;
   getOverflowDate(callback: msRest.ServiceCallback<string>): void;
   getOverflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getOverflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getOverflowDateWithHttpOperationResponse.bind(this), options, callback);
+  getOverflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DateModelGetOverflowDateResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getOverflowDateOperationSpec,
+      callback) as Promise<Models.DateModelGetOverflowDateResponse>;
   }
 
   /**
@@ -254,21 +102,23 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUnderflowDate(): Promise<string>;
-  getUnderflowDate(options: msRest.RequestOptionsBase): Promise<string>;
+  getUnderflowDate(): Promise<Models.DateModelGetUnderflowDateResponse>;
+  getUnderflowDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetUnderflowDateResponse>;
   getUnderflowDate(callback: msRest.ServiceCallback<string>): void;
   getUnderflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUnderflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getUnderflowDateWithHttpOperationResponse.bind(this), options, callback);
+  getUnderflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DateModelGetUnderflowDateResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUnderflowDateOperationSpec,
+      callback) as Promise<Models.DateModelGetUnderflowDateResponse>;
   }
 
   /**
@@ -278,21 +128,24 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putMaxDate(dateBody: string): Promise<void>;
-  putMaxDate(dateBody: string, options: msRest.RequestOptionsBase): Promise<void>;
+  putMaxDate(dateBody: string): Promise<msRest.RestResponse>;
+  putMaxDate(dateBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putMaxDate(dateBody: string, callback: msRest.ServiceCallback<void>): void;
   putMaxDate(dateBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMaxDate(dateBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putMaxDateWithHttpOperationResponse.bind(this), dateBody, options, callback);
+  putMaxDate(dateBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        dateBody,
+        options
+      },
+      putMaxDateOperationSpec,
+      callback);
   }
 
   /**
@@ -300,21 +153,23 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getMaxDate(): Promise<string>;
-  getMaxDate(options: msRest.RequestOptionsBase): Promise<string>;
+  getMaxDate(): Promise<Models.DateModelGetMaxDateResponse>;
+  getMaxDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetMaxDateResponse>;
   getMaxDate(callback: msRest.ServiceCallback<string>): void;
   getMaxDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getMaxDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getMaxDateWithHttpOperationResponse.bind(this), options, callback);
+  getMaxDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DateModelGetMaxDateResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMaxDateOperationSpec,
+      callback) as Promise<Models.DateModelGetMaxDateResponse>;
   }
 
   /**
@@ -324,21 +179,24 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putMinDate(dateBody: string): Promise<void>;
-  putMinDate(dateBody: string, options: msRest.RequestOptionsBase): Promise<void>;
+  putMinDate(dateBody: string): Promise<msRest.RestResponse>;
+  putMinDate(dateBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putMinDate(dateBody: string, callback: msRest.ServiceCallback<void>): void;
   putMinDate(dateBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMinDate(dateBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putMinDateWithHttpOperationResponse.bind(this), dateBody, options, callback);
+  putMinDate(dateBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        dateBody,
+        options
+      },
+      putMinDateOperationSpec,
+      callback);
   }
 
   /**
@@ -346,21 +204,23 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getMinDate(): Promise<string>;
-  getMinDate(options: msRest.RequestOptionsBase): Promise<string>;
+  getMinDate(): Promise<Models.DateModelGetMinDateResponse>;
+  getMinDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetMinDateResponse>;
   getMinDate(callback: msRest.ServiceCallback<string>): void;
   getMinDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getMinDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getMinDateWithHttpOperationResponse.bind(this), options, callback);
+  getMinDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DateModelGetMinDateResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMinDateOperationSpec,
+      callback) as Promise<Models.DateModelGetMinDateResponse>;
   }
 
 }

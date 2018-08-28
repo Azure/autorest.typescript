@@ -29,20 +29,20 @@ describe('typescript', function () {
       var testClient = new AutoRestHeadTestService(credentials, baseUri, clientOptions);
 
       it('should return true for 200 status code', async () => {
-        const result: boolean = await testClient.httpSuccess.head200();
-        should.exist(result);
+        const result = await testClient.httpSuccess.head200();
+        should.exist(result.body);
         result.should.be.exactly(true);
       });
 
       it('should return true for 204 status code', async () => {
-        const result: boolean = await testClient.httpSuccess.head204();
-        should.exist(result);
+        const result = await testClient.httpSuccess.head204();
+        should.exist(result.body);
         result.should.be.exactly(true);
       });
 
       it('should return false for 404 status code', async () => {
-        const result: boolean = await testClient.httpSuccess.head404();
-        should.exist(result);
+        const result = await testClient.httpSuccess.head404();
+        should.exist(result.body);
         result.should.be.exactly(false);
       });
     });

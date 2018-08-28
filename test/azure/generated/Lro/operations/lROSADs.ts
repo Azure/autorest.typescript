@@ -39,7 +39,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNonRetry400WithHttpOperationResponse(options?: Models.LROSADsPutNonRetry400OptionalParams): Promise<Models.LROSADsPutNonRetry400Response> {
+  putNonRetry400(options?: Models.LROSADsPutNonRetry400OptionalParams): Promise<Models.LROSADsPutNonRetry400Response> {
     return this.beginPutNonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutNonRetry400Response>;
   }
@@ -57,7 +57,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNonRetry201Creating400WithHttpOperationResponse(options?: Models.LROSADsPutNonRetry201Creating400OptionalParams): Promise<Models.LROSADsPutNonRetry201Creating400Response> {
+  putNonRetry201Creating400(options?: Models.LROSADsPutNonRetry201Creating400OptionalParams): Promise<Models.LROSADsPutNonRetry201Creating400Response> {
     return this.beginPutNonRetry201Creating400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutNonRetry201Creating400Response>;
   }
@@ -76,7 +76,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.LROSADsPutNonRetry201Creating400InvalidJsonResponse> {
+  putNonRetry201Creating400InvalidJson(options?: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.LROSADsPutNonRetry201Creating400InvalidJsonResponse> {
     return this.beginPutNonRetry201Creating400InvalidJson(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutNonRetry201Creating400InvalidJsonResponse>;
   }
@@ -94,7 +94,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetry400Response> {
+  putAsyncRelativeRetry400(options?: Models.LROSADsPutAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetry400Response> {
     return this.beginPutAsyncRelativeRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetry400Response>;
   }
@@ -111,7 +111,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteNonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteNonRetry400Response> {
+  deleteNonRetry400(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteNonRetry400Response> {
     return this.beginDeleteNonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteNonRetry400Response>;
   }
@@ -128,7 +128,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete202NonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202NonRetry400Response> {
+  delete202NonRetry400(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202NonRetry400Response> {
     return this.beginDelete202NonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDelete202NonRetry400Response>;
   }
@@ -146,7 +146,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteAsyncRelativeRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response> {
+  deleteAsyncRelativeRetry400(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response> {
     return this.beginDeleteAsyncRelativeRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response>;
   }
@@ -163,7 +163,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postNonRetry400WithHttpOperationResponse(options?: Models.LROSADsPostNonRetry400OptionalParams): Promise<Models.LROSADsPostNonRetry400Response> {
+  postNonRetry400(options?: Models.LROSADsPostNonRetry400OptionalParams): Promise<Models.LROSADsPostNonRetry400Response> {
     return this.beginPostNonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPostNonRetry400Response>;
   }
@@ -180,7 +180,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post202NonRetry400WithHttpOperationResponse(options?: Models.LROSADsPost202NonRetry400OptionalParams): Promise<Models.LROSADsPost202NonRetry400Response> {
+  post202NonRetry400(options?: Models.LROSADsPost202NonRetry400OptionalParams): Promise<Models.LROSADsPost202NonRetry400Response> {
     return this.beginPost202NonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPost202NonRetry400Response>;
   }
@@ -198,7 +198,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsPostAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetry400Response> {
+  postAsyncRelativeRetry400(options?: Models.LROSADsPostAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetry400Response> {
     return this.beginPostAsyncRelativeRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPostAsyncRelativeRetry400Response>;
   }
@@ -216,7 +216,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putError201NoProvisioningStatePayloadWithHttpOperationResponse(options?: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.LROSADsPutError201NoProvisioningStatePayloadResponse> {
+  putError201NoProvisioningStatePayload(options?: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.LROSADsPutError201NoProvisioningStatePayloadResponse> {
     return this.beginPutError201NoProvisioningStatePayload(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutError201NoProvisioningStatePayloadResponse>;
   }
@@ -235,7 +235,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse> {
+  putAsyncRelativeRetryNoStatus(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse> {
     return this.beginPutAsyncRelativeRetryNoStatus(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse>;
   }
@@ -255,7 +255,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse> {
+  putAsyncRelativeRetryNoStatusPayload(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse> {
     return this.beginPutAsyncRelativeRetryNoStatusPayload(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse>;
   }
@@ -272,7 +272,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  delete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDelete204Succeeded(options)
       .then(lroPoller => lroPoller.pollUntilFinished());
   }
@@ -290,7 +290,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse> {
+  deleteAsyncRelativeRetryNoStatus(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse> {
     return this.beginDeleteAsyncRelativeRetryNoStatus(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse>;
   }
@@ -308,7 +308,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post202NoLocationWithHttpOperationResponse(options?: Models.LROSADsPost202NoLocationOptionalParams): Promise<Models.LROSADsPost202NoLocationResponse> {
+  post202NoLocation(options?: Models.LROSADsPost202NoLocationOptionalParams): Promise<Models.LROSADsPost202NoLocationResponse> {
     return this.beginPost202NoLocation(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPost202NoLocationResponse>;
   }
@@ -327,7 +327,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postAsyncRelativeRetryNoPayloadWithHttpOperationResponse(options?: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse> {
+  postAsyncRelativeRetryNoPayload(options?: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse> {
     return this.beginPostAsyncRelativeRetryNoPayload(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse>;
   }
@@ -345,7 +345,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  put200InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsPut200InvalidJsonOptionalParams): Promise<Models.LROSADsPut200InvalidJsonResponse> {
+  put200InvalidJson(options?: Models.LROSADsPut200InvalidJsonOptionalParams): Promise<Models.LROSADsPut200InvalidJsonResponse> {
     return this.beginPut200InvalidJson(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPut200InvalidJsonResponse>;
   }
@@ -364,7 +364,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse> {
+  putAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse> {
     return this.beginPutAsyncRelativeRetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse>;
   }
@@ -384,7 +384,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse> {
+  putAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse> {
     return this.beginPutAsyncRelativeRetryInvalidJsonPolling(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
@@ -402,7 +402,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  delete202RetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse> {
+  delete202RetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse> {
     return this.beginDelete202RetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse>;
   }
@@ -420,7 +420,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse> {
+  deleteAsyncRelativeRetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse> {
     return this.beginDeleteAsyncRelativeRetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse>;
   }
@@ -438,7 +438,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> {
+  deleteAsyncRelativeRetryInvalidJsonPolling(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> {
     return this.beginDeleteAsyncRelativeRetryInvalidJsonPolling(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
@@ -456,7 +456,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  post202RetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsPost202RetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPost202RetryInvalidHeaderResponse> {
+  post202RetryInvalidHeader(options?: Models.LROSADsPost202RetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPost202RetryInvalidHeaderResponse> {
     return this.beginPost202RetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPost202RetryInvalidHeaderResponse>;
   }
@@ -475,7 +475,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse> {
+  postAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse> {
     return this.beginPostAsyncRelativeRetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse>;
   }
@@ -495,7 +495,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse> {
+  postAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse> {
     return this.beginPostAsyncRelativeRetryInvalidJsonPolling(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
@@ -1052,609 +1052,6 @@ export class LROSADs {
       },
       beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec,
       options);
-  }
-
-  /**
-   * Long running put request, service returns a 400 to the initial request
-   *
-   * @param {LROSADsPutNonRetry400OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putNonRetry400(): Promise<Models.Product>;
-  putNonRetry400(options: Models.LROSADsPutNonRetry400OptionalParams): Promise<Models.Product>;
-  putNonRetry400(callback: msRest.ServiceCallback<Models.Product>): void;
-  putNonRetry400(options: Models.LROSADsPutNonRetry400OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putNonRetry400(options?: Models.LROSADsPutNonRetry400OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.putNonRetry400WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-   * 201 response code
-   *
-   * @param {LROSADsPutNonRetry201Creating400OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putNonRetry201Creating400(): Promise<Models.Product>;
-  putNonRetry201Creating400(options: Models.LROSADsPutNonRetry201Creating400OptionalParams): Promise<Models.Product>;
-  putNonRetry201Creating400(callback: msRest.ServiceCallback<Models.Product>): void;
-  putNonRetry201Creating400(options: Models.LROSADsPutNonRetry201Creating400OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putNonRetry201Creating400(options?: Models.LROSADsPutNonRetry201Creating400OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.putNonRetry201Creating400WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-   * 201 response code
-   *
-   * @param {LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putNonRetry201Creating400InvalidJson(): Promise<Models.Product>;
-  putNonRetry201Creating400InvalidJson(options: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.Product>;
-  putNonRetry201Creating400InvalidJson(callback: msRest.ServiceCallback<Models.Product>): void;
-  putNonRetry201Creating400InvalidJson(options: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putNonRetry201Creating400InvalidJson(options?: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.putNonRetry201Creating400InvalidJsonWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
-   * endpoint indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param {LROSADsPutAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putAsyncRelativeRetry400(): Promise<Models.Product>;
-  putAsyncRelativeRetry400(options: Models.LROSADsPutAsyncRelativeRetry400OptionalParams): Promise<Models.Product>;
-  putAsyncRelativeRetry400(callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetry400(options: Models.LROSADsPutAsyncRelativeRetry400OptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetry400(options?: Models.LROSADsPutAsyncRelativeRetry400OptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetry400WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 400 with an error body
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteNonRetry400(): Promise<void>;
-  deleteNonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
-  deleteNonRetry400(callback: msRest.ServiceCallback<void>): void;
-  deleteNonRetry400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteNonRetry400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteNonRetry400WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 with a location header
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  delete202NonRetry400(): Promise<void>;
-  delete202NonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
-  delete202NonRetry400(callback: msRest.ServiceCallback<void>): void;
-  delete202NonRetry400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  delete202NonRetry400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.delete202NonRetry400WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteAsyncRelativeRetry400(): Promise<void>;
-  deleteAsyncRelativeRetry400(options: msRest.RequestOptionsBase): Promise<void>;
-  deleteAsyncRelativeRetry400(callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetry400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetry400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteAsyncRelativeRetry400WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 400 with no error body
-   *
-   * @param {LROSADsPostNonRetry400OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  postNonRetry400(): Promise<void>;
-  postNonRetry400(options: Models.LROSADsPostNonRetry400OptionalParams): Promise<void>;
-  postNonRetry400(callback: msRest.ServiceCallback<void>): void;
-  postNonRetry400(options: Models.LROSADsPostNonRetry400OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postNonRetry400(options?: Models.LROSADsPostNonRetry400OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postNonRetry400WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 with a location header
-   *
-   * @param {LROSADsPost202NonRetry400OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  post202NonRetry400(): Promise<void>;
-  post202NonRetry400(options: Models.LROSADsPost202NonRetry400OptionalParams): Promise<void>;
-  post202NonRetry400(callback: msRest.ServiceCallback<void>): void;
-  post202NonRetry400(options: Models.LROSADsPost202NonRetry400OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202NonRetry400(options?: Models.LROSADsPost202NonRetry400OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.post202NonRetry400WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param {LROSADsPostAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  postAsyncRelativeRetry400(): Promise<void>;
-  postAsyncRelativeRetry400(options: Models.LROSADsPostAsyncRelativeRetry400OptionalParams): Promise<void>;
-  postAsyncRelativeRetry400(callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetry400(options: Models.LROSADsPostAsyncRelativeRetry400OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetry400(options?: Models.LROSADsPostAsyncRelativeRetry400OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postAsyncRelativeRetry400WithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 201 to the initial request with no payload
-   *
-   * @param {LROSADsPutError201NoProvisioningStatePayloadOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putError201NoProvisioningStatePayload(): Promise<Models.Product>;
-  putError201NoProvisioningStatePayload(options: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.Product>;
-  putError201NoProvisioningStatePayload(callback: msRest.ServiceCallback<Models.Product>): void;
-  putError201NoProvisioningStatePayload(options: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putError201NoProvisioningStatePayload(options?: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.putError201NoProvisioningStatePayloadWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROSADsPutAsyncRelativeRetryNoStatusOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putAsyncRelativeRetryNoStatus(): Promise<Models.Product>;
-  putAsyncRelativeRetryNoStatus(options: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.Product>;
-  putAsyncRelativeRetryNoStatus(callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryNoStatus(options: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryNoStatus(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putAsyncRelativeRetryNoStatusPayload(): Promise<Models.Product>;
-  putAsyncRelativeRetryNoStatusPayload(options: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.Product>;
-  putAsyncRelativeRetryNoStatusPayload(callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryNoStatusPayload(options: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryNoStatusPayload(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 204 to the initial request, indicating success.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  delete204Succeeded(): Promise<void>;
-  delete204Succeeded(options: msRest.RequestOptionsBase): Promise<void>;
-  delete204Succeeded(callback: msRest.ServiceCallback<void>): void;
-  delete204Succeeded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  delete204Succeeded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.delete204SucceededWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteAsyncRelativeRetryNoStatus(): Promise<void>;
-  deleteAsyncRelativeRetryNoStatus(options: msRest.RequestOptionsBase): Promise<void>;
-  deleteAsyncRelativeRetryNoStatus(callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetryNoStatus(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetryNoStatus(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteAsyncRelativeRetryNoStatusWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, without a location
-   * header.
-   *
-   * @param {LROSADsPost202NoLocationOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  post202NoLocation(): Promise<void>;
-  post202NoLocation(options: Models.LROSADsPost202NoLocationOptionalParams): Promise<void>;
-  post202NoLocation(callback: msRest.ServiceCallback<void>): void;
-  post202NoLocation(options: Models.LROSADsPost202NoLocationOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202NoLocation(options?: Models.LROSADsPost202NoLocationOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.post202NoLocationWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  postAsyncRelativeRetryNoPayload(): Promise<void>;
-  postAsyncRelativeRetryNoPayload(options: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<void>;
-  postAsyncRelativeRetryNoPayload(callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetryNoPayload(options: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetryNoPayload(options?: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postAsyncRelativeRetryNoPayloadWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that is
-   * not a valid json
-   *
-   * @param {LROSADsPut200InvalidJsonOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  put200InvalidJson(): Promise<Models.Product>;
-  put200InvalidJson(options: Models.LROSADsPut200InvalidJsonOptionalParams): Promise<Models.Product>;
-  put200InvalidJson(callback: msRest.ServiceCallback<Models.Product>): void;
-  put200InvalidJson(options: Models.LROSADsPut200InvalidJsonOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  put200InvalidJson(options?: Models.LROSADsPut200InvalidJsonOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.put200InvalidJsonWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
-   * is invalid.
-   *
-   * @param {LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putAsyncRelativeRetryInvalidHeader(): Promise<Models.Product>;
-  putAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.Product>;
-  putAsyncRelativeRetryInvalidHeader(callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running put request, service returns a 200 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putAsyncRelativeRetryInvalidJsonPolling(): Promise<Models.Product>;
-  putAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.Product>;
-  putAsyncRelativeRetryInvalidJsonPolling(callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  putAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.putAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request receing a reponse with
-   * an invalid 'Location' and 'Retry-After' headers
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  delete202RetryInvalidHeader(): Promise<void>;
-  delete202RetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
-  delete202RetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
-  delete202RetryInvalidHeader(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  delete202RetryInvalidHeader(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.delete202RetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. The endpoint
-   * indicated in the Azure-AsyncOperation header is invalid
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteAsyncRelativeRetryInvalidHeader(): Promise<void>;
-  deleteAsyncRelativeRetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
-  deleteAsyncRelativeRetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetryInvalidHeader(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetryInvalidHeader(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;
-  deleteAsyncRelativeRetryInvalidJsonPolling(options: msRest.RequestOptionsBase): Promise<void>;
-  deleteAsyncRelativeRetryInvalidJsonPolling(callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetryInvalidJsonPolling(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteAsyncRelativeRetryInvalidJsonPolling(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with invalid 'Location'
-   * and 'Retry-After' headers.
-   *
-   * @param {LROSADsPost202RetryInvalidHeaderOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  post202RetryInvalidHeader(): Promise<void>;
-  post202RetryInvalidHeader(options: Models.LROSADsPost202RetryInvalidHeaderOptionalParams): Promise<void>;
-  post202RetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
-  post202RetryInvalidHeader(options: Models.LROSADsPost202RetryInvalidHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202RetryInvalidHeader(options?: Models.LROSADsPost202RetryInvalidHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.post202RetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
-   * is invalid.
-   *
-   * @param {LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  postAsyncRelativeRetryInvalidHeader(): Promise<void>;
-  postAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<void>;
-  postAsyncRelativeRetryInvalidHeader(callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Long running post request, service returns a 202 to the initial request, with an entity that
-   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-   * header for operation status
-   *
-   * @param {LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  postAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;
-  postAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<void>;
-  postAsyncRelativeRetryInvalidJsonPolling(callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse.bind(this), options, callback);
   }
 
 }

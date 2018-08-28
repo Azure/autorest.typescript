@@ -37,73 +37,17 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayStringMultiNullWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      arrayStringMultiNullOperationSpec);
-  }
-
-  /**
-   * Get an empty array [] of string using the multi-array format
-   *
-   * @param {QueriesArrayStringMultiEmptyOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  arrayStringMultiEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      arrayStringMultiEmptyOperationSpec);
-  }
-
-  /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * mult-array format
-   *
-   * @param {QueriesArrayStringMultiValidOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  arrayStringMultiValidWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      arrayStringMultiValidOperationSpec);
-  }
-
-  /**
-   * Get a null array of string using the multi-array format
-   *
-   * @param {QueriesArrayStringMultiNullOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  arrayStringMultiNull(): Promise<void>;
-  arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams): Promise<void>;
+  arrayStringMultiNull(): Promise<msRest.RestResponse>;
+  arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.RestResponse>;
   arrayStringMultiNull(callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiNull(options?: Models.QueriesArrayStringMultiNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayStringMultiNullWithHttpOperationResponse.bind(this), options, callback);
+  arrayStringMultiNull(options?: Models.QueriesArrayStringMultiNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      arrayStringMultiNullOperationSpec,
+      callback);
   }
 
   /**
@@ -111,21 +55,23 @@ export class Queries {
    *
    * @param {QueriesArrayStringMultiEmptyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  arrayStringMultiEmpty(): Promise<void>;
-  arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<void>;
+  arrayStringMultiEmpty(): Promise<msRest.RestResponse>;
+  arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.RestResponse>;
   arrayStringMultiEmpty(callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiEmpty(options?: Models.QueriesArrayStringMultiEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayStringMultiEmptyWithHttpOperationResponse.bind(this), options, callback);
+  arrayStringMultiEmpty(options?: Models.QueriesArrayStringMultiEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      arrayStringMultiEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -134,21 +80,23 @@ export class Queries {
    *
    * @param {QueriesArrayStringMultiValidOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  arrayStringMultiValid(): Promise<void>;
-  arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams): Promise<void>;
+  arrayStringMultiValid(): Promise<msRest.RestResponse>;
+  arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.RestResponse>;
   arrayStringMultiValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiValid(options?: Models.QueriesArrayStringMultiValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayStringMultiValidWithHttpOperationResponse.bind(this), options, callback);
+  arrayStringMultiValid(options?: Models.QueriesArrayStringMultiValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      arrayStringMultiValidOperationSpec,
+      callback);
   }
 
 }

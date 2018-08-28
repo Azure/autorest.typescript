@@ -36,12 +36,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNull(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNullResponse> {
+  getNull(): Promise<Models.StringGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullResponse>;
+  getNull(callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetNullOKResponse>): Promise<Models.StringGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec) as Promise<Models.StringGetNullResponse>;
+      getNullOperationSpec,
+      callback) as Promise<Models.StringGetNullResponse>;
   }
 
   /**
@@ -55,12 +60,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNull(options?: Models.StringPutNullOptionalParams): Promise<msRest.HttpResponse> {
+  putNull(): Promise<msRest.RestResponse>;
+  putNull(options: Models.StringPutNullOptionalParams): Promise<msRest.RestResponse>;
+  putNull(callback: msRest.ServiceCallback<void>): void;
+  putNull(options: Models.StringPutNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
+  putNull(options?: Models.StringPutNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      putNullOperationSpec);
+      putNullOperationSpec,
+      callback);
   }
 
   /**
@@ -74,12 +84,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.StringGetEmptyResponse> {
+  getEmpty(): Promise<Models.StringGetEmptyResponse>;
+  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.StringGetEmptyResponse>;
+  getEmpty(callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
+  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetEmptyOKResponse>): Promise<Models.StringGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyOperationSpec) as Promise<Models.StringGetEmptyResponse>;
+      getEmptyOperationSpec,
+      callback) as Promise<Models.StringGetEmptyResponse>;
   }
 
   /**
@@ -93,12 +108,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putEmpty(): Promise<msRest.RestResponse>;
+  putEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmpty(callback: msRest.ServiceCallback<void>): void;
+  putEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      putEmptyOperationSpec);
+      putEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -112,12 +132,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getMbcs(options?: msRest.RequestOptionsBase): Promise<Models.StringGetMbcsResponse> {
+  getMbcs(): Promise<Models.StringGetMbcsResponse>;
+  getMbcs(options: msRest.RequestOptionsBase): Promise<Models.StringGetMbcsResponse>;
+  getMbcs(callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
+  getMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
+  getMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetMbcsOKResponse>): Promise<Models.StringGetMbcsResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getMbcsOperationSpec) as Promise<Models.StringGetMbcsResponse>;
+      getMbcsOperationSpec,
+      callback) as Promise<Models.StringGetMbcsResponse>;
   }
 
   /**
@@ -131,12 +156,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMbcs(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putMbcs(): Promise<msRest.RestResponse>;
+  putMbcs(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putMbcs(callback: msRest.ServiceCallback<void>): void;
+  putMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      putMbcsOperationSpec);
+      putMbcsOperationSpec,
+      callback);
   }
 
   /**
@@ -151,12 +181,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWhitespace(options?: msRest.RequestOptionsBase): Promise<Models.StringGetWhitespaceResponse> {
+  getWhitespace(): Promise<Models.StringGetWhitespaceResponse>;
+  getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.StringGetWhitespaceResponse>;
+  getWhitespace(callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
+  getWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
+  getWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): Promise<Models.StringGetWhitespaceResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getWhitespaceOperationSpec) as Promise<Models.StringGetWhitespaceResponse>;
+      getWhitespaceOperationSpec,
+      callback) as Promise<Models.StringGetWhitespaceResponse>;
   }
 
   /**
@@ -171,12 +206,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putWhitespace(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putWhitespace(): Promise<msRest.RestResponse>;
+  putWhitespace(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putWhitespace(callback: msRest.ServiceCallback<void>): void;
+  putWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      putWhitespaceOperationSpec);
+      putWhitespaceOperationSpec,
+      callback);
   }
 
   /**
@@ -190,12 +230,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNotProvided(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNotProvidedResponse> {
+  getNotProvided(): Promise<Models.StringGetNotProvidedResponse>;
+  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.StringGetNotProvidedResponse>;
+  getNotProvided(callback: msRest.ServiceCallback<string>): void;
+  getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
+  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.StringGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNotProvidedOperationSpec) as Promise<Models.StringGetNotProvidedResponse>;
+      getNotProvidedOperationSpec,
+      callback) as Promise<Models.StringGetNotProvidedResponse>;
   }
 
   /**
@@ -209,12 +254,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBase64Encoded(options?: msRest.RequestOptionsBase): Promise<Models.StringGetBase64EncodedResponse> {
+  getBase64Encoded(): Promise<Models.StringGetBase64EncodedResponse>;
+  getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64EncodedResponse>;
+  getBase64Encoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64Encoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64Encoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.StringGetBase64EncodedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBase64EncodedOperationSpec) as Promise<Models.StringGetBase64EncodedResponse>;
+      getBase64EncodedOperationSpec,
+      callback) as Promise<Models.StringGetBase64EncodedResponse>;
   }
 
   /**
@@ -228,12 +278,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBase64UrlEncoded(options?: msRest.RequestOptionsBase): Promise<Models.StringGetBase64UrlEncodedResponse> {
+  getBase64UrlEncoded(): Promise<Models.StringGetBase64UrlEncodedResponse>;
+  getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64UrlEncodedResponse>;
+  getBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.StringGetBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBase64UrlEncodedOperationSpec) as Promise<Models.StringGetBase64UrlEncodedResponse>;
+      getBase64UrlEncodedOperationSpec,
+      callback) as Promise<Models.StringGetBase64UrlEncodedResponse>;
   }
 
   /**
@@ -249,13 +304,18 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putBase64UrlEncoded(stringBody: Uint8Array): Promise<msRest.RestResponse>;
+  putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putBase64UrlEncoded(stringBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         stringBody,
         options
       },
-      putBase64UrlEncodedOperationSpec);
+      putBase64UrlEncodedOperationSpec,
+      callback);
   }
 
   /**
@@ -269,12 +329,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNullBase64UrlEncodedResponse> {
+  getNullBase64UrlEncoded(): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
+  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
+  getNullBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.StringGetNullBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullBase64UrlEncodedOperationSpec) as Promise<Models.StringGetNullBase64UrlEncodedResponse>;
+      getNullBase64UrlEncodedOperationSpec,
+      callback) as Promise<Models.StringGetNullBase64UrlEncodedResponse>;
   }
 
 }

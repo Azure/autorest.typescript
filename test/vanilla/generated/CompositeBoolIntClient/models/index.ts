@@ -29,181 +29,181 @@ export interface ErrorModel {
 /**
  * Contains response data for the getTrue operation.
  */
-export interface BoolGetTrueResponse extends msRest.HttpResponse {
+export interface BoolGetTrueResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }
 
 /**
  * Contains response data for the getFalse operation.
  */
-export interface BoolGetFalseResponse extends msRest.HttpResponse {
+export interface BoolGetFalseResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }
 
 /**
  * Contains response data for the getNull operation.
  */
-export interface BoolGetNullResponse extends msRest.HttpResponse {
+export interface BoolGetNullResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface BoolGetInvalidResponse extends msRest.HttpResponse {
+export interface BoolGetInvalidResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }
 
 /**
  * Contains response data for the getNull operation.
  */
-export interface IntModelGetNullResponse extends msRest.HttpResponse {
+export interface IntModelGetNullResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface IntModelGetInvalidResponse extends msRest.HttpResponse {
+export interface IntModelGetInvalidResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getOverflowInt32 operation.
  */
-export interface IntModelGetOverflowInt32Response extends msRest.HttpResponse {
+export interface IntModelGetOverflowInt32Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getUnderflowInt32 operation.
  */
-export interface IntModelGetUnderflowInt32Response extends msRest.HttpResponse {
+export interface IntModelGetUnderflowInt32Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getOverflowInt64 operation.
  */
-export interface IntModelGetOverflowInt64Response extends msRest.HttpResponse {
+export interface IntModelGetOverflowInt64Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getUnderflowInt64 operation.
  */
-export interface IntModelGetUnderflowInt64Response extends msRest.HttpResponse {
+export interface IntModelGetUnderflowInt64Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getUnixTime operation.
  */
-export interface IntModelGetUnixTimeResponse extends msRest.HttpResponse {
+export interface IntModelGetUnixTimeResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Date;
+  body: Date;
 }
 
 /**
  * Contains response data for the getInvalidUnixTime operation.
  */
-export interface IntModelGetInvalidUnixTimeResponse extends msRest.HttpResponse {
+export interface IntModelGetInvalidUnixTimeResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Date;
+  body: Date;
 }
 
 /**
  * Contains response data for the getNullUnixTime operation.
  */
-export interface IntModelGetNullUnixTimeResponse extends msRest.HttpResponse {
+export interface IntModelGetNullUnixTimeResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Date;
+  body: Date;
 }

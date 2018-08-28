@@ -1517,10 +1517,10 @@ export interface LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams exte
  */
 export interface LROsPutNoHeaderInRetryHeaders {
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/noheader/202/200/operationResults
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/noheader/202/200/operationResults
    */
-  location?: string;
+  locationHeader?: string;
 }
 
 /**
@@ -1536,10 +1536,10 @@ export interface LROsPutAsyncRetrySucceededHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/retry/succeeded/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1560,10 +1560,10 @@ export interface LROsPutAsyncNoRetrySucceededHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/noretry/succeeded/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/noretry/succeeded/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
 }
 
 /**
@@ -1579,10 +1579,10 @@ export interface LROsPutAsyncRetryFailedHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/retry/failed/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/retry/failed/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1603,10 +1603,10 @@ export interface LROsPutAsyncNoRetrycanceledHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/noretry/canceled/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/noretry/canceled/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
 }
 
 /**
@@ -1630,10 +1630,10 @@ export interface LROsPutAsyncNoHeaderInRetryHeaders {
  */
 export interface LROsDeleteProvisioning202Accepted200SucceededHeaders {
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/delete/provisioning/202/accepted/200/succeeded
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/delete/provisioning/202/accepted/200/succeeded
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1649,10 +1649,10 @@ export interface LROsDeleteProvisioning202Accepted200SucceededHeaders {
  */
 export interface LROsDeleteProvisioning202DeletingFailed200Headers {
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/delete/provisioning/202/deleting/200/failed
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/delete/provisioning/202/deleting/200/failed
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1668,10 +1668,10 @@ export interface LROsDeleteProvisioning202DeletingFailed200Headers {
  */
 export interface LROsDeleteProvisioning202Deletingcanceled200Headers {
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/delete/provisioning/202/deleting/200/canceled
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/delete/provisioning/202/deleting/200/canceled
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1687,10 +1687,10 @@ export interface LROsDeleteProvisioning202Deletingcanceled200Headers {
  */
 export interface LROsDelete202Retry200Headers {
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/delete/202/retry/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/delete/202/retry/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1706,10 +1706,10 @@ export interface LROsDelete202Retry200Headers {
  */
 export interface LROsDelete202NoRetry204Headers {
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/delete/202/noretry/204
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/delete/202/noretry/204
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1868,10 +1868,10 @@ export interface LROsPost202Retry200Headers {
  */
 export interface LROsPost202NoRetry204Headers {
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/post/202/noretry/204
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/post/202/noretry/204
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1892,10 +1892,10 @@ export interface LROsPostAsyncRetrySucceededHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/retry/succeeded/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1916,10 +1916,10 @@ export interface LROsPostAsyncNoRetrySucceededHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/retry/succeeded/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -1989,10 +1989,10 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/retryerror/putasync/retry/succeeded/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -2008,10 +2008,10 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededHeaders {
  */
 export interface LRORetrysDeleteProvisioning202Accepted200SucceededHeaders {
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -2120,10 +2120,10 @@ export interface LROSADsPutAsyncRelativeRetry400Headers {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/nonretryerror/putasync/retry/operationResults/400
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/nonretryerror/putasync/retry/operationResults/400
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -2268,10 +2268,10 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/retry/succeeded/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -2292,10 +2292,10 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/retry/succeeded/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -2383,10 +2383,10 @@ export interface LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/retry/succeeded/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -2407,10 +2407,10 @@ export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/putasync/retry/failed/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/putasync/retry/failed/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -2570,10 +2570,10 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededHeaders {
    */
   azureAsyncOperation?: string;
   /**
-   * @member {string} [location] Location to poll for result status: will be
-   * set to /lro/customheader/putasync/retry/succeeded/operationResults/200
+   * @member {string} [locationHeader] Location to poll for result status: will
+   * be set to /lro/customheader/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  locationHeader?: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
@@ -2706,2042 +2706,4500 @@ export enum Status {
 /**
  * Contains response data for the put200Succeeded operation.
  */
-export interface LROsPut200SucceededResponse extends msRest.HttpResponse {
+export interface LROsPut200SucceededResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the put200SucceededNoState operation.
  */
-export interface LROsPut200SucceededNoStateResponse extends msRest.HttpResponse {
+export interface LROsPut200SucceededNoStateResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the put202Retry200 operation.
  */
-export interface LROsPut202Retry200Response extends msRest.HttpResponse {
+export interface LROsPut202Retry200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the put201CreatingSucceeded200 operation.
  */
-export interface LROsPut201CreatingSucceeded200Response extends msRest.HttpResponse {
+export interface LROsPut201CreatingSucceeded200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the put200UpdatingSucceeded204 operation.
  */
-export interface LROsPut200UpdatingSucceeded204Response extends msRest.HttpResponse {
+export interface LROsPut200UpdatingSucceeded204Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the put201CreatingFailed200 operation.
  */
-export interface LROsPut201CreatingFailed200Response extends msRest.HttpResponse {
+export interface LROsPut201CreatingFailed200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the put200Acceptedcanceled200 operation.
  */
-export interface LROsPut200Acceptedcanceled200Response extends msRest.HttpResponse {
+export interface LROsPut200Acceptedcanceled200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putNoHeaderInRetry operation.
  */
-export interface LROsPutNoHeaderInRetryResponse extends msRest.HttpResponse {
+export interface LROsPutNoHeaderInRetryResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutNoHeaderInRetryHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noheader/202/200/operationResults
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncRetrySucceeded operation.
  */
-export interface LROsPutAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncNoRetrySucceeded operation.
  */
-export interface LROsPutAsyncNoRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncNoRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncNoRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noretry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noretry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncRetryFailed operation.
  */
-export interface LROsPutAsyncRetryFailedResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncRetryFailedResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncRetryFailedHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncNoRetrycanceled operation.
  */
-export interface LROsPutAsyncNoRetrycanceledResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncNoRetrycanceledResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncNoRetrycanceledHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noretry/canceled/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noretry/canceled/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncNoHeaderInRetry operation.
  */
-export interface LROsPutAsyncNoHeaderInRetryResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncNoHeaderInRetryResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncNoHeaderInRetryHeaders;
+  response: msRest.HttpOperationResponse;
+  azureAsyncOperation: string;
   /**
-   * The response body as text (string format)
+   * Resource Id
    */
-  bodyAsText: string;
+  id: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Type
    */
-  parsedBody: Product;
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putNonResource operation.
  */
-export interface LROsPutNonResourceResponse extends msRest.HttpResponse {
+export interface LROsPutNonResourceResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: Sku;
+  response: msRest.HttpOperationResponse;
+  name: string;
+  id: string;
 }
 
 /**
  * Contains response data for the putAsyncNonResource operation.
  */
-export interface LROsPutAsyncNonResourceResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncNonResourceResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: Sku;
+  response: msRest.HttpOperationResponse;
+  name: string;
+  id: string;
 }
 
 /**
  * Contains response data for the putSubResource operation.
  */
-export interface LROsPutSubResourceResponse extends msRest.HttpResponse {
+export interface LROsPutSubResourceResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Sub Resource Id
    */
-  parsedBody: SubProduct;
+  id: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues1;
 }
 
 /**
  * Contains response data for the putAsyncSubResource operation.
  */
-export interface LROsPutAsyncSubResourceResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncSubResourceResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Sub Resource Id
    */
-  parsedBody: SubProduct;
+  id: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues1;
 }
 
 /**
  * Contains response data for the deleteProvisioning202Accepted200Succeeded
  * operation.
  */
-export interface LROsDeleteProvisioning202Accepted200SucceededResponse extends msRest.HttpResponse {
+export interface LROsDeleteProvisioning202Accepted200SucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteProvisioning202Accepted200SucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/delete/provisioning/202/accepted/200/succeeded
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the deleteProvisioning202DeletingFailed200
  * operation.
  */
-export interface LROsDeleteProvisioning202DeletingFailed200Response extends msRest.HttpResponse {
+export interface LROsDeleteProvisioning202DeletingFailed200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteProvisioning202DeletingFailed200Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/delete/provisioning/202/deleting/200/failed
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the deleteProvisioning202Deletingcanceled200
  * operation.
  */
-export interface LROsDeleteProvisioning202Deletingcanceled200Response extends msRest.HttpResponse {
+export interface LROsDeleteProvisioning202Deletingcanceled200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteProvisioning202Deletingcanceled200Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/delete/provisioning/202/deleting/200/canceled
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the delete202Retry200 operation.
  */
-export interface LROsDelete202Retry200Response extends msRest.HttpResponse {
+export interface LROsDelete202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDelete202Retry200Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to /lro/delete/202/retry/200
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the delete202NoRetry204 operation.
  */
-export interface LROsDelete202NoRetry204Response extends msRest.HttpResponse {
+export interface LROsDelete202NoRetry204Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDelete202NoRetry204Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to /lro/delete/202/noretry/204
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the deleteNoHeaderInRetry operation.
  */
-export interface LROsDeleteNoHeaderInRetryResponse extends msRest.HttpResponse {
+export interface LROsDeleteNoHeaderInRetryResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
+   */
+  location: string;
 }
 
 /**
  * Contains response data for the deleteAsyncNoHeaderInRetry operation.
  */
-export interface LROsDeleteAsyncNoHeaderInRetryResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncNoHeaderInRetryResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
+   */
+  location: string;
 }
 
 /**
  * Contains response data for the deleteAsyncRetrySucceeded operation.
  */
-export interface LROsDeleteAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the deleteAsyncNoRetrySucceeded operation.
  */
-export interface LROsDeleteAsyncNoRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncNoRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncNoRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/noretry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/noretry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the deleteAsyncRetryFailed operation.
  */
-export interface LROsDeleteAsyncRetryFailedResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncRetryFailedResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncRetryFailedHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/failed/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/failed/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the deleteAsyncRetrycanceled operation.
  */
-export interface LROsDeleteAsyncRetrycanceledResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncRetrycanceledResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncRetrycanceledHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/canceled/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/canceled/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the post200WithPayload operation.
  */
-export interface LROsPost200WithPayloadResponse extends msRest.HttpResponse {
+export interface LROsPost200WithPayloadResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: Sku;
+  response: msRest.HttpOperationResponse;
+  name: string;
+  id: string;
 }
 
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export interface LROsPost202Retry200Response extends msRest.HttpResponse {
+export interface LROsPost202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPost202Retry200Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the post202NoRetry204 operation.
  */
-export interface LROsPost202NoRetry204Response extends msRest.HttpResponse {
+export interface LROsPost202NoRetry204Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPost202NoRetry204Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to /lro/post/202/noretry/204
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the postDoubleHeadersFinalLocationGet operation.
  */
-export interface LROsPostDoubleHeadersFinalLocationGetResponse extends msRest.HttpResponse {
+export interface LROsPostDoubleHeadersFinalLocationGetResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the postDoubleHeadersFinalAzureHeaderGet
  * operation.
  */
-export interface LROsPostDoubleHeadersFinalAzureHeaderGetResponse extends msRest.HttpResponse {
+export interface LROsPostDoubleHeadersFinalAzureHeaderGetResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the postDoubleHeadersFinalAzureHeaderGetDefault
  * operation.
  */
-export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse extends msRest.HttpResponse {
+export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the postAsyncRetrySucceeded operation.
  */
-export interface LROsPostAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsPostAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPostAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the postAsyncNoRetrySucceeded operation.
  */
-export interface LROsPostAsyncNoRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsPostAsyncNoRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPostAsyncNoRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the postAsyncRetryFailed operation.
  */
-export interface LROsPostAsyncRetryFailedResponse extends msRest.HttpResponse {
+export interface LROsPostAsyncRetryFailedResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPostAsyncRetryFailedHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the postAsyncRetrycanceled operation.
  */
-export interface LROsPostAsyncRetrycanceledResponse extends msRest.HttpResponse {
+export interface LROsPostAsyncRetrycanceledResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPostAsyncRetrycanceledHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/canceled/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/canceled/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPut200Succeeded operation.
  */
-export interface LROsBeginPut200SucceededResponse extends msRest.HttpResponse {
+export interface LROsBeginPut200SucceededResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPut200SucceededNoState operation.
  */
-export interface LROsBeginPut200SucceededNoStateResponse extends msRest.HttpResponse {
+export interface LROsBeginPut200SucceededNoStateResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPut202Retry200 operation.
  */
-export interface LROsBeginPut202Retry200Response extends msRest.HttpResponse {
+export interface LROsBeginPut202Retry200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPut201CreatingSucceeded200 operation.
  */
-export interface LROsBeginPut201CreatingSucceeded200Response extends msRest.HttpResponse {
+export interface LROsBeginPut201CreatingSucceeded200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPut200UpdatingSucceeded204 operation.
  */
-export interface LROsBeginPut200UpdatingSucceeded204Response extends msRest.HttpResponse {
+export interface LROsBeginPut200UpdatingSucceeded204Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPut201CreatingFailed200 operation.
  */
-export interface LROsBeginPut201CreatingFailed200Response extends msRest.HttpResponse {
+export interface LROsBeginPut201CreatingFailed200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPut200Acceptedcanceled200 operation.
  */
-export interface LROsBeginPut200Acceptedcanceled200Response extends msRest.HttpResponse {
+export interface LROsBeginPut200Acceptedcanceled200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutNoHeaderInRetry operation.
  */
-export interface LROsPutNoHeaderInRetryResponse extends msRest.HttpResponse {
+export interface LROsPutNoHeaderInRetryResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutNoHeaderInRetryHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noheader/202/200/operationResults
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncRetrySucceeded operation.
  */
-export interface LROsPutAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncNoRetrySucceeded operation.
  */
-export interface LROsPutAsyncNoRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncNoRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncNoRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noretry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noretry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncRetryFailed operation.
  */
-export interface LROsPutAsyncRetryFailedResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncRetryFailedResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncRetryFailedHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncNoRetrycanceled operation.
  */
-export interface LROsPutAsyncNoRetrycanceledResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncNoRetrycanceledResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncNoRetrycanceledHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noretry/canceled/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/noretry/canceled/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncNoHeaderInRetry operation.
  */
-export interface LROsPutAsyncNoHeaderInRetryResponse extends msRest.HttpResponse {
+export interface LROsPutAsyncNoHeaderInRetryResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPutAsyncNoHeaderInRetryHeaders;
+  response: msRest.HttpOperationResponse;
+  azureAsyncOperation: string;
   /**
-   * The response body as text (string format)
+   * Resource Id
    */
-  bodyAsText: string;
+  id: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Type
    */
-  parsedBody: Product;
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutNonResource operation.
  */
-export interface LROsBeginPutNonResourceResponse extends msRest.HttpResponse {
+export interface LROsBeginPutNonResourceResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: Sku;
+  response: msRest.HttpOperationResponse;
+  name: string;
+  id: string;
 }
 
 /**
  * Contains response data for the beginPutAsyncNonResource operation.
  */
-export interface LROsBeginPutAsyncNonResourceResponse extends msRest.HttpResponse {
+export interface LROsBeginPutAsyncNonResourceResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: Sku;
+  response: msRest.HttpOperationResponse;
+  name: string;
+  id: string;
 }
 
 /**
  * Contains response data for the beginPutSubResource operation.
  */
-export interface LROsBeginPutSubResourceResponse extends msRest.HttpResponse {
+export interface LROsBeginPutSubResourceResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Sub Resource Id
    */
-  parsedBody: SubProduct;
+  id: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues1;
 }
 
 /**
  * Contains response data for the beginPutAsyncSubResource operation.
  */
-export interface LROsBeginPutAsyncSubResourceResponse extends msRest.HttpResponse {
+export interface LROsBeginPutAsyncSubResourceResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Sub Resource Id
    */
-  parsedBody: SubProduct;
+  id: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues1;
 }
 
 /**
  * Contains response data for the
  * beginDeleteProvisioning202Accepted200Succeeded operation.
  */
-export interface LROsDeleteProvisioning202Accepted200SucceededResponse extends msRest.HttpResponse {
+export interface LROsDeleteProvisioning202Accepted200SucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteProvisioning202Accepted200SucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/delete/provisioning/202/accepted/200/succeeded
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginDeleteProvisioning202DeletingFailed200
  * operation.
  */
-export interface LROsDeleteProvisioning202DeletingFailed200Response extends msRest.HttpResponse {
+export interface LROsDeleteProvisioning202DeletingFailed200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteProvisioning202DeletingFailed200Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/delete/provisioning/202/deleting/200/failed
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginDeleteProvisioning202Deletingcanceled200
  * operation.
  */
-export interface LROsDeleteProvisioning202Deletingcanceled200Response extends msRest.HttpResponse {
+export interface LROsDeleteProvisioning202Deletingcanceled200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteProvisioning202Deletingcanceled200Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/delete/provisioning/202/deleting/200/canceled
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginDelete202Retry200 operation.
  */
-export interface LROsDelete202Retry200Response extends msRest.HttpResponse {
+export interface LROsDelete202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDelete202Retry200Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to /lro/delete/202/retry/200
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginDelete202NoRetry204 operation.
  */
-export interface LROsDelete202NoRetry204Response extends msRest.HttpResponse {
+export interface LROsDelete202NoRetry204Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDelete202NoRetry204Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to /lro/delete/202/noretry/204
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginDeleteNoHeaderInRetry operation.
  */
-export interface LROsDeleteNoHeaderInRetryResponse extends msRest.HttpResponse {
+export interface LROsDeleteNoHeaderInRetryResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
+   */
+  location: string;
 }
 
 /**
  * Contains response data for the beginDeleteAsyncNoHeaderInRetry operation.
  */
-export interface LROsDeleteAsyncNoHeaderInRetryResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncNoHeaderInRetryResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
+   */
+  location: string;
 }
 
 /**
  * Contains response data for the beginDeleteAsyncRetrySucceeded operation.
  */
-export interface LROsDeleteAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginDeleteAsyncNoRetrySucceeded operation.
  */
-export interface LROsDeleteAsyncNoRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncNoRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncNoRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/noretry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/noretry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginDeleteAsyncRetryFailed operation.
  */
-export interface LROsDeleteAsyncRetryFailedResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncRetryFailedResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncRetryFailedHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/failed/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/failed/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginDeleteAsyncRetrycanceled operation.
  */
-export interface LROsDeleteAsyncRetrycanceledResponse extends msRest.HttpResponse {
+export interface LROsDeleteAsyncRetrycanceledResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsDeleteAsyncRetrycanceledHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/canceled/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/canceled/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPost200WithPayload operation.
  */
-export interface LROsBeginPost200WithPayloadResponse extends msRest.HttpResponse {
+export interface LROsBeginPost200WithPayloadResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: Sku;
+  response: msRest.HttpOperationResponse;
+  name: string;
+  id: string;
 }
 
 /**
  * Contains response data for the beginPost202Retry200 operation.
  */
-export interface LROsPost202Retry200Response extends msRest.HttpResponse {
+export interface LROsPost202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPost202Retry200Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPost202NoRetry204 operation.
  */
-export interface LROsPost202NoRetry204Response extends msRest.HttpResponse {
+export interface LROsPost202NoRetry204Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPost202NoRetry204Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to /lro/post/202/noretry/204
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPostDoubleHeadersFinalLocationGet
  * operation.
  */
-export interface LROsBeginPostDoubleHeadersFinalLocationGetResponse extends msRest.HttpResponse {
+export interface LROsBeginPostDoubleHeadersFinalLocationGetResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPostDoubleHeadersFinalAzureHeaderGet
  * operation.
  */
-export interface LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse extends msRest.HttpResponse {
+export interface LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the
  * beginPostDoubleHeadersFinalAzureHeaderGetDefault operation.
  */
-export interface LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse extends msRest.HttpResponse {
+export interface LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPostAsyncRetrySucceeded operation.
  */
-export interface LROsPostAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsPostAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPostAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPostAsyncNoRetrySucceeded operation.
  */
-export interface LROsPostAsyncNoRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsPostAsyncNoRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPostAsyncNoRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPostAsyncRetryFailed operation.
  */
-export interface LROsPostAsyncRetryFailedResponse extends msRest.HttpResponse {
+export interface LROsPostAsyncRetryFailedResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPostAsyncRetryFailedHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPostAsyncRetrycanceled operation.
  */
-export interface LROsPostAsyncRetrycanceledResponse extends msRest.HttpResponse {
+export interface LROsPostAsyncRetrycanceledResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsPostAsyncRetrycanceledHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/canceled/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/canceled/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the put201CreatingSucceeded200 operation.
  */
-export interface LRORetrysPut201CreatingSucceeded200Response extends msRest.HttpResponse {
+export interface LRORetrysPut201CreatingSucceeded200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncRelativeRetrySucceeded operation.
  */
-export interface LRORetrysPutAsyncRelativeRetrySucceededResponse extends msRest.HttpResponse {
+export interface LRORetrysPutAsyncRelativeRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysPutAsyncRelativeRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the deleteProvisioning202Accepted200Succeeded
  * operation.
  */
-export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse extends msRest.HttpResponse {
+export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysDeleteProvisioning202Accepted200SucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the delete202Retry200 operation.
  */
-export interface LRORetrysDelete202Retry200Response extends msRest.HttpResponse {
+export interface LRORetrysDelete202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysDelete202Retry200Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the deleteAsyncRelativeRetrySucceeded operation.
  */
-export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse extends msRest.HttpResponse {
+export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export interface LRORetrysPost202Retry200Response extends msRest.HttpResponse {
+export interface LRORetrysPost202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysPost202Retry200Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the postAsyncRelativeRetrySucceeded operation.
  */
-export interface LRORetrysPostAsyncRelativeRetrySucceededResponse extends msRest.HttpResponse {
+export interface LRORetrysPostAsyncRelativeRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysPostAsyncRelativeRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPut201CreatingSucceeded200 operation.
  */
-export interface LRORetrysBeginPut201CreatingSucceeded200Response extends msRest.HttpResponse {
+export interface LRORetrysBeginPut201CreatingSucceeded200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetrySucceeded
  * operation.
  */
-export interface LRORetrysPutAsyncRelativeRetrySucceededResponse extends msRest.HttpResponse {
+export interface LRORetrysPutAsyncRelativeRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysPutAsyncRelativeRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the
  * beginDeleteProvisioning202Accepted200Succeeded operation.
  */
-export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse extends msRest.HttpResponse {
+export interface LRORetrysDeleteProvisioning202Accepted200SucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysDeleteProvisioning202Accepted200SucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
    */
-  bodyAsText: string;
+  locationHeader: string;
   /**
-   * The response body as parsed JSON or XML
+   * Number of milliseconds until the next poll should be sent, will be set to zero
    */
-  parsedBody: Product;
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginDelete202Retry200 operation.
  */
-export interface LRORetrysDelete202Retry200Response extends msRest.HttpResponse {
+export interface LRORetrysDelete202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysDelete202Retry200Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginDeleteAsyncRelativeRetrySucceeded
  * operation.
  */
-export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse extends msRest.HttpResponse {
+export interface LRORetrysDeleteAsyncRelativeRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPost202Retry200 operation.
  */
-export interface LRORetrysPost202Retry200Response extends msRest.HttpResponse {
+export interface LRORetrysPost202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysPost202Retry200Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetrySucceeded
  * operation.
  */
-export interface LRORetrysPostAsyncRelativeRetrySucceededResponse extends msRest.HttpResponse {
+export interface LRORetrysPostAsyncRelativeRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LRORetrysPostAsyncRelativeRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the putNonRetry400 operation.
  */
-export interface LROSADsPutNonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsPutNonRetry400Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putNonRetry201Creating400 operation.
  */
-export interface LROSADsPutNonRetry201Creating400Response extends msRest.HttpResponse {
+export interface LROSADsPutNonRetry201Creating400Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putNonRetry201Creating400InvalidJson
  * operation.
  */
-export interface LROSADsPutNonRetry201Creating400InvalidJsonResponse extends msRest.HttpResponse {
+export interface LROSADsPutNonRetry201Creating400InvalidJsonResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncRelativeRetry400 operation.
  */
-export interface LROSADsPutAsyncRelativeRetry400Response extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetry400Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/putasync/retry/operationResults/400
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/putasync/retry/operationResults/400
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the deleteNonRetry400 operation.
  */
-export interface LROSADsDeleteNonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsDeleteNonRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteNonRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the delete202NonRetry400 operation.
  */
-export interface LROSADsDelete202NonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsDelete202NonRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDelete202NonRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the deleteAsyncRelativeRetry400 operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetry400Response extends msRest.HttpResponse {
+export interface LROSADsDeleteAsyncRelativeRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteAsyncRelativeRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/deleteasync/retry/operationResults/400
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/deleteasync/retry/operationResults/400
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the postNonRetry400 operation.
  */
-export interface LROSADsPostNonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsPostNonRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostNonRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the post202NonRetry400 operation.
  */
-export interface LROSADsPost202NonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsPost202NonRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPost202NonRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the postAsyncRelativeRetry400 operation.
  */
-export interface LROSADsPostAsyncRelativeRetry400Response extends msRest.HttpResponse {
+export interface LROSADsPostAsyncRelativeRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostAsyncRelativeRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/putasync/retry/operationResults/400
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/putasync/retry/operationResults/400
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the putError201NoProvisioningStatePayload
  * operation.
  */
-export interface LROSADsPutError201NoProvisioningStatePayloadResponse extends msRest.HttpResponse {
+export interface LROSADsPutError201NoProvisioningStatePayloadResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncRelativeRetryNoStatus operation.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusResponse extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetryNoStatusResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncRelativeRetryNoStatusPayload
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryNoStatus operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse extends msRest.HttpResponse {
+export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteAsyncRelativeRetryNoStatusHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the post202NoLocation operation.
  */
-export interface LROSADsPost202NoLocationResponse extends msRest.HttpResponse {
+export interface LROSADsPost202NoLocationResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPost202NoLocationHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will not be set
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the postAsyncRelativeRetryNoPayload operation.
  */
-export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse extends msRest.HttpResponse {
+export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostAsyncRelativeRetryNoPayloadHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/putasync/retry/failed/operationResults/nopayload
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/putasync/retry/failed/operationResults/nopayload
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the put200InvalidJson operation.
  */
-export interface LROSADsPut200InvalidJsonResponse extends msRest.HttpResponse {
+export interface LROSADsPut200InvalidJsonResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncRelativeRetryInvalidHeader operation.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the putAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the delete202RetryInvalidHeader operation.
  */
-export interface LROSADsDelete202RetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsDelete202RetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDelete202RetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /foo
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to /bar
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /foo
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to /foo
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to /bar
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpResponse {
+export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the post202RetryInvalidHeader operation.
  */
-export interface LROSADsPost202RetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsPost202RetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPost202RetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /foo
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to /bar
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the postAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to foo
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to foo
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to /bar
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the postAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpResponse {
+export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPutNonRetry400 operation.
  */
-export interface LROSADsBeginPutNonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsBeginPutNonRetry400Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutNonRetry201Creating400 operation.
  */
-export interface LROSADsBeginPutNonRetry201Creating400Response extends msRest.HttpResponse {
+export interface LROSADsBeginPutNonRetry201Creating400Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutNonRetry201Creating400InvalidJson
  * operation.
  */
-export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse extends msRest.HttpResponse {
+export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetry400 operation.
  */
-export interface LROSADsPutAsyncRelativeRetry400Response extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetry400Headers;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/putasync/retry/operationResults/400
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/putasync/retry/operationResults/400
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginDeleteNonRetry400 operation.
  */
-export interface LROSADsDeleteNonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsDeleteNonRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteNonRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginDelete202NonRetry400 operation.
  */
-export interface LROSADsDelete202NonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsDelete202NonRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDelete202NonRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginDeleteAsyncRelativeRetry400 operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetry400Response extends msRest.HttpResponse {
+export interface LROSADsDeleteAsyncRelativeRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteAsyncRelativeRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/deleteasync/retry/operationResults/400
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/deleteasync/retry/operationResults/400
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPostNonRetry400 operation.
  */
-export interface LROSADsPostNonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsPostNonRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostNonRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPost202NonRetry400 operation.
  */
-export interface LROSADsPost202NonRetry400Response extends msRest.HttpResponse {
+export interface LROSADsPost202NonRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPost202NonRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetry400 operation.
  */
-export interface LROSADsPostAsyncRelativeRetry400Response extends msRest.HttpResponse {
+export interface LROSADsPostAsyncRelativeRetry400Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostAsyncRelativeRetry400Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/putasync/retry/operationResults/400
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/nonretryerror/putasync/retry/operationResults/400
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPutError201NoProvisioningStatePayload
  * operation.
  */
-export interface LROSADsBeginPutError201NoProvisioningStatePayloadResponse extends msRest.HttpResponse {
+export interface LROSADsBeginPutError201NoProvisioningStatePayloadResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetryNoStatus operation.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusResponse extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetryNoStatusResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetryNoStatusPayload
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginDeleteAsyncRelativeRetryNoStatus
  * operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse extends msRest.HttpResponse {
+export interface LROSADsDeleteAsyncRelativeRetryNoStatusResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteAsyncRelativeRetryNoStatusHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/deleteasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPost202NoLocation operation.
  */
-export interface LROSADsPost202NoLocationResponse extends msRest.HttpResponse {
+export interface LROSADsPost202NoLocationResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPost202NoLocationHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will not be set
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetryNoPayload
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse extends msRest.HttpResponse {
+export interface LROSADsPostAsyncRelativeRetryNoPayloadResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostAsyncRelativeRetryNoPayloadHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/putasync/retry/failed/operationResults/nopayload
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/putasync/retry/failed/operationResults/nopayload
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPut200InvalidJson operation.
  */
-export interface LROSADsBeginPut200InvalidJsonResponse extends msRest.HttpResponse {
+export interface LROSADsBeginPut200InvalidJsonResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPutAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpResponse {
+export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/putasync/retry/failed/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginDelete202RetryInvalidHeader operation.
  */
-export interface LROSADsDelete202RetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsDelete202RetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDelete202RetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /foo
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to /bar
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginDeleteAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /foo
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to /foo
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to /bar
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the
  * beginDeleteAsyncRelativeRetryInvalidJsonPolling operation.
  */
-export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpResponse {
+export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPost202RetryInvalidHeader operation.
  */
-export interface LROSADsPost202RetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsPost202RetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPost202RetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /foo
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to /bar
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse extends msRest.HttpResponse {
+export interface LROSADsPostAsyncRelativeRetryInvalidHeaderResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to foo
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to foo
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to /bar
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPostAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse extends msRest.HttpResponse {
+export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the putAsyncRetrySucceeded operation.
  */
-export interface LROsCustomHeaderPutAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsCustomHeaderPutAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsCustomHeaderPutAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/customheader/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/customheader/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the put201CreatingSucceeded200 operation.
  */
-export interface LROsCustomHeaderPut201CreatingSucceeded200Response extends msRest.HttpResponse {
+export interface LROsCustomHeaderPut201CreatingSucceeded200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export interface LROsCustomHeaderPost202Retry200Response extends msRest.HttpResponse {
+export interface LROsCustomHeaderPost202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsCustomHeaderPost202Retry200Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/customheader/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the postAsyncRetrySucceeded operation.
  */
-export interface LROsCustomHeaderPostAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsCustomHeaderPostAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsCustomHeaderPostAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/customheader/putasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/customheader/putasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPutAsyncRetrySucceeded operation.
  */
-export interface LROsCustomHeaderPutAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsCustomHeaderPutAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsCustomHeaderPutAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Location to poll for result status: will be set to
+   * /lro/customheader/putasync/retry/succeeded/operationResults/200
    */
-  bodyAsText: string;
+  azureAsyncOperation: string;
   /**
-   * The response body as parsed JSON or XML
+   * Location to poll for result status: will be set to
+   * /lro/customheader/putasync/retry/succeeded/operationResults/200
    */
-  parsedBody: Product;
+  locationHeader: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
+  /**
+   * Resource Id
+   */
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPut201CreatingSucceeded200 operation.
  */
-export interface LROsCustomHeaderBeginPut201CreatingSucceeded200Response extends msRest.HttpResponse {
+export interface LROsCustomHeaderBeginPut201CreatingSucceeded200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Resource Id
    */
-  parsedBody: Product;
+  id: string;
+  /**
+   * Resource Type
+   */
+  type: string;
+  tags: { [propertyName: string]: string };
+  /**
+   * Resource Location
+   */
+  location: string;
+  /**
+   * Resource Name
+   */
+  name: string;
+  provisioningState: string;
+  /**
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   */
+  provisioningStateValues: ProvisioningStateValues;
 }
 
 /**
  * Contains response data for the beginPost202Retry200 operation.
  */
-export interface LROsCustomHeaderPost202Retry200Response extends msRest.HttpResponse {
+export interface LROsCustomHeaderPost202Retry200Response {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsCustomHeaderPost202Retry200Headers;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to /lro/customheader/post/202/retry/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }
 
 /**
  * Contains response data for the beginPostAsyncRetrySucceeded operation.
  */
-export interface LROsCustomHeaderPostAsyncRetrySucceededResponse extends msRest.HttpResponse {
+export interface LROsCustomHeaderPostAsyncRetrySucceededResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: LROsCustomHeaderPostAsyncRetrySucceededHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/customheader/putasync/retry/succeeded/operationResults/200
+   */
+  azureAsyncOperation: string;
+  /**
+   * Location to poll for result status: will be set to
+   * /lro/customheader/putasync/retry/succeeded/operationResults/200
+   */
+  location: string;
+  /**
+   * Number of milliseconds until the next poll should be sent, will be set to zero
+   */
+  retryAfter: number;
 }

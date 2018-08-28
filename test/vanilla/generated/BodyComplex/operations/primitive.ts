@@ -36,463 +36,17 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getIntWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetIntResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntOperationSpec) as Promise<Models.PrimitiveGetIntResponse>;
-  }
-
-  /**
-   * Put complex types with integer properties
-   *
-   * @param {IntWrapper} complexBody Please put -1 and 2
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putIntWithHttpOperationResponse(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        complexBody,
-        options
-      },
-      putIntOperationSpec);
-  }
-
-  /**
-   * Get complex types with long properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLongWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetLongResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLongOperationSpec) as Promise<Models.PrimitiveGetLongResponse>;
-  }
-
-  /**
-   * Put complex types with long properties
-   *
-   * @param {LongWrapper} complexBody Please put 1099511627775 and -999511627788
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putLongWithHttpOperationResponse(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        complexBody,
-        options
-      },
-      putLongOperationSpec);
-  }
-
-  /**
-   * Get complex types with float properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetFloatResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getFloatOperationSpec) as Promise<Models.PrimitiveGetFloatResponse>;
-  }
-
-  /**
-   * Put complex types with float properties
-   *
-   * @param {FloatWrapper} complexBody Please put 1.05 and -0.003
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putFloatWithHttpOperationResponse(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        complexBody,
-        options
-      },
-      putFloatOperationSpec);
-  }
-
-  /**
-   * Get complex types with double properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDoubleResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDoubleOperationSpec) as Promise<Models.PrimitiveGetDoubleResponse>;
-  }
-
-  /**
-   * Put complex types with double properties
-   *
-   * @param {DoubleWrapper} complexBody Please put 3e-100 and
-   * -0.000000000000000000000000000000000000000000000000000000005
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDoubleWithHttpOperationResponse(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        complexBody,
-        options
-      },
-      putDoubleOperationSpec);
-  }
-
-  /**
-   * Get complex types with bool properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBoolWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetBoolResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBoolOperationSpec) as Promise<Models.PrimitiveGetBoolResponse>;
-  }
-
-  /**
-   * Put complex types with bool properties
-   *
-   * @param {BooleanWrapper} complexBody Please put true and false
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBoolWithHttpOperationResponse(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        complexBody,
-        options
-      },
-      putBoolOperationSpec);
-  }
-
-  /**
-   * Get complex types with string properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getStringOperationSpec) as Promise<Models.PrimitiveGetStringResponse>;
-  }
-
-  /**
-   * Put complex types with string properties
-   *
-   * @param {StringWrapper} complexBody Please put 'goodrequest', '', and null
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putStringWithHttpOperationResponse(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        complexBody,
-        options
-      },
-      putStringOperationSpec);
-  }
-
-  /**
-   * Get complex types with date properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateOperationSpec) as Promise<Models.PrimitiveGetDateResponse>;
-  }
-
-  /**
-   * Put complex types with date properties
-   *
-   * @param {DateWrapper} complexBody Please put '0001-01-01' and '2016-02-29'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDateWithHttpOperationResponse(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        complexBody,
-        options
-      },
-      putDateOperationSpec);
-  }
-
-  /**
-   * Get complex types with datetime properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeOperationSpec) as Promise<Models.PrimitiveGetDateTimeResponse>;
-  }
-
-  /**
-   * Put complex types with datetime properties
-   *
-   * @param {DatetimeWrapper} complexBody Please put '0001-01-01T12:00:00-04:00' and
-   * '2015-05-18T11:38:00-08:00'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDateTimeWithHttpOperationResponse(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        complexBody,
-        options
-      },
-      putDateTimeOperationSpec);
-  }
-
-  /**
-   * Get complex types with datetimeRfc1123 properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeRfc1123WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeRfc1123Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeRfc1123OperationSpec) as Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
-  }
-
-  /**
-   * Put complex types with datetimeRfc1123 properties
-   *
-   * @param {Datetimerfc1123Wrapper} complexBody Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon,
-   * 18 May 2015 11:38:00 GMT'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDateTimeRfc1123WithHttpOperationResponse(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        complexBody,
-        options
-      },
-      putDateTimeRfc1123OperationSpec);
-  }
-
-  /**
-   * Get complex types with duration properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDurationWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDurationResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDurationOperationSpec) as Promise<Models.PrimitiveGetDurationResponse>;
-  }
-
-  /**
-   * Put complex types with duration properties
-   *
-   * @param {PrimitivePutDurationOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDurationWithHttpOperationResponse(options?: Models.PrimitivePutDurationOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putDurationOperationSpec);
-  }
-
-  /**
-   * Get complex types with byte properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getByteWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetByteResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getByteOperationSpec) as Promise<Models.PrimitiveGetByteResponse>;
-  }
-
-  /**
-   * Put complex types with byte properties
-   *
-   * @param {PrimitivePutByteOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putByteWithHttpOperationResponse(options?: Models.PrimitivePutByteOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putByteOperationSpec);
-  }
-
-  /**
-   * Get complex types with integer properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.IntWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.IntWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getInt(): Promise<Models.IntWrapper>;
-  getInt(options: msRest.RequestOptionsBase): Promise<Models.IntWrapper>;
+  getInt(): Promise<Models.PrimitiveGetIntResponse>;
+  getInt(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetIntResponse>;
   getInt(callback: msRest.ServiceCallback<Models.IntWrapper>): void;
   getInt(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.IntWrapper>): void;
-  getInt(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.IntWrapper>): any {
-    return msRest.responseToBody(this.getIntWithHttpOperationResponse.bind(this), options, callback);
+  getInt(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.IntWrapper>): Promise<Models.PrimitiveGetIntResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntOperationSpec,
+      callback) as Promise<Models.PrimitiveGetIntResponse>;
   }
 
   /**
@@ -502,21 +56,24 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putInt(complexBody: Models.IntWrapper): Promise<void>;
-  putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase): Promise<void>;
+  putInt(complexBody: Models.IntWrapper): Promise<msRest.RestResponse>;
+  putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putInt(complexBody: Models.IntWrapper, callback: msRest.ServiceCallback<void>): void;
   putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putInt(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putIntWithHttpOperationResponse.bind(this), complexBody, options, callback);
+  putInt(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putIntOperationSpec,
+      callback);
   }
 
   /**
@@ -524,21 +81,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LongWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LongWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getLong(): Promise<Models.LongWrapper>;
-  getLong(options: msRest.RequestOptionsBase): Promise<Models.LongWrapper>;
+  getLong(): Promise<Models.PrimitiveGetLongResponse>;
+  getLong(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetLongResponse>;
   getLong(callback: msRest.ServiceCallback<Models.LongWrapper>): void;
   getLong(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LongWrapper>): void;
-  getLong(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LongWrapper>): any {
-    return msRest.responseToBody(this.getLongWithHttpOperationResponse.bind(this), options, callback);
+  getLong(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LongWrapper>): Promise<Models.PrimitiveGetLongResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLongOperationSpec,
+      callback) as Promise<Models.PrimitiveGetLongResponse>;
   }
 
   /**
@@ -548,21 +107,24 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putLong(complexBody: Models.LongWrapper): Promise<void>;
-  putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase): Promise<void>;
+  putLong(complexBody: Models.LongWrapper): Promise<msRest.RestResponse>;
+  putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putLong(complexBody: Models.LongWrapper, callback: msRest.ServiceCallback<void>): void;
   putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLong(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putLongWithHttpOperationResponse.bind(this), complexBody, options, callback);
+  putLong(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putLongOperationSpec,
+      callback);
   }
 
   /**
@@ -570,21 +132,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.FloatWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.FloatWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getFloat(): Promise<Models.FloatWrapper>;
-  getFloat(options: msRest.RequestOptionsBase): Promise<Models.FloatWrapper>;
+  getFloat(): Promise<Models.PrimitiveGetFloatResponse>;
+  getFloat(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetFloatResponse>;
   getFloat(callback: msRest.ServiceCallback<Models.FloatWrapper>): void;
   getFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FloatWrapper>): void;
-  getFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FloatWrapper>): any {
-    return msRest.responseToBody(this.getFloatWithHttpOperationResponse.bind(this), options, callback);
+  getFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FloatWrapper>): Promise<Models.PrimitiveGetFloatResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getFloatOperationSpec,
+      callback) as Promise<Models.PrimitiveGetFloatResponse>;
   }
 
   /**
@@ -594,21 +158,24 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putFloat(complexBody: Models.FloatWrapper): Promise<void>;
-  putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase): Promise<void>;
+  putFloat(complexBody: Models.FloatWrapper): Promise<msRest.RestResponse>;
+  putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putFloat(complexBody: Models.FloatWrapper, callback: msRest.ServiceCallback<void>): void;
   putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFloat(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putFloatWithHttpOperationResponse.bind(this), complexBody, options, callback);
+  putFloat(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putFloatOperationSpec,
+      callback);
   }
 
   /**
@@ -616,21 +183,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DoubleWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DoubleWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getDouble(): Promise<Models.DoubleWrapper>;
-  getDouble(options: msRest.RequestOptionsBase): Promise<Models.DoubleWrapper>;
+  getDouble(): Promise<Models.PrimitiveGetDoubleResponse>;
+  getDouble(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDoubleResponse>;
   getDouble(callback: msRest.ServiceCallback<Models.DoubleWrapper>): void;
   getDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DoubleWrapper>): void;
-  getDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DoubleWrapper>): any {
-    return msRest.responseToBody(this.getDoubleWithHttpOperationResponse.bind(this), options, callback);
+  getDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DoubleWrapper>): Promise<Models.PrimitiveGetDoubleResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDoubleOperationSpec,
+      callback) as Promise<Models.PrimitiveGetDoubleResponse>;
   }
 
   /**
@@ -641,21 +210,24 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDouble(complexBody: Models.DoubleWrapper): Promise<void>;
-  putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase): Promise<void>;
+  putDouble(complexBody: Models.DoubleWrapper): Promise<msRest.RestResponse>;
+  putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDouble(complexBody: Models.DoubleWrapper, callback: msRest.ServiceCallback<void>): void;
   putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDouble(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDoubleWithHttpOperationResponse.bind(this), complexBody, options, callback);
+  putDouble(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putDoubleOperationSpec,
+      callback);
   }
 
   /**
@@ -663,21 +235,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.BooleanWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.BooleanWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getBool(): Promise<Models.BooleanWrapper>;
-  getBool(options: msRest.RequestOptionsBase): Promise<Models.BooleanWrapper>;
+  getBool(): Promise<Models.PrimitiveGetBoolResponse>;
+  getBool(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetBoolResponse>;
   getBool(callback: msRest.ServiceCallback<Models.BooleanWrapper>): void;
   getBool(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.BooleanWrapper>): void;
-  getBool(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.BooleanWrapper>): any {
-    return msRest.responseToBody(this.getBoolWithHttpOperationResponse.bind(this), options, callback);
+  getBool(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.BooleanWrapper>): Promise<Models.PrimitiveGetBoolResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBoolOperationSpec,
+      callback) as Promise<Models.PrimitiveGetBoolResponse>;
   }
 
   /**
@@ -687,21 +261,24 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBool(complexBody: Models.BooleanWrapper): Promise<void>;
-  putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase): Promise<void>;
+  putBool(complexBody: Models.BooleanWrapper): Promise<msRest.RestResponse>;
+  putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBool(complexBody: Models.BooleanWrapper, callback: msRest.ServiceCallback<void>): void;
   putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBool(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBoolWithHttpOperationResponse.bind(this), complexBody, options, callback);
+  putBool(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putBoolOperationSpec,
+      callback);
   }
 
   /**
@@ -709,21 +286,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StringWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StringWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getString(): Promise<Models.StringWrapper>;
-  getString(options: msRest.RequestOptionsBase): Promise<Models.StringWrapper>;
+  getString(): Promise<Models.PrimitiveGetStringResponse>;
+  getString(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetStringResponse>;
   getString(callback: msRest.ServiceCallback<Models.StringWrapper>): void;
   getString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StringWrapper>): void;
-  getString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StringWrapper>): any {
-    return msRest.responseToBody(this.getStringWithHttpOperationResponse.bind(this), options, callback);
+  getString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StringWrapper>): Promise<Models.PrimitiveGetStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getStringOperationSpec,
+      callback) as Promise<Models.PrimitiveGetStringResponse>;
   }
 
   /**
@@ -733,21 +312,24 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putString(complexBody: Models.StringWrapper): Promise<void>;
-  putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase): Promise<void>;
+  putString(complexBody: Models.StringWrapper): Promise<msRest.RestResponse>;
+  putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putString(complexBody: Models.StringWrapper, callback: msRest.ServiceCallback<void>): void;
   putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putString(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putStringWithHttpOperationResponse.bind(this), complexBody, options, callback);
+  putString(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putStringOperationSpec,
+      callback);
   }
 
   /**
@@ -755,21 +337,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DateWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DateWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getDate(): Promise<Models.DateWrapper>;
-  getDate(options: msRest.RequestOptionsBase): Promise<Models.DateWrapper>;
+  getDate(): Promise<Models.PrimitiveGetDateResponse>;
+  getDate(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateResponse>;
   getDate(callback: msRest.ServiceCallback<Models.DateWrapper>): void;
   getDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DateWrapper>): void;
-  getDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DateWrapper>): any {
-    return msRest.responseToBody(this.getDateWithHttpOperationResponse.bind(this), options, callback);
+  getDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DateWrapper>): Promise<Models.PrimitiveGetDateResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateOperationSpec,
+      callback) as Promise<Models.PrimitiveGetDateResponse>;
   }
 
   /**
@@ -779,21 +363,24 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDate(complexBody: Models.DateWrapper): Promise<void>;
-  putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase): Promise<void>;
+  putDate(complexBody: Models.DateWrapper): Promise<msRest.RestResponse>;
+  putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDate(complexBody: Models.DateWrapper, callback: msRest.ServiceCallback<void>): void;
   putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDate(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDateWithHttpOperationResponse.bind(this), complexBody, options, callback);
+  putDate(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putDateOperationSpec,
+      callback);
   }
 
   /**
@@ -801,21 +388,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DatetimeWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DatetimeWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTime(): Promise<Models.DatetimeWrapper>;
-  getDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeWrapper>;
+  getDateTime(): Promise<Models.PrimitiveGetDateTimeResponse>;
+  getDateTime(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeResponse>;
   getDateTime(callback: msRest.ServiceCallback<Models.DatetimeWrapper>): void;
   getDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DatetimeWrapper>): void;
-  getDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DatetimeWrapper>): any {
-    return msRest.responseToBody(this.getDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DatetimeWrapper>): Promise<Models.PrimitiveGetDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeOperationSpec,
+      callback) as Promise<Models.PrimitiveGetDateTimeResponse>;
   }
 
   /**
@@ -826,21 +415,24 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDateTime(complexBody: Models.DatetimeWrapper): Promise<void>;
-  putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase): Promise<void>;
+  putDateTime(complexBody: Models.DatetimeWrapper): Promise<msRest.RestResponse>;
+  putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDateTime(complexBody: Models.DatetimeWrapper, callback: msRest.ServiceCallback<void>): void;
   putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTime(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDateTimeWithHttpOperationResponse.bind(this), complexBody, options, callback);
+  putDateTime(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putDateTimeOperationSpec,
+      callback);
   }
 
   /**
@@ -848,21 +440,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Datetimerfc1123Wrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Datetimerfc1123Wrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTimeRfc1123(): Promise<Models.Datetimerfc1123Wrapper>;
-  getDateTimeRfc1123(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123Wrapper>;
+  getDateTimeRfc1123(): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
+  getDateTimeRfc1123(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
   getDateTimeRfc1123(callback: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): void;
   getDateTimeRfc1123(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): void;
-  getDateTimeRfc1123(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): any {
-    return msRest.responseToBody(this.getDateTimeRfc1123WithHttpOperationResponse.bind(this), options, callback);
+  getDateTimeRfc1123(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): Promise<Models.PrimitiveGetDateTimeRfc1123Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeRfc1123OperationSpec,
+      callback) as Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
   }
 
   /**
@@ -873,21 +467,24 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper): Promise<void>;
-  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase): Promise<void>;
+  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper): Promise<msRest.RestResponse>;
+  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDateTimeRfc1123WithHttpOperationResponse.bind(this), complexBody, options, callback);
+  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        complexBody,
+        options
+      },
+      putDateTimeRfc1123OperationSpec,
+      callback);
   }
 
   /**
@@ -895,21 +492,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DurationWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DurationWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getDuration(): Promise<Models.DurationWrapper>;
-  getDuration(options: msRest.RequestOptionsBase): Promise<Models.DurationWrapper>;
+  getDuration(): Promise<Models.PrimitiveGetDurationResponse>;
+  getDuration(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDurationResponse>;
   getDuration(callback: msRest.ServiceCallback<Models.DurationWrapper>): void;
   getDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DurationWrapper>): void;
-  getDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DurationWrapper>): any {
-    return msRest.responseToBody(this.getDurationWithHttpOperationResponse.bind(this), options, callback);
+  getDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DurationWrapper>): Promise<Models.PrimitiveGetDurationResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDurationOperationSpec,
+      callback) as Promise<Models.PrimitiveGetDurationResponse>;
   }
 
   /**
@@ -917,21 +516,23 @@ export class Primitive {
    *
    * @param {PrimitivePutDurationOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDuration(): Promise<void>;
-  putDuration(options: Models.PrimitivePutDurationOptionalParams): Promise<void>;
+  putDuration(): Promise<msRest.RestResponse>;
+  putDuration(options: Models.PrimitivePutDurationOptionalParams): Promise<msRest.RestResponse>;
   putDuration(callback: msRest.ServiceCallback<void>): void;
   putDuration(options: Models.PrimitivePutDurationOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDuration(options?: Models.PrimitivePutDurationOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDurationWithHttpOperationResponse.bind(this), options, callback);
+  putDuration(options?: Models.PrimitivePutDurationOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putDurationOperationSpec,
+      callback);
   }
 
   /**
@@ -939,21 +540,23 @@ export class Primitive {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ByteWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ByteWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getByte(): Promise<Models.ByteWrapper>;
-  getByte(options: msRest.RequestOptionsBase): Promise<Models.ByteWrapper>;
+  getByte(): Promise<Models.PrimitiveGetByteResponse>;
+  getByte(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetByteResponse>;
   getByte(callback: msRest.ServiceCallback<Models.ByteWrapper>): void;
   getByte(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ByteWrapper>): void;
-  getByte(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ByteWrapper>): any {
-    return msRest.responseToBody(this.getByteWithHttpOperationResponse.bind(this), options, callback);
+  getByte(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ByteWrapper>): Promise<Models.PrimitiveGetByteResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getByteOperationSpec,
+      callback) as Promise<Models.PrimitiveGetByteResponse>;
   }
 
   /**
@@ -961,21 +564,23 @@ export class Primitive {
    *
    * @param {PrimitivePutByteOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putByte(): Promise<void>;
-  putByte(options: Models.PrimitivePutByteOptionalParams): Promise<void>;
+  putByte(): Promise<msRest.RestResponse>;
+  putByte(options: Models.PrimitivePutByteOptionalParams): Promise<msRest.RestResponse>;
   putByte(callback: msRest.ServiceCallback<void>): void;
   putByte(options: Models.PrimitivePutByteOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putByte(options?: Models.PrimitivePutByteOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putByteWithHttpOperationResponse.bind(this), options, callback);
+  putByte(options?: Models.PrimitivePutByteOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putByteOperationSpec,
+      callback);
   }
 
 }

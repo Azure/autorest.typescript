@@ -37,12 +37,17 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetValidResponse> {
+  getValid(): Promise<Models.BasicGetValidResponse>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.BasicGetValidResponse>;
+  getValid(callback: msRest.ServiceCallback<Models.Basic>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec) as Promise<Models.BasicGetValidResponse>;
+      getValidOperationSpec,
+      callback) as Promise<Models.BasicGetValidResponse>;
   }
 
   /**
@@ -58,13 +63,18 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.Basic, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putValid(complexBody: Models.Basic): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.Basic, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Basic, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
         options
       },
-      putValidOperationSpec);
+      putValidOperationSpec,
+      callback);
   }
 
   /**
@@ -78,137 +88,17 @@ export class BasicOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetInvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidOperationSpec) as Promise<Models.BasicGetInvalidResponse>;
-  }
-
-  /**
-   * Get a basic complex type that is empty
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getEmptyOperationSpec) as Promise<Models.BasicGetEmptyResponse>;
-  }
-
-  /**
-   * Get a basic complex type whose properties are null
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullOperationSpec) as Promise<Models.BasicGetNullResponse>;
-  }
-
-  /**
-   * Get a basic complex type while the server doesn't provide a response payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetNotProvidedResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNotProvidedOperationSpec) as Promise<Models.BasicGetNotProvidedResponse>;
-  }
-
-  /**
-   * Get complex type {id: 2, name: 'abc', color: 'YELLOW'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Basic} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Basic} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getValid(): Promise<Models.Basic>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
-  getValid(callback: msRest.ServiceCallback<Models.Basic>): void;
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Please put {id: 2, name: 'abc', color: 'Magenta'}
-   *
-   * @param {Basic} complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putValid(complexBody: Models.Basic): Promise<void>;
-  putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase): Promise<void>;
-  putValid(complexBody: Models.Basic, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Basic, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), complexBody, options, callback);
-  }
-
-  /**
-   * Get a basic complex type that is invalid for the local strong type
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Basic} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Basic} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getInvalid(): Promise<Models.Basic>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
+  getInvalid(): Promise<Models.BasicGetInvalidResponse>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.BasicGetInvalidResponse>;
   getInvalid(callback: msRest.ServiceCallback<Models.Basic>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetInvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidOperationSpec,
+      callback) as Promise<Models.BasicGetInvalidResponse>;
   }
 
   /**
@@ -216,21 +106,23 @@ export class BasicOperations {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Basic} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Basic} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getEmpty(): Promise<Models.Basic>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
+  getEmpty(): Promise<Models.BasicGetEmptyResponse>;
+  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.BasicGetEmptyResponse>;
   getEmpty(callback: msRest.ServiceCallback<Models.Basic>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyOperationSpec,
+      callback) as Promise<Models.BasicGetEmptyResponse>;
   }
 
   /**
@@ -238,21 +130,23 @@ export class BasicOperations {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Basic} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Basic} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getNull(): Promise<Models.Basic>;
-  getNull(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
+  getNull(): Promise<Models.BasicGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.BasicGetNullResponse>;
   getNull(callback: msRest.ServiceCallback<Models.Basic>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec,
+      callback) as Promise<Models.BasicGetNullResponse>;
   }
 
   /**
@@ -260,21 +154,23 @@ export class BasicOperations {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Basic} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Basic} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getNotProvided(): Promise<Models.Basic>;
-  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.Basic>;
+  getNotProvided(): Promise<Models.BasicGetNotProvidedResponse>;
+  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.BasicGetNotProvidedResponse>;
   getNotProvided(callback: msRest.ServiceCallback<Models.Basic>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): any {
-    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), options, callback);
+  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetNotProvidedResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNotProvidedOperationSpec,
+      callback) as Promise<Models.BasicGetNotProvidedResponse>;
   }
 
 }

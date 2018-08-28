@@ -37,110 +37,17 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getValidOperationSpec) as Promise<Models.ArrayModelGetValidResponse>;
-  }
-
-  /**
-   * Put complex types with array property
-   *
-   * @param {ArrayModelPutValidOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putValidOperationSpec);
-  }
-
-  /**
-   * Get complex types with array property which is empty
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getEmptyOperationSpec) as Promise<Models.ArrayModelGetEmptyResponse>;
-  }
-
-  /**
-   * Put complex types with array property which is empty
-   *
-   * @param {ArrayModelPutEmptyOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putEmptyOperationSpec);
-  }
-
-  /**
-   * Get complex types with array property while server doesn't provide a response payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNotProvidedResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNotProvidedOperationSpec) as Promise<Models.ArrayModelGetNotProvidedResponse>;
-  }
-
-  /**
-   * Get complex types with array property
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ArrayWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ArrayWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getValid(): Promise<Models.ArrayWrapper>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayWrapper>;
+  getValid(): Promise<Models.ArrayModelGetValidResponse>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetValidResponse>;
   getValid(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): Promise<Models.ArrayModelGetValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetValidResponse>;
   }
 
   /**
@@ -148,21 +55,23 @@ export class ArrayModel {
    *
    * @param {ArrayModelPutValidOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putValid(): Promise<void>;
-  putValid(options: Models.ArrayModelPutValidOptionalParams): Promise<void>;
+  putValid(): Promise<msRest.RestResponse>;
+  putValid(options: Models.ArrayModelPutValidOptionalParams): Promise<msRest.RestResponse>;
   putValid(callback: msRest.ServiceCallback<void>): void;
   putValid(options: Models.ArrayModelPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putValid(options?: Models.ArrayModelPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), options, callback);
+  putValid(options?: Models.ArrayModelPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putValidOperationSpec,
+      callback);
   }
 
   /**
@@ -170,21 +79,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ArrayWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ArrayWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getEmpty(): Promise<Models.ArrayWrapper>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayWrapper>;
+  getEmpty(): Promise<Models.ArrayModelGetEmptyResponse>;
+  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse>;
   getEmpty(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): Promise<Models.ArrayModelGetEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyOperationSpec,
+      callback) as Promise<Models.ArrayModelGetEmptyResponse>;
   }
 
   /**
@@ -192,21 +103,23 @@ export class ArrayModel {
    *
    * @param {ArrayModelPutEmptyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putEmpty(): Promise<void>;
-  putEmpty(options: Models.ArrayModelPutEmptyOptionalParams): Promise<void>;
+  putEmpty(): Promise<msRest.RestResponse>;
+  putEmpty(options: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.RestResponse>;
   putEmpty(callback: msRest.ServiceCallback<void>): void;
   putEmpty(options: Models.ArrayModelPutEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(options?: Models.ArrayModelPutEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), options, callback);
+  putEmpty(options?: Models.ArrayModelPutEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -214,21 +127,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ArrayWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ArrayWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getNotProvided(): Promise<Models.ArrayWrapper>;
-  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.ArrayWrapper>;
+  getNotProvided(): Promise<Models.ArrayModelGetNotProvidedResponse>;
+  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNotProvidedResponse>;
   getNotProvided(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
-  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): any {
-    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), options, callback);
+  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): Promise<Models.ArrayModelGetNotProvidedResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNotProvidedOperationSpec,
+      callback) as Promise<Models.ArrayModelGetNotProvidedResponse>;
   }
 
 }

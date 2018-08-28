@@ -36,303 +36,17 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead300Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head300OperationSpec) as Promise<Models.HttpRedirectsHead300Response>;
-  }
-
-  /**
-   * Return 300 status code and redirect to /http/success/200
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet300Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get300OperationSpec) as Promise<Models.HttpRedirectsGet300Response>;
-  }
-
-  /**
-   * Return 301 status code and redirect to /http/success/200
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead301Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head301OperationSpec) as Promise<Models.HttpRedirectsHead301Response>;
-  }
-
-  /**
-   * Return 301 status code and redirect to /http/success/200
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet301Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get301OperationSpec) as Promise<Models.HttpRedirectsGet301Response>;
-  }
-
-  /**
-   * Put true Boolean value in request returns 301.  This request should not be automatically
-   * redirected, but should return the received 301 to the caller for evaluation
-   *
-   * @param {HttpRedirectsPut301OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  put301WithHttpOperationResponse(options?: Models.HttpRedirectsPut301OptionalParams): Promise<Models.HttpRedirectsPut301Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      put301OperationSpec) as Promise<Models.HttpRedirectsPut301Response>;
-  }
-
-  /**
-   * Return 302 status code and redirect to /http/success/200
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead302Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head302OperationSpec) as Promise<Models.HttpRedirectsHead302Response>;
-  }
-
-  /**
-   * Return 302 status code and redirect to /http/success/200
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet302Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get302OperationSpec) as Promise<Models.HttpRedirectsGet302Response>;
-  }
-
-  /**
-   * Patch true Boolean value in request returns 302.  This request should not be automatically
-   * redirected, but should return the received 302 to the caller for evaluation
-   *
-   * @param {HttpRedirectsPatch302OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  patch302WithHttpOperationResponse(options?: Models.HttpRedirectsPatch302OptionalParams): Promise<Models.HttpRedirectsPatch302Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      patch302OperationSpec) as Promise<Models.HttpRedirectsPatch302Response>;
-  }
-
-  /**
-   * Post true Boolean value in request returns 303.  This request should be automatically redirected
-   * usign a get, ultimately returning a 200 status code
-   *
-   * @param {HttpRedirectsPost303OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  post303WithHttpOperationResponse(options?: Models.HttpRedirectsPost303OptionalParams): Promise<Models.HttpRedirectsPost303Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      post303OperationSpec) as Promise<Models.HttpRedirectsPost303Response>;
-  }
-
-  /**
-   * Redirect with 307, resulting in a 200 success
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead307Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head307OperationSpec) as Promise<Models.HttpRedirectsHead307Response>;
-  }
-
-  /**
-   * Redirect get with 307, resulting in a 200 success
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet307Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get307OperationSpec) as Promise<Models.HttpRedirectsGet307Response>;
-  }
-
-  /**
-   * Put redirected with 307, resulting in a 200 after redirect
-   *
-   * @param {HttpRedirectsPut307OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  put307WithHttpOperationResponse(options?: Models.HttpRedirectsPut307OptionalParams): Promise<Models.HttpRedirectsPut307Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      put307OperationSpec) as Promise<Models.HttpRedirectsPut307Response>;
-  }
-
-  /**
-   * Patch redirected with 307, resulting in a 200 after redirect
-   *
-   * @param {HttpRedirectsPatch307OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  patch307WithHttpOperationResponse(options?: Models.HttpRedirectsPatch307OptionalParams): Promise<Models.HttpRedirectsPatch307Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      patch307OperationSpec) as Promise<Models.HttpRedirectsPatch307Response>;
-  }
-
-  /**
-   * Post redirected with 307, resulting in a 200 after redirect
-   *
-   * @param {HttpRedirectsPost307OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  post307WithHttpOperationResponse(options?: Models.HttpRedirectsPost307OptionalParams): Promise<Models.HttpRedirectsPost307Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      post307OperationSpec) as Promise<Models.HttpRedirectsPost307Response>;
-  }
-
-  /**
-   * Delete redirected with 307, resulting in a 200 after redirect
-   *
-   * @param {HttpRedirectsDelete307OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  delete307WithHttpOperationResponse(options?: Models.HttpRedirectsDelete307OptionalParams): Promise<Models.HttpRedirectsDelete307Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      delete307OperationSpec) as Promise<Models.HttpRedirectsDelete307Response>;
-  }
-
-  /**
-   * Return 300 status code and redirect to /http/success/200
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  head300(): Promise<void>;
-  head300(options: msRest.RequestOptionsBase): Promise<void>;
+  head300(): Promise<Models.HttpRedirectsHead300Response>;
+  head300(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead300Response>;
   head300(callback: msRest.ServiceCallback<void>): void;
   head300(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head300(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.head300WithHttpOperationResponse.bind(this), options, callback);
+  head300(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsHead300Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head300OperationSpec,
+      callback) as Promise<Models.HttpRedirectsHead300Response>;
   }
 
   /**
@@ -340,21 +54,23 @@ export class HttpRedirects {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get300(): Promise<string[]>;
-  get300(options: msRest.RequestOptionsBase): Promise<string[]>;
+  get300(): Promise<Models.HttpRedirectsGet300Response>;
+  get300(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet300Response>;
   get300(callback: msRest.ServiceCallback<string[]>): void;
   get300(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  get300(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    return msRest.responseToBody(this.get300WithHttpOperationResponse.bind(this), options, callback);
+  get300(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): Promise<Models.HttpRedirectsGet300Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get300OperationSpec,
+      callback) as Promise<Models.HttpRedirectsGet300Response>;
   }
 
   /**
@@ -362,21 +78,23 @@ export class HttpRedirects {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  head301(): Promise<void>;
-  head301(options: msRest.RequestOptionsBase): Promise<void>;
+  head301(): Promise<Models.HttpRedirectsHead301Response>;
+  head301(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead301Response>;
   head301(callback: msRest.ServiceCallback<void>): void;
   head301(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head301(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.head301WithHttpOperationResponse.bind(this), options, callback);
+  head301(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsHead301Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head301OperationSpec,
+      callback) as Promise<Models.HttpRedirectsHead301Response>;
   }
 
   /**
@@ -384,21 +102,23 @@ export class HttpRedirects {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get301(): Promise<void>;
-  get301(options: msRest.RequestOptionsBase): Promise<void>;
+  get301(): Promise<Models.HttpRedirectsGet301Response>;
+  get301(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet301Response>;
   get301(callback: msRest.ServiceCallback<void>): void;
   get301(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get301(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get301WithHttpOperationResponse.bind(this), options, callback);
+  get301(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsGet301Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get301OperationSpec,
+      callback) as Promise<Models.HttpRedirectsGet301Response>;
   }
 
   /**
@@ -407,21 +127,23 @@ export class HttpRedirects {
    *
    * @param {HttpRedirectsPut301OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  put301(): Promise<void>;
-  put301(options: Models.HttpRedirectsPut301OptionalParams): Promise<void>;
+  put301(): Promise<Models.HttpRedirectsPut301Response>;
+  put301(options: Models.HttpRedirectsPut301OptionalParams): Promise<Models.HttpRedirectsPut301Response>;
   put301(callback: msRest.ServiceCallback<void>): void;
   put301(options: Models.HttpRedirectsPut301OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put301(options?: Models.HttpRedirectsPut301OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.put301WithHttpOperationResponse.bind(this), options, callback);
+  put301(options?: Models.HttpRedirectsPut301OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPut301Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      put301OperationSpec,
+      callback) as Promise<Models.HttpRedirectsPut301Response>;
   }
 
   /**
@@ -429,21 +151,23 @@ export class HttpRedirects {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  head302(): Promise<void>;
-  head302(options: msRest.RequestOptionsBase): Promise<void>;
+  head302(): Promise<Models.HttpRedirectsHead302Response>;
+  head302(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead302Response>;
   head302(callback: msRest.ServiceCallback<void>): void;
   head302(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head302(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.head302WithHttpOperationResponse.bind(this), options, callback);
+  head302(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsHead302Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head302OperationSpec,
+      callback) as Promise<Models.HttpRedirectsHead302Response>;
   }
 
   /**
@@ -451,21 +175,23 @@ export class HttpRedirects {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get302(): Promise<void>;
-  get302(options: msRest.RequestOptionsBase): Promise<void>;
+  get302(): Promise<Models.HttpRedirectsGet302Response>;
+  get302(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet302Response>;
   get302(callback: msRest.ServiceCallback<void>): void;
   get302(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get302(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get302WithHttpOperationResponse.bind(this), options, callback);
+  get302(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsGet302Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get302OperationSpec,
+      callback) as Promise<Models.HttpRedirectsGet302Response>;
   }
 
   /**
@@ -474,21 +200,23 @@ export class HttpRedirects {
    *
    * @param {HttpRedirectsPatch302OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  patch302(): Promise<void>;
-  patch302(options: Models.HttpRedirectsPatch302OptionalParams): Promise<void>;
+  patch302(): Promise<Models.HttpRedirectsPatch302Response>;
+  patch302(options: Models.HttpRedirectsPatch302OptionalParams): Promise<Models.HttpRedirectsPatch302Response>;
   patch302(callback: msRest.ServiceCallback<void>): void;
   patch302(options: Models.HttpRedirectsPatch302OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch302(options?: Models.HttpRedirectsPatch302OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.patch302WithHttpOperationResponse.bind(this), options, callback);
+  patch302(options?: Models.HttpRedirectsPatch302OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPatch302Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      patch302OperationSpec,
+      callback) as Promise<Models.HttpRedirectsPatch302Response>;
   }
 
   /**
@@ -497,21 +225,23 @@ export class HttpRedirects {
    *
    * @param {HttpRedirectsPost303OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  post303(): Promise<void>;
-  post303(options: Models.HttpRedirectsPost303OptionalParams): Promise<void>;
+  post303(): Promise<Models.HttpRedirectsPost303Response>;
+  post303(options: Models.HttpRedirectsPost303OptionalParams): Promise<Models.HttpRedirectsPost303Response>;
   post303(callback: msRest.ServiceCallback<void>): void;
   post303(options: Models.HttpRedirectsPost303OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post303(options?: Models.HttpRedirectsPost303OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.post303WithHttpOperationResponse.bind(this), options, callback);
+  post303(options?: Models.HttpRedirectsPost303OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPost303Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      post303OperationSpec,
+      callback) as Promise<Models.HttpRedirectsPost303Response>;
   }
 
   /**
@@ -519,21 +249,23 @@ export class HttpRedirects {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  head307(): Promise<void>;
-  head307(options: msRest.RequestOptionsBase): Promise<void>;
+  head307(): Promise<Models.HttpRedirectsHead307Response>;
+  head307(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead307Response>;
   head307(callback: msRest.ServiceCallback<void>): void;
   head307(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head307(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.head307WithHttpOperationResponse.bind(this), options, callback);
+  head307(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsHead307Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head307OperationSpec,
+      callback) as Promise<Models.HttpRedirectsHead307Response>;
   }
 
   /**
@@ -541,21 +273,23 @@ export class HttpRedirects {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get307(): Promise<void>;
-  get307(options: msRest.RequestOptionsBase): Promise<void>;
+  get307(): Promise<Models.HttpRedirectsGet307Response>;
+  get307(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet307Response>;
   get307(callback: msRest.ServiceCallback<void>): void;
   get307(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get307(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get307WithHttpOperationResponse.bind(this), options, callback);
+  get307(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsGet307Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get307OperationSpec,
+      callback) as Promise<Models.HttpRedirectsGet307Response>;
   }
 
   /**
@@ -563,21 +297,23 @@ export class HttpRedirects {
    *
    * @param {HttpRedirectsPut307OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  put307(): Promise<void>;
-  put307(options: Models.HttpRedirectsPut307OptionalParams): Promise<void>;
+  put307(): Promise<Models.HttpRedirectsPut307Response>;
+  put307(options: Models.HttpRedirectsPut307OptionalParams): Promise<Models.HttpRedirectsPut307Response>;
   put307(callback: msRest.ServiceCallback<void>): void;
   put307(options: Models.HttpRedirectsPut307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put307(options?: Models.HttpRedirectsPut307OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.put307WithHttpOperationResponse.bind(this), options, callback);
+  put307(options?: Models.HttpRedirectsPut307OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPut307Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      put307OperationSpec,
+      callback) as Promise<Models.HttpRedirectsPut307Response>;
   }
 
   /**
@@ -585,21 +321,23 @@ export class HttpRedirects {
    *
    * @param {HttpRedirectsPatch307OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  patch307(): Promise<void>;
-  patch307(options: Models.HttpRedirectsPatch307OptionalParams): Promise<void>;
+  patch307(): Promise<Models.HttpRedirectsPatch307Response>;
+  patch307(options: Models.HttpRedirectsPatch307OptionalParams): Promise<Models.HttpRedirectsPatch307Response>;
   patch307(callback: msRest.ServiceCallback<void>): void;
   patch307(options: Models.HttpRedirectsPatch307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch307(options?: Models.HttpRedirectsPatch307OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.patch307WithHttpOperationResponse.bind(this), options, callback);
+  patch307(options?: Models.HttpRedirectsPatch307OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPatch307Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      patch307OperationSpec,
+      callback) as Promise<Models.HttpRedirectsPatch307Response>;
   }
 
   /**
@@ -607,21 +345,23 @@ export class HttpRedirects {
    *
    * @param {HttpRedirectsPost307OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  post307(): Promise<void>;
-  post307(options: Models.HttpRedirectsPost307OptionalParams): Promise<void>;
+  post307(): Promise<Models.HttpRedirectsPost307Response>;
+  post307(options: Models.HttpRedirectsPost307OptionalParams): Promise<Models.HttpRedirectsPost307Response>;
   post307(callback: msRest.ServiceCallback<void>): void;
   post307(options: Models.HttpRedirectsPost307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post307(options?: Models.HttpRedirectsPost307OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.post307WithHttpOperationResponse.bind(this), options, callback);
+  post307(options?: Models.HttpRedirectsPost307OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPost307Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      post307OperationSpec,
+      callback) as Promise<Models.HttpRedirectsPost307Response>;
   }
 
   /**
@@ -629,21 +369,23 @@ export class HttpRedirects {
    *
    * @param {HttpRedirectsDelete307OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  delete307(): Promise<void>;
-  delete307(options: Models.HttpRedirectsDelete307OptionalParams): Promise<void>;
+  delete307(): Promise<Models.HttpRedirectsDelete307Response>;
+  delete307(options: Models.HttpRedirectsDelete307OptionalParams): Promise<Models.HttpRedirectsDelete307Response>;
   delete307(callback: msRest.ServiceCallback<void>): void;
   delete307(options: Models.HttpRedirectsDelete307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete307(options?: Models.HttpRedirectsDelete307OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.delete307WithHttpOperationResponse.bind(this), options, callback);
+  delete307(options?: Models.HttpRedirectsDelete307OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsDelete307Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      delete307OperationSpec,
+      callback) as Promise<Models.HttpRedirectsDelete307Response>;
   }
 
 }

@@ -37,34 +37,17 @@ export class UsageOperations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.UsageListResponse> {
+  list(): Promise<Models.UsageListResponse>;
+  list(options: msRest.RequestOptionsBase): Promise<Models.UsageListResponse>;
+  list(callback: msRest.ServiceCallback<Models.UsageListResult>): void;
+  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.UsageListResult>): void;
+  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.UsageListResult>): Promise<Models.UsageListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec) as Promise<Models.UsageListResponse>;
-  }
-
-  /**
-   * Gets the current usage count and the limit for the resources under the subscription.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.UsageListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.UsageListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(): Promise<Models.UsageListResult>;
-  list(options: msRest.RequestOptionsBase): Promise<Models.UsageListResult>;
-  list(callback: msRest.ServiceCallback<Models.UsageListResult>): void;
-  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.UsageListResult>): void;
-  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.UsageListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), options, callback);
+      listOperationSpec,
+      callback) as Promise<Models.UsageListResponse>;
   }
 
 }

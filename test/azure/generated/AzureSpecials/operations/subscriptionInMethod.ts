@@ -40,111 +40,18 @@ export class SubscriptionInMethod {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postMethodLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        subscriptionId,
-        options
-      },
-      postMethodLocalValidOperationSpec);
-  }
-
-  /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription id = null,
-   * client-side validation should prevent you from making this call
-   *
-   * @param {string} subscriptionId This should appear as a method parameter, use value null,
-   * client-side validation should prvenet the call
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  postMethodLocalNullWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        subscriptionId,
-        options
-      },
-      postMethodLocalNullOperationSpec);
-  }
-
-  /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription id =
-   * '1234-5678-9012-3456' to succeed
-   *
-   * @param {string} subscriptionId Should appear as a method parameter -use value
-   * '1234-5678-9012-3456'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  postPathLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        subscriptionId,
-        options
-      },
-      postPathLocalValidOperationSpec);
-  }
-
-  /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription id =
-   * '1234-5678-9012-3456' to succeed
-   *
-   * @param {string} subscriptionId The subscriptionId, which appears in the path, the value is
-   * always '1234-5678-9012-3456'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  postSwaggerLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        subscriptionId,
-        options
-      },
-      postSwaggerLocalValidOperationSpec);
-  }
-
-  /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription id =
-   * '1234-5678-9012-3456' to succeed
-   *
-   * @param {string} subscriptionId This should appear as a method parameter, use value
-   * '1234-5678-9012-3456'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  postMethodLocalValid(subscriptionId: string): Promise<void>;
-  postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
+  postMethodLocalValid(subscriptionId: string): Promise<msRest.RestResponse>;
+  postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   postMethodLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postMethodLocalValidWithHttpOperationResponse.bind(this), subscriptionId, options, callback);
+  postMethodLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        subscriptionId,
+        options
+      },
+      postMethodLocalValidOperationSpec,
+      callback);
   }
 
   /**
@@ -156,21 +63,24 @@ export class SubscriptionInMethod {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  postMethodLocalNull(subscriptionId: string): Promise<void>;
-  postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
+  postMethodLocalNull(subscriptionId: string): Promise<msRest.RestResponse>;
+  postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   postMethodLocalNull(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalNull(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postMethodLocalNullWithHttpOperationResponse.bind(this), subscriptionId, options, callback);
+  postMethodLocalNull(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        subscriptionId,
+        options
+      },
+      postMethodLocalNullOperationSpec,
+      callback);
   }
 
   /**
@@ -182,21 +92,24 @@ export class SubscriptionInMethod {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  postPathLocalValid(subscriptionId: string): Promise<void>;
-  postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
+  postPathLocalValid(subscriptionId: string): Promise<msRest.RestResponse>;
+  postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   postPathLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postPathLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postPathLocalValidWithHttpOperationResponse.bind(this), subscriptionId, options, callback);
+  postPathLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        subscriptionId,
+        options
+      },
+      postPathLocalValidOperationSpec,
+      callback);
   }
 
   /**
@@ -208,21 +121,24 @@ export class SubscriptionInMethod {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  postSwaggerLocalValid(subscriptionId: string): Promise<void>;
-  postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<void>;
+  postSwaggerLocalValid(subscriptionId: string): Promise<msRest.RestResponse>;
+  postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   postSwaggerLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postSwaggerLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postSwaggerLocalValidWithHttpOperationResponse.bind(this), subscriptionId, options, callback);
+  postSwaggerLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        subscriptionId,
+        options
+      },
+      postSwaggerLocalValidOperationSpec,
+      callback);
   }
 
 }

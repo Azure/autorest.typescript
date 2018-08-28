@@ -36,72 +36,17 @@ export class HttpFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetEmptyErrorResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getEmptyErrorOperationSpec) as Promise<Models.HttpFailureGetEmptyErrorResponse>;
-  }
-
-  /**
-   * Get empty error form server
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNoModelErrorWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelErrorResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNoModelErrorOperationSpec) as Promise<Models.HttpFailureGetNoModelErrorResponse>;
-  }
-
-  /**
-   * Get empty response from server
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNoModelEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNoModelEmptyOperationSpec) as Promise<Models.HttpFailureGetNoModelEmptyResponse>;
-  }
-
-  /**
-   * Get empty error form server
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getEmptyError(): Promise<boolean>;
-  getEmptyError(options: msRest.RequestOptionsBase): Promise<boolean>;
+  getEmptyError(): Promise<Models.HttpFailureGetEmptyErrorResponse>;
+  getEmptyError(options: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetEmptyErrorResponse>;
   getEmptyError(callback: msRest.ServiceCallback<boolean>): void;
   getEmptyError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getEmptyError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.getEmptyErrorWithHttpOperationResponse.bind(this), options, callback);
+  getEmptyError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetEmptyErrorResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyErrorOperationSpec,
+      callback) as Promise<Models.HttpFailureGetEmptyErrorResponse>;
   }
 
   /**
@@ -109,21 +54,23 @@ export class HttpFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getNoModelError(): Promise<boolean>;
-  getNoModelError(options: msRest.RequestOptionsBase): Promise<boolean>;
+  getNoModelError(): Promise<Models.HttpFailureGetNoModelErrorResponse>;
+  getNoModelError(options: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelErrorResponse>;
   getNoModelError(callback: msRest.ServiceCallback<boolean>): void;
   getNoModelError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.getNoModelErrorWithHttpOperationResponse.bind(this), options, callback);
+  getNoModelError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelErrorResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNoModelErrorOperationSpec,
+      callback) as Promise<Models.HttpFailureGetNoModelErrorResponse>;
   }
 
   /**
@@ -131,21 +78,23 @@ export class HttpFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getNoModelEmpty(): Promise<boolean>;
-  getNoModelEmpty(options: msRest.RequestOptionsBase): Promise<boolean>;
+  getNoModelEmpty(): Promise<Models.HttpFailureGetNoModelEmptyResponse>;
+  getNoModelEmpty(options: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelEmptyResponse>;
   getNoModelEmpty(callback: msRest.ServiceCallback<boolean>): void;
   getNoModelEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.getNoModelEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getNoModelEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNoModelEmptyOperationSpec,
+      callback) as Promise<Models.HttpFailureGetNoModelEmptyResponse>;
   }
 
 }

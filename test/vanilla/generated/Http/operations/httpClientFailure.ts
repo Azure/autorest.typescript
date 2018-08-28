@@ -36,452 +36,17 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead400Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head400OperationSpec) as Promise<Models.HttpClientFailureHead400Response>;
-  }
-
-  /**
-   * Return 400 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet400Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get400OperationSpec) as Promise<Models.HttpClientFailureGet400Response>;
-  }
-
-  /**
-   * Return 400 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePut400OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  put400WithHttpOperationResponse(options?: Models.HttpClientFailurePut400OptionalParams): Promise<Models.HttpClientFailurePut400Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      put400OperationSpec) as Promise<Models.HttpClientFailurePut400Response>;
-  }
-
-  /**
-   * Return 400 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePatch400OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  patch400WithHttpOperationResponse(options?: Models.HttpClientFailurePatch400OptionalParams): Promise<Models.HttpClientFailurePatch400Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      patch400OperationSpec) as Promise<Models.HttpClientFailurePatch400Response>;
-  }
-
-  /**
-   * Return 400 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePost400OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  post400WithHttpOperationResponse(options?: Models.HttpClientFailurePost400OptionalParams): Promise<Models.HttpClientFailurePost400Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      post400OperationSpec) as Promise<Models.HttpClientFailurePost400Response>;
-  }
-
-  /**
-   * Return 400 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailureDelete400OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  delete400WithHttpOperationResponse(options?: Models.HttpClientFailureDelete400OptionalParams): Promise<Models.HttpClientFailureDelete400Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      delete400OperationSpec) as Promise<Models.HttpClientFailureDelete400Response>;
-  }
-
-  /**
-   * Return 401 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head401WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead401Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head401OperationSpec) as Promise<Models.HttpClientFailureHead401Response>;
-  }
-
-  /**
-   * Return 402 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get402WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet402Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get402OperationSpec) as Promise<Models.HttpClientFailureGet402Response>;
-  }
-
-  /**
-   * Return 403 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get403WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet403Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get403OperationSpec) as Promise<Models.HttpClientFailureGet403Response>;
-  }
-
-  /**
-   * Return 404 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePut404OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  put404WithHttpOperationResponse(options?: Models.HttpClientFailurePut404OptionalParams): Promise<Models.HttpClientFailurePut404Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      put404OperationSpec) as Promise<Models.HttpClientFailurePut404Response>;
-  }
-
-  /**
-   * Return 405 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePatch405OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  patch405WithHttpOperationResponse(options?: Models.HttpClientFailurePatch405OptionalParams): Promise<Models.HttpClientFailurePatch405Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      patch405OperationSpec) as Promise<Models.HttpClientFailurePatch405Response>;
-  }
-
-  /**
-   * Return 406 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePost406OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  post406WithHttpOperationResponse(options?: Models.HttpClientFailurePost406OptionalParams): Promise<Models.HttpClientFailurePost406Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      post406OperationSpec) as Promise<Models.HttpClientFailurePost406Response>;
-  }
-
-  /**
-   * Return 407 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailureDelete407OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  delete407WithHttpOperationResponse(options?: Models.HttpClientFailureDelete407OptionalParams): Promise<Models.HttpClientFailureDelete407Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      delete407OperationSpec) as Promise<Models.HttpClientFailureDelete407Response>;
-  }
-
-  /**
-   * Return 409 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePut409OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  put409WithHttpOperationResponse(options?: Models.HttpClientFailurePut409OptionalParams): Promise<Models.HttpClientFailurePut409Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      put409OperationSpec) as Promise<Models.HttpClientFailurePut409Response>;
-  }
-
-  /**
-   * Return 410 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head410WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead410Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head410OperationSpec) as Promise<Models.HttpClientFailureHead410Response>;
-  }
-
-  /**
-   * Return 411 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get411WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet411Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get411OperationSpec) as Promise<Models.HttpClientFailureGet411Response>;
-  }
-
-  /**
-   * Return 412 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get412WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet412Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get412OperationSpec) as Promise<Models.HttpClientFailureGet412Response>;
-  }
-
-  /**
-   * Return 413 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePut413OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  put413WithHttpOperationResponse(options?: Models.HttpClientFailurePut413OptionalParams): Promise<Models.HttpClientFailurePut413Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      put413OperationSpec) as Promise<Models.HttpClientFailurePut413Response>;
-  }
-
-  /**
-   * Return 414 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePatch414OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  patch414WithHttpOperationResponse(options?: Models.HttpClientFailurePatch414OptionalParams): Promise<Models.HttpClientFailurePatch414Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      patch414OperationSpec) as Promise<Models.HttpClientFailurePatch414Response>;
-  }
-
-  /**
-   * Return 415 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailurePost415OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  post415WithHttpOperationResponse(options?: Models.HttpClientFailurePost415OptionalParams): Promise<Models.HttpClientFailurePost415Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      post415OperationSpec) as Promise<Models.HttpClientFailurePost415Response>;
-  }
-
-  /**
-   * Return 416 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get416WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet416Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get416OperationSpec) as Promise<Models.HttpClientFailureGet416Response>;
-  }
-
-  /**
-   * Return 417 status code - should be represented in the client as an error
-   *
-   * @param {HttpClientFailureDelete417OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  delete417WithHttpOperationResponse(options?: Models.HttpClientFailureDelete417OptionalParams): Promise<Models.HttpClientFailureDelete417Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      delete417OperationSpec) as Promise<Models.HttpClientFailureDelete417Response>;
-  }
-
-  /**
-   * Return 429 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head429WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead429Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head429OperationSpec) as Promise<Models.HttpClientFailureHead429Response>;
-  }
-
-  /**
-   * Return 400 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  head400(): Promise<Models.ErrorModel>;
-  head400(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  head400(): Promise<Models.HttpClientFailureHead400Response>;
+  head400(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead400Response>;
   head400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.head400WithHttpOperationResponse.bind(this), options, callback);
+  head400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureHead400Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head400OperationSpec,
+      callback) as Promise<Models.HttpClientFailureHead400Response>;
   }
 
   /**
@@ -489,21 +54,23 @@ export class HttpClientFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get400(): Promise<Models.ErrorModel>;
-  get400(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  get400(): Promise<Models.HttpClientFailureGet400Response>;
+  get400(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet400Response>;
   get400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.get400WithHttpOperationResponse.bind(this), options, callback);
+  get400(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet400Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get400OperationSpec,
+      callback) as Promise<Models.HttpClientFailureGet400Response>;
   }
 
   /**
@@ -511,21 +78,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePut400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  put400(): Promise<Models.ErrorModel>;
-  put400(options: Models.HttpClientFailurePut400OptionalParams): Promise<Models.ErrorModel>;
+  put400(): Promise<Models.HttpClientFailurePut400Response>;
+  put400(options: Models.HttpClientFailurePut400OptionalParams): Promise<Models.HttpClientFailurePut400Response>;
   put400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put400(options: Models.HttpClientFailurePut400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  put400(options?: Models.HttpClientFailurePut400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.put400WithHttpOperationResponse.bind(this), options, callback);
+  put400(options?: Models.HttpClientFailurePut400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePut400Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      put400OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePut400Response>;
   }
 
   /**
@@ -533,21 +102,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePatch400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  patch400(): Promise<Models.ErrorModel>;
-  patch400(options: Models.HttpClientFailurePatch400OptionalParams): Promise<Models.ErrorModel>;
+  patch400(): Promise<Models.HttpClientFailurePatch400Response>;
+  patch400(options: Models.HttpClientFailurePatch400OptionalParams): Promise<Models.HttpClientFailurePatch400Response>;
   patch400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   patch400(options: Models.HttpClientFailurePatch400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  patch400(options?: Models.HttpClientFailurePatch400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.patch400WithHttpOperationResponse.bind(this), options, callback);
+  patch400(options?: Models.HttpClientFailurePatch400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePatch400Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      patch400OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePatch400Response>;
   }
 
   /**
@@ -555,21 +126,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePost400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  post400(): Promise<Models.ErrorModel>;
-  post400(options: Models.HttpClientFailurePost400OptionalParams): Promise<Models.ErrorModel>;
+  post400(): Promise<Models.HttpClientFailurePost400Response>;
+  post400(options: Models.HttpClientFailurePost400OptionalParams): Promise<Models.HttpClientFailurePost400Response>;
   post400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post400(options: Models.HttpClientFailurePost400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  post400(options?: Models.HttpClientFailurePost400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.post400WithHttpOperationResponse.bind(this), options, callback);
+  post400(options?: Models.HttpClientFailurePost400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePost400Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      post400OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePost400Response>;
   }
 
   /**
@@ -577,21 +150,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailureDelete400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  delete400(): Promise<Models.ErrorModel>;
-  delete400(options: Models.HttpClientFailureDelete400OptionalParams): Promise<Models.ErrorModel>;
+  delete400(): Promise<Models.HttpClientFailureDelete400Response>;
+  delete400(options: Models.HttpClientFailureDelete400OptionalParams): Promise<Models.HttpClientFailureDelete400Response>;
   delete400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete400(options: Models.HttpClientFailureDelete400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  delete400(options?: Models.HttpClientFailureDelete400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.delete400WithHttpOperationResponse.bind(this), options, callback);
+  delete400(options?: Models.HttpClientFailureDelete400OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureDelete400Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      delete400OperationSpec,
+      callback) as Promise<Models.HttpClientFailureDelete400Response>;
   }
 
   /**
@@ -599,21 +174,23 @@ export class HttpClientFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  head401(): Promise<Models.ErrorModel>;
-  head401(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  head401(): Promise<Models.HttpClientFailureHead401Response>;
+  head401(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead401Response>;
   head401(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head401(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head401(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.head401WithHttpOperationResponse.bind(this), options, callback);
+  head401(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureHead401Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head401OperationSpec,
+      callback) as Promise<Models.HttpClientFailureHead401Response>;
   }
 
   /**
@@ -621,21 +198,23 @@ export class HttpClientFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get402(): Promise<Models.ErrorModel>;
-  get402(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  get402(): Promise<Models.HttpClientFailureGet402Response>;
+  get402(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet402Response>;
   get402(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get402(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get402(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.get402WithHttpOperationResponse.bind(this), options, callback);
+  get402(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet402Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get402OperationSpec,
+      callback) as Promise<Models.HttpClientFailureGet402Response>;
   }
 
   /**
@@ -643,21 +222,23 @@ export class HttpClientFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get403(): Promise<Models.ErrorModel>;
-  get403(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  get403(): Promise<Models.HttpClientFailureGet403Response>;
+  get403(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet403Response>;
   get403(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get403(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get403(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.get403WithHttpOperationResponse.bind(this), options, callback);
+  get403(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet403Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get403OperationSpec,
+      callback) as Promise<Models.HttpClientFailureGet403Response>;
   }
 
   /**
@@ -665,21 +246,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePut404OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  put404(): Promise<Models.ErrorModel>;
-  put404(options: Models.HttpClientFailurePut404OptionalParams): Promise<Models.ErrorModel>;
+  put404(): Promise<Models.HttpClientFailurePut404Response>;
+  put404(options: Models.HttpClientFailurePut404OptionalParams): Promise<Models.HttpClientFailurePut404Response>;
   put404(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put404(options: Models.HttpClientFailurePut404OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  put404(options?: Models.HttpClientFailurePut404OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.put404WithHttpOperationResponse.bind(this), options, callback);
+  put404(options?: Models.HttpClientFailurePut404OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePut404Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      put404OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePut404Response>;
   }
 
   /**
@@ -687,21 +270,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePatch405OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  patch405(): Promise<Models.ErrorModel>;
-  patch405(options: Models.HttpClientFailurePatch405OptionalParams): Promise<Models.ErrorModel>;
+  patch405(): Promise<Models.HttpClientFailurePatch405Response>;
+  patch405(options: Models.HttpClientFailurePatch405OptionalParams): Promise<Models.HttpClientFailurePatch405Response>;
   patch405(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   patch405(options: Models.HttpClientFailurePatch405OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  patch405(options?: Models.HttpClientFailurePatch405OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.patch405WithHttpOperationResponse.bind(this), options, callback);
+  patch405(options?: Models.HttpClientFailurePatch405OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePatch405Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      patch405OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePatch405Response>;
   }
 
   /**
@@ -709,21 +294,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePost406OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  post406(): Promise<Models.ErrorModel>;
-  post406(options: Models.HttpClientFailurePost406OptionalParams): Promise<Models.ErrorModel>;
+  post406(): Promise<Models.HttpClientFailurePost406Response>;
+  post406(options: Models.HttpClientFailurePost406OptionalParams): Promise<Models.HttpClientFailurePost406Response>;
   post406(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post406(options: Models.HttpClientFailurePost406OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  post406(options?: Models.HttpClientFailurePost406OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.post406WithHttpOperationResponse.bind(this), options, callback);
+  post406(options?: Models.HttpClientFailurePost406OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePost406Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      post406OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePost406Response>;
   }
 
   /**
@@ -731,21 +318,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailureDelete407OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  delete407(): Promise<Models.ErrorModel>;
-  delete407(options: Models.HttpClientFailureDelete407OptionalParams): Promise<Models.ErrorModel>;
+  delete407(): Promise<Models.HttpClientFailureDelete407Response>;
+  delete407(options: Models.HttpClientFailureDelete407OptionalParams): Promise<Models.HttpClientFailureDelete407Response>;
   delete407(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete407(options: Models.HttpClientFailureDelete407OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  delete407(options?: Models.HttpClientFailureDelete407OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.delete407WithHttpOperationResponse.bind(this), options, callback);
+  delete407(options?: Models.HttpClientFailureDelete407OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureDelete407Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      delete407OperationSpec,
+      callback) as Promise<Models.HttpClientFailureDelete407Response>;
   }
 
   /**
@@ -753,21 +342,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePut409OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  put409(): Promise<Models.ErrorModel>;
-  put409(options: Models.HttpClientFailurePut409OptionalParams): Promise<Models.ErrorModel>;
+  put409(): Promise<Models.HttpClientFailurePut409Response>;
+  put409(options: Models.HttpClientFailurePut409OptionalParams): Promise<Models.HttpClientFailurePut409Response>;
   put409(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put409(options: Models.HttpClientFailurePut409OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  put409(options?: Models.HttpClientFailurePut409OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.put409WithHttpOperationResponse.bind(this), options, callback);
+  put409(options?: Models.HttpClientFailurePut409OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePut409Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      put409OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePut409Response>;
   }
 
   /**
@@ -775,21 +366,23 @@ export class HttpClientFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  head410(): Promise<Models.ErrorModel>;
-  head410(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  head410(): Promise<Models.HttpClientFailureHead410Response>;
+  head410(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead410Response>;
   head410(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head410(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head410(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.head410WithHttpOperationResponse.bind(this), options, callback);
+  head410(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureHead410Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head410OperationSpec,
+      callback) as Promise<Models.HttpClientFailureHead410Response>;
   }
 
   /**
@@ -797,21 +390,23 @@ export class HttpClientFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get411(): Promise<Models.ErrorModel>;
-  get411(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  get411(): Promise<Models.HttpClientFailureGet411Response>;
+  get411(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet411Response>;
   get411(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get411(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get411(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.get411WithHttpOperationResponse.bind(this), options, callback);
+  get411(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet411Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get411OperationSpec,
+      callback) as Promise<Models.HttpClientFailureGet411Response>;
   }
 
   /**
@@ -819,21 +414,23 @@ export class HttpClientFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get412(): Promise<Models.ErrorModel>;
-  get412(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  get412(): Promise<Models.HttpClientFailureGet412Response>;
+  get412(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet412Response>;
   get412(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get412(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get412(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.get412WithHttpOperationResponse.bind(this), options, callback);
+  get412(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet412Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get412OperationSpec,
+      callback) as Promise<Models.HttpClientFailureGet412Response>;
   }
 
   /**
@@ -841,21 +438,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePut413OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  put413(): Promise<Models.ErrorModel>;
-  put413(options: Models.HttpClientFailurePut413OptionalParams): Promise<Models.ErrorModel>;
+  put413(): Promise<Models.HttpClientFailurePut413Response>;
+  put413(options: Models.HttpClientFailurePut413OptionalParams): Promise<Models.HttpClientFailurePut413Response>;
   put413(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put413(options: Models.HttpClientFailurePut413OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  put413(options?: Models.HttpClientFailurePut413OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.put413WithHttpOperationResponse.bind(this), options, callback);
+  put413(options?: Models.HttpClientFailurePut413OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePut413Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      put413OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePut413Response>;
   }
 
   /**
@@ -863,21 +462,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePatch414OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  patch414(): Promise<Models.ErrorModel>;
-  patch414(options: Models.HttpClientFailurePatch414OptionalParams): Promise<Models.ErrorModel>;
+  patch414(): Promise<Models.HttpClientFailurePatch414Response>;
+  patch414(options: Models.HttpClientFailurePatch414OptionalParams): Promise<Models.HttpClientFailurePatch414Response>;
   patch414(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   patch414(options: Models.HttpClientFailurePatch414OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  patch414(options?: Models.HttpClientFailurePatch414OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.patch414WithHttpOperationResponse.bind(this), options, callback);
+  patch414(options?: Models.HttpClientFailurePatch414OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePatch414Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      patch414OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePatch414Response>;
   }
 
   /**
@@ -885,21 +486,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailurePost415OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  post415(): Promise<Models.ErrorModel>;
-  post415(options: Models.HttpClientFailurePost415OptionalParams): Promise<Models.ErrorModel>;
+  post415(): Promise<Models.HttpClientFailurePost415Response>;
+  post415(options: Models.HttpClientFailurePost415OptionalParams): Promise<Models.HttpClientFailurePost415Response>;
   post415(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post415(options: Models.HttpClientFailurePost415OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  post415(options?: Models.HttpClientFailurePost415OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.post415WithHttpOperationResponse.bind(this), options, callback);
+  post415(options?: Models.HttpClientFailurePost415OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePost415Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      post415OperationSpec,
+      callback) as Promise<Models.HttpClientFailurePost415Response>;
   }
 
   /**
@@ -907,21 +510,23 @@ export class HttpClientFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get416(): Promise<Models.ErrorModel>;
-  get416(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  get416(): Promise<Models.HttpClientFailureGet416Response>;
+  get416(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet416Response>;
   get416(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get416(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get416(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.get416WithHttpOperationResponse.bind(this), options, callback);
+  get416(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet416Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get416OperationSpec,
+      callback) as Promise<Models.HttpClientFailureGet416Response>;
   }
 
   /**
@@ -929,21 +534,23 @@ export class HttpClientFailure {
    *
    * @param {HttpClientFailureDelete417OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  delete417(): Promise<Models.ErrorModel>;
-  delete417(options: Models.HttpClientFailureDelete417OptionalParams): Promise<Models.ErrorModel>;
+  delete417(): Promise<Models.HttpClientFailureDelete417Response>;
+  delete417(options: Models.HttpClientFailureDelete417OptionalParams): Promise<Models.HttpClientFailureDelete417Response>;
   delete417(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete417(options: Models.HttpClientFailureDelete417OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  delete417(options?: Models.HttpClientFailureDelete417OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.delete417WithHttpOperationResponse.bind(this), options, callback);
+  delete417(options?: Models.HttpClientFailureDelete417OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureDelete417Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      delete417OperationSpec,
+      callback) as Promise<Models.HttpClientFailureDelete417Response>;
   }
 
   /**
@@ -951,21 +558,23 @@ export class HttpClientFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  head429(): Promise<Models.ErrorModel>;
-  head429(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  head429(): Promise<Models.HttpClientFailureHead429Response>;
+  head429(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead429Response>;
   head429(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head429(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head429(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.head429WithHttpOperationResponse.bind(this), options, callback);
+  head429(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureHead429Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head429OperationSpec,
+      callback) as Promise<Models.HttpClientFailureHead429Response>;
   }
 
 }

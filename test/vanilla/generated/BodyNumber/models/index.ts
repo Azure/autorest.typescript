@@ -29,195 +29,195 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface NumberGetNullResponse extends msRest.HttpResponse {
+export interface NumberGetNullResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getInvalidFloat operation.
  */
-export interface NumberGetInvalidFloatResponse extends msRest.HttpResponse {
+export interface NumberGetInvalidFloatResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getInvalidDouble operation.
  */
-export interface NumberGetInvalidDoubleResponse extends msRest.HttpResponse {
+export interface NumberGetInvalidDoubleResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getInvalidDecimal operation.
  */
-export interface NumberGetInvalidDecimalResponse extends msRest.HttpResponse {
+export interface NumberGetInvalidDecimalResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getBigFloat operation.
  */
-export interface NumberGetBigFloatResponse extends msRest.HttpResponse {
+export interface NumberGetBigFloatResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getBigDouble operation.
  */
-export interface NumberGetBigDoubleResponse extends msRest.HttpResponse {
+export interface NumberGetBigDoubleResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getBigDoublePositiveDecimal operation.
  */
-export interface NumberGetBigDoublePositiveDecimalResponse extends msRest.HttpResponse {
+export interface NumberGetBigDoublePositiveDecimalResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getBigDoubleNegativeDecimal operation.
  */
-export interface NumberGetBigDoubleNegativeDecimalResponse extends msRest.HttpResponse {
+export interface NumberGetBigDoubleNegativeDecimalResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getBigDecimal operation.
  */
-export interface NumberGetBigDecimalResponse extends msRest.HttpResponse {
+export interface NumberGetBigDecimalResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getBigDecimalPositiveDecimal operation.
  */
-export interface NumberGetBigDecimalPositiveDecimalResponse extends msRest.HttpResponse {
+export interface NumberGetBigDecimalPositiveDecimalResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getBigDecimalNegativeDecimal operation.
  */
-export interface NumberGetBigDecimalNegativeDecimalResponse extends msRest.HttpResponse {
+export interface NumberGetBigDecimalNegativeDecimalResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getSmallFloat operation.
  */
-export interface NumberGetSmallFloatResponse extends msRest.HttpResponse {
+export interface NumberGetSmallFloatResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getSmallDouble operation.
  */
-export interface NumberGetSmallDoubleResponse extends msRest.HttpResponse {
+export interface NumberGetSmallDoubleResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }
 
 /**
  * Contains response data for the getSmallDecimal operation.
  */
-export interface NumberGetSmallDecimalResponse extends msRest.HttpResponse {
+export interface NumberGetSmallDecimalResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: number;
+  body: number;
 }

@@ -1862,7 +1862,7 @@ export const LROsPutNoHeaderInRetryHeaders: msRest.CompositeMapper = {
     name: "Composite",
     className: "LROsPutNoHeaderInRetryHeaders",
     modelProperties: {
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -1884,7 +1884,7 @@ export const LROsPutAsyncRetrySucceededHeaders: msRest.CompositeMapper = {
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -1912,7 +1912,7 @@ export const LROsPutAsyncNoRetrySucceededHeaders: msRest.CompositeMapper = {
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -1934,7 +1934,7 @@ export const LROsPutAsyncRetryFailedHeaders: msRest.CompositeMapper = {
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -1962,7 +1962,7 @@ export const LROsPutAsyncNoRetrycanceledHeaders: msRest.CompositeMapper = {
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -1994,7 +1994,7 @@ export const LROsDeleteProvisioning202Accepted200SucceededHeaders: msRest.Compos
     name: "Composite",
     className: "LROsDeleteProvisioning202Accepted200SucceededHeaders",
     modelProperties: {
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2016,7 +2016,7 @@ export const LROsDeleteProvisioning202DeletingFailed200Headers: msRest.Composite
     name: "Composite",
     className: "LROsDeleteProvisioning202DeletingFailed200Headers",
     modelProperties: {
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2038,7 +2038,7 @@ export const LROsDeleteProvisioning202Deletingcanceled200Headers: msRest.Composi
     name: "Composite",
     className: "LROsDeleteProvisioning202Deletingcanceled200Headers",
     modelProperties: {
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2060,7 +2060,7 @@ export const LROsDelete202Retry200Headers: msRest.CompositeMapper = {
     name: "Composite",
     className: "LROsDelete202Retry200Headers",
     modelProperties: {
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2082,7 +2082,7 @@ export const LROsDelete202NoRetry204Headers: msRest.CompositeMapper = {
     name: "Composite",
     className: "LROsDelete202NoRetry204Headers",
     modelProperties: {
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2270,7 +2270,7 @@ export const LROsPost202NoRetry204Headers: msRest.CompositeMapper = {
     name: "Composite",
     className: "LROsPost202NoRetry204Headers",
     modelProperties: {
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2298,7 +2298,7 @@ export const LROsPostAsyncRetrySucceededHeaders: msRest.CompositeMapper = {
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2326,7 +2326,7 @@ export const LROsPostAsyncNoRetrySucceededHeaders: msRest.CompositeMapper = {
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2410,7 +2410,7 @@ export const LRORetrysPutAsyncRelativeRetrySucceededHeaders: msRest.CompositeMap
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2432,7 +2432,7 @@ export const LRORetrysDeleteProvisioning202Accepted200SucceededHeaders: msRest.C
     name: "Composite",
     className: "LRORetrysDeleteProvisioning202Accepted200SucceededHeaders",
     modelProperties: {
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2560,7 +2560,7 @@ export const LROSADsPutAsyncRelativeRetry400Headers: msRest.CompositeMapper = {
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2732,7 +2732,7 @@ export const LROSADsPutAsyncRelativeRetryNoStatusHeaders: msRest.CompositeMapper
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2760,7 +2760,7 @@ export const LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders: msRest.Composit
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2866,7 +2866,7 @@ export const LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders: msRest.CompositeM
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -2894,7 +2894,7 @@ export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders: msRest.Compo
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"
@@ -3078,7 +3078,7 @@ export const LROsCustomHeaderPutAsyncRetrySucceededHeaders: msRest.CompositeMapp
           name: "String"
         }
       },
-      location: {
+      locationHeader: {
         serializedName: "location",
         type: {
           name: "String"

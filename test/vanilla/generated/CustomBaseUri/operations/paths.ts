@@ -38,37 +38,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyWithHttpOperationResponse(accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  getEmpty(accountName: string): Promise<msRest.RestResponse>;
+  getEmpty(accountName: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getEmpty(accountName: string, callback: msRest.ServiceCallback<void>): void;
+  getEmpty(accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getEmpty(accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         accountName,
         options
       },
-      getEmptyOperationSpec);
-  }
-
-  /**
-   * Get a 200 to test a valid base uri
-   *
-   * @param {string} accountName Account Name
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getEmpty(accountName: string): Promise<void>;
-  getEmpty(accountName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  getEmpty(accountName: string, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), accountName, options, callback);
+      getEmptyOperationSpec,
+      callback);
   }
 
 }

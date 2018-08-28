@@ -29,97 +29,97 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface Datetimerfc1123GetNullResponse extends msRest.HttpResponse {
+export interface Datetimerfc1123GetNullResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface Datetimerfc1123GetInvalidResponse extends msRest.HttpResponse {
+export interface Datetimerfc1123GetInvalidResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }
 
 /**
  * Contains response data for the getOverflow operation.
  */
-export interface Datetimerfc1123GetOverflowResponse extends msRest.HttpResponse {
+export interface Datetimerfc1123GetOverflowResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }
 
 /**
  * Contains response data for the getUnderflow operation.
  */
-export interface Datetimerfc1123GetUnderflowResponse extends msRest.HttpResponse {
+export interface Datetimerfc1123GetUnderflowResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }
 
 /**
  * Contains response data for the getUtcLowercaseMaxDateTime operation.
  */
-export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse extends msRest.HttpResponse {
+export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }
 
 /**
  * Contains response data for the getUtcUppercaseMaxDateTime operation.
  */
-export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse extends msRest.HttpResponse {
+export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }
 
 /**
  * Contains response data for the getUtcMinDateTime operation.
  */
-export interface Datetimerfc1123GetUtcMinDateTimeResponse extends msRest.HttpResponse {
+export interface Datetimerfc1123GetUtcMinDateTimeResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }

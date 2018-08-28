@@ -49,12 +49,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpResponse> {
+  putArray(): Promise<msRest.RestResponse>;
+  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.RestResponse>;
+  putArray(callback: msRest.ServiceCallback<void>): void;
+  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
+  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      putArrayOperationSpec);
+      putArrayOperationSpec,
+      callback);
   }
   // methods on the client.
 
@@ -69,12 +74,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.GetArrayResponse> {
+  getArray(): Promise<Models.GetArrayResponse>;
+  getArray(options: msRest.RequestOptionsBase): Promise<Models.GetArrayResponse>;
+  getArray(callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
+  getArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
+  getArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): Promise<Models.GetArrayResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      getArrayOperationSpec) as Promise<Models.GetArrayResponse>;
+      getArrayOperationSpec,
+      callback) as Promise<Models.GetArrayResponse>;
   }
   // methods on the client.
 
@@ -91,12 +101,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putWrappedArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<msRest.HttpResponse> {
+  putWrappedArray(): Promise<msRest.RestResponse>;
+  putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<msRest.RestResponse>;
+  putWrappedArray(callback: msRest.ServiceCallback<void>): void;
+  putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
+  putWrappedArray(options?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      putWrappedArrayOperationSpec);
+      putWrappedArrayOperationSpec,
+      callback);
   }
   // methods on the client.
 
@@ -112,12 +127,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWrappedArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.GetWrappedArrayResponse> {
+  getWrappedArray(): Promise<Models.GetWrappedArrayResponse>;
+  getWrappedArray(options: msRest.RequestOptionsBase): Promise<Models.GetWrappedArrayResponse>;
+  getWrappedArray(callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
+  getWrappedArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
+  getWrappedArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductWrapper[]>): Promise<Models.GetWrappedArrayResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      getWrappedArrayOperationSpec) as Promise<Models.GetWrappedArrayResponse>;
+      getWrappedArrayOperationSpec,
+      callback) as Promise<Models.GetWrappedArrayResponse>;
   }
   // methods on the client.
 
@@ -133,12 +153,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpResponse> {
+  putDictionary(): Promise<msRest.RestResponse>;
+  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.RestResponse>;
+  putDictionary(callback: msRest.ServiceCallback<void>): void;
+  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback: msRest.ServiceCallback<void>): void;
+  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      putDictionaryOperationSpec);
+      putDictionaryOperationSpec,
+      callback);
   }
   // methods on the client.
 
@@ -153,12 +178,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.GetDictionaryResponse> {
+  getDictionary(): Promise<Models.GetDictionaryResponse>;
+  getDictionary(options: msRest.RequestOptionsBase): Promise<Models.GetDictionaryResponse>;
+  getDictionary(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
+  getDictionary(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
+  getDictionary(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): Promise<Models.GetDictionaryResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      getDictionaryOperationSpec) as Promise<Models.GetDictionaryResponse>;
+      getDictionaryOperationSpec,
+      callback) as Promise<Models.GetDictionaryResponse>;
   }
   // methods on the client.
 
@@ -174,12 +204,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpResponse> {
+  putResourceCollection(): Promise<msRest.RestResponse>;
+  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.RestResponse>;
+  putResourceCollection(callback: msRest.ServiceCallback<void>): void;
+  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback: msRest.ServiceCallback<void>): void;
+  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      putResourceCollectionOperationSpec);
+      putResourceCollectionOperationSpec,
+      callback);
   }
   // methods on the client.
 
@@ -194,12 +229,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.GetResourceCollectionResponse> {
+  getResourceCollection(): Promise<Models.GetResourceCollectionResponse>;
+  getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.GetResourceCollectionResponse>;
+  getResourceCollection(callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
+  getResourceCollection(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
+  getResourceCollection(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ResourceCollection>): Promise<Models.GetResourceCollectionResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      getResourceCollectionOperationSpec) as Promise<Models.GetResourceCollectionResponse>;
+      getResourceCollectionOperationSpec,
+      callback) as Promise<Models.GetResourceCollectionResponse>;
   }
   // methods on the client.
 
@@ -215,12 +255,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putSimpleProductWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<Models.PutSimpleProductResponse> {
+  putSimpleProduct(): Promise<Models.PutSimpleProductResponse>;
+  putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<Models.PutSimpleProductResponse>;
+  putSimpleProduct(callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
+  putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
+  putSimpleProduct(options?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): Promise<Models.PutSimpleProductResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      putSimpleProductOperationSpec) as Promise<Models.PutSimpleProductResponse>;
+      putSimpleProductOperationSpec,
+      callback) as Promise<Models.PutSimpleProductResponse>;
   }
   // methods on the client.
 
@@ -242,14 +287,19 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postFlattenedSimpleProductWithHttpOperationResponse(productId: string, maxProductDisplayName: string, options?: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams): Promise<Models.PostFlattenedSimpleProductResponse> {
+  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string): Promise<Models.PostFlattenedSimpleProductResponse>;
+  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams): Promise<Models.PostFlattenedSimpleProductResponse>;
+  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
+  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
+  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options?: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): Promise<Models.PostFlattenedSimpleProductResponse> {
     return this.sendOperationRequest(
       {
         productId,
         maxProductDisplayName,
         options
       },
-      postFlattenedSimpleProductOperationSpec) as Promise<Models.PostFlattenedSimpleProductResponse>;
+      postFlattenedSimpleProductOperationSpec,
+      callback) as Promise<Models.PostFlattenedSimpleProductResponse>;
   }
   // methods on the client.
 
@@ -266,271 +316,18 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putSimpleProductWithGroupingWithHttpOperationResponse(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase): Promise<Models.PutSimpleProductWithGroupingResponse> {
+  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup): Promise<Models.PutSimpleProductWithGroupingResponse>;
+  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.PutSimpleProductWithGroupingResponse>;
+  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
+  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
+  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SimpleProduct>): Promise<Models.PutSimpleProductWithGroupingResponse> {
     return this.sendOperationRequest(
       {
         flattenParameterGroup,
         options
       },
-      putSimpleProductWithGroupingOperationSpec) as Promise<Models.PutSimpleProductWithGroupingResponse>;
-  }
-
-  /**
-   * Put External Resource as an Array
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putArray(): Promise<void>;
-  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<void>;
-  putArray(callback: msRest.ServiceCallback<void>): void;
-  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putArrayWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get External Resource as an Array
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.FlattenedProduct[]} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getArray(): Promise<Models.FlattenedProduct[]>;
-  getArray(options: msRest.RequestOptionsBase): Promise<Models.FlattenedProduct[]>;
-  getArray(callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
-  getArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
-  getArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): any {
-    return msRest.responseToBody(this.getArrayWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * No need to have a route in Express server for this operation. Used to verify the type flattened
-   * is not removed if it's referenced in an array
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putWrappedArray(): Promise<void>;
-  putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<void>;
-  putWrappedArray(callback: msRest.ServiceCallback<void>): void;
-  putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putWrappedArray(options?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putWrappedArrayWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * No need to have a route in Express server for this operation. Used to verify the type flattened
-   * is not removed if it's referenced in an array
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ProductWrapper[]} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getWrappedArray(): Promise<Models.ProductWrapper[]>;
-  getWrappedArray(options: msRest.RequestOptionsBase): Promise<Models.ProductWrapper[]>;
-  getWrappedArray(callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
-  getWrappedArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
-  getWrappedArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductWrapper[]>): any {
-    return msRest.responseToBody(this.getWrappedArrayWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put External Resource as a Dictionary
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putDictionary(): Promise<void>;
-  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<void>;
-  putDictionary(callback: msRest.ServiceCallback<void>): void;
-  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDictionaryWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get External Resource as a Dictionary
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Models.FlattenedProduct }} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getDictionary(): Promise<{ [propertyName: string]: Models.FlattenedProduct }>;
-  getDictionary(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.FlattenedProduct }>;
-  getDictionary(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
-  getDictionary(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
-  getDictionary(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): any {
-    return msRest.responseToBody(this.getDictionaryWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put External Resource as a ResourceCollection
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams} [options]
-   * Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putResourceCollection(): Promise<void>;
-  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<void>;
-  putResourceCollection(callback: msRest.ServiceCallback<void>): void;
-  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putResourceCollectionWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get External Resource as a ResourceCollection
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ResourceCollection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ResourceCollection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getResourceCollection(): Promise<Models.ResourceCollection>;
-  getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.ResourceCollection>;
-  getResourceCollection(callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
-  getResourceCollection(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
-  getResourceCollection(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ResourceCollection>): any {
-    return msRest.responseToBody(this.getResourceCollectionWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put Simple Product with client flattening true on the model
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.SimpleProduct} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SimpleProduct} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putSimpleProduct(): Promise<Models.SimpleProduct>;
-  putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<Models.SimpleProduct>;
-  putSimpleProduct(callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProduct(options?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
-    return msRest.responseToBody(this.putSimpleProductWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put Flattened Simple Product with client flattening true on the parameter
-   *
-   * @param {string} productId Unique identifier representing a specific product for a given latitude
-   * & longitude. For example, uberX in San Francisco will have a different product_id than uberX in
-   * Los Angeles.
-   *
-   * @param {string} maxProductDisplayName Display name of product.
-   *
-   * @param {AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams} [options]
-   * Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.SimpleProduct} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SimpleProduct} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string): Promise<Models.SimpleProduct>;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams): Promise<Models.SimpleProduct>;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options?: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
-    return msRest.responseToBody(this.postFlattenedSimpleProductWithHttpOperationResponse.bind(this), productId, maxProductDisplayName, options, callback);
-  }
-
-  /**
-   * Put Simple Product with client flattening true on the model
-   *
-   * @param {FlattenParameterGroup} flattenParameterGroup Additional parameters for the operation
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.SimpleProduct} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SimpleProduct} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup): Promise<Models.SimpleProduct>;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.SimpleProduct>;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
-    return msRest.responseToBody(this.putSimpleProductWithGroupingWithHttpOperationResponse.bind(this), flattenParameterGroup, options, callback);
+      putSimpleProductWithGroupingOperationSpec,
+      callback) as Promise<Models.PutSimpleProductWithGroupingResponse>;
   }
 }
 

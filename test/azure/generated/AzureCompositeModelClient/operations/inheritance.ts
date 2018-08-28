@@ -37,12 +37,17 @@ export class Inheritance {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.InheritanceGetValidResponse> {
+  getValid(): Promise<Models.InheritanceGetValidResponse>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.InheritanceGetValidResponse>;
+  getValid(callback: msRest.ServiceCallback<Models.Siamese>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Siamese>): void;
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Siamese>): Promise<Models.InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec) as Promise<Models.InheritanceGetValidResponse>;
+      getValidOperationSpec,
+      callback) as Promise<Models.InheritanceGetValidResponse>;
   }
 
   /**
@@ -60,61 +65,18 @@ export class Inheritance {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putValid(complexBody: Models.Siamese): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.Siamese, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
         options
       },
-      putValidOperationSpec);
-  }
-
-  /**
-   * Get complex types that extend others
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Siamese} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Siamese} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getValid(): Promise<Models.Siamese>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.Siamese>;
-  getValid(callback: msRest.ServiceCallback<Models.Siamese>): void;
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Siamese>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Siamese>): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put complex types that extend others
-   *
-   * @param {Siamese} complexBody Please put a siamese with id=2, name="Siameee", color=green,
-   * breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-   * the 2nd one named "Tomato" with id=-1 and food="french fries".
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putValid(complexBody: Models.Siamese): Promise<void>;
-  putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase): Promise<void>;
-  putValid(complexBody: Models.Siamese, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), complexBody, options, callback);
+      putValidOperationSpec,
+      callback);
   }
 
 }

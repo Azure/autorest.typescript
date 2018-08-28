@@ -37,12 +37,17 @@ export class Readonlyproperty {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ReadonlypropertyGetValidResponse> {
+  getValid(): Promise<Models.ReadonlypropertyGetValidResponse>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.ReadonlypropertyGetValidResponse>;
+  getValid(callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ReadonlyObj>): Promise<Models.ReadonlypropertyGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec) as Promise<Models.ReadonlypropertyGetValidResponse>;
+      getValidOperationSpec,
+      callback) as Promise<Models.ReadonlypropertyGetValidResponse>;
   }
 
   /**
@@ -56,56 +61,17 @@ export class Readonlyproperty {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(options?: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.HttpResponse> {
+  putValid(): Promise<msRest.RestResponse>;
+  putValid(options: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.RestResponse>;
+  putValid(callback: msRest.ServiceCallback<void>): void;
+  putValid(options: Models.ReadonlypropertyPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
+  putValid(options?: Models.ReadonlypropertyPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      putValidOperationSpec);
-  }
-
-  /**
-   * Get complex types that have readonly properties
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ReadonlyObj} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ReadonlyObj} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getValid(): Promise<Models.ReadonlyObj>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.ReadonlyObj>;
-  getValid(callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ReadonlyObj>): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put complex types that have readonly properties
-   *
-   * @param {ReadonlypropertyPutValidOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putValid(): Promise<void>;
-  putValid(options: Models.ReadonlypropertyPutValidOptionalParams): Promise<void>;
-  putValid(callback: msRest.ServiceCallback<void>): void;
-  putValid(options: Models.ReadonlypropertyPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putValid(options?: Models.ReadonlypropertyPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), options, callback);
+      putValidOperationSpec,
+      callback);
   }
 
 }

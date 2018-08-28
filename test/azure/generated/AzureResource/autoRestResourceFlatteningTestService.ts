@@ -59,160 +59,44 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpResponse> {
-    return this.sendOperationRequest(
-      {
-        options
-      },
-      putArrayOperationSpec);
-  }
-  // methods on the client.
-
-  /**
-   * Get External Resource as an Array
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.GetArrayResponse> {
-    return this.sendOperationRequest(
-      {
-        options
-      },
-      getArrayOperationSpec) as Promise<Models.GetArrayResponse>;
-  }
-  // methods on the client.
-
-  /**
-   * Put External Resource as a Dictionary
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpResponse> {
-    return this.sendOperationRequest(
-      {
-        options
-      },
-      putDictionaryOperationSpec);
-  }
-  // methods on the client.
-
-  /**
-   * Get External Resource as a Dictionary
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.GetDictionaryResponse> {
-    return this.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryOperationSpec) as Promise<Models.GetDictionaryResponse>;
-  }
-  // methods on the client.
-
-  /**
-   * Put External Resource as a ResourceCollection
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams} [options]
-   * Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpResponse> {
-    return this.sendOperationRequest(
-      {
-        options
-      },
-      putResourceCollectionOperationSpec);
-  }
-  // methods on the client.
-
-  /**
-   * Get External Resource as a ResourceCollection
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.GetResourceCollectionResponse> {
-    return this.sendOperationRequest(
-      {
-        options
-      },
-      getResourceCollectionOperationSpec) as Promise<Models.GetResourceCollectionResponse>;
-  }
-
-  /**
-   * Put External Resource as an Array
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putArray(): Promise<void>;
-  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<void>;
+  putArray(): Promise<msRest.RestResponse>;
+  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.RestResponse>;
   putArray(callback: msRest.ServiceCallback<void>): void;
   putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putArrayWithHttpOperationResponse.bind(this), options, callback);
+  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      putArrayOperationSpec,
+      callback);
   }
+  // methods on the client.
 
   /**
    * Get External Resource as an Array
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.FlattenedProduct[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArray(): Promise<Models.FlattenedProduct[]>;
-  getArray(options: msRest.RequestOptionsBase): Promise<Models.FlattenedProduct[]>;
+  getArray(): Promise<Models.GetArrayResponse>;
+  getArray(options: msRest.RequestOptionsBase): Promise<Models.GetArrayResponse>;
   getArray(callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
   getArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
-  getArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): any {
-    return msRest.responseToBody(this.getArrayWithHttpOperationResponse.bind(this), options, callback);
+  getArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): Promise<Models.GetArrayResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getArrayOperationSpec,
+      callback) as Promise<Models.GetArrayResponse>;
   }
+  // methods on the client.
 
   /**
    * Put External Resource as a Dictionary
@@ -220,44 +104,50 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams} [options] Optional
    * Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDictionary(): Promise<void>;
-  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<void>;
+  putDictionary(): Promise<msRest.RestResponse>;
+  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.RestResponse>;
   putDictionary(callback: msRest.ServiceCallback<void>): void;
   putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDictionaryWithHttpOperationResponse.bind(this), options, callback);
+  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      putDictionaryOperationSpec,
+      callback);
   }
+  // methods on the client.
 
   /**
    * Get External Resource as a Dictionary
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Models.FlattenedProduct }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionary(): Promise<{ [propertyName: string]: Models.FlattenedProduct }>;
-  getDictionary(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.FlattenedProduct }>;
+  getDictionary(): Promise<Models.GetDictionaryResponse>;
+  getDictionary(options: msRest.RequestOptionsBase): Promise<Models.GetDictionaryResponse>;
   getDictionary(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
   getDictionary(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
-  getDictionary(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): any {
-    return msRest.responseToBody(this.getDictionaryWithHttpOperationResponse.bind(this), options, callback);
+  getDictionary(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): Promise<Models.GetDictionaryResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryOperationSpec,
+      callback) as Promise<Models.GetDictionaryResponse>;
   }
+  // methods on the client.
 
   /**
    * Put External Resource as a ResourceCollection
@@ -265,43 +155,48 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams} [options]
    * Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putResourceCollection(): Promise<void>;
-  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<void>;
+  putResourceCollection(): Promise<msRest.RestResponse>;
+  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.RestResponse>;
   putResourceCollection(callback: msRest.ServiceCallback<void>): void;
   putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putResourceCollectionWithHttpOperationResponse.bind(this), options, callback);
+  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      putResourceCollectionOperationSpec,
+      callback);
   }
+  // methods on the client.
 
   /**
    * Get External Resource as a ResourceCollection
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ResourceCollection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ResourceCollection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getResourceCollection(): Promise<Models.ResourceCollection>;
-  getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.ResourceCollection>;
+  getResourceCollection(): Promise<Models.GetResourceCollectionResponse>;
+  getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.GetResourceCollectionResponse>;
   getResourceCollection(callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
   getResourceCollection(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
-  getResourceCollection(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ResourceCollection>): any {
-    return msRest.responseToBody(this.getResourceCollectionWithHttpOperationResponse.bind(this), options, callback);
+  getResourceCollection(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ResourceCollection>): Promise<Models.GetResourceCollectionResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getResourceCollectionOperationSpec,
+      callback) as Promise<Models.GetResourceCollectionResponse>;
   }
 }
 

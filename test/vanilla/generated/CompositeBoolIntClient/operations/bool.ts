@@ -36,129 +36,17 @@ export class Bool {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetTrueResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getTrueOperationSpec) as Promise<Models.BoolGetTrueResponse>;
-  }
-
-  /**
-   * Set Boolean value true
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putTrueOperationSpec);
-  }
-
-  /**
-   * Get false Boolean value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetFalseResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getFalseOperationSpec) as Promise<Models.BoolGetFalseResponse>;
-  }
-
-  /**
-   * Set Boolean value false
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putFalseOperationSpec);
-  }
-
-  /**
-   * Get null Boolean value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullOperationSpec) as Promise<Models.BoolGetNullResponse>;
-  }
-
-  /**
-   * Get invalid Boolean value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetInvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidOperationSpec) as Promise<Models.BoolGetInvalidResponse>;
-  }
-
-  /**
-   * Get true Boolean value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getTrue(): Promise<boolean>;
-  getTrue(options: msRest.RequestOptionsBase): Promise<boolean>;
+  getTrue(): Promise<Models.BoolGetTrueResponse>;
+  getTrue(options: msRest.RequestOptionsBase): Promise<Models.BoolGetTrueResponse>;
   getTrue(callback: msRest.ServiceCallback<boolean>): void;
   getTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.getTrueWithHttpOperationResponse.bind(this), options, callback);
+  getTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetTrueResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getTrueOperationSpec,
+      callback) as Promise<Models.BoolGetTrueResponse>;
   }
 
   /**
@@ -166,21 +54,23 @@ export class Bool {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putTrue(): Promise<void>;
-  putTrue(options: msRest.RequestOptionsBase): Promise<void>;
+  putTrue(): Promise<msRest.RestResponse>;
+  putTrue(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putTrue(callback: msRest.ServiceCallback<void>): void;
   putTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putTrueWithHttpOperationResponse.bind(this), options, callback);
+  putTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putTrueOperationSpec,
+      callback);
   }
 
   /**
@@ -188,21 +78,23 @@ export class Bool {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getFalse(): Promise<boolean>;
-  getFalse(options: msRest.RequestOptionsBase): Promise<boolean>;
+  getFalse(): Promise<Models.BoolGetFalseResponse>;
+  getFalse(options: msRest.RequestOptionsBase): Promise<Models.BoolGetFalseResponse>;
   getFalse(callback: msRest.ServiceCallback<boolean>): void;
   getFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.getFalseWithHttpOperationResponse.bind(this), options, callback);
+  getFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetFalseResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getFalseOperationSpec,
+      callback) as Promise<Models.BoolGetFalseResponse>;
   }
 
   /**
@@ -210,21 +102,23 @@ export class Bool {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putFalse(): Promise<void>;
-  putFalse(options: msRest.RequestOptionsBase): Promise<void>;
+  putFalse(): Promise<msRest.RestResponse>;
+  putFalse(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putFalse(callback: msRest.ServiceCallback<void>): void;
   putFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putFalseWithHttpOperationResponse.bind(this), options, callback);
+  putFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putFalseOperationSpec,
+      callback);
   }
 
   /**
@@ -232,21 +126,23 @@ export class Bool {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getNull(): Promise<boolean>;
-  getNull(options: msRest.RequestOptionsBase): Promise<boolean>;
+  getNull(): Promise<Models.BoolGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.BoolGetNullResponse>;
   getNull(callback: msRest.ServiceCallback<boolean>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec,
+      callback) as Promise<Models.BoolGetNullResponse>;
   }
 
   /**
@@ -254,21 +150,23 @@ export class Bool {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalid(): Promise<boolean>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<boolean>;
+  getInvalid(): Promise<Models.BoolGetInvalidResponse>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.BoolGetInvalidResponse>;
   getInvalid(callback: msRest.ServiceCallback<boolean>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetInvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidOperationSpec,
+      callback) as Promise<Models.BoolGetInvalidResponse>;
   }
 
 }

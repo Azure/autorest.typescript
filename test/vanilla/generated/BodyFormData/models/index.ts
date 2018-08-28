@@ -29,7 +29,11 @@ export interface ErrorModel {
 /**
  * Contains response data for the uploadFile operation.
  */
-export interface FormdataUploadFileResponse extends msRest.HttpResponse {
+export interface FormdataUploadFileResponse {
+  /**
+   * The raw HTTP response.
+   */
+  response: msRest.HttpOperationResponse;
   /**
    * BROWSER ONLY
    *
@@ -49,7 +53,11 @@ export interface FormdataUploadFileResponse extends msRest.HttpResponse {
 /**
  * Contains response data for the uploadFileViaBody operation.
  */
-export interface FormdataUploadFileViaBodyResponse extends msRest.HttpResponse {
+export interface FormdataUploadFileViaBodyResponse {
+  /**
+   * The raw HTTP response.
+   */
+  response: msRest.HttpOperationResponse;
   /**
    * BROWSER ONLY
    *

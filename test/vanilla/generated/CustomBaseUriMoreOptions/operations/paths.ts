@@ -43,7 +43,11 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyWithHttpOperationResponse(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.HttpResponse> {
+  getEmpty(vault: string, secret: string, keyName: string): Promise<msRest.RestResponse>;
+  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams): Promise<msRest.RestResponse>;
+  getEmpty(vault: string, secret: string, keyName: string, callback: msRest.ServiceCallback<void>): void;
+  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
+  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         vault,
@@ -51,35 +55,8 @@ export class Paths {
         keyName,
         options
       },
-      getEmptyOperationSpec);
-  }
-
-  /**
-   * Get a 200 to test a valid base uri
-   *
-   * @param {string} vault The vault name, e.g. https://myvault
-   *
-   * @param {string} secret Secret value.
-   *
-   * @param {string} keyName The key name with value 'key1'.
-   *
-   * @param {PathsGetEmptyOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getEmpty(vault: string, secret: string, keyName: string): Promise<void>;
-  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams): Promise<void>;
-  getEmpty(vault: string, secret: string, keyName: string, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), vault, secret, keyName, options, callback);
+      getEmptyOperationSpec,
+      callback);
   }
 
 }

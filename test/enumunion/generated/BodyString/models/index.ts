@@ -142,153 +142,157 @@ export type GetWhitespaceOKResponse = '    Now is the time for all good men to c
 /**
  * Contains response data for the getNull operation.
  */
-export interface StringGetNullResponse extends msRest.HttpResponse {
+export interface StringGetNullResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: GetNullOKResponse;
+  body: GetNullOKResponse;
 }
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface StringGetEmptyResponse extends msRest.HttpResponse {
+export interface StringGetEmptyResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: GetEmptyOKResponse;
+  body: GetEmptyOKResponse;
 }
 
 /**
  * Contains response data for the getMbcs operation.
  */
-export interface StringGetMbcsResponse extends msRest.HttpResponse {
+export interface StringGetMbcsResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: GetMbcsOKResponse;
+  body: GetMbcsOKResponse;
 }
 
 /**
  * Contains response data for the getWhitespace operation.
  */
-export interface StringGetWhitespaceResponse extends msRest.HttpResponse {
+export interface StringGetWhitespaceResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: GetWhitespaceOKResponse;
+  body: GetWhitespaceOKResponse;
 }
 
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface StringGetNotProvidedResponse extends msRest.HttpResponse {
+export interface StringGetNotProvidedResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }
 
 /**
  * Contains response data for the getBase64Encoded operation.
  */
-export interface StringGetBase64EncodedResponse extends msRest.HttpResponse {
+export interface StringGetBase64EncodedResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Uint8Array;
+  body: Uint8Array;
 }
 
 /**
  * Contains response data for the getBase64UrlEncoded operation.
  */
-export interface StringGetBase64UrlEncodedResponse extends msRest.HttpResponse {
+export interface StringGetBase64UrlEncodedResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Uint8Array;
+  body: Uint8Array;
 }
 
 /**
  * Contains response data for the getNullBase64UrlEncoded operation.
  */
-export interface StringGetNullBase64UrlEncodedResponse extends msRest.HttpResponse {
+export interface StringGetNullBase64UrlEncodedResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Uint8Array;
+  body: Uint8Array;
 }
 
 /**
  * Contains response data for the getNotExpandable operation.
  */
-export interface EnumModelGetNotExpandableResponse extends msRest.HttpResponse {
+export interface EnumModelGetNotExpandableResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Colors;
+  body: Colors;
 }
 
 /**
  * Contains response data for the getReferenced operation.
  */
-export interface EnumModelGetReferencedResponse extends msRest.HttpResponse {
+export interface EnumModelGetReferencedResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Colors;
+  body: Colors;
 }
 
 /**
  * Contains response data for the getReferencedConstant operation.
  */
-export interface EnumModelGetReferencedConstantResponse extends msRest.HttpResponse {
+export interface EnumModelGetReferencedConstantResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Referenced Color Constant Description.
    */
-  parsedBody: RefColorConstant;
+  colorConstant: string;
+  /**
+   * Sample string.
+   */
+  field1: string;
 }

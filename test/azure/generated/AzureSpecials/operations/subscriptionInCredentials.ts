@@ -37,115 +37,17 @@ export class SubscriptionInCredentials {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  postMethodGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      postMethodGlobalValidOperationSpec);
-  }
-
-  /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-   * null, and client-side validation should prevent you from making this call
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  postMethodGlobalNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      postMethodGlobalNullOperationSpec);
-  }
-
-  /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-   * '1234-5678-9012-3456' to succeed
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  postMethodGlobalNotProvidedValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      postMethodGlobalNotProvidedValidOperationSpec);
-  }
-
-  /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-   * '1234-5678-9012-3456' to succeed
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  postPathGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      postPathGlobalValidOperationSpec);
-  }
-
-  /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-   * '1234-5678-9012-3456' to succeed
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  postSwaggerGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      postSwaggerGlobalValidOperationSpec);
-  }
-
-  /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-   * '1234-5678-9012-3456' to succeed
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  postMethodGlobalValid(): Promise<void>;
-  postMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
+  postMethodGlobalValid(): Promise<msRest.RestResponse>;
+  postMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   postMethodGlobalValid(callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postMethodGlobalValidWithHttpOperationResponse.bind(this), options, callback);
+  postMethodGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      postMethodGlobalValidOperationSpec,
+      callback);
   }
 
   /**
@@ -154,21 +56,23 @@ export class SubscriptionInCredentials {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  postMethodGlobalNull(): Promise<void>;
-  postMethodGlobalNull(options: msRest.RequestOptionsBase): Promise<void>;
+  postMethodGlobalNull(): Promise<msRest.RestResponse>;
+  postMethodGlobalNull(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   postMethodGlobalNull(callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodGlobalNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postMethodGlobalNullWithHttpOperationResponse.bind(this), options, callback);
+  postMethodGlobalNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      postMethodGlobalNullOperationSpec,
+      callback);
   }
 
   /**
@@ -177,21 +81,23 @@ export class SubscriptionInCredentials {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  postMethodGlobalNotProvidedValid(): Promise<void>;
-  postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<void>;
+  postMethodGlobalNotProvidedValid(): Promise<msRest.RestResponse>;
+  postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   postMethodGlobalNotProvidedValid(callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postMethodGlobalNotProvidedValidWithHttpOperationResponse.bind(this), options, callback);
+  postMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      postMethodGlobalNotProvidedValidOperationSpec,
+      callback);
   }
 
   /**
@@ -200,21 +106,23 @@ export class SubscriptionInCredentials {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  postPathGlobalValid(): Promise<void>;
-  postPathGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
+  postPathGlobalValid(): Promise<msRest.RestResponse>;
+  postPathGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   postPathGlobalValid(callback: msRest.ServiceCallback<void>): void;
   postPathGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postPathGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postPathGlobalValidWithHttpOperationResponse.bind(this), options, callback);
+  postPathGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      postPathGlobalValidOperationSpec,
+      callback);
   }
 
   /**
@@ -223,21 +131,23 @@ export class SubscriptionInCredentials {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  postSwaggerGlobalValid(): Promise<void>;
-  postSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
+  postSwaggerGlobalValid(): Promise<msRest.RestResponse>;
+  postSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   postSwaggerGlobalValid(callback: msRest.ServiceCallback<void>): void;
   postSwaggerGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postSwaggerGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.postSwaggerGlobalValidWithHttpOperationResponse.bind(this), options, callback);
+  postSwaggerGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      postSwaggerGlobalValidOperationSpec,
+      callback);
   }
 
 }

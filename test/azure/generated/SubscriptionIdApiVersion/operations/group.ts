@@ -39,37 +39,18 @@ export class Group {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSampleResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.GroupGetSampleResourceGroupResponse> {
+  getSampleResourceGroup(resourceGroupName: string): Promise<Models.GroupGetSampleResourceGroupResponse>;
+  getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.GroupGetSampleResourceGroupResponse>;
+  getSampleResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
+  getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
+  getSampleResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SampleResourceGroup>): Promise<Models.GroupGetSampleResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      getSampleResourceGroupOperationSpec) as Promise<Models.GroupGetSampleResourceGroupResponse>;
-  }
-
-  /**
-   * Provides a resouce group with name 'testgroup101' and location 'West US'.
-   *
-   * @param {string} resourceGroupName Resource Group name 'testgroup101'.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.SampleResourceGroup} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SampleResourceGroup} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getSampleResourceGroup(resourceGroupName: string): Promise<Models.SampleResourceGroup>;
-  getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.SampleResourceGroup>;
-  getSampleResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
-  getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
-  getSampleResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SampleResourceGroup>): any {
-    return msRest.responseToBody(this.getSampleResourceGroupWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
+      getSampleResourceGroupOperationSpec,
+      callback) as Promise<Models.GroupGetSampleResourceGroupResponse>;
   }
 
 }

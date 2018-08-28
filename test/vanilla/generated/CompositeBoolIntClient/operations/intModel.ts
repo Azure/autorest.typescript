@@ -36,296 +36,17 @@ export class IntModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullOperationSpec) as Promise<Models.IntModelGetNullResponse>;
-  }
-
-  /**
-   * Get invalid Int value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidOperationSpec) as Promise<Models.IntModelGetInvalidResponse>;
-  }
-
-  /**
-   * Get overflow Int32 value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getOverflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt32Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getOverflowInt32OperationSpec) as Promise<Models.IntModelGetOverflowInt32Response>;
-  }
-
-  /**
-   * Get underflow Int32 value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUnderflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt32Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUnderflowInt32OperationSpec) as Promise<Models.IntModelGetUnderflowInt32Response>;
-  }
-
-  /**
-   * Get overflow Int64 value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getOverflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt64Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getOverflowInt64OperationSpec) as Promise<Models.IntModelGetOverflowInt64Response>;
-  }
-
-  /**
-   * Get underflow Int64 value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUnderflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt64Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUnderflowInt64OperationSpec) as Promise<Models.IntModelGetUnderflowInt64Response>;
-  }
-
-  /**
-   * Put max int32 value
-   *
-   * @param {number} intBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putMax32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        intBody,
-        options
-      },
-      putMax32OperationSpec);
-  }
-
-  /**
-   * Put max int64 value
-   *
-   * @param {number} intBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putMax64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        intBody,
-        options
-      },
-      putMax64OperationSpec);
-  }
-
-  /**
-   * Put min int32 value
-   *
-   * @param {number} intBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putMin32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        intBody,
-        options
-      },
-      putMin32OperationSpec);
-  }
-
-  /**
-   * Put min int64 value
-   *
-   * @param {number} intBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putMin64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        intBody,
-        options
-      },
-      putMin64OperationSpec);
-  }
-
-  /**
-   * Get datetime encoded as Unix time value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnixTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUnixTimeOperationSpec) as Promise<Models.IntModelGetUnixTimeResponse>;
-  }
-
-  /**
-   * Put datetime encoded as Unix time
-   *
-   * @param {Date | string} intBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putUnixTimeDateWithHttpOperationResponse(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        intBody,
-        options
-      },
-      putUnixTimeDateOperationSpec);
-  }
-
-  /**
-   * Get invalid Unix time value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidUnixTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidUnixTimeOperationSpec) as Promise<Models.IntModelGetInvalidUnixTimeResponse>;
-  }
-
-  /**
-   * Get null Unix time value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNullUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullUnixTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullUnixTimeOperationSpec) as Promise<Models.IntModelGetNullUnixTimeResponse>;
-  }
-
-  /**
-   * Get null Int value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNull(): Promise<number>;
-  getNull(options: msRest.RequestOptionsBase): Promise<number>;
+  getNull(): Promise<Models.IntModelGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullResponse>;
   getNull(callback: msRest.ServiceCallback<number>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec,
+      callback) as Promise<Models.IntModelGetNullResponse>;
   }
 
   /**
@@ -333,21 +54,23 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalid(): Promise<number>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<number>;
+  getInvalid(): Promise<Models.IntModelGetInvalidResponse>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidResponse>;
   getInvalid(callback: msRest.ServiceCallback<number>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetInvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidOperationSpec,
+      callback) as Promise<Models.IntModelGetInvalidResponse>;
   }
 
   /**
@@ -355,21 +78,23 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getOverflowInt32(): Promise<number>;
-  getOverflowInt32(options: msRest.RequestOptionsBase): Promise<number>;
+  getOverflowInt32(): Promise<Models.IntModelGetOverflowInt32Response>;
+  getOverflowInt32(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt32Response>;
   getOverflowInt32(callback: msRest.ServiceCallback<number>): void;
   getOverflowInt32(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getOverflowInt32(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getOverflowInt32WithHttpOperationResponse.bind(this), options, callback);
+  getOverflowInt32(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetOverflowInt32Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getOverflowInt32OperationSpec,
+      callback) as Promise<Models.IntModelGetOverflowInt32Response>;
   }
 
   /**
@@ -377,21 +102,23 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUnderflowInt32(): Promise<number>;
-  getUnderflowInt32(options: msRest.RequestOptionsBase): Promise<number>;
+  getUnderflowInt32(): Promise<Models.IntModelGetUnderflowInt32Response>;
+  getUnderflowInt32(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt32Response>;
   getUnderflowInt32(callback: msRest.ServiceCallback<number>): void;
   getUnderflowInt32(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getUnderflowInt32(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getUnderflowInt32WithHttpOperationResponse.bind(this), options, callback);
+  getUnderflowInt32(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetUnderflowInt32Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUnderflowInt32OperationSpec,
+      callback) as Promise<Models.IntModelGetUnderflowInt32Response>;
   }
 
   /**
@@ -399,21 +126,23 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getOverflowInt64(): Promise<number>;
-  getOverflowInt64(options: msRest.RequestOptionsBase): Promise<number>;
+  getOverflowInt64(): Promise<Models.IntModelGetOverflowInt64Response>;
+  getOverflowInt64(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt64Response>;
   getOverflowInt64(callback: msRest.ServiceCallback<number>): void;
   getOverflowInt64(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getOverflowInt64(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getOverflowInt64WithHttpOperationResponse.bind(this), options, callback);
+  getOverflowInt64(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetOverflowInt64Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getOverflowInt64OperationSpec,
+      callback) as Promise<Models.IntModelGetOverflowInt64Response>;
   }
 
   /**
@@ -421,21 +150,23 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUnderflowInt64(): Promise<number>;
-  getUnderflowInt64(options: msRest.RequestOptionsBase): Promise<number>;
+  getUnderflowInt64(): Promise<Models.IntModelGetUnderflowInt64Response>;
+  getUnderflowInt64(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt64Response>;
   getUnderflowInt64(callback: msRest.ServiceCallback<number>): void;
   getUnderflowInt64(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getUnderflowInt64(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getUnderflowInt64WithHttpOperationResponse.bind(this), options, callback);
+  getUnderflowInt64(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetUnderflowInt64Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUnderflowInt64OperationSpec,
+      callback) as Promise<Models.IntModelGetUnderflowInt64Response>;
   }
 
   /**
@@ -445,21 +176,24 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putMax32(intBody: number): Promise<void>;
-  putMax32(intBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putMax32(intBody: number): Promise<msRest.RestResponse>;
+  putMax32(intBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putMax32(intBody: number, callback: msRest.ServiceCallback<void>): void;
   putMax32(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMax32(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putMax32WithHttpOperationResponse.bind(this), intBody, options, callback);
+  putMax32(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        intBody,
+        options
+      },
+      putMax32OperationSpec,
+      callback);
   }
 
   /**
@@ -469,21 +203,24 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putMax64(intBody: number): Promise<void>;
-  putMax64(intBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putMax64(intBody: number): Promise<msRest.RestResponse>;
+  putMax64(intBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putMax64(intBody: number, callback: msRest.ServiceCallback<void>): void;
   putMax64(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMax64(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putMax64WithHttpOperationResponse.bind(this), intBody, options, callback);
+  putMax64(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        intBody,
+        options
+      },
+      putMax64OperationSpec,
+      callback);
   }
 
   /**
@@ -493,21 +230,24 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putMin32(intBody: number): Promise<void>;
-  putMin32(intBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putMin32(intBody: number): Promise<msRest.RestResponse>;
+  putMin32(intBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putMin32(intBody: number, callback: msRest.ServiceCallback<void>): void;
   putMin32(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMin32(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putMin32WithHttpOperationResponse.bind(this), intBody, options, callback);
+  putMin32(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        intBody,
+        options
+      },
+      putMin32OperationSpec,
+      callback);
   }
 
   /**
@@ -517,21 +257,24 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putMin64(intBody: number): Promise<void>;
-  putMin64(intBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putMin64(intBody: number): Promise<msRest.RestResponse>;
+  putMin64(intBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putMin64(intBody: number, callback: msRest.ServiceCallback<void>): void;
   putMin64(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMin64(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putMin64WithHttpOperationResponse.bind(this), intBody, options, callback);
+  putMin64(intBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        intBody,
+        options
+      },
+      putMin64OperationSpec,
+      callback);
   }
 
   /**
@@ -539,21 +282,23 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUnixTime(): Promise<Date>;
-  getUnixTime(options: msRest.RequestOptionsBase): Promise<Date>;
+  getUnixTime(): Promise<Models.IntModelGetUnixTimeResponse>;
+  getUnixTime(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnixTimeResponse>;
   getUnixTime(callback: msRest.ServiceCallback<Date>): void;
   getUnixTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUnixTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    return msRest.responseToBody(this.getUnixTimeWithHttpOperationResponse.bind(this), options, callback);
+  getUnixTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.IntModelGetUnixTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUnixTimeOperationSpec,
+      callback) as Promise<Models.IntModelGetUnixTimeResponse>;
   }
 
   /**
@@ -563,21 +308,24 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putUnixTimeDate(intBody: Date | string): Promise<void>;
-  putUnixTimeDate(intBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
+  putUnixTimeDate(intBody: Date | string): Promise<msRest.RestResponse>;
+  putUnixTimeDate(intBody: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putUnixTimeDate(intBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   putUnixTimeDate(intBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUnixTimeDate(intBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putUnixTimeDateWithHttpOperationResponse.bind(this), intBody, options, callback);
+  putUnixTimeDate(intBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        intBody,
+        options
+      },
+      putUnixTimeDateOperationSpec,
+      callback);
   }
 
   /**
@@ -585,21 +333,23 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalidUnixTime(): Promise<Date>;
-  getInvalidUnixTime(options: msRest.RequestOptionsBase): Promise<Date>;
+  getInvalidUnixTime(): Promise<Models.IntModelGetInvalidUnixTimeResponse>;
+  getInvalidUnixTime(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidUnixTimeResponse>;
   getInvalidUnixTime(callback: msRest.ServiceCallback<Date>): void;
   getInvalidUnixTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getInvalidUnixTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    return msRest.responseToBody(this.getInvalidUnixTimeWithHttpOperationResponse.bind(this), options, callback);
+  getInvalidUnixTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.IntModelGetInvalidUnixTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidUnixTimeOperationSpec,
+      callback) as Promise<Models.IntModelGetInvalidUnixTimeResponse>;
   }
 
   /**
@@ -607,21 +357,23 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getNullUnixTime(): Promise<Date>;
-  getNullUnixTime(options: msRest.RequestOptionsBase): Promise<Date>;
+  getNullUnixTime(): Promise<Models.IntModelGetNullUnixTimeResponse>;
+  getNullUnixTime(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullUnixTimeResponse>;
   getNullUnixTime(callback: msRest.ServiceCallback<Date>): void;
   getNullUnixTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getNullUnixTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
-    return msRest.responseToBody(this.getNullUnixTimeWithHttpOperationResponse.bind(this), options, callback);
+  getNullUnixTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.IntModelGetNullUnixTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullUnixTimeOperationSpec,
+      callback) as Promise<Models.IntModelGetNullUnixTimeResponse>;
   }
 
 }

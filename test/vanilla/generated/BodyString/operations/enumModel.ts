@@ -36,12 +36,17 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNotExpandableWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.EnumModelGetNotExpandableResponse> {
+  getNotExpandable(): Promise<Models.EnumModelGetNotExpandableResponse>;
+  getNotExpandable(options: msRest.RequestOptionsBase): Promise<Models.EnumModelGetNotExpandableResponse>;
+  getNotExpandable(callback: msRest.ServiceCallback<Models.Colors>): void;
+  getNotExpandable(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Colors>): void;
+  getNotExpandable(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Colors>): Promise<Models.EnumModelGetNotExpandableResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNotExpandableOperationSpec) as Promise<Models.EnumModelGetNotExpandableResponse>;
+      getNotExpandableOperationSpec,
+      callback) as Promise<Models.EnumModelGetNotExpandableResponse>;
   }
 
   /**
@@ -57,13 +62,18 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNotExpandableWithHttpOperationResponse(stringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putNotExpandable(stringBody: Models.Colors): Promise<msRest.RestResponse>;
+  putNotExpandable(stringBody: Models.Colors, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putNotExpandable(stringBody: Models.Colors, callback: msRest.ServiceCallback<void>): void;
+  putNotExpandable(stringBody: Models.Colors, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putNotExpandable(stringBody: Models.Colors, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         stringBody,
         options
       },
-      putNotExpandableOperationSpec);
+      putNotExpandableOperationSpec,
+      callback);
   }
 
   /**
@@ -77,12 +87,17 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getReferencedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.EnumModelGetReferencedResponse> {
+  getReferenced(): Promise<Models.EnumModelGetReferencedResponse>;
+  getReferenced(options: msRest.RequestOptionsBase): Promise<Models.EnumModelGetReferencedResponse>;
+  getReferenced(callback: msRest.ServiceCallback<Models.Colors>): void;
+  getReferenced(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Colors>): void;
+  getReferenced(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Colors>): Promise<Models.EnumModelGetReferencedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getReferencedOperationSpec) as Promise<Models.EnumModelGetReferencedResponse>;
+      getReferencedOperationSpec,
+      callback) as Promise<Models.EnumModelGetReferencedResponse>;
   }
 
   /**
@@ -98,13 +113,18 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putReferencedWithHttpOperationResponse(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putReferenced(enumStringBody: Models.Colors): Promise<msRest.RestResponse>;
+  putReferenced(enumStringBody: Models.Colors, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putReferenced(enumStringBody: Models.Colors, callback: msRest.ServiceCallback<void>): void;
+  putReferenced(enumStringBody: Models.Colors, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putReferenced(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         enumStringBody,
         options
       },
-      putReferencedOperationSpec);
+      putReferencedOperationSpec,
+      callback);
   }
 
   /**
@@ -118,145 +138,17 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getReferencedConstantWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.EnumModelGetReferencedConstantResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getReferencedConstantOperationSpec) as Promise<Models.EnumModelGetReferencedConstantResponse>;
-  }
-
-  /**
-   * Sends value 'green-color' from a constant
-   *
-   * @param {EnumModelPutReferencedConstantOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putReferencedConstantWithHttpOperationResponse(options?: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putReferencedConstantOperationSpec);
-  }
-
-  /**
-   * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Colors} [result]   - The deserialized result object if an error did not occur.
-   *                      Possible values for result are - red color, green-color, blue_color.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNotExpandable(): Promise<Models.Colors>;
-  getNotExpandable(options: msRest.RequestOptionsBase): Promise<Models.Colors>;
-  getNotExpandable(callback: msRest.ServiceCallback<Models.Colors>): void;
-  getNotExpandable(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Colors>): void;
-  getNotExpandable(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Colors>): any {
-    return msRest.responseToBody(this.getNotExpandableWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
-   *
-   * @param {Colors} stringBody Possible values include: 'red color', 'green-color', 'blue_color'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putNotExpandable(stringBody: Models.Colors): Promise<void>;
-  putNotExpandable(stringBody: Models.Colors, options: msRest.RequestOptionsBase): Promise<void>;
-  putNotExpandable(stringBody: Models.Colors, callback: msRest.ServiceCallback<void>): void;
-  putNotExpandable(stringBody: Models.Colors, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putNotExpandable(stringBody: Models.Colors, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putNotExpandableWithHttpOperationResponse.bind(this), stringBody, options, callback);
-  }
-
-  /**
-   * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Colors} [result]   - The deserialized result object if an error did not occur.
-   *                      Possible values for result are - red color, green-color, blue_color.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getReferenced(): Promise<Models.Colors>;
-  getReferenced(options: msRest.RequestOptionsBase): Promise<Models.Colors>;
-  getReferenced(callback: msRest.ServiceCallback<Models.Colors>): void;
-  getReferenced(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Colors>): void;
-  getReferenced(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Colors>): any {
-    return msRest.responseToBody(this.getReferencedWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
-   *
-   * @param {Colors} enumStringBody Possible values include: 'red color', 'green-color', 'blue_color'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putReferenced(enumStringBody: Models.Colors): Promise<void>;
-  putReferenced(enumStringBody: Models.Colors, options: msRest.RequestOptionsBase): Promise<void>;
-  putReferenced(enumStringBody: Models.Colors, callback: msRest.ServiceCallback<void>): void;
-  putReferenced(enumStringBody: Models.Colors, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putReferenced(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putReferencedWithHttpOperationResponse.bind(this), enumStringBody, options, callback);
-  }
-
-  /**
-   * Get value 'green-color' from the constant.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.RefColorConstant} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.RefColorConstant} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getReferencedConstant(): Promise<Models.RefColorConstant>;
-  getReferencedConstant(options: msRest.RequestOptionsBase): Promise<Models.RefColorConstant>;
+  getReferencedConstant(): Promise<Models.EnumModelGetReferencedConstantResponse>;
+  getReferencedConstant(options: msRest.RequestOptionsBase): Promise<Models.EnumModelGetReferencedConstantResponse>;
   getReferencedConstant(callback: msRest.ServiceCallback<Models.RefColorConstant>): void;
   getReferencedConstant(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RefColorConstant>): void;
-  getReferencedConstant(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RefColorConstant>): any {
-    return msRest.responseToBody(this.getReferencedConstantWithHttpOperationResponse.bind(this), options, callback);
+  getReferencedConstant(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RefColorConstant>): Promise<Models.EnumModelGetReferencedConstantResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getReferencedConstantOperationSpec,
+      callback) as Promise<Models.EnumModelGetReferencedConstantResponse>;
   }
 
   /**
@@ -264,21 +156,23 @@ export class EnumModel {
    *
    * @param {EnumModelPutReferencedConstantOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putReferencedConstant(): Promise<void>;
-  putReferencedConstant(options: Models.EnumModelPutReferencedConstantOptionalParams): Promise<void>;
+  putReferencedConstant(): Promise<msRest.RestResponse>;
+  putReferencedConstant(options: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.RestResponse>;
   putReferencedConstant(callback: msRest.ServiceCallback<void>): void;
   putReferencedConstant(options: Models.EnumModelPutReferencedConstantOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putReferencedConstant(options?: Models.EnumModelPutReferencedConstantOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putReferencedConstantWithHttpOperationResponse.bind(this), options, callback);
+  putReferencedConstant(options?: Models.EnumModelPutReferencedConstantOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putReferencedConstantOperationSpec,
+      callback);
   }
 
 }

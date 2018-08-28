@@ -29,41 +29,41 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface DurationGetNullResponse extends msRest.HttpResponse {
+export interface DurationGetNullResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }
 
 /**
  * Contains response data for the getPositiveDuration operation.
  */
-export interface DurationGetPositiveDurationResponse extends msRest.HttpResponse {
+export interface DurationGetPositiveDurationResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface DurationGetInvalidResponse extends msRest.HttpResponse {
+export interface DurationGetInvalidResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: string;
+  body: string;
 }

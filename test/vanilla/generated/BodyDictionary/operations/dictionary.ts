@@ -36,1314 +36,17 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullOperationSpec) as Promise<Models.DictionaryGetNullResponse>;
-  }
-
-  /**
-   * Get empty dictionary value {}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getEmptyOperationSpec) as Promise<Models.DictionaryGetEmptyResponse>;
-  }
-
-  /**
-   * Set dictionary value empty {}
-   *
-   * @param {{ [propertyName: string]: string }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putEmptyWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putEmptyOperationSpec);
-  }
-
-  /**
-   * Get Dictionary with null value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNullValueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullValueResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullValueOperationSpec) as Promise<Models.DictionaryGetNullValueResponse>;
-  }
-
-  /**
-   * Get Dictionary with null key
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNullKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullKeyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullKeyOperationSpec) as Promise<Models.DictionaryGetNullKeyResponse>;
-  }
-
-  /**
-   * Get Dictionary with key as empty string
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getEmptyStringKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyStringKeyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getEmptyStringKeyOperationSpec) as Promise<Models.DictionaryGetEmptyStringKeyResponse>;
-  }
-
-  /**
-   * Get invalid Dictionary value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetInvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidOperationSpec) as Promise<Models.DictionaryGetInvalidResponse>;
-  }
-
-  /**
-   * Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBooleanTfftWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanTfftResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBooleanTfftOperationSpec) as Promise<Models.DictionaryGetBooleanTfftResponse>;
-  }
-
-  /**
-   * Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }
-   *
-   * @param {{ [propertyName: string]: boolean }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBooleanTfftWithHttpOperationResponse(arrayBody: { [propertyName: string]: boolean }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putBooleanTfftOperationSpec);
-  }
-
-  /**
-   * Get boolean dictionary value {"0": true, "1": null, "2": false }
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBooleanInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBooleanInvalidNullOperationSpec) as Promise<Models.DictionaryGetBooleanInvalidNullResponse>;
-  }
-
-  /**
-   * Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBooleanInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBooleanInvalidStringOperationSpec) as Promise<Models.DictionaryGetBooleanInvalidStringResponse>;
-  }
-
-  /**
-   * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getIntegerValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntegerValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntegerValidOperationSpec) as Promise<Models.DictionaryGetIntegerValidResponse>;
-  }
-
-  /**
-   * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
-   *
-   * @param {{ [propertyName: string]: number }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putIntegerValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putIntegerValidOperationSpec);
-  }
-
-  /**
-   * Get integer dictionary value {"0": 1, "1": null, "2": 0}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getIntInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntInvalidNullOperationSpec) as Promise<Models.DictionaryGetIntInvalidNullResponse>;
-  }
-
-  /**
-   * Get integer dictionary value {"0": 1, "1": "integer", "2": 0}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getIntInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntInvalidStringOperationSpec) as Promise<Models.DictionaryGetIntInvalidStringResponse>;
-  }
-
-  /**
-   * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLongValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLongValidOperationSpec) as Promise<Models.DictionaryGetLongValidResponse>;
-  }
-
-  /**
-   * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
-   *
-   * @param {{ [propertyName: string]: number }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putLongValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putLongValidOperationSpec);
-  }
-
-  /**
-   * Get long dictionary value {"0": 1, "1": null, "2": 0}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLongInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLongInvalidNullOperationSpec) as Promise<Models.DictionaryGetLongInvalidNullResponse>;
-  }
-
-  /**
-   * Get long dictionary value {"0": 1, "1": "integer", "2": 0}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLongInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLongInvalidStringOperationSpec) as Promise<Models.DictionaryGetLongInvalidStringResponse>;
-  }
-
-  /**
-   * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getFloatValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getFloatValidOperationSpec) as Promise<Models.DictionaryGetFloatValidResponse>;
-  }
-
-  /**
-   * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
-   *
-   * @param {{ [propertyName: string]: number }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putFloatValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putFloatValidOperationSpec);
-  }
-
-  /**
-   * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getFloatInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getFloatInvalidNullOperationSpec) as Promise<Models.DictionaryGetFloatInvalidNullResponse>;
-  }
-
-  /**
-   * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getFloatInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getFloatInvalidStringOperationSpec) as Promise<Models.DictionaryGetFloatInvalidStringResponse>;
-  }
-
-  /**
-   * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDoubleValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDoubleValidOperationSpec) as Promise<Models.DictionaryGetDoubleValidResponse>;
-  }
-
-  /**
-   * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
-   *
-   * @param {{ [propertyName: string]: number }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDoubleValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDoubleValidOperationSpec);
-  }
-
-  /**
-   * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDoubleInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDoubleInvalidNullOperationSpec) as Promise<Models.DictionaryGetDoubleInvalidNullResponse>;
-  }
-
-  /**
-   * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDoubleInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDoubleInvalidStringOperationSpec) as Promise<Models.DictionaryGetDoubleInvalidStringResponse>;
-  }
-
-  /**
-   * Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getStringValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getStringValidOperationSpec) as Promise<Models.DictionaryGetStringValidResponse>;
-  }
-
-  /**
-   * Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
-   *
-   * @param {{ [propertyName: string]: string }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putStringValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putStringValidOperationSpec);
-  }
-
-  /**
-   * Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getStringWithNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getStringWithNullOperationSpec) as Promise<Models.DictionaryGetStringWithNullResponse>;
-  }
-
-  /**
-   * Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getStringWithInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithInvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getStringWithInvalidOperationSpec) as Promise<Models.DictionaryGetStringWithInvalidResponse>;
-  }
-
-  /**
-   * Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateValidOperationSpec) as Promise<Models.DictionaryGetDateValidResponse>;
-  }
-
-  /**
-   * Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
-   *
-   * @param {{ [key: string]: Date } | { [key: string]: string }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDateValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDateValidOperationSpec);
-  }
-
-  /**
-   * Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateInvalidNullOperationSpec) as Promise<Models.DictionaryGetDateInvalidNullResponse>;
-  }
-
-  /**
-   * Get date dictionary value {"0": "2011-03-22", "1": "date"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidCharsResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateInvalidCharsOperationSpec) as Promise<Models.DictionaryGetDateInvalidCharsResponse>;
-  }
-
-  /**
-   * Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
-   * "2": "1492-10-12T10:15:01-08:00"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeValidOperationSpec) as Promise<Models.DictionaryGetDateTimeValidResponse>;
-  }
-
-  /**
-   * Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
-   * "1492-10-12T10:15:01-08:00"}
-   *
-   * @param {{ [key: string]: Date } | { [key: string]: string }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDateTimeValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDateTimeValidOperationSpec);
-  }
-
-  /**
-   * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeInvalidNullOperationSpec) as Promise<Models.DictionaryGetDateTimeInvalidNullResponse>;
-  }
-
-  /**
-   * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeInvalidCharsOperationSpec) as Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>;
-  }
-
-  /**
-   * Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
-   * 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeRfc1123ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeRfc1123ValidOperationSpec) as Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>;
-  }
-
-  /**
-   * Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
-   * 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}
-   *
-   * @param {{ [key: string]: Date } | { [key: string]: string }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDateTimeRfc1123ValidOperationSpec);
-  }
-
-  /**
-   * Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDurationValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDurationValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDurationValidOperationSpec) as Promise<Models.DictionaryGetDurationValidResponse>;
-  }
-
-  /**
-   * Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
-   *
-   * @param {{ [propertyName: string]: string }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDurationValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDurationValidOperationSpec);
-  }
-
-  /**
-   * Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
-   * with each item encoded in base64
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getByteValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getByteValidOperationSpec) as Promise<Models.DictionaryGetByteValidResponse>;
-  }
-
-  /**
-   * Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with
-   * each elementencoded in base 64
-   *
-   * @param {{ [propertyName: string]: Uint8Array }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putByteValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putByteValidOperationSpec);
-  }
-
-  /**
-   * Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getByteInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getByteInvalidNullOperationSpec) as Promise<Models.DictionaryGetByteInvalidNullResponse>;
-  }
-
-  /**
-   * Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
-   * string", "2": "Lorem ipsum"}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBase64UrlWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBase64UrlResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBase64UrlOperationSpec) as Promise<Models.DictionaryGetBase64UrlResponse>;
-  }
-
-  /**
-   * Get dictionary of complex type null value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexNullOperationSpec) as Promise<Models.DictionaryGetComplexNullResponse>;
-  }
-
-  /**
-   * Get empty dictionary of complex type {}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexEmptyOperationSpec) as Promise<Models.DictionaryGetComplexEmptyResponse>;
-  }
-
-  /**
-   * Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
-   * "2": {"integer": 5, "string": "6"}}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexItemNullOperationSpec) as Promise<Models.DictionaryGetComplexItemNullResponse>;
-  }
-
-  /**
-   * Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
-   * "2": {"integer": 5, "string": "6"}}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexItemEmptyOperationSpec) as Promise<Models.DictionaryGetComplexItemEmptyResponse>;
-  }
-
-  /**
-   * Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
-   * "string": "4"}, "2": {"integer": 5, "string": "6"}}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexValidOperationSpec) as Promise<Models.DictionaryGetComplexValidResponse>;
-  }
-
-  /**
-   * Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
-   * {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}
-   *
-   * @param {{ [propertyName: string]: Widget }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putComplexValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: Models.Widget }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putComplexValidOperationSpec);
-  }
-
-  /**
-   * Get a null array
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayNullOperationSpec) as Promise<Models.DictionaryGetArrayNullResponse>;
-  }
-
-  /**
-   * Get an empty dictionary {}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayEmptyOperationSpec) as Promise<Models.DictionaryGetArrayEmptyResponse>;
-  }
-
-  /**
-   * Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayItemNullOperationSpec) as Promise<Models.DictionaryGetArrayItemNullResponse>;
-  }
-
-  /**
-   * Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayItemEmptyOperationSpec) as Promise<Models.DictionaryGetArrayItemEmptyResponse>;
-  }
-
-  /**
-   * Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
-   * "9"]}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayValidOperationSpec) as Promise<Models.DictionaryGetArrayValidResponse>;
-  }
-
-  /**
-   * Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
-   * "9"]}
-   *
-   * @param {{ [propertyName: string]: string[] }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putArrayValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string[] }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putArrayValidOperationSpec);
-  }
-
-  /**
-   * Get an dictionaries of dictionaries with value null
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryNullOperationSpec) as Promise<Models.DictionaryGetDictionaryNullResponse>;
-  }
-
-  /**
-   * Get an dictionaries of dictionaries of type <string, string> with value {}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryEmptyOperationSpec) as Promise<Models.DictionaryGetDictionaryEmptyResponse>;
-  }
-
-  /**
-   * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-   * "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryItemNullOperationSpec) as Promise<Models.DictionaryGetDictionaryItemNullResponse>;
-  }
-
-  /**
-   * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-   * "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryItemEmptyOperationSpec) as Promise<Models.DictionaryGetDictionaryItemEmptyResponse>;
-  }
-
-  /**
-   * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-   * "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
-   * "eight", "9": "nine"}}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryValidOperationSpec) as Promise<Models.DictionaryGetDictionaryValidResponse>;
-  }
-
-  /**
-   * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-   * "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
-   * "eight", "9": "nine"}}
-   *
-   * @param {{ [propertyName: string]: { [propertyName: string]: string } }} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDictionaryValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDictionaryValidOperationSpec);
-  }
-
-  /**
-   * Get null dictionary value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNull(): Promise<{ [propertyName: string]: number }>;
-  getNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getNull(): Promise<Models.DictionaryGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse>;
   getNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetNullResponse>;
   }
 
   /**
@@ -1351,21 +54,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getEmpty(): Promise<{ [propertyName: string]: number }>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getEmpty(): Promise<Models.DictionaryGetEmptyResponse>;
+  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse>;
   getEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyOperationSpec,
+      callback) as Promise<Models.DictionaryGetEmptyResponse>;
   }
 
   /**
@@ -1375,21 +80,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putEmpty(arrayBody: { [propertyName: string]: string }): Promise<void>;
-  putEmpty(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
+  putEmpty(arrayBody: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
+  putEmpty(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putEmpty(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putEmpty(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putEmpty(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -1397,21 +105,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getNullValue(): Promise<{ [propertyName: string]: string }>;
-  getNullValue(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
+  getNullValue(): Promise<Models.DictionaryGetNullValueResponse>;
+  getNullValue(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullValueResponse>;
   getNullValue(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getNullValue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getNullValue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getNullValueWithHttpOperationResponse.bind(this), options, callback);
+  getNullValue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetNullValueResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullValueOperationSpec,
+      callback) as Promise<Models.DictionaryGetNullValueResponse>;
   }
 
   /**
@@ -1419,21 +129,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getNullKey(): Promise<{ [propertyName: string]: string }>;
-  getNullKey(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
+  getNullKey(): Promise<Models.DictionaryGetNullKeyResponse>;
+  getNullKey(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullKeyResponse>;
   getNullKey(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getNullKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getNullKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getNullKeyWithHttpOperationResponse.bind(this), options, callback);
+  getNullKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetNullKeyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullKeyOperationSpec,
+      callback) as Promise<Models.DictionaryGetNullKeyResponse>;
   }
 
   /**
@@ -1441,21 +153,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getEmptyStringKey(): Promise<{ [propertyName: string]: string }>;
-  getEmptyStringKey(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
+  getEmptyStringKey(): Promise<Models.DictionaryGetEmptyStringKeyResponse>;
+  getEmptyStringKey(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyStringKeyResponse>;
   getEmptyStringKey(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getEmptyStringKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getEmptyStringKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getEmptyStringKeyWithHttpOperationResponse.bind(this), options, callback);
+  getEmptyStringKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetEmptyStringKeyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyStringKeyOperationSpec,
+      callback) as Promise<Models.DictionaryGetEmptyStringKeyResponse>;
   }
 
   /**
@@ -1463,21 +177,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalid(): Promise<{ [propertyName: string]: string }>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
+  getInvalid(): Promise<Models.DictionaryGetInvalidResponse>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetInvalidResponse>;
   getInvalid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetInvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidOperationSpec,
+      callback) as Promise<Models.DictionaryGetInvalidResponse>;
   }
 
   /**
@@ -1485,21 +201,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: boolean }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBooleanTfft(): Promise<{ [propertyName: string]: boolean }>;
-  getBooleanTfft(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: boolean }>;
+  getBooleanTfft(): Promise<Models.DictionaryGetBooleanTfftResponse>;
+  getBooleanTfft(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanTfftResponse>;
   getBooleanTfft(callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
   getBooleanTfft(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
-  getBooleanTfft(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): any {
-    return msRest.responseToBody(this.getBooleanTfftWithHttpOperationResponse.bind(this), options, callback);
+  getBooleanTfft(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): Promise<Models.DictionaryGetBooleanTfftResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBooleanTfftOperationSpec,
+      callback) as Promise<Models.DictionaryGetBooleanTfftResponse>;
   }
 
   /**
@@ -1509,21 +227,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }): Promise<void>;
-  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options: msRest.RequestOptionsBase): Promise<void>;
+  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }): Promise<msRest.RestResponse>;
+  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, callback: msRest.ServiceCallback<void>): void;
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBooleanTfftWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putBooleanTfftOperationSpec,
+      callback);
   }
 
   /**
@@ -1531,21 +252,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: boolean }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBooleanInvalidNull(): Promise<{ [propertyName: string]: boolean }>;
-  getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: boolean }>;
+  getBooleanInvalidNull(): Promise<Models.DictionaryGetBooleanInvalidNullResponse>;
+  getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidNullResponse>;
   getBooleanInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
   getBooleanInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
-  getBooleanInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): any {
-    return msRest.responseToBody(this.getBooleanInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getBooleanInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): Promise<Models.DictionaryGetBooleanInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBooleanInvalidNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetBooleanInvalidNullResponse>;
   }
 
   /**
@@ -1553,21 +276,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: boolean }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBooleanInvalidString(): Promise<{ [propertyName: string]: boolean }>;
-  getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: boolean }>;
+  getBooleanInvalidString(): Promise<Models.DictionaryGetBooleanInvalidStringResponse>;
+  getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidStringResponse>;
   getBooleanInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
   getBooleanInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
-  getBooleanInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): any {
-    return msRest.responseToBody(this.getBooleanInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getBooleanInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): Promise<Models.DictionaryGetBooleanInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBooleanInvalidStringOperationSpec,
+      callback) as Promise<Models.DictionaryGetBooleanInvalidStringResponse>;
   }
 
   /**
@@ -1575,21 +300,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getIntegerValid(): Promise<{ [propertyName: string]: number }>;
-  getIntegerValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getIntegerValid(): Promise<Models.DictionaryGetIntegerValidResponse>;
+  getIntegerValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntegerValidResponse>;
   getIntegerValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getIntegerValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getIntegerValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getIntegerValidWithHttpOperationResponse.bind(this), options, callback);
+  getIntegerValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetIntegerValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntegerValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetIntegerValidResponse>;
   }
 
   /**
@@ -1599,21 +326,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putIntegerValid(arrayBody: { [propertyName: string]: number }): Promise<void>;
-  putIntegerValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<void>;
+  putIntegerValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
+  putIntegerValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putIntegerValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
   putIntegerValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putIntegerValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putIntegerValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putIntegerValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putIntegerValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1621,21 +351,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getIntInvalidNull(): Promise<{ [propertyName: string]: number }>;
-  getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getIntInvalidNull(): Promise<Models.DictionaryGetIntInvalidNullResponse>;
+  getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidNullResponse>;
   getIntInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getIntInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getIntInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getIntInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getIntInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetIntInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntInvalidNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetIntInvalidNullResponse>;
   }
 
   /**
@@ -1643,21 +375,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getIntInvalidString(): Promise<{ [propertyName: string]: number }>;
-  getIntInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getIntInvalidString(): Promise<Models.DictionaryGetIntInvalidStringResponse>;
+  getIntInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidStringResponse>;
   getIntInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getIntInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getIntInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getIntInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getIntInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetIntInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntInvalidStringOperationSpec,
+      callback) as Promise<Models.DictionaryGetIntInvalidStringResponse>;
   }
 
   /**
@@ -1665,21 +399,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLongValid(): Promise<{ [propertyName: string]: number }>;
-  getLongValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getLongValid(): Promise<Models.DictionaryGetLongValidResponse>;
+  getLongValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongValidResponse>;
   getLongValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getLongValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getLongValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getLongValidWithHttpOperationResponse.bind(this), options, callback);
+  getLongValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetLongValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLongValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetLongValidResponse>;
   }
 
   /**
@@ -1689,21 +425,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putLongValid(arrayBody: { [propertyName: string]: number }): Promise<void>;
-  putLongValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<void>;
+  putLongValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
+  putLongValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putLongValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
   putLongValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLongValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putLongValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putLongValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putLongValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1711,21 +450,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLongInvalidNull(): Promise<{ [propertyName: string]: number }>;
-  getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getLongInvalidNull(): Promise<Models.DictionaryGetLongInvalidNullResponse>;
+  getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidNullResponse>;
   getLongInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getLongInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getLongInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getLongInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getLongInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetLongInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLongInvalidNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetLongInvalidNullResponse>;
   }
 
   /**
@@ -1733,21 +474,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLongInvalidString(): Promise<{ [propertyName: string]: number }>;
-  getLongInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getLongInvalidString(): Promise<Models.DictionaryGetLongInvalidStringResponse>;
+  getLongInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidStringResponse>;
   getLongInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getLongInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getLongInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getLongInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getLongInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetLongInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLongInvalidStringOperationSpec,
+      callback) as Promise<Models.DictionaryGetLongInvalidStringResponse>;
   }
 
   /**
@@ -1755,21 +498,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getFloatValid(): Promise<{ [propertyName: string]: number }>;
-  getFloatValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getFloatValid(): Promise<Models.DictionaryGetFloatValidResponse>;
+  getFloatValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatValidResponse>;
   getFloatValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getFloatValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getFloatValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getFloatValidWithHttpOperationResponse.bind(this), options, callback);
+  getFloatValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetFloatValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getFloatValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetFloatValidResponse>;
   }
 
   /**
@@ -1779,21 +524,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putFloatValid(arrayBody: { [propertyName: string]: number }): Promise<void>;
-  putFloatValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<void>;
+  putFloatValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
+  putFloatValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putFloatValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
   putFloatValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFloatValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putFloatValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putFloatValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putFloatValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1801,21 +549,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getFloatInvalidNull(): Promise<{ [propertyName: string]: number }>;
-  getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getFloatInvalidNull(): Promise<Models.DictionaryGetFloatInvalidNullResponse>;
+  getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidNullResponse>;
   getFloatInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getFloatInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getFloatInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getFloatInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getFloatInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetFloatInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getFloatInvalidNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetFloatInvalidNullResponse>;
   }
 
   /**
@@ -1823,21 +573,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getFloatInvalidString(): Promise<{ [propertyName: string]: number }>;
-  getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getFloatInvalidString(): Promise<Models.DictionaryGetFloatInvalidStringResponse>;
+  getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidStringResponse>;
   getFloatInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getFloatInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getFloatInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getFloatInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getFloatInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetFloatInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getFloatInvalidStringOperationSpec,
+      callback) as Promise<Models.DictionaryGetFloatInvalidStringResponse>;
   }
 
   /**
@@ -1845,21 +597,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDoubleValid(): Promise<{ [propertyName: string]: number }>;
-  getDoubleValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getDoubleValid(): Promise<Models.DictionaryGetDoubleValidResponse>;
+  getDoubleValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleValidResponse>;
   getDoubleValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getDoubleValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getDoubleValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getDoubleValidWithHttpOperationResponse.bind(this), options, callback);
+  getDoubleValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetDoubleValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDoubleValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetDoubleValidResponse>;
   }
 
   /**
@@ -1869,21 +623,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDoubleValid(arrayBody: { [propertyName: string]: number }): Promise<void>;
-  putDoubleValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<void>;
+  putDoubleValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
+  putDoubleValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDoubleValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
   putDoubleValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDoubleValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDoubleValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDoubleValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDoubleValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1891,21 +648,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDoubleInvalidNull(): Promise<{ [propertyName: string]: number }>;
-  getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getDoubleInvalidNull(): Promise<Models.DictionaryGetDoubleInvalidNullResponse>;
+  getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidNullResponse>;
   getDoubleInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getDoubleInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getDoubleInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getDoubleInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getDoubleInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetDoubleInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDoubleInvalidNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetDoubleInvalidNullResponse>;
   }
 
   /**
@@ -1913,21 +672,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDoubleInvalidString(): Promise<{ [propertyName: string]: number }>;
-  getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getDoubleInvalidString(): Promise<Models.DictionaryGetDoubleInvalidStringResponse>;
+  getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidStringResponse>;
   getDoubleInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getDoubleInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getDoubleInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getDoubleInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getDoubleInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetDoubleInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDoubleInvalidStringOperationSpec,
+      callback) as Promise<Models.DictionaryGetDoubleInvalidStringResponse>;
   }
 
   /**
@@ -1935,21 +696,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getStringValid(): Promise<{ [propertyName: string]: string }>;
-  getStringValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
+  getStringValid(): Promise<Models.DictionaryGetStringValidResponse>;
+  getStringValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringValidResponse>;
   getStringValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getStringValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getStringValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getStringValidWithHttpOperationResponse.bind(this), options, callback);
+  getStringValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetStringValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getStringValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetStringValidResponse>;
   }
 
   /**
@@ -1959,21 +722,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putStringValid(arrayBody: { [propertyName: string]: string }): Promise<void>;
-  putStringValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
+  putStringValid(arrayBody: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
+  putStringValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putStringValid(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putStringValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putStringValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putStringValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putStringValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putStringValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1981,21 +747,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getStringWithNull(): Promise<{ [propertyName: string]: string }>;
-  getStringWithNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
+  getStringWithNull(): Promise<Models.DictionaryGetStringWithNullResponse>;
+  getStringWithNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithNullResponse>;
   getStringWithNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getStringWithNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getStringWithNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getStringWithNullWithHttpOperationResponse.bind(this), options, callback);
+  getStringWithNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetStringWithNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getStringWithNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetStringWithNullResponse>;
   }
 
   /**
@@ -2003,21 +771,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getStringWithInvalid(): Promise<{ [propertyName: string]: string }>;
-  getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
+  getStringWithInvalid(): Promise<Models.DictionaryGetStringWithInvalidResponse>;
+  getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithInvalidResponse>;
   getStringWithInvalid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getStringWithInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getStringWithInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getStringWithInvalidWithHttpOperationResponse.bind(this), options, callback);
+  getStringWithInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetStringWithInvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getStringWithInvalidOperationSpec,
+      callback) as Promise<Models.DictionaryGetStringWithInvalidResponse>;
   }
 
   /**
@@ -2025,21 +795,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Date } | { [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateValid(): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-  getDateValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
+  getDateValid(): Promise<Models.DictionaryGetDateValidResponse>;
+  getDateValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateValidResponse>;
   getDateValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getDateValidWithHttpOperationResponse.bind(this), options, callback);
+  getDateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetDateValidResponse>;
   }
 
   /**
@@ -2049,21 +821,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<void>;
-  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
+  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<msRest.RestResponse>;
+  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDateValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDateValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2071,21 +846,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Date } | { [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateInvalidNull(): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-  getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
+  getDateInvalidNull(): Promise<Models.DictionaryGetDateInvalidNullResponse>;
+  getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidNullResponse>;
   getDateInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getDateInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getDateInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateInvalidNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetDateInvalidNullResponse>;
   }
 
   /**
@@ -2093,21 +870,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Date } | { [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateInvalidChars(): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-  getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
+  getDateInvalidChars(): Promise<Models.DictionaryGetDateInvalidCharsResponse>;
+  getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidCharsResponse>;
   getDateInvalidChars(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getDateInvalidCharsWithHttpOperationResponse.bind(this), options, callback);
+  getDateInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateInvalidCharsResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateInvalidCharsOperationSpec,
+      callback) as Promise<Models.DictionaryGetDateInvalidCharsResponse>;
   }
 
   /**
@@ -2116,21 +895,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Date } | { [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTimeValid(): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-  getDateTimeValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
+  getDateTimeValid(): Promise<Models.DictionaryGetDateTimeValidResponse>;
+  getDateTimeValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeValidResponse>;
   getDateTimeValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getDateTimeValidWithHttpOperationResponse.bind(this), options, callback);
+  getDateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateTimeValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetDateTimeValidResponse>;
   }
 
   /**
@@ -2141,21 +922,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<void>;
-  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
+  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<msRest.RestResponse>;
+  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDateTimeValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDateTimeValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2163,21 +947,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Date } | { [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTimeInvalidNull(): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-  getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
+  getDateTimeInvalidNull(): Promise<Models.DictionaryGetDateTimeInvalidNullResponse>;
+  getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidNullResponse>;
   getDateTimeInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getDateTimeInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateTimeInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeInvalidNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetDateTimeInvalidNullResponse>;
   }
 
   /**
@@ -2185,21 +971,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Date } | { [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTimeInvalidChars(): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-  getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
+  getDateTimeInvalidChars(): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>;
+  getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>;
   getDateTimeInvalidChars(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getDateTimeInvalidCharsWithHttpOperationResponse.bind(this), options, callback);
+  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeInvalidCharsOperationSpec,
+      callback) as Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>;
   }
 
   /**
@@ -2208,21 +996,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Date } | { [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTimeRfc1123Valid(): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
-  getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
+  getDateTimeRfc1123Valid(): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>;
+  getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>;
   getDateTimeRfc1123Valid(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
-  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), options, callback);
+  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeRfc1123ValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>;
   }
 
   /**
@@ -2233,21 +1023,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<void>;
-  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
+  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<msRest.RestResponse>;
+  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDateTimeRfc1123ValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2255,21 +1048,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDurationValid(): Promise<{ [propertyName: string]: string }>;
-  getDurationValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
+  getDurationValid(): Promise<Models.DictionaryGetDurationValidResponse>;
+  getDurationValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDurationValidResponse>;
   getDurationValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
-  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
-    return msRest.responseToBody(this.getDurationValidWithHttpOperationResponse.bind(this), options, callback);
+  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetDurationValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDurationValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetDurationValidResponse>;
   }
 
   /**
@@ -2279,21 +1074,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDurationValid(arrayBody: { [propertyName: string]: string }): Promise<void>;
-  putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
+  putDurationValid(arrayBody: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
+  putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDurationValid(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
   putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDurationValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDurationValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDurationValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2302,21 +1100,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Uint8Array }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getByteValid(): Promise<{ [propertyName: string]: Uint8Array }>;
-  getByteValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Uint8Array }>;
+  getByteValid(): Promise<Models.DictionaryGetByteValidResponse>;
+  getByteValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteValidResponse>;
   getByteValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
   getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
-  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): any {
-    return msRest.responseToBody(this.getByteValidWithHttpOperationResponse.bind(this), options, callback);
+  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): Promise<Models.DictionaryGetByteValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getByteValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetByteValidResponse>;
   }
 
   /**
@@ -2327,21 +1127,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }): Promise<void>;
-  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase): Promise<void>;
+  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }): Promise<msRest.RestResponse>;
+  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, callback: msRest.ServiceCallback<void>): void;
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putByteValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putByteValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2349,21 +1152,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Uint8Array }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getByteInvalidNull(): Promise<{ [propertyName: string]: Uint8Array }>;
-  getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Uint8Array }>;
+  getByteInvalidNull(): Promise<Models.DictionaryGetByteInvalidNullResponse>;
+  getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteInvalidNullResponse>;
   getByteInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
   getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
-  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): any {
-    return msRest.responseToBody(this.getByteInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): Promise<Models.DictionaryGetByteInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getByteInvalidNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetByteInvalidNullResponse>;
   }
 
   /**
@@ -2372,21 +1177,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Uint8Array }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBase64Url(): Promise<{ [propertyName: string]: Uint8Array }>;
-  getBase64Url(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Uint8Array }>;
+  getBase64Url(): Promise<Models.DictionaryGetBase64UrlResponse>;
+  getBase64Url(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBase64UrlResponse>;
   getBase64Url(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
   getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
-  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): any {
-    return msRest.responseToBody(this.getBase64UrlWithHttpOperationResponse.bind(this), options, callback);
+  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): Promise<Models.DictionaryGetBase64UrlResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBase64UrlOperationSpec,
+      callback) as Promise<Models.DictionaryGetBase64UrlResponse>;
   }
 
   /**
@@ -2394,21 +1201,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Models.Widget }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexNull(): Promise<{ [propertyName: string]: Models.Widget }>;
-  getComplexNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
+  getComplexNull(): Promise<Models.DictionaryGetComplexNullResponse>;
+  getComplexNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexNullResponse>;
   getComplexNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    return msRest.responseToBody(this.getComplexNullWithHttpOperationResponse.bind(this), options, callback);
+  getComplexNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetComplexNullResponse>;
   }
 
   /**
@@ -2416,21 +1225,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Models.Widget }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexEmpty(): Promise<{ [propertyName: string]: Models.Widget }>;
-  getComplexEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
+  getComplexEmpty(): Promise<Models.DictionaryGetComplexEmptyResponse>;
+  getComplexEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexEmptyResponse>;
   getComplexEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    return msRest.responseToBody(this.getComplexEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getComplexEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexEmptyOperationSpec,
+      callback) as Promise<Models.DictionaryGetComplexEmptyResponse>;
   }
 
   /**
@@ -2439,21 +1250,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Models.Widget }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexItemNull(): Promise<{ [propertyName: string]: Models.Widget }>;
-  getComplexItemNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
+  getComplexItemNull(): Promise<Models.DictionaryGetComplexItemNullResponse>;
+  getComplexItemNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemNullResponse>;
   getComplexItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    return msRest.responseToBody(this.getComplexItemNullWithHttpOperationResponse.bind(this), options, callback);
+  getComplexItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexItemNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexItemNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetComplexItemNullResponse>;
   }
 
   /**
@@ -2462,21 +1275,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Models.Widget }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexItemEmpty(): Promise<{ [propertyName: string]: Models.Widget }>;
-  getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
+  getComplexItemEmpty(): Promise<Models.DictionaryGetComplexItemEmptyResponse>;
+  getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemEmptyResponse>;
   getComplexItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    return msRest.responseToBody(this.getComplexItemEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getComplexItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexItemEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexItemEmptyOperationSpec,
+      callback) as Promise<Models.DictionaryGetComplexItemEmptyResponse>;
   }
 
   /**
@@ -2485,21 +1300,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: Models.Widget }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexValid(): Promise<{ [propertyName: string]: Models.Widget }>;
-  getComplexValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.Widget }>;
+  getComplexValid(): Promise<Models.DictionaryGetComplexValidResponse>;
+  getComplexValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexValidResponse>;
   getComplexValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
-  getComplexValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): any {
-    return msRest.responseToBody(this.getComplexValidWithHttpOperationResponse.bind(this), options, callback);
+  getComplexValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetComplexValidResponse>;
   }
 
   /**
@@ -2510,21 +1327,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }): Promise<void>;
-  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options: msRest.RequestOptionsBase): Promise<void>;
+  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }): Promise<msRest.RestResponse>;
+  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, callback: msRest.ServiceCallback<void>): void;
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putComplexValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putComplexValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2532,21 +1352,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string[] }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayNull(): Promise<{ [propertyName: string]: string[] }>;
-  getArrayNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
+  getArrayNull(): Promise<Models.DictionaryGetArrayNullResponse>;
+  getArrayNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayNullResponse>;
   getArrayNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    return msRest.responseToBody(this.getArrayNullWithHttpOperationResponse.bind(this), options, callback);
+  getArrayNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetArrayNullResponse>;
   }
 
   /**
@@ -2554,21 +1376,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string[] }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayEmpty(): Promise<{ [propertyName: string]: string[] }>;
-  getArrayEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
+  getArrayEmpty(): Promise<Models.DictionaryGetArrayEmptyResponse>;
+  getArrayEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayEmptyResponse>;
   getArrayEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    return msRest.responseToBody(this.getArrayEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getArrayEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayEmptyOperationSpec,
+      callback) as Promise<Models.DictionaryGetArrayEmptyResponse>;
   }
 
   /**
@@ -2576,21 +1400,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string[] }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayItemNull(): Promise<{ [propertyName: string]: string[] }>;
-  getArrayItemNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
+  getArrayItemNull(): Promise<Models.DictionaryGetArrayItemNullResponse>;
+  getArrayItemNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemNullResponse>;
   getArrayItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    return msRest.responseToBody(this.getArrayItemNullWithHttpOperationResponse.bind(this), options, callback);
+  getArrayItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayItemNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayItemNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetArrayItemNullResponse>;
   }
 
   /**
@@ -2598,21 +1424,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string[] }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayItemEmpty(): Promise<{ [propertyName: string]: string[] }>;
-  getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
+  getArrayItemEmpty(): Promise<Models.DictionaryGetArrayItemEmptyResponse>;
+  getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemEmptyResponse>;
   getArrayItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    return msRest.responseToBody(this.getArrayItemEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getArrayItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayItemEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayItemEmptyOperationSpec,
+      callback) as Promise<Models.DictionaryGetArrayItemEmptyResponse>;
   }
 
   /**
@@ -2621,21 +1449,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string[] }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayValid(): Promise<{ [propertyName: string]: string[] }>;
-  getArrayValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string[] }>;
+  getArrayValid(): Promise<Models.DictionaryGetArrayValidResponse>;
+  getArrayValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayValidResponse>;
   getArrayValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
-  getArrayValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): any {
-    return msRest.responseToBody(this.getArrayValidWithHttpOperationResponse.bind(this), options, callback);
+  getArrayValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetArrayValidResponse>;
   }
 
   /**
@@ -2646,21 +1476,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putArrayValid(arrayBody: { [propertyName: string]: string[] }): Promise<void>;
-  putArrayValid(arrayBody: { [propertyName: string]: string[] }, options: msRest.RequestOptionsBase): Promise<void>;
+  putArrayValid(arrayBody: { [propertyName: string]: string[] }): Promise<msRest.RestResponse>;
+  putArrayValid(arrayBody: { [propertyName: string]: string[] }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putArrayValid(arrayBody: { [propertyName: string]: string[] }, callback: msRest.ServiceCallback<void>): void;
   putArrayValid(arrayBody: { [propertyName: string]: string[] }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putArrayValid(arrayBody: { [propertyName: string]: string[] }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putArrayValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putArrayValid(arrayBody: { [propertyName: string]: string[] }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putArrayValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2668,21 +1501,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: { [propertyName: string]: string } }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryNull(): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
-  getDictionaryNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
+  getDictionaryNull(): Promise<Models.DictionaryGetDictionaryNullResponse>;
+  getDictionaryNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryNullResponse>;
   getDictionaryNull(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    return msRest.responseToBody(this.getDictionaryNullWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetDictionaryNullResponse>;
   }
 
   /**
@@ -2690,21 +1525,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: { [propertyName: string]: string } }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryEmpty(): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
-  getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
+  getDictionaryEmpty(): Promise<Models.DictionaryGetDictionaryEmptyResponse>;
+  getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryEmptyResponse>;
   getDictionaryEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    return msRest.responseToBody(this.getDictionaryEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryEmptyOperationSpec,
+      callback) as Promise<Models.DictionaryGetDictionaryEmptyResponse>;
   }
 
   /**
@@ -2713,21 +1550,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: { [propertyName: string]: string } }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryItemNull(): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
-  getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
+  getDictionaryItemNull(): Promise<Models.DictionaryGetDictionaryItemNullResponse>;
+  getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemNullResponse>;
   getDictionaryItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    return msRest.responseToBody(this.getDictionaryItemNullWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryItemNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryItemNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetDictionaryItemNullResponse>;
   }
 
   /**
@@ -2736,21 +1575,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: { [propertyName: string]: string } }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryItemEmpty(): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
-  getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
+  getDictionaryItemEmpty(): Promise<Models.DictionaryGetDictionaryItemEmptyResponse>;
+  getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemEmptyResponse>;
   getDictionaryItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    return msRest.responseToBody(this.getDictionaryItemEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryItemEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryItemEmptyOperationSpec,
+      callback) as Promise<Models.DictionaryGetDictionaryItemEmptyResponse>;
   }
 
   /**
@@ -2760,21 +1601,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: { [propertyName: string]: string } }} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryValid(): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
-  getDictionaryValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: { [propertyName: string]: string } }>;
+  getDictionaryValid(): Promise<Models.DictionaryGetDictionaryValidResponse>;
+  getDictionaryValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryValidResponse>;
   getDictionaryValid(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
-  getDictionaryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): any {
-    return msRest.responseToBody(this.getDictionaryValidWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetDictionaryValidResponse>;
   }
 
   /**
@@ -2786,21 +1629,24 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }): Promise<void>;
-  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options: msRest.RequestOptionsBase): Promise<void>;
+  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }): Promise<msRest.RestResponse>;
+  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, callback: msRest.ServiceCallback<void>): void;
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDictionaryValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDictionaryValidOperationSpec,
+      callback);
   }
 
 }

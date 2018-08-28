@@ -36,12 +36,17 @@ export class Duration {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetNullResponse> {
+  getNull(): Promise<Models.DurationGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.DurationGetNullResponse>;
+  getNull(callback: msRest.ServiceCallback<string>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DurationGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec) as Promise<Models.DurationGetNullResponse>;
+      getNullOperationSpec,
+      callback) as Promise<Models.DurationGetNullResponse>;
   }
 
   /**
@@ -57,13 +62,18 @@ export class Duration {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putPositiveDurationWithHttpOperationResponse(durationBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putPositiveDuration(durationBody: string): Promise<msRest.RestResponse>;
+  putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putPositiveDuration(durationBody: string, callback: msRest.ServiceCallback<void>): void;
+  putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putPositiveDuration(durationBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         durationBody,
         options
       },
-      putPositiveDurationOperationSpec);
+      putPositiveDurationOperationSpec,
+      callback);
   }
 
   /**
@@ -77,99 +87,17 @@ export class Duration {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getPositiveDurationWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetPositiveDurationResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getPositiveDurationOperationSpec) as Promise<Models.DurationGetPositiveDurationResponse>;
-  }
-
-  /**
-   * Get an invalid duration value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetInvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidOperationSpec) as Promise<Models.DurationGetInvalidResponse>;
-  }
-
-  /**
-   * Get null duration value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNull(): Promise<string>;
-  getNull(options: msRest.RequestOptionsBase): Promise<string>;
-  getNull(callback: msRest.ServiceCallback<string>): void;
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put a positive duration value
-   *
-   * @param {string} durationBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putPositiveDuration(durationBody: string): Promise<void>;
-  putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase): Promise<void>;
-  putPositiveDuration(durationBody: string, callback: msRest.ServiceCallback<void>): void;
-  putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putPositiveDuration(durationBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putPositiveDurationWithHttpOperationResponse.bind(this), durationBody, options, callback);
-  }
-
-  /**
-   * Get a positive duration value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getPositiveDuration(): Promise<string>;
-  getPositiveDuration(options: msRest.RequestOptionsBase): Promise<string>;
+  getPositiveDuration(): Promise<Models.DurationGetPositiveDurationResponse>;
+  getPositiveDuration(options: msRest.RequestOptionsBase): Promise<Models.DurationGetPositiveDurationResponse>;
   getPositiveDuration(callback: msRest.ServiceCallback<string>): void;
   getPositiveDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getPositiveDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getPositiveDurationWithHttpOperationResponse.bind(this), options, callback);
+  getPositiveDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DurationGetPositiveDurationResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getPositiveDurationOperationSpec,
+      callback) as Promise<Models.DurationGetPositiveDurationResponse>;
   }
 
   /**
@@ -177,21 +105,23 @@ export class Duration {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalid(): Promise<string>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<string>;
+  getInvalid(): Promise<Models.DurationGetInvalidResponse>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.DurationGetInvalidResponse>;
   getInvalid(callback: msRest.ServiceCallback<string>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DurationGetInvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidOperationSpec,
+      callback) as Promise<Models.DurationGetInvalidResponse>;
   }
 
 }

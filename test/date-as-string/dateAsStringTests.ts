@@ -7,7 +7,7 @@ describe("--model-date-as-string=false", function () {
     const date = await testClient.dateModel.getMaxDate();
     assert.strictEqual(typeof date, "string");
 
-    const reallyADate = new Date(date);
+    const reallyADate = new Date(date.body);
     assert.strictEqual(isNaN(reallyADate.valueOf()), false);
   });
 

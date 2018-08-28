@@ -29,55 +29,55 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface ByteModelGetNullResponse extends msRest.HttpResponse {
+export interface ByteModelGetNullResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Uint8Array;
+  body: Uint8Array;
 }
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface ByteModelGetEmptyResponse extends msRest.HttpResponse {
+export interface ByteModelGetEmptyResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Uint8Array;
+  body: Uint8Array;
 }
 
 /**
  * Contains response data for the getNonAscii operation.
  */
-export interface ByteModelGetNonAsciiResponse extends msRest.HttpResponse {
+export interface ByteModelGetNonAsciiResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Uint8Array;
+  body: Uint8Array;
 }
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface ByteModelGetInvalidResponse extends msRest.HttpResponse {
+export interface ByteModelGetInvalidResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: Uint8Array;
+  body: Uint8Array;
 }

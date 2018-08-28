@@ -417,364 +417,312 @@ export enum Status {
 /**
  * Contains response data for the getSinglePages operation.
  */
-export interface PagingGetSinglePagesResponse extends msRest.HttpResponse {
+export interface PagingGetSinglePagesResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePages operation.
  */
-export interface PagingGetMultiplePagesResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getOdataMultiplePages operation.
  */
-export interface PagingGetOdataMultiplePagesResponse extends msRest.HttpResponse {
+export interface PagingGetOdataMultiplePagesResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: OdataProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  odatanextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesWithOffset operation.
  */
-export interface PagingGetMultiplePagesWithOffsetResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesWithOffsetResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesRetryFirst operation.
  */
-export interface PagingGetMultiplePagesRetryFirstResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesRetryFirstResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesRetrySecond operation.
  */
-export interface PagingGetMultiplePagesRetrySecondResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesRetrySecondResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getSinglePagesFailure operation.
  */
-export interface PagingGetSinglePagesFailureResponse extends msRest.HttpResponse {
+export interface PagingGetSinglePagesFailureResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesFailure operation.
  */
-export interface PagingGetMultiplePagesFailureResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesFailureResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesFailureUri operation.
  */
-export interface PagingGetMultiplePagesFailureUriResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesFailureUriResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesFragmentNextLink operation.
  */
-export interface PagingGetMultiplePagesFragmentNextLinkResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesFragmentNextLinkResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: OdataProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  odatanextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesFragmentWithGroupingNextLink
  * operation.
  */
-export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: OdataProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  odatanextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesLRO operation.
  */
-export interface PagingGetMultiplePagesLROResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesLROResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the nextFragment operation.
  */
-export interface PagingNextFragmentResponse extends msRest.HttpResponse {
+export interface PagingNextFragmentResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: OdataProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  odatanextLink: string;
 }
 
 /**
  * Contains response data for the nextFragmentWithGrouping operation.
  */
-export interface PagingNextFragmentWithGroupingResponse extends msRest.HttpResponse {
+export interface PagingNextFragmentWithGroupingResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: OdataProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  odatanextLink: string;
 }
 
 /**
  * Contains response data for the beginGetMultiplePagesLRO operation.
  */
-export interface PagingBeginGetMultiplePagesLROResponse extends msRest.HttpResponse {
+export interface PagingBeginGetMultiplePagesLROResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getSinglePagesNext operation.
  */
-export interface PagingGetSinglePagesNextResponse extends msRest.HttpResponse {
+export interface PagingGetSinglePagesNextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesNext operation.
  */
-export interface PagingGetMultiplePagesNextResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesNextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getOdataMultiplePagesNext operation.
  */
-export interface PagingGetOdataMultiplePagesNextResponse extends msRest.HttpResponse {
+export interface PagingGetOdataMultiplePagesNextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: OdataProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  odatanextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesWithOffsetNext operation.
  */
-export interface PagingGetMultiplePagesWithOffsetNextResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesWithOffsetNextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesRetryFirstNext operation.
  */
-export interface PagingGetMultiplePagesRetryFirstNextResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesRetryFirstNextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesRetrySecondNext operation.
  */
-export interface PagingGetMultiplePagesRetrySecondNextResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesRetrySecondNextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getSinglePagesFailureNext operation.
  */
-export interface PagingGetSinglePagesFailureNextResponse extends msRest.HttpResponse {
+export interface PagingGetSinglePagesFailureNextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesFailureNext operation.
  */
-export interface PagingGetMultiplePagesFailureNextResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesFailureNextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesFailureUriNext operation.
  */
-export interface PagingGetMultiplePagesFailureUriNextResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesFailureUriNextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the getMultiplePagesLRONext operation.
  */
-export interface PagingGetMultiplePagesLRONextResponse extends msRest.HttpResponse {
+export interface PagingGetMultiplePagesLRONextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }
 
 /**
  * Contains response data for the beginGetMultiplePagesLRONext operation.
  */
-export interface PagingBeginGetMultiplePagesLRONextResponse extends msRest.HttpResponse {
+export interface PagingBeginGetMultiplePagesLRONextResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductResult;
+  response: msRest.HttpOperationResponse;
+  values: Product[];
+  nextLink: string;
 }

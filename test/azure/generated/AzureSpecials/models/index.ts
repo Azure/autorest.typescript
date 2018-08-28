@@ -152,37 +152,45 @@ export interface HeaderCustomNamedRequestIdHeadHeaders {
 /**
  * Contains response data for the customNamedRequestId operation.
  */
-export interface HeaderCustomNamedRequestIdResponse extends msRest.HttpResponse {
+export interface HeaderCustomNamedRequestIdResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: HeaderCustomNamedRequestIdHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Gets the foo-request-id.
+   */
+  fooRequestId: string;
 }
 
 /**
  * Contains response data for the customNamedRequestIdParamGrouping operation.
  */
-export interface HeaderCustomNamedRequestIdParamGroupingResponse extends msRest.HttpResponse {
+export interface HeaderCustomNamedRequestIdParamGroupingResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: HeaderCustomNamedRequestIdParamGroupingHeaders;
+  response: msRest.HttpOperationResponse;
+  /**
+   * Gets the foo-request-id.
+   */
+  fooRequestId: string;
 }
 
 /**
  * Contains response data for the customNamedRequestIdHead operation.
  */
-export interface HeaderCustomNamedRequestIdHeadResponse extends msRest.HttpResponse {
+export interface HeaderCustomNamedRequestIdHeadResponse {
   /**
-   * The parsed HTTP response headers.
+   * The raw HTTP response.
    */
-  parsedHeaders: HeaderCustomNamedRequestIdHeadHeaders;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as text (string format)
+   * Gets the foo-request-id.
    */
-  bodyAsText: string;
+  fooRequestId: string;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }

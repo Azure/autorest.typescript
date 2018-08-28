@@ -18,41 +18,41 @@ export { BaseResource, CloudError };
 /**
  * Contains response data for the head200 operation.
  */
-export interface HttpSuccessHead200Response extends msRest.HttpResponse {
+export interface HttpSuccessHead200Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }
 
 /**
  * Contains response data for the head204 operation.
  */
-export interface HttpSuccessHead204Response extends msRest.HttpResponse {
+export interface HttpSuccessHead204Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }
 
 /**
  * Contains response data for the head404 operation.
  */
-export interface HttpSuccessHead404Response extends msRest.HttpResponse {
+export interface HttpSuccessHead404Response {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: boolean;
+  body: boolean;
 }

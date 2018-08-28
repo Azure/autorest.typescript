@@ -344,97 +344,151 @@ export enum ProvisioningStateValues {
 /**
  * Contains response data for the getArray operation.
  */
-export interface GetArrayResponse extends msRest.HttpResponse {
+export interface GetArrayResponse extends Array<FlattenedProduct> {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: FlattenedProduct[];
+  response: msRest.HttpOperationResponse;
 }
 
 /**
  * Contains response data for the getWrappedArray operation.
  */
-export interface GetWrappedArrayResponse extends msRest.HttpResponse {
+export interface GetWrappedArrayResponse extends Array<ProductWrapper> {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ProductWrapper[];
+  response: msRest.HttpOperationResponse;
 }
 
 /**
  * Contains response data for the getDictionary operation.
  */
-export interface GetDictionaryResponse extends msRest.HttpResponse {
+export interface GetDictionaryResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * The parsed response body.
    */
-  parsedBody: { [propertyName: string]: FlattenedProduct };
+  body: { [propertyName: string]: FlattenedProduct };
 }
 
 /**
  * Contains response data for the getResourceCollection operation.
  */
-export interface GetResourceCollectionResponse extends msRest.HttpResponse {
+export interface GetResourceCollectionResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ResourceCollection;
+  response: msRest.HttpOperationResponse;
+  productresource: FlattenedProduct;
+  arrayofresources: FlattenedProduct[];
+  dictionaryofresources: { [propertyName: string]: FlattenedProduct };
 }
 
 /**
  * Contains response data for the putSimpleProduct operation.
  */
-export interface PutSimpleProductResponse extends msRest.HttpResponse {
+export interface PutSimpleProductResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Unique identifier representing a specific product for a given latitude & longitude. For
+   * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
    */
-  parsedBody: SimpleProduct;
+  productId: string;
+  /**
+   * Description of product.
+   */
+  description: string;
+  /**
+   * Display name of product.
+   */
+  maxProductDisplayName: string;
+  /**
+   * Capacity of product. For example, 4 people.
+   */
+  capacity: string;
+  /**
+   * Generic URL value.
+   */
+  genericValue: string;
+  /**
+   * URL value.
+   */
+  odatavalue: string;
 }
 
 /**
  * Contains response data for the postFlattenedSimpleProduct operation.
  */
-export interface PostFlattenedSimpleProductResponse extends msRest.HttpResponse {
+export interface PostFlattenedSimpleProductResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Unique identifier representing a specific product for a given latitude & longitude. For
+   * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
    */
-  parsedBody: SimpleProduct;
+  productId: string;
+  /**
+   * Description of product.
+   */
+  description: string;
+  /**
+   * Display name of product.
+   */
+  maxProductDisplayName: string;
+  /**
+   * Capacity of product. For example, 4 people.
+   */
+  capacity: string;
+  /**
+   * Generic URL value.
+   */
+  genericValue: string;
+  /**
+   * URL value.
+   */
+  odatavalue: string;
 }
 
 /**
  * Contains response data for the putSimpleProductWithGrouping operation.
  */
-export interface PutSimpleProductWithGroupingResponse extends msRest.HttpResponse {
+export interface PutSimpleProductWithGroupingResponse {
   /**
-   * The response body as text (string format)
+   * The raw HTTP response.
    */
-  bodyAsText: string;
+  response: msRest.HttpOperationResponse;
   /**
-   * The response body as parsed JSON or XML
+   * Unique identifier representing a specific product for a given latitude & longitude. For
+   * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
    */
-  parsedBody: SimpleProduct;
+  productId: string;
+  /**
+   * Description of product.
+   */
+  description: string;
+  /**
+   * Display name of product.
+   */
+  maxProductDisplayName: string;
+  /**
+   * Capacity of product. For example, 4 people.
+   */
+  capacity: string;
+  /**
+   * Generic URL value.
+   */
+  genericValue: string;
+  /**
+   * URL value.
+   */
+  odatavalue: string;
 }

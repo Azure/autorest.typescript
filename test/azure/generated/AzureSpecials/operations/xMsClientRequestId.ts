@@ -37,12 +37,17 @@ export class XMsClientRequestId {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  get(): Promise<msRest.RestResponse>;
+  get(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get(callback: msRest.ServiceCallback<void>): void;
+  get(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  get(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getOperationSpec);
+      getOperationSpec,
+      callback);
   }
 
   /**
@@ -60,62 +65,18 @@ export class XMsClientRequestId {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  paramGetWithHttpOperationResponse(xMsClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  paramGet(xMsClientRequestId: string): Promise<msRest.RestResponse>;
+  paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramGet(xMsClientRequestId: string, callback: msRest.ServiceCallback<void>): void;
+  paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  paramGet(xMsClientRequestId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         xMsClientRequestId,
         options
       },
-      paramGetOperationSpec);
-  }
-
-  /**
-   * Get method that overwrites x-ms-client-request header with value
-   * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(): Promise<void>;
-  get(options: msRest.RequestOptionsBase): Promise<void>;
-  get(callback: msRest.ServiceCallback<void>): void;
-  get(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get method that overwrites x-ms-client-request header with value
-   * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   *
-   * @param {string} xMsClientRequestId This should appear as a method parameter, use value
-   * '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  paramGet(xMsClientRequestId: string): Promise<void>;
-  paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase): Promise<void>;
-  paramGet(xMsClientRequestId: string, callback: msRest.ServiceCallback<void>): void;
-  paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramGet(xMsClientRequestId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.paramGetWithHttpOperationResponse.bind(this), xMsClientRequestId, options, callback);
+      paramGetOperationSpec,
+      callback);
   }
 
 }
