@@ -37,10 +37,14 @@ export interface ErrorModel {
 export interface Resource {
   /**
    * @member {string} [id] Resource Id
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
    * @member {string} [type] Resource Type
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly type?: string;
   /**
@@ -53,6 +57,8 @@ export interface Resource {
   location?: string;
   /**
    * @member {string} [name] Resource Name
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly name?: string;
 }
@@ -77,6 +83,8 @@ export interface FlattenedProduct extends Resource {
    * @member {ProvisioningStateValues} [provisioningStateValues] Possible
    * values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating',
    * 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningStateValues?: ProvisioningStateValues;
   /**
@@ -407,9 +415,9 @@ export type GetDictionaryResponse = {
  * Contains response data for the getResourceCollection operation.
  */
 export type GetResourceCollectionResponse = {
-  productresource: FlattenedProduct;
-  arrayofresources: FlattenedProduct[];
-  dictionaryofresources: { [propertyName: string]: FlattenedProduct };
+  productresource?: FlattenedProduct;
+  arrayofresources?: FlattenedProduct[];
+  dictionaryofresources?: { [propertyName: string]: FlattenedProduct };
   /**
    * The underlying HTTP response.
    */
@@ -437,7 +445,7 @@ export type PutSimpleProductResponse = {
   /**
    * Description of product.
    */
-  description: string;
+  description?: string;
   /**
    * Display name of product.
    */
@@ -449,11 +457,11 @@ export type PutSimpleProductResponse = {
   /**
    * Generic URL value.
    */
-  genericValue: string;
+  genericValue?: string;
   /**
    * URL value.
    */
-  odatavalue: string;
+  odatavalue?: string;
   /**
    * The underlying HTTP response.
    */
@@ -481,7 +489,7 @@ export type PostFlattenedSimpleProductResponse = {
   /**
    * Description of product.
    */
-  description: string;
+  description?: string;
   /**
    * Display name of product.
    */
@@ -493,11 +501,11 @@ export type PostFlattenedSimpleProductResponse = {
   /**
    * Generic URL value.
    */
-  genericValue: string;
+  genericValue?: string;
   /**
    * URL value.
    */
-  odatavalue: string;
+  odatavalue?: string;
   /**
    * The underlying HTTP response.
    */
@@ -525,7 +533,7 @@ export type PutSimpleProductWithGroupingResponse = {
   /**
    * Description of product.
    */
-  description: string;
+  description?: string;
   /**
    * Display name of product.
    */
@@ -537,11 +545,11 @@ export type PutSimpleProductWithGroupingResponse = {
   /**
    * Generic URL value.
    */
-  genericValue: string;
+  genericValue?: string;
   /**
    * URL value.
    */
-  odatavalue: string;
+  odatavalue?: string;
   /**
    * The underlying HTTP response.
    */

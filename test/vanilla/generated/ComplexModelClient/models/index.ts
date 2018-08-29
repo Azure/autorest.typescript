@@ -142,7 +142,7 @@ export type ListResponse = {
   /**
    * Array of products
    */
-  productArray: Product[];
+  productArray?: Product[];
   /**
    * The underlying HTTP response.
    */
@@ -165,7 +165,7 @@ export type CreateResponse = {
   /**
    * Dictionary of products
    */
-  productDictionary: { [propertyName: string]: Product };
+  productDictionary?: { [propertyName: string]: Product };
   /**
    * The underlying HTTP response.
    */
@@ -188,7 +188,7 @@ export type UpdateResponse = {
   /**
    * Array of products
    */
-  productArray: Product[];
+  productArray?: Product[];
   /**
    * The underlying HTTP response.
    */

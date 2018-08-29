@@ -394,7 +394,7 @@ export type EnumModelGetReferencedConstantResponse = {
   /**
    * Sample string.
    */
-  field1: string;
+  field1?: string;
   /**
    * The underlying HTTP response.
    */

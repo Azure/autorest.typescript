@@ -52,11 +52,11 @@ export type GroupGetSampleResourceGroupResponse = {
   /**
    * resource group name 'testgroup101'
    */
-  name: string;
+  name?: string;
   /**
    * resource group location 'West US'
    */
-  location: string;
+  location?: string;
   /**
    * The underlying HTTP response.
    */

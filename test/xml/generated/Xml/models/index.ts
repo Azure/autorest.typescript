@@ -823,11 +823,11 @@ export type XmlGetComplexTypeRefNoMetaResponse = {
   /**
    * XML will use RefToModel
    */
-  refToModel: ComplexTypeNoMeta;
+  refToModel?: ComplexTypeNoMeta;
   /**
    * Something else (just to avoid flattening)
    */
-  something: string;
+  something?: string;
   /**
    * The underlying HTTP response.
    */
@@ -850,11 +850,11 @@ export type XmlGetComplexTypeRefWithMetaResponse = {
   /**
    * XML will use XMLComplexTypeWithMeta
    */
-  refToModel: ComplexTypeWithMeta;
+  refToModel?: ComplexTypeWithMeta;
   /**
    * Something else (just to avoid flattening)
    */
-  something: string;
+  something?: string;
   /**
    * The underlying HTTP response.
    */
@@ -874,10 +874,10 @@ export type XmlGetComplexTypeRefWithMetaResponse = {
  * Contains response data for the getSimple operation.
  */
 export type XmlGetSimpleResponse = {
-  title: string;
-  date: string;
-  author: string;
-  slides: Slide[];
+  title?: string;
+  date?: string;
+  author?: string;
+  slides?: Slide[];
   /**
    * The underlying HTTP response.
    */
@@ -897,8 +897,8 @@ export type XmlGetSimpleResponse = {
  * Contains response data for the getWrappedLists operation.
  */
 export type XmlGetWrappedListsResponse = {
-  goodApples: string[];
-  badApples: string[];
+  goodApples?: string[];
+  badApples?: string[];
   /**
    * The underlying HTTP response.
    */
@@ -937,10 +937,10 @@ export type XmlGetHeadersResponse = {
  * Contains response data for the getEmptyList operation.
  */
 export type XmlGetEmptyListResponse = {
-  title: string;
-  date: string;
-  author: string;
-  slides: Slide[];
+  title?: string;
+  date?: string;
+  author?: string;
+  slides?: Slide[];
   /**
    * The underlying HTTP response.
    */
@@ -960,8 +960,8 @@ export type XmlGetEmptyListResponse = {
  * Contains response data for the getEmptyWrappedLists operation.
  */
 export type XmlGetEmptyWrappedListsResponse = {
-  goodApples: string[];
-  badApples: string[];
+  goodApples?: string[];
+  badApples?: string[];
   /**
    * The underlying HTTP response.
    */
@@ -1038,12 +1038,12 @@ export type XmlGetEmptyRootListResponse = Array<Banana> & {
  * Contains response data for the getEmptyChildElement operation.
  */
 export type XmlGetEmptyChildElementResponse = {
-  name: string;
-  flavor: string;
+  name?: string;
+  flavor?: string;
   /**
    * The time at which you should reconsider eating this banana
    */
-  expiration: Date;
+  expiration?: Date;
   /**
    * The underlying HTTP response.
    */
@@ -1065,9 +1065,9 @@ export type XmlGetEmptyChildElementResponse = {
 export type XmlListContainersResponse = {
   serviceEndpoint: string;
   prefix: string;
-  marker: string;
+  marker?: string;
   maxResults: number;
-  containers: Container[];
+  containers?: Container[];
   nextMarker: string;
   /**
    * The underlying HTTP response.
@@ -1091,28 +1091,28 @@ export type XmlGetServicePropertiesResponse = {
   /**
    * Azure Analytics Logging settings
    */
-  logging: Logging;
+  logging?: Logging;
   /**
    * A summary of request statistics grouped by API in hourly aggregates for blobs
    */
-  hourMetrics: Metrics;
+  hourMetrics?: Metrics;
   /**
    * a summary of request statistics grouped by API in minute aggregates for blobs
    */
-  minuteMetrics: Metrics;
+  minuteMetrics?: Metrics;
   /**
    * The set of CORS rules.
    */
-  cors: CorsRule[];
+  cors?: CorsRule[];
   /**
    * The default version to use for requests to the Blob service if an incoming request's version
    * is not specified. Possible values include version 2008-10-27 and all more recent versions
    */
-  defaultServiceVersion: string;
+  defaultServiceVersion?: string;
   /**
    * The Delete Retention Policy for the service
    */
-  deleteRetentionPolicy: RetentionPolicy;
+  deleteRetentionPolicy?: RetentionPolicy;
   /**
    * The underlying HTTP response.
    */
