@@ -517,26 +517,6 @@ export const SubResource: msRest.CompositeMapper = {
   }
 };
 
-export const StorageAccountsRegenerateKeyOptionalParams: msRest.CompositeMapper = {
-  serializedName: "RegenerateKeyOptions",
-  type: {
-    name: "Composite",
-    className: "StorageAccountsRegenerateKeyOptionalParams",
-    modelProperties: {
-      keyName: {
-        serializedName: "keyName",
-        type: {
-          name: "Enum",
-          allowedValues: [
-            "key1",
-            "key2"
-          ]
-        }
-      }
-    }
-  }
-};
-
 export const StorageAccountListResult: msRest.CompositeMapper = {
   serializedName: "StorageAccountListResult",
   type: {

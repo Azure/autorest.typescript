@@ -48,20 +48,3 @@ export const AutoRestParameterizedCustomHostTestClientOptions: msRest.CompositeM
     }
   }
 };
-
-export const PathsGetEmptyOptionalParams: msRest.CompositeMapper = {
-  serializedName: "GetEmptyOptions",
-  type: {
-    name: "Composite",
-    className: "PathsGetEmptyOptionalParams",
-    modelProperties: {
-      keyVersion: {
-        serializedName: "keyVersion",
-        defaultValue: 'v1',
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};

@@ -170,37 +170,3 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
-
-export const AutoRestValidationTestValidationOfBodyOptionalParams: msRest.CompositeMapper = {
-  serializedName: "ValidationOfBodyOptions",
-  type: {
-    name: "Composite",
-    className: "AutoRestValidationTestValidationOfBodyOptionalParams",
-    modelProperties: {
-      body: {
-        serializedName: "body",
-        type: {
-          name: "Composite",
-          className: "Product"
-        }
-      }
-    }
-  }
-};
-
-export const AutoRestValidationTestPostWithConstantInBodyOptionalParams: msRest.CompositeMapper = {
-  serializedName: "PostWithConstantInBodyOptions",
-  type: {
-    name: "Composite",
-    className: "AutoRestValidationTestPostWithConstantInBodyOptionalParams",
-    modelProperties: {
-      body: {
-        serializedName: "body",
-        type: {
-          name: "Composite",
-          className: "Product"
-        }
-      }
-    }
-  }
-};

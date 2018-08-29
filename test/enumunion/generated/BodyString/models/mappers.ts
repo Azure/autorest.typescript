@@ -57,35 +57,3 @@ export const RefColorConstant: msRest.CompositeMapper = {
     }
   }
 };
-
-export const StringPutNullOptionalParams: msRest.CompositeMapper = {
-  serializedName: "PutNullOptions",
-  type: {
-    name: "Composite",
-    className: "StringPutNullOptionalParams",
-    modelProperties: {
-      stringBody: {
-        serializedName: "stringBody",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const EnumModelPutReferencedConstantOptionalParams: msRest.CompositeMapper = {
-  serializedName: "PutReferencedConstantOptions",
-  type: {
-    name: "Composite",
-    className: "EnumModelPutReferencedConstantOptionalParams",
-    modelProperties: {
-      field1: {
-        serializedName: "field1",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
