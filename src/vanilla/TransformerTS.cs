@@ -43,12 +43,27 @@ namespace AutoRest.TypeScript
 
         private void ConvertDateTimeToString(CodeModelTS codeModel)
         {
+            void addDocumentation(IVariable variable)
+            {
+                if (variable.ModelType is PrimaryType pt && pt.KnownPrimaryType == KnownPrimaryType.DateTime)
+                {
+                    const string doc = "**NOTE: This entity will be treated as a string instead of a Date because the API can potentially deal with a higher precision value than what is supported by JavaScript.**";
+                    if (string.IsNullOrEmpty(variable.Documentation))
+                    {
+                        variable.Documentation = "";
+                    }
+
+                    variable.Documentation += Environment.NewLine + doc;
+                }
+            }
+
             void convertModel(IModelType modelType)
             {
                 if (modelType is CompositeType composite)
                 {
                     foreach (var property in composite.Properties)
                     {
+                        addDocumentation(property);
                         convertModel(property.ModelType);
                     }
                 }
@@ -66,6 +81,7 @@ namespace AutoRest.TypeScript
 
             foreach (var property in codeModel.Properties)
             {
+                addDocumentation(property);
                 convertModel(property.ModelType);
             }
 
@@ -74,6 +90,7 @@ namespace AutoRest.TypeScript
             {
                 foreach (var parameter in method.Parameters)
                 {
+                    addDocumentation(parameter);
                     convertModel(parameter.ModelType);
                 }
 
