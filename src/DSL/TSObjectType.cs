@@ -51,6 +51,16 @@ namespace AutoRest.TypeScript.DSL
             builder.Line($"{propertyName}{(optional ? "?" : "")}: {propertyType};");
         }
 
+        public void Property(string propertyName, Action<TSIntersectionType> intersectionTypeAction, bool optional = false)
+        {
+            SetCurrentState(State.PropertyDeclaration);
+            builder.Text($"{propertyName}{(optional ? "?" : "")}: ");
+            builder.IncreaseIndent();
+            intersectionTypeAction?.Invoke(new TSIntersectionType(builder));
+            builder.DecreaseIndent();
+            builder.Line(";");
+        }
+
         public void IndexSignature(string propertyType)
         {
             SetCurrentState(State.PropertyDeclaration);

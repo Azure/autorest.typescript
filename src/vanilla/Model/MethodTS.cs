@@ -45,7 +45,8 @@ namespace AutoRest.TypeScript.Model
             HttpOperationResponse
         }
 
-        private const string baseHttpResponseName = "msRest.RestResponse";
+        private const string baseResponseName = "msRest.RestResponse";
+        private const string baseRawResponseName = "msRest.HttpResponse";
 
         public string HttpResponseName
         {
@@ -61,7 +62,7 @@ namespace AutoRest.TypeScript.Model
                 }
                 else
                 {
-                    return baseHttpResponseName;
+                    return baseResponseName;
                 }
             }
         }
@@ -71,13 +72,13 @@ namespace AutoRest.TypeScript.Model
             get
             {
                 string responseName = HttpResponseName;
-                return responseName == baseHttpResponseName
-                    ? baseHttpResponseName
+                return responseName == baseResponseName
+                    ? baseResponseName
                     : "Models." + responseName;
             }
         }
 
-        public bool HasCustomHttpResponseType => HttpResponseName != baseHttpResponseName;
+        public bool HasCustomHttpResponseType => HttpResponseName != baseResponseName;
 
         private CodeModelTS CodeModelTS => (CodeModelTS)CodeModel;
 
@@ -721,22 +722,53 @@ namespace AutoRest.TypeScript.Model
         public const string rawHttpResponsePropertyName = "_response";
         public const string primitiveHttpBodyPropertyName = "body";
 
-        public string GenerateResponseType(string emptyLine)
+        public void GenerateHttpOperationResponseType(TSIntersectionType type)
         {
-            TSBuilder builder = new TSBuilder();
-
-            // if the response body is a sequence, the generated response type will extend array
-            string baseClassName = ReturnType.Body is SequenceTypeTS sequence
-                ? $"Array<{sequence.ElementType.TSType(inModelsModule: true)}>"
-                : null;
-
-            builder.ExportIntersectionType(HttpResponseName, type =>
+            type.NamedType(baseRawResponseName);
+            if ((ReturnType.Body != null && !HasStreamResponseType()) || ReturnType.Headers != null)
             {
                 type.ObjectType(iface =>
                 {
-                    iface.DocumentationComment("The raw HTTP response.");
-                    iface.Property(rawHttpResponsePropertyName, "msRest.HttpOperationResponse");
+                    if (ReturnType.Headers != null)
+                    {
+                        iface.DocumentationComment(
+                        "The parsed HTTP response headers.");
+                        iface.Property("parsedHeaders", ReturnType.Headers.Name);
+                    }
 
+                    if (ReturnType.Body != null && !HasStreamResponseType())
+                    {
+                        iface.DocumentationComment("The response body as text (string format)");
+                        iface.Property("bodyAsText", "string");
+
+                        string bodyType = ReturnType.Body?.TSType(inModelsModule: true) ?? "void";
+                        iface.DocumentationComment("The response body as parsed JSON or XML");
+                        iface.Property("parsedBody", bodyType);
+                    }
+                });
+            }
+        }
+
+        public string GenerateResponseType(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.ExportIntersectionType(HttpResponseName, type =>
+            {
+                if (ReturnType.Body is DictionaryTypeTS dictionaryBody)
+                {
+                    type.ObjectType(dict =>
+                    {
+                        dict.DocumentationComment("The response body properties.");
+                        dict.IndexSignature(dictionaryBody.ValueType.TSType(inModelsModule: true));
+                    });
+                }
+                else if (ReturnType.Body is SequenceTypeTS sequenceBody)
+                {
+                    type.NamedType($"Array<{sequenceBody.ElementType.TSType(inModelsModule: true)}>");
+                }
+
+                type.ObjectType(iface =>
+                {
                     if (ReturnType.Headers != null)
                     {
                         foreach (var property in ((CompositeTypeTS)ReturnType.Headers).Properties)
@@ -777,20 +809,10 @@ namespace AutoRest.TypeScript.Model
                         iface.DocumentationComment("The parsed response body.");
                         iface.Property(primitiveHttpBodyPropertyName, ReturnType.Body.TSType(inModelsModule: true));
                     }
-                });
 
-                if (ReturnType.Body is DictionaryTypeTS dictionaryBody)
-                {
-                    type.ObjectType(dict =>
-                    {
-                        dict.DocumentationComment("The response body properties.");
-                        dict.IndexSignature(dictionaryBody.ValueType.TSType(inModelsModule: true));
-                    });
-                }
-                else if (ReturnType.Body is SequenceTypeTS sequenceBody)
-                {
-                    type.NamedType($"Array<{sequenceBody.ElementType.TSType(inModelsModule: true)}>");
-                }
+                    iface.DocumentationComment("The raw HTTP response.");
+                    iface.Property(rawHttpResponsePropertyName, GenerateHttpOperationResponseType);
+                });
             });
             return builder.ToString();
         }
