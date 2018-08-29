@@ -810,7 +810,7 @@ namespace AutoRest.TypeScript.Model
                         iface.Property(primitiveHttpBodyPropertyName, ReturnType.Body.TSType(inModelsModule: true));
                     }
 
-                    iface.DocumentationComment("The raw HTTP response.");
+                    iface.DocumentationComment("The underlying HTTP response.");
                     iface.Property(rawHttpResponsePropertyName, GenerateHttpOperationResponseType);
                 });
             });
