@@ -45,7 +45,7 @@ regenExpected = (opts,done) ->
       args.push("--model-enum-as-union=true")
 
     if (opts.modelDateAsString)
-      args.push("--model-date-as-string=true")
+      args.push("--model-date-time-as-string=true")
 
     if (opts.generateMetadata)
       args.push("--generate-metadata=true")
@@ -138,7 +138,7 @@ enumUnionMappings = {
   'BodyString': 'body-string.json'
 }
 
-dateAsStringMappings = {
+dateTimeAsStringMappings = {
   'BodyDate': 'body-date.json',
   'BodyDateTime': 'body-datetime.json',
   'BodyDateTimeRfc1123': 'body-datetime-rfc1123.json',
@@ -234,11 +234,11 @@ task 'regenerate-ts-enum-union', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts-date-as-string', '', [], (done) ->
+task 'regenerate-ts-date-time-as-string', '', [], (done) ->
   regenExpected {
-    'outputBaseDir': 'test/date-as-string',
+    'outputBaseDir': 'test/date-time-as-string',
     'inputBaseDir': swaggerDir,
-    'mappings': dateAsStringMappings,
+    'mappings': dateTimeAsStringMappings,
     'outputDir': 'generated',
     'language': 'typescript',
     'nsPrefix': 'Fixtures',
@@ -300,7 +300,7 @@ task 'regenerate-tsazure-metadata', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union', 'regenerate-ts-no-body-methods', 'regenerate-ts-metadata', 'regenerate-ts-no-client-validation', 'regenerate-ts-date-as-string'], (done) ->
+task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union', 'regenerate-ts-no-body-methods', 'regenerate-ts-metadata', 'regenerate-ts-no-client-validation', 'regenerate-ts-date-time-as-string'], (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]
   regenExpected {

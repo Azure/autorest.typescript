@@ -37,7 +37,7 @@ export interface DateModelGetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -51,7 +51,7 @@ export interface DateModelGetInvalidDateResponse extends msRest.HttpResponse {
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -65,7 +65,7 @@ export interface DateModelGetOverflowDateResponse extends msRest.HttpResponse {
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -79,7 +79,7 @@ export interface DateModelGetUnderflowDateResponse extends msRest.HttpResponse {
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -93,7 +93,7 @@ export interface DateModelGetMaxDateResponse extends msRest.HttpResponse {
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -107,5 +107,5 @@ export interface DateModelGetMinDateResponse extends msRest.HttpResponse {
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }

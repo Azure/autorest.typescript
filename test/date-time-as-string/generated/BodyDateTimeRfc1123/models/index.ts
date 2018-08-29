@@ -37,7 +37,7 @@ export interface Datetimerfc1123GetNullResponse extends msRest.HttpResponse {
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -51,7 +51,7 @@ export interface Datetimerfc1123GetInvalidResponse extends msRest.HttpResponse {
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -65,7 +65,7 @@ export interface Datetimerfc1123GetOverflowResponse extends msRest.HttpResponse 
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -79,7 +79,7 @@ export interface Datetimerfc1123GetUnderflowResponse extends msRest.HttpResponse
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -93,7 +93,7 @@ export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse extends msRes
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -107,7 +107,7 @@ export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse extends msRes
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }
 
 /**
@@ -121,5 +121,5 @@ export interface Datetimerfc1123GetUtcMinDateTimeResponse extends msRest.HttpRes
   /**
    * The response body as parsed JSON or XML
    */
-  parsedBody: string;
+  parsedBody: Date;
 }

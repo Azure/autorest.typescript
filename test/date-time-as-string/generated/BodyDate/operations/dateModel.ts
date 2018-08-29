@@ -104,7 +104,7 @@ export class DateModel {
   /**
    * Put max date value 9999-12-31
    *
-   * @param {string} dateBody
+   * @param {Date | string} dateBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -114,7 +114,7 @@ export class DateModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMaxDateWithHttpOperationResponse(dateBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putMaxDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         dateBody,
@@ -145,7 +145,7 @@ export class DateModel {
   /**
    * Put min date value 0000-01-01
    *
-   * @param {string} dateBody
+   * @param {Date | string} dateBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -155,7 +155,7 @@ export class DateModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMinDateWithHttpOperationResponse(dateBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putMinDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         dateBody,
@@ -192,16 +192,16 @@ export class DateModel {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getNull(): Promise<string>;
-  getNull(options: msRest.RequestOptionsBase): Promise<string>;
-  getNull(callback: msRest.ServiceCallback<string>): void;
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getNull(): Promise<Date>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Date>;
+  getNull(callback: msRest.ServiceCallback<Date>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
@@ -214,16 +214,16 @@ export class DateModel {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getInvalidDate(): Promise<string>;
-  getInvalidDate(options: msRest.RequestOptionsBase): Promise<string>;
-  getInvalidDate(callback: msRest.ServiceCallback<string>): void;
-  getInvalidDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getInvalidDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getInvalidDate(): Promise<Date>;
+  getInvalidDate(options: msRest.RequestOptionsBase): Promise<Date>;
+  getInvalidDate(callback: msRest.ServiceCallback<Date>): void;
+  getInvalidDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getInvalidDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getInvalidDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
@@ -236,16 +236,16 @@ export class DateModel {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getOverflowDate(): Promise<string>;
-  getOverflowDate(options: msRest.RequestOptionsBase): Promise<string>;
-  getOverflowDate(callback: msRest.ServiceCallback<string>): void;
-  getOverflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getOverflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getOverflowDate(): Promise<Date>;
+  getOverflowDate(options: msRest.RequestOptionsBase): Promise<Date>;
+  getOverflowDate(callback: msRest.ServiceCallback<Date>): void;
+  getOverflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getOverflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getOverflowDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
@@ -258,23 +258,23 @@ export class DateModel {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getUnderflowDate(): Promise<string>;
-  getUnderflowDate(options: msRest.RequestOptionsBase): Promise<string>;
-  getUnderflowDate(callback: msRest.ServiceCallback<string>): void;
-  getUnderflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUnderflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getUnderflowDate(): Promise<Date>;
+  getUnderflowDate(options: msRest.RequestOptionsBase): Promise<Date>;
+  getUnderflowDate(callback: msRest.ServiceCallback<Date>): void;
+  getUnderflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getUnderflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getUnderflowDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
    * Put max date value 9999-12-31
    *
-   * @param {string} dateBody
+   * @param {Date | string} dateBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -287,11 +287,11 @@ export class DateModel {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putMaxDate(dateBody: string): Promise<void>;
-  putMaxDate(dateBody: string, options: msRest.RequestOptionsBase): Promise<void>;
-  putMaxDate(dateBody: string, callback: msRest.ServiceCallback<void>): void;
-  putMaxDate(dateBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMaxDate(dateBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putMaxDate(dateBody: Date | string): Promise<void>;
+  putMaxDate(dateBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
+  putMaxDate(dateBody: Date | string, callback: msRest.ServiceCallback<void>): void;
+  putMaxDate(dateBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putMaxDate(dateBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     return msRest.responseToBody(this.putMaxDateWithHttpOperationResponse.bind(this), dateBody, options, callback);
   }
 
@@ -304,23 +304,23 @@ export class DateModel {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getMaxDate(): Promise<string>;
-  getMaxDate(options: msRest.RequestOptionsBase): Promise<string>;
-  getMaxDate(callback: msRest.ServiceCallback<string>): void;
-  getMaxDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getMaxDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getMaxDate(): Promise<Date>;
+  getMaxDate(options: msRest.RequestOptionsBase): Promise<Date>;
+  getMaxDate(callback: msRest.ServiceCallback<Date>): void;
+  getMaxDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getMaxDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getMaxDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
    * Put min date value 0000-01-01
    *
-   * @param {string} dateBody
+   * @param {Date | string} dateBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -333,11 +333,11 @@ export class DateModel {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putMinDate(dateBody: string): Promise<void>;
-  putMinDate(dateBody: string, options: msRest.RequestOptionsBase): Promise<void>;
-  putMinDate(dateBody: string, callback: msRest.ServiceCallback<void>): void;
-  putMinDate(dateBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMinDate(dateBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putMinDate(dateBody: Date | string): Promise<void>;
+  putMinDate(dateBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
+  putMinDate(dateBody: Date | string, callback: msRest.ServiceCallback<void>): void;
+  putMinDate(dateBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putMinDate(dateBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     return msRest.responseToBody(this.putMinDateWithHttpOperationResponse.bind(this), dateBody, options, callback);
   }
 
@@ -350,16 +350,16 @@ export class DateModel {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getMinDate(): Promise<string>;
-  getMinDate(options: msRest.RequestOptionsBase): Promise<string>;
-  getMinDate(callback: msRest.ServiceCallback<string>): void;
-  getMinDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getMinDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getMinDate(): Promise<Date>;
+  getMinDate(options: msRest.RequestOptionsBase): Promise<Date>;
+  getMinDate(callback: msRest.ServiceCallback<Date>): void;
+  getMinDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getMinDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getMinDateWithHttpOperationResponse.bind(this), options, callback);
   }
 
@@ -375,7 +375,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "Date"
         }
       }
     },
@@ -394,7 +394,7 @@ const getInvalidDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "Date"
         }
       }
     },
@@ -413,7 +413,7 @@ const getOverflowDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "Date"
         }
       }
     },
@@ -432,7 +432,7 @@ const getUnderflowDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "Date"
         }
       }
     },
@@ -452,7 +452,7 @@ const putMaxDateOperationSpec: msRest.OperationSpec = {
       required: true,
       serializedName: "dateBody",
       type: {
-        name: "String"
+        name: "Date"
       }
     }
   },
@@ -473,7 +473,7 @@ const getMaxDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "Date"
         }
       }
     },
@@ -493,7 +493,7 @@ const putMinDateOperationSpec: msRest.OperationSpec = {
       required: true,
       serializedName: "dateBody",
       type: {
-        name: "String"
+        name: "Date"
       }
     }
   },
@@ -514,7 +514,7 @@ const getMinDateOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "Date"
         }
       }
     },
