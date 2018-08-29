@@ -71,19 +71,21 @@ type Colors = 'red color' | 'green-color' | 'blue_color';
 ```
 This can save some space when bundling for the browser.
 
-### Generate dates as strings
-Swagger strings can have the format `"date"`, `"date-time"` or `"date-time-rfc1123"`, which causes AutoRest to model the parameter as JavaScript Date.
+### Generate date-times as strings
+Swagger strings can have the format `"date-time"`, which causes AutoRest to model the parameter as JavaScript Date.
 ```ts
   getDate(): Promise<Date>;
 ```
 
-If you pass `--model-date-as-string=true` to the generator, it will instead model and treat the string as a plain old `string` in the interfaces and at runtime.
+If you pass `--model-date-time-as-string=true` to the generator, it will instead model and treat the string as a plain old `string` in the interfaces and at runtime.
 This allows users to use custom date formatting methods, particularly for services which are finicky about the accepted format of dates
 or require greater precision than what the JavaScript Date provides out of the box.
 
 ```ts
   getDate(): Promise<string>;
 ```
+
+Note that properties with the format `"date"` or `"date-time-rfc1123"` are unaffected by this flag.
 
 ### Body method generation
 For usability and back-compatibility, the generator creates a pair of methods for each operation in the Swagger by default:
