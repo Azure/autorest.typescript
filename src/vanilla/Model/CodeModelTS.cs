@@ -122,7 +122,26 @@ namespace AutoRest.TypeScript.Model
         public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
             MethodTemplateModels.Where(method => method.IsWrappable());
 
-        public IEnumerable<MethodTS> MethodsWithCustomResponseType => Methods.Cast<MethodTS>().Where(m => m.ReturnType.Headers != null || m.ReturnType.Body != null);
+        internal sealed class MethodResponseNameComparer : IEqualityComparer<MethodTS>
+        {
+            internal static MethodResponseNameComparer Instance { get; } = new MethodResponseNameComparer();
+
+            public bool Equals(MethodTS x, MethodTS y)
+            {
+                return x.HttpResponseName == y.HttpResponseName;
+            }
+
+            public int GetHashCode(MethodTS obj)
+            {
+                return obj.HttpResponseName.GetHashCode();
+            }
+        }
+
+        public IEnumerable<MethodTS> MethodsWithCustomResponseType => Methods
+            .Cast<MethodTS>()
+            .Where(m => m.ReturnType.Headers != null || m.ReturnType.Body != null)
+            // Prevents beginFoo and foo methods from having duplicate generated response types
+            .Distinct(MethodResponseNameComparer.Instance);
 
         /// <summary>
         /// Provides an ordered ModelTemplateModel list such that the parent
@@ -396,7 +415,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.20.403\"";
+            return "\"ms-rest-js\": \"~0.21.404\"";
         }
 
         public virtual Method GetSampleMethod()

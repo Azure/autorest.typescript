@@ -36,91 +36,17 @@ export class ApiVersionDefault {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getMethodGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getMethodGlobalValidOperationSpec);
-  }
-
-  /**
-   * GET method with api-version modeled in global settings.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getMethodGlobalNotProvidedValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getMethodGlobalNotProvidedValidOperationSpec);
-  }
-
-  /**
-   * GET method with api-version modeled in global settings.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getPathGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getPathGlobalValidOperationSpec);
-  }
-
-  /**
-   * GET method with api-version modeled in global settings.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getSwaggerGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getSwaggerGlobalValidOperationSpec);
-  }
-
-  /**
-   * GET method with api-version modeled in global settings.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getMethodGlobalValid(): Promise<void>;
-  getMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
+  getMethodGlobalValid(): Promise<msRest.RestResponse>;
+  getMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getMethodGlobalValid(callback: msRest.ServiceCallback<void>): void;
   getMethodGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getMethodGlobalValidWithHttpOperationResponse.bind(this), options, callback);
+  getMethodGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMethodGlobalValidOperationSpec,
+      callback);
   }
 
   /**
@@ -128,21 +54,23 @@ export class ApiVersionDefault {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getMethodGlobalNotProvidedValid(): Promise<void>;
-  getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<void>;
+  getMethodGlobalNotProvidedValid(): Promise<msRest.RestResponse>;
+  getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getMethodGlobalNotProvidedValid(callback: msRest.ServiceCallback<void>): void;
   getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getMethodGlobalNotProvidedValidWithHttpOperationResponse.bind(this), options, callback);
+  getMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMethodGlobalNotProvidedValidOperationSpec,
+      callback);
   }
 
   /**
@@ -150,21 +78,23 @@ export class ApiVersionDefault {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getPathGlobalValid(): Promise<void>;
-  getPathGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
+  getPathGlobalValid(): Promise<msRest.RestResponse>;
+  getPathGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getPathGlobalValid(callback: msRest.ServiceCallback<void>): void;
   getPathGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getPathGlobalValidWithHttpOperationResponse.bind(this), options, callback);
+  getPathGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getPathGlobalValidOperationSpec,
+      callback);
   }
 
   /**
@@ -172,21 +102,23 @@ export class ApiVersionDefault {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getSwaggerGlobalValid(): Promise<void>;
-  getSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<void>;
+  getSwaggerGlobalValid(): Promise<msRest.RestResponse>;
+  getSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getSwaggerGlobalValid(callback: msRest.ServiceCallback<void>): void;
   getSwaggerGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getSwaggerGlobalValidWithHttpOperationResponse.bind(this), options, callback);
+  getSwaggerGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSwaggerGlobalValidOperationSpec,
+      callback);
   }
 
 }

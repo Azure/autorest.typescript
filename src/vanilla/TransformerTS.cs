@@ -32,6 +32,7 @@ namespace AutoRest.TypeScript
             AddEnumTypesToCodeModel(codeModel);
             EnsureParameterMethodSet(codeModel);
             CreateUniqueParameterMapperNames(codeModel);
+            DisambiguateHeaderNames(codeModel);
 
             if (codeModel.ModelDateTimeAsString)
             {
@@ -105,6 +106,30 @@ namespace AutoRest.TypeScript
 
                 convertModel(method.ReturnType.Body);
                 convertModel(method.ReturnType.Headers);
+            }
+        }
+
+        private void DisambiguateHeaderNames(CodeModelTS codeModel)
+        {
+            var allHeadersMethods = codeModel.MethodGroupModels
+                .SelectMany(g => g.MethodTemplateModels)
+                .Concat(codeModel.MethodTemplateModels)
+                .Where(m => m.ReturnType.Headers != null && m.ReturnType.Body != null);
+            foreach (var method in allHeadersMethods)
+            {
+                foreach (var headerProp in ((CompositeTypeTS)method.ReturnType.Headers).Properties)
+                {
+                    if (method.ReturnType.Body is CompositeTypeTS composite &&
+                        composite.ComposedProperties.Select(p => p.Name).Contains(headerProp.Name))
+                    {
+                        headerProp.Name = headerProp.Name + "Header";
+                    }
+                    else if (headerProp.Name == MethodTS.primitiveHttpBodyPropertyName ||
+                        headerProp.Name == MethodTS.rawHttpResponsePropertyName)
+                    {
+                        headerProp.Name = headerProp.Name + "Header";
+                    }
+                }
             }
         }
 

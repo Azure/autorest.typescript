@@ -24,14 +24,6 @@ export class @(Model.TypeName) {
 @:  @(method.Generate(EmptyLine))
   @EmptyLine
 }
-@if (@Model.CodeModelTS.GenerateBodyMethods)
-{
-foreach (var method in Model.MethodWrappableTemplateModels)
-{
-  @:@(Include(new MethodCallbackWrapperTemplate(), method))
-  @EmptyLine
-}
-}
 }
 @EmptyLine
 @(Model.GenerateOperationSpecDefinitions(EmptyLine))

@@ -37,91 +37,17 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getMethodLocalValidOperationSpec);
-  }
-
-  /**
-   * Get method with api-version modeled in the method.  pass in api-version = null to succeed
-   *
-   * @param {ApiVersionLocalGetMethodLocalNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getMethodLocalNullWithHttpOperationResponse(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getMethodLocalNullOperationSpec);
-  }
-
-  /**
-   * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getPathLocalValidOperationSpec);
-  }
-
-  /**
-   * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getSwaggerLocalValidOperationSpec);
-  }
-
-  /**
-   * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getMethodLocalValid(): Promise<void>;
-  getMethodLocalValid(options: msRest.RequestOptionsBase): Promise<void>;
+  getMethodLocalValid(): Promise<msRest.RestResponse>;
+  getMethodLocalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getMethodLocalValid(callback: msRest.ServiceCallback<void>): void;
   getMethodLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getMethodLocalValidWithHttpOperationResponse.bind(this), options, callback);
+  getMethodLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMethodLocalValidOperationSpec,
+      callback);
   }
 
   /**
@@ -129,21 +55,23 @@ export class ApiVersionLocal {
    *
    * @param {ApiVersionLocalGetMethodLocalNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getMethodLocalNull(): Promise<void>;
-  getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<void>;
+  getMethodLocalNull(): Promise<msRest.RestResponse>;
+  getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.RestResponse>;
   getMethodLocalNull(callback: msRest.ServiceCallback<void>): void;
   getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getMethodLocalNull(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getMethodLocalNullWithHttpOperationResponse.bind(this), options, callback);
+  getMethodLocalNull(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMethodLocalNullOperationSpec,
+      callback);
   }
 
   /**
@@ -151,21 +79,23 @@ export class ApiVersionLocal {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getPathLocalValid(): Promise<void>;
-  getPathLocalValid(options: msRest.RequestOptionsBase): Promise<void>;
+  getPathLocalValid(): Promise<msRest.RestResponse>;
+  getPathLocalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getPathLocalValid(callback: msRest.ServiceCallback<void>): void;
   getPathLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getPathLocalValidWithHttpOperationResponse.bind(this), options, callback);
+  getPathLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getPathLocalValidOperationSpec,
+      callback);
   }
 
   /**
@@ -173,21 +103,23 @@ export class ApiVersionLocal {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getSwaggerLocalValid(): Promise<void>;
-  getSwaggerLocalValid(options: msRest.RequestOptionsBase): Promise<void>;
+  getSwaggerLocalValid(): Promise<msRest.RestResponse>;
+  getSwaggerLocalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getSwaggerLocalValid(callback: msRest.ServiceCallback<void>): void;
   getSwaggerLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getSwaggerLocalValidWithHttpOperationResponse.bind(this), options, callback);
+  getSwaggerLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSwaggerLocalValidOperationSpec,
+      callback);
   }
 
 }

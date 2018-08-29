@@ -50,9 +50,6 @@ regenExpected = (opts,done) ->
     if (opts.generateMetadata)
       args.push("--generate-metadata=true")
 
-    if (opts.generateBodyMethods == false)
-      args.push("--generate-body-methods=false")
-
     if (opts.clientSideValidation == false)
       args.push("--client-side-validation=false")
 
@@ -152,10 +149,6 @@ azureMetadataMappings = {
   'lib': 'lro.json',
 }
 
-noBodyMethodsMappings = {
-  'BodyString': 'body-string.json'
-}
-
 noClientValidationMappings = {
   'Validation': 'validation.json'
 }
@@ -247,19 +240,6 @@ task 'regenerate-ts-date-time-as-string', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts-no-body-methods', '', [], (done) ->
-  regenExpected {
-    'outputBaseDir': 'test/no-body-methods',
-    'inputBaseDir': swaggerDir,
-    'mappings': noBodyMethodsMappings,
-    'outputDir': 'generated',
-    'language': 'typescript',
-    'nsPrefix': 'Fixtures',
-    'flatteningThreshold': '1',
-    'generateBodyMethods': false
-  },done
-  return null
-
 task 'regenerate-ts-no-client-validation', '', [], (done) ->
   regenExpected {
     'outputBaseDir': 'test/no-client-validation',
@@ -300,7 +280,8 @@ task 'regenerate-tsazure-metadata', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts', '', ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union', 'regenerate-ts-no-body-methods', 'regenerate-ts-metadata', 'regenerate-ts-no-client-validation', 'regenerate-ts-date-time-as-string'], (done) ->
+tsTasks = ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union', 'regenerate-ts-metadata', 'regenerate-ts-no-client-validation', 'regenerate-ts-date-time-as-string']
+task 'regenerate-ts', '', tsTasks, (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]
   regenExpected {

@@ -53,106 +53,21 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<Models.ValidationOfMethodParametersResponse> {
-    return this.sendOperationRequest(
-      {
-        resourceGroupName,
-        id,
-        options
-      },
-      validationOfMethodParametersOperationSpec) as Promise<Models.ValidationOfMethodParametersResponse>;
-  }
-  // methods on the client.
-
-  /**
-   * Validates body parameters on the method. See swagger for details.
-   *
-   * @param {string} resourceGroupName Required string between 3 and 10 chars with pattern
-   * [a-zA-Z0-9]+.
-   *
-   * @param {number} id Required int multiple of 10 from 100 to 1000.
-   *
-   * @param {AutoRestValidationTestValidationOfBodyOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<Models.ValidationOfBodyResponse> {
-    return this.sendOperationRequest(
-      {
-        resourceGroupName,
-        id,
-        options
-      },
-      validationOfBodyOperationSpec) as Promise<Models.ValidationOfBodyResponse>;
-  }
-  // methods on the client.
-
-  /**
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.sendOperationRequest(
-      {
-        options
-      },
-      getWithConstantInPathOperationSpec);
-  }
-  // methods on the client.
-
-  /**
-   * @param {AutoRestValidationTestPostWithConstantInBodyOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<Models.PostWithConstantInBodyResponse> {
-    return this.sendOperationRequest(
-      {
-        options
-      },
-      postWithConstantInBodyOperationSpec) as Promise<Models.PostWithConstantInBodyResponse>;
-  }
-
-  /**
-   * Validates input parameters on the method. See swagger for details.
-   *
-   * @param {string} resourceGroupName Required string between 3 and 10 chars with pattern
-   * [a-zA-Z0-9]+.
-   *
-   * @param {number} id Required int multiple of 10 from 100 to 1000.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  validationOfMethodParameters(resourceGroupName: string, id: number): Promise<Models.Product>;
-  validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase): Promise<Models.Product>;
+  validationOfMethodParameters(resourceGroupName: string, id: number): Promise<Models.ValidationOfMethodParametersResponse>;
+  validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase): Promise<Models.ValidationOfMethodParametersResponse>;
   validationOfMethodParameters(resourceGroupName: string, id: number, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  validationOfMethodParameters(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.validationOfMethodParametersWithHttpOperationResponse.bind(this), resourceGroupName, id, options, callback);
+  validationOfMethodParameters(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfMethodParametersResponse> {
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        id,
+        options
+      },
+      validationOfMethodParametersOperationSpec,
+      callback) as Promise<Models.ValidationOfMethodParametersResponse>;
   }
+  // methods on the client.
 
   /**
    * Validates body parameters on the method. See swagger for details.
@@ -164,62 +79,72 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @param {AutoRestValidationTestValidationOfBodyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  validationOfBody(resourceGroupName: string, id: number): Promise<Models.Product>;
-  validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<Models.Product>;
+  validationOfBody(resourceGroupName: string, id: number): Promise<Models.ValidationOfBodyResponse>;
+  validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<Models.ValidationOfBodyResponse>;
   validationOfBody(resourceGroupName: string, id: number, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  validationOfBody(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.validationOfBodyWithHttpOperationResponse.bind(this), resourceGroupName, id, options, callback);
+  validationOfBody(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfBodyResponse> {
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        id,
+        options
+      },
+      validationOfBodyOperationSpec,
+      callback) as Promise<Models.ValidationOfBodyResponse>;
   }
+  // methods on the client.
 
   /**
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getWithConstantInPath(): Promise<void>;
-  getWithConstantInPath(options: msRest.RequestOptionsBase): Promise<void>;
+  getWithConstantInPath(): Promise<msRest.RestResponse>;
+  getWithConstantInPath(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getWithConstantInPath(callback: msRest.ServiceCallback<void>): void;
   getWithConstantInPath(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getWithConstantInPath(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getWithConstantInPathWithHttpOperationResponse.bind(this), options, callback);
+  getWithConstantInPath(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getWithConstantInPathOperationSpec,
+      callback);
   }
+  // methods on the client.
 
   /**
    * @param {AutoRestValidationTestPostWithConstantInBodyOptionalParams} [options] Optional
    * Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.Product} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  postWithConstantInBody(): Promise<Models.Product>;
-  postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<Models.Product>;
+  postWithConstantInBody(): Promise<Models.PostWithConstantInBodyResponse>;
+  postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<Models.PostWithConstantInBodyResponse>;
   postWithConstantInBody(callback: msRest.ServiceCallback<Models.Product>): void;
   postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  postWithConstantInBody(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): any {
-    return msRest.responseToBody(this.postWithConstantInBodyWithHttpOperationResponse.bind(this), options, callback);
+  postWithConstantInBody(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.PostWithConstantInBodyResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      postWithConstantInBodyOperationSpec,
+      callback) as Promise<Models.PostWithConstantInBodyResponse>;
   }
 }
 

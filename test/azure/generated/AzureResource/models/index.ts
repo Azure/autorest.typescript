@@ -147,41 +147,64 @@ export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptio
 /**
  * Contains response data for the getArray operation.
  */
-export interface GetArrayResponse extends msRest.HttpResponse {
+export type GetArrayResponse = Array<FlattenedProduct> & {
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: FlattenedProduct[];
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FlattenedProduct[];
+    };
+};
 
 /**
  * Contains response data for the getDictionary operation.
  */
-export interface GetDictionaryResponse extends msRest.HttpResponse {
+export type GetDictionaryResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: FlattenedProduct;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: FlattenedProduct };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: FlattenedProduct };
+    };
+};
 
 /**
  * Contains response data for the getResourceCollection operation.
  */
-export interface GetResourceCollectionResponse extends msRest.HttpResponse {
+export type GetResourceCollectionResponse = {
+  productresource: FlattenedProduct;
+  arrayofresources: FlattenedProduct[];
+  dictionaryofresources: { [propertyName: string]: FlattenedProduct };
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ResourceCollection;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ResourceCollection;
+    };
+};

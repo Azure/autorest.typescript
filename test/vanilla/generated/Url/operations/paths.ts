@@ -37,12 +37,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  getBooleanTrue(): Promise<msRest.RestResponse>;
+  getBooleanTrue(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getBooleanTrue(callback: msRest.ServiceCallback<void>): void;
+  getBooleanTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getBooleanTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBooleanTrueOperationSpec);
+      getBooleanTrueOperationSpec,
+      callback);
   }
 
   /**
@@ -56,12 +61,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  getBooleanFalse(): Promise<msRest.RestResponse>;
+  getBooleanFalse(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getBooleanFalse(callback: msRest.ServiceCallback<void>): void;
+  getBooleanFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getBooleanFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBooleanFalseOperationSpec);
+      getBooleanFalseOperationSpec,
+      callback);
   }
 
   /**
@@ -75,12 +85,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  getIntOneMillion(): Promise<msRest.RestResponse>;
+  getIntOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getIntOneMillion(callback: msRest.ServiceCallback<void>): void;
+  getIntOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getIntOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getIntOneMillionOperationSpec);
+      getIntOneMillionOperationSpec,
+      callback);
   }
 
   /**
@@ -94,12 +109,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  getIntNegativeOneMillion(): Promise<msRest.RestResponse>;
+  getIntNegativeOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getIntNegativeOneMillion(callback: msRest.ServiceCallback<void>): void;
+  getIntNegativeOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getIntNegativeOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getIntNegativeOneMillionOperationSpec);
+      getIntNegativeOneMillionOperationSpec,
+      callback);
   }
 
   /**
@@ -113,12 +133,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  getTenBillion(): Promise<msRest.RestResponse>;
+  getTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getTenBillion(callback: msRest.ServiceCallback<void>): void;
+  getTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getTenBillionOperationSpec);
+      getTenBillionOperationSpec,
+      callback);
   }
 
   /**
@@ -132,12 +157,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  getNegativeTenBillion(): Promise<msRest.RestResponse>;
+  getNegativeTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getNegativeTenBillion(callback: msRest.ServiceCallback<void>): void;
+  getNegativeTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getNegativeTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNegativeTenBillionOperationSpec);
+      getNegativeTenBillionOperationSpec,
+      callback);
   }
 
   /**
@@ -151,12 +181,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  floatScientificPositive(): Promise<msRest.RestResponse>;
+  floatScientificPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  floatScientificPositive(callback: msRest.ServiceCallback<void>): void;
+  floatScientificPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  floatScientificPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      floatScientificPositiveOperationSpec);
+      floatScientificPositiveOperationSpec,
+      callback);
   }
 
   /**
@@ -170,12 +205,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  floatScientificNegative(): Promise<msRest.RestResponse>;
+  floatScientificNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  floatScientificNegative(callback: msRest.ServiceCallback<void>): void;
+  floatScientificNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  floatScientificNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      floatScientificNegativeOperationSpec);
+      floatScientificNegativeOperationSpec,
+      callback);
   }
 
   /**
@@ -189,12 +229,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  doubleDecimalPositive(): Promise<msRest.RestResponse>;
+  doubleDecimalPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  doubleDecimalPositive(callback: msRest.ServiceCallback<void>): void;
+  doubleDecimalPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  doubleDecimalPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      doubleDecimalPositiveOperationSpec);
+      doubleDecimalPositiveOperationSpec,
+      callback);
   }
 
   /**
@@ -208,12 +253,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  doubleDecimalNegative(): Promise<msRest.RestResponse>;
+  doubleDecimalNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  doubleDecimalNegative(callback: msRest.ServiceCallback<void>): void;
+  doubleDecimalNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  doubleDecimalNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      doubleDecimalNegativeOperationSpec);
+      doubleDecimalNegativeOperationSpec,
+      callback);
   }
 
   /**
@@ -227,12 +277,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  stringUnicode(): Promise<msRest.RestResponse>;
+  stringUnicode(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringUnicode(callback: msRest.ServiceCallback<void>): void;
+  stringUnicode(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  stringUnicode(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      stringUnicodeOperationSpec);
+      stringUnicodeOperationSpec,
+      callback);
   }
 
   /**
@@ -246,12 +301,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  stringUrlEncoded(): Promise<msRest.RestResponse>;
+  stringUrlEncoded(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringUrlEncoded(callback: msRest.ServiceCallback<void>): void;
+  stringUrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  stringUrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      stringUrlEncodedOperationSpec);
+      stringUrlEncodedOperationSpec,
+      callback);
   }
 
   /**
@@ -265,12 +325,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  stringEmpty(): Promise<msRest.RestResponse>;
+  stringEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringEmpty(callback: msRest.ServiceCallback<void>): void;
+  stringEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  stringEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      stringEmptyOperationSpec);
+      stringEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -286,13 +351,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stringNullWithHttpOperationResponse(stringPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  stringNull(stringPath: string): Promise<msRest.RestResponse>;
+  stringNull(stringPath: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringNull(stringPath: string, callback: msRest.ServiceCallback<void>): void;
+  stringNull(stringPath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  stringNull(stringPath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         stringPath,
         options
       },
-      stringNullOperationSpec);
+      stringNullOperationSpec,
+      callback);
   }
 
   /**
@@ -309,13 +379,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  enumValidWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  enumValid(enumPath: Models.UriColor): Promise<msRest.RestResponse>;
+  enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  enumValid(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
+  enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  enumValid(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         enumPath,
         options
       },
-      enumValidOperationSpec);
+      enumValidOperationSpec,
+      callback);
   }
 
   /**
@@ -332,13 +407,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  enumNullWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  enumNull(enumPath: Models.UriColor): Promise<msRest.RestResponse>;
+  enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  enumNull(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
+  enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  enumNull(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         enumPath,
         options
       },
-      enumNullOperationSpec);
+      enumNullOperationSpec,
+      callback);
   }
 
   /**
@@ -354,13 +434,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  byteMultiByteWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  byteMultiByte(bytePath: Uint8Array): Promise<msRest.RestResponse>;
+  byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  byteMultiByte(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  byteMultiByte(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bytePath,
         options
       },
-      byteMultiByteOperationSpec);
+      byteMultiByteOperationSpec,
+      callback);
   }
 
   /**
@@ -374,12 +459,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  byteEmpty(): Promise<msRest.RestResponse>;
+  byteEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  byteEmpty(callback: msRest.ServiceCallback<void>): void;
+  byteEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  byteEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      byteEmptyOperationSpec);
+      byteEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -395,13 +485,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  byteNullWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  byteNull(bytePath: Uint8Array): Promise<msRest.RestResponse>;
+  byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  byteNull(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  byteNull(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bytePath,
         options
       },
-      byteNullOperationSpec);
+      byteNullOperationSpec,
+      callback);
   }
 
   /**
@@ -415,12 +510,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  dateValid(): Promise<msRest.RestResponse>;
+  dateValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateValid(callback: msRest.ServiceCallback<void>): void;
+  dateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  dateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      dateValidOperationSpec);
+      dateValidOperationSpec,
+      callback);
   }
 
   /**
@@ -437,13 +537,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateNullWithHttpOperationResponse(datePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  dateNull(datePath: Date | string): Promise<msRest.RestResponse>;
+  dateNull(datePath: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateNull(datePath: Date | string, callback: msRest.ServiceCallback<void>): void;
+  dateNull(datePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  dateNull(datePath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datePath,
         options
       },
-      dateNullOperationSpec);
+      dateNullOperationSpec,
+      callback);
   }
 
   /**
@@ -457,12 +562,17 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  dateTimeValid(): Promise<msRest.RestResponse>;
+  dateTimeValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateTimeValid(callback: msRest.ServiceCallback<void>): void;
+  dateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  dateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      dateTimeValidOperationSpec);
+      dateTimeValidOperationSpec,
+      callback);
   }
 
   /**
@@ -478,13 +588,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  dateTimeNullWithHttpOperationResponse(dateTimePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  dateTimeNull(dateTimePath: Date | string): Promise<msRest.RestResponse>;
+  dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateTimeNull(dateTimePath: Date | string, callback: msRest.ServiceCallback<void>): void;
+  dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  dateTimeNull(dateTimePath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         dateTimePath,
         options
       },
-      dateTimeNullOperationSpec);
+      dateTimeNullOperationSpec,
+      callback);
   }
 
   /**
@@ -500,13 +615,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  base64UrlWithHttpOperationResponse(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  base64Url(base64UrlPath: Uint8Array): Promise<msRest.RestResponse>;
+  base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  base64Url(base64UrlPath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  base64Url(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         base64UrlPath,
         options
       },
-      base64UrlOperationSpec);
+      base64UrlOperationSpec,
+      callback);
   }
 
   /**
@@ -524,13 +644,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  arrayCsvInPathWithHttpOperationResponse(arrayPath: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  arrayCsvInPath(arrayPath: string[]): Promise<msRest.RestResponse>;
+  arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  arrayCsvInPath(arrayPath: string[], callback: msRest.ServiceCallback<void>): void;
+  arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  arrayCsvInPath(arrayPath: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayPath,
         options
       },
-      arrayCsvInPathOperationSpec);
+      arrayCsvInPathOperationSpec,
+      callback);
   }
 
   /**
@@ -546,610 +671,18 @@ export class Paths {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  unixTimeUrlWithHttpOperationResponse(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  unixTimeUrl(unixTimeUrlPath: Date | string): Promise<msRest.RestResponse>;
+  unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  unixTimeUrl(unixTimeUrlPath: Date | string, callback: msRest.ServiceCallback<void>): void;
+  unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  unixTimeUrl(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         unixTimeUrlPath,
         options
       },
-      unixTimeUrlOperationSpec);
-  }
-
-  /**
-   * Get true Boolean value on path
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getBooleanTrue(): Promise<void>;
-  getBooleanTrue(options: msRest.RequestOptionsBase): Promise<void>;
-  getBooleanTrue(callback: msRest.ServiceCallback<void>): void;
-  getBooleanTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getBooleanTrueWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get false Boolean value on path
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getBooleanFalse(): Promise<void>;
-  getBooleanFalse(options: msRest.RequestOptionsBase): Promise<void>;
-  getBooleanFalse(callback: msRest.ServiceCallback<void>): void;
-  getBooleanFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getBooleanFalseWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get '1000000' integer value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getIntOneMillion(): Promise<void>;
-  getIntOneMillion(options: msRest.RequestOptionsBase): Promise<void>;
-  getIntOneMillion(callback: msRest.ServiceCallback<void>): void;
-  getIntOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getIntOneMillionWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get '-1000000' integer value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getIntNegativeOneMillion(): Promise<void>;
-  getIntNegativeOneMillion(options: msRest.RequestOptionsBase): Promise<void>;
-  getIntNegativeOneMillion(callback: msRest.ServiceCallback<void>): void;
-  getIntNegativeOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntNegativeOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getIntNegativeOneMillionWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get '10000000000' 64 bit integer value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getTenBillion(): Promise<void>;
-  getTenBillion(options: msRest.RequestOptionsBase): Promise<void>;
-  getTenBillion(callback: msRest.ServiceCallback<void>): void;
-  getTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getTenBillionWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get '-10000000000' 64 bit integer value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNegativeTenBillion(): Promise<void>;
-  getNegativeTenBillion(options: msRest.RequestOptionsBase): Promise<void>;
-  getNegativeTenBillion(callback: msRest.ServiceCallback<void>): void;
-  getNegativeTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getNegativeTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getNegativeTenBillionWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get '1.034E+20' numeric value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  floatScientificPositive(): Promise<void>;
-  floatScientificPositive(options: msRest.RequestOptionsBase): Promise<void>;
-  floatScientificPositive(callback: msRest.ServiceCallback<void>): void;
-  floatScientificPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.floatScientificPositiveWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get '-1.034E-20' numeric value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  floatScientificNegative(): Promise<void>;
-  floatScientificNegative(options: msRest.RequestOptionsBase): Promise<void>;
-  floatScientificNegative(callback: msRest.ServiceCallback<void>): void;
-  floatScientificNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.floatScientificNegativeWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get '9999999.999' numeric value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  doubleDecimalPositive(): Promise<void>;
-  doubleDecimalPositive(options: msRest.RequestOptionsBase): Promise<void>;
-  doubleDecimalPositive(callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.doubleDecimalPositiveWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get '-9999999.999' numeric value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  doubleDecimalNegative(): Promise<void>;
-  doubleDecimalNegative(options: msRest.RequestOptionsBase): Promise<void>;
-  doubleDecimalNegative(callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.doubleDecimalNegativeWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  stringUnicode(): Promise<void>;
-  stringUnicode(options: msRest.RequestOptionsBase): Promise<void>;
-  stringUnicode(callback: msRest.ServiceCallback<void>): void;
-  stringUnicode(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUnicode(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.stringUnicodeWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get 'begin!*'();:@ &=+$,/?#[]end
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  stringUrlEncoded(): Promise<void>;
-  stringUrlEncoded(options: msRest.RequestOptionsBase): Promise<void>;
-  stringUrlEncoded(callback: msRest.ServiceCallback<void>): void;
-  stringUrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.stringUrlEncodedWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get ''
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  stringEmpty(): Promise<void>;
-  stringEmpty(options: msRest.RequestOptionsBase): Promise<void>;
-  stringEmpty(callback: msRest.ServiceCallback<void>): void;
-  stringEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.stringEmptyWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get null (should throw)
-   *
-   * @param {string} stringPath null string value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  stringNull(stringPath: string): Promise<void>;
-  stringNull(stringPath: string, options: msRest.RequestOptionsBase): Promise<void>;
-  stringNull(stringPath: string, callback: msRest.ServiceCallback<void>): void;
-  stringNull(stringPath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringNull(stringPath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.stringNullWithHttpOperationResponse.bind(this), stringPath, options, callback);
-  }
-
-  /**
-   * Get using uri with 'green color' in path parameter
-   *
-   * @param {UriColor} enumPath send the value green. Possible values include: 'red color', 'green
-   * color', 'blue color'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  enumValid(enumPath: Models.UriColor): Promise<void>;
-  enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<void>;
-  enumValid(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
-  enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  enumValid(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.enumValidWithHttpOperationResponse.bind(this), enumPath, options, callback);
-  }
-
-  /**
-   * Get null (should throw on the client before the request is sent on wire)
-   *
-   * @param {UriColor} enumPath send null should throw. Possible values include: 'red color', 'green
-   * color', 'blue color'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  enumNull(enumPath: Models.UriColor): Promise<void>;
-  enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<void>;
-  enumNull(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
-  enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  enumNull(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.enumNullWithHttpOperationResponse.bind(this), enumPath, options, callback);
-  }
-
-  /**
-   * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
-   *
-   * @param {Uint8Array} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  byteMultiByte(bytePath: Uint8Array): Promise<void>;
-  byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
-  byteMultiByte(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
-  byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteMultiByte(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.byteMultiByteWithHttpOperationResponse.bind(this), bytePath, options, callback);
-  }
-
-  /**
-   * Get '' as byte array
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  byteEmpty(): Promise<void>;
-  byteEmpty(options: msRest.RequestOptionsBase): Promise<void>;
-  byteEmpty(callback: msRest.ServiceCallback<void>): void;
-  byteEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.byteEmptyWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get null as byte array (should throw)
-   *
-   * @param {Uint8Array} bytePath null as byte array (should throw)
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  byteNull(bytePath: Uint8Array): Promise<void>;
-  byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
-  byteNull(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
-  byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteNull(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.byteNullWithHttpOperationResponse.bind(this), bytePath, options, callback);
-  }
-
-  /**
-   * Get '2012-01-01' as date
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  dateValid(): Promise<void>;
-  dateValid(options: msRest.RequestOptionsBase): Promise<void>;
-  dateValid(callback: msRest.ServiceCallback<void>): void;
-  dateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.dateValidWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get null as date - this should throw or be unusable on the client side, depending on date
-   * representation
-   *
-   * @param {Date | string} datePath null as date (should throw)
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  dateNull(datePath: Date | string): Promise<void>;
-  dateNull(datePath: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
-  dateNull(datePath: Date | string, callback: msRest.ServiceCallback<void>): void;
-  dateNull(datePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateNull(datePath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.dateNullWithHttpOperationResponse.bind(this), datePath, options, callback);
-  }
-
-  /**
-   * Get '2012-01-01T01:01:01Z' as date-time
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  dateTimeValid(): Promise<void>;
-  dateTimeValid(options: msRest.RequestOptionsBase): Promise<void>;
-  dateTimeValid(callback: msRest.ServiceCallback<void>): void;
-  dateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.dateTimeValidWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get null as date-time, should be disallowed or throw depending on representation of date-time
-   *
-   * @param {Date | string} dateTimePath null as date-time
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  dateTimeNull(dateTimePath: Date | string): Promise<void>;
-  dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
-  dateTimeNull(dateTimePath: Date | string, callback: msRest.ServiceCallback<void>): void;
-  dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateTimeNull(dateTimePath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.dateTimeNullWithHttpOperationResponse.bind(this), dateTimePath, options, callback);
-  }
-
-  /**
-   * Get 'lorem' encoded value as 'bG9yZW0' (base64url)
-   *
-   * @param {Uint8Array} base64UrlPath base64url encoded value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  base64Url(base64UrlPath: Uint8Array): Promise<void>;
-  base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
-  base64Url(base64UrlPath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
-  base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  base64Url(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.base64UrlWithHttpOperationResponse.bind(this), base64UrlPath, options, callback);
-  }
-
-  /**
-   * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * csv-array format
-   *
-   * @param {string[]} arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' ,
-   * null, ''] using the csv-array format
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  arrayCsvInPath(arrayPath: string[]): Promise<void>;
-  arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase): Promise<void>;
-  arrayCsvInPath(arrayPath: string[], callback: msRest.ServiceCallback<void>): void;
-  arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  arrayCsvInPath(arrayPath: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayCsvInPathWithHttpOperationResponse.bind(this), arrayPath, options, callback);
-  }
-
-  /**
-   * Get the date 2016-04-13 encoded value as '1460505600' (Unix time)
-   *
-   * @param {Date | string} unixTimeUrlPath Unix time encoded value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  unixTimeUrl(unixTimeUrlPath: Date | string): Promise<void>;
-  unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
-  unixTimeUrl(unixTimeUrlPath: Date | string, callback: msRest.ServiceCallback<void>): void;
-  unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  unixTimeUrl(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.unixTimeUrlWithHttpOperationResponse.bind(this), unixTimeUrlPath, options, callback);
+      unixTimeUrlOperationSpec,
+      callback);
   }
 
 }

@@ -29,14 +29,14 @@ export interface ErrorModel {
 /**
  * Contains response data for the uploadFile operation.
  */
-export interface FormdataUploadFileResponse extends msRest.HttpResponse {
+export type FormdataUploadFileResponse = {
   /**
    * BROWSER ONLY
    *
    * The response body as a browser Blob.
    * Always undefined in node.js.
    */
-  blobBody?: () => Promise<Blob>;
+  blobBody?: Promise<Blob>;
   /**
    * NODEJS ONLY
    *
@@ -44,19 +44,23 @@ export interface FormdataUploadFileResponse extends msRest.HttpResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse;
+};
 
 /**
  * Contains response data for the uploadFileViaBody operation.
  */
-export interface FormdataUploadFileViaBodyResponse extends msRest.HttpResponse {
+export type FormdataUploadFileViaBodyResponse = {
   /**
    * BROWSER ONLY
    *
    * The response body as a browser Blob.
    * Always undefined in node.js.
    */
-  blobBody?: () => Promise<Blob>;
+  blobBody?: Promise<Blob>;
   /**
    * NODEJS ONLY
    *
@@ -64,4 +68,8 @@ export interface FormdataUploadFileViaBodyResponse extends msRest.HttpResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse;
+};

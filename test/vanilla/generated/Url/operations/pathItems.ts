@@ -43,123 +43,19 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getAllWithValuesWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        localStringPath,
-        pathItemStringPath,
-        options
-      },
-      getAllWithValuesOperationSpec);
-  }
-
-  /**
-   * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-   * localStringPath='localStringPath', globalStringQuery=null,
-   * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
-   *
-   * @param {string} localStringPath should contain value 'localStringPath'
-   *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   *
-   * @param {PathItemsGetGlobalQueryNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getGlobalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        localStringPath,
-        pathItemStringPath,
-        options
-      },
-      getGlobalQueryNullOperationSpec);
-  }
-
-  /**
-   * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
-   * localStringPath='localStringPath', globalStringQuery=null,
-   * pathItemStringQuery='pathItemStringQuery', localStringQuery=null
-   *
-   * @param {string} localStringPath should contain value 'localStringPath'
-   *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   *
-   * @param {PathItemsGetGlobalAndLocalQueryNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getGlobalAndLocalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        localStringPath,
-        pathItemStringPath,
-        options
-      },
-      getGlobalAndLocalQueryNullOperationSpec);
-  }
-
-  /**
-   * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-   * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
-   * pathItemStringQuery=null, localStringQuery=null
-   *
-   * @param {string} localStringPath should contain value 'localStringPath'
-   *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   *
-   * @param {PathItemsGetLocalPathItemQueryNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLocalPathItemQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        localStringPath,
-        pathItemStringPath,
-        options
-      },
-      getLocalPathItemQueryNullOperationSpec);
-  }
-
-  /**
-   * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-   * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
-   * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
-   *
-   * @param {string} localStringPath should contain value 'localStringPath'
-   *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   *
-   * @param {PathItemsGetAllWithValuesOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getAllWithValues(localStringPath: string, pathItemStringPath: string): Promise<void>;
-  getAllWithValues(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetAllWithValuesOptionalParams): Promise<void>;
+  getAllWithValues(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
+  getAllWithValues(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.RestResponse>;
   getAllWithValues(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
   getAllWithValues(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetAllWithValuesOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getAllWithValues(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getAllWithValuesWithHttpOperationResponse.bind(this), localStringPath, pathItemStringPath, options, callback);
+  getAllWithValues(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        localStringPath,
+        pathItemStringPath,
+        options
+      },
+      getAllWithValuesOperationSpec,
+      callback);
   }
 
   /**
@@ -173,21 +69,25 @@ export class PathItems {
    *
    * @param {PathItemsGetGlobalQueryNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<void>;
-  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<void>;
+  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
+  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.RestResponse>;
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getGlobalQueryNullWithHttpOperationResponse.bind(this), localStringPath, pathItemStringPath, options, callback);
+  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        localStringPath,
+        pathItemStringPath,
+        options
+      },
+      getGlobalQueryNullOperationSpec,
+      callback);
   }
 
   /**
@@ -201,21 +101,25 @@ export class PathItems {
    *
    * @param {PathItemsGetGlobalAndLocalQueryNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<void>;
-  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<void>;
+  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
+  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.RestResponse>;
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getGlobalAndLocalQueryNullWithHttpOperationResponse.bind(this), localStringPath, pathItemStringPath, options, callback);
+  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        localStringPath,
+        pathItemStringPath,
+        options
+      },
+      getGlobalAndLocalQueryNullOperationSpec,
+      callback);
   }
 
   /**
@@ -229,21 +133,25 @@ export class PathItems {
    *
    * @param {PathItemsGetLocalPathItemQueryNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string): Promise<void>;
-  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<void>;
+  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
+  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.RestResponse>;
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getLocalPathItemQueryNullWithHttpOperationResponse.bind(this), localStringPath, pathItemStringPath, options, callback);
+  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        localStringPath,
+        pathItemStringPath,
+        options
+      },
+      getLocalPathItemQueryNullOperationSpec,
+      callback);
   }
 
 }

@@ -37,87 +37,17 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead200Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head200OperationSpec).then(operationRes => {
-      // Deserialize Response
-      const statusCode = operationRes.status;
-      operationRes.parsedBody = (statusCode === 200);
-      return operationRes;
-    }) as Promise<Models.HttpSuccessHead200Response>;
-  }
-
-  /**
-   * Return 204 status code if successful
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead204Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head204OperationSpec).then(operationRes => {
-      // Deserialize Response
-      const statusCode = operationRes.status;
-      operationRes.parsedBody = (statusCode === 204);
-      return operationRes;
-    }) as Promise<Models.HttpSuccessHead204Response>;
-  }
-
-  /**
-   * Return 404 status code if successful
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead404Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head404OperationSpec).then(operationRes => {
-      // Deserialize Response
-      const statusCode = operationRes.status;
-      operationRes.parsedBody = (statusCode === 204);
-      return operationRes;
-    }) as Promise<Models.HttpSuccessHead404Response>;
-  }
-
-  /**
-   * Return 200 status code if successful
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  head200(): Promise<boolean>;
-  head200(options: msRest.RequestOptionsBase): Promise<boolean>;
+  head200(): Promise<Models.HttpSuccessHead200Response>;
+  head200(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead200Response>;
   head200(callback: msRest.ServiceCallback<boolean>): void;
   head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.head200WithHttpOperationResponse.bind(this), options, callback);
+  head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead200Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head200OperationSpec,
+      callback) as Promise<Models.HttpSuccessHead200Response>;
   }
 
   /**
@@ -125,21 +55,23 @@ export class HttpSuccess {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  head204(): Promise<boolean>;
-  head204(options: msRest.RequestOptionsBase): Promise<boolean>;
+  head204(): Promise<Models.HttpSuccessHead204Response>;
+  head204(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead204Response>;
   head204(callback: msRest.ServiceCallback<boolean>): void;
   head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.head204WithHttpOperationResponse.bind(this), options, callback);
+  head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead204Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head204OperationSpec,
+      callback) as Promise<Models.HttpSuccessHead204Response>;
   }
 
   /**
@@ -147,21 +79,23 @@ export class HttpSuccess {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  head404(): Promise<boolean>;
-  head404(options: msRest.RequestOptionsBase): Promise<boolean>;
+  head404(): Promise<Models.HttpSuccessHead404Response>;
+  head404(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead404Response>;
   head404(callback: msRest.ServiceCallback<boolean>): void;
   head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): any {
-    return msRest.responseToBody(this.head404WithHttpOperationResponse.bind(this), options, callback);
+  head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead404Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head404OperationSpec,
+      callback) as Promise<Models.HttpSuccessHead404Response>;
   }
 
 }

@@ -58,34 +58,17 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<Models.GetReportResponse> {
+  getReport(): Promise<Models.GetReportResponse>;
+  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<Models.GetReportResponse>;
+  getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.GetReportResponse> {
     return this.sendOperationRequest(
       {
         options
       },
-      getReportOperationSpec) as Promise<Models.GetReportResponse>;
-  }
-
-  /**
-   * Get test coverage report
-   *
-   * @param {AutoRestReportServiceForAzureGetReportOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getReport(): Promise<{ [propertyName: string]: number }>;
-  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<{ [propertyName: string]: number }>;
-  getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
-    return msRest.responseToBody(this.getReportWithHttpOperationResponse.bind(this), options, callback);
+      getReportOperationSpec,
+      callback) as Promise<Models.GetReportResponse>;
   }
 }
 

@@ -36,167 +36,17 @@ export class HttpRetry {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head408WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head408OperationSpec);
-  }
-
-  /**
-   * Return 500 status code, then 200 after retry
-   *
-   * @param {HttpRetryPut500OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  put500WithHttpOperationResponse(options?: Models.HttpRetryPut500OptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      put500OperationSpec);
-  }
-
-  /**
-   * Return 500 status code, then 200 after retry
-   *
-   * @param {HttpRetryPatch500OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  patch500WithHttpOperationResponse(options?: Models.HttpRetryPatch500OptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      patch500OperationSpec);
-  }
-
-  /**
-   * Return 502 status code, then 200 after retry
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get502WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get502OperationSpec);
-  }
-
-  /**
-   * Return 503 status code, then 200 after retry
-   *
-   * @param {HttpRetryPost503OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  post503WithHttpOperationResponse(options?: Models.HttpRetryPost503OptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      post503OperationSpec);
-  }
-
-  /**
-   * Return 503 status code, then 200 after retry
-   *
-   * @param {HttpRetryDelete503OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  delete503WithHttpOperationResponse(options?: Models.HttpRetryDelete503OptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      delete503OperationSpec);
-  }
-
-  /**
-   * Return 504 status code, then 200 after retry
-   *
-   * @param {HttpRetryPut504OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  put504WithHttpOperationResponse(options?: Models.HttpRetryPut504OptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      put504OperationSpec);
-  }
-
-  /**
-   * Return 504 status code, then 200 after retry
-   *
-   * @param {HttpRetryPatch504OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  patch504WithHttpOperationResponse(options?: Models.HttpRetryPatch504OptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      patch504OperationSpec);
-  }
-
-  /**
-   * Return 408 status code, then 200 after retry
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  head408(): Promise<void>;
-  head408(options: msRest.RequestOptionsBase): Promise<void>;
+  head408(): Promise<msRest.RestResponse>;
+  head408(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   head408(callback: msRest.ServiceCallback<void>): void;
   head408(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head408(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.head408WithHttpOperationResponse.bind(this), options, callback);
+  head408(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head408OperationSpec,
+      callback);
   }
 
   /**
@@ -204,21 +54,23 @@ export class HttpRetry {
    *
    * @param {HttpRetryPut500OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  put500(): Promise<void>;
-  put500(options: Models.HttpRetryPut500OptionalParams): Promise<void>;
+  put500(): Promise<msRest.RestResponse>;
+  put500(options: Models.HttpRetryPut500OptionalParams): Promise<msRest.RestResponse>;
   put500(callback: msRest.ServiceCallback<void>): void;
   put500(options: Models.HttpRetryPut500OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put500(options?: Models.HttpRetryPut500OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.put500WithHttpOperationResponse.bind(this), options, callback);
+  put500(options?: Models.HttpRetryPut500OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      put500OperationSpec,
+      callback);
   }
 
   /**
@@ -226,21 +78,23 @@ export class HttpRetry {
    *
    * @param {HttpRetryPatch500OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  patch500(): Promise<void>;
-  patch500(options: Models.HttpRetryPatch500OptionalParams): Promise<void>;
+  patch500(): Promise<msRest.RestResponse>;
+  patch500(options: Models.HttpRetryPatch500OptionalParams): Promise<msRest.RestResponse>;
   patch500(callback: msRest.ServiceCallback<void>): void;
   patch500(options: Models.HttpRetryPatch500OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch500(options?: Models.HttpRetryPatch500OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.patch500WithHttpOperationResponse.bind(this), options, callback);
+  patch500(options?: Models.HttpRetryPatch500OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      patch500OperationSpec,
+      callback);
   }
 
   /**
@@ -248,21 +102,23 @@ export class HttpRetry {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get502(): Promise<void>;
-  get502(options: msRest.RequestOptionsBase): Promise<void>;
+  get502(): Promise<msRest.RestResponse>;
+  get502(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   get502(callback: msRest.ServiceCallback<void>): void;
   get502(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get502(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get502WithHttpOperationResponse.bind(this), options, callback);
+  get502(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get502OperationSpec,
+      callback);
   }
 
   /**
@@ -270,21 +126,23 @@ export class HttpRetry {
    *
    * @param {HttpRetryPost503OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  post503(): Promise<void>;
-  post503(options: Models.HttpRetryPost503OptionalParams): Promise<void>;
+  post503(): Promise<msRest.RestResponse>;
+  post503(options: Models.HttpRetryPost503OptionalParams): Promise<msRest.RestResponse>;
   post503(callback: msRest.ServiceCallback<void>): void;
   post503(options: Models.HttpRetryPost503OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post503(options?: Models.HttpRetryPost503OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.post503WithHttpOperationResponse.bind(this), options, callback);
+  post503(options?: Models.HttpRetryPost503OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      post503OperationSpec,
+      callback);
   }
 
   /**
@@ -292,21 +150,23 @@ export class HttpRetry {
    *
    * @param {HttpRetryDelete503OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  delete503(): Promise<void>;
-  delete503(options: Models.HttpRetryDelete503OptionalParams): Promise<void>;
+  delete503(): Promise<msRest.RestResponse>;
+  delete503(options: Models.HttpRetryDelete503OptionalParams): Promise<msRest.RestResponse>;
   delete503(callback: msRest.ServiceCallback<void>): void;
   delete503(options: Models.HttpRetryDelete503OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete503(options?: Models.HttpRetryDelete503OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.delete503WithHttpOperationResponse.bind(this), options, callback);
+  delete503(options?: Models.HttpRetryDelete503OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      delete503OperationSpec,
+      callback);
   }
 
   /**
@@ -314,21 +174,23 @@ export class HttpRetry {
    *
    * @param {HttpRetryPut504OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  put504(): Promise<void>;
-  put504(options: Models.HttpRetryPut504OptionalParams): Promise<void>;
+  put504(): Promise<msRest.RestResponse>;
+  put504(options: Models.HttpRetryPut504OptionalParams): Promise<msRest.RestResponse>;
   put504(callback: msRest.ServiceCallback<void>): void;
   put504(options: Models.HttpRetryPut504OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put504(options?: Models.HttpRetryPut504OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.put504WithHttpOperationResponse.bind(this), options, callback);
+  put504(options?: Models.HttpRetryPut504OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      put504OperationSpec,
+      callback);
   }
 
   /**
@@ -336,21 +198,23 @@ export class HttpRetry {
    *
    * @param {HttpRetryPatch504OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  patch504(): Promise<void>;
-  patch504(options: Models.HttpRetryPatch504OptionalParams): Promise<void>;
+  patch504(): Promise<msRest.RestResponse>;
+  patch504(options: Models.HttpRetryPatch504OptionalParams): Promise<msRest.RestResponse>;
   patch504(callback: msRest.ServiceCallback<void>): void;
   patch504(options: Models.HttpRetryPatch504OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch504(options?: Models.HttpRetryPatch504OptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.patch504WithHttpOperationResponse.bind(this), options, callback);
+  patch504(options?: Models.HttpRetryPatch504OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      patch504OperationSpec,
+      callback);
   }
 
 }

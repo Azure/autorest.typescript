@@ -1082,925 +1082,1435 @@ export enum Location14 {
 /**
  * Contains response data for the getEmptyError operation.
  */
-export interface HttpFailureGetEmptyErrorResponse extends msRest.HttpResponse {
+export type HttpFailureGetEmptyErrorResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: boolean;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
+};
 
 /**
  * Contains response data for the getNoModelError operation.
  */
-export interface HttpFailureGetNoModelErrorResponse extends msRest.HttpResponse {
+export type HttpFailureGetNoModelErrorResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: boolean;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
+};
 
 /**
  * Contains response data for the getNoModelEmpty operation.
  */
-export interface HttpFailureGetNoModelEmptyResponse extends msRest.HttpResponse {
+export type HttpFailureGetNoModelEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: boolean;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
+};
 
 /**
  * Contains response data for the get200 operation.
  */
-export interface HttpSuccessGet200Response extends msRest.HttpResponse {
+export type HttpSuccessGet200Response = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: boolean;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
+};
 
 /**
  * Contains response data for the head300 operation.
  */
-export interface HttpRedirectsHead300Response extends msRest.HttpResponse {
+export type HttpRedirectsHead300Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/head/200'
    */
-  parsedHeaders: HttpRedirectsHead300Headers;
-}
+  location: Location;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsHead300Headers;
+    };
+};
 
 /**
  * Contains response data for the get300 operation.
  */
-export interface HttpRedirectsGet300Response extends msRest.HttpResponse {
+export type HttpRedirectsGet300Response = Array<string> & {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
-  parsedHeaders: HttpRedirectsGet300Headers;
+  location: Location1;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: string[];
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsGet300Headers;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[];
+    };
+};
 
 /**
  * Contains response data for the head301 operation.
  */
-export interface HttpRedirectsHead301Response extends msRest.HttpResponse {
+export type HttpRedirectsHead301Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/head/200'
    */
-  parsedHeaders: HttpRedirectsHead301Headers;
-}
+  location: Location2;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsHead301Headers;
+    };
+};
 
 /**
  * Contains response data for the get301 operation.
  */
-export interface HttpRedirectsGet301Response extends msRest.HttpResponse {
+export type HttpRedirectsGet301Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
-  parsedHeaders: HttpRedirectsGet301Headers;
-}
+  location: Location3;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsGet301Headers;
+    };
+};
 
 /**
  * Contains response data for the put301 operation.
  */
-export interface HttpRedirectsPut301Response extends msRest.HttpResponse {
+export type HttpRedirectsPut301Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/failure/500'
    */
-  parsedHeaders: HttpRedirectsPut301Headers;
-}
+  location: Location4;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsPut301Headers;
+    };
+};
 
 /**
  * Contains response data for the head302 operation.
  */
-export interface HttpRedirectsHead302Response extends msRest.HttpResponse {
+export type HttpRedirectsHead302Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/head/200'
    */
-  parsedHeaders: HttpRedirectsHead302Headers;
-}
+  location: Location5;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsHead302Headers;
+    };
+};
 
 /**
  * Contains response data for the get302 operation.
  */
-export interface HttpRedirectsGet302Response extends msRest.HttpResponse {
+export type HttpRedirectsGet302Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
-  parsedHeaders: HttpRedirectsGet302Headers;
-}
+  location: Location6;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsGet302Headers;
+    };
+};
 
 /**
  * Contains response data for the patch302 operation.
  */
-export interface HttpRedirectsPatch302Response extends msRest.HttpResponse {
+export type HttpRedirectsPatch302Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/failure/500'
    */
-  parsedHeaders: HttpRedirectsPatch302Headers;
-}
+  location: Location7;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsPatch302Headers;
+    };
+};
 
 /**
  * Contains response data for the post303 operation.
  */
-export interface HttpRedirectsPost303Response extends msRest.HttpResponse {
+export type HttpRedirectsPost303Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
-  parsedHeaders: HttpRedirectsPost303Headers;
-}
+  location: Location8;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsPost303Headers;
+    };
+};
 
 /**
  * Contains response data for the head307 operation.
  */
-export interface HttpRedirectsHead307Response extends msRest.HttpResponse {
+export type HttpRedirectsHead307Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/head/200'
    */
-  parsedHeaders: HttpRedirectsHead307Headers;
-}
+  location: Location9;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsHead307Headers;
+    };
+};
 
 /**
  * Contains response data for the get307 operation.
  */
-export interface HttpRedirectsGet307Response extends msRest.HttpResponse {
+export type HttpRedirectsGet307Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/get/200'
    */
-  parsedHeaders: HttpRedirectsGet307Headers;
-}
+  location: Location10;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsGet307Headers;
+    };
+};
 
 /**
  * Contains response data for the put307 operation.
  */
-export interface HttpRedirectsPut307Response extends msRest.HttpResponse {
+export type HttpRedirectsPut307Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/put/200'
    */
-  parsedHeaders: HttpRedirectsPut307Headers;
-}
+  location: Location11;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsPut307Headers;
+    };
+};
 
 /**
  * Contains response data for the patch307 operation.
  */
-export interface HttpRedirectsPatch307Response extends msRest.HttpResponse {
+export type HttpRedirectsPatch307Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/patch/200'
    */
-  parsedHeaders: HttpRedirectsPatch307Headers;
-}
+  location: Location12;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsPatch307Headers;
+    };
+};
 
 /**
  * Contains response data for the post307 operation.
  */
-export interface HttpRedirectsPost307Response extends msRest.HttpResponse {
+export type HttpRedirectsPost307Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/post/200'
    */
-  parsedHeaders: HttpRedirectsPost307Headers;
-}
+  location: Location13;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsPost307Headers;
+    };
+};
 
 /**
  * Contains response data for the delete307 operation.
  */
-export interface HttpRedirectsDelete307Response extends msRest.HttpResponse {
+export type HttpRedirectsDelete307Response = {
   /**
-   * The parsed HTTP response headers.
+   * The redirect location for this request. Possible values include: '/http/success/delete/200'
    */
-  parsedHeaders: HttpRedirectsDelete307Headers;
-}
+  location: Location14;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HttpRedirectsDelete307Headers;
+    };
+};
 
 /**
  * Contains response data for the head400 operation.
  */
-export interface HttpClientFailureHead400Response extends msRest.HttpResponse {
+export type HttpClientFailureHead400Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the get400 operation.
  */
-export interface HttpClientFailureGet400Response extends msRest.HttpResponse {
+export type HttpClientFailureGet400Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the put400 operation.
  */
-export interface HttpClientFailurePut400Response extends msRest.HttpResponse {
+export type HttpClientFailurePut400Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the patch400 operation.
  */
-export interface HttpClientFailurePatch400Response extends msRest.HttpResponse {
+export type HttpClientFailurePatch400Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the post400 operation.
  */
-export interface HttpClientFailurePost400Response extends msRest.HttpResponse {
+export type HttpClientFailurePost400Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the delete400 operation.
  */
-export interface HttpClientFailureDelete400Response extends msRest.HttpResponse {
+export type HttpClientFailureDelete400Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the head401 operation.
  */
-export interface HttpClientFailureHead401Response extends msRest.HttpResponse {
+export type HttpClientFailureHead401Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the get402 operation.
  */
-export interface HttpClientFailureGet402Response extends msRest.HttpResponse {
+export type HttpClientFailureGet402Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the get403 operation.
  */
-export interface HttpClientFailureGet403Response extends msRest.HttpResponse {
+export type HttpClientFailureGet403Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the put404 operation.
  */
-export interface HttpClientFailurePut404Response extends msRest.HttpResponse {
+export type HttpClientFailurePut404Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the patch405 operation.
  */
-export interface HttpClientFailurePatch405Response extends msRest.HttpResponse {
+export type HttpClientFailurePatch405Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the post406 operation.
  */
-export interface HttpClientFailurePost406Response extends msRest.HttpResponse {
+export type HttpClientFailurePost406Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the delete407 operation.
  */
-export interface HttpClientFailureDelete407Response extends msRest.HttpResponse {
+export type HttpClientFailureDelete407Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the put409 operation.
  */
-export interface HttpClientFailurePut409Response extends msRest.HttpResponse {
+export type HttpClientFailurePut409Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the head410 operation.
  */
-export interface HttpClientFailureHead410Response extends msRest.HttpResponse {
+export type HttpClientFailureHead410Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the get411 operation.
  */
-export interface HttpClientFailureGet411Response extends msRest.HttpResponse {
+export type HttpClientFailureGet411Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the get412 operation.
  */
-export interface HttpClientFailureGet412Response extends msRest.HttpResponse {
+export type HttpClientFailureGet412Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the put413 operation.
  */
-export interface HttpClientFailurePut413Response extends msRest.HttpResponse {
+export type HttpClientFailurePut413Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the patch414 operation.
  */
-export interface HttpClientFailurePatch414Response extends msRest.HttpResponse {
+export type HttpClientFailurePatch414Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the post415 operation.
  */
-export interface HttpClientFailurePost415Response extends msRest.HttpResponse {
+export type HttpClientFailurePost415Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the get416 operation.
  */
-export interface HttpClientFailureGet416Response extends msRest.HttpResponse {
+export type HttpClientFailureGet416Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the delete417 operation.
  */
-export interface HttpClientFailureDelete417Response extends msRest.HttpResponse {
+export type HttpClientFailureDelete417Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the head429 operation.
  */
-export interface HttpClientFailureHead429Response extends msRest.HttpResponse {
+export type HttpClientFailureHead429Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the head501 operation.
  */
-export interface HttpServerFailureHead501Response extends msRest.HttpResponse {
+export type HttpServerFailureHead501Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the get501 operation.
  */
-export interface HttpServerFailureGet501Response extends msRest.HttpResponse {
+export type HttpServerFailureGet501Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the post505 operation.
  */
-export interface HttpServerFailurePost505Response extends msRest.HttpResponse {
+export type HttpServerFailurePost505Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the delete505 operation.
  */
-export interface HttpServerFailureDelete505Response extends msRest.HttpResponse {
+export type HttpServerFailureDelete505Response = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the get200Model204NoModelDefaultError200Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200Model204NoModelDefaultError204Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200Model204NoModelDefaultError201Invalid
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200Model204NoModelDefaultError202None
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200Model204NoModelDefaultError400Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200Model201ModelDefaultError200Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model201ModelDefaultError200ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200Model201ModelDefaultError201Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model201ModelDefaultError201ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200Model201ModelDefaultError400Valid
  * operation.
  */
-export interface MultipleResponsesGet200Model201ModelDefaultError400ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the
  * get200ModelA201ModelC404ModelDDefaultError200Valid operation.
  */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: any;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: any;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: any;
+    };
+};
 
 /**
  * Contains response data for the
  * get200ModelA201ModelC404ModelDDefaultError201Valid operation.
  */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: any;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: any;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: any;
+    };
+};
 
 /**
  * Contains response data for the
  * get200ModelA201ModelC404ModelDDefaultError404Valid operation.
  */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: any;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: any;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: any;
+    };
+};
 
 /**
  * Contains response data for the
  * get200ModelA201ModelC404ModelDDefaultError400Valid operation.
  */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: any;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: any;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: any;
+    };
+};
 
 /**
  * Contains response data for the getDefaultModelA200Valid operation.
  */
-export interface MultipleResponsesGetDefaultModelA200ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGetDefaultModelA200ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the getDefaultModelA200None operation.
  */
-export interface MultipleResponsesGetDefaultModelA200NoneResponse extends msRest.HttpResponse {
+export type MultipleResponsesGetDefaultModelA200NoneResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the getDefaultModelA400Valid operation.
  */
-export interface MultipleResponsesGetDefaultModelA400ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGetDefaultModelA400ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the getDefaultModelA400None operation.
  */
-export interface MultipleResponsesGetDefaultModelA400NoneResponse extends msRest.HttpResponse {
+export type MultipleResponsesGetDefaultModelA400NoneResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200ModelA200None operation.
  */
-export interface MultipleResponsesGet200ModelA200NoneResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA200NoneResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200ModelA200Valid operation.
  */
-export interface MultipleResponsesGet200ModelA200ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA200ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200ModelA200Invalid operation.
  */
-export interface MultipleResponsesGet200ModelA200InvalidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA200InvalidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200ModelA400None operation.
  */
-export interface MultipleResponsesGet200ModelA400NoneResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA400NoneResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200ModelA400Valid operation.
  */
-export interface MultipleResponsesGet200ModelA400ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA400ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200ModelA400Invalid operation.
  */
-export interface MultipleResponsesGet200ModelA400InvalidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA400InvalidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
 
 /**
  * Contains response data for the get200ModelA202Valid operation.
  */
-export interface MultipleResponsesGet200ModelA202ValidResponse extends msRest.HttpResponse {
+export type MultipleResponsesGet200ModelA202ValidResponse = {
+  statusCode: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: A;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};

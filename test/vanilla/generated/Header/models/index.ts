@@ -276,139 +276,265 @@ export enum GreyscaleColors {
 /**
  * Contains response data for the responseExistingKey operation.
  */
-export interface HeaderResponseExistingKeyResponse extends msRest.HttpResponse {
+export type HeaderResponseExistingKeyResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header value "User-Agent": "overwrite"
    */
-  parsedHeaders: HeaderResponseExistingKeyHeaders;
-}
+  userAgent: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseExistingKeyHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseProtectedKey operation.
  */
-export interface HeaderResponseProtectedKeyResponse extends msRest.HttpResponse {
+export type HeaderResponseProtectedKeyResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header value "Content-Type": "text/html"
    */
-  parsedHeaders: HeaderResponseProtectedKeyHeaders;
-}
+  contentType: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseProtectedKeyHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseInteger operation.
  */
-export interface HeaderResponseIntegerResponse extends msRest.HttpResponse {
+export type HeaderResponseIntegerResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header value "value": 1 or -2
    */
-  parsedHeaders: HeaderResponseIntegerHeaders;
-}
+  value: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseIntegerHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseLong operation.
  */
-export interface HeaderResponseLongResponse extends msRest.HttpResponse {
+export type HeaderResponseLongResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header value "value": 105 or -2
    */
-  parsedHeaders: HeaderResponseLongHeaders;
-}
+  value: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseLongHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseFloat operation.
  */
-export interface HeaderResponseFloatResponse extends msRest.HttpResponse {
+export type HeaderResponseFloatResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header value "value": 0.07 or -3.0
    */
-  parsedHeaders: HeaderResponseFloatHeaders;
-}
+  value: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseFloatHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseDouble operation.
  */
-export interface HeaderResponseDoubleResponse extends msRest.HttpResponse {
+export type HeaderResponseDoubleResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header value "value": 7e120 or -3.0
    */
-  parsedHeaders: HeaderResponseDoubleHeaders;
-}
+  value: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDoubleHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseBool operation.
  */
-export interface HeaderResponseBoolResponse extends msRest.HttpResponse {
+export type HeaderResponseBoolResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header value "value": true or false
    */
-  parsedHeaders: HeaderResponseBoolHeaders;
-}
+  value: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseBoolHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseString operation.
  */
-export interface HeaderResponseStringResponse extends msRest.HttpResponse {
+export type HeaderResponseStringResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header values "The quick brown fox jumps over the lazy dog" or null or ""
    */
-  parsedHeaders: HeaderResponseStringHeaders;
-}
+  value: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseStringHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseDate operation.
  */
-export interface HeaderResponseDateResponse extends msRest.HttpResponse {
+export type HeaderResponseDateResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header values "2010-01-01" or "0001-01-01"
    */
-  parsedHeaders: HeaderResponseDateHeaders;
-}
+  value: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDateHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseDatetime operation.
  */
-export interface HeaderResponseDatetimeResponse extends msRest.HttpResponse {
+export type HeaderResponseDatetimeResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    */
-  parsedHeaders: HeaderResponseDatetimeHeaders;
-}
+  value: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDatetimeHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseDatetimeRfc1123 operation.
  */
-export interface HeaderResponseDatetimeRfc1123Response extends msRest.HttpResponse {
+export type HeaderResponseDatetimeRfc1123Response = {
   /**
-   * The parsed HTTP response headers.
+   * response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
    */
-  parsedHeaders: HeaderResponseDatetimeRfc1123Headers;
-}
+  value: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDatetimeRfc1123Headers;
+    };
+};
 
 /**
  * Contains response data for the responseDuration operation.
  */
-export interface HeaderResponseDurationResponse extends msRest.HttpResponse {
+export type HeaderResponseDurationResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header values "P123DT22H14M12.011S"
    */
-  parsedHeaders: HeaderResponseDurationHeaders;
-}
+  value: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDurationHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseByte operation.
  */
-export interface HeaderResponseByteResponse extends msRest.HttpResponse {
+export type HeaderResponseByteResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header values "啊齄丂狛狜隣郎隣兀﨩"
    */
-  parsedHeaders: HeaderResponseByteHeaders;
-}
+  value: Uint8Array;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseByteHeaders;
+    };
+};
 
 /**
  * Contains response data for the responseEnum operation.
  */
-export interface HeaderResponseEnumResponse extends msRest.HttpResponse {
+export type HeaderResponseEnumResponse = {
   /**
-   * The parsed HTTP response headers.
+   * response with header values "GREY" or null. Possible values include: 'White', 'black', 'GREY'
    */
-  parsedHeaders: HeaderResponseEnumHeaders;
-}
+  value: GreyscaleColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseEnumHeaders;
+    };
+};

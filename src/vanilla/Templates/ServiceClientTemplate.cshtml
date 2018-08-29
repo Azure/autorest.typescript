@@ -68,16 +68,6 @@ class @(Model.Name) extends @(Model.ContextName) {
 @EmptyLine
 @:  @(method.Generate(EmptyLine))
 }
-@if (@Model.GenerateBodyMethods)
-{
-foreach (var method in Model.MethodWrappableTemplateModels)
-{
-<text>
-@EmptyLine
-  @(Include(new MethodCallbackWrapperTemplate(), method))
-</text>
-}
-}
 }
 @EmptyLine
 @(Model.GenerateOperationSpecDefinitions(EmptyLine))

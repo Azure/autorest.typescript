@@ -7,9 +7,9 @@ const testClient = new AutoRestDateTimeTestService();
 describe("--model-date-time-as-string=true", function () {
   it("should get a string date-time", async function () {
     const date = await testClient.datetime.getUtcMinDateTime();
-    assert.strictEqual(typeof date, "string");
+    assert.strictEqual(typeof date.body, "string");
 
-    const reallyADate = new Date(date);
+    const reallyADate = new Date(date.body);
     assert.strictEqual(isNaN(reallyADate.valueOf()), false);
   });
 
@@ -20,12 +20,12 @@ describe("--model-date-time-as-string=true", function () {
   it('should get a Date for "format": "date"', async function () {
     const dateClient = new AutoRestDateTestService();
     const date = await dateClient.dateModel.getMinDate();
-    assert(date instanceof Date);
+    assert(date.body instanceof Date);
   });
 
   it('should get a Date for "format": "date-time-rfc1123"', async function () {
     const dateClient = new AutoRestRFC1123DateTimeTestService();
     const date = await dateClient.datetimerfc1123.getUtcMinDateTime();
-    assert(date instanceof Date);
+    assert(date.body instanceof Date);
   });
 });

@@ -36,12 +36,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNullResponse> {
+  getNull(): Promise<Models.StringGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullResponse>;
+  getNull(callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetNullOKResponse>): Promise<Models.StringGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullOperationSpec) as Promise<Models.StringGetNullResponse>;
+      getNullOperationSpec,
+      callback) as Promise<Models.StringGetNullResponse>;
   }
 
   /**
@@ -55,12 +60,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putNullWithHttpOperationResponse(options?: Models.StringPutNullOptionalParams): Promise<msRest.HttpResponse> {
+  putNull(): Promise<msRest.RestResponse>;
+  putNull(options: Models.StringPutNullOptionalParams): Promise<msRest.RestResponse>;
+  putNull(callback: msRest.ServiceCallback<void>): void;
+  putNull(options: Models.StringPutNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
+  putNull(options?: Models.StringPutNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      putNullOperationSpec);
+      putNullOperationSpec,
+      callback);
   }
 
   /**
@@ -74,12 +84,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StringGetEmptyResponse> {
+  getEmpty(): Promise<Models.StringGetEmptyResponse>;
+  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.StringGetEmptyResponse>;
+  getEmpty(callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
+  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetEmptyOKResponse>): Promise<Models.StringGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getEmptyOperationSpec) as Promise<Models.StringGetEmptyResponse>;
+      getEmptyOperationSpec,
+      callback) as Promise<Models.StringGetEmptyResponse>;
   }
 
   /**
@@ -93,12 +108,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putEmpty(): Promise<msRest.RestResponse>;
+  putEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmpty(callback: msRest.ServiceCallback<void>): void;
+  putEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      putEmptyOperationSpec);
+      putEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -112,12 +132,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getMbcsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StringGetMbcsResponse> {
+  getMbcs(): Promise<Models.StringGetMbcsResponse>;
+  getMbcs(options: msRest.RequestOptionsBase): Promise<Models.StringGetMbcsResponse>;
+  getMbcs(callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
+  getMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
+  getMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetMbcsOKResponse>): Promise<Models.StringGetMbcsResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getMbcsOperationSpec) as Promise<Models.StringGetMbcsResponse>;
+      getMbcsOperationSpec,
+      callback) as Promise<Models.StringGetMbcsResponse>;
   }
 
   /**
@@ -131,12 +156,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putMbcsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putMbcs(): Promise<msRest.RestResponse>;
+  putMbcs(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putMbcs(callback: msRest.ServiceCallback<void>): void;
+  putMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      putMbcsOperationSpec);
+      putMbcsOperationSpec,
+      callback);
   }
 
   /**
@@ -151,12 +181,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWhitespaceWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StringGetWhitespaceResponse> {
+  getWhitespace(): Promise<Models.StringGetWhitespaceResponse>;
+  getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.StringGetWhitespaceResponse>;
+  getWhitespace(callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
+  getWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
+  getWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): Promise<Models.StringGetWhitespaceResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getWhitespaceOperationSpec) as Promise<Models.StringGetWhitespaceResponse>;
+      getWhitespaceOperationSpec,
+      callback) as Promise<Models.StringGetWhitespaceResponse>;
   }
 
   /**
@@ -171,12 +206,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putWhitespaceWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putWhitespace(): Promise<msRest.RestResponse>;
+  putWhitespace(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putWhitespace(callback: msRest.ServiceCallback<void>): void;
+  putWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      putWhitespaceOperationSpec);
+      putWhitespaceOperationSpec,
+      callback);
   }
 
   /**
@@ -190,12 +230,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNotProvidedResponse> {
+  getNotProvided(): Promise<Models.StringGetNotProvidedResponse>;
+  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.StringGetNotProvidedResponse>;
+  getNotProvided(callback: msRest.ServiceCallback<string>): void;
+  getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
+  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.StringGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNotProvidedOperationSpec) as Promise<Models.StringGetNotProvidedResponse>;
+      getNotProvidedOperationSpec,
+      callback) as Promise<Models.StringGetNotProvidedResponse>;
   }
 
   /**
@@ -209,12 +254,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBase64EncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StringGetBase64EncodedResponse> {
+  getBase64Encoded(): Promise<Models.StringGetBase64EncodedResponse>;
+  getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64EncodedResponse>;
+  getBase64Encoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64Encoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64Encoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.StringGetBase64EncodedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBase64EncodedOperationSpec) as Promise<Models.StringGetBase64EncodedResponse>;
+      getBase64EncodedOperationSpec,
+      callback) as Promise<Models.StringGetBase64EncodedResponse>;
   }
 
   /**
@@ -228,12 +278,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBase64UrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StringGetBase64UrlEncodedResponse> {
+  getBase64UrlEncoded(): Promise<Models.StringGetBase64UrlEncodedResponse>;
+  getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64UrlEncodedResponse>;
+  getBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.StringGetBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getBase64UrlEncodedOperationSpec) as Promise<Models.StringGetBase64UrlEncodedResponse>;
+      getBase64UrlEncodedOperationSpec,
+      callback) as Promise<Models.StringGetBase64UrlEncodedResponse>;
   }
 
   /**
@@ -249,13 +304,18 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putBase64UrlEncodedWithHttpOperationResponse(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putBase64UrlEncoded(stringBody: Uint8Array): Promise<msRest.RestResponse>;
+  putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putBase64UrlEncoded(stringBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         stringBody,
         options
       },
-      putBase64UrlEncodedOperationSpec);
+      putBase64UrlEncodedOperationSpec,
+      callback);
   }
 
   /**
@@ -269,302 +329,17 @@ export class String {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullBase64UrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNullBase64UrlEncodedResponse> {
+  getNullBase64UrlEncoded(): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
+  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
+  getNullBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.StringGetNullBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getNullBase64UrlEncodedOperationSpec) as Promise<Models.StringGetNullBase64UrlEncodedResponse>;
-  }
-
-  /**
-   * Get null string value value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.GetNullOKResponse} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNull(): Promise<Models.GetNullOKResponse>;
-  getNull(options: msRest.RequestOptionsBase): Promise<Models.GetNullOKResponse>;
-  getNull(callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetNullOKResponse>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Set string value null
-   *
-   * @param {StringPutNullOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putNull(): Promise<void>;
-  putNull(options: Models.StringPutNullOptionalParams): Promise<void>;
-  putNull(callback: msRest.ServiceCallback<void>): void;
-  putNull(options: Models.StringPutNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putNull(options?: Models.StringPutNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putNullWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get empty string value value ''
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.GetEmptyOKResponse} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getEmpty(): Promise<Models.GetEmptyOKResponse>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.GetEmptyOKResponse>;
-  getEmpty(callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
-  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetEmptyOKResponse>): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Set string value empty ''
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putEmpty(): Promise<void>;
-  putEmpty(options: msRest.RequestOptionsBase): Promise<void>;
-  putEmpty(callback: msRest.ServiceCallback<void>): void;
-  putEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.GetMbcsOKResponse} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getMbcs(): Promise<Models.GetMbcsOKResponse>;
-  getMbcs(options: msRest.RequestOptionsBase): Promise<Models.GetMbcsOKResponse>;
-  getMbcs(callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
-  getMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
-  getMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetMbcsOKResponse>): any {
-    return msRest.responseToBody(this.getMbcsWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putMbcs(): Promise<void>;
-  putMbcs(options: msRest.RequestOptionsBase): Promise<void>;
-  putMbcs(callback: msRest.ServiceCallback<void>): void;
-  putMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putMbcsWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for
-   * all good men to come to the aid of their country<tab><space><space>'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.GetWhitespaceOKResponse} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getWhitespace(): Promise<Models.GetWhitespaceOKResponse>;
-  getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.GetWhitespaceOKResponse>;
-  getWhitespace(callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
-  getWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
-  getWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): any {
-    return msRest.responseToBody(this.getWhitespaceWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for
-   * all good men to come to the aid of their country<tab><space><space>'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putWhitespace(): Promise<void>;
-  putWhitespace(options: msRest.RequestOptionsBase): Promise<void>;
-  putWhitespace(callback: msRest.ServiceCallback<void>): void;
-  putWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putWhitespaceWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get String value when no string value is sent in response payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNotProvided(): Promise<string>;
-  getNotProvided(options: msRest.RequestOptionsBase): Promise<string>;
-  getNotProvided(callback: msRest.ServiceCallback<string>): void;
-  getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get value that is base64 encoded
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getBase64Encoded(): Promise<Uint8Array>;
-  getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
-  getBase64Encoded(callback: msRest.ServiceCallback<Uint8Array>): void;
-  getBase64Encoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getBase64Encoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
-    return msRest.responseToBody(this.getBase64EncodedWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Get value that is base64url encoded
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getBase64UrlEncoded(): Promise<Uint8Array>;
-  getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
-  getBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
-  getBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
-    return msRest.responseToBody(this.getBase64UrlEncodedWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put value that is base64url encoded
-   *
-   * @param {Uint8Array} stringBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putBase64UrlEncoded(stringBody: Uint8Array): Promise<void>;
-  putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
-  putBase64UrlEncoded(stringBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
-  putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBase64UrlEncodedWithHttpOperationResponse.bind(this), stringBody, options, callback);
-  }
-
-  /**
-   * Get null value that is expected to be base64url encoded
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNullBase64UrlEncoded(): Promise<Uint8Array>;
-  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
-  getNullBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
-  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
-    return msRest.responseToBody(this.getNullBase64UrlEncodedWithHttpOperationResponse.bind(this), options, callback);
+      getNullBase64UrlEncodedOperationSpec,
+      callback) as Promise<Models.StringGetNullBase64UrlEncodedResponse>;
   }
 
 }

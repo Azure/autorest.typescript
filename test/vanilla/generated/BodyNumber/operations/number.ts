@@ -36,489 +36,17 @@ export class Number {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullOperationSpec) as Promise<Models.NumberGetNullResponse>;
-  }
-
-  /**
-   * Get invalid float Number value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidFloatResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidFloatOperationSpec) as Promise<Models.NumberGetInvalidFloatResponse>;
-  }
-
-  /**
-   * Get invalid double Number value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidDoubleResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidDoubleOperationSpec) as Promise<Models.NumberGetInvalidDoubleResponse>;
-  }
-
-  /**
-   * Get invalid decimal Number value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidDecimalResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidDecimalOperationSpec) as Promise<Models.NumberGetInvalidDecimalResponse>;
-  }
-
-  /**
-   * Put big float value 3.402823e+20
-   *
-   * @param {number} numberBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBigFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        numberBody,
-        options
-      },
-      putBigFloatOperationSpec);
-  }
-
-  /**
-   * Get big float value 3.402823e+20
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBigFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigFloatResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBigFloatOperationSpec) as Promise<Models.NumberGetBigFloatResponse>;
-  }
-
-  /**
-   * Put big double value 2.5976931e+101
-   *
-   * @param {number} numberBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBigDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        numberBody,
-        options
-      },
-      putBigDoubleOperationSpec);
-  }
-
-  /**
-   * Get big double value 2.5976931e+101
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBigDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoubleResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBigDoubleOperationSpec) as Promise<Models.NumberGetBigDoubleResponse>;
-  }
-
-  /**
-   * Put big double value 99999999.99
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putBigDoublePositiveDecimalOperationSpec);
-  }
-
-  /**
-   * Get big double value 99999999.99
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoublePositiveDecimalResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBigDoublePositiveDecimalOperationSpec) as Promise<Models.NumberGetBigDoublePositiveDecimalResponse>;
-  }
-
-  /**
-   * Put big double value -99999999.99
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putBigDoubleNegativeDecimalOperationSpec);
-  }
-
-  /**
-   * Get big double value -99999999.99
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoubleNegativeDecimalResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBigDoubleNegativeDecimalOperationSpec) as Promise<Models.NumberGetBigDoubleNegativeDecimalResponse>;
-  }
-
-  /**
-   * Put big decimal value 2.5976931e+101
-   *
-   * @param {number} numberBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBigDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        numberBody,
-        options
-      },
-      putBigDecimalOperationSpec);
-  }
-
-  /**
-   * Get big decimal value 2.5976931e+101
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBigDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBigDecimalOperationSpec) as Promise<Models.NumberGetBigDecimalResponse>;
-  }
-
-  /**
-   * Put big decimal value 99999999.99
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putBigDecimalPositiveDecimalOperationSpec);
-  }
-
-  /**
-   * Get big decimal value 99999999.99
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalPositiveDecimalResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBigDecimalPositiveDecimalOperationSpec) as Promise<Models.NumberGetBigDecimalPositiveDecimalResponse>;
-  }
-
-  /**
-   * Put big decimal value -99999999.99
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putBigDecimalNegativeDecimalOperationSpec);
-  }
-
-  /**
-   * Get big decimal value -99999999.99
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalNegativeDecimalResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBigDecimalNegativeDecimalOperationSpec) as Promise<Models.NumberGetBigDecimalNegativeDecimalResponse>;
-  }
-
-  /**
-   * Put small float value 3.402823e-20
-   *
-   * @param {number} numberBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putSmallFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        numberBody,
-        options
-      },
-      putSmallFloatOperationSpec);
-  }
-
-  /**
-   * Get big double value 3.402823e-20
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getSmallFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallFloatResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getSmallFloatOperationSpec) as Promise<Models.NumberGetSmallFloatResponse>;
-  }
-
-  /**
-   * Put small double value 2.5976931e-101
-   *
-   * @param {number} numberBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putSmallDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        numberBody,
-        options
-      },
-      putSmallDoubleOperationSpec);
-  }
-
-  /**
-   * Get big double value 2.5976931e-101
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getSmallDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallDoubleResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getSmallDoubleOperationSpec) as Promise<Models.NumberGetSmallDoubleResponse>;
-  }
-
-  /**
-   * Put small decimal value 2.5976931e-101
-   *
-   * @param {number} numberBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putSmallDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        numberBody,
-        options
-      },
-      putSmallDecimalOperationSpec);
-  }
-
-  /**
-   * Get small decimal value 2.5976931e-101
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getSmallDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallDecimalResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getSmallDecimalOperationSpec) as Promise<Models.NumberGetSmallDecimalResponse>;
-  }
-
-  /**
-   * Get null Number value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNull(): Promise<number>;
-  getNull(options: msRest.RequestOptionsBase): Promise<number>;
+  getNull(): Promise<Models.NumberGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.NumberGetNullResponse>;
   getNull(callback: msRest.ServiceCallback<number>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec,
+      callback) as Promise<Models.NumberGetNullResponse>;
   }
 
   /**
@@ -526,21 +54,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalidFloat(): Promise<number>;
-  getInvalidFloat(options: msRest.RequestOptionsBase): Promise<number>;
+  getInvalidFloat(): Promise<Models.NumberGetInvalidFloatResponse>;
+  getInvalidFloat(options: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidFloatResponse>;
   getInvalidFloat(callback: msRest.ServiceCallback<number>): void;
   getInvalidFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getInvalidFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getInvalidFloatWithHttpOperationResponse.bind(this), options, callback);
+  getInvalidFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetInvalidFloatResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidFloatOperationSpec,
+      callback) as Promise<Models.NumberGetInvalidFloatResponse>;
   }
 
   /**
@@ -548,21 +78,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalidDouble(): Promise<number>;
-  getInvalidDouble(options: msRest.RequestOptionsBase): Promise<number>;
+  getInvalidDouble(): Promise<Models.NumberGetInvalidDoubleResponse>;
+  getInvalidDouble(options: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidDoubleResponse>;
   getInvalidDouble(callback: msRest.ServiceCallback<number>): void;
   getInvalidDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getInvalidDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getInvalidDoubleWithHttpOperationResponse.bind(this), options, callback);
+  getInvalidDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetInvalidDoubleResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidDoubleOperationSpec,
+      callback) as Promise<Models.NumberGetInvalidDoubleResponse>;
   }
 
   /**
@@ -570,21 +102,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalidDecimal(): Promise<number>;
-  getInvalidDecimal(options: msRest.RequestOptionsBase): Promise<number>;
+  getInvalidDecimal(): Promise<Models.NumberGetInvalidDecimalResponse>;
+  getInvalidDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidDecimalResponse>;
   getInvalidDecimal(callback: msRest.ServiceCallback<number>): void;
   getInvalidDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getInvalidDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getInvalidDecimalWithHttpOperationResponse.bind(this), options, callback);
+  getInvalidDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetInvalidDecimalResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidDecimalOperationSpec,
+      callback) as Promise<Models.NumberGetInvalidDecimalResponse>;
   }
 
   /**
@@ -594,21 +128,24 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBigFloat(numberBody: number): Promise<void>;
-  putBigFloat(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putBigFloat(numberBody: number): Promise<msRest.RestResponse>;
+  putBigFloat(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBigFloat(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigFloat(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigFloat(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigFloatWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putBigFloat(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        numberBody,
+        options
+      },
+      putBigFloatOperationSpec,
+      callback);
   }
 
   /**
@@ -616,21 +153,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBigFloat(): Promise<number>;
-  getBigFloat(options: msRest.RequestOptionsBase): Promise<number>;
+  getBigFloat(): Promise<Models.NumberGetBigFloatResponse>;
+  getBigFloat(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigFloatResponse>;
   getBigFloat(callback: msRest.ServiceCallback<number>): void;
   getBigFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getBigFloatWithHttpOperationResponse.bind(this), options, callback);
+  getBigFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigFloatResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBigFloatOperationSpec,
+      callback) as Promise<Models.NumberGetBigFloatResponse>;
   }
 
   /**
@@ -640,21 +179,24 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBigDouble(numberBody: number): Promise<void>;
-  putBigDouble(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDouble(numberBody: number): Promise<msRest.RestResponse>;
+  putBigDouble(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBigDouble(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDouble(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDouble(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDoubleWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putBigDouble(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        numberBody,
+        options
+      },
+      putBigDoubleOperationSpec,
+      callback);
   }
 
   /**
@@ -662,21 +204,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBigDouble(): Promise<number>;
-  getBigDouble(options: msRest.RequestOptionsBase): Promise<number>;
+  getBigDouble(): Promise<Models.NumberGetBigDoubleResponse>;
+  getBigDouble(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoubleResponse>;
   getBigDouble(callback: msRest.ServiceCallback<number>): void;
   getBigDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getBigDoubleWithHttpOperationResponse.bind(this), options, callback);
+  getBigDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDoubleResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBigDoubleOperationSpec,
+      callback) as Promise<Models.NumberGetBigDoubleResponse>;
   }
 
   /**
@@ -684,21 +228,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBigDoublePositiveDecimal(): Promise<void>;
-  putBigDoublePositiveDecimal(options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDoublePositiveDecimal(): Promise<msRest.RestResponse>;
+  putBigDoublePositiveDecimal(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBigDoublePositiveDecimal(callback: msRest.ServiceCallback<void>): void;
   putBigDoublePositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDoublePositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
+  putBigDoublePositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putBigDoublePositiveDecimalOperationSpec,
+      callback);
   }
 
   /**
@@ -706,21 +252,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBigDoublePositiveDecimal(): Promise<number>;
-  getBigDoublePositiveDecimal(options: msRest.RequestOptionsBase): Promise<number>;
+  getBigDoublePositiveDecimal(): Promise<Models.NumberGetBigDoublePositiveDecimalResponse>;
+  getBigDoublePositiveDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoublePositiveDecimalResponse>;
   getBigDoublePositiveDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDoublePositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDoublePositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getBigDoublePositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
+  getBigDoublePositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDoublePositiveDecimalResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBigDoublePositiveDecimalOperationSpec,
+      callback) as Promise<Models.NumberGetBigDoublePositiveDecimalResponse>;
   }
 
   /**
@@ -728,21 +276,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBigDoubleNegativeDecimal(): Promise<void>;
-  putBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDoubleNegativeDecimal(): Promise<msRest.RestResponse>;
+  putBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBigDoubleNegativeDecimal(callback: msRest.ServiceCallback<void>): void;
   putBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDoubleNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
+  putBigDoubleNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putBigDoubleNegativeDecimalOperationSpec,
+      callback);
   }
 
   /**
@@ -750,21 +300,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBigDoubleNegativeDecimal(): Promise<number>;
-  getBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase): Promise<number>;
+  getBigDoubleNegativeDecimal(): Promise<Models.NumberGetBigDoubleNegativeDecimalResponse>;
+  getBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoubleNegativeDecimalResponse>;
   getBigDoubleNegativeDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDoubleNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getBigDoubleNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
+  getBigDoubleNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDoubleNegativeDecimalResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBigDoubleNegativeDecimalOperationSpec,
+      callback) as Promise<Models.NumberGetBigDoubleNegativeDecimalResponse>;
   }
 
   /**
@@ -774,21 +326,24 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBigDecimal(numberBody: number): Promise<void>;
-  putBigDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDecimal(numberBody: number): Promise<msRest.RestResponse>;
+  putBigDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBigDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putBigDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putBigDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        numberBody,
+        options
+      },
+      putBigDecimalOperationSpec,
+      callback);
   }
 
   /**
@@ -796,21 +351,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBigDecimal(): Promise<number>;
-  getBigDecimal(options: msRest.RequestOptionsBase): Promise<number>;
+  getBigDecimal(): Promise<Models.NumberGetBigDecimalResponse>;
+  getBigDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalResponse>;
   getBigDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getBigDecimalWithHttpOperationResponse.bind(this), options, callback);
+  getBigDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDecimalResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBigDecimalOperationSpec,
+      callback) as Promise<Models.NumberGetBigDecimalResponse>;
   }
 
   /**
@@ -818,21 +375,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBigDecimalPositiveDecimal(): Promise<void>;
-  putBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDecimalPositiveDecimal(): Promise<msRest.RestResponse>;
+  putBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBigDecimalPositiveDecimal(callback: msRest.ServiceCallback<void>): void;
   putBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimalPositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
+  putBigDecimalPositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putBigDecimalPositiveDecimalOperationSpec,
+      callback);
   }
 
   /**
@@ -840,21 +399,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBigDecimalPositiveDecimal(): Promise<number>;
-  getBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase): Promise<number>;
+  getBigDecimalPositiveDecimal(): Promise<Models.NumberGetBigDecimalPositiveDecimalResponse>;
+  getBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalPositiveDecimalResponse>;
   getBigDecimalPositiveDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDecimalPositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getBigDecimalPositiveDecimalWithHttpOperationResponse.bind(this), options, callback);
+  getBigDecimalPositiveDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDecimalPositiveDecimalResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBigDecimalPositiveDecimalOperationSpec,
+      callback) as Promise<Models.NumberGetBigDecimalPositiveDecimalResponse>;
   }
 
   /**
@@ -862,21 +423,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBigDecimalNegativeDecimal(): Promise<void>;
-  putBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase): Promise<void>;
+  putBigDecimalNegativeDecimal(): Promise<msRest.RestResponse>;
+  putBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBigDecimalNegativeDecimal(callback: msRest.ServiceCallback<void>): void;
   putBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBigDecimalNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
+  putBigDecimalNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putBigDecimalNegativeDecimalOperationSpec,
+      callback);
   }
 
   /**
@@ -884,21 +447,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBigDecimalNegativeDecimal(): Promise<number>;
-  getBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase): Promise<number>;
+  getBigDecimalNegativeDecimal(): Promise<Models.NumberGetBigDecimalNegativeDecimalResponse>;
+  getBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalNegativeDecimalResponse>;
   getBigDecimalNegativeDecimal(callback: msRest.ServiceCallback<number>): void;
   getBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getBigDecimalNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getBigDecimalNegativeDecimalWithHttpOperationResponse.bind(this), options, callback);
+  getBigDecimalNegativeDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDecimalNegativeDecimalResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBigDecimalNegativeDecimalOperationSpec,
+      callback) as Promise<Models.NumberGetBigDecimalNegativeDecimalResponse>;
   }
 
   /**
@@ -908,21 +473,24 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putSmallFloat(numberBody: number): Promise<void>;
-  putSmallFloat(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putSmallFloat(numberBody: number): Promise<msRest.RestResponse>;
+  putSmallFloat(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putSmallFloat(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putSmallFloat(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSmallFloat(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putSmallFloatWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putSmallFloat(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        numberBody,
+        options
+      },
+      putSmallFloatOperationSpec,
+      callback);
   }
 
   /**
@@ -930,21 +498,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getSmallFloat(): Promise<number>;
-  getSmallFloat(options: msRest.RequestOptionsBase): Promise<number>;
+  getSmallFloat(): Promise<Models.NumberGetSmallFloatResponse>;
+  getSmallFloat(options: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallFloatResponse>;
   getSmallFloat(callback: msRest.ServiceCallback<number>): void;
   getSmallFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getSmallFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getSmallFloatWithHttpOperationResponse.bind(this), options, callback);
+  getSmallFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetSmallFloatResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSmallFloatOperationSpec,
+      callback) as Promise<Models.NumberGetSmallFloatResponse>;
   }
 
   /**
@@ -954,21 +524,24 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putSmallDouble(numberBody: number): Promise<void>;
-  putSmallDouble(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putSmallDouble(numberBody: number): Promise<msRest.RestResponse>;
+  putSmallDouble(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putSmallDouble(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putSmallDouble(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSmallDouble(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putSmallDoubleWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putSmallDouble(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        numberBody,
+        options
+      },
+      putSmallDoubleOperationSpec,
+      callback);
   }
 
   /**
@@ -976,21 +549,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getSmallDouble(): Promise<number>;
-  getSmallDouble(options: msRest.RequestOptionsBase): Promise<number>;
+  getSmallDouble(): Promise<Models.NumberGetSmallDoubleResponse>;
+  getSmallDouble(options: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallDoubleResponse>;
   getSmallDouble(callback: msRest.ServiceCallback<number>): void;
   getSmallDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getSmallDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getSmallDoubleWithHttpOperationResponse.bind(this), options, callback);
+  getSmallDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetSmallDoubleResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSmallDoubleOperationSpec,
+      callback) as Promise<Models.NumberGetSmallDoubleResponse>;
   }
 
   /**
@@ -1000,21 +575,24 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putSmallDecimal(numberBody: number): Promise<void>;
-  putSmallDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<void>;
+  putSmallDecimal(numberBody: number): Promise<msRest.RestResponse>;
+  putSmallDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putSmallDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   putSmallDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSmallDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putSmallDecimalWithHttpOperationResponse.bind(this), numberBody, options, callback);
+  putSmallDecimal(numberBody: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        numberBody,
+        options
+      },
+      putSmallDecimalOperationSpec,
+      callback);
   }
 
   /**
@@ -1022,21 +600,23 @@ export class Number {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getSmallDecimal(): Promise<number>;
-  getSmallDecimal(options: msRest.RequestOptionsBase): Promise<number>;
+  getSmallDecimal(): Promise<Models.NumberGetSmallDecimalResponse>;
+  getSmallDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallDecimalResponse>;
   getSmallDecimal(callback: msRest.ServiceCallback<number>): void;
   getSmallDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getSmallDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): any {
-    return msRest.responseToBody(this.getSmallDecimalWithHttpOperationResponse.bind(this), options, callback);
+  getSmallDecimal(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetSmallDecimalResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSmallDecimalOperationSpec,
+      callback) as Promise<Models.NumberGetSmallDecimalResponse>;
   }
 
 }

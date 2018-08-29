@@ -341,209 +341,314 @@ export interface ExplicitPostOptionalArrayHeaderOptionalParams extends msRest.Re
 /**
  * Contains response data for the getRequiredPath operation.
  */
-export interface ImplicitGetRequiredPathResponse extends msRest.HttpResponse {
+export type ImplicitGetRequiredPathResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the getRequiredGlobalPath operation.
  */
-export interface ImplicitGetRequiredGlobalPathResponse extends msRest.HttpResponse {
+export type ImplicitGetRequiredGlobalPathResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the getRequiredGlobalQuery operation.
  */
-export interface ImplicitGetRequiredGlobalQueryResponse extends msRest.HttpResponse {
+export type ImplicitGetRequiredGlobalQueryResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the getOptionalGlobalQuery operation.
  */
-export interface ImplicitGetOptionalGlobalQueryResponse extends msRest.HttpResponse {
+export type ImplicitGetOptionalGlobalQueryResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredIntegerParameter operation.
  */
-export interface ExplicitPostRequiredIntegerParameterResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredIntegerParameterResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredIntegerProperty operation.
  */
-export interface ExplicitPostRequiredIntegerPropertyResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredIntegerPropertyResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredIntegerHeader operation.
  */
-export interface ExplicitPostRequiredIntegerHeaderResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredIntegerHeaderResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredStringParameter operation.
  */
-export interface ExplicitPostRequiredStringParameterResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredStringParameterResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredStringProperty operation.
  */
-export interface ExplicitPostRequiredStringPropertyResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredStringPropertyResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredStringHeader operation.
  */
-export interface ExplicitPostRequiredStringHeaderResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredStringHeaderResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredClassParameter operation.
  */
-export interface ExplicitPostRequiredClassParameterResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredClassParameterResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredClassProperty operation.
  */
-export interface ExplicitPostRequiredClassPropertyResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredClassPropertyResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredArrayParameter operation.
  */
-export interface ExplicitPostRequiredArrayParameterResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredArrayParameterResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredArrayProperty operation.
  */
-export interface ExplicitPostRequiredArrayPropertyResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredArrayPropertyResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
 
 /**
  * Contains response data for the postRequiredArrayHeader operation.
  */
-export interface ExplicitPostRequiredArrayHeaderResponse extends msRest.HttpResponse {
+export type ExplicitPostRequiredArrayHeaderResponse = {
+  status: number;
+  message: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ErrorModel;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};

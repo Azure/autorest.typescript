@@ -67,14 +67,6 @@ foreach (var methodGroup in Model.MethodGroupModels)
 @EmptyLine
 @:  @(method.Generate(EmptyLine))
 }
-@if (@Model.GenerateBodyMethods)
-{
-@foreach (MethodTS method in Model.MethodWrappableTemplateModels)
-{
-  @EmptyLine
-  @:@(Include(new MethodCallbackWrapperTemplate(), method))
-}
-}
 }
 @EmptyLine
 @(Model.GenerateOperationSpecDefinitions(EmptyLine))

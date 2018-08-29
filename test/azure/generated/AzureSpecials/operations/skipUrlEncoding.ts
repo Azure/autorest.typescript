@@ -39,160 +39,18 @@ export class SkipUrlEncoding {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getMethodPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        unencodedPathParam,
-        options
-      },
-      getMethodPathValidOperationSpec);
-  }
-
-  /**
-   * Get method with unencoded path parameter with value 'path1/path2/path3'
-   *
-   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getPathPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        unencodedPathParam,
-        options
-      },
-      getPathPathValidOperationSpec);
-  }
-
-  /**
-   * Get method with unencoded path parameter with value 'path1/path2/path3'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getSwaggerPathValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getSwaggerPathValidOperationSpec);
-  }
-
-  /**
-   * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
-   *
-   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getMethodQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        q1,
-        options
-      },
-      getMethodQueryValidOperationSpec);
-  }
-
-  /**
-   * Get method with unencoded query parameter with value null
-   *
-   * @param {SkipUrlEncodingGetMethodQueryNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getMethodQueryNullWithHttpOperationResponse(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getMethodQueryNullOperationSpec);
-  }
-
-  /**
-   * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
-   *
-   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getPathQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        q1,
-        options
-      },
-      getPathQueryValidOperationSpec);
-  }
-
-  /**
-   * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getSwaggerQueryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getSwaggerQueryValidOperationSpec);
-  }
-
-  /**
-   * Get method with unencoded path parameter with value 'path1/path2/path3'
-   *
-   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getMethodPathValid(unencodedPathParam: string): Promise<void>;
-  getMethodPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<void>;
+  getMethodPathValid(unencodedPathParam: string): Promise<msRest.RestResponse>;
+  getMethodPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getMethodPathValid(unencodedPathParam: string, callback: msRest.ServiceCallback<void>): void;
   getMethodPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getMethodPathValidWithHttpOperationResponse.bind(this), unencodedPathParam, options, callback);
+  getMethodPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        unencodedPathParam,
+        options
+      },
+      getMethodPathValidOperationSpec,
+      callback);
   }
 
   /**
@@ -202,21 +60,24 @@ export class SkipUrlEncoding {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getPathPathValid(unencodedPathParam: string): Promise<void>;
-  getPathPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<void>;
+  getPathPathValid(unencodedPathParam: string): Promise<msRest.RestResponse>;
+  getPathPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getPathPathValid(unencodedPathParam: string, callback: msRest.ServiceCallback<void>): void;
   getPathPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getPathPathValidWithHttpOperationResponse.bind(this), unencodedPathParam, options, callback);
+  getPathPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        unencodedPathParam,
+        options
+      },
+      getPathPathValidOperationSpec,
+      callback);
   }
 
   /**
@@ -224,21 +85,23 @@ export class SkipUrlEncoding {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getSwaggerPathValid(): Promise<void>;
-  getSwaggerPathValid(options: msRest.RequestOptionsBase): Promise<void>;
+  getSwaggerPathValid(): Promise<msRest.RestResponse>;
+  getSwaggerPathValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getSwaggerPathValid(callback: msRest.ServiceCallback<void>): void;
   getSwaggerPathValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerPathValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getSwaggerPathValidWithHttpOperationResponse.bind(this), options, callback);
+  getSwaggerPathValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSwaggerPathValidOperationSpec,
+      callback);
   }
 
   /**
@@ -248,21 +111,24 @@ export class SkipUrlEncoding {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getMethodQueryValid(q1: string): Promise<void>;
-  getMethodQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<void>;
+  getMethodQueryValid(q1: string): Promise<msRest.RestResponse>;
+  getMethodQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getMethodQueryValid(q1: string, callback: msRest.ServiceCallback<void>): void;
   getMethodQueryValid(q1: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodQueryValid(q1: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getMethodQueryValidWithHttpOperationResponse.bind(this), q1, options, callback);
+  getMethodQueryValid(q1: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        q1,
+        options
+      },
+      getMethodQueryValidOperationSpec,
+      callback);
   }
 
   /**
@@ -270,21 +136,23 @@ export class SkipUrlEncoding {
    *
    * @param {SkipUrlEncodingGetMethodQueryNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getMethodQueryNull(): Promise<void>;
-  getMethodQueryNull(options: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<void>;
+  getMethodQueryNull(): Promise<msRest.RestResponse>;
+  getMethodQueryNull(options: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<msRest.RestResponse>;
   getMethodQueryNull(callback: msRest.ServiceCallback<void>): void;
   getMethodQueryNull(options: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getMethodQueryNull(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getMethodQueryNullWithHttpOperationResponse.bind(this), options, callback);
+  getMethodQueryNull(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getMethodQueryNullOperationSpec,
+      callback);
   }
 
   /**
@@ -294,21 +162,24 @@ export class SkipUrlEncoding {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getPathQueryValid(q1: string): Promise<void>;
-  getPathQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<void>;
+  getPathQueryValid(q1: string): Promise<msRest.RestResponse>;
+  getPathQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getPathQueryValid(q1: string, callback: msRest.ServiceCallback<void>): void;
   getPathQueryValid(q1: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathQueryValid(q1: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getPathQueryValidWithHttpOperationResponse.bind(this), q1, options, callback);
+  getPathQueryValid(q1: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        q1,
+        options
+      },
+      getPathQueryValidOperationSpec,
+      callback);
   }
 
   /**
@@ -316,21 +187,23 @@ export class SkipUrlEncoding {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getSwaggerQueryValid(): Promise<void>;
-  getSwaggerQueryValid(options: msRest.RequestOptionsBase): Promise<void>;
+  getSwaggerQueryValid(): Promise<msRest.RestResponse>;
+  getSwaggerQueryValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getSwaggerQueryValid(callback: msRest.ServiceCallback<void>): void;
   getSwaggerQueryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerQueryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getSwaggerQueryValidWithHttpOperationResponse.bind(this), options, callback);
+  getSwaggerQueryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getSwaggerQueryValidOperationSpec,
+      callback);
   }
 
 }

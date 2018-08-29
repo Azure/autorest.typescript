@@ -37,665 +37,17 @@ export class Queries {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBooleanTrueOperationSpec);
-  }
-
-  /**
-   * Get false Boolean value on path
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBooleanFalseOperationSpec);
-  }
-
-  /**
-   * Get null Boolean value on query (query string should be absent)
-   *
-   * @param {QueriesGetBooleanNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBooleanNullWithHttpOperationResponse(options?: Models.QueriesGetBooleanNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBooleanNullOperationSpec);
-  }
-
-  /**
-   * Get '1000000' integer value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntOneMillionOperationSpec);
-  }
-
-  /**
-   * Get '-1000000' integer value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntNegativeOneMillionOperationSpec);
-  }
-
-  /**
-   * Get null integer value (no query parameter)
-   *
-   * @param {QueriesGetIntNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getIntNullWithHttpOperationResponse(options?: Models.QueriesGetIntNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntNullOperationSpec);
-  }
-
-  /**
-   * Get '10000000000' 64 bit integer value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getTenBillionOperationSpec);
-  }
-
-  /**
-   * Get '-10000000000' 64 bit integer value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNegativeTenBillionOperationSpec);
-  }
-
-  /**
-   * Get 'null 64 bit integer value (no query param in uri)
-   *
-   * @param {QueriesGetLongNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLongNullWithHttpOperationResponse(options?: Models.QueriesGetLongNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLongNullOperationSpec);
-  }
-
-  /**
-   * Get '1.034E+20' numeric value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      floatScientificPositiveOperationSpec);
-  }
-
-  /**
-   * Get '-1.034E-20' numeric value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      floatScientificNegativeOperationSpec);
-  }
-
-  /**
-   * Get null numeric value (no query parameter)
-   *
-   * @param {QueriesFloatNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  floatNullWithHttpOperationResponse(options?: Models.QueriesFloatNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      floatNullOperationSpec);
-  }
-
-  /**
-   * Get '9999999.999' numeric value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      doubleDecimalPositiveOperationSpec);
-  }
-
-  /**
-   * Get '-9999999.999' numeric value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      doubleDecimalNegativeOperationSpec);
-  }
-
-  /**
-   * Get null numeric value (no query parameter)
-   *
-   * @param {QueriesDoubleNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  doubleNullWithHttpOperationResponse(options?: Models.QueriesDoubleNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      doubleNullOperationSpec);
-  }
-
-  /**
-   * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      stringUnicodeOperationSpec);
-  }
-
-  /**
-   * Get 'begin!*'();:@ &=+$,/?#[]end
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      stringUrlEncodedOperationSpec);
-  }
-
-  /**
-   * Get ''
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      stringEmptyOperationSpec);
-  }
-
-  /**
-   * Get null (no query parameter in url)
-   *
-   * @param {QueriesStringNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  stringNullWithHttpOperationResponse(options?: Models.QueriesStringNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      stringNullOperationSpec);
-  }
-
-  /**
-   * Get using uri with query parameter 'green color'
-   *
-   * @param {QueriesEnumValidOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  enumValidWithHttpOperationResponse(options?: Models.QueriesEnumValidOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      enumValidOperationSpec);
-  }
-
-  /**
-   * Get null (no query parameter in url)
-   *
-   * @param {QueriesEnumNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  enumNullWithHttpOperationResponse(options?: Models.QueriesEnumNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      enumNullOperationSpec);
-  }
-
-  /**
-   * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
-   *
-   * @param {QueriesByteMultiByteOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  byteMultiByteWithHttpOperationResponse(options?: Models.QueriesByteMultiByteOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      byteMultiByteOperationSpec);
-  }
-
-  /**
-   * Get '' as byte array
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      byteEmptyOperationSpec);
-  }
-
-  /**
-   * Get null as byte array (no query parameters in uri)
-   *
-   * @param {QueriesByteNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  byteNullWithHttpOperationResponse(options?: Models.QueriesByteNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      byteNullOperationSpec);
-  }
-
-  /**
-   * Get '2012-01-01' as date
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      dateValidOperationSpec);
-  }
-
-  /**
-   * Get null as date - this should result in no query parameters in uri
-   *
-   * @param {QueriesDateNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  dateNullWithHttpOperationResponse(options?: Models.QueriesDateNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      dateNullOperationSpec);
-  }
-
-  /**
-   * Get '2012-01-01T01:01:01Z' as date-time
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      dateTimeValidOperationSpec);
-  }
-
-  /**
-   * Get null as date-time, should result in no query parameters in uri
-   *
-   * @param {QueriesDateTimeNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  dateTimeNullWithHttpOperationResponse(options?: Models.QueriesDateTimeNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      dateTimeNullOperationSpec);
-  }
-
-  /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * csv-array format
-   *
-   * @param {QueriesArrayStringCsvValidOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  arrayStringCsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvValidOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      arrayStringCsvValidOperationSpec);
-  }
-
-  /**
-   * Get a null array of string using the csv-array format
-   *
-   * @param {QueriesArrayStringCsvNullOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  arrayStringCsvNullWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvNullOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      arrayStringCsvNullOperationSpec);
-  }
-
-  /**
-   * Get an empty array [] of string using the csv-array format
-   *
-   * @param {QueriesArrayStringCsvEmptyOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  arrayStringCsvEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      arrayStringCsvEmptyOperationSpec);
-  }
-
-  /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * ssv-array format
-   *
-   * @param {QueriesArrayStringSsvValidOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  arrayStringSsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringSsvValidOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      arrayStringSsvValidOperationSpec);
-  }
-
-  /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * tsv-array format
-   *
-   * @param {QueriesArrayStringTsvValidOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  arrayStringTsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringTsvValidOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      arrayStringTsvValidOperationSpec);
-  }
-
-  /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * pipes-array format
-   *
-   * @param {QueriesArrayStringPipesValidOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  arrayStringPipesValidWithHttpOperationResponse(options?: Models.QueriesArrayStringPipesValidOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      arrayStringPipesValidOperationSpec);
-  }
-
-  /**
-   * Get true Boolean value on path
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getBooleanTrue(): Promise<void>;
-  getBooleanTrue(options: msRest.RequestOptionsBase): Promise<void>;
+  getBooleanTrue(): Promise<msRest.RestResponse>;
+  getBooleanTrue(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getBooleanTrue(callback: msRest.ServiceCallback<void>): void;
   getBooleanTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getBooleanTrueWithHttpOperationResponse.bind(this), options, callback);
+  getBooleanTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBooleanTrueOperationSpec,
+      callback);
   }
 
   /**
@@ -703,21 +55,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBooleanFalse(): Promise<void>;
-  getBooleanFalse(options: msRest.RequestOptionsBase): Promise<void>;
+  getBooleanFalse(): Promise<msRest.RestResponse>;
+  getBooleanFalse(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getBooleanFalse(callback: msRest.ServiceCallback<void>): void;
   getBooleanFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getBooleanFalseWithHttpOperationResponse.bind(this), options, callback);
+  getBooleanFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBooleanFalseOperationSpec,
+      callback);
   }
 
   /**
@@ -725,21 +79,23 @@ export class Queries {
    *
    * @param {QueriesGetBooleanNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBooleanNull(): Promise<void>;
-  getBooleanNull(options: Models.QueriesGetBooleanNullOptionalParams): Promise<void>;
+  getBooleanNull(): Promise<msRest.RestResponse>;
+  getBooleanNull(options: Models.QueriesGetBooleanNullOptionalParams): Promise<msRest.RestResponse>;
   getBooleanNull(callback: msRest.ServiceCallback<void>): void;
   getBooleanNull(options: Models.QueriesGetBooleanNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getBooleanNull(options?: Models.QueriesGetBooleanNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getBooleanNullWithHttpOperationResponse.bind(this), options, callback);
+  getBooleanNull(options?: Models.QueriesGetBooleanNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBooleanNullOperationSpec,
+      callback);
   }
 
   /**
@@ -747,21 +103,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getIntOneMillion(): Promise<void>;
-  getIntOneMillion(options: msRest.RequestOptionsBase): Promise<void>;
+  getIntOneMillion(): Promise<msRest.RestResponse>;
+  getIntOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getIntOneMillion(callback: msRest.ServiceCallback<void>): void;
   getIntOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getIntOneMillionWithHttpOperationResponse.bind(this), options, callback);
+  getIntOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntOneMillionOperationSpec,
+      callback);
   }
 
   /**
@@ -769,21 +127,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getIntNegativeOneMillion(): Promise<void>;
-  getIntNegativeOneMillion(options: msRest.RequestOptionsBase): Promise<void>;
+  getIntNegativeOneMillion(): Promise<msRest.RestResponse>;
+  getIntNegativeOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getIntNegativeOneMillion(callback: msRest.ServiceCallback<void>): void;
   getIntNegativeOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntNegativeOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getIntNegativeOneMillionWithHttpOperationResponse.bind(this), options, callback);
+  getIntNegativeOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntNegativeOneMillionOperationSpec,
+      callback);
   }
 
   /**
@@ -791,21 +151,23 @@ export class Queries {
    *
    * @param {QueriesGetIntNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getIntNull(): Promise<void>;
-  getIntNull(options: Models.QueriesGetIntNullOptionalParams): Promise<void>;
+  getIntNull(): Promise<msRest.RestResponse>;
+  getIntNull(options: Models.QueriesGetIntNullOptionalParams): Promise<msRest.RestResponse>;
   getIntNull(callback: msRest.ServiceCallback<void>): void;
   getIntNull(options: Models.QueriesGetIntNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getIntNull(options?: Models.QueriesGetIntNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getIntNullWithHttpOperationResponse.bind(this), options, callback);
+  getIntNull(options?: Models.QueriesGetIntNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntNullOperationSpec,
+      callback);
   }
 
   /**
@@ -813,21 +175,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getTenBillion(): Promise<void>;
-  getTenBillion(options: msRest.RequestOptionsBase): Promise<void>;
+  getTenBillion(): Promise<msRest.RestResponse>;
+  getTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getTenBillion(callback: msRest.ServiceCallback<void>): void;
   getTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getTenBillionWithHttpOperationResponse.bind(this), options, callback);
+  getTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getTenBillionOperationSpec,
+      callback);
   }
 
   /**
@@ -835,21 +199,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getNegativeTenBillion(): Promise<void>;
-  getNegativeTenBillion(options: msRest.RequestOptionsBase): Promise<void>;
+  getNegativeTenBillion(): Promise<msRest.RestResponse>;
+  getNegativeTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getNegativeTenBillion(callback: msRest.ServiceCallback<void>): void;
   getNegativeTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getNegativeTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getNegativeTenBillionWithHttpOperationResponse.bind(this), options, callback);
+  getNegativeTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNegativeTenBillionOperationSpec,
+      callback);
   }
 
   /**
@@ -857,21 +223,23 @@ export class Queries {
    *
    * @param {QueriesGetLongNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLongNull(): Promise<void>;
-  getLongNull(options: Models.QueriesGetLongNullOptionalParams): Promise<void>;
+  getLongNull(): Promise<msRest.RestResponse>;
+  getLongNull(options: Models.QueriesGetLongNullOptionalParams): Promise<msRest.RestResponse>;
   getLongNull(callback: msRest.ServiceCallback<void>): void;
   getLongNull(options: Models.QueriesGetLongNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getLongNull(options?: Models.QueriesGetLongNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getLongNullWithHttpOperationResponse.bind(this), options, callback);
+  getLongNull(options?: Models.QueriesGetLongNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLongNullOperationSpec,
+      callback);
   }
 
   /**
@@ -879,21 +247,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  floatScientificPositive(): Promise<void>;
-  floatScientificPositive(options: msRest.RequestOptionsBase): Promise<void>;
+  floatScientificPositive(): Promise<msRest.RestResponse>;
+  floatScientificPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   floatScientificPositive(callback: msRest.ServiceCallback<void>): void;
   floatScientificPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.floatScientificPositiveWithHttpOperationResponse.bind(this), options, callback);
+  floatScientificPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      floatScientificPositiveOperationSpec,
+      callback);
   }
 
   /**
@@ -901,21 +271,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  floatScientificNegative(): Promise<void>;
-  floatScientificNegative(options: msRest.RequestOptionsBase): Promise<void>;
+  floatScientificNegative(): Promise<msRest.RestResponse>;
+  floatScientificNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   floatScientificNegative(callback: msRest.ServiceCallback<void>): void;
   floatScientificNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.floatScientificNegativeWithHttpOperationResponse.bind(this), options, callback);
+  floatScientificNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      floatScientificNegativeOperationSpec,
+      callback);
   }
 
   /**
@@ -923,21 +295,23 @@ export class Queries {
    *
    * @param {QueriesFloatNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  floatNull(): Promise<void>;
-  floatNull(options: Models.QueriesFloatNullOptionalParams): Promise<void>;
+  floatNull(): Promise<msRest.RestResponse>;
+  floatNull(options: Models.QueriesFloatNullOptionalParams): Promise<msRest.RestResponse>;
   floatNull(callback: msRest.ServiceCallback<void>): void;
   floatNull(options: Models.QueriesFloatNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  floatNull(options?: Models.QueriesFloatNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.floatNullWithHttpOperationResponse.bind(this), options, callback);
+  floatNull(options?: Models.QueriesFloatNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      floatNullOperationSpec,
+      callback);
   }
 
   /**
@@ -945,21 +319,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  doubleDecimalPositive(): Promise<void>;
-  doubleDecimalPositive(options: msRest.RequestOptionsBase): Promise<void>;
+  doubleDecimalPositive(): Promise<msRest.RestResponse>;
+  doubleDecimalPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   doubleDecimalPositive(callback: msRest.ServiceCallback<void>): void;
   doubleDecimalPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.doubleDecimalPositiveWithHttpOperationResponse.bind(this), options, callback);
+  doubleDecimalPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      doubleDecimalPositiveOperationSpec,
+      callback);
   }
 
   /**
@@ -967,21 +343,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  doubleDecimalNegative(): Promise<void>;
-  doubleDecimalNegative(options: msRest.RequestOptionsBase): Promise<void>;
+  doubleDecimalNegative(): Promise<msRest.RestResponse>;
+  doubleDecimalNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   doubleDecimalNegative(callback: msRest.ServiceCallback<void>): void;
   doubleDecimalNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.doubleDecimalNegativeWithHttpOperationResponse.bind(this), options, callback);
+  doubleDecimalNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      doubleDecimalNegativeOperationSpec,
+      callback);
   }
 
   /**
@@ -989,21 +367,23 @@ export class Queries {
    *
    * @param {QueriesDoubleNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  doubleNull(): Promise<void>;
-  doubleNull(options: Models.QueriesDoubleNullOptionalParams): Promise<void>;
+  doubleNull(): Promise<msRest.RestResponse>;
+  doubleNull(options: Models.QueriesDoubleNullOptionalParams): Promise<msRest.RestResponse>;
   doubleNull(callback: msRest.ServiceCallback<void>): void;
   doubleNull(options: Models.QueriesDoubleNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  doubleNull(options?: Models.QueriesDoubleNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.doubleNullWithHttpOperationResponse.bind(this), options, callback);
+  doubleNull(options?: Models.QueriesDoubleNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      doubleNullOperationSpec,
+      callback);
   }
 
   /**
@@ -1011,21 +391,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  stringUnicode(): Promise<void>;
-  stringUnicode(options: msRest.RequestOptionsBase): Promise<void>;
+  stringUnicode(): Promise<msRest.RestResponse>;
+  stringUnicode(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   stringUnicode(callback: msRest.ServiceCallback<void>): void;
   stringUnicode(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUnicode(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.stringUnicodeWithHttpOperationResponse.bind(this), options, callback);
+  stringUnicode(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      stringUnicodeOperationSpec,
+      callback);
   }
 
   /**
@@ -1033,21 +415,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  stringUrlEncoded(): Promise<void>;
-  stringUrlEncoded(options: msRest.RequestOptionsBase): Promise<void>;
+  stringUrlEncoded(): Promise<msRest.RestResponse>;
+  stringUrlEncoded(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   stringUrlEncoded(callback: msRest.ServiceCallback<void>): void;
   stringUrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.stringUrlEncodedWithHttpOperationResponse.bind(this), options, callback);
+  stringUrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      stringUrlEncodedOperationSpec,
+      callback);
   }
 
   /**
@@ -1055,21 +439,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  stringEmpty(): Promise<void>;
-  stringEmpty(options: msRest.RequestOptionsBase): Promise<void>;
+  stringEmpty(): Promise<msRest.RestResponse>;
+  stringEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   stringEmpty(callback: msRest.ServiceCallback<void>): void;
   stringEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.stringEmptyWithHttpOperationResponse.bind(this), options, callback);
+  stringEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      stringEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -1077,21 +463,23 @@ export class Queries {
    *
    * @param {QueriesStringNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  stringNull(): Promise<void>;
-  stringNull(options: Models.QueriesStringNullOptionalParams): Promise<void>;
+  stringNull(): Promise<msRest.RestResponse>;
+  stringNull(options: Models.QueriesStringNullOptionalParams): Promise<msRest.RestResponse>;
   stringNull(callback: msRest.ServiceCallback<void>): void;
   stringNull(options: Models.QueriesStringNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  stringNull(options?: Models.QueriesStringNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.stringNullWithHttpOperationResponse.bind(this), options, callback);
+  stringNull(options?: Models.QueriesStringNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      stringNullOperationSpec,
+      callback);
   }
 
   /**
@@ -1099,21 +487,23 @@ export class Queries {
    *
    * @param {QueriesEnumValidOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  enumValid(): Promise<void>;
-  enumValid(options: Models.QueriesEnumValidOptionalParams): Promise<void>;
+  enumValid(): Promise<msRest.RestResponse>;
+  enumValid(options: Models.QueriesEnumValidOptionalParams): Promise<msRest.RestResponse>;
   enumValid(callback: msRest.ServiceCallback<void>): void;
   enumValid(options: Models.QueriesEnumValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  enumValid(options?: Models.QueriesEnumValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.enumValidWithHttpOperationResponse.bind(this), options, callback);
+  enumValid(options?: Models.QueriesEnumValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      enumValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1121,21 +511,23 @@ export class Queries {
    *
    * @param {QueriesEnumNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  enumNull(): Promise<void>;
-  enumNull(options: Models.QueriesEnumNullOptionalParams): Promise<void>;
+  enumNull(): Promise<msRest.RestResponse>;
+  enumNull(options: Models.QueriesEnumNullOptionalParams): Promise<msRest.RestResponse>;
   enumNull(callback: msRest.ServiceCallback<void>): void;
   enumNull(options: Models.QueriesEnumNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  enumNull(options?: Models.QueriesEnumNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.enumNullWithHttpOperationResponse.bind(this), options, callback);
+  enumNull(options?: Models.QueriesEnumNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      enumNullOperationSpec,
+      callback);
   }
 
   /**
@@ -1143,21 +535,23 @@ export class Queries {
    *
    * @param {QueriesByteMultiByteOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  byteMultiByte(): Promise<void>;
-  byteMultiByte(options: Models.QueriesByteMultiByteOptionalParams): Promise<void>;
+  byteMultiByte(): Promise<msRest.RestResponse>;
+  byteMultiByte(options: Models.QueriesByteMultiByteOptionalParams): Promise<msRest.RestResponse>;
   byteMultiByte(callback: msRest.ServiceCallback<void>): void;
   byteMultiByte(options: Models.QueriesByteMultiByteOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  byteMultiByte(options?: Models.QueriesByteMultiByteOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.byteMultiByteWithHttpOperationResponse.bind(this), options, callback);
+  byteMultiByte(options?: Models.QueriesByteMultiByteOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      byteMultiByteOperationSpec,
+      callback);
   }
 
   /**
@@ -1165,21 +559,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  byteEmpty(): Promise<void>;
-  byteEmpty(options: msRest.RequestOptionsBase): Promise<void>;
+  byteEmpty(): Promise<msRest.RestResponse>;
+  byteEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   byteEmpty(callback: msRest.ServiceCallback<void>): void;
   byteEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.byteEmptyWithHttpOperationResponse.bind(this), options, callback);
+  byteEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      byteEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -1187,21 +583,23 @@ export class Queries {
    *
    * @param {QueriesByteNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  byteNull(): Promise<void>;
-  byteNull(options: Models.QueriesByteNullOptionalParams): Promise<void>;
+  byteNull(): Promise<msRest.RestResponse>;
+  byteNull(options: Models.QueriesByteNullOptionalParams): Promise<msRest.RestResponse>;
   byteNull(callback: msRest.ServiceCallback<void>): void;
   byteNull(options: Models.QueriesByteNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  byteNull(options?: Models.QueriesByteNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.byteNullWithHttpOperationResponse.bind(this), options, callback);
+  byteNull(options?: Models.QueriesByteNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      byteNullOperationSpec,
+      callback);
   }
 
   /**
@@ -1209,21 +607,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  dateValid(): Promise<void>;
-  dateValid(options: msRest.RequestOptionsBase): Promise<void>;
+  dateValid(): Promise<msRest.RestResponse>;
+  dateValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   dateValid(callback: msRest.ServiceCallback<void>): void;
   dateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.dateValidWithHttpOperationResponse.bind(this), options, callback);
+  dateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      dateValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1231,21 +631,23 @@ export class Queries {
    *
    * @param {QueriesDateNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  dateNull(): Promise<void>;
-  dateNull(options: Models.QueriesDateNullOptionalParams): Promise<void>;
+  dateNull(): Promise<msRest.RestResponse>;
+  dateNull(options: Models.QueriesDateNullOptionalParams): Promise<msRest.RestResponse>;
   dateNull(callback: msRest.ServiceCallback<void>): void;
   dateNull(options: Models.QueriesDateNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  dateNull(options?: Models.QueriesDateNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.dateNullWithHttpOperationResponse.bind(this), options, callback);
+  dateNull(options?: Models.QueriesDateNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      dateNullOperationSpec,
+      callback);
   }
 
   /**
@@ -1253,21 +655,23 @@ export class Queries {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  dateTimeValid(): Promise<void>;
-  dateTimeValid(options: msRest.RequestOptionsBase): Promise<void>;
+  dateTimeValid(): Promise<msRest.RestResponse>;
+  dateTimeValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   dateTimeValid(callback: msRest.ServiceCallback<void>): void;
   dateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.dateTimeValidWithHttpOperationResponse.bind(this), options, callback);
+  dateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      dateTimeValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1275,21 +679,23 @@ export class Queries {
    *
    * @param {QueriesDateTimeNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  dateTimeNull(): Promise<void>;
-  dateTimeNull(options: Models.QueriesDateTimeNullOptionalParams): Promise<void>;
+  dateTimeNull(): Promise<msRest.RestResponse>;
+  dateTimeNull(options: Models.QueriesDateTimeNullOptionalParams): Promise<msRest.RestResponse>;
   dateTimeNull(callback: msRest.ServiceCallback<void>): void;
   dateTimeNull(options: Models.QueriesDateTimeNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  dateTimeNull(options?: Models.QueriesDateTimeNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.dateTimeNullWithHttpOperationResponse.bind(this), options, callback);
+  dateTimeNull(options?: Models.QueriesDateTimeNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      dateTimeNullOperationSpec,
+      callback);
   }
 
   /**
@@ -1298,21 +704,23 @@ export class Queries {
    *
    * @param {QueriesArrayStringCsvValidOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  arrayStringCsvValid(): Promise<void>;
-  arrayStringCsvValid(options: Models.QueriesArrayStringCsvValidOptionalParams): Promise<void>;
+  arrayStringCsvValid(): Promise<msRest.RestResponse>;
+  arrayStringCsvValid(options: Models.QueriesArrayStringCsvValidOptionalParams): Promise<msRest.RestResponse>;
   arrayStringCsvValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringCsvValid(options: Models.QueriesArrayStringCsvValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringCsvValid(options?: Models.QueriesArrayStringCsvValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayStringCsvValidWithHttpOperationResponse.bind(this), options, callback);
+  arrayStringCsvValid(options?: Models.QueriesArrayStringCsvValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      arrayStringCsvValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1320,21 +728,23 @@ export class Queries {
    *
    * @param {QueriesArrayStringCsvNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  arrayStringCsvNull(): Promise<void>;
-  arrayStringCsvNull(options: Models.QueriesArrayStringCsvNullOptionalParams): Promise<void>;
+  arrayStringCsvNull(): Promise<msRest.RestResponse>;
+  arrayStringCsvNull(options: Models.QueriesArrayStringCsvNullOptionalParams): Promise<msRest.RestResponse>;
   arrayStringCsvNull(callback: msRest.ServiceCallback<void>): void;
   arrayStringCsvNull(options: Models.QueriesArrayStringCsvNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringCsvNull(options?: Models.QueriesArrayStringCsvNullOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayStringCsvNullWithHttpOperationResponse.bind(this), options, callback);
+  arrayStringCsvNull(options?: Models.QueriesArrayStringCsvNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      arrayStringCsvNullOperationSpec,
+      callback);
   }
 
   /**
@@ -1342,21 +752,23 @@ export class Queries {
    *
    * @param {QueriesArrayStringCsvEmptyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  arrayStringCsvEmpty(): Promise<void>;
-  arrayStringCsvEmpty(options: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<void>;
+  arrayStringCsvEmpty(): Promise<msRest.RestResponse>;
+  arrayStringCsvEmpty(options: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<msRest.RestResponse>;
   arrayStringCsvEmpty(callback: msRest.ServiceCallback<void>): void;
   arrayStringCsvEmpty(options: Models.QueriesArrayStringCsvEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringCsvEmpty(options?: Models.QueriesArrayStringCsvEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayStringCsvEmptyWithHttpOperationResponse.bind(this), options, callback);
+  arrayStringCsvEmpty(options?: Models.QueriesArrayStringCsvEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      arrayStringCsvEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -1365,21 +777,23 @@ export class Queries {
    *
    * @param {QueriesArrayStringSsvValidOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  arrayStringSsvValid(): Promise<void>;
-  arrayStringSsvValid(options: Models.QueriesArrayStringSsvValidOptionalParams): Promise<void>;
+  arrayStringSsvValid(): Promise<msRest.RestResponse>;
+  arrayStringSsvValid(options: Models.QueriesArrayStringSsvValidOptionalParams): Promise<msRest.RestResponse>;
   arrayStringSsvValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringSsvValid(options: Models.QueriesArrayStringSsvValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringSsvValid(options?: Models.QueriesArrayStringSsvValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayStringSsvValidWithHttpOperationResponse.bind(this), options, callback);
+  arrayStringSsvValid(options?: Models.QueriesArrayStringSsvValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      arrayStringSsvValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1388,21 +802,23 @@ export class Queries {
    *
    * @param {QueriesArrayStringTsvValidOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  arrayStringTsvValid(): Promise<void>;
-  arrayStringTsvValid(options: Models.QueriesArrayStringTsvValidOptionalParams): Promise<void>;
+  arrayStringTsvValid(): Promise<msRest.RestResponse>;
+  arrayStringTsvValid(options: Models.QueriesArrayStringTsvValidOptionalParams): Promise<msRest.RestResponse>;
   arrayStringTsvValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringTsvValid(options: Models.QueriesArrayStringTsvValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringTsvValid(options?: Models.QueriesArrayStringTsvValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayStringTsvValidWithHttpOperationResponse.bind(this), options, callback);
+  arrayStringTsvValid(options?: Models.QueriesArrayStringTsvValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      arrayStringTsvValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1411,21 +827,23 @@ export class Queries {
    *
    * @param {QueriesArrayStringPipesValidOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  arrayStringPipesValid(): Promise<void>;
-  arrayStringPipesValid(options: Models.QueriesArrayStringPipesValidOptionalParams): Promise<void>;
+  arrayStringPipesValid(): Promise<msRest.RestResponse>;
+  arrayStringPipesValid(options: Models.QueriesArrayStringPipesValidOptionalParams): Promise<msRest.RestResponse>;
   arrayStringPipesValid(callback: msRest.ServiceCallback<void>): void;
   arrayStringPipesValid(options: Models.QueriesArrayStringPipesValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringPipesValid(options?: Models.QueriesArrayStringPipesValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.arrayStringPipesValidWithHttpOperationResponse.bind(this), options, callback);
+  arrayStringPipesValid(options?: Models.QueriesArrayStringPipesValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      arrayStringPipesValidOperationSpec,
+      callback);
   }
 
 }

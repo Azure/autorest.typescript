@@ -44,699 +44,1199 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface DictionaryGetNullResponse extends msRest.HttpResponse {
+export type DictionaryGetNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface DictionaryGetEmptyResponse extends msRest.HttpResponse {
+export type DictionaryGetEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getNullValue operation.
  */
-export interface DictionaryGetNullValueResponse extends msRest.HttpResponse {
+export type DictionaryGetNullValueResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getNullKey operation.
  */
-export interface DictionaryGetNullKeyResponse extends msRest.HttpResponse {
+export type DictionaryGetNullKeyResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getEmptyStringKey operation.
  */
-export interface DictionaryGetEmptyStringKeyResponse extends msRest.HttpResponse {
+export type DictionaryGetEmptyStringKeyResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface DictionaryGetInvalidResponse extends msRest.HttpResponse {
+export type DictionaryGetInvalidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getBooleanTfft operation.
  */
-export interface DictionaryGetBooleanTfftResponse extends msRest.HttpResponse {
+export type DictionaryGetBooleanTfftResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: boolean;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: boolean };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: boolean };
+    };
+};
 
 /**
  * Contains response data for the getBooleanInvalidNull operation.
  */
-export interface DictionaryGetBooleanInvalidNullResponse extends msRest.HttpResponse {
+export type DictionaryGetBooleanInvalidNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: boolean;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: boolean };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: boolean };
+    };
+};
 
 /**
  * Contains response data for the getBooleanInvalidString operation.
  */
-export interface DictionaryGetBooleanInvalidStringResponse extends msRest.HttpResponse {
+export type DictionaryGetBooleanInvalidStringResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: boolean;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: boolean };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: boolean };
+    };
+};
 
 /**
  * Contains response data for the getIntegerValid operation.
  */
-export interface DictionaryGetIntegerValidResponse extends msRest.HttpResponse {
+export type DictionaryGetIntegerValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getIntInvalidNull operation.
  */
-export interface DictionaryGetIntInvalidNullResponse extends msRest.HttpResponse {
+export type DictionaryGetIntInvalidNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getIntInvalidString operation.
  */
-export interface DictionaryGetIntInvalidStringResponse extends msRest.HttpResponse {
+export type DictionaryGetIntInvalidStringResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getLongValid operation.
  */
-export interface DictionaryGetLongValidResponse extends msRest.HttpResponse {
+export type DictionaryGetLongValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getLongInvalidNull operation.
  */
-export interface DictionaryGetLongInvalidNullResponse extends msRest.HttpResponse {
+export type DictionaryGetLongInvalidNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getLongInvalidString operation.
  */
-export interface DictionaryGetLongInvalidStringResponse extends msRest.HttpResponse {
+export type DictionaryGetLongInvalidStringResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getFloatValid operation.
  */
-export interface DictionaryGetFloatValidResponse extends msRest.HttpResponse {
+export type DictionaryGetFloatValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getFloatInvalidNull operation.
  */
-export interface DictionaryGetFloatInvalidNullResponse extends msRest.HttpResponse {
+export type DictionaryGetFloatInvalidNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getFloatInvalidString operation.
  */
-export interface DictionaryGetFloatInvalidStringResponse extends msRest.HttpResponse {
+export type DictionaryGetFloatInvalidStringResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getDoubleValid operation.
  */
-export interface DictionaryGetDoubleValidResponse extends msRest.HttpResponse {
+export type DictionaryGetDoubleValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getDoubleInvalidNull operation.
  */
-export interface DictionaryGetDoubleInvalidNullResponse extends msRest.HttpResponse {
+export type DictionaryGetDoubleInvalidNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getDoubleInvalidString operation.
  */
-export interface DictionaryGetDoubleInvalidStringResponse extends msRest.HttpResponse {
+export type DictionaryGetDoubleInvalidStringResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};
 
 /**
  * Contains response data for the getStringValid operation.
  */
-export interface DictionaryGetStringValidResponse extends msRest.HttpResponse {
+export type DictionaryGetStringValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getStringWithNull operation.
  */
-export interface DictionaryGetStringWithNullResponse extends msRest.HttpResponse {
+export type DictionaryGetStringWithNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getStringWithInvalid operation.
  */
-export interface DictionaryGetStringWithInvalidResponse extends msRest.HttpResponse {
+export type DictionaryGetStringWithInvalidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getDateValid operation.
  */
-export interface DictionaryGetDateValidResponse extends msRest.HttpResponse {
+export type DictionaryGetDateValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Date;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getDateInvalidNull operation.
  */
-export interface DictionaryGetDateInvalidNullResponse extends msRest.HttpResponse {
+export type DictionaryGetDateInvalidNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Date;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getDateInvalidChars operation.
  */
-export interface DictionaryGetDateInvalidCharsResponse extends msRest.HttpResponse {
+export type DictionaryGetDateInvalidCharsResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Date;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getDateTimeValid operation.
  */
-export interface DictionaryGetDateTimeValidResponse extends msRest.HttpResponse {
+export type DictionaryGetDateTimeValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Date;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getDateTimeInvalidNull operation.
  */
-export interface DictionaryGetDateTimeInvalidNullResponse extends msRest.HttpResponse {
+export type DictionaryGetDateTimeInvalidNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Date;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getDateTimeInvalidChars operation.
  */
-export interface DictionaryGetDateTimeInvalidCharsResponse extends msRest.HttpResponse {
+export type DictionaryGetDateTimeInvalidCharsResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Date;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getDateTimeRfc1123Valid operation.
  */
-export interface DictionaryGetDateTimeRfc1123ValidResponse extends msRest.HttpResponse {
+export type DictionaryGetDateTimeRfc1123ValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Date;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getDurationValid operation.
  */
-export interface DictionaryGetDurationValidResponse extends msRest.HttpResponse {
+export type DictionaryGetDurationValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
+};
 
 /**
  * Contains response data for the getByteValid operation.
  */
-export interface DictionaryGetByteValidResponse extends msRest.HttpResponse {
+export type DictionaryGetByteValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Uint8Array;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Uint8Array };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Uint8Array };
+    };
+};
 
 /**
  * Contains response data for the getByteInvalidNull operation.
  */
-export interface DictionaryGetByteInvalidNullResponse extends msRest.HttpResponse {
+export type DictionaryGetByteInvalidNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Uint8Array;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Uint8Array };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Uint8Array };
+    };
+};
 
 /**
  * Contains response data for the getBase64Url operation.
  */
-export interface DictionaryGetBase64UrlResponse extends msRest.HttpResponse {
+export type DictionaryGetBase64UrlResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Uint8Array;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Uint8Array };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Uint8Array };
+    };
+};
 
 /**
  * Contains response data for the getComplexNull operation.
  */
-export interface DictionaryGetComplexNullResponse extends msRest.HttpResponse {
+export type DictionaryGetComplexNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Widget;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Widget };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
+};
 
 /**
  * Contains response data for the getComplexEmpty operation.
  */
-export interface DictionaryGetComplexEmptyResponse extends msRest.HttpResponse {
+export type DictionaryGetComplexEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Widget;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Widget };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
+};
 
 /**
  * Contains response data for the getComplexItemNull operation.
  */
-export interface DictionaryGetComplexItemNullResponse extends msRest.HttpResponse {
+export type DictionaryGetComplexItemNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Widget;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Widget };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
+};
 
 /**
  * Contains response data for the getComplexItemEmpty operation.
  */
-export interface DictionaryGetComplexItemEmptyResponse extends msRest.HttpResponse {
+export type DictionaryGetComplexItemEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Widget;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Widget };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
+};
 
 /**
  * Contains response data for the getComplexValid operation.
  */
-export interface DictionaryGetComplexValidResponse extends msRest.HttpResponse {
+export type DictionaryGetComplexValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: Widget;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: Widget };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
+};
 
 /**
  * Contains response data for the getArrayNull operation.
  */
-export interface DictionaryGetArrayNullResponse extends msRest.HttpResponse {
+export type DictionaryGetArrayNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string[];
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string[] };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
+};
 
 /**
  * Contains response data for the getArrayEmpty operation.
  */
-export interface DictionaryGetArrayEmptyResponse extends msRest.HttpResponse {
+export type DictionaryGetArrayEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string[];
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string[] };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
+};
 
 /**
  * Contains response data for the getArrayItemNull operation.
  */
-export interface DictionaryGetArrayItemNullResponse extends msRest.HttpResponse {
+export type DictionaryGetArrayItemNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string[];
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string[] };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
+};
 
 /**
  * Contains response data for the getArrayItemEmpty operation.
  */
-export interface DictionaryGetArrayItemEmptyResponse extends msRest.HttpResponse {
+export type DictionaryGetArrayItemEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string[];
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string[] };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
+};
 
 /**
  * Contains response data for the getArrayValid operation.
  */
-export interface DictionaryGetArrayValidResponse extends msRest.HttpResponse {
+export type DictionaryGetArrayValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: string[];
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: string[] };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
+};
 
 /**
  * Contains response data for the getDictionaryNull operation.
  */
-export interface DictionaryGetDictionaryNullResponse extends msRest.HttpResponse {
+export type DictionaryGetDictionaryNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: { [propertyName: string]: string };
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
+};
 
 /**
  * Contains response data for the getDictionaryEmpty operation.
  */
-export interface DictionaryGetDictionaryEmptyResponse extends msRest.HttpResponse {
+export type DictionaryGetDictionaryEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: { [propertyName: string]: string };
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
+};
 
 /**
  * Contains response data for the getDictionaryItemNull operation.
  */
-export interface DictionaryGetDictionaryItemNullResponse extends msRest.HttpResponse {
+export type DictionaryGetDictionaryItemNullResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: { [propertyName: string]: string };
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
+};
 
 /**
  * Contains response data for the getDictionaryItemEmpty operation.
  */
-export interface DictionaryGetDictionaryItemEmptyResponse extends msRest.HttpResponse {
+export type DictionaryGetDictionaryItemEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: { [propertyName: string]: string };
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
+};
 
 /**
  * Contains response data for the getDictionaryValid operation.
  */
-export interface DictionaryGetDictionaryValidResponse extends msRest.HttpResponse {
+export type DictionaryGetDictionaryValidResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: { [propertyName: string]: string };
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
+};

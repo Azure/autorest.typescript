@@ -36,91 +36,17 @@ export class HttpServerFailure {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  head501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureHead501Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      head501OperationSpec) as Promise<Models.HttpServerFailureHead501Response>;
-  }
-
-  /**
-   * Return 501 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureGet501Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get501OperationSpec) as Promise<Models.HttpServerFailureGet501Response>;
-  }
-
-  /**
-   * Return 505 status code - should be represented in the client as an error
-   *
-   * @param {HttpServerFailurePost505OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  post505WithHttpOperationResponse(options?: Models.HttpServerFailurePost505OptionalParams): Promise<Models.HttpServerFailurePost505Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      post505OperationSpec) as Promise<Models.HttpServerFailurePost505Response>;
-  }
-
-  /**
-   * Return 505 status code - should be represented in the client as an error
-   *
-   * @param {HttpServerFailureDelete505OptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  delete505WithHttpOperationResponse(options?: Models.HttpServerFailureDelete505OptionalParams): Promise<Models.HttpServerFailureDelete505Response> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      delete505OperationSpec) as Promise<Models.HttpServerFailureDelete505Response>;
-  }
-
-  /**
-   * Return 501 status code - should be represented in the client as an error
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  head501(): Promise<Models.ErrorModel>;
-  head501(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  head501(): Promise<Models.HttpServerFailureHead501Response>;
+  head501(options: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureHead501Response>;
   head501(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head501(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head501(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.head501WithHttpOperationResponse.bind(this), options, callback);
+  head501(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureHead501Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      head501OperationSpec,
+      callback) as Promise<Models.HttpServerFailureHead501Response>;
   }
 
   /**
@@ -128,21 +54,23 @@ export class HttpServerFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get501(): Promise<Models.ErrorModel>;
-  get501(options: msRest.RequestOptionsBase): Promise<Models.ErrorModel>;
+  get501(): Promise<Models.HttpServerFailureGet501Response>;
+  get501(options: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureGet501Response>;
   get501(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get501(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get501(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.get501WithHttpOperationResponse.bind(this), options, callback);
+  get501(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureGet501Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get501OperationSpec,
+      callback) as Promise<Models.HttpServerFailureGet501Response>;
   }
 
   /**
@@ -150,21 +78,23 @@ export class HttpServerFailure {
    *
    * @param {HttpServerFailurePost505OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  post505(): Promise<Models.ErrorModel>;
-  post505(options: Models.HttpServerFailurePost505OptionalParams): Promise<Models.ErrorModel>;
+  post505(): Promise<Models.HttpServerFailurePost505Response>;
+  post505(options: Models.HttpServerFailurePost505OptionalParams): Promise<Models.HttpServerFailurePost505Response>;
   post505(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post505(options: Models.HttpServerFailurePost505OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  post505(options?: Models.HttpServerFailurePost505OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.post505WithHttpOperationResponse.bind(this), options, callback);
+  post505(options?: Models.HttpServerFailurePost505OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailurePost505Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      post505OperationSpec,
+      callback) as Promise<Models.HttpServerFailurePost505Response>;
   }
 
   /**
@@ -172,21 +102,23 @@ export class HttpServerFailure {
    *
    * @param {HttpServerFailureDelete505OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ErrorModel} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  delete505(): Promise<Models.ErrorModel>;
-  delete505(options: Models.HttpServerFailureDelete505OptionalParams): Promise<Models.ErrorModel>;
+  delete505(): Promise<Models.HttpServerFailureDelete505Response>;
+  delete505(options: Models.HttpServerFailureDelete505OptionalParams): Promise<Models.HttpServerFailureDelete505Response>;
   delete505(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete505(options: Models.HttpServerFailureDelete505OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  delete505(options?: Models.HttpServerFailureDelete505OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): any {
-    return msRest.responseToBody(this.delete505WithHttpOperationResponse.bind(this), options, callback);
+  delete505(options?: Models.HttpServerFailureDelete505OptionalParams, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureDelete505Response> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      delete505OperationSpec,
+      callback) as Promise<Models.HttpServerFailureDelete505Response>;
   }
 
 }

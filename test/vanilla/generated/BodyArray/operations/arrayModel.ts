@@ -36,1397 +36,17 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullOperationSpec) as Promise<Models.ArrayModelGetNullResponse>;
-  }
-
-  /**
-   * Get invalid array [1, 2, 3
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetInvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidOperationSpec) as Promise<Models.ArrayModelGetInvalidResponse>;
-  }
-
-  /**
-   * Get empty array value []
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getEmptyOperationSpec) as Promise<Models.ArrayModelGetEmptyResponse>;
-  }
-
-  /**
-   * Set array value empty []
-   *
-   * @param {string[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putEmptyWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putEmptyOperationSpec);
-  }
-
-  /**
-   * Get boolean array value [true, false, false, true]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBooleanTfftWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanTfftResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBooleanTfftOperationSpec) as Promise<Models.ArrayModelGetBooleanTfftResponse>;
-  }
-
-  /**
-   * Set array value empty [true, false, false, true]
-   *
-   * @param {boolean[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putBooleanTfftWithHttpOperationResponse(arrayBody: boolean[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putBooleanTfftOperationSpec);
-  }
-
-  /**
-   * Get boolean array value [true, null, false]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBooleanInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBooleanInvalidNullOperationSpec) as Promise<Models.ArrayModelGetBooleanInvalidNullResponse>;
-  }
-
-  /**
-   * Get boolean array value [true, 'boolean', false]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBooleanInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBooleanInvalidStringOperationSpec) as Promise<Models.ArrayModelGetBooleanInvalidStringResponse>;
-  }
-
-  /**
-   * Get integer array value [1, -1, 3, 300]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getIntegerValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntegerValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntegerValidOperationSpec) as Promise<Models.ArrayModelGetIntegerValidResponse>;
-  }
-
-  /**
-   * Set array value empty [1, -1, 3, 300]
-   *
-   * @param {number[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putIntegerValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putIntegerValidOperationSpec);
-  }
-
-  /**
-   * Get integer array value [1, null, 0]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getIntInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntInvalidNullOperationSpec) as Promise<Models.ArrayModelGetIntInvalidNullResponse>;
-  }
-
-  /**
-   * Get integer array value [1, 'integer', 0]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getIntInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getIntInvalidStringOperationSpec) as Promise<Models.ArrayModelGetIntInvalidStringResponse>;
-  }
-
-  /**
-   * Get integer array value [1, -1, 3, 300]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLongValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLongValidOperationSpec) as Promise<Models.ArrayModelGetLongValidResponse>;
-  }
-
-  /**
-   * Set array value empty [1, -1, 3, 300]
-   *
-   * @param {number[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putLongValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putLongValidOperationSpec);
-  }
-
-  /**
-   * Get long array value [1, null, 0]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLongInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLongInvalidNullOperationSpec) as Promise<Models.ArrayModelGetLongInvalidNullResponse>;
-  }
-
-  /**
-   * Get long array value [1, 'integer', 0]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLongInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLongInvalidStringOperationSpec) as Promise<Models.ArrayModelGetLongInvalidStringResponse>;
-  }
-
-  /**
-   * Get float array value [0, -0.01, 1.2e20]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getFloatValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getFloatValidOperationSpec) as Promise<Models.ArrayModelGetFloatValidResponse>;
-  }
-
-  /**
-   * Set array value [0, -0.01, 1.2e20]
-   *
-   * @param {number[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putFloatValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putFloatValidOperationSpec);
-  }
-
-  /**
-   * Get float array value [0.0, null, -1.2e20]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getFloatInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getFloatInvalidNullOperationSpec) as Promise<Models.ArrayModelGetFloatInvalidNullResponse>;
-  }
-
-  /**
-   * Get boolean array value [1.0, 'number', 0.0]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getFloatInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getFloatInvalidStringOperationSpec) as Promise<Models.ArrayModelGetFloatInvalidStringResponse>;
-  }
-
-  /**
-   * Get float array value [0, -0.01, 1.2e20]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDoubleValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDoubleValidOperationSpec) as Promise<Models.ArrayModelGetDoubleValidResponse>;
-  }
-
-  /**
-   * Set array value [0, -0.01, 1.2e20]
-   *
-   * @param {number[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDoubleValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDoubleValidOperationSpec);
-  }
-
-  /**
-   * Get float array value [0.0, null, -1.2e20]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDoubleInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDoubleInvalidNullOperationSpec) as Promise<Models.ArrayModelGetDoubleInvalidNullResponse>;
-  }
-
-  /**
-   * Get boolean array value [1.0, 'number', 0.0]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDoubleInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidStringResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDoubleInvalidStringOperationSpec) as Promise<Models.ArrayModelGetDoubleInvalidStringResponse>;
-  }
-
-  /**
-   * Get string array value ['foo1', 'foo2', 'foo3']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getStringValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getStringValidOperationSpec) as Promise<Models.ArrayModelGetStringValidResponse>;
-  }
-
-  /**
-   * Set array value ['foo1', 'foo2', 'foo3']
-   *
-   * @param {string[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putStringValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putStringValidOperationSpec);
-  }
-
-  /**
-   * Get enum array value ['foo1', 'foo2', 'foo3']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getEnumValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEnumValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getEnumValidOperationSpec) as Promise<Models.ArrayModelGetEnumValidResponse>;
-  }
-
-  /**
-   * Set array value ['foo1', 'foo2', 'foo3']
-   *
-   * @param {FooEnum[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putEnumValidWithHttpOperationResponse(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putEnumValidOperationSpec);
-  }
-
-  /**
-   * Get enum array value ['foo1', 'foo2', 'foo3']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getStringEnumValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringEnumValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getStringEnumValidOperationSpec) as Promise<Models.ArrayModelGetStringEnumValidResponse>;
-  }
-
-  /**
-   * Set array value ['foo1', 'foo2', 'foo3']
-   *
-   * @param {string[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putStringEnumValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putStringEnumValidOperationSpec);
-  }
-
-  /**
-   * Get string array value ['foo', null, 'foo2']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getStringWithNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getStringWithNullOperationSpec) as Promise<Models.ArrayModelGetStringWithNullResponse>;
-  }
-
-  /**
-   * Get string array value ['foo', 123, 'foo2']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getStringWithInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithInvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getStringWithInvalidOperationSpec) as Promise<Models.ArrayModelGetStringWithInvalidResponse>;
-  }
-
-  /**
-   * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
-   * 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUuidValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetUuidValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUuidValidOperationSpec) as Promise<Models.ArrayModelGetUuidValidResponse>;
-  }
-
-  /**
-   * Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
-   * 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205']
-   *
-   * @param {string[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putUuidValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putUuidValidOperationSpec);
-  }
-
-  /**
-   * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUuidInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetUuidInvalidCharsResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUuidInvalidCharsOperationSpec) as Promise<Models.ArrayModelGetUuidInvalidCharsResponse>;
-  }
-
-  /**
-   * Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateValidOperationSpec) as Promise<Models.ArrayModelGetDateValidResponse>;
-  }
-
-  /**
-   * Set array value  ['2000-12-01', '1980-01-02', '1492-10-12']
-   *
-   * @param {Array<Date> | Array<string>} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDateValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDateValidOperationSpec);
-  }
-
-  /**
-   * Get date array value ['2012-01-01', null, '1776-07-04']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateInvalidNullOperationSpec) as Promise<Models.ArrayModelGetDateInvalidNullResponse>;
-  }
-
-  /**
-   * Get date array value ['2011-03-22', 'date']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidCharsResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateInvalidCharsOperationSpec) as Promise<Models.ArrayModelGetDateInvalidCharsResponse>;
-  }
-
-  /**
-   * Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
-   * '1492-10-12T10:15:01-08:00']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeValidOperationSpec) as Promise<Models.ArrayModelGetDateTimeValidResponse>;
-  }
-
-  /**
-   * Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
-   * '1492-10-12T10:15:01-08:00']
-   *
-   * @param {Array<Date> | Array<string>} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDateTimeValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDateTimeValidOperationSpec);
-  }
-
-  /**
-   * Get date array value ['2000-12-01t00:00:01z', null]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeInvalidNullOperationSpec) as Promise<Models.ArrayModelGetDateTimeInvalidNullResponse>;
-  }
-
-  /**
-   * Get date array value ['2000-12-01t00:00:01z', 'date-time']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeInvalidCharsOperationSpec) as Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse>;
-  }
-
-  /**
-   * Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
-   * 'Wed, 12 Oct 1492 10:15:01 GMT']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDateTimeRfc1123ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDateTimeRfc1123ValidOperationSpec) as Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse>;
-  }
-
-  /**
-   * Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct
-   * 1492 10:15:01 GMT']
-   *
-   * @param {Array<Date> | Array<string>} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDateTimeRfc1123ValidOperationSpec);
-  }
-
-  /**
-   * Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S']
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDurationValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDurationValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDurationValidOperationSpec) as Promise<Models.ArrayModelGetDurationValidResponse>;
-  }
-
-  /**
-   * Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S']
-   *
-   * @param {string[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDurationValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDurationValidOperationSpec);
-  }
-
-  /**
-   * Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
-   * in base64
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getByteValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetByteValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getByteValidOperationSpec) as Promise<Models.ArrayModelGetByteValidResponse>;
-  }
-
-  /**
-   * Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded
-   * in base 64
-   *
-   * @param {Uint8Array[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putByteValidWithHttpOperationResponse(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putByteValidOperationSpec);
-  }
-
-  /**
-   * Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getByteInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetByteInvalidNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getByteInvalidNullOperationSpec) as Promise<Models.ArrayModelGetByteInvalidNullResponse>;
-  }
-
-  /**
-   * Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
-   * the items base64url encoded
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getBase64UrlWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBase64UrlResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getBase64UrlOperationSpec) as Promise<Models.ArrayModelGetBase64UrlResponse>;
-  }
-
-  /**
-   * Get array of complex type null value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexNullOperationSpec) as Promise<Models.ArrayModelGetComplexNullResponse>;
-  }
-
-  /**
-   * Get empty array of complex type []
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexEmptyOperationSpec) as Promise<Models.ArrayModelGetComplexEmptyResponse>;
-  }
-
-  /**
-   * Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
-   * 'string': '6'}]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexItemNullOperationSpec) as Promise<Models.ArrayModelGetComplexItemNullResponse>;
-  }
-
-  /**
-   * Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
-   * 'string': '6'}]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexItemEmptyOperationSpec) as Promise<Models.ArrayModelGetComplexItemEmptyResponse>;
-  }
-
-  /**
-   * Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
-   * {'integer': 5, 'string': '6'}]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getComplexValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getComplexValidOperationSpec) as Promise<Models.ArrayModelGetComplexValidResponse>;
-  }
-
-  /**
-   * Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string':
-   * '4'}, {'integer': 5, 'string': '6'}]
-   *
-   * @param {Product[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putComplexValidWithHttpOperationResponse(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putComplexValidOperationSpec);
-  }
-
-  /**
-   * Get a null array
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayNullOperationSpec) as Promise<Models.ArrayModelGetArrayNullResponse>;
-  }
-
-  /**
-   * Get an empty array []
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayEmptyOperationSpec) as Promise<Models.ArrayModelGetArrayEmptyResponse>;
-  }
-
-  /**
-   * Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayItemNullOperationSpec) as Promise<Models.ArrayModelGetArrayItemNullResponse>;
-  }
-
-  /**
-   * Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayItemEmptyOperationSpec) as Promise<Models.ArrayModelGetArrayItemEmptyResponse>;
-  }
-
-  /**
-   * Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getArrayValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getArrayValidOperationSpec) as Promise<Models.ArrayModelGetArrayValidResponse>;
-  }
-
-  /**
-   * Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
-   *
-   * @param {string[][]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putArrayValidWithHttpOperationResponse(arrayBody: string[][], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putArrayValidOperationSpec);
-  }
-
-  /**
-   * Get an array of Dictionaries with value null
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryNullOperationSpec) as Promise<Models.ArrayModelGetDictionaryNullResponse>;
-  }
-
-  /**
-   * Get an array of Dictionaries of type <string, string> with value []
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryEmptyOperationSpec) as Promise<Models.ArrayModelGetDictionaryEmptyResponse>;
-  }
-
-  /**
-   * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-   * 'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryItemNullOperationSpec) as Promise<Models.ArrayModelGetDictionaryItemNullResponse>;
-  }
-
-  /**
-   * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-   * 'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryItemEmptyOperationSpec) as Promise<Models.ArrayModelGetDictionaryItemEmptyResponse>;
-  }
-
-  /**
-   * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-   * 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDictionaryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDictionaryValidOperationSpec) as Promise<Models.ArrayModelGetDictionaryValidResponse>;
-  }
-
-  /**
-   * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-   * 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
-   *
-   * @param {{ [propertyName: string]: string }[]} arrayBody
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putDictionaryValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        arrayBody,
-        options
-      },
-      putDictionaryValidOperationSpec);
-  }
-
-  /**
-   * Get null array value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNull(): Promise<number[]>;
-  getNull(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getNull(): Promise<Models.ArrayModelGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNullResponse>;
   getNull(callback: msRest.ServiceCallback<number[]>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetNullResponse>;
   }
 
   /**
@@ -1434,21 +54,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalid(): Promise<number[]>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getInvalid(): Promise<Models.ArrayModelGetInvalidResponse>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetInvalidResponse>;
   getInvalid(callback: msRest.ServiceCallback<number[]>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetInvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetInvalidResponse>;
   }
 
   /**
@@ -1456,21 +78,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getEmpty(): Promise<number[]>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getEmpty(): Promise<Models.ArrayModelGetEmptyResponse>;
+  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse>;
   getEmpty(callback: msRest.ServiceCallback<number[]>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyOperationSpec,
+      callback) as Promise<Models.ArrayModelGetEmptyResponse>;
   }
 
   /**
@@ -1480,21 +104,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putEmpty(arrayBody: string[]): Promise<void>;
-  putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
+  putEmpty(arrayBody: string[]): Promise<msRest.RestResponse>;
+  putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putEmpty(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putEmpty(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -1502,21 +129,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBooleanTfft(): Promise<boolean[]>;
-  getBooleanTfft(options: msRest.RequestOptionsBase): Promise<boolean[]>;
+  getBooleanTfft(): Promise<Models.ArrayModelGetBooleanTfftResponse>;
+  getBooleanTfft(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanTfftResponse>;
   getBooleanTfft(callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanTfft(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanTfft(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): any {
-    return msRest.responseToBody(this.getBooleanTfftWithHttpOperationResponse.bind(this), options, callback);
+  getBooleanTfft(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanTfftResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBooleanTfftOperationSpec,
+      callback) as Promise<Models.ArrayModelGetBooleanTfftResponse>;
   }
 
   /**
@@ -1526,21 +155,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putBooleanTfft(arrayBody: boolean[]): Promise<void>;
-  putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase): Promise<void>;
+  putBooleanTfft(arrayBody: boolean[]): Promise<msRest.RestResponse>;
+  putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putBooleanTfft(arrayBody: boolean[], callback: msRest.ServiceCallback<void>): void;
   putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBooleanTfft(arrayBody: boolean[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putBooleanTfftWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putBooleanTfft(arrayBody: boolean[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putBooleanTfftOperationSpec,
+      callback);
   }
 
   /**
@@ -1548,21 +180,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBooleanInvalidNull(): Promise<boolean[]>;
-  getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<boolean[]>;
+  getBooleanInvalidNull(): Promise<Models.ArrayModelGetBooleanInvalidNullResponse>;
+  getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidNullResponse>;
   getBooleanInvalidNull(callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): any {
-    return msRest.responseToBody(this.getBooleanInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getBooleanInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBooleanInvalidNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetBooleanInvalidNullResponse>;
   }
 
   /**
@@ -1570,21 +204,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {boolean[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBooleanInvalidString(): Promise<boolean[]>;
-  getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<boolean[]>;
+  getBooleanInvalidString(): Promise<Models.ArrayModelGetBooleanInvalidStringResponse>;
+  getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidStringResponse>;
   getBooleanInvalidString(callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): any {
-    return msRest.responseToBody(this.getBooleanInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getBooleanInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBooleanInvalidStringOperationSpec,
+      callback) as Promise<Models.ArrayModelGetBooleanInvalidStringResponse>;
   }
 
   /**
@@ -1592,21 +228,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getIntegerValid(): Promise<number[]>;
-  getIntegerValid(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getIntegerValid(): Promise<Models.ArrayModelGetIntegerValidResponse>;
+  getIntegerValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntegerValidResponse>;
   getIntegerValid(callback: msRest.ServiceCallback<number[]>): void;
   getIntegerValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntegerValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getIntegerValidWithHttpOperationResponse.bind(this), options, callback);
+  getIntegerValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntegerValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntegerValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetIntegerValidResponse>;
   }
 
   /**
@@ -1616,21 +254,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putIntegerValid(arrayBody: number[]): Promise<void>;
-  putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
+  putIntegerValid(arrayBody: number[]): Promise<msRest.RestResponse>;
+  putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putIntegerValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putIntegerValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putIntegerValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putIntegerValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putIntegerValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1638,21 +279,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getIntInvalidNull(): Promise<number[]>;
-  getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getIntInvalidNull(): Promise<Models.ArrayModelGetIntInvalidNullResponse>;
+  getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidNullResponse>;
   getIntInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getIntInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getIntInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getIntInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntInvalidNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetIntInvalidNullResponse>;
   }
 
   /**
@@ -1660,21 +303,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getIntInvalidString(): Promise<number[]>;
-  getIntInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getIntInvalidString(): Promise<Models.ArrayModelGetIntInvalidStringResponse>;
+  getIntInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidStringResponse>;
   getIntInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getIntInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getIntInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getIntInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getIntInvalidStringOperationSpec,
+      callback) as Promise<Models.ArrayModelGetIntInvalidStringResponse>;
   }
 
   /**
@@ -1682,21 +327,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLongValid(): Promise<number[]>;
-  getLongValid(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getLongValid(): Promise<Models.ArrayModelGetLongValidResponse>;
+  getLongValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongValidResponse>;
   getLongValid(callback: msRest.ServiceCallback<number[]>): void;
   getLongValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getLongValidWithHttpOperationResponse.bind(this), options, callback);
+  getLongValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLongValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetLongValidResponse>;
   }
 
   /**
@@ -1706,21 +353,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putLongValid(arrayBody: number[]): Promise<void>;
-  putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
+  putLongValid(arrayBody: number[]): Promise<msRest.RestResponse>;
+  putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putLongValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLongValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putLongValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putLongValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putLongValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1728,21 +378,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLongInvalidNull(): Promise<number[]>;
-  getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getLongInvalidNull(): Promise<Models.ArrayModelGetLongInvalidNullResponse>;
+  getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidNullResponse>;
   getLongInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getLongInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getLongInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getLongInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLongInvalidNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetLongInvalidNullResponse>;
   }
 
   /**
@@ -1750,21 +402,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLongInvalidString(): Promise<number[]>;
-  getLongInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getLongInvalidString(): Promise<Models.ArrayModelGetLongInvalidStringResponse>;
+  getLongInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidStringResponse>;
   getLongInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getLongInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getLongInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getLongInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLongInvalidStringOperationSpec,
+      callback) as Promise<Models.ArrayModelGetLongInvalidStringResponse>;
   }
 
   /**
@@ -1772,21 +426,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getFloatValid(): Promise<number[]>;
-  getFloatValid(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getFloatValid(): Promise<Models.ArrayModelGetFloatValidResponse>;
+  getFloatValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatValidResponse>;
   getFloatValid(callback: msRest.ServiceCallback<number[]>): void;
   getFloatValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getFloatValidWithHttpOperationResponse.bind(this), options, callback);
+  getFloatValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getFloatValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetFloatValidResponse>;
   }
 
   /**
@@ -1796,21 +452,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putFloatValid(arrayBody: number[]): Promise<void>;
-  putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
+  putFloatValid(arrayBody: number[]): Promise<msRest.RestResponse>;
+  putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putFloatValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFloatValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putFloatValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putFloatValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putFloatValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1818,21 +477,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getFloatInvalidNull(): Promise<number[]>;
-  getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getFloatInvalidNull(): Promise<Models.ArrayModelGetFloatInvalidNullResponse>;
+  getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidNullResponse>;
   getFloatInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getFloatInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getFloatInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getFloatInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getFloatInvalidNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetFloatInvalidNullResponse>;
   }
 
   /**
@@ -1840,21 +501,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getFloatInvalidString(): Promise<number[]>;
-  getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getFloatInvalidString(): Promise<Models.ArrayModelGetFloatInvalidStringResponse>;
+  getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidStringResponse>;
   getFloatInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getFloatInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getFloatInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getFloatInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getFloatInvalidStringOperationSpec,
+      callback) as Promise<Models.ArrayModelGetFloatInvalidStringResponse>;
   }
 
   /**
@@ -1862,21 +525,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDoubleValid(): Promise<number[]>;
-  getDoubleValid(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getDoubleValid(): Promise<Models.ArrayModelGetDoubleValidResponse>;
+  getDoubleValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleValidResponse>;
   getDoubleValid(callback: msRest.ServiceCallback<number[]>): void;
   getDoubleValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getDoubleValidWithHttpOperationResponse.bind(this), options, callback);
+  getDoubleValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDoubleValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDoubleValidResponse>;
   }
 
   /**
@@ -1886,21 +551,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDoubleValid(arrayBody: number[]): Promise<void>;
-  putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<void>;
+  putDoubleValid(arrayBody: number[]): Promise<msRest.RestResponse>;
+  putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDoubleValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDoubleValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDoubleValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDoubleValid(arrayBody: number[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDoubleValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1908,21 +576,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDoubleInvalidNull(): Promise<number[]>;
-  getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getDoubleInvalidNull(): Promise<Models.ArrayModelGetDoubleInvalidNullResponse>;
+  getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidNullResponse>;
   getDoubleInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   getDoubleInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getDoubleInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getDoubleInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDoubleInvalidNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDoubleInvalidNullResponse>;
   }
 
   /**
@@ -1930,21 +600,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {number[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDoubleInvalidString(): Promise<number[]>;
-  getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<number[]>;
+  getDoubleInvalidString(): Promise<Models.ArrayModelGetDoubleInvalidStringResponse>;
+  getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidStringResponse>;
   getDoubleInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   getDoubleInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): any {
-    return msRest.responseToBody(this.getDoubleInvalidStringWithHttpOperationResponse.bind(this), options, callback);
+  getDoubleInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleInvalidStringResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDoubleInvalidStringOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDoubleInvalidStringResponse>;
   }
 
   /**
@@ -1952,21 +624,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getStringValid(): Promise<string[]>;
-  getStringValid(options: msRest.RequestOptionsBase): Promise<string[]>;
+  getStringValid(): Promise<Models.ArrayModelGetStringValidResponse>;
+  getStringValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringValidResponse>;
   getStringValid(callback: msRest.ServiceCallback<string[]>): void;
   getStringValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    return msRest.responseToBody(this.getStringValidWithHttpOperationResponse.bind(this), options, callback);
+  getStringValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getStringValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetStringValidResponse>;
   }
 
   /**
@@ -1976,21 +650,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putStringValid(arrayBody: string[]): Promise<void>;
-  putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
+  putStringValid(arrayBody: string[]): Promise<msRest.RestResponse>;
+  putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putStringValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putStringValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putStringValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putStringValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putStringValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1998,21 +675,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.FooEnum[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getEnumValid(): Promise<Models.FooEnum[]>;
-  getEnumValid(options: msRest.RequestOptionsBase): Promise<Models.FooEnum[]>;
+  getEnumValid(): Promise<Models.ArrayModelGetEnumValidResponse>;
+  getEnumValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEnumValidResponse>;
   getEnumValid(callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
   getEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
-  getEnumValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FooEnum[]>): any {
-    return msRest.responseToBody(this.getEnumValidWithHttpOperationResponse.bind(this), options, callback);
+  getEnumValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FooEnum[]>): Promise<Models.ArrayModelGetEnumValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEnumValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetEnumValidResponse>;
   }
 
   /**
@@ -2022,21 +701,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putEnumValid(arrayBody: Models.FooEnum[]): Promise<void>;
-  putEnumValid(arrayBody: Models.FooEnum[], options: msRest.RequestOptionsBase): Promise<void>;
+  putEnumValid(arrayBody: Models.FooEnum[]): Promise<msRest.RestResponse>;
+  putEnumValid(arrayBody: Models.FooEnum[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putEnumValid(arrayBody: Models.FooEnum[], callback: msRest.ServiceCallback<void>): void;
   putEnumValid(arrayBody: Models.FooEnum[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEnumValid(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEnumValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putEnumValid(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putEnumValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2044,21 +726,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getStringEnumValid(): Promise<string[]>;
-  getStringEnumValid(options: msRest.RequestOptionsBase): Promise<string[]>;
+  getStringEnumValid(): Promise<Models.ArrayModelGetStringEnumValidResponse>;
+  getStringEnumValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringEnumValidResponse>;
   getStringEnumValid(callback: msRest.ServiceCallback<string[]>): void;
   getStringEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringEnumValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    return msRest.responseToBody(this.getStringEnumValidWithHttpOperationResponse.bind(this), options, callback);
+  getStringEnumValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringEnumValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getStringEnumValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetStringEnumValidResponse>;
   }
 
   /**
@@ -2068,21 +752,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putStringEnumValid(arrayBody: string[]): Promise<void>;
-  putStringEnumValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
+  putStringEnumValid(arrayBody: string[]): Promise<msRest.RestResponse>;
+  putStringEnumValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putStringEnumValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putStringEnumValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putStringEnumValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putStringEnumValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putStringEnumValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putStringEnumValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2090,21 +777,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getStringWithNull(): Promise<string[]>;
-  getStringWithNull(options: msRest.RequestOptionsBase): Promise<string[]>;
+  getStringWithNull(): Promise<Models.ArrayModelGetStringWithNullResponse>;
+  getStringWithNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithNullResponse>;
   getStringWithNull(callback: msRest.ServiceCallback<string[]>): void;
   getStringWithNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringWithNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    return msRest.responseToBody(this.getStringWithNullWithHttpOperationResponse.bind(this), options, callback);
+  getStringWithNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringWithNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getStringWithNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetStringWithNullResponse>;
   }
 
   /**
@@ -2112,21 +801,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getStringWithInvalid(): Promise<string[]>;
-  getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<string[]>;
+  getStringWithInvalid(): Promise<Models.ArrayModelGetStringWithInvalidResponse>;
+  getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithInvalidResponse>;
   getStringWithInvalid(callback: msRest.ServiceCallback<string[]>): void;
   getStringWithInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringWithInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    return msRest.responseToBody(this.getStringWithInvalidWithHttpOperationResponse.bind(this), options, callback);
+  getStringWithInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringWithInvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getStringWithInvalidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetStringWithInvalidResponse>;
   }
 
   /**
@@ -2135,21 +826,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUuidValid(): Promise<string[]>;
-  getUuidValid(options: msRest.RequestOptionsBase): Promise<string[]>;
+  getUuidValid(): Promise<Models.ArrayModelGetUuidValidResponse>;
+  getUuidValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetUuidValidResponse>;
   getUuidValid(callback: msRest.ServiceCallback<string[]>): void;
   getUuidValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getUuidValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    return msRest.responseToBody(this.getUuidValidWithHttpOperationResponse.bind(this), options, callback);
+  getUuidValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetUuidValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUuidValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetUuidValidResponse>;
   }
 
   /**
@@ -2160,21 +853,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putUuidValid(arrayBody: string[]): Promise<void>;
-  putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
+  putUuidValid(arrayBody: string[]): Promise<msRest.RestResponse>;
+  putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putUuidValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUuidValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putUuidValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putUuidValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putUuidValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2182,21 +878,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUuidInvalidChars(): Promise<string[]>;
-  getUuidInvalidChars(options: msRest.RequestOptionsBase): Promise<string[]>;
+  getUuidInvalidChars(): Promise<Models.ArrayModelGetUuidInvalidCharsResponse>;
+  getUuidInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetUuidInvalidCharsResponse>;
   getUuidInvalidChars(callback: msRest.ServiceCallback<string[]>): void;
   getUuidInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getUuidInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    return msRest.responseToBody(this.getUuidInvalidCharsWithHttpOperationResponse.bind(this), options, callback);
+  getUuidInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetUuidInvalidCharsResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUuidInvalidCharsOperationSpec,
+      callback) as Promise<Models.ArrayModelGetUuidInvalidCharsResponse>;
   }
 
   /**
@@ -2204,21 +902,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date[] | string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateValid(): Promise<Date[] | string[]>;
-  getDateValid(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
+  getDateValid(): Promise<Models.ArrayModelGetDateValidResponse>;
+  getDateValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateValidResponse>;
   getDateValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    return msRest.responseToBody(this.getDateValidWithHttpOperationResponse.bind(this), options, callback);
+  getDateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDateValidResponse>;
   }
 
   /**
@@ -2228,21 +928,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDateValid(arrayBody: Array<Date> | Array<string>): Promise<void>;
-  putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<void>;
+  putDateValid(arrayBody: Array<Date> | Array<string>): Promise<msRest.RestResponse>;
+  putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDateValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDateValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDateValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDateValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2250,21 +953,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date[] | string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateInvalidNull(): Promise<Date[] | string[]>;
-  getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
+  getDateInvalidNull(): Promise<Models.ArrayModelGetDateInvalidNullResponse>;
+  getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidNullResponse>;
   getDateInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    return msRest.responseToBody(this.getDateInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getDateInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateInvalidNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDateInvalidNullResponse>;
   }
 
   /**
@@ -2272,21 +977,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date[] | string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateInvalidChars(): Promise<Date[] | string[]>;
-  getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
+  getDateInvalidChars(): Promise<Models.ArrayModelGetDateInvalidCharsResponse>;
+  getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidCharsResponse>;
   getDateInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    return msRest.responseToBody(this.getDateInvalidCharsWithHttpOperationResponse.bind(this), options, callback);
+  getDateInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateInvalidCharsResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateInvalidCharsOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDateInvalidCharsResponse>;
   }
 
   /**
@@ -2295,21 +1002,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date[] | string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTimeValid(): Promise<Date[] | string[]>;
-  getDateTimeValid(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
+  getDateTimeValid(): Promise<Models.ArrayModelGetDateTimeValidResponse>;
+  getDateTimeValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeValidResponse>;
   getDateTimeValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    return msRest.responseToBody(this.getDateTimeValidWithHttpOperationResponse.bind(this), options, callback);
+  getDateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDateTimeValidResponse>;
   }
 
   /**
@@ -2320,21 +1029,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDateTimeValid(arrayBody: Array<Date> | Array<string>): Promise<void>;
-  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<void>;
+  putDateTimeValid(arrayBody: Array<Date> | Array<string>): Promise<msRest.RestResponse>;
+  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDateTimeValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDateTimeValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2342,21 +1054,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date[] | string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTimeInvalidNull(): Promise<Date[] | string[]>;
-  getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
+  getDateTimeInvalidNull(): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse>;
+  getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse>;
   getDateTimeInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    return msRest.responseToBody(this.getDateTimeInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeInvalidNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDateTimeInvalidNullResponse>;
   }
 
   /**
@@ -2364,21 +1078,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date[] | string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTimeInvalidChars(): Promise<Date[] | string[]>;
-  getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
+  getDateTimeInvalidChars(): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse>;
+  getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse>;
   getDateTimeInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    return msRest.responseToBody(this.getDateTimeInvalidCharsWithHttpOperationResponse.bind(this), options, callback);
+  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeInvalidCharsOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse>;
   }
 
   /**
@@ -2387,21 +1103,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Date[] | string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDateTimeRfc1123Valid(): Promise<Date[] | string[]>;
-  getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<Date[] | string[]>;
+  getDateTimeRfc1123Valid(): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse>;
+  getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse>;
   getDateTimeRfc1123Valid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): any {
-    return msRest.responseToBody(this.getDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), options, callback);
+  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDateTimeRfc1123ValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse>;
   }
 
   /**
@@ -2412,21 +1130,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>): Promise<void>;
-  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<void>;
+  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>): Promise<msRest.RestResponse>;
+  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDateTimeRfc1123ValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDateTimeRfc1123ValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2434,21 +1155,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDurationValid(): Promise<string[]>;
-  getDurationValid(options: msRest.RequestOptionsBase): Promise<string[]>;
+  getDurationValid(): Promise<Models.ArrayModelGetDurationValidResponse>;
+  getDurationValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDurationValidResponse>;
   getDurationValid(callback: msRest.ServiceCallback<string[]>): void;
   getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
-    return msRest.responseToBody(this.getDurationValidWithHttpOperationResponse.bind(this), options, callback);
+  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetDurationValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDurationValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDurationValidResponse>;
   }
 
   /**
@@ -2458,21 +1181,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDurationValid(arrayBody: string[]): Promise<void>;
-  putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
+  putDurationValid(arrayBody: string[]): Promise<msRest.RestResponse>;
+  putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDurationValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDurationValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDurationValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDurationValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2481,21 +1207,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Uint8Array[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getByteValid(): Promise<Uint8Array[]>;
-  getByteValid(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
+  getByteValid(): Promise<Models.ArrayModelGetByteValidResponse>;
+  getByteValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetByteValidResponse>;
   getByteValid(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
-    return msRest.responseToBody(this.getByteValidWithHttpOperationResponse.bind(this), options, callback);
+  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetByteValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getByteValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetByteValidResponse>;
   }
 
   /**
@@ -2506,21 +1234,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putByteValid(arrayBody: Uint8Array[]): Promise<void>;
-  putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase): Promise<void>;
+  putByteValid(arrayBody: Uint8Array[]): Promise<msRest.RestResponse>;
+  putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putByteValid(arrayBody: Uint8Array[], callback: msRest.ServiceCallback<void>): void;
   putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putByteValid(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putByteValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putByteValid(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putByteValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2528,21 +1259,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Uint8Array[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getByteInvalidNull(): Promise<Uint8Array[]>;
-  getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
+  getByteInvalidNull(): Promise<Models.ArrayModelGetByteInvalidNullResponse>;
+  getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetByteInvalidNullResponse>;
   getByteInvalidNull(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
-    return msRest.responseToBody(this.getByteInvalidNullWithHttpOperationResponse.bind(this), options, callback);
+  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetByteInvalidNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getByteInvalidNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetByteInvalidNullResponse>;
   }
 
   /**
@@ -2551,21 +1284,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Uint8Array[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getBase64Url(): Promise<Uint8Array[]>;
-  getBase64Url(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
+  getBase64Url(): Promise<Models.ArrayModelGetBase64UrlResponse>;
+  getBase64Url(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBase64UrlResponse>;
   getBase64Url(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
-    return msRest.responseToBody(this.getBase64UrlWithHttpOperationResponse.bind(this), options, callback);
+  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetBase64UrlResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getBase64UrlOperationSpec,
+      callback) as Promise<Models.ArrayModelGetBase64UrlResponse>;
   }
 
   /**
@@ -2573,21 +1308,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexNull(): Promise<Models.Product[]>;
-  getComplexNull(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
+  getComplexNull(): Promise<Models.ArrayModelGetComplexNullResponse>;
+  getComplexNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexNullResponse>;
   getComplexNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    return msRest.responseToBody(this.getComplexNullWithHttpOperationResponse.bind(this), options, callback);
+  getComplexNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetComplexNullResponse>;
   }
 
   /**
@@ -2595,21 +1332,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexEmpty(): Promise<Models.Product[]>;
-  getComplexEmpty(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
+  getComplexEmpty(): Promise<Models.ArrayModelGetComplexEmptyResponse>;
+  getComplexEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexEmptyResponse>;
   getComplexEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    return msRest.responseToBody(this.getComplexEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getComplexEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexEmptyOperationSpec,
+      callback) as Promise<Models.ArrayModelGetComplexEmptyResponse>;
   }
 
   /**
@@ -2618,21 +1357,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexItemNull(): Promise<Models.Product[]>;
-  getComplexItemNull(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
+  getComplexItemNull(): Promise<Models.ArrayModelGetComplexItemNullResponse>;
+  getComplexItemNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemNullResponse>;
   getComplexItemNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    return msRest.responseToBody(this.getComplexItemNullWithHttpOperationResponse.bind(this), options, callback);
+  getComplexItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexItemNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexItemNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetComplexItemNullResponse>;
   }
 
   /**
@@ -2641,21 +1382,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexItemEmpty(): Promise<Models.Product[]>;
-  getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
+  getComplexItemEmpty(): Promise<Models.ArrayModelGetComplexItemEmptyResponse>;
+  getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemEmptyResponse>;
   getComplexItemEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    return msRest.responseToBody(this.getComplexItemEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getComplexItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexItemEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexItemEmptyOperationSpec,
+      callback) as Promise<Models.ArrayModelGetComplexItemEmptyResponse>;
   }
 
   /**
@@ -2664,21 +1407,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.Product[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getComplexValid(): Promise<Models.Product[]>;
-  getComplexValid(options: msRest.RequestOptionsBase): Promise<Models.Product[]>;
+  getComplexValid(): Promise<Models.ArrayModelGetComplexValidResponse>;
+  getComplexValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexValidResponse>;
   getComplexValid(callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): any {
-    return msRest.responseToBody(this.getComplexValidWithHttpOperationResponse.bind(this), options, callback);
+  getComplexValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComplexValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetComplexValidResponse>;
   }
 
   /**
@@ -2689,21 +1434,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putComplexValid(arrayBody: Models.Product[]): Promise<void>;
-  putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase): Promise<void>;
+  putComplexValid(arrayBody: Models.Product[]): Promise<msRest.RestResponse>;
+  putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putComplexValid(arrayBody: Models.Product[], callback: msRest.ServiceCallback<void>): void;
   putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexValid(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putComplexValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putComplexValid(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putComplexValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2711,21 +1459,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[][]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayNull(): Promise<string[][]>;
-  getArrayNull(options: msRest.RequestOptionsBase): Promise<string[][]>;
+  getArrayNull(): Promise<Models.ArrayModelGetArrayNullResponse>;
+  getArrayNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayNullResponse>;
   getArrayNull(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    return msRest.responseToBody(this.getArrayNullWithHttpOperationResponse.bind(this), options, callback);
+  getArrayNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetArrayNullResponse>;
   }
 
   /**
@@ -2733,21 +1483,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[][]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayEmpty(): Promise<string[][]>;
-  getArrayEmpty(options: msRest.RequestOptionsBase): Promise<string[][]>;
+  getArrayEmpty(): Promise<Models.ArrayModelGetArrayEmptyResponse>;
+  getArrayEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayEmptyResponse>;
   getArrayEmpty(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    return msRest.responseToBody(this.getArrayEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getArrayEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayEmptyOperationSpec,
+      callback) as Promise<Models.ArrayModelGetArrayEmptyResponse>;
   }
 
   /**
@@ -2755,21 +1507,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[][]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayItemNull(): Promise<string[][]>;
-  getArrayItemNull(options: msRest.RequestOptionsBase): Promise<string[][]>;
+  getArrayItemNull(): Promise<Models.ArrayModelGetArrayItemNullResponse>;
+  getArrayItemNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemNullResponse>;
   getArrayItemNull(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    return msRest.responseToBody(this.getArrayItemNullWithHttpOperationResponse.bind(this), options, callback);
+  getArrayItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayItemNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayItemNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetArrayItemNullResponse>;
   }
 
   /**
@@ -2777,21 +1531,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[][]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayItemEmpty(): Promise<string[][]>;
-  getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<string[][]>;
+  getArrayItemEmpty(): Promise<Models.ArrayModelGetArrayItemEmptyResponse>;
+  getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemEmptyResponse>;
   getArrayItemEmpty(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    return msRest.responseToBody(this.getArrayItemEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getArrayItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayItemEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayItemEmptyOperationSpec,
+      callback) as Promise<Models.ArrayModelGetArrayItemEmptyResponse>;
   }
 
   /**
@@ -2799,21 +1555,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string[][]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getArrayValid(): Promise<string[][]>;
-  getArrayValid(options: msRest.RequestOptionsBase): Promise<string[][]>;
+  getArrayValid(): Promise<Models.ArrayModelGetArrayValidResponse>;
+  getArrayValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayValidResponse>;
   getArrayValid(callback: msRest.ServiceCallback<string[][]>): void;
   getArrayValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): any {
-    return msRest.responseToBody(this.getArrayValidWithHttpOperationResponse.bind(this), options, callback);
+  getArrayValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getArrayValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetArrayValidResponse>;
   }
 
   /**
@@ -2823,21 +1581,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putArrayValid(arrayBody: string[][]): Promise<void>;
-  putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase): Promise<void>;
+  putArrayValid(arrayBody: string[][]): Promise<msRest.RestResponse>;
+  putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putArrayValid(arrayBody: string[][], callback: msRest.ServiceCallback<void>): void;
   putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putArrayValid(arrayBody: string[][], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putArrayValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putArrayValid(arrayBody: string[][], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putArrayValidOperationSpec,
+      callback);
   }
 
   /**
@@ -2845,21 +1606,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryNull(): Promise<{ [propertyName: string]: string }[]>;
-  getDictionaryNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
+  getDictionaryNull(): Promise<Models.ArrayModelGetDictionaryNullResponse>;
+  getDictionaryNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryNullResponse>;
   getDictionaryNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    return msRest.responseToBody(this.getDictionaryNullWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDictionaryNullResponse>;
   }
 
   /**
@@ -2867,21 +1630,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryEmpty(): Promise<{ [propertyName: string]: string }[]>;
-  getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
+  getDictionaryEmpty(): Promise<Models.ArrayModelGetDictionaryEmptyResponse>;
+  getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryEmptyResponse>;
   getDictionaryEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    return msRest.responseToBody(this.getDictionaryEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryEmptyOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDictionaryEmptyResponse>;
   }
 
   /**
@@ -2890,21 +1655,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryItemNull(): Promise<{ [propertyName: string]: string }[]>;
-  getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
+  getDictionaryItemNull(): Promise<Models.ArrayModelGetDictionaryItemNullResponse>;
+  getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemNullResponse>;
   getDictionaryItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    return msRest.responseToBody(this.getDictionaryItemNullWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryItemNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryItemNullOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDictionaryItemNullResponse>;
   }
 
   /**
@@ -2913,21 +1680,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryItemEmpty(): Promise<{ [propertyName: string]: string }[]>;
-  getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
+  getDictionaryItemEmpty(): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse>;
+  getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse>;
   getDictionaryItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    return msRest.responseToBody(this.getDictionaryItemEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryItemEmptyOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDictionaryItemEmptyResponse>;
   }
 
   /**
@@ -2936,21 +1705,23 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {{ [propertyName: string]: string }[]} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDictionaryValid(): Promise<{ [propertyName: string]: string }[]>;
-  getDictionaryValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }[]>;
+  getDictionaryValid(): Promise<Models.ArrayModelGetDictionaryValidResponse>;
+  getDictionaryValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryValidResponse>;
   getDictionaryValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): any {
-    return msRest.responseToBody(this.getDictionaryValidWithHttpOperationResponse.bind(this), options, callback);
+  getDictionaryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDictionaryValidOperationSpec,
+      callback) as Promise<Models.ArrayModelGetDictionaryValidResponse>;
   }
 
   /**
@@ -2961,21 +1732,24 @@ export class ArrayModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putDictionaryValid(arrayBody: { [propertyName: string]: string }[]): Promise<void>;
-  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase): Promise<void>;
+  putDictionaryValid(arrayBody: { [propertyName: string]: string }[]): Promise<msRest.RestResponse>;
+  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], callback: msRest.ServiceCallback<void>): void;
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putDictionaryValidWithHttpOperationResponse.bind(this), arrayBody, options, callback);
+  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        arrayBody,
+        options
+      },
+      putDictionaryValidOperationSpec,
+      callback);
   }
 
 }

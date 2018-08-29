@@ -49,7 +49,7 @@ describe('typescript', function () {
 
     it('should work with PutAsyncNoRetrySucceeded', async () => {
       const result = await testClient.lROs.putAsyncNoRetrySucceeded({ product: product });
-      should(result).eql({ id: '100', name: 'foo', provisioningState: "Succeeded" });
+      should(result._response.parsedBody).eql({ id: '100', name: 'foo', provisioningState: "Succeeded" });
     });
 
     it('should work with PutNoHeaderInRetry', async () => {
@@ -375,7 +375,7 @@ describe('typescript', function () {
     });
 
     it('should throw on Post202RetryInvalidHeader', async () => {
-      const promise: Promise<void> = testClient.lROSADs.post202RetryInvalidHeader({ product: product });
+      const promise = testClient.lROSADs.post202RetryInvalidHeader({ product: product });
       if (msRest.isNode) {
         await msAssert.throwsAsync(promise);
       } else {

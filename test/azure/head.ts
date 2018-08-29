@@ -15,7 +15,9 @@ var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: msRestAzure.AzureServiceClientOptions = {};
+var clientOptions: msRestAzure.AzureServiceClientOptions = {
+  requestPolicyFactories: [msRest.exponentialRetryPolicy(3, 0, 0, 0), msRest.deserializationPolicy()]
+};
 var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
@@ -24,34 +26,30 @@ describe('typescript', function () {
 
     describe('Head Operations', function () {
       var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
-      testOptions.requestPolicyFactories = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHeadTestService(credentials, baseUri, clientOptions);
 
       it('should return true for 200 status code', async () => {
-        const result: boolean = await testClient.httpSuccess.head200();
-        should.exist(result);
-        result.should.be.exactly(true);
+        const result = await testClient.httpSuccess.head200();
+        should.exist(result.body);
+        result.body.should.be.exactly(true);
       });
 
       it('should return true for 204 status code', async () => {
-        const result: boolean = await testClient.httpSuccess.head204();
-        should.exist(result);
-        result.should.be.exactly(true);
+        const result = await testClient.httpSuccess.head204();
+        should.exist(result.body);
+        result.body.should.be.exactly(true);
       });
 
       it('should return false for 404 status code', async () => {
-        const result: boolean = await testClient.httpSuccess.head404();
-        should.exist(result);
-        result.should.be.exactly(false);
+        const result = await testClient.httpSuccess.head404();
+        should.exist(result.body);
+        result.body.should.be.exactly(false);
       });
     });
 
     describe('Head Exception Operations', function () {
       var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
-      testOptions.requestPolicyFactories = [
-        msRest.deserializationPolicy()
-      ];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHeadExceptionTestService(credentials, baseUri, clientOptions);
 

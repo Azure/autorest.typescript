@@ -46,13 +46,23 @@ export interface AutoRestReportServiceGetReportOptionalParams extends msRest.Req
 /**
  * Contains response data for the getReport operation.
  */
-export interface GetReportResponse extends msRest.HttpResponse {
+export type GetReportResponse = {
   /**
-   * The response body as text (string format)
+   * The response body properties.
    */
-  bodyAsText: string;
+  [propertyName: string]: number;
+} & {
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: { [propertyName: string]: number };
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
+};

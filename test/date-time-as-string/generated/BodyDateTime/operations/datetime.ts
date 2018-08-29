@@ -36,406 +36,17 @@ export class Datetime {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullOperationSpec) as Promise<Models.DatetimeGetNullResponse>;
-  }
-
-  /**
-   * Get invalid datetime value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetInvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getInvalidOperationSpec) as Promise<Models.DatetimeGetInvalidResponse>;
-  }
-
-  /**
-   * Get overflow datetime value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getOverflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetOverflowResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getOverflowOperationSpec) as Promise<Models.DatetimeGetOverflowResponse>;
-  }
-
-  /**
-   * Get underflow datetime value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUnderflowWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUnderflowResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUnderflowOperationSpec) as Promise<Models.DatetimeGetUnderflowResponse>;
-  }
-
-  /**
-   * Put max datetime value 9999-12-31T23:59:59.9999999Z
-   *
-   * @param {string} datetimeBody
-   * **NOTE: This entity will be treated as a string instead of a Date because the API can
-   * potentially deal with a higher precision value than what is supported by JavaScript.**
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        datetimeBody,
-        options
-      },
-      putUtcMaxDateTimeOperationSpec);
-  }
-
-  /**
-   * Get max datetime value 9999-12-31t23:59:59.9999999z
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUtcLowercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse>;
-  }
-
-  /**
-   * Get max datetime value 9999-12-31T23:59:59.9999999Z
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUtcUppercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse>;
-  }
-
-  /**
-   * Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999+14:00
-   *
-   * @param {string} datetimeBody
-   * **NOTE: This entity will be treated as a string instead of a Date because the API can
-   * potentially deal with a higher precision value than what is supported by JavaScript.**
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putLocalPositiveOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        datetimeBody,
-        options
-      },
-      putLocalPositiveOffsetMaxDateTimeOperationSpec);
-  }
-
-  /**
-   * Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999+14:00
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLocalPositiveOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
-  }
-
-  /**
-   * Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLocalPositiveOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
-  }
-
-  /**
-   * Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999-14:00
-   *
-   * @param {string} datetimeBody
-   * **NOTE: This entity will be treated as a string instead of a Date because the API can
-   * potentially deal with a higher precision value than what is supported by JavaScript.**
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putLocalNegativeOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        datetimeBody,
-        options
-      },
-      putLocalNegativeOffsetMaxDateTimeOperationSpec);
-  }
-
-  /**
-   * Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999-14:00
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLocalNegativeOffsetUppercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
-  }
-
-  /**
-   * Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999-14:00
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLocalNegativeOffsetLowercaseMaxDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
-  }
-
-  /**
-   * Put min datetime value 0001-01-01T00:00:00Z
-   *
-   * @param {string} datetimeBody
-   * **NOTE: This entity will be treated as a string instead of a Date because the API can
-   * potentially deal with a higher precision value than what is supported by JavaScript.**
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        datetimeBody,
-        options
-      },
-      putUtcMinDateTimeOperationSpec);
-  }
-
-  /**
-   * Get min datetime value 0001-01-01T00:00:00Z
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getUtcMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcMinDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getUtcMinDateTimeOperationSpec) as Promise<Models.DatetimeGetUtcMinDateTimeResponse>;
-  }
-
-  /**
-   * Put min datetime value 0001-01-01T00:00:00+14:00
-   *
-   * @param {string} datetimeBody
-   * **NOTE: This entity will be treated as a string instead of a Date because the API can
-   * potentially deal with a higher precision value than what is supported by JavaScript.**
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        datetimeBody,
-        options
-      },
-      putLocalPositiveOffsetMinDateTimeOperationSpec);
-  }
-
-  /**
-   * Get min datetime value 0001-01-01T00:00:00+14:00
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLocalPositiveOffsetMinDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
-  }
-
-  /**
-   * Put min datetime value 0001-01-01T00:00:00-14:00
-   *
-   * @param {string} datetimeBody
-   * **NOTE: This entity will be treated as a string instead of a Date because the API can
-   * potentially deal with a higher precision value than what is supported by JavaScript.**
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        datetimeBody,
-        options
-      },
-      putLocalNegativeOffsetMinDateTimeOperationSpec);
-  }
-
-  /**
-   * Get min datetime value 0001-01-01T00:00:00-14:00
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getLocalNegativeOffsetMinDateTimeOperationSpec) as Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
-  }
-
-  /**
-   * Get null datetime value
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getNull(): Promise<string>;
-  getNull(options: msRest.RequestOptionsBase): Promise<string>;
+  getNull(): Promise<Models.DatetimeGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetNullResponse>;
   getNull(callback: msRest.ServiceCallback<string>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec,
+      callback) as Promise<Models.DatetimeGetNullResponse>;
   }
 
   /**
@@ -443,21 +54,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getInvalid(): Promise<string>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<string>;
+  getInvalid(): Promise<Models.DatetimeGetInvalidResponse>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetInvalidResponse>;
   getInvalid(callback: msRest.ServiceCallback<string>): void;
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetInvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getInvalidOperationSpec,
+      callback) as Promise<Models.DatetimeGetInvalidResponse>;
   }
 
   /**
@@ -465,21 +78,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getOverflow(): Promise<string>;
-  getOverflow(options: msRest.RequestOptionsBase): Promise<string>;
+  getOverflow(): Promise<Models.DatetimeGetOverflowResponse>;
+  getOverflow(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetOverflowResponse>;
   getOverflow(callback: msRest.ServiceCallback<string>): void;
   getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getOverflowWithHttpOperationResponse.bind(this), options, callback);
+  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetOverflowResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getOverflowOperationSpec,
+      callback) as Promise<Models.DatetimeGetOverflowResponse>;
   }
 
   /**
@@ -487,21 +102,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUnderflow(): Promise<string>;
-  getUnderflow(options: msRest.RequestOptionsBase): Promise<string>;
+  getUnderflow(): Promise<Models.DatetimeGetUnderflowResponse>;
+  getUnderflow(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUnderflowResponse>;
   getUnderflow(callback: msRest.ServiceCallback<string>): void;
   getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getUnderflowWithHttpOperationResponse.bind(this), options, callback);
+  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUnderflowResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUnderflowOperationSpec,
+      callback) as Promise<Models.DatetimeGetUnderflowResponse>;
   }
 
   /**
@@ -513,21 +130,24 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putUtcMaxDateTime(datetimeBody: string): Promise<void>;
-  putUtcMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<void>;
+  putUtcMaxDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
+  putUtcMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putUtcMaxDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
   putUtcMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putUtcMaxDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
+  putUtcMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        datetimeBody,
+        options
+      },
+      putUtcMaxDateTimeOperationSpec,
+      callback);
   }
 
   /**
@@ -535,21 +155,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUtcLowercaseMaxDateTime(): Promise<string>;
-  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<string>;
+  getUtcLowercaseMaxDateTime(): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse>;
+  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse>;
   getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUtcLowercaseMaxDateTimeOperationSpec,
+      callback) as Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -557,21 +179,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUtcUppercaseMaxDateTime(): Promise<string>;
-  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<string>;
+  getUtcUppercaseMaxDateTime(): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse>;
+  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse>;
   getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUtcUppercaseMaxDateTimeOperationSpec,
+      callback) as Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -583,21 +207,24 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putLocalPositiveOffsetMaxDateTime(datetimeBody: string): Promise<void>;
-  putLocalPositiveOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<void>;
+  putLocalPositiveOffsetMaxDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
+  putLocalPositiveOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putLocalPositiveOffsetMaxDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
   putLocalPositiveOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalPositiveOffsetMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putLocalPositiveOffsetMaxDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
+  putLocalPositiveOffsetMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        datetimeBody,
+        options
+      },
+      putLocalPositiveOffsetMaxDateTimeOperationSpec,
+      callback);
   }
 
   /**
@@ -605,21 +232,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLocalPositiveOffsetLowercaseMaxDateTime(): Promise<string>;
-  getLocalPositiveOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<string>;
+  getLocalPositiveOffsetLowercaseMaxDateTime(): Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
+  getLocalPositiveOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
   getLocalPositiveOffsetLowercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   getLocalPositiveOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalPositiveOffsetLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getLocalPositiveOffsetLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getLocalPositiveOffsetLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec,
+      callback) as Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -627,21 +256,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLocalPositiveOffsetUppercaseMaxDateTime(): Promise<string>;
-  getLocalPositiveOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<string>;
+  getLocalPositiveOffsetUppercaseMaxDateTime(): Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
+  getLocalPositiveOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
   getLocalPositiveOffsetUppercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   getLocalPositiveOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalPositiveOffsetUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getLocalPositiveOffsetUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getLocalPositiveOffsetUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec,
+      callback) as Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -653,21 +284,24 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putLocalNegativeOffsetMaxDateTime(datetimeBody: string): Promise<void>;
-  putLocalNegativeOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<void>;
+  putLocalNegativeOffsetMaxDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
+  putLocalNegativeOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putLocalNegativeOffsetMaxDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
   putLocalNegativeOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalNegativeOffsetMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putLocalNegativeOffsetMaxDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
+  putLocalNegativeOffsetMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        datetimeBody,
+        options
+      },
+      putLocalNegativeOffsetMaxDateTimeOperationSpec,
+      callback);
   }
 
   /**
@@ -675,21 +309,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLocalNegativeOffsetUppercaseMaxDateTime(): Promise<string>;
-  getLocalNegativeOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<string>;
+  getLocalNegativeOffsetUppercaseMaxDateTime(): Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
+  getLocalNegativeOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
   getLocalNegativeOffsetUppercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   getLocalNegativeOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalNegativeOffsetUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getLocalNegativeOffsetUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getLocalNegativeOffsetUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec,
+      callback) as Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -697,21 +333,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLocalNegativeOffsetLowercaseMaxDateTime(): Promise<string>;
-  getLocalNegativeOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<string>;
+  getLocalNegativeOffsetLowercaseMaxDateTime(): Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
+  getLocalNegativeOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
   getLocalNegativeOffsetLowercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   getLocalNegativeOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalNegativeOffsetLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getLocalNegativeOffsetLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getLocalNegativeOffsetLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec,
+      callback) as Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -723,21 +361,24 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putUtcMinDateTime(datetimeBody: string): Promise<void>;
-  putUtcMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<void>;
+  putUtcMinDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
+  putUtcMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putUtcMinDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
   putUtcMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putUtcMinDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
+  putUtcMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        datetimeBody,
+        options
+      },
+      putUtcMinDateTimeOperationSpec,
+      callback);
   }
 
   /**
@@ -745,21 +386,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getUtcMinDateTime(): Promise<string>;
-  getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<string>;
+  getUtcMinDateTime(): Promise<Models.DatetimeGetUtcMinDateTimeResponse>;
+  getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcMinDateTimeResponse>;
   getUtcMinDateTime(callback: msRest.ServiceCallback<string>): void;
   getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getUtcMinDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUtcMinDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getUtcMinDateTimeOperationSpec,
+      callback) as Promise<Models.DatetimeGetUtcMinDateTimeResponse>;
   }
 
   /**
@@ -771,21 +414,24 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putLocalPositiveOffsetMinDateTime(datetimeBody: string): Promise<void>;
-  putLocalPositiveOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<void>;
+  putLocalPositiveOffsetMinDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
+  putLocalPositiveOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putLocalPositiveOffsetMinDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
   putLocalPositiveOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalPositiveOffsetMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putLocalPositiveOffsetMinDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
+  putLocalPositiveOffsetMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        datetimeBody,
+        options
+      },
+      putLocalPositiveOffsetMinDateTimeOperationSpec,
+      callback);
   }
 
   /**
@@ -793,21 +439,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLocalPositiveOffsetMinDateTime(): Promise<string>;
-  getLocalPositiveOffsetMinDateTime(options: msRest.RequestOptionsBase): Promise<string>;
+  getLocalPositiveOffsetMinDateTime(): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
+  getLocalPositiveOffsetMinDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
   getLocalPositiveOffsetMinDateTime(callback: msRest.ServiceCallback<string>): void;
   getLocalPositiveOffsetMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalPositiveOffsetMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getLocalPositiveOffsetMinDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getLocalPositiveOffsetMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLocalPositiveOffsetMinDateTimeOperationSpec,
+      callback) as Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
   }
 
   /**
@@ -819,21 +467,24 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putLocalNegativeOffsetMinDateTime(datetimeBody: string): Promise<void>;
-  putLocalNegativeOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<void>;
+  putLocalNegativeOffsetMinDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
+  putLocalNegativeOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   putLocalNegativeOffsetMinDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
   putLocalNegativeOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalNegativeOffsetMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putLocalNegativeOffsetMinDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
+  putLocalNegativeOffsetMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        datetimeBody,
+        options
+      },
+      putLocalNegativeOffsetMinDateTimeOperationSpec,
+      callback);
   }
 
   /**
@@ -841,21 +492,23 @@ export class Datetime {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getLocalNegativeOffsetMinDateTime(): Promise<string>;
-  getLocalNegativeOffsetMinDateTime(options: msRest.RequestOptionsBase): Promise<string>;
+  getLocalNegativeOffsetMinDateTime(): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
+  getLocalNegativeOffsetMinDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
   getLocalNegativeOffsetMinDateTime(callback: msRest.ServiceCallback<string>): void;
   getLocalNegativeOffsetMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalNegativeOffsetMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getLocalNegativeOffsetMinDateTimeWithHttpOperationResponse.bind(this), options, callback);
+  getLocalNegativeOffsetMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getLocalNegativeOffsetMinDateTimeOperationSpec,
+      callback) as Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
   }
 
 }

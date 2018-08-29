@@ -29,55 +29,91 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface ByteModelGetNullResponse extends msRest.HttpResponse {
+export type ByteModelGetNullResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Uint8Array;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Uint8Array;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Uint8Array;
+    };
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface ByteModelGetEmptyResponse extends msRest.HttpResponse {
+export type ByteModelGetEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Uint8Array;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Uint8Array;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Uint8Array;
+    };
+};
 
 /**
  * Contains response data for the getNonAscii operation.
  */
-export interface ByteModelGetNonAsciiResponse extends msRest.HttpResponse {
+export type ByteModelGetNonAsciiResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Uint8Array;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Uint8Array;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Uint8Array;
+    };
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface ByteModelGetInvalidResponse extends msRest.HttpResponse {
+export type ByteModelGetInvalidResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Uint8Array;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Uint8Array;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Uint8Array;
+    };
+};

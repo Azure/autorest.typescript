@@ -124,41 +124,134 @@ export enum EnumConst {
 /**
  * Contains response data for the validationOfMethodParameters operation.
  */
-export interface ValidationOfMethodParametersResponse extends msRest.HttpResponse {
+export type ValidationOfMethodParametersResponse = {
   /**
-   * The response body as text (string format)
+   * Non required array of unique items from 0 to 6 elements.
    */
-  bodyAsText: string;
+  displayNames: string[];
   /**
-   * The response body as parsed JSON or XML
+   * Non required int betwen 0 and 100 exclusive.
    */
-  parsedBody: Product;
-}
+  capacity: number;
+  /**
+   * Image URL representing the product.
+   */
+  image: string;
+  child: ChildProduct;
+  constChild: ConstantProduct;
+  /**
+   * Constant int
+   */
+  constInt: number;
+  /**
+   * Constant string
+   */
+  constString: string;
+  /**
+   * Constant string as Enum. Possible values include: 'constant_string_as_enum'
+   */
+  constStringAsEnum: EnumConst;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
+};
 
 /**
  * Contains response data for the validationOfBody operation.
  */
-export interface ValidationOfBodyResponse extends msRest.HttpResponse {
+export type ValidationOfBodyResponse = {
   /**
-   * The response body as text (string format)
+   * Non required array of unique items from 0 to 6 elements.
    */
-  bodyAsText: string;
+  displayNames: string[];
   /**
-   * The response body as parsed JSON or XML
+   * Non required int betwen 0 and 100 exclusive.
    */
-  parsedBody: Product;
-}
+  capacity: number;
+  /**
+   * Image URL representing the product.
+   */
+  image: string;
+  child: ChildProduct;
+  constChild: ConstantProduct;
+  /**
+   * Constant int
+   */
+  constInt: number;
+  /**
+   * Constant string
+   */
+  constString: string;
+  /**
+   * Constant string as Enum. Possible values include: 'constant_string_as_enum'
+   */
+  constStringAsEnum: EnumConst;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
+};
 
 /**
  * Contains response data for the postWithConstantInBody operation.
  */
-export interface PostWithConstantInBodyResponse extends msRest.HttpResponse {
+export type PostWithConstantInBodyResponse = {
   /**
-   * The response body as text (string format)
+   * Non required array of unique items from 0 to 6 elements.
    */
-  bodyAsText: string;
+  displayNames: string[];
   /**
-   * The response body as parsed JSON or XML
+   * Non required int betwen 0 and 100 exclusive.
    */
-  parsedBody: Product;
-}
+  capacity: number;
+  /**
+   * Image URL representing the product.
+   */
+  image: string;
+  child: ChildProduct;
+  constChild: ConstantProduct;
+  /**
+   * Constant int
+   */
+  constInt: number;
+  /**
+   * Constant string
+   */
+  constString: string;
+  /**
+   * Constant string as Enum. Possible values include: 'constant_string_as_enum'
+   */
+  constStringAsEnum: EnumConst;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
+};

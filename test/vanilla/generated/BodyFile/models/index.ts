@@ -29,14 +29,14 @@ export interface ErrorModel {
 /**
  * Contains response data for the getFile operation.
  */
-export interface FilesGetFileResponse extends msRest.HttpResponse {
+export type FilesGetFileResponse = {
   /**
    * BROWSER ONLY
    *
    * The response body as a browser Blob.
    * Always undefined in node.js.
    */
-  blobBody?: () => Promise<Blob>;
+  blobBody?: Promise<Blob>;
   /**
    * NODEJS ONLY
    *
@@ -44,19 +44,23 @@ export interface FilesGetFileResponse extends msRest.HttpResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse;
+};
 
 /**
  * Contains response data for the getFileLarge operation.
  */
-export interface FilesGetFileLargeResponse extends msRest.HttpResponse {
+export type FilesGetFileLargeResponse = {
   /**
    * BROWSER ONLY
    *
    * The response body as a browser Blob.
    * Always undefined in node.js.
    */
-  blobBody?: () => Promise<Blob>;
+  blobBody?: Promise<Blob>;
   /**
    * NODEJS ONLY
    *
@@ -64,19 +68,23 @@ export interface FilesGetFileLargeResponse extends msRest.HttpResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse;
+};
 
 /**
  * Contains response data for the getEmptyFile operation.
  */
-export interface FilesGetEmptyFileResponse extends msRest.HttpResponse {
+export type FilesGetEmptyFileResponse = {
   /**
    * BROWSER ONLY
    *
    * The response body as a browser Blob.
    * Always undefined in node.js.
    */
-  blobBody?: () => Promise<Blob>;
+  blobBody?: Promise<Blob>;
   /**
    * NODEJS ONLY
    *
@@ -84,4 +92,8 @@ export interface FilesGetEmptyFileResponse extends msRest.HttpResponse {
    * Always undefined in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-}
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse;
+};

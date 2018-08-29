@@ -43,7 +43,11 @@ export class AvailabilitySets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateWithHttpOperationResponse(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -51,36 +55,8 @@ export class AvailabilitySets {
         tags,
         options
       },
-      updateOperationSpec);
-  }
-
-  /**
-   * Updates the tags for an availability set.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} avset The name of the storage availability set.
-   *
-   * @param {{ [propertyName: string]: string }} tags A set of tags. A description about the set of
-   * tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }): Promise<void>;
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), resourceGroupName, avset, tags, options, callback);
+      updateOperationSpec,
+      callback);
   }
 
 }

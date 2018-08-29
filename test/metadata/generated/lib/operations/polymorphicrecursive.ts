@@ -36,12 +36,17 @@ export class Polymorphicrecursive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.PolymorphicrecursiveGetValidResponse> {
+  getValid(): Promise<Models.PolymorphicrecursiveGetValidResponse>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.PolymorphicrecursiveGetValidResponse>;
+  getValid(callback: msRest.ServiceCallback<Models.FishUnion>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FishUnion>): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      getValidOperationSpec) as Promise<Models.PolymorphicrecursiveGetValidResponse>;
+      getValidOperationSpec,
+      callback) as Promise<Models.PolymorphicrecursiveGetValidResponse>;
   }
 
   /**
@@ -109,111 +114,18 @@ export class Polymorphicrecursive {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putValidWithHttpOperationResponse(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putValid(complexBody: Models.FishUnion): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.FishUnion, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
         options
       },
-      putValidOperationSpec);
-  }
-
-  /**
-   * Get complex types that are polymorphic and have recursive references
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.FishUnion} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.FishUnion} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getValid(): Promise<Models.FishUnion>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.FishUnion>;
-  getValid(callback: msRest.ServiceCallback<Models.FishUnion>): void;
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FishUnion>): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Put complex types that are polymorphic and have recursive references
-   *
-   * @param {FishUnion} complexBody Please put a salmon that looks like this:
-   * {
-   * "fishtype": "salmon",
-   * "species": "king",
-   * "length": 1,
-   * "age": 1,
-   * "location": "alaska",
-   * "iswild": true,
-   * "siblings": [
-   * {
-   * "fishtype": "shark",
-   * "species": "predator",
-   * "length": 20,
-   * "age": 6,
-   * "siblings": [
-   * {
-   * "fishtype": "salmon",
-   * "species": "coho",
-   * "length": 2,
-   * "age": 2,
-   * "location": "atlantic",
-   * "iswild": true,
-   * "siblings": [
-   * {
-   * "fishtype": "shark",
-   * "species": "predator",
-   * "length": 20,
-   * "age": 6
-   * },
-   * {
-   * "fishtype": "sawshark",
-   * "species": "dangerous",
-   * "length": 10,
-   * "age": 105
-   * }
-   * ]
-   * },
-   * {
-   * "fishtype": "sawshark",
-   * "species": "dangerous",
-   * "length": 10,
-   * "age": 105
-   * }
-   * ]
-   * },
-   * {
-   * "fishtype": "sawshark",
-   * "species": "dangerous",
-   * "length": 10,
-   * "age": 105
-   * }
-   * ]
-   * }
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putValid(complexBody: Models.FishUnion): Promise<void>;
-  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<void>;
-  putValid(complexBody: Models.FishUnion, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), complexBody, options, callback);
+      putValidOperationSpec,
+      callback);
   }
 
 }

@@ -152,37 +152,68 @@ export interface HeaderCustomNamedRequestIdHeadHeaders {
 /**
  * Contains response data for the customNamedRequestId operation.
  */
-export interface HeaderCustomNamedRequestIdResponse extends msRest.HttpResponse {
+export type HeaderCustomNamedRequestIdResponse = {
   /**
-   * The parsed HTTP response headers.
+   * Gets the foo-request-id.
    */
-  parsedHeaders: HeaderCustomNamedRequestIdHeaders;
-}
+  fooRequestId: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderCustomNamedRequestIdHeaders;
+    };
+};
 
 /**
  * Contains response data for the customNamedRequestIdParamGrouping operation.
  */
-export interface HeaderCustomNamedRequestIdParamGroupingResponse extends msRest.HttpResponse {
+export type HeaderCustomNamedRequestIdParamGroupingResponse = {
   /**
-   * The parsed HTTP response headers.
+   * Gets the foo-request-id.
    */
-  parsedHeaders: HeaderCustomNamedRequestIdParamGroupingHeaders;
-}
+  fooRequestId: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderCustomNamedRequestIdParamGroupingHeaders;
+    };
+};
 
 /**
  * Contains response data for the customNamedRequestIdHead operation.
  */
-export interface HeaderCustomNamedRequestIdHeadResponse extends msRest.HttpResponse {
+export type HeaderCustomNamedRequestIdHeadResponse = {
   /**
-   * The parsed HTTP response headers.
+   * Gets the foo-request-id.
    */
-  parsedHeaders: HeaderCustomNamedRequestIdHeadHeaders;
+  fooRequestId: string;
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: boolean;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderCustomNamedRequestIdHeadHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
+};

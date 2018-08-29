@@ -29,83 +29,137 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export interface DateModelGetNullResponse extends msRest.HttpResponse {
+export type DateModelGetNullResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Date;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
+};
 
 /**
  * Contains response data for the getInvalidDate operation.
  */
-export interface DateModelGetInvalidDateResponse extends msRest.HttpResponse {
+export type DateModelGetInvalidDateResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Date;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
+};
 
 /**
  * Contains response data for the getOverflowDate operation.
  */
-export interface DateModelGetOverflowDateResponse extends msRest.HttpResponse {
+export type DateModelGetOverflowDateResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Date;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
+};
 
 /**
  * Contains response data for the getUnderflowDate operation.
  */
-export interface DateModelGetUnderflowDateResponse extends msRest.HttpResponse {
+export type DateModelGetUnderflowDateResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Date;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
+};
 
 /**
  * Contains response data for the getMaxDate operation.
  */
-export interface DateModelGetMaxDateResponse extends msRest.HttpResponse {
+export type DateModelGetMaxDateResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Date;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
+};
 
 /**
  * Contains response data for the getMinDate operation.
  */
-export interface DateModelGetMinDateResponse extends msRest.HttpResponse {
+export type DateModelGetMinDateResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: Date;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
+};

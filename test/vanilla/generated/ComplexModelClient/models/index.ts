@@ -138,41 +138,68 @@ export interface ComplexModelClientUpdateOptionalParams extends msRest.RequestOp
 /**
  * Contains response data for the list operation.
  */
-export interface ListResponse extends msRest.HttpResponse {
+export type ListResponse = {
   /**
-   * The response body as text (string format)
+   * Array of products
    */
-  bodyAsText: string;
+  productArray: Product[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: CatalogArray;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CatalogArray;
+    };
+};
 
 /**
  * Contains response data for the create operation.
  */
-export interface CreateResponse extends msRest.HttpResponse {
+export type CreateResponse = {
   /**
-   * The response body as text (string format)
+   * Dictionary of products
    */
-  bodyAsText: string;
+  productDictionary: { [propertyName: string]: Product };
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: CatalogDictionary;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CatalogDictionary;
+    };
+};
 
 /**
  * Contains response data for the update operation.
  */
-export interface UpdateResponse extends msRest.HttpResponse {
+export type UpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Array of products
    */
-  bodyAsText: string;
+  productArray: Product[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: CatalogArray;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CatalogArray;
+    };
+};

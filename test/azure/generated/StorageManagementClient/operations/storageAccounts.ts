@@ -42,13 +42,18 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  checkNameAvailabilityWithHttpOperationResponse(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCheckNameAvailabilityResponse> {
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): Promise<Models.StorageAccountsCheckNameAvailabilityResponse> {
     return this.client.sendOperationRequest(
       {
         accountName,
         options
       },
-      checkNameAvailabilityOperationSpec) as Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
+      checkNameAvailabilityOperationSpec,
+      callback) as Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
   }
 
 
@@ -75,7 +80,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCreateResponse> {
+  create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCreateResponse> {
     return this.beginCreate(resourceGroupName, accountName, parameters, options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.StorageAccountsCreateResponse>;
   }
@@ -97,14 +102,19 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, accountName: string): Promise<msRest.RestResponse>;
+  deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  deleteMethod(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<void>): void;
+  deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  deleteMethod(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         accountName,
         options
       },
-      deleteMethodOperationSpec);
+      deleteMethodOperationSpec,
+      callback);
   }
 
   /**
@@ -126,14 +136,19 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getPropertiesWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsGetPropertiesResponse> {
+  getProperties(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsGetPropertiesResponse>;
+  getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsGetPropertiesResponse>;
+  getProperties(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
+  getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
+  getProperties(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): Promise<Models.StorageAccountsGetPropertiesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         accountName,
         options
       },
-      getPropertiesOperationSpec) as Promise<Models.StorageAccountsGetPropertiesResponse>;
+      getPropertiesOperationSpec,
+      callback) as Promise<Models.StorageAccountsGetPropertiesResponse>;
   }
 
   /**
@@ -162,7 +177,11 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsUpdateResponse> {
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters): Promise<Models.StorageAccountsUpdateResponse>;
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsUpdateResponse>;
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): Promise<Models.StorageAccountsUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -170,7 +189,8 @@ export class StorageAccounts {
         parameters,
         options
       },
-      updateOperationSpec) as Promise<Models.StorageAccountsUpdateResponse>;
+      updateOperationSpec,
+      callback) as Promise<Models.StorageAccountsUpdateResponse>;
   }
 
   /**
@@ -188,14 +208,19 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listKeysWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListKeysResponse> {
+  listKeys(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsListKeysResponse>;
+  listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListKeysResponse>;
+  listKeys(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
+  listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
+  listKeys(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): Promise<Models.StorageAccountsListKeysResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         accountName,
         options
       },
-      listKeysOperationSpec) as Promise<Models.StorageAccountsListKeysResponse>;
+      listKeysOperationSpec,
+      callback) as Promise<Models.StorageAccountsListKeysResponse>;
   }
 
   /**
@@ -210,12 +235,17 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListResponse> {
+  list(): Promise<Models.StorageAccountsListResponse>;
+  list(options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListResponse>;
+  list(callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
+  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
+  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): Promise<Models.StorageAccountsListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec) as Promise<Models.StorageAccountsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.StorageAccountsListResponse>;
   }
 
   /**
@@ -232,13 +262,18 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListByResourceGroupResponse> {
+  listByResourceGroup(resourceGroupName: string): Promise<Models.StorageAccountsListByResourceGroupResponse>;
+  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListByResourceGroupResponse>;
+  listByResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
+  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
+  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): Promise<Models.StorageAccountsListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listByResourceGroupOperationSpec) as Promise<Models.StorageAccountsListByResourceGroupResponse>;
+      listByResourceGroupOperationSpec,
+      callback) as Promise<Models.StorageAccountsListByResourceGroupResponse>;
   }
 
   /**
@@ -258,14 +293,19 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  regenerateKeyWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<Models.StorageAccountsRegenerateKeyResponse> {
+  regenerateKey(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsRegenerateKeyResponse>;
+  regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<Models.StorageAccountsRegenerateKeyResponse>;
+  regenerateKey(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
+  regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
+  regenerateKey(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): Promise<Models.StorageAccountsRegenerateKeyResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         accountName,
         options
       },
-      regenerateKeyOperationSpec) as Promise<Models.StorageAccountsRegenerateKeyResponse>;
+      regenerateKeyOperationSpec,
+      callback) as Promise<Models.StorageAccountsRegenerateKeyResponse>;
   }
 
   /**
@@ -301,263 +341,6 @@ export class StorageAccounts {
       },
       beginCreateOperationSpec,
       options);
-  }
-
-  /**
-   * Checks that account name is valid and is not in use.
-   *
-   * @param {StorageAccountCheckNameAvailabilityParameters} accountName The name of the storage
-   * account within the specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.CheckNameAvailabilityResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.CheckNameAvailabilityResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters): Promise<Models.CheckNameAvailabilityResult>;
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase): Promise<Models.CheckNameAvailabilityResult>;
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): any {
-    return msRest.responseToBody(this.checkNameAvailabilityWithHttpOperationResponse.bind(this), accountName, options, callback);
-  }
-
-  /**
-   * Asynchronously creates a new storage account with the specified parameters. Existing accounts
-   * cannot be updated with this API and should instead use the Update Storage Account API. If an
-   * account is already created and subsequent PUT request is issued with exact same set of
-   * properties, then HTTP 200 would be returned.
-   *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
-   *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
-   *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
-   * account.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StorageAccount} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccount} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters): Promise<Models.StorageAccount>;
-  create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccount>;
-  create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): any {
-    return msRest.responseToBody(this.createWithHttpOperationResponse.bind(this), resourceGroupName, accountName, parameters, options, callback);
-  }
-
-  /**
-   * Deletes a storage account in Microsoft Azure.
-   *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
-   *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, accountName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, accountName, options, callback);
-  }
-
-  /**
-   * Returns the properties for the specified storage account including but not limited to name,
-   * account type, location, and account status. The ListKeys operation should be used to retrieve
-   * storage keys.
-   *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
-   *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StorageAccount} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccount} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getProperties(resourceGroupName: string, accountName: string): Promise<Models.StorageAccount>;
-  getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccount>;
-  getProperties(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  getProperties(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): any {
-    return msRest.responseToBody(this.getPropertiesWithHttpOperationResponse.bind(this), resourceGroupName, accountName, options, callback);
-  }
-
-  /**
-   * Updates the account type or tags for a storage account. It can also be used to add a custom
-   * domain (note that custom domains cannot be added via the Create operation). Only one custom
-   * domain is supported per storage account. This API can only be used to update one of tags,
-   * accountType, or customDomain per call. To update multiple of these properties, call the API
-   * multiple times with one change per call. This call does not change the storage keys for the
-   * account. If you want to change storage account keys, use the RegenerateKey operation. The
-   * location and name of the storage account cannot be changed after creation.
-   *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
-   *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
-   *
-   * @param {StorageAccountUpdateParameters} parameters The parameters to update on the account. Note
-   * that only one property can be changed at a time using this API.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StorageAccount} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccount} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters): Promise<Models.StorageAccount>;
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccount>;
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): any {
-    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), resourceGroupName, accountName, parameters, options, callback);
-  }
-
-  /**
-   * Lists the access keys for the specified storage account.
-   *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
-   *
-   * @param {string} accountName The name of the storage account.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StorageAccountKeys} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccountKeys} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listKeys(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountKeys>;
-  listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountKeys>;
-  listKeys(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
-  listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
-  listKeys(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): any {
-    return msRest.responseToBody(this.listKeysWithHttpOperationResponse.bind(this), resourceGroupName, accountName, options, callback);
-  }
-
-  /**
-   * Lists all the storage accounts available under the subscription. Note that storage keys are not
-   * returned; use the ListKeys operation for this.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StorageAccountListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccountListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(): Promise<Models.StorageAccountListResult>;
-  list(options: msRest.RequestOptionsBase): Promise<Models.StorageAccountListResult>;
-  list(callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
-  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
-  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Lists all the storage accounts available under the given resource group. Note that storage keys
-   * are not returned; use the ListKeys operation for this.
-   *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StorageAccountListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccountListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listByResourceGroup(resourceGroupName: string): Promise<Models.StorageAccountListResult>;
-  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountListResult>;
-  listByResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
-  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): any {
-    return msRest.responseToBody(this.listByResourceGroupWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
-  }
-
-  /**
-   * Regenerates the access keys for the specified storage account.
-   *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
-   *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
-   *
-   * @param {StorageAccountsRegenerateKeyOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.StorageAccountKeys} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccountKeys} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  regenerateKey(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountKeys>;
-  regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<Models.StorageAccountKeys>;
-  regenerateKey(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
-  regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
-  regenerateKey(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): any {
-    return msRest.responseToBody(this.regenerateKeyWithHttpOperationResponse.bind(this), resourceGroupName, accountName, options, callback);
   }
 
 }

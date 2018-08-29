@@ -487,13 +487,11 @@ namespace AutoRest.TypeScript.DSL
             valueAction?.Invoke(new TSValue(this));
         }
 
-        public void ExportInterface(string interfaceName, string baseInterfaceName, Action<TSInterface> interfaceAction)
+        public void ExportIntersectionType(string typeName, Action<TSIntersectionType> typeAction)
         {
-            this.Line($"export interface {interfaceName} extends {baseInterfaceName} {{");
-            this.IncreaseIndent();
-            interfaceAction?.Invoke(new TSInterface(this));
-            this.DecreaseIndent();
-            this.Line("}");
+            this.Text($"export type {typeName} = ");
+            typeAction?.Invoke(new TSIntersectionType(this));
+            this.Line(";");
         }
 
         /// <summary>
@@ -510,6 +508,11 @@ namespace AutoRest.TypeScript.DSL
                 argumentListAction.Invoke(argumentList);
             }
             Text(")");
+        }
+
+        public void MethodOverload(string methodName, string returnType, string parameterList)
+        {
+            Line($"{methodName}({parameterList}): {returnType};");
         }
 
         public void Method(string methodName, string returnType, string parameterList, Action<TSBlock> methodBodyAction)

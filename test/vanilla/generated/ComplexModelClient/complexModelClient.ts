@@ -54,98 +54,20 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ListResponse> {
-    return this.sendOperationRequest(
-      {
-        resourceGroupName,
-        options
-      },
-      listOperationSpec) as Promise<Models.ListResponse>;
-  }
-  // methods on the client.
-
-  /**
-   * @summary Create products
-   *
-   * Resets products.
-   *
-   * @param {string} subscriptionId Subscription ID.
-   *
-   * @param {string} resourceGroupName Resource Group ID.
-   *
-   * @param {ComplexModelClientCreateOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams): Promise<Models.CreateResponse> {
-    return this.sendOperationRequest(
-      {
-        subscriptionId,
-        resourceGroupName,
-        options
-      },
-      createOperationSpec) as Promise<Models.CreateResponse>;
-  }
-  // methods on the client.
-
-  /**
-   * @summary Update products
-   *
-   * Resets products.
-   *
-   * @param {string} subscriptionId Subscription ID.
-   *
-   * @param {string} resourceGroupName Resource Group ID.
-   *
-   * @param {ComplexModelClientUpdateOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams): Promise<Models.UpdateResponse> {
-    return this.sendOperationRequest(
-      {
-        subscriptionId,
-        resourceGroupName,
-        options
-      },
-      updateOperationSpec) as Promise<Models.UpdateResponse>;
-  }
-
-  /**
-   * @summary Product Types
-   *
-   * The Products endpoint returns information about the Uber products offered at a given location.
-   * The response includes the display name and other details about each product, and lists the
-   * products in the proper display order.
-   *
-   * @param {string} resourceGroupName Resource Group ID.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.CatalogArray} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.CatalogArray} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string): Promise<Models.CatalogArray>;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.CatalogArray>;
+  list(resourceGroupName: string): Promise<Models.ListResponse>;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.ListResponse>;
   list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
   list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.CatalogArray>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.ListResponse> {
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        options
+      },
+      listOperationSpec,
+      callback) as Promise<Models.ListResponse>;
   }
+  // methods on the client.
 
   /**
    * @summary Create products
@@ -158,22 +80,27 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @param {ComplexModelClientCreateOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.CatalogDictionary} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.CatalogDictionary} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  create(subscriptionId: string, resourceGroupName: string): Promise<Models.CatalogDictionary>;
-  create(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientCreateOptionalParams): Promise<Models.CatalogDictionary>;
+  create(subscriptionId: string, resourceGroupName: string): Promise<Models.CreateResponse>;
+  create(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientCreateOptionalParams): Promise<Models.CreateResponse>;
   create(subscriptionId: string, resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
   create(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientCreateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
-  create(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams, callback?: msRest.ServiceCallback<Models.CatalogDictionary>): any {
-    return msRest.responseToBody(this.createWithHttpOperationResponse.bind(this), subscriptionId, resourceGroupName, options, callback);
+  create(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams, callback?: msRest.ServiceCallback<Models.CatalogDictionary>): Promise<Models.CreateResponse> {
+    return this.sendOperationRequest(
+      {
+        subscriptionId,
+        resourceGroupName,
+        options
+      },
+      createOperationSpec,
+      callback) as Promise<Models.CreateResponse>;
   }
+  // methods on the client.
 
   /**
    * @summary Update products
@@ -186,21 +113,25 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @param {ComplexModelClientUpdateOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.CatalogArray} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.CatalogArray} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  update(subscriptionId: string, resourceGroupName: string): Promise<Models.CatalogArray>;
-  update(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientUpdateOptionalParams): Promise<Models.CatalogArray>;
+  update(subscriptionId: string, resourceGroupName: string): Promise<Models.UpdateResponse>;
+  update(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientUpdateOptionalParams): Promise<Models.UpdateResponse>;
   update(subscriptionId: string, resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
   update(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientUpdateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
-  update(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams, callback?: msRest.ServiceCallback<Models.CatalogArray>): any {
-    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), subscriptionId, resourceGroupName, options, callback);
+  update(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.UpdateResponse> {
+    return this.sendOperationRequest(
+      {
+        subscriptionId,
+        resourceGroupName,
+        options
+      },
+      updateOperationSpec,
+      callback) as Promise<Models.UpdateResponse>;
   }
 }
 

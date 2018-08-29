@@ -492,139 +492,542 @@ export enum UsageUnit {
 /**
  * Contains response data for the checkNameAvailability operation.
  */
-export interface StorageAccountsCheckNameAvailabilityResponse extends msRest.HttpResponse {
+export type StorageAccountsCheckNameAvailabilityResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a boolean value that indicates whether the name is available for you to use. If true, the
+   * name is available. If false, the name has already been taken or invalid and cannot be used.
    */
-  bodyAsText: string;
+  nameAvailable: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * Gets the reason that a storage account name could not be used. The Reason element is only
+   * returned if NameAvailable is false. Possible values include: 'AccountNameInvalid',
+   * 'AlreadyExists'
    */
-  parsedBody: CheckNameAvailabilityResult;
-}
+  reason: Reason;
+  /**
+   * Gets an error message explaining the Reason value in more detail.
+   */
+  message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CheckNameAvailabilityResult;
+    };
+};
 
 /**
  * Contains response data for the create operation.
  */
-export interface StorageAccountsCreateResponse extends msRest.HttpResponse {
+export type StorageAccountsCreateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource Id
    */
-  bodyAsText: string;
+  id: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name
    */
-  parsedBody: StorageAccount;
-}
+  name: string;
+  /**
+   * Resource type
+   */
+  type: string;
+  /**
+   * Resource location
+   */
+  location: string;
+  /**
+   * Resource tags
+   */
+  tags: { [propertyName: string]: string };
+  /**
+   * Gets the status of the storage account at the time the operation was called. Possible values
+   * include: 'Creating', 'ResolvingDNS', 'Succeeded'
+   */
+  provisioningState: ProvisioningState;
+  /**
+   * Gets the type of the storage account. Possible values include: 'Standard_LRS', 'Standard_ZRS',
+   * 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'
+   */
+  accountType: AccountType;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table
+   * object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.
+   */
+  primaryEndpoints: Endpoints;
+  /**
+   * Gets the location of the primary for the storage account.
+   */
+  primaryLocation: string;
+  /**
+   * Gets the status indicating whether the primary location of the storage account is available or
+   * unavailable. Possible values include: 'Available', 'Unavailable'
+   */
+  statusOfPrimary: AccountStatus;
+  /**
+   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only
+   * the most recent timestamp is retained. This element is not returned if there has never been a
+   * failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+   */
+  lastGeoFailoverTime: Date;
+  /**
+   * Gets the location of the geo replicated secondary for the storage account. Only available if
+   * the accountType is StandardGRS or StandardRAGRS.
+   */
+  secondaryLocation: string;
+  /**
+   * Gets the status indicating whether the secondary location of the storage account is available
+   * or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible
+   * values include: 'Available', 'Unavailable'
+   */
+  statusOfSecondary: AccountStatus;
+  /**
+   * Gets the creation date and time of the storage account in UTC.
+   */
+  creationTime: Date;
+  /**
+   * Gets the user assigned custom domain assigned to this storage account.
+   */
+  customDomain: CustomDomain;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table object
+   * from the secondary location of the storage account. Only available if the accountType is
+   * StandardRAGRS.
+   */
+  secondaryEndpoints: Endpoints;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccount;
+    };
+};
 
 /**
  * Contains response data for the getProperties operation.
  */
-export interface StorageAccountsGetPropertiesResponse extends msRest.HttpResponse {
+export type StorageAccountsGetPropertiesResponse = {
   /**
-   * The response body as text (string format)
+   * Resource Id
    */
-  bodyAsText: string;
+  id: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name
    */
-  parsedBody: StorageAccount;
-}
+  name: string;
+  /**
+   * Resource type
+   */
+  type: string;
+  /**
+   * Resource location
+   */
+  location: string;
+  /**
+   * Resource tags
+   */
+  tags: { [propertyName: string]: string };
+  /**
+   * Gets the status of the storage account at the time the operation was called. Possible values
+   * include: 'Creating', 'ResolvingDNS', 'Succeeded'
+   */
+  provisioningState: ProvisioningState;
+  /**
+   * Gets the type of the storage account. Possible values include: 'Standard_LRS', 'Standard_ZRS',
+   * 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'
+   */
+  accountType: AccountType;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table
+   * object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.
+   */
+  primaryEndpoints: Endpoints;
+  /**
+   * Gets the location of the primary for the storage account.
+   */
+  primaryLocation: string;
+  /**
+   * Gets the status indicating whether the primary location of the storage account is available or
+   * unavailable. Possible values include: 'Available', 'Unavailable'
+   */
+  statusOfPrimary: AccountStatus;
+  /**
+   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only
+   * the most recent timestamp is retained. This element is not returned if there has never been a
+   * failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+   */
+  lastGeoFailoverTime: Date;
+  /**
+   * Gets the location of the geo replicated secondary for the storage account. Only available if
+   * the accountType is StandardGRS or StandardRAGRS.
+   */
+  secondaryLocation: string;
+  /**
+   * Gets the status indicating whether the secondary location of the storage account is available
+   * or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible
+   * values include: 'Available', 'Unavailable'
+   */
+  statusOfSecondary: AccountStatus;
+  /**
+   * Gets the creation date and time of the storage account in UTC.
+   */
+  creationTime: Date;
+  /**
+   * Gets the user assigned custom domain assigned to this storage account.
+   */
+  customDomain: CustomDomain;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table object
+   * from the secondary location of the storage account. Only available if the accountType is
+   * StandardRAGRS.
+   */
+  secondaryEndpoints: Endpoints;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccount;
+    };
+};
 
 /**
  * Contains response data for the update operation.
  */
-export interface StorageAccountsUpdateResponse extends msRest.HttpResponse {
+export type StorageAccountsUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource Id
    */
-  bodyAsText: string;
+  id: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name
    */
-  parsedBody: StorageAccount;
-}
+  name: string;
+  /**
+   * Resource type
+   */
+  type: string;
+  /**
+   * Resource location
+   */
+  location: string;
+  /**
+   * Resource tags
+   */
+  tags: { [propertyName: string]: string };
+  /**
+   * Gets the status of the storage account at the time the operation was called. Possible values
+   * include: 'Creating', 'ResolvingDNS', 'Succeeded'
+   */
+  provisioningState: ProvisioningState;
+  /**
+   * Gets the type of the storage account. Possible values include: 'Standard_LRS', 'Standard_ZRS',
+   * 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'
+   */
+  accountType: AccountType;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table
+   * object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.
+   */
+  primaryEndpoints: Endpoints;
+  /**
+   * Gets the location of the primary for the storage account.
+   */
+  primaryLocation: string;
+  /**
+   * Gets the status indicating whether the primary location of the storage account is available or
+   * unavailable. Possible values include: 'Available', 'Unavailable'
+   */
+  statusOfPrimary: AccountStatus;
+  /**
+   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only
+   * the most recent timestamp is retained. This element is not returned if there has never been a
+   * failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+   */
+  lastGeoFailoverTime: Date;
+  /**
+   * Gets the location of the geo replicated secondary for the storage account. Only available if
+   * the accountType is StandardGRS or StandardRAGRS.
+   */
+  secondaryLocation: string;
+  /**
+   * Gets the status indicating whether the secondary location of the storage account is available
+   * or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible
+   * values include: 'Available', 'Unavailable'
+   */
+  statusOfSecondary: AccountStatus;
+  /**
+   * Gets the creation date and time of the storage account in UTC.
+   */
+  creationTime: Date;
+  /**
+   * Gets the user assigned custom domain assigned to this storage account.
+   */
+  customDomain: CustomDomain;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table object
+   * from the secondary location of the storage account. Only available if the accountType is
+   * StandardRAGRS.
+   */
+  secondaryEndpoints: Endpoints;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccount;
+    };
+};
 
 /**
  * Contains response data for the listKeys operation.
  */
-export interface StorageAccountsListKeysResponse extends msRest.HttpResponse {
+export type StorageAccountsListKeysResponse = {
   /**
-   * The response body as text (string format)
+   * Gets the value of key 1.
    */
-  bodyAsText: string;
+  key1: string;
   /**
-   * The response body as parsed JSON or XML
+   * Gets the value of key 2.
    */
-  parsedBody: StorageAccountKeys;
-}
+  key2: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccountKeys;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface StorageAccountsListResponse extends msRest.HttpResponse {
+export type StorageAccountsListResponse = {
   /**
-   * The response body as text (string format)
+   * Gets the list of storage accounts and their properties.
    */
-  bodyAsText: string;
+  value: StorageAccount[];
   /**
-   * The response body as parsed JSON or XML
+   * Gets the link to the next set of results. Currently this will always be empty as the API does
+   * not support pagination.
    */
-  parsedBody: StorageAccountListResult;
-}
+  nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccountListResult;
+    };
+};
 
 /**
  * Contains response data for the listByResourceGroup operation.
  */
-export interface StorageAccountsListByResourceGroupResponse extends msRest.HttpResponse {
+export type StorageAccountsListByResourceGroupResponse = {
   /**
-   * The response body as text (string format)
+   * Gets the list of storage accounts and their properties.
    */
-  bodyAsText: string;
+  value: StorageAccount[];
   /**
-   * The response body as parsed JSON or XML
+   * Gets the link to the next set of results. Currently this will always be empty as the API does
+   * not support pagination.
    */
-  parsedBody: StorageAccountListResult;
-}
+  nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccountListResult;
+    };
+};
 
 /**
  * Contains response data for the regenerateKey operation.
  */
-export interface StorageAccountsRegenerateKeyResponse extends msRest.HttpResponse {
+export type StorageAccountsRegenerateKeyResponse = {
   /**
-   * The response body as text (string format)
+   * Gets the value of key 1.
    */
-  bodyAsText: string;
+  key1: string;
   /**
-   * The response body as parsed JSON or XML
+   * Gets the value of key 2.
    */
-  parsedBody: StorageAccountKeys;
-}
+  key2: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccountKeys;
+    };
+};
 
 /**
  * Contains response data for the beginCreate operation.
  */
-export interface StorageAccountsBeginCreateResponse extends msRest.HttpResponse {
+export type StorageAccountsBeginCreateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource Id
    */
-  bodyAsText: string;
+  id: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name
    */
-  parsedBody: StorageAccount;
-}
+  name: string;
+  /**
+   * Resource type
+   */
+  type: string;
+  /**
+   * Resource location
+   */
+  location: string;
+  /**
+   * Resource tags
+   */
+  tags: { [propertyName: string]: string };
+  /**
+   * Gets the status of the storage account at the time the operation was called. Possible values
+   * include: 'Creating', 'ResolvingDNS', 'Succeeded'
+   */
+  provisioningState: ProvisioningState;
+  /**
+   * Gets the type of the storage account. Possible values include: 'Standard_LRS', 'Standard_ZRS',
+   * 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'
+   */
+  accountType: AccountType;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table
+   * object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.
+   */
+  primaryEndpoints: Endpoints;
+  /**
+   * Gets the location of the primary for the storage account.
+   */
+  primaryLocation: string;
+  /**
+   * Gets the status indicating whether the primary location of the storage account is available or
+   * unavailable. Possible values include: 'Available', 'Unavailable'
+   */
+  statusOfPrimary: AccountStatus;
+  /**
+   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only
+   * the most recent timestamp is retained. This element is not returned if there has never been a
+   * failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+   */
+  lastGeoFailoverTime: Date;
+  /**
+   * Gets the location of the geo replicated secondary for the storage account. Only available if
+   * the accountType is StandardGRS or StandardRAGRS.
+   */
+  secondaryLocation: string;
+  /**
+   * Gets the status indicating whether the secondary location of the storage account is available
+   * or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible
+   * values include: 'Available', 'Unavailable'
+   */
+  statusOfSecondary: AccountStatus;
+  /**
+   * Gets the creation date and time of the storage account in UTC.
+   */
+  creationTime: Date;
+  /**
+   * Gets the user assigned custom domain assigned to this storage account.
+   */
+  customDomain: CustomDomain;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table object
+   * from the secondary location of the storage account. Only available if the accountType is
+   * StandardRAGRS.
+   */
+  secondaryEndpoints: Endpoints;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccount;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface UsageListResponse extends msRest.HttpResponse {
+export type UsageListResponse = {
   /**
-   * The response body as text (string format)
+   * Gets or sets the list Storage Resource Usages.
    */
-  bodyAsText: string;
+  value: Usage[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: UsageListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: UsageListResult;
+    };
+};

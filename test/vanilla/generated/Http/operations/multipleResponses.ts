@@ -36,662 +36,17 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get200Model204NoModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200Model204NoModelDefaultError200ValidOperationSpec) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>;
-  }
-
-  /**
-   * Send a 204 response with no payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200Model204NoModelDefaultError204ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200Model204NoModelDefaultError204ValidOperationSpec) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>;
-  }
-
-  /**
-   * Send a 201 response with valid payload: {'statusCode': '201'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200Model204NoModelDefaultError201InvalidOperationSpec) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>;
-  }
-
-  /**
-   * Send a 202 response with no payload:
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200Model204NoModelDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200Model204NoModelDefaultError202NoneOperationSpec) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>;
-  }
-
-  /**
-   * Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200Model204NoModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200Model204NoModelDefaultError400ValidOperationSpec) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>;
-  }
-
-  /**
-   * Send a 200 response with valid payload: {'statusCode': '200'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200Model201ModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200Model201ModelDefaultError200ValidOperationSpec) as Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>;
-  }
-
-  /**
-   * Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200Model201ModelDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200Model201ModelDefaultError201ValidOperationSpec) as Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>;
-  }
-
-  /**
-   * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200Model201ModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200Model201ModelDefaultError400ValidOperationSpec) as Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>;
-  }
-
-  /**
-   * Send a 200 response with valid payload: {'statusCode': '200'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>;
-  }
-
-  /**
-   * Send a 200 response with valid payload: {'httpCode': '201'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>;
-  }
-
-  /**
-   * Send a 200 response with valid payload: {'httpStatusCode': '404'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>;
-  }
-
-  /**
-   * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>;
-  }
-
-  /**
-   * Send a 202 response with no payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get202None204NoneDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get202None204NoneDefaultError202NoneOperationSpec);
-  }
-
-  /**
-   * Send a 204 response with no payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get202None204NoneDefaultError204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get202None204NoneDefaultError204NoneOperationSpec);
-  }
-
-  /**
-   * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get202None204NoneDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get202None204NoneDefaultError400ValidOperationSpec);
-  }
-
-  /**
-   * Send a 202 response with an unexpected payload {'property': 'value'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get202None204NoneDefaultNone202InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get202None204NoneDefaultNone202InvalidOperationSpec);
-  }
-
-  /**
-   * Send a 204 response with no payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get202None204NoneDefaultNone204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get202None204NoneDefaultNone204NoneOperationSpec);
-  }
-
-  /**
-   * Send a 400 response with no payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get202None204NoneDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get202None204NoneDefaultNone400NoneOperationSpec);
-  }
-
-  /**
-   * Send a 400 response with an unexpected payload {'property': 'value'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get202None204NoneDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get202None204NoneDefaultNone400InvalidOperationSpec);
-  }
-
-  /**
-   * Send a 200 response with valid payload: {'statusCode': '200'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDefaultModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDefaultModelA200ValidOperationSpec) as Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse>;
-  }
-
-  /**
-   * Send a 200 response with no payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDefaultModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDefaultModelA200NoneOperationSpec) as Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse>;
-  }
-
-  /**
-   * Send a 400 response with valid payload: {'statusCode': '400'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDefaultModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDefaultModelA400ValidOperationSpec) as Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
-  }
-
-  /**
-   * Send a 400 response with no payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDefaultModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDefaultModelA400NoneOperationSpec) as Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
-  }
-
-  /**
-   * Send a 200 response with invalid payload: {'statusCode': '200'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDefaultNone200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDefaultNone200InvalidOperationSpec);
-  }
-
-  /**
-   * Send a 200 response with no payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDefaultNone200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDefaultNone200NoneOperationSpec);
-  }
-
-  /**
-   * Send a 400 response with valid payload: {'statusCode': '400'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDefaultNone400InvalidOperationSpec);
-  }
-
-  /**
-   * Send a 400 response with no payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getDefaultNone400NoneOperationSpec);
-  }
-
-  /**
-   * Send a 200 response with no payload, when a payload is expected - client should return a null
-   * object of thde type for model A
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA200NoneOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA200NoneResponse>;
-  }
-
-  /**
-   * Send a 200 response with payload {'statusCode': '200'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA200ValidOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA200ValidResponse>;
-  }
-
-  /**
-   * Send a 200 response with invalid payload {'statusCodeInvalid': '200'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA200InvalidOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse>;
-  }
-
-  /**
-   * Send a 400 response with no payload client should treat as an http error with no error model
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA400NoneOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA400NoneResponse>;
-  }
-
-  /**
-   * Send a 200 response with payload {'statusCode': '400'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA400ValidOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA400ValidResponse>;
-  }
-
-  /**
-   * Send a 200 response with invalid payload {'statusCodeInvalid': '400'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA400InvalidOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse>;
-  }
-
-  /**
-   * Send a 202 response with payload {'statusCode': '202'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  get200ModelA202ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      get200ModelA202ValidOperationSpec) as Promise<Models.MultipleResponsesGet200ModelA202ValidResponse>;
-  }
-
-  /**
-   * Send a 200 response with valid payload: {'statusCode': '200'}
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get200Model204NoModelDefaultError200Valid(): Promise<Models.A>;
-  get200Model204NoModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200Model204NoModelDefaultError200Valid(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>;
+  get200Model204NoModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>;
   get200Model204NoModelDefaultError200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError200ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200Model204NoModelDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError200ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>;
   }
 
   /**
@@ -699,21 +54,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200Model204NoModelDefaultError204Valid(): Promise<Models.A>;
-  get200Model204NoModelDefaultError204Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200Model204NoModelDefaultError204Valid(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>;
+  get200Model204NoModelDefaultError204Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>;
   get200Model204NoModelDefaultError204Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError204Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError204Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError204ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200Model204NoModelDefaultError204Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError204ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>;
   }
 
   /**
@@ -721,21 +78,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200Model204NoModelDefaultError201Invalid(): Promise<Models.A>;
-  get200Model204NoModelDefaultError201Invalid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200Model204NoModelDefaultError201Invalid(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>;
+  get200Model204NoModelDefaultError201Invalid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>;
   get200Model204NoModelDefaultError201Invalid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError201Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError201Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse.bind(this), options, callback);
+  get200Model204NoModelDefaultError201Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError201InvalidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>;
   }
 
   /**
@@ -743,21 +102,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200Model204NoModelDefaultError202None(): Promise<Models.A>;
-  get200Model204NoModelDefaultError202None(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200Model204NoModelDefaultError202None(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>;
+  get200Model204NoModelDefaultError202None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>;
   get200Model204NoModelDefaultError202None(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError202None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError202None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError202NoneWithHttpOperationResponse.bind(this), options, callback);
+  get200Model204NoModelDefaultError202None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError202NoneOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>;
   }
 
   /**
@@ -765,21 +126,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200Model204NoModelDefaultError400Valid(): Promise<Models.A>;
-  get200Model204NoModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200Model204NoModelDefaultError400Valid(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>;
+  get200Model204NoModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>;
   get200Model204NoModelDefaultError400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model204NoModelDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200Model204NoModelDefaultError400ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200Model204NoModelDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model204NoModelDefaultError400ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>;
   }
 
   /**
@@ -787,21 +150,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200Model201ModelDefaultError200Valid(): Promise<Models.A>;
-  get200Model201ModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200Model201ModelDefaultError200Valid(): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>;
+  get200Model201ModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>;
   get200Model201ModelDefaultError200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model201ModelDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200Model201ModelDefaultError200ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200Model201ModelDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model201ModelDefaultError200ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>;
   }
 
   /**
@@ -809,21 +174,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200Model201ModelDefaultError201Valid(): Promise<Models.A>;
-  get200Model201ModelDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200Model201ModelDefaultError201Valid(): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>;
+  get200Model201ModelDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>;
   get200Model201ModelDefaultError201Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model201ModelDefaultError201Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError201Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200Model201ModelDefaultError201ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200Model201ModelDefaultError201Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model201ModelDefaultError201ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>;
   }
 
   /**
@@ -831,21 +198,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200Model201ModelDefaultError400Valid(): Promise<Models.A>;
-  get200Model201ModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200Model201ModelDefaultError400Valid(): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>;
+  get200Model201ModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>;
   get200Model201ModelDefaultError400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200Model201ModelDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200Model201ModelDefaultError400ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200Model201ModelDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200Model201ModelDefaultError400ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>;
   }
 
   /**
@@ -853,21 +222,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {any} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA201ModelC404ModelDDefaultError200Valid(): Promise<any>;
-  get200ModelA201ModelC404ModelDDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<any>;
+  get200ModelA201ModelC404ModelDDefaultError200Valid(): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>;
+  get200ModelA201ModelC404ModelDDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>;
   get200ModelA201ModelC404ModelDDefaultError200Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
-    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA201ModelC404ModelDDefaultError200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>;
   }
 
   /**
@@ -875,21 +246,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {any} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA201ModelC404ModelDDefaultError201Valid(): Promise<any>;
-  get200ModelA201ModelC404ModelDDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<any>;
+  get200ModelA201ModelC404ModelDDefaultError201Valid(): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>;
+  get200ModelA201ModelC404ModelDDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>;
   get200ModelA201ModelC404ModelDDefaultError201Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError201Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError201Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
-    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA201ModelC404ModelDDefaultError201Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>;
   }
 
   /**
@@ -897,21 +270,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {any} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA201ModelC404ModelDDefaultError404Valid(): Promise<any>;
-  get200ModelA201ModelC404ModelDDefaultError404Valid(options: msRest.RequestOptionsBase): Promise<any>;
+  get200ModelA201ModelC404ModelDDefaultError404Valid(): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>;
+  get200ModelA201ModelC404ModelDDefaultError404Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>;
   get200ModelA201ModelC404ModelDDefaultError404Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError404Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError404Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
-    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA201ModelC404ModelDDefaultError404Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>;
   }
 
   /**
@@ -919,21 +294,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {any} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA201ModelC404ModelDDefaultError400Valid(): Promise<any>;
-  get200ModelA201ModelC404ModelDDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<any>;
+  get200ModelA201ModelC404ModelDDefaultError400Valid(): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>;
+  get200ModelA201ModelC404ModelDDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>;
   get200ModelA201ModelC404ModelDDefaultError400Valid(callback: msRest.ServiceCallback<any>): void;
   get200ModelA201ModelC404ModelDDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): any {
-    return msRest.responseToBody(this.get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA201ModelC404ModelDDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>;
   }
 
   /**
@@ -941,21 +318,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultError202None(): Promise<void>;
-  get202None204NoneDefaultError202None(options: msRest.RequestOptionsBase): Promise<void>;
+  get202None204NoneDefaultError202None(): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultError202None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   get202None204NoneDefaultError202None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultError202None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError202None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultError202NoneWithHttpOperationResponse.bind(this), options, callback);
+  get202None204NoneDefaultError202None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultError202NoneOperationSpec,
+      callback);
   }
 
   /**
@@ -963,21 +342,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultError204None(): Promise<void>;
-  get202None204NoneDefaultError204None(options: msRest.RequestOptionsBase): Promise<void>;
+  get202None204NoneDefaultError204None(): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultError204None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   get202None204NoneDefaultError204None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultError204None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError204None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultError204NoneWithHttpOperationResponse.bind(this), options, callback);
+  get202None204NoneDefaultError204None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultError204NoneOperationSpec,
+      callback);
   }
 
   /**
@@ -985,21 +366,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultError400Valid(): Promise<void>;
-  get202None204NoneDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<void>;
+  get202None204NoneDefaultError400Valid(): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   get202None204NoneDefaultError400Valid(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultError400ValidWithHttpOperationResponse.bind(this), options, callback);
+  get202None204NoneDefaultError400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultError400ValidOperationSpec,
+      callback);
   }
 
   /**
@@ -1007,21 +390,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultNone202Invalid(): Promise<void>;
-  get202None204NoneDefaultNone202Invalid(options: msRest.RequestOptionsBase): Promise<void>;
+  get202None204NoneDefaultNone202Invalid(): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultNone202Invalid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   get202None204NoneDefaultNone202Invalid(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone202Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone202Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultNone202InvalidWithHttpOperationResponse.bind(this), options, callback);
+  get202None204NoneDefaultNone202Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultNone202InvalidOperationSpec,
+      callback);
   }
 
   /**
@@ -1029,21 +414,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultNone204None(): Promise<void>;
-  get202None204NoneDefaultNone204None(options: msRest.RequestOptionsBase): Promise<void>;
+  get202None204NoneDefaultNone204None(): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultNone204None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   get202None204NoneDefaultNone204None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone204None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone204None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultNone204NoneWithHttpOperationResponse.bind(this), options, callback);
+  get202None204NoneDefaultNone204None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultNone204NoneOperationSpec,
+      callback);
   }
 
   /**
@@ -1051,21 +438,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultNone400None(): Promise<void>;
-  get202None204NoneDefaultNone400None(options: msRest.RequestOptionsBase): Promise<void>;
+  get202None204NoneDefaultNone400None(): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultNone400None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   get202None204NoneDefaultNone400None(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultNone400NoneWithHttpOperationResponse.bind(this), options, callback);
+  get202None204NoneDefaultNone400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultNone400NoneOperationSpec,
+      callback);
   }
 
   /**
@@ -1073,21 +462,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  get202None204NoneDefaultNone400Invalid(): Promise<void>;
-  get202None204NoneDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<void>;
+  get202None204NoneDefaultNone400Invalid(): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   get202None204NoneDefaultNone400Invalid(callback: msRest.ServiceCallback<void>): void;
   get202None204NoneDefaultNone400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.get202None204NoneDefaultNone400InvalidWithHttpOperationResponse.bind(this), options, callback);
+  get202None204NoneDefaultNone400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get202None204NoneDefaultNone400InvalidOperationSpec,
+      callback);
   }
 
   /**
@@ -1095,21 +486,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getDefaultModelA200Valid(): Promise<Models.A>;
-  getDefaultModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  getDefaultModelA200Valid(): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse>;
+  getDefaultModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse>;
   getDefaultModelA200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.getDefaultModelA200ValidWithHttpOperationResponse.bind(this), options, callback);
+  getDefaultModelA200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultModelA200ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse>;
   }
 
   /**
@@ -1117,21 +510,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getDefaultModelA200None(): Promise<Models.A>;
-  getDefaultModelA200None(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  getDefaultModelA200None(): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse>;
+  getDefaultModelA200None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse>;
   getDefaultModelA200None(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.getDefaultModelA200NoneWithHttpOperationResponse.bind(this), options, callback);
+  getDefaultModelA200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultModelA200NoneOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse>;
   }
 
   /**
@@ -1139,21 +534,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getDefaultModelA400Valid(): Promise<Models.A>;
-  getDefaultModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  getDefaultModelA400Valid(): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
+  getDefaultModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
   getDefaultModelA400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.getDefaultModelA400ValidWithHttpOperationResponse.bind(this), options, callback);
+  getDefaultModelA400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultModelA400ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
   }
 
   /**
@@ -1161,21 +558,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getDefaultModelA400None(): Promise<Models.A>;
-  getDefaultModelA400None(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  getDefaultModelA400None(): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
+  getDefaultModelA400None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
   getDefaultModelA400None(callback: msRest.ServiceCallback<Models.A>): void;
   getDefaultModelA400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.getDefaultModelA400NoneWithHttpOperationResponse.bind(this), options, callback);
+  getDefaultModelA400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultModelA400NoneOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
   }
 
   /**
@@ -1183,21 +582,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDefaultNone200Invalid(): Promise<void>;
-  getDefaultNone200Invalid(options: msRest.RequestOptionsBase): Promise<void>;
+  getDefaultNone200Invalid(): Promise<msRest.RestResponse>;
+  getDefaultNone200Invalid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getDefaultNone200Invalid(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone200Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone200Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getDefaultNone200InvalidWithHttpOperationResponse.bind(this), options, callback);
+  getDefaultNone200Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultNone200InvalidOperationSpec,
+      callback);
   }
 
   /**
@@ -1205,21 +606,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDefaultNone200None(): Promise<void>;
-  getDefaultNone200None(options: msRest.RequestOptionsBase): Promise<void>;
+  getDefaultNone200None(): Promise<msRest.RestResponse>;
+  getDefaultNone200None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getDefaultNone200None(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getDefaultNone200NoneWithHttpOperationResponse.bind(this), options, callback);
+  getDefaultNone200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultNone200NoneOperationSpec,
+      callback);
   }
 
   /**
@@ -1227,21 +630,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDefaultNone400Invalid(): Promise<void>;
-  getDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<void>;
+  getDefaultNone400Invalid(): Promise<msRest.RestResponse>;
+  getDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getDefaultNone400Invalid(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getDefaultNone400InvalidWithHttpOperationResponse.bind(this), options, callback);
+  getDefaultNone400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultNone400InvalidOperationSpec,
+      callback);
   }
 
   /**
@@ -1249,21 +654,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  getDefaultNone400None(): Promise<void>;
-  getDefaultNone400None(options: msRest.RequestOptionsBase): Promise<void>;
+  getDefaultNone400None(): Promise<msRest.RestResponse>;
+  getDefaultNone400None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
   getDefaultNone400None(callback: msRest.ServiceCallback<void>): void;
   getDefaultNone400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.getDefaultNone400NoneWithHttpOperationResponse.bind(this), options, callback);
+  getDefaultNone400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDefaultNone400NoneOperationSpec,
+      callback);
   }
 
   /**
@@ -1272,21 +679,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA200None(): Promise<Models.A>;
-  get200ModelA200None(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200ModelA200None(): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse>;
+  get200ModelA200None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse>;
   get200ModelA200None(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200ModelA200NoneWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA200None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA200NoneOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA200NoneResponse>;
   }
 
   /**
@@ -1294,21 +703,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA200Valid(): Promise<Models.A>;
-  get200ModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200ModelA200Valid(): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse>;
+  get200ModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse>;
   get200ModelA200Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200ModelA200ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA200Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA200ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA200ValidResponse>;
   }
 
   /**
@@ -1316,21 +727,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA200Invalid(): Promise<Models.A>;
-  get200ModelA200Invalid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200ModelA200Invalid(): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse>;
+  get200ModelA200Invalid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse>;
   get200ModelA200Invalid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA200Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200ModelA200InvalidWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA200Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA200InvalidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse>;
   }
 
   /**
@@ -1338,21 +751,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA400None(): Promise<Models.A>;
-  get200ModelA400None(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200ModelA400None(): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse>;
+  get200ModelA400None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse>;
   get200ModelA400None(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200ModelA400NoneWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA400None(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA400NoneOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA400NoneResponse>;
   }
 
   /**
@@ -1360,21 +775,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA400Valid(): Promise<Models.A>;
-  get200ModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200ModelA400Valid(): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse>;
+  get200ModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse>;
   get200ModelA400Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200ModelA400ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA400Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA400ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA400ValidResponse>;
   }
 
   /**
@@ -1382,21 +799,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA400Invalid(): Promise<Models.A>;
-  get200ModelA400Invalid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200ModelA400Invalid(): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse>;
+  get200ModelA400Invalid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse>;
   get200ModelA400Invalid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200ModelA400InvalidWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA400Invalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA400InvalidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse>;
   }
 
   /**
@@ -1404,21 +823,23 @@ export class MultipleResponses {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.A} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.A} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  get200ModelA202Valid(): Promise<Models.A>;
-  get200ModelA202Valid(options: msRest.RequestOptionsBase): Promise<Models.A>;
+  get200ModelA202Valid(): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse>;
+  get200ModelA202Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse>;
   get200ModelA202Valid(callback: msRest.ServiceCallback<Models.A>): void;
   get200ModelA202Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA202Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): any {
-    return msRest.responseToBody(this.get200ModelA202ValidWithHttpOperationResponse.bind(this), options, callback);
+  get200ModelA202Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      get200ModelA202ValidOperationSpec,
+      callback) as Promise<Models.MultipleResponsesGet200ModelA202ValidResponse>;
   }
 
 }

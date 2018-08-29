@@ -398,8 +398,8 @@ describe('typescript', function () {
     });
 
     it('should deserialize custom headers in an XML client', async function () {
-      const headersResponse = await testClient.xml.getHeadersWithHttpOperationResponse();
-      headersResponse.parsedHeaders.customHeader.should.equal('custom-value');
+      const headersResponse = await testClient.xml.getHeaders();
+      headersResponse.customHeader.should.equal('custom-value');
     });
   });
 });

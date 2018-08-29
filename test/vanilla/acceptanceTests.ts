@@ -409,7 +409,7 @@ describe('typescript', function () {
 
         await testClient.string.putMbcs();
         const result = await testClient.string.getMbcs();
-        result.should.equal(AutoRestSwaggerBATServiceModels.GetMbcsOKResponse.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣);
+        result.body.should.equal(AutoRestSwaggerBATServiceModels.GetMbcsOKResponse.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣);
       });
 
       it('should support whitespace string value', function (done) {
@@ -634,7 +634,7 @@ describe('typescript', function () {
           this.skip();
         }
 
-        const date = await testClient.datetime.getUtcUppercaseMaxDateTime();
+        const date = (await testClient.datetime.getUtcUppercaseMaxDateTime()).body;
         date.getUTCFullYear().should.equal(9999);
         date.getUTCMonth().should.equal(11);
         date.getUTCDate().should.equal(31);
@@ -643,7 +643,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(59);
         date.getUTCMilliseconds().should.equal(999);
 
-        const date2 = await testClient.datetime.getUtcLowercaseMaxDateTime();
+        const date2 = (await testClient.datetime.getUtcLowercaseMaxDateTime()).body;
         date2.getUTCFullYear().should.equal(9999);
         date2.getUTCMonth().should.equal(11);
         date2.getUTCDate().should.equal(31);
@@ -653,7 +653,7 @@ describe('typescript', function () {
       });
 
       it('should get UTC min dateTime value', async function () {
-        const date = await testClient.datetime.getUtcMinDateTime();
+        const date = (await testClient.datetime.getUtcMinDateTime()).body;
         date.getUTCFullYear().should.equal(1);
         date.getUTCMonth().should.equal(0);
         date.getUTCDate().should.equal(1);
@@ -664,7 +664,7 @@ describe('typescript', function () {
       });
 
       it('should get local negative and positive offset Min DateTime value', async function () {
-        const date = await testClient.datetime.getLocalNegativeOffsetMinDateTime();
+        const date = (await testClient.datetime.getLocalNegativeOffsetMinDateTime()).body;
         date.getUTCFullYear().should.equal(1);
         date.getUTCMonth().should.equal(0);
         date.getUTCDate().should.equal(1);
@@ -673,7 +673,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(0);
         date.getUTCMilliseconds().should.equal(0);
 
-        const date2 = await testClient.datetime.getLocalPositiveOffsetMinDateTime();
+        const date2 = (await testClient.datetime.getLocalPositiveOffsetMinDateTime()).body;
         date2.getUTCFullYear().should.equal(0);
         date2.getUTCMonth().should.equal(11);
         date2.getUTCDate().should.equal(31);
@@ -689,7 +689,7 @@ describe('typescript', function () {
           this.skip();
         }
 
-        const date = await testClient.datetime.getLocalNegativeOffsetLowercaseMaxDateTime();
+        const date = (await testClient.datetime.getLocalNegativeOffsetLowercaseMaxDateTime()).body;
         date.getUTCFullYear().should.equal(10000);
         date.getUTCMonth().should.equal(0);
         date.getUTCDate().should.equal(1);
@@ -698,7 +698,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(59);
         date.getUTCMilliseconds().should.equal(999);
 
-        const date2 = await testClient.datetime.getLocalNegativeOffsetUppercaseMaxDateTime();
+        const date2 = (await testClient.datetime.getLocalNegativeOffsetUppercaseMaxDateTime()).body;
         assert.deepEqual(date2, new Date('9999-12-31T23:59:59.9999999-14:00'));
         date2.getUTCFullYear().should.equal(10000);
         date2.getUTCMonth().should.equal(0);
@@ -715,7 +715,7 @@ describe('typescript', function () {
           this.skip();
         }
 
-        const date = await testClient.datetime.getLocalPositiveOffsetLowercaseMaxDateTime();
+        const date = (await testClient.datetime.getLocalPositiveOffsetLowercaseMaxDateTime()).body;
         date.getUTCFullYear().should.equal(9999);
         date.getUTCMonth().should.equal(11);
         date.getUTCDate().should.equal(31);
@@ -724,7 +724,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(59);
         date.getUTCMilliseconds().should.equal(999);
 
-        const date2 = await testClient.datetime.getLocalPositiveOffsetUppercaseMaxDateTime();
+        const date2 = (await testClient.datetime.getLocalPositiveOffsetUppercaseMaxDateTime()).body;
         assert.deepEqual(date2, new Date('9999-12-31T23:59:59.9999999+14:00'));
         date2.getUTCFullYear().should.equal(9999);
         date2.getUTCMonth().should.equal(11);
@@ -741,7 +741,7 @@ describe('typescript', function () {
           this.skip();
         }
 
-        const date = await testClient.datetime.getOverflow();
+        const date = (await testClient.datetime.getOverflow()).body;
         date.getUTCFullYear().should.equal(10000);
         date.getUTCMonth().should.equal(0);
         date.getUTCDate().should.equal(1);
@@ -750,7 +750,7 @@ describe('typescript', function () {
         date.getUTCSeconds().should.equal(59);
         date.getUTCMilliseconds().should.equal(999);
 
-        const date2 = await testClient.datetime.getUnderflow();
+        const date2 = (await testClient.datetime.getUnderflow()).body;
         isNaN(date2.valueOf()).should.equal(true);
       });
 
@@ -922,7 +922,8 @@ describe('typescript', function () {
         var testClient = new AutoRestSwaggerBATArrayService(baseUri, clientOptions);
         it('should get and put empty arrays', function (done) {
           testClient.arrayModel.getEmpty(function (error, result) {
-            should.not.exist(error);
+            if (error) { done(error); return; }
+
             assert.deepEqual(result, []);
             testClient.arrayModel.putEmpty([], function (error, result) {
               should.not.exist(error);
@@ -933,6 +934,7 @@ describe('typescript', function () {
 
         it('should handle null and invalid value for arrays', function (done) {
           testClient.arrayModel.getNull(function (error, result) {
+            console.error(error);
             should.not.exist(error);
             assert.equal(result, null);
             testClient.arrayModel.getInvalid(function (error, result) {
@@ -1052,7 +1054,7 @@ describe('typescript', function () {
           var testArray = ['foo1', 'foo2', 'foo3'];
           testClient.arrayModel.getStringValid(function (error, result) {
             should.not.exist(error);
-            assert.deepEqual(result, testArray);
+            assert.deepEqual(result.slice(), testArray);
             testClient.arrayModel.putStringValid(testArray, function (error, result) {
               should.not.exist(error);
               testClient.arrayModel.getStringWithNull(function (error, result) {
@@ -1069,14 +1071,14 @@ describe('typescript', function () {
         it('should get and put enum arrays', async function () {
           const testArray = [FooEnum.Foo1, FooEnum.Foo2, FooEnum.Foo3];
           const result = await testClient.arrayModel.getEnumValid();
-          assert.deepEqual(result, testArray);
+          assert.deepEqual(result.slice(), testArray);
           await testClient.arrayModel.putEnumValid(testArray);
         });
 
         it('should get and put string enum arrays', async function () {
           const testArray = ["foo1", "foo2", "foo3"];
           const result = await testClient.arrayModel.getStringEnumValid();
-          assert.deepEqual(result, testArray);
+          assert.deepEqual(result.slice(), testArray);
           await testClient.arrayModel.putStringEnumValid(testArray);
         });
 
@@ -1084,7 +1086,7 @@ describe('typescript', function () {
           var testArray = ["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "d1399005-30f7-40d6-8da6-dd7c89ad34db", "f42f6aa1-a5bc-4ddf-907e-5f915de43205"];
           testClient.arrayModel.getUuidValid(function (error, result) {
             should.not.exist(error);
-            assert.deepEqual(result, testArray);
+            assert.deepEqual(result.slice(), testArray);
             testClient.arrayModel.putUuidValid(testArray, function (error, result) {
               should.not.exist(error);
               testClient.arrayModel.getUuidInvalidChars(function (error, result) {
@@ -1099,7 +1101,7 @@ describe('typescript', function () {
           var testArray = [new Date('2000-12-01'), new Date('1980-01-02'), new Date('1492-10-12')];
           testClient.arrayModel.getDateValid(function (error, result) {
             should.not.exist(error);
-            assert.deepEqual(result, testArray);
+            assert.deepEqual(result.slice(), testArray);
             testClient.arrayModel.putDateValid(testArray, function (error, result) {
               should.not.exist(error);
               testClient.arrayModel.getDateInvalidNull(function (error, result) {
@@ -1123,22 +1125,22 @@ describe('typescript', function () {
 
           const testArray = [new Date('2000-12-01t00:00:01z'), new Date('1980-01-02T01:11:35+01:00'), new Date('1492-10-12T02:15:01-08:00')];
           const result = await testClient.arrayModel.getDateTimeValid();
-          assert.deepEqual(result, testArray);
+          assert.deepEqual(result.slice(), testArray);
 
           await testClient.arrayModel.putDateTimeValid(testArray);
 
           const result2 = await testClient.arrayModel.getDateTimeInvalidNull();
-          assert.deepEqual(result2, [new Date('2000-12-01t00:00:01z'), null]);
+          assert.deepEqual(result2.slice(), [new Date('2000-12-01t00:00:01z'), null]);
 
           const result3 = await testClient.arrayModel.getDateTimeInvalidChars();
-          JSON.stringify(result3).should.equal(JSON.stringify([new Date('2000-12-01t00:00:01z'), new Date('date-time')]));
+          JSON.stringify(result3.slice()).should.equal(JSON.stringify([new Date('2000-12-01t00:00:01z'), new Date('date-time')]));
         });
 
         it('should get and put dateTimeRfc1123 arrays', function (done) {
           var testArray = [new Date('Fri, 01 Dec 2000 00:00:01 GMT'), new Date('Wed, 02 Jan 1980 00:11:35 GMT'), new Date('Wed, 12 Oct 1492 10:15:01 GMT')];
           testClient.arrayModel.getDateTimeRfc1123Valid(function (error, result) {
             should.not.exist(error);
-            assert.deepEqual(result, testArray);
+            assert.deepEqual(result.slice(), testArray);
             testClient.arrayModel.putDateTimeRfc1123Valid(testArray, function (error, result) {
               should.not.exist(error);
               done();
@@ -1150,7 +1152,7 @@ describe('typescript', function () {
           var testArray = ['P123DT22H14M12.011S', 'P5DT1H'];
           testClient.arrayModel.getDurationValid(function (error, result) {
             should.not.exist(error);
-            assert.deepStrictEqual(result, ['P123DT22H14M12.011S', 'P5DT1H0M0S']);
+            assert.deepStrictEqual(result.slice(), ['P123DT22H14M12.011S', 'P5DT1H0M0S']);
             testClient.arrayModel.putDurationValid(testArray, function (error, result) {
               should.not.exist(error);
               done();
@@ -1598,6 +1600,7 @@ describe('typescript', function () {
           var putDictionary: { [propertyName: string]: Date } =
             { 0: new Date('2000-12-01T00:00:01Z'), 1: new Date('1980-01-01T23:11:35Z'), 2: new Date('1492-10-12T18:15:01Z') };
           const result = await testClient.dictionary.getDateTimeValid();
+          delete result._response;
           assert.deepEqual(result, getDictionary);
           await testClient.dictionary.putDateTimeValid(putDictionary);
         });
@@ -1640,6 +1643,7 @@ describe('typescript', function () {
 
           const testDictionary: { [propertyName: string]: Date } = { "0": new Date("2000-12-01t00:00:01z"), "1": null };
           const result = await testClient.dictionary.getDateTimeInvalidNull();
+          delete result._response;
           assert.deepEqual(result, testDictionary);
         });
 
@@ -1647,6 +1651,7 @@ describe('typescript', function () {
           var testDictionary: { [propertyName: string]: Date } = { "0": new Date("2000-12-01t00:00:01z"), "1": new Date("date-time") };
           testClient.dictionary.getDateTimeInvalidChars(function (error, result) {
             should.not.exist(error);
+            delete result._response;
             assert.deepEqual(util.inspect(result), util.inspect(testDictionary));
             done();
           });
@@ -1831,7 +1836,7 @@ describe('typescript', function () {
 
       if (msRest.isNode) {
         it('nodejs should correctly deserialize binary streams', async function () {
-          const result = await testClient.files.getFileWithHttpOperationResponse()
+          const result = await testClient.files.getFile()
           const buf = await readStreamToBuffer(result.readableStreamBody);
           assert.deepEqual(buf, fs.readFileSync(__dirname + '/sample.png'));
         });
@@ -1839,10 +1844,10 @@ describe('typescript', function () {
 
       if (!msRest.isNode) {
         it('browser should correctly deserialize binary streams', async function () {
-          const result = await testClient.files.getFileWithHttpOperationResponse();
+          const result = await testClient.files.getFile();
           should.exist(result);
           should.exist(result.blobBody);
-          const body = await result.blobBody();
+          const body = await result.blobBody;
           const reader = new FileReader();
           const readPromise = new Promise(function (resolve, reject) {
             reader.addEventListener("error", reject);
@@ -1862,7 +1867,7 @@ describe('typescript', function () {
 
       if (msRest.isNode) {
         it('nodejs should correctly deserialize empty streams', async function () {
-          const result = await testClient.files.getEmptyFileWithHttpOperationResponse()
+          const result = await testClient.files.getEmptyFile()
           const byteCount = await readStreamCountBytes(result.readableStreamBody as any);
           byteCount.should.equal(0);
         });
@@ -1870,15 +1875,15 @@ describe('typescript', function () {
 
       if (!msRest.isNode) {
         it('browser should correctly deserialize empty streams', async function () {
-          const result = await testClient.files.getEmptyFileWithHttpOperationResponse();
-          const body = await result.blobBody();
+          const result = await testClient.files.getEmptyFile();
+          const body = await result.blobBody;
           body.size.should.equal(0);
         });
       }
 
       if (msRest.isNode) {
         it('nodejs should correctly deserialize large streams', async function () {
-          const result = await testClient.files.getFileLargeWithHttpOperationResponse();
+          const result = await testClient.files.getFileLarge();
           const byteCount = await readStreamCountBytes(result.readableStreamBody);
           byteCount.should.equal(3000 * 1024 * 1024);
         });
@@ -1887,8 +1892,8 @@ describe('typescript', function () {
       if (!msRest.isNode) {
         it('browser should correctly deserialize large streams', async function () {
           this.timeout(1000 * 60 * 10);
-          const result = await testClient.files.getFileLargeWithHttpOperationResponse();
-          const body = await result.blobBody();
+          const result = await testClient.files.getFileLarge();
+          const body = await result.blobBody;
           body.size.should.equal(3000 * 1024 * 1024);
         });
       }
@@ -1899,7 +1904,7 @@ describe('typescript', function () {
 
       if (msRest.isNode) {
         it('nodejs should correctly accept file via form-dat', async function () {
-          const result = await testClient.formdata.uploadFileWithHttpOperationResponse(() => fs.createReadStream(__dirname + '/sample.png'), 'sample.png');
+          const result = await testClient.formdata.uploadFile(() => fs.createReadStream(__dirname + '/sample.png'), 'sample.png');
           const buff = await readStreamToBuffer(result.readableStreamBody)
           assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
         });
@@ -1909,8 +1914,8 @@ describe('typescript', function () {
         it('browser should correctly accept file via form-dat', async function () {
           const content = require(`arraybuffer-loader!${__dirname}/sample.png`);
           const blob = new Blob([content]);
-          const response = await testClient.formdata.uploadFileWithHttpOperationResponse(blob, 'sample.png');
-          const body = await response.blobBody();
+          const response = await testClient.formdata.uploadFile(blob, 'sample.png');
+          const body = await response.blobBody;
           const reader = new FileReader();
           const readPromise = new Promise(function (resolve, reject) {
             reader.addEventListener("error", reject);
@@ -1930,7 +1935,7 @@ describe('typescript', function () {
 
       if (msRest.isNode) {
         it('nodejs should correctly accept file via body', async function () {
-          const result = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(() => fs.createReadStream(__dirname + '/sample.png'));
+          const result = await testClient.formdata.uploadFileViaBody(() => fs.createReadStream(__dirname + '/sample.png'));
           const buff = await readStreamToBuffer(result.readableStreamBody);
           assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
         });
@@ -1939,14 +1944,14 @@ describe('typescript', function () {
       if (!msRest.isNode) {
         it('browser should correctly accept file via body', async function () {
           const content = require(`arraybuffer-loader!${__dirname}/sample.png`);
-          const response = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(new Blob([content]));
+          const response = await testClient.formdata.uploadFileViaBody(new Blob([content]));
           const reader = new FileReader();
           const readPromise = new Promise((resolve, reject) => {
             reader.addEventListener("abort", reject);
             reader.addEventListener("error", reject);
             reader.addEventListener("load", resolve);
           });
-          reader.readAsArrayBuffer(await response.blobBody());
+          reader.readAsArrayBuffer(await response.blobBody);
           await readPromise;
           const actual = new Uint8Array(reader.result as ArrayBuffer);
           const expected = new Uint8Array(content);
@@ -1961,7 +1966,7 @@ describe('typescript', function () {
         const content = new Uint8Array(1024 * 1024 * 1);
         let uploadNotified = false;
         let downloadNotified = false;
-        const response = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(content, {
+        const response = await testClient.formdata.uploadFileViaBody(content, {
           onUploadProgress: ev => {
             uploadNotified = true;
             ev.loadedBytes.should.be.a.Number;
@@ -1973,7 +1978,7 @@ describe('typescript', function () {
         });
         const streamBody = response.readableStreamBody;
         if (response.blobBody) {
-          await response.blobBody();
+          await response.blobBody;
         } else if (streamBody) {
           streamBody.on('data', () => { });
           await new Promise((resolve, reject) => {
@@ -2609,6 +2614,7 @@ describe('typescript', function () {
 
         const result3 = await testClient.multipleResponses.get200Model201ModelDefaultError201Valid();
         should.exist(result3);
+        delete result3._response;
         assert.deepEqual(result3, { 'statusCode': '201', 'textStatusCode': 'Created' });
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200Model201ModelDefaultError400Valid(),
@@ -2616,15 +2622,15 @@ describe('typescript', function () {
 
         const result4 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError200Valid();
         should.exist(result4);
-        result4.statusCode.should.equal("200");
+        result4._response.status.should.equal(200);
 
         const result5 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError201Valid();
         should.exist(result5);
-        result5.httpCode.should.equal("201");
+        result5._response.status.should.equal(201);
 
         const result6 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError404Valid();
         should.exist(result6);
-        result6.httpStatusCode.should.equal("404");
+        result6._response.status.should.equal(404);
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError400Valid(),
           (error: msRest.RestError) => error.statusCode.should.equal(400));

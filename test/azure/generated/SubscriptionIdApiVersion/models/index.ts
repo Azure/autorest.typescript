@@ -48,13 +48,26 @@ export interface ErrorModel {
 /**
  * Contains response data for the getSampleResourceGroup operation.
  */
-export interface GroupGetSampleResourceGroupResponse extends msRest.HttpResponse {
+export type GroupGetSampleResourceGroupResponse = {
   /**
-   * The response body as text (string format)
+   * resource group name 'testgroup101'
    */
-  bodyAsText: string;
+  name: string;
   /**
-   * The response body as parsed JSON or XML
+   * resource group location 'West US'
    */
-  parsedBody: SampleResourceGroup;
-}
+  location: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SampleResourceGroup;
+    };
+};

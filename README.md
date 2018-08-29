@@ -9,8 +9,8 @@ npm install -g autorest
 # Compatibility
 This AutoRest extension generates TypeScript code that is compatible with:
 ```
-"ms-rest-azure-js": "~0.15.152",
-"ms-rest-js": "~0.20.403"
+"ms-rest-azure-js": "~0.16.156",
+"ms-rest-js": "~0.21.404"
 ```
 
 # Usage
@@ -74,7 +74,7 @@ This can save some space when bundling for the browser.
 ### Generate date-times as strings
 Swagger strings can have the format `"date-time"`, which causes AutoRest to model the parameter as JavaScript Date.
 ```ts
-  getDate(): Promise<Date>;
+  putDate(date: Date): Promise<RestResponse>;
 ```
 
 If you pass `--model-date-time-as-string=true` to the generator, it will instead
@@ -83,23 +83,10 @@ This allows users to use custom date formatting methods, particularly for servic
 or require greater precision than what the JavaScript Date provides out of the box.
 
 ```ts
-  getDate(): Promise<string>;
+  putDate(date: string): Promise<RestResponse>;
 ```
 
 Note that properties with the format `"date"` or `"date-time-rfc1123"` are unaffected by this flag.
-
-### Body method generation
-For usability and back-compatibility, the generator creates a pair of methods for each operation in the Swagger by default:
-```ts
-get(): Promise<Body>;
-getWithHttpOperationResponse(): Promise<HttpOperationResponse<Body, Headers>>;
-```
-
-If you pass `--generate-body-methods=false`, the generator will create just one method per operation.
-This can save space in your browser bundle.
-```ts
-get(): Promise<HttpOperationResponse<Body, Headers>>;
-```
 
 ### Azure Service Client
 For generating a client for an azure service, provide `--typescript.azure-arm=true`:

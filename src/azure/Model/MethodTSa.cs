@@ -42,21 +42,6 @@ namespace AutoRest.TypeScript.Azure.Model
             return $"begin{method.Name.ToPascalCase()}";
         }
 
-        [JsonIgnore]
-        public override string InitializeResult
-        {
-            get
-            {
-                string result = "";
-                if (HttpMethod == HttpMethod.Head && ReturnType.Body != null)
-                {
-                    HttpStatusCode code = Responses.Keys.FirstOrDefault(AzureExtensions.HttpHeadStatusCodeSuccessFunc);
-                    result = $"operationRes.parsedBody = (statusCode === {(int)code});";
-                }
-                return result;
-            }
-        }
-
         public string DeserializeResponse(IModelType type)
         {
             TSBuilder builder = new TSBuilder();
@@ -92,7 +77,7 @@ namespace AutoRest.TypeScript.Azure.Model
             builder.Line(emptyLine);
             builder.Line(GenerateWithHttpOperationResponseMethodComment());
 
-            builder.Method($"{Name.ToCamelCase()}{ResponseMethodSuffix}", $"Promise<{HttpResponseReferenceName}>", MethodParameterDeclarationTS(true, true), methodBody =>
+            builder.Method(Name.ToCamelCase(), $"Promise<{HttpResponseReferenceName}>", MethodParameterDeclarationTS(true, true), methodBody =>
             {
                 methodBody.Line($"return this.{GetPollerMethodName(this)}({MethodParameterDeclaration})");
                 methodBody.Indent(() =>

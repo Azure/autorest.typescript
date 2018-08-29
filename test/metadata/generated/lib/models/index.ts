@@ -743,419 +743,707 @@ export enum MyKind {
 /**
  * Contains response data for the getValid operation.
  */
-export interface BasicGetValidResponse extends msRest.HttpResponse {
+export type BasicGetValidResponse = {
   /**
-   * The response body as text (string format)
+   * Basic Id
    */
-  bodyAsText: string;
+  id: number;
   /**
-   * The response body as parsed JSON or XML
+   * Name property with a very long description that does not fit on a single line and a line
+   * break.
    */
-  parsedBody: Basic;
-}
+  name: string;
+  /**
+   * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
+   */
+  color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export interface BasicGetInvalidResponse extends msRest.HttpResponse {
+export type BasicGetInvalidResponse = {
   /**
-   * The response body as text (string format)
+   * Basic Id
    */
-  bodyAsText: string;
+  id: number;
   /**
-   * The response body as parsed JSON or XML
+   * Name property with a very long description that does not fit on a single line and a line
+   * break.
    */
-  parsedBody: Basic;
-}
+  name: string;
+  /**
+   * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
+   */
+  color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface BasicGetEmptyResponse extends msRest.HttpResponse {
+export type BasicGetEmptyResponse = {
   /**
-   * The response body as text (string format)
+   * Basic Id
    */
-  bodyAsText: string;
+  id: number;
   /**
-   * The response body as parsed JSON or XML
+   * Name property with a very long description that does not fit on a single line and a line
+   * break.
    */
-  parsedBody: Basic;
-}
+  name: string;
+  /**
+   * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
+   */
+  color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
+};
 
 /**
  * Contains response data for the getNull operation.
  */
-export interface BasicGetNullResponse extends msRest.HttpResponse {
+export type BasicGetNullResponse = {
   /**
-   * The response body as text (string format)
+   * Basic Id
    */
-  bodyAsText: string;
+  id: number;
   /**
-   * The response body as parsed JSON or XML
+   * Name property with a very long description that does not fit on a single line and a line
+   * break.
    */
-  parsedBody: Basic;
-}
+  name: string;
+  /**
+   * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
+   */
+  color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
+};
 
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface BasicGetNotProvidedResponse extends msRest.HttpResponse {
+export type BasicGetNotProvidedResponse = {
   /**
-   * The response body as text (string format)
+   * Basic Id
    */
-  bodyAsText: string;
+  id: number;
   /**
-   * The response body as parsed JSON or XML
+   * Name property with a very long description that does not fit on a single line and a line
+   * break.
    */
-  parsedBody: Basic;
-}
+  name: string;
+  /**
+   * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
+   */
+  color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
+};
 
 /**
  * Contains response data for the getInt operation.
  */
-export interface PrimitiveGetIntResponse extends msRest.HttpResponse {
+export type PrimitiveGetIntResponse = {
+  field1: number;
+  field2: number;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: IntWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: IntWrapper;
+    };
+};
 
 /**
  * Contains response data for the getLong operation.
  */
-export interface PrimitiveGetLongResponse extends msRest.HttpResponse {
+export type PrimitiveGetLongResponse = {
+  field1: number;
+  field2: number;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: LongWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LongWrapper;
+    };
+};
 
 /**
  * Contains response data for the getFloat operation.
  */
-export interface PrimitiveGetFloatResponse extends msRest.HttpResponse {
+export type PrimitiveGetFloatResponse = {
+  field1: number;
+  field2: number;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: FloatWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FloatWrapper;
+    };
+};
 
 /**
  * Contains response data for the getDouble operation.
  */
-export interface PrimitiveGetDoubleResponse extends msRest.HttpResponse {
+export type PrimitiveGetDoubleResponse = {
+  field1: number;
+  field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: number;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: DoubleWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DoubleWrapper;
+    };
+};
 
 /**
  * Contains response data for the getBool operation.
  */
-export interface PrimitiveGetBoolResponse extends msRest.HttpResponse {
+export type PrimitiveGetBoolResponse = {
+  fieldTrue: boolean;
+  fieldFalse: boolean;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: BooleanWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: BooleanWrapper;
+    };
+};
 
 /**
  * Contains response data for the getString operation.
  */
-export interface PrimitiveGetStringResponse extends msRest.HttpResponse {
+export type PrimitiveGetStringResponse = {
+  field: string;
+  empty: string;
+  nullProperty: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: StringWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StringWrapper;
+    };
+};
 
 /**
  * Contains response data for the getDate operation.
  */
-export interface PrimitiveGetDateResponse extends msRest.HttpResponse {
+export type PrimitiveGetDateResponse = {
+  field: Date;
+  leap: Date;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: DateWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DateWrapper;
+    };
+};
 
 /**
  * Contains response data for the getDateTime operation.
  */
-export interface PrimitiveGetDateTimeResponse extends msRest.HttpResponse {
+export type PrimitiveGetDateTimeResponse = {
+  field: Date;
+  now: Date;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: DatetimeWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DatetimeWrapper;
+    };
+};
 
 /**
  * Contains response data for the getDateTimeRfc1123 operation.
  */
-export interface PrimitiveGetDateTimeRfc1123Response extends msRest.HttpResponse {
+export type PrimitiveGetDateTimeRfc1123Response = {
+  field: Date;
+  now: Date;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: Datetimerfc1123Wrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Datetimerfc1123Wrapper;
+    };
+};
 
 /**
  * Contains response data for the getDuration operation.
  */
-export interface PrimitiveGetDurationResponse extends msRest.HttpResponse {
+export type PrimitiveGetDurationResponse = {
+  field: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: DurationWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DurationWrapper;
+    };
+};
 
 /**
  * Contains response data for the getByte operation.
  */
-export interface PrimitiveGetByteResponse extends msRest.HttpResponse {
+export type PrimitiveGetByteResponse = {
+  field: Uint8Array;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ByteWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ByteWrapper;
+    };
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface ArrayModelGetValidResponse extends msRest.HttpResponse {
+export type ArrayModelGetValidResponse = {
+  arrayProperty: string[];
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ArrayWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ArrayWrapper;
+    };
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface ArrayModelGetEmptyResponse extends msRest.HttpResponse {
+export type ArrayModelGetEmptyResponse = {
+  arrayProperty: string[];
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ArrayWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ArrayWrapper;
+    };
+};
 
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface ArrayModelGetNotProvidedResponse extends msRest.HttpResponse {
+export type ArrayModelGetNotProvidedResponse = {
+  arrayProperty: string[];
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ArrayWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ArrayWrapper;
+    };
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface DictionaryGetValidResponse extends msRest.HttpResponse {
+export type DictionaryGetValidResponse = {
+  defaultProgram: { [propertyName: string]: string };
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: DictionaryWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DictionaryWrapper;
+    };
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export interface DictionaryGetEmptyResponse extends msRest.HttpResponse {
+export type DictionaryGetEmptyResponse = {
+  defaultProgram: { [propertyName: string]: string };
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: DictionaryWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DictionaryWrapper;
+    };
+};
 
 /**
  * Contains response data for the getNull operation.
  */
-export interface DictionaryGetNullResponse extends msRest.HttpResponse {
+export type DictionaryGetNullResponse = {
+  defaultProgram: { [propertyName: string]: string };
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: DictionaryWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DictionaryWrapper;
+    };
+};
 
 /**
  * Contains response data for the getNotProvided operation.
  */
-export interface DictionaryGetNotProvidedResponse extends msRest.HttpResponse {
+export type DictionaryGetNotProvidedResponse = {
+  defaultProgram: { [propertyName: string]: string };
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: DictionaryWrapper;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DictionaryWrapper;
+    };
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface InheritanceGetValidResponse extends msRest.HttpResponse {
+export type InheritanceGetValidResponse = {
+  id: number;
+  name: string;
+  color: string;
+  hates: Dog[];
+  breed: string;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: Siamese;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Siamese;
+    };
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface PolymorphismGetValidResponse extends msRest.HttpResponse {
+export type PolymorphismGetValidResponse = {
+  species: string;
+  length: number;
+  siblings: FishUnion[];
   /**
-   * The response body as text (string format)
+   * Polymorphic Discriminator
    */
-  bodyAsText: string;
+  fishtype: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: FishUnion;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FishUnion;
+    };
+};
 
 /**
  * Contains response data for the getComplicated operation.
  */
-export interface PolymorphismGetComplicatedResponse extends msRest.HttpResponse {
+export type PolymorphismGetComplicatedResponse = {
+  species: string;
+  length: number;
+  siblings: FishUnion[];
   /**
-   * The response body as text (string format)
+   * Polymorphic Discriminator
    */
-  bodyAsText: string;
+  fishtype: string;
+  location: string;
+  iswild: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: SalmonUnion;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SalmonUnion;
+    };
+};
 
 /**
  * Contains response data for the putMissingDiscriminator operation.
  */
-export interface PolymorphismPutMissingDiscriminatorResponse extends msRest.HttpResponse {
+export type PolymorphismPutMissingDiscriminatorResponse = {
+  species: string;
+  length: number;
+  siblings: FishUnion[];
   /**
-   * The response body as text (string format)
+   * Polymorphic Discriminator
    */
-  bodyAsText: string;
+  fishtype: string;
+  location: string;
+  iswild: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: SalmonUnion;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SalmonUnion;
+    };
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface PolymorphicrecursiveGetValidResponse extends msRest.HttpResponse {
+export type PolymorphicrecursiveGetValidResponse = {
+  species: string;
+  length: number;
+  siblings: FishUnion[];
   /**
-   * The response body as text (string format)
+   * Polymorphic Discriminator
    */
-  bodyAsText: string;
+  fishtype: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: FishUnion;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FishUnion;
+    };
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface ReadonlypropertyGetValidResponse extends msRest.HttpResponse {
+export type ReadonlypropertyGetValidResponse = {
+  id: string;
+  size: number;
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ReadonlyObj;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ReadonlyObj;
+    };
+};
 
 /**
  * Contains response data for the getValid operation.
  */
-export interface FlattencomplexGetValidResponse extends msRest.HttpResponse {
+export type FlattencomplexGetValidResponse = {
+  propB1: string;
   /**
-   * The response body as text (string format)
+   * Polymorphic Discriminator
    */
-  bodyAsText: string;
+  kind: string;
+  propBH1: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: MyBaseTypeUnion;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: MyBaseTypeUnion;
+    };
+};

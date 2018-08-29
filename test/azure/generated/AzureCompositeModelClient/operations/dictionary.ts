@@ -37,129 +37,17 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetValidResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getValidOperationSpec) as Promise<Models.DictionaryGetValidResponse>;
-  }
-
-  /**
-   * Put complex types with dictionary property
-   *
-   * @param {DictionaryPutValidOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putValidWithHttpOperationResponse(options?: Models.DictionaryPutValidOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putValidOperationSpec);
-  }
-
-  /**
-   * Get complex types with dictionary property which is empty
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getEmptyOperationSpec) as Promise<Models.DictionaryGetEmptyResponse>;
-  }
-
-  /**
-   * Put complex types with dictionary property which is empty
-   *
-   * @param {DictionaryPutEmptyOptionalParams} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  putEmptyWithHttpOperationResponse(options?: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      putEmptyOperationSpec);
-  }
-
-  /**
-   * Get complex types with dictionary property which is null
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullOperationSpec) as Promise<Models.DictionaryGetNullResponse>;
-  }
-
-  /**
-   * Get complex types with dictionary property while server doesn't provide a response payload
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
-   */
-  getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNotProvidedResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNotProvidedOperationSpec) as Promise<Models.DictionaryGetNotProvidedResponse>;
-  }
-
-  /**
-   * Get complex types with dictionary property
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DictionaryWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DictionaryWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getValid(): Promise<Models.DictionaryWrapper>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
+  getValid(): Promise<Models.DictionaryGetValidResponse>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetValidResponse>;
   getValid(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
-    return msRest.responseToBody(this.getValidWithHttpOperationResponse.bind(this), options, callback);
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): Promise<Models.DictionaryGetValidResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getValidOperationSpec,
+      callback) as Promise<Models.DictionaryGetValidResponse>;
   }
 
   /**
@@ -167,21 +55,23 @@ export class Dictionary {
    *
    * @param {DictionaryPutValidOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putValid(): Promise<void>;
-  putValid(options: Models.DictionaryPutValidOptionalParams): Promise<void>;
+  putValid(): Promise<msRest.RestResponse>;
+  putValid(options: Models.DictionaryPutValidOptionalParams): Promise<msRest.RestResponse>;
   putValid(callback: msRest.ServiceCallback<void>): void;
   putValid(options: Models.DictionaryPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putValid(options?: Models.DictionaryPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putValidWithHttpOperationResponse.bind(this), options, callback);
+  putValid(options?: Models.DictionaryPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putValidOperationSpec,
+      callback);
   }
 
   /**
@@ -189,21 +79,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DictionaryWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DictionaryWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getEmpty(): Promise<Models.DictionaryWrapper>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
+  getEmpty(): Promise<Models.DictionaryGetEmptyResponse>;
+  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse>;
   getEmpty(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
-    return msRest.responseToBody(this.getEmptyWithHttpOperationResponse.bind(this), options, callback);
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): Promise<Models.DictionaryGetEmptyResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getEmptyOperationSpec,
+      callback) as Promise<Models.DictionaryGetEmptyResponse>;
   }
 
   /**
@@ -211,21 +103,23 @@ export class Dictionary {
    *
    * @param {DictionaryPutEmptyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @reject {Error|ServiceError} The error object.
    */
-  putEmpty(): Promise<void>;
-  putEmpty(options: Models.DictionaryPutEmptyOptionalParams): Promise<void>;
+  putEmpty(): Promise<msRest.RestResponse>;
+  putEmpty(options: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.RestResponse>;
   putEmpty(callback: msRest.ServiceCallback<void>): void;
   putEmpty(options: Models.DictionaryPutEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(options?: Models.DictionaryPutEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.putEmptyWithHttpOperationResponse.bind(this), options, callback);
+  putEmpty(options?: Models.DictionaryPutEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      putEmptyOperationSpec,
+      callback);
   }
 
   /**
@@ -233,21 +127,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DictionaryWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DictionaryWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getNull(): Promise<Models.DictionaryWrapper>;
-  getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
+  getNull(): Promise<Models.DictionaryGetNullResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse>;
   getNull(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
-    return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): Promise<Models.DictionaryGetNullResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNullOperationSpec,
+      callback) as Promise<Models.DictionaryGetNullResponse>;
   }
 
   /**
@@ -255,21 +151,23 @@ export class Dictionary {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback The callback.
+   * @returns {Promise} A promise is returned
    *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DictionaryWrapper} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DictionaryWrapper} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   * @resolve {HttpOperationResponse} The deserialized result object.
+   *
+   * @reject {Error|ServiceError} The error object.
    */
-  getNotProvided(): Promise<Models.DictionaryWrapper>;
-  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.DictionaryWrapper>;
+  getNotProvided(): Promise<Models.DictionaryGetNotProvidedResponse>;
+  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNotProvidedResponse>;
   getNotProvided(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
-  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): any {
-    return msRest.responseToBody(this.getNotProvidedWithHttpOperationResponse.bind(this), options, callback);
+  getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): Promise<Models.DictionaryGetNotProvidedResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getNotProvidedOperationSpec,
+      callback) as Promise<Models.DictionaryGetNotProvidedResponse>;
   }
 
 }
