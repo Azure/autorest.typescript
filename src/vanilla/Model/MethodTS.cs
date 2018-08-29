@@ -786,7 +786,7 @@ namespace AutoRest.TypeScript.Model
                             "The response body as a browser Blob.",
                             "Always undefined in node.js.");
 
-                        iface.Property("blobBody", "() => Promise<Blob>", optional: true);
+                        iface.Property("blobBody", "Promise<Blob>", optional: true);
 
                         iface.DocumentationComment(
                             "NODEJS ONLY",
