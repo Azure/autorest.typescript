@@ -28,6 +28,6 @@ namespace AutoRest.TypeScript
         /// <summary>
         /// If true, models Date parameters as string in parameters and properties.
         /// </summary>
-        public bool ModelDateAsString { get; set; }
+        public bool ModelDateTimeAsString { get; set; }
     }
 }

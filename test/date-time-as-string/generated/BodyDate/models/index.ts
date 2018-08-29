@@ -29,11 +29,11 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export type Datetimerfc1123GetNullResponse = {
+export type DateModelGetNullResponse = {
   /**
    * The parsed response body.
    */
-  body: string;
+  body: Date;
   /**
    * The underlying HTTP response.
    */
@@ -45,18 +45,18 @@ export type Datetimerfc1123GetNullResponse = {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: string;
+      parsedBody: Date;
     };
 };
 
 /**
- * Contains response data for the getInvalid operation.
+ * Contains response data for the getInvalidDate operation.
  */
-export type Datetimerfc1123GetInvalidResponse = {
+export type DateModelGetInvalidDateResponse = {
   /**
    * The parsed response body.
    */
-  body: string;
+  body: Date;
   /**
    * The underlying HTTP response.
    */
@@ -68,18 +68,18 @@ export type Datetimerfc1123GetInvalidResponse = {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: string;
+      parsedBody: Date;
     };
 };
 
 /**
- * Contains response data for the getOverflow operation.
+ * Contains response data for the getOverflowDate operation.
  */
-export type Datetimerfc1123GetOverflowResponse = {
+export type DateModelGetOverflowDateResponse = {
   /**
    * The parsed response body.
    */
-  body: string;
+  body: Date;
   /**
    * The underlying HTTP response.
    */
@@ -91,18 +91,18 @@ export type Datetimerfc1123GetOverflowResponse = {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: string;
+      parsedBody: Date;
     };
 };
 
 /**
- * Contains response data for the getUnderflow operation.
+ * Contains response data for the getUnderflowDate operation.
  */
-export type Datetimerfc1123GetUnderflowResponse = {
+export type DateModelGetUnderflowDateResponse = {
   /**
    * The parsed response body.
    */
-  body: string;
+  body: Date;
   /**
    * The underlying HTTP response.
    */
@@ -114,18 +114,18 @@ export type Datetimerfc1123GetUnderflowResponse = {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: string;
+      parsedBody: Date;
     };
 };
 
 /**
- * Contains response data for the getUtcLowercaseMaxDateTime operation.
+ * Contains response data for the getMaxDate operation.
  */
-export type Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse = {
+export type DateModelGetMaxDateResponse = {
   /**
    * The parsed response body.
    */
-  body: string;
+  body: Date;
   /**
    * The underlying HTTP response.
    */
@@ -137,18 +137,18 @@ export type Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse = {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: string;
+      parsedBody: Date;
     };
 };
 
 /**
- * Contains response data for the getUtcUppercaseMaxDateTime operation.
+ * Contains response data for the getMinDate operation.
  */
-export type Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse = {
+export type DateModelGetMinDateResponse = {
   /**
    * The parsed response body.
    */
-  body: string;
+  body: Date;
   /**
    * The underlying HTTP response.
    */
@@ -160,29 +160,6 @@ export type Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse = {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: string;
-    };
-};
-
-/**
- * Contains response data for the getUtcMinDateTime operation.
- */
-export type Datetimerfc1123GetUtcMinDateTimeResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string;
-  /**
-   * The underlying HTTP response.
-   */
-  _response: msRest.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
-      bodyAsText: string;
-      /**
-       * The response body as parsed JSON or XML
-       */
-      parsedBody: string;
+      parsedBody: Date;
     };
 };

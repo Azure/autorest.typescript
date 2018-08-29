@@ -125,6 +125,8 @@ export class Datetime {
    * Put max datetime value 9999-12-31T23:59:59.9999999Z
    *
    * @param {string} datetimeBody
+   * **NOTE: This entity will be treated as a string instead of a Date because the API can
+   * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -200,6 +202,8 @@ export class Datetime {
    * Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999+14:00
    *
    * @param {string} datetimeBody
+   * **NOTE: This entity will be treated as a string instead of a Date because the API can
+   * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -275,6 +279,8 @@ export class Datetime {
    * Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999-14:00
    *
    * @param {string} datetimeBody
+   * **NOTE: This entity will be treated as a string instead of a Date because the API can
+   * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -350,6 +356,8 @@ export class Datetime {
    * Put min datetime value 0001-01-01T00:00:00Z
    *
    * @param {string} datetimeBody
+   * **NOTE: This entity will be treated as a string instead of a Date because the API can
+   * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -401,6 +409,8 @@ export class Datetime {
    * Put min datetime value 0001-01-01T00:00:00+14:00
    *
    * @param {string} datetimeBody
+   * **NOTE: This entity will be treated as a string instead of a Date because the API can
+   * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -452,6 +462,8 @@ export class Datetime {
    * Put min datetime value 0001-01-01T00:00:00-14:00
    *
    * @param {string} datetimeBody
+   * **NOTE: This entity will be treated as a string instead of a Date because the API can
+   * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *

@@ -38,9 +38,9 @@ export class Datetimerfc1123 {
    */
   getNull(): Promise<Models.Datetimerfc1123GetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetNullResponse>;
-  getNull(callback: msRest.ServiceCallback<string>): void;
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.Datetimerfc1123GetNullResponse> {
+  getNull(callback: msRest.ServiceCallback<Date>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -62,9 +62,9 @@ export class Datetimerfc1123 {
    */
   getInvalid(): Promise<Models.Datetimerfc1123GetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetInvalidResponse>;
-  getInvalid(callback: msRest.ServiceCallback<string>): void;
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.Datetimerfc1123GetInvalidResponse> {
+  getInvalid(callback: msRest.ServiceCallback<Date>): void;
+  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -86,9 +86,9 @@ export class Datetimerfc1123 {
    */
   getOverflow(): Promise<Models.Datetimerfc1123GetOverflowResponse>;
   getOverflow(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetOverflowResponse>;
-  getOverflow(callback: msRest.ServiceCallback<string>): void;
-  getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.Datetimerfc1123GetOverflowResponse> {
+  getOverflow(callback: msRest.ServiceCallback<Date>): void;
+  getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetOverflowResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -110,9 +110,9 @@ export class Datetimerfc1123 {
    */
   getUnderflow(): Promise<Models.Datetimerfc1123GetUnderflowResponse>;
   getUnderflow(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUnderflowResponse>;
-  getUnderflow(callback: msRest.ServiceCallback<string>): void;
-  getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.Datetimerfc1123GetUnderflowResponse> {
+  getUnderflow(callback: msRest.ServiceCallback<Date>): void;
+  getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetUnderflowResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -124,7 +124,7 @@ export class Datetimerfc1123 {
   /**
    * Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT
    *
-   * @param {string} datetimeBody
+   * @param {Date | string} datetimeBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -134,11 +134,11 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMaxDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
-  putUtcMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
-  putUtcMaxDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
-  putUtcMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putUtcMaxDateTime(datetimeBody: Date | string): Promise<msRest.RestResponse>;
+  putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putUtcMaxDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
+  putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putUtcMaxDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -161,9 +161,9 @@ export class Datetimerfc1123 {
    */
   getUtcLowercaseMaxDateTime(): Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
-  getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
-  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse> {
+  getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
+  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -185,9 +185,9 @@ export class Datetimerfc1123 {
    */
   getUtcUppercaseMaxDateTime(): Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
-  getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
-  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse> {
+  getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
+  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -199,7 +199,7 @@ export class Datetimerfc1123 {
   /**
    * Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT
    *
-   * @param {string} datetimeBody
+   * @param {Date | string} datetimeBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -209,11 +209,11 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMinDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
-  putUtcMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
-  putUtcMinDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
-  putUtcMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putUtcMinDateTime(datetimeBody: Date | string): Promise<msRest.RestResponse>;
+  putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putUtcMinDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
+  putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putUtcMinDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -236,9 +236,9 @@ export class Datetimerfc1123 {
    */
   getUtcMinDateTime(): Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse>;
   getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse>;
-  getUtcMinDateTime(callback: msRest.ServiceCallback<string>): void;
-  getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse> {
+  getUtcMinDateTime(callback: msRest.ServiceCallback<Date>): void;
+  getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -259,7 +259,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -278,7 +278,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -297,7 +297,7 @@ const getOverflowOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -316,7 +316,7 @@ const getUnderflowOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -336,7 +336,7 @@ const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
       required: true,
       serializedName: "datetimeBody",
       type: {
-        name: "String"
+        name: "DateTimeRfc1123"
       }
     }
   },
@@ -357,7 +357,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -376,7 +376,7 @@ const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -396,7 +396,7 @@ const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       required: true,
       serializedName: "datetimeBody",
       type: {
-        name: "String"
+        name: "DateTimeRfc1123"
       }
     }
   },
@@ -417,7 +417,7 @@ const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },

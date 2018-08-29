@@ -34,29 +34,42 @@ namespace AutoRest.TypeScript
             CreateUniqueParameterMapperNames(codeModel);
             DisambiguateHeaderNames(codeModel);
 
-            if (codeModel.ModelDateAsString)
+            if (codeModel.ModelDateTimeAsString)
             {
-                ConvertDateToString(codeModel);
+                ConvertDateTimeToString(codeModel);
             }
 
             return codeModel;
         }
 
-        private void ConvertDateToString(CodeModelTS codeModel)
+        private void ConvertDateTimeToString(CodeModelTS codeModel)
         {
+            void addDocumentation(IVariable variable)
+            {
+                if (variable.ModelType is PrimaryType pt && pt.KnownPrimaryType == KnownPrimaryType.DateTime)
+                {
+                    const string doc = "**NOTE: This entity will be treated as a string instead of a Date because the API can potentially deal with a higher precision value than what is supported by JavaScript.**";
+                    if (string.IsNullOrEmpty(variable.Documentation))
+                    {
+                        variable.Documentation = "";
+                    }
+
+                    variable.Documentation += Environment.NewLine + doc;
+                }
+            }
+
             void convertModel(IModelType modelType)
             {
                 if (modelType is CompositeType composite)
                 {
                     foreach (var property in composite.Properties)
                     {
+                        addDocumentation(property);
                         convertModel(property.ModelType);
                     }
                 }
                 else if (modelType is PrimaryType pt &&
-                         (pt.KnownPrimaryType == KnownPrimaryType.Date ||
-                          pt.KnownPrimaryType == KnownPrimaryType.DateTime ||
-                          pt.KnownPrimaryType == KnownPrimaryType.DateTimeRfc1123))
+                    pt.KnownPrimaryType == KnownPrimaryType.DateTime)
                 {
                     pt.KnownPrimaryType = KnownPrimaryType.String;
                 }
@@ -69,6 +82,7 @@ namespace AutoRest.TypeScript
 
             foreach (var property in codeModel.Properties)
             {
+                addDocumentation(property);
                 convertModel(property.ModelType);
             }
 
@@ -77,6 +91,7 @@ namespace AutoRest.TypeScript
             {
                 foreach (var parameter in method.Parameters)
                 {
+                    addDocumentation(parameter);
                     convertModel(parameter.ModelType);
                 }
 
