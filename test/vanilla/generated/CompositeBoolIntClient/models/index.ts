@@ -31,13 +31,22 @@ export interface ErrorModel {
  */
 export type BoolGetTrueResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
 };
 
 /**
@@ -45,13 +54,22 @@ export type BoolGetTrueResponse = {
  */
 export type BoolGetFalseResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
 };
 
 /**
@@ -59,13 +77,22 @@ export type BoolGetFalseResponse = {
  */
 export type BoolGetNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
 };
 
 /**
@@ -73,13 +100,22 @@ export type BoolGetNullResponse = {
  */
 export type BoolGetInvalidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
 };
 
 /**
@@ -87,13 +123,22 @@ export type BoolGetInvalidResponse = {
  */
 export type IntModelGetNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number;
+    };
 };
 
 /**
@@ -101,13 +146,22 @@ export type IntModelGetNullResponse = {
  */
 export type IntModelGetInvalidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number;
+    };
 };
 
 /**
@@ -115,13 +169,22 @@ export type IntModelGetInvalidResponse = {
  */
 export type IntModelGetOverflowInt32Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number;
+    };
 };
 
 /**
@@ -129,13 +192,22 @@ export type IntModelGetOverflowInt32Response = {
  */
 export type IntModelGetUnderflowInt32Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number;
+    };
 };
 
 /**
@@ -143,13 +215,22 @@ export type IntModelGetUnderflowInt32Response = {
  */
 export type IntModelGetOverflowInt64Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number;
+    };
 };
 
 /**
@@ -157,13 +238,22 @@ export type IntModelGetOverflowInt64Response = {
  */
 export type IntModelGetUnderflowInt64Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number;
+    };
 };
 
 /**
@@ -171,13 +261,22 @@ export type IntModelGetUnderflowInt64Response = {
  */
 export type IntModelGetUnixTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };
 
 /**
@@ -185,13 +284,22 @@ export type IntModelGetUnixTimeResponse = {
  */
 export type IntModelGetInvalidUnixTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };
 
 /**
@@ -199,11 +307,20 @@ export type IntModelGetInvalidUnixTimeResponse = {
  */
 export type IntModelGetNullUnixTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };

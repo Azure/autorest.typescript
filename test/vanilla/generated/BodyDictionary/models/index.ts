@@ -46,14 +46,23 @@ export interface ErrorModel {
  */
 export type DictionaryGetNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -61,14 +70,23 @@ export type DictionaryGetNullResponse = {
  */
 export type DictionaryGetEmptyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -76,14 +94,23 @@ export type DictionaryGetEmptyResponse = {
  */
 export type DictionaryGetNullValueResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -91,14 +118,23 @@ export type DictionaryGetNullValueResponse = {
  */
 export type DictionaryGetNullKeyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -106,14 +142,23 @@ export type DictionaryGetNullKeyResponse = {
  */
 export type DictionaryGetEmptyStringKeyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -121,14 +166,23 @@ export type DictionaryGetEmptyStringKeyResponse = {
  */
 export type DictionaryGetInvalidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -136,14 +190,23 @@ export type DictionaryGetInvalidResponse = {
  */
 export type DictionaryGetBooleanTfftResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: boolean;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: boolean };
+    };
 };
 
 /**
@@ -151,14 +214,23 @@ export type DictionaryGetBooleanTfftResponse = {
  */
 export type DictionaryGetBooleanInvalidNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: boolean;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: boolean };
+    };
 };
 
 /**
@@ -166,14 +238,23 @@ export type DictionaryGetBooleanInvalidNullResponse = {
  */
 export type DictionaryGetBooleanInvalidStringResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: boolean;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: boolean };
+    };
 };
 
 /**
@@ -181,14 +262,23 @@ export type DictionaryGetBooleanInvalidStringResponse = {
  */
 export type DictionaryGetIntegerValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -196,14 +286,23 @@ export type DictionaryGetIntegerValidResponse = {
  */
 export type DictionaryGetIntInvalidNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -211,14 +310,23 @@ export type DictionaryGetIntInvalidNullResponse = {
  */
 export type DictionaryGetIntInvalidStringResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -226,14 +334,23 @@ export type DictionaryGetIntInvalidStringResponse = {
  */
 export type DictionaryGetLongValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -241,14 +358,23 @@ export type DictionaryGetLongValidResponse = {
  */
 export type DictionaryGetLongInvalidNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -256,14 +382,23 @@ export type DictionaryGetLongInvalidNullResponse = {
  */
 export type DictionaryGetLongInvalidStringResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -271,14 +406,23 @@ export type DictionaryGetLongInvalidStringResponse = {
  */
 export type DictionaryGetFloatValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -286,14 +430,23 @@ export type DictionaryGetFloatValidResponse = {
  */
 export type DictionaryGetFloatInvalidNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -301,14 +454,23 @@ export type DictionaryGetFloatInvalidNullResponse = {
  */
 export type DictionaryGetFloatInvalidStringResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -316,14 +478,23 @@ export type DictionaryGetFloatInvalidStringResponse = {
  */
 export type DictionaryGetDoubleValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -331,14 +502,23 @@ export type DictionaryGetDoubleValidResponse = {
  */
 export type DictionaryGetDoubleInvalidNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -346,14 +526,23 @@ export type DictionaryGetDoubleInvalidNullResponse = {
  */
 export type DictionaryGetDoubleInvalidStringResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };
 
 /**
@@ -361,14 +550,23 @@ export type DictionaryGetDoubleInvalidStringResponse = {
  */
 export type DictionaryGetStringValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -376,14 +574,23 @@ export type DictionaryGetStringValidResponse = {
  */
 export type DictionaryGetStringWithNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -391,14 +598,23 @@ export type DictionaryGetStringWithNullResponse = {
  */
 export type DictionaryGetStringWithInvalidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -406,14 +622,23 @@ export type DictionaryGetStringWithInvalidResponse = {
  */
 export type DictionaryGetDateValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Date;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -421,14 +646,23 @@ export type DictionaryGetDateValidResponse = {
  */
 export type DictionaryGetDateInvalidNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Date;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -436,14 +670,23 @@ export type DictionaryGetDateInvalidNullResponse = {
  */
 export type DictionaryGetDateInvalidCharsResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Date;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -451,14 +694,23 @@ export type DictionaryGetDateInvalidCharsResponse = {
  */
 export type DictionaryGetDateTimeValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Date;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -466,14 +718,23 @@ export type DictionaryGetDateTimeValidResponse = {
  */
 export type DictionaryGetDateTimeInvalidNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Date;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -481,14 +742,23 @@ export type DictionaryGetDateTimeInvalidNullResponse = {
  */
 export type DictionaryGetDateTimeInvalidCharsResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Date;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -496,14 +766,23 @@ export type DictionaryGetDateTimeInvalidCharsResponse = {
  */
 export type DictionaryGetDateTimeRfc1123ValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Date;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Date } | { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -511,14 +790,23 @@ export type DictionaryGetDateTimeRfc1123ValidResponse = {
  */
 export type DictionaryGetDurationValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string };
+    };
 };
 
 /**
@@ -526,14 +814,23 @@ export type DictionaryGetDurationValidResponse = {
  */
 export type DictionaryGetByteValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Uint8Array;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Uint8Array };
+    };
 };
 
 /**
@@ -541,14 +838,23 @@ export type DictionaryGetByteValidResponse = {
  */
 export type DictionaryGetByteInvalidNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Uint8Array;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Uint8Array };
+    };
 };
 
 /**
@@ -556,14 +862,23 @@ export type DictionaryGetByteInvalidNullResponse = {
  */
 export type DictionaryGetBase64UrlResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Uint8Array;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Uint8Array };
+    };
 };
 
 /**
@@ -571,14 +886,23 @@ export type DictionaryGetBase64UrlResponse = {
  */
 export type DictionaryGetComplexNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Widget;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
 };
 
 /**
@@ -586,14 +910,23 @@ export type DictionaryGetComplexNullResponse = {
  */
 export type DictionaryGetComplexEmptyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Widget;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
 };
 
 /**
@@ -601,14 +934,23 @@ export type DictionaryGetComplexEmptyResponse = {
  */
 export type DictionaryGetComplexItemNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Widget;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
 };
 
 /**
@@ -616,14 +958,23 @@ export type DictionaryGetComplexItemNullResponse = {
  */
 export type DictionaryGetComplexItemEmptyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Widget;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
 };
 
 /**
@@ -631,14 +982,23 @@ export type DictionaryGetComplexItemEmptyResponse = {
  */
 export type DictionaryGetComplexValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: Widget;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: Widget };
+    };
 };
 
 /**
@@ -646,14 +1006,23 @@ export type DictionaryGetComplexValidResponse = {
  */
 export type DictionaryGetArrayNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string[];
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
 };
 
 /**
@@ -661,14 +1030,23 @@ export type DictionaryGetArrayNullResponse = {
  */
 export type DictionaryGetArrayEmptyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string[];
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
 };
 
 /**
@@ -676,14 +1054,23 @@ export type DictionaryGetArrayEmptyResponse = {
  */
 export type DictionaryGetArrayItemNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string[];
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
 };
 
 /**
@@ -691,14 +1078,23 @@ export type DictionaryGetArrayItemNullResponse = {
  */
 export type DictionaryGetArrayItemEmptyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string[];
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
 };
 
 /**
@@ -706,14 +1102,23 @@ export type DictionaryGetArrayItemEmptyResponse = {
  */
 export type DictionaryGetArrayValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: string[];
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string[] };
+    };
 };
 
 /**
@@ -721,14 +1126,23 @@ export type DictionaryGetArrayValidResponse = {
  */
 export type DictionaryGetDictionaryNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: { [propertyName: string]: string };
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
 };
 
 /**
@@ -736,14 +1150,23 @@ export type DictionaryGetDictionaryNullResponse = {
  */
 export type DictionaryGetDictionaryEmptyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: { [propertyName: string]: string };
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
 };
 
 /**
@@ -751,14 +1174,23 @@ export type DictionaryGetDictionaryEmptyResponse = {
  */
 export type DictionaryGetDictionaryItemNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: { [propertyName: string]: string };
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
 };
 
 /**
@@ -766,14 +1198,23 @@ export type DictionaryGetDictionaryItemNullResponse = {
  */
 export type DictionaryGetDictionaryItemEmptyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: { [propertyName: string]: string };
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
 };
 
 /**
@@ -781,12 +1222,21 @@ export type DictionaryGetDictionaryItemEmptyResponse = {
  */
 export type DictionaryGetDictionaryValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: { [propertyName: string]: string };
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    };
 };

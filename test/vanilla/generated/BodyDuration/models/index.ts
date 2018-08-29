@@ -31,13 +31,22 @@ export interface ErrorModel {
  */
 export type DurationGetNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -45,13 +54,22 @@ export type DurationGetNullResponse = {
  */
 export type DurationGetPositiveDurationResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -59,11 +77,20 @@ export type DurationGetPositiveDurationResponse = {
  */
 export type DurationGetInvalidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };

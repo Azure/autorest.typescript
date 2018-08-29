@@ -31,13 +31,22 @@ export interface ErrorModel {
  */
 export type DateModelGetNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -45,13 +54,22 @@ export type DateModelGetNullResponse = {
  */
 export type DateModelGetInvalidDateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -59,13 +77,22 @@ export type DateModelGetInvalidDateResponse = {
  */
 export type DateModelGetOverflowDateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -73,13 +100,22 @@ export type DateModelGetOverflowDateResponse = {
  */
 export type DateModelGetUnderflowDateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -87,13 +123,22 @@ export type DateModelGetUnderflowDateResponse = {
  */
 export type DateModelGetMaxDateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -101,11 +146,20 @@ export type DateModelGetMaxDateResponse = {
  */
 export type DateModelGetMinDateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };

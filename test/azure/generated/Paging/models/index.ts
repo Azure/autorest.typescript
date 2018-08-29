@@ -418,120 +418,210 @@ export enum Status {
  * Contains response data for the getSinglePages operation.
  */
 export type PagingGetSinglePagesResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePages operation.
  */
 export type PagingGetMultiplePagesResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getOdataMultiplePages operation.
  */
 export type PagingGetOdataMultiplePagesResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: OdataProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesWithOffset operation.
  */
 export type PagingGetMultiplePagesWithOffsetResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesRetryFirst operation.
  */
 export type PagingGetMultiplePagesRetryFirstResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesRetrySecond operation.
  */
 export type PagingGetMultiplePagesRetrySecondResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getSinglePagesFailure operation.
  */
 export type PagingGetSinglePagesFailureResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesFailure operation.
  */
 export type PagingGetMultiplePagesFailureResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesFailureUri operation.
  */
 export type PagingGetMultiplePagesFailureUriResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesFragmentNextLink operation.
  */
 export type PagingGetMultiplePagesFragmentNextLinkResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: OdataProductResult;
+    };
 };
 
 /**
@@ -539,190 +629,334 @@ export type PagingGetMultiplePagesFragmentNextLinkResponse = {
  * operation.
  */
 export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: OdataProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesLRO operation.
  */
 export type PagingGetMultiplePagesLROResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the nextFragment operation.
  */
 export type PagingNextFragmentResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: OdataProductResult;
+    };
 };
 
 /**
  * Contains response data for the nextFragmentWithGrouping operation.
  */
 export type PagingNextFragmentWithGroupingResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: OdataProductResult;
+    };
 };
 
 /**
  * Contains response data for the beginGetMultiplePagesLRO operation.
  */
 export type PagingBeginGetMultiplePagesLROResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getSinglePagesNext operation.
  */
 export type PagingGetSinglePagesNextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesNext operation.
  */
 export type PagingGetMultiplePagesNextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getOdataMultiplePagesNext operation.
  */
 export type PagingGetOdataMultiplePagesNextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   odatanextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: OdataProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesWithOffsetNext operation.
  */
 export type PagingGetMultiplePagesWithOffsetNextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesRetryFirstNext operation.
  */
 export type PagingGetMultiplePagesRetryFirstNextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesRetrySecondNext operation.
  */
 export type PagingGetMultiplePagesRetrySecondNextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getSinglePagesFailureNext operation.
  */
 export type PagingGetSinglePagesFailureNextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesFailureNext operation.
  */
 export type PagingGetMultiplePagesFailureNextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesFailureUriNext operation.
  */
 export type PagingGetMultiplePagesFailureUriNextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the getMultiplePagesLRONext operation.
  */
 export type PagingGetMultiplePagesLRONextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };
 
 /**
  * Contains response data for the beginGetMultiplePagesLRONext operation.
  */
 export type PagingBeginGetMultiplePagesLRONextResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   values: Product[];
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductResult;
+    };
 };

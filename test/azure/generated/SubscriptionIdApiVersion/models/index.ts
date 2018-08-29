@@ -50,10 +50,6 @@ export interface ErrorModel {
  */
 export type GroupGetSampleResourceGroupResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * resource group name 'testgroup101'
    */
   name: string;
@@ -61,4 +57,17 @@ export type GroupGetSampleResourceGroupResponse = {
    * resource group location 'West US'
    */
   location: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SampleResourceGroup;
+    };
 };

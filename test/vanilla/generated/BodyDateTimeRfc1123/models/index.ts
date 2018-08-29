@@ -31,13 +31,22 @@ export interface ErrorModel {
  */
 export type Datetimerfc1123GetNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };
 
 /**
@@ -45,13 +54,22 @@ export type Datetimerfc1123GetNullResponse = {
  */
 export type Datetimerfc1123GetInvalidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };
 
 /**
@@ -59,13 +77,22 @@ export type Datetimerfc1123GetInvalidResponse = {
  */
 export type Datetimerfc1123GetOverflowResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };
 
 /**
@@ -73,13 +100,22 @@ export type Datetimerfc1123GetOverflowResponse = {
  */
 export type Datetimerfc1123GetUnderflowResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };
 
 /**
@@ -87,13 +123,22 @@ export type Datetimerfc1123GetUnderflowResponse = {
  */
 export type Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };
 
 /**
@@ -101,13 +146,22 @@ export type Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse = {
  */
 export type Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };
 
 /**
@@ -115,11 +169,20 @@ export type Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse = {
  */
 export type Datetimerfc1123GetUtcMinDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date;
+    };
 };

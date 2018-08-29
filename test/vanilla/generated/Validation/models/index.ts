@@ -126,10 +126,6 @@ export enum EnumConst {
  */
 export type ValidationOfMethodParametersResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Non required array of unique items from 0 to 6 elements.
    */
   displayNames: string[];
@@ -155,6 +151,19 @@ export type ValidationOfMethodParametersResponse = {
    * Constant string as Enum. Possible values include: 'constant_string_as_enum'
    */
   constStringAsEnum: EnumConst;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -162,10 +171,6 @@ export type ValidationOfMethodParametersResponse = {
  */
 export type ValidationOfBodyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Non required array of unique items from 0 to 6 elements.
    */
   displayNames: string[];
@@ -191,6 +196,19 @@ export type ValidationOfBodyResponse = {
    * Constant string as Enum. Possible values include: 'constant_string_as_enum'
    */
   constStringAsEnum: EnumConst;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -198,10 +216,6 @@ export type ValidationOfBodyResponse = {
  */
 export type PostWithConstantInBodyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Non required array of unique items from 0 to 6 elements.
    */
   displayNames: string[];
@@ -227,4 +241,17 @@ export type PostWithConstantInBodyResponse = {
    * Constant string as Enum. Possible values include: 'constant_string_as_enum'
    */
   constStringAsEnum: EnumConst;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };

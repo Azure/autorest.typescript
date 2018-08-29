@@ -278,13 +278,18 @@ export enum GreyscaleColors {
  */
 export type HeaderResponseExistingKeyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header value "User-Agent": "overwrite"
    */
   userAgent: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseExistingKeyHeaders;
+    };
 };
 
 /**
@@ -292,13 +297,18 @@ export type HeaderResponseExistingKeyResponse = {
  */
 export type HeaderResponseProtectedKeyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header value "Content-Type": "text/html"
    */
   contentType: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseProtectedKeyHeaders;
+    };
 };
 
 /**
@@ -306,13 +316,18 @@ export type HeaderResponseProtectedKeyResponse = {
  */
 export type HeaderResponseIntegerResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header value "value": 1 or -2
    */
   value: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseIntegerHeaders;
+    };
 };
 
 /**
@@ -320,13 +335,18 @@ export type HeaderResponseIntegerResponse = {
  */
 export type HeaderResponseLongResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header value "value": 105 or -2
    */
   value: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseLongHeaders;
+    };
 };
 
 /**
@@ -334,13 +354,18 @@ export type HeaderResponseLongResponse = {
  */
 export type HeaderResponseFloatResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header value "value": 0.07 or -3.0
    */
   value: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseFloatHeaders;
+    };
 };
 
 /**
@@ -348,13 +373,18 @@ export type HeaderResponseFloatResponse = {
  */
 export type HeaderResponseDoubleResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header value "value": 7e120 or -3.0
    */
   value: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDoubleHeaders;
+    };
 };
 
 /**
@@ -362,13 +392,18 @@ export type HeaderResponseDoubleResponse = {
  */
 export type HeaderResponseBoolResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header value "value": true or false
    */
   value: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseBoolHeaders;
+    };
 };
 
 /**
@@ -376,13 +411,18 @@ export type HeaderResponseBoolResponse = {
  */
 export type HeaderResponseStringResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header values "The quick brown fox jumps over the lazy dog" or null or ""
    */
   value: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseStringHeaders;
+    };
 };
 
 /**
@@ -390,13 +430,18 @@ export type HeaderResponseStringResponse = {
  */
 export type HeaderResponseDateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header values "2010-01-01" or "0001-01-01"
    */
   value: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDateHeaders;
+    };
 };
 
 /**
@@ -404,13 +449,18 @@ export type HeaderResponseDateResponse = {
  */
 export type HeaderResponseDatetimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    */
   value: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDatetimeHeaders;
+    };
 };
 
 /**
@@ -418,13 +468,18 @@ export type HeaderResponseDatetimeResponse = {
  */
 export type HeaderResponseDatetimeRfc1123Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
    */
   value: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDatetimeRfc1123Headers;
+    };
 };
 
 /**
@@ -432,13 +487,18 @@ export type HeaderResponseDatetimeRfc1123Response = {
  */
 export type HeaderResponseDurationResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header values "P123DT22H14M12.011S"
    */
   value: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseDurationHeaders;
+    };
 };
 
 /**
@@ -446,13 +506,18 @@ export type HeaderResponseDurationResponse = {
  */
 export type HeaderResponseByteResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header values "啊齄丂狛狜隣郎隣兀﨩"
    */
   value: Uint8Array;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseByteHeaders;
+    };
 };
 
 /**
@@ -460,11 +525,16 @@ export type HeaderResponseByteResponse = {
  */
 export type HeaderResponseEnumResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * response with header values "GREY" or null. Possible values include: 'White', 'black', 'GREY'
    */
   value: GreyscaleColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderResponseEnumHeaders;
+    };
 };

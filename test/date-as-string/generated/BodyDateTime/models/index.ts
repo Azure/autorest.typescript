@@ -31,13 +31,22 @@ export interface ErrorModel {
  */
 export type DatetimeGetNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -45,13 +54,22 @@ export type DatetimeGetNullResponse = {
  */
 export type DatetimeGetInvalidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -59,13 +77,22 @@ export type DatetimeGetInvalidResponse = {
  */
 export type DatetimeGetOverflowResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -73,13 +100,22 @@ export type DatetimeGetOverflowResponse = {
  */
 export type DatetimeGetUnderflowResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -87,13 +123,22 @@ export type DatetimeGetUnderflowResponse = {
  */
 export type DatetimeGetUtcLowercaseMaxDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -101,13 +146,22 @@ export type DatetimeGetUtcLowercaseMaxDateTimeResponse = {
  */
 export type DatetimeGetUtcUppercaseMaxDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -116,13 +170,22 @@ export type DatetimeGetUtcUppercaseMaxDateTimeResponse = {
  */
 export type DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -131,13 +194,22 @@ export type DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse = {
  */
 export type DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -146,13 +218,22 @@ export type DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse = {
  */
 export type DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -161,13 +242,22 @@ export type DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse = {
  */
 export type DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -175,13 +265,22 @@ export type DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse = {
  */
 export type DatetimeGetUtcMinDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -189,13 +288,22 @@ export type DatetimeGetUtcMinDateTimeResponse = {
  */
 export type DatetimeGetLocalPositiveOffsetMinDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };
 
 /**
@@ -203,11 +311,20 @@ export type DatetimeGetLocalPositiveOffsetMinDateTimeResponse = {
  */
 export type DatetimeGetLocalNegativeOffsetMinDateTimeResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * The parsed response body.
    */
   body: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
 };

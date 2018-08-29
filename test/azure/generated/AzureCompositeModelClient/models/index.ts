@@ -858,13 +858,22 @@ export enum MyKind {
  */
 export type ListResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Array of products
    */
   productArray: Product[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CatalogArray;
+    };
 };
 
 /**
@@ -872,13 +881,22 @@ export type ListResponse = {
  */
 export type CreateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Dictionary of products
    */
   productDictionary: { [propertyName: string]: Product };
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CatalogDictionary;
+    };
 };
 
 /**
@@ -886,13 +904,22 @@ export type CreateResponse = {
  */
 export type UpdateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Array of products
    */
   productArray: Product[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CatalogArray;
+    };
 };
 
 /**
@@ -900,10 +927,6 @@ export type UpdateResponse = {
  */
 export type BasicGetValidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Basic Id
    */
   id: number;
@@ -916,6 +939,19 @@ export type BasicGetValidResponse = {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
 };
 
 /**
@@ -923,10 +959,6 @@ export type BasicGetValidResponse = {
  */
 export type BasicGetInvalidResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Basic Id
    */
   id: number;
@@ -939,6 +971,19 @@ export type BasicGetInvalidResponse = {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
 };
 
 /**
@@ -946,10 +991,6 @@ export type BasicGetInvalidResponse = {
  */
 export type BasicGetEmptyResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Basic Id
    */
   id: number;
@@ -962,6 +1003,19 @@ export type BasicGetEmptyResponse = {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
 };
 
 /**
@@ -969,10 +1023,6 @@ export type BasicGetEmptyResponse = {
  */
 export type BasicGetNullResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Basic Id
    */
   id: number;
@@ -985,6 +1035,19 @@ export type BasicGetNullResponse = {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
 };
 
 /**
@@ -992,10 +1055,6 @@ export type BasicGetNullResponse = {
  */
 export type BasicGetNotProvidedResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Basic Id
    */
   id: number;
@@ -1008,239 +1067,419 @@ export type BasicGetNotProvidedResponse = {
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
   color: CMYKColors;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Basic;
+    };
 };
 
 /**
  * Contains response data for the getInt operation.
  */
 export type PrimitiveGetIntResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field1: number;
   field2: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: IntWrapper;
+    };
 };
 
 /**
  * Contains response data for the getLong operation.
  */
 export type PrimitiveGetLongResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field1: number;
   field2: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LongWrapper;
+    };
 };
 
 /**
  * Contains response data for the getFloat operation.
  */
 export type PrimitiveGetFloatResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field1: number;
   field2: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FloatWrapper;
+    };
 };
 
 /**
  * Contains response data for the getDouble operation.
  */
 export type PrimitiveGetDoubleResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field1: number;
   field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DoubleWrapper;
+    };
 };
 
 /**
  * Contains response data for the getBool operation.
  */
 export type PrimitiveGetBoolResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   fieldTrue: boolean;
   fieldFalse: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: BooleanWrapper;
+    };
 };
 
 /**
  * Contains response data for the getString operation.
  */
 export type PrimitiveGetStringResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field: string;
   empty: string;
   nullProperty: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StringWrapper;
+    };
 };
 
 /**
  * Contains response data for the getDate operation.
  */
 export type PrimitiveGetDateResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field: Date;
   leap: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DateWrapper;
+    };
 };
 
 /**
  * Contains response data for the getDateTime operation.
  */
 export type PrimitiveGetDateTimeResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field: Date;
   now: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DatetimeWrapper;
+    };
 };
 
 /**
  * Contains response data for the getDateTimeRfc1123 operation.
  */
 export type PrimitiveGetDateTimeRfc1123Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field: Date;
   now: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Datetimerfc1123Wrapper;
+    };
 };
 
 /**
  * Contains response data for the getDuration operation.
  */
 export type PrimitiveGetDurationResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DurationWrapper;
+    };
 };
 
 /**
  * Contains response data for the getByte operation.
  */
 export type PrimitiveGetByteResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   field: Uint8Array;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ByteWrapper;
+    };
 };
 
 /**
  * Contains response data for the getValid operation.
  */
 export type ArrayModelGetValidResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   arrayProperty: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ArrayWrapper;
+    };
 };
 
 /**
  * Contains response data for the getEmpty operation.
  */
 export type ArrayModelGetEmptyResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   arrayProperty: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ArrayWrapper;
+    };
 };
 
 /**
  * Contains response data for the getNotProvided operation.
  */
 export type ArrayModelGetNotProvidedResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   arrayProperty: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ArrayWrapper;
+    };
 };
 
 /**
  * Contains response data for the getValid operation.
  */
 export type DictionaryGetValidResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DictionaryWrapper;
+    };
 };
 
 /**
  * Contains response data for the getEmpty operation.
  */
 export type DictionaryGetEmptyResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DictionaryWrapper;
+    };
 };
 
 /**
  * Contains response data for the getNull operation.
  */
 export type DictionaryGetNullResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DictionaryWrapper;
+    };
 };
 
 /**
  * Contains response data for the getNotProvided operation.
  */
 export type DictionaryGetNotProvidedResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   defaultProgram: { [propertyName: string]: string };
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DictionaryWrapper;
+    };
 };
 
 /**
  * Contains response data for the getValid operation.
  */
 export type InheritanceGetValidResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   id: number;
   name: string;
   color: string;
   hates: Dog[];
   breed: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Siamese;
+    };
 };
 
 /**
  * Contains response data for the getValid operation.
  */
 export type PolymorphismGetValidResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   species: string;
   length: number;
   siblings: FishUnion[];
@@ -1248,16 +1487,25 @@ export type PolymorphismGetValidResponse = {
    * Polymorphic Discriminator
    */
   fishtype: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FishUnion;
+    };
 };
 
 /**
  * Contains response data for the getComplicated operation.
  */
 export type PolymorphismGetComplicatedResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   species: string;
   length: number;
   siblings: FishUnion[];
@@ -1267,16 +1515,25 @@ export type PolymorphismGetComplicatedResponse = {
   fishtype: string;
   location: string;
   iswild: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SalmonUnion;
+    };
 };
 
 /**
  * Contains response data for the putMissingDiscriminator operation.
  */
 export type PolymorphismPutMissingDiscriminatorResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   species: string;
   length: number;
   siblings: FishUnion[];
@@ -1286,16 +1543,25 @@ export type PolymorphismPutMissingDiscriminatorResponse = {
   fishtype: string;
   location: string;
   iswild: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SalmonUnion;
+    };
 };
 
 /**
  * Contains response data for the getValid operation.
  */
 export type PolymorphicrecursiveGetValidResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   species: string;
   length: number;
   siblings: FishUnion[];
@@ -1303,32 +1569,63 @@ export type PolymorphicrecursiveGetValidResponse = {
    * Polymorphic Discriminator
    */
   fishtype: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FishUnion;
+    };
 };
 
 /**
  * Contains response data for the getValid operation.
  */
 export type ReadonlypropertyGetValidResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   id: string;
   size: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ReadonlyObj;
+    };
 };
 
 /**
  * Contains response data for the getValid operation.
  */
 export type FlattencomplexGetValidResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   propB1: string;
   /**
    * Polymorphic Discriminator
    */
   kind: string;
   propBH1: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: MyBaseTypeUnion;
+    };
 };

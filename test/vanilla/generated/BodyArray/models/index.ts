@@ -56,509 +56,968 @@ export enum FooEnum {
 /**
  * Contains response data for the getNull operation.
  */
-export type ArrayModelGetNullResponse = {
+export type ArrayModelGetNullResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getInvalid operation.
  */
-export type ArrayModelGetInvalidResponse = {
+export type ArrayModelGetInvalidResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export type ArrayModelGetEmptyResponse = {
+export type ArrayModelGetEmptyResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getBooleanTfft operation.
  */
-export type ArrayModelGetBooleanTfftResponse = {
+export type ArrayModelGetBooleanTfftResponse = Array<boolean> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<boolean>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean[];
+    };
+};
 
 /**
  * Contains response data for the getBooleanInvalidNull operation.
  */
-export type ArrayModelGetBooleanInvalidNullResponse = {
+export type ArrayModelGetBooleanInvalidNullResponse = Array<boolean> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<boolean>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean[];
+    };
+};
 
 /**
  * Contains response data for the getBooleanInvalidString operation.
  */
-export type ArrayModelGetBooleanInvalidStringResponse = {
+export type ArrayModelGetBooleanInvalidStringResponse = Array<boolean> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<boolean>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean[];
+    };
+};
 
 /**
  * Contains response data for the getIntegerValid operation.
  */
-export type ArrayModelGetIntegerValidResponse = {
+export type ArrayModelGetIntegerValidResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getIntInvalidNull operation.
  */
-export type ArrayModelGetIntInvalidNullResponse = {
+export type ArrayModelGetIntInvalidNullResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getIntInvalidString operation.
  */
-export type ArrayModelGetIntInvalidStringResponse = {
+export type ArrayModelGetIntInvalidStringResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getLongValid operation.
  */
-export type ArrayModelGetLongValidResponse = {
+export type ArrayModelGetLongValidResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getLongInvalidNull operation.
  */
-export type ArrayModelGetLongInvalidNullResponse = {
+export type ArrayModelGetLongInvalidNullResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getLongInvalidString operation.
  */
-export type ArrayModelGetLongInvalidStringResponse = {
+export type ArrayModelGetLongInvalidStringResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getFloatValid operation.
  */
-export type ArrayModelGetFloatValidResponse = {
+export type ArrayModelGetFloatValidResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getFloatInvalidNull operation.
  */
-export type ArrayModelGetFloatInvalidNullResponse = {
+export type ArrayModelGetFloatInvalidNullResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getFloatInvalidString operation.
  */
-export type ArrayModelGetFloatInvalidStringResponse = {
+export type ArrayModelGetFloatInvalidStringResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getDoubleValid operation.
  */
-export type ArrayModelGetDoubleValidResponse = {
+export type ArrayModelGetDoubleValidResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getDoubleInvalidNull operation.
  */
-export type ArrayModelGetDoubleInvalidNullResponse = {
+export type ArrayModelGetDoubleInvalidNullResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getDoubleInvalidString operation.
  */
-export type ArrayModelGetDoubleInvalidStringResponse = {
+export type ArrayModelGetDoubleInvalidStringResponse = Array<number> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<number>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: number[];
+    };
+};
 
 /**
  * Contains response data for the getStringValid operation.
  */
-export type ArrayModelGetStringValidResponse = {
+export type ArrayModelGetStringValidResponse = Array<string> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[];
+    };
+};
 
 /**
  * Contains response data for the getEnumValid operation.
  */
-export type ArrayModelGetEnumValidResponse = {
+export type ArrayModelGetEnumValidResponse = Array<FooEnum> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<FooEnum>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FooEnum[];
+    };
+};
 
 /**
  * Contains response data for the getStringEnumValid operation.
  */
-export type ArrayModelGetStringEnumValidResponse = {
+export type ArrayModelGetStringEnumValidResponse = Array<string> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[];
+    };
+};
 
 /**
  * Contains response data for the getStringWithNull operation.
  */
-export type ArrayModelGetStringWithNullResponse = {
+export type ArrayModelGetStringWithNullResponse = Array<string> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[];
+    };
+};
 
 /**
  * Contains response data for the getStringWithInvalid operation.
  */
-export type ArrayModelGetStringWithInvalidResponse = {
+export type ArrayModelGetStringWithInvalidResponse = Array<string> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[];
+    };
+};
 
 /**
  * Contains response data for the getUuidValid operation.
  */
-export type ArrayModelGetUuidValidResponse = {
+export type ArrayModelGetUuidValidResponse = Array<string> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[];
+    };
+};
 
 /**
  * Contains response data for the getUuidInvalidChars operation.
  */
-export type ArrayModelGetUuidInvalidCharsResponse = {
+export type ArrayModelGetUuidInvalidCharsResponse = Array<string> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[];
+    };
+};
 
 /**
  * Contains response data for the getDateValid operation.
  */
-export type ArrayModelGetDateValidResponse = {
+export type ArrayModelGetDateValidResponse = Array<Date> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Date>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date[] | string[];
+    };
+};
 
 /**
  * Contains response data for the getDateInvalidNull operation.
  */
-export type ArrayModelGetDateInvalidNullResponse = {
+export type ArrayModelGetDateInvalidNullResponse = Array<Date> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Date>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date[] | string[];
+    };
+};
 
 /**
  * Contains response data for the getDateInvalidChars operation.
  */
-export type ArrayModelGetDateInvalidCharsResponse = {
+export type ArrayModelGetDateInvalidCharsResponse = Array<Date> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Date>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date[] | string[];
+    };
+};
 
 /**
  * Contains response data for the getDateTimeValid operation.
  */
-export type ArrayModelGetDateTimeValidResponse = {
+export type ArrayModelGetDateTimeValidResponse = Array<Date> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Date>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date[] | string[];
+    };
+};
 
 /**
  * Contains response data for the getDateTimeInvalidNull operation.
  */
-export type ArrayModelGetDateTimeInvalidNullResponse = {
+export type ArrayModelGetDateTimeInvalidNullResponse = Array<Date> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Date>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date[] | string[];
+    };
+};
 
 /**
  * Contains response data for the getDateTimeInvalidChars operation.
  */
-export type ArrayModelGetDateTimeInvalidCharsResponse = {
+export type ArrayModelGetDateTimeInvalidCharsResponse = Array<Date> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Date>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date[] | string[];
+    };
+};
 
 /**
  * Contains response data for the getDateTimeRfc1123Valid operation.
  */
-export type ArrayModelGetDateTimeRfc1123ValidResponse = {
+export type ArrayModelGetDateTimeRfc1123ValidResponse = Array<Date> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Date>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Date[] | string[];
+    };
+};
 
 /**
  * Contains response data for the getDurationValid operation.
  */
-export type ArrayModelGetDurationValidResponse = {
+export type ArrayModelGetDurationValidResponse = Array<string> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[];
+    };
+};
 
 /**
  * Contains response data for the getByteValid operation.
  */
-export type ArrayModelGetByteValidResponse = {
+export type ArrayModelGetByteValidResponse = Array<Uint8Array> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Uint8Array>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Uint8Array[];
+    };
+};
 
 /**
  * Contains response data for the getByteInvalidNull operation.
  */
-export type ArrayModelGetByteInvalidNullResponse = {
+export type ArrayModelGetByteInvalidNullResponse = Array<Uint8Array> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Uint8Array>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Uint8Array[];
+    };
+};
 
 /**
  * Contains response data for the getBase64Url operation.
  */
-export type ArrayModelGetBase64UrlResponse = {
+export type ArrayModelGetBase64UrlResponse = Array<Uint8Array> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Uint8Array>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Uint8Array[];
+    };
+};
 
 /**
  * Contains response data for the getComplexNull operation.
  */
-export type ArrayModelGetComplexNullResponse = {
+export type ArrayModelGetComplexNullResponse = Array<Product> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Product>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product[];
+    };
+};
 
 /**
  * Contains response data for the getComplexEmpty operation.
  */
-export type ArrayModelGetComplexEmptyResponse = {
+export type ArrayModelGetComplexEmptyResponse = Array<Product> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Product>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product[];
+    };
+};
 
 /**
  * Contains response data for the getComplexItemNull operation.
  */
-export type ArrayModelGetComplexItemNullResponse = {
+export type ArrayModelGetComplexItemNullResponse = Array<Product> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Product>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product[];
+    };
+};
 
 /**
  * Contains response data for the getComplexItemEmpty operation.
  */
-export type ArrayModelGetComplexItemEmptyResponse = {
+export type ArrayModelGetComplexItemEmptyResponse = Array<Product> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Product>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product[];
+    };
+};
 
 /**
  * Contains response data for the getComplexValid operation.
  */
-export type ArrayModelGetComplexValidResponse = {
+export type ArrayModelGetComplexValidResponse = Array<Product> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Product>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product[];
+    };
+};
 
 /**
  * Contains response data for the getArrayNull operation.
  */
-export type ArrayModelGetArrayNullResponse = {
+export type ArrayModelGetArrayNullResponse = Array<string[]> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string[]>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[][];
+    };
+};
 
 /**
  * Contains response data for the getArrayEmpty operation.
  */
-export type ArrayModelGetArrayEmptyResponse = {
+export type ArrayModelGetArrayEmptyResponse = Array<string[]> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string[]>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[][];
+    };
+};
 
 /**
  * Contains response data for the getArrayItemNull operation.
  */
-export type ArrayModelGetArrayItemNullResponse = {
+export type ArrayModelGetArrayItemNullResponse = Array<string[]> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string[]>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[][];
+    };
+};
 
 /**
  * Contains response data for the getArrayItemEmpty operation.
  */
-export type ArrayModelGetArrayItemEmptyResponse = {
+export type ArrayModelGetArrayItemEmptyResponse = Array<string[]> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string[]>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[][];
+    };
+};
 
 /**
  * Contains response data for the getArrayValid operation.
  */
-export type ArrayModelGetArrayValidResponse = {
+export type ArrayModelGetArrayValidResponse = Array<string[]> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<string[]>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string[][];
+    };
+};
 
 /**
  * Contains response data for the getDictionaryNull operation.
  */
-export type ArrayModelGetDictionaryNullResponse = {
+export type ArrayModelGetDictionaryNullResponse = Array<{ [propertyName: string]: string }> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<{ [propertyName: string]: string }>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string }[];
+    };
+};
 
 /**
  * Contains response data for the getDictionaryEmpty operation.
  */
-export type ArrayModelGetDictionaryEmptyResponse = {
+export type ArrayModelGetDictionaryEmptyResponse = Array<{ [propertyName: string]: string }> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<{ [propertyName: string]: string }>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string }[];
+    };
+};
 
 /**
  * Contains response data for the getDictionaryItemNull operation.
  */
-export type ArrayModelGetDictionaryItemNullResponse = {
+export type ArrayModelGetDictionaryItemNullResponse = Array<{ [propertyName: string]: string }> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<{ [propertyName: string]: string }>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string }[];
+    };
+};
 
 /**
  * Contains response data for the getDictionaryItemEmpty operation.
  */
-export type ArrayModelGetDictionaryItemEmptyResponse = {
+export type ArrayModelGetDictionaryItemEmptyResponse = Array<{ [propertyName: string]: string }> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<{ [propertyName: string]: string }>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string }[];
+    };
+};
 
 /**
  * Contains response data for the getDictionaryValid operation.
  */
-export type ArrayModelGetDictionaryValidResponse = {
+export type ArrayModelGetDictionaryValidResponse = Array<{ [propertyName: string]: string }> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<{ [propertyName: string]: string }>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: string }[];
+    };
+};

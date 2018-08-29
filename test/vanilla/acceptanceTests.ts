@@ -1847,7 +1847,7 @@ describe('typescript', function () {
           const result = await testClient.files.getFile();
           should.exist(result);
           should.exist(result.blobBody);
-          const body = await result.blobBody();
+          const body = await result.blobBody;
           const reader = new FileReader();
           const readPromise = new Promise(function (resolve, reject) {
             reader.addEventListener("error", reject);
@@ -1876,7 +1876,7 @@ describe('typescript', function () {
       if (!msRest.isNode) {
         it('browser should correctly deserialize empty streams', async function () {
           const result = await testClient.files.getEmptyFile();
-          const body = await result.blobBody();
+          const body = await result.blobBody;
           body.size.should.equal(0);
         });
       }
@@ -1893,7 +1893,7 @@ describe('typescript', function () {
         it('browser should correctly deserialize large streams', async function () {
           this.timeout(1000 * 60 * 10);
           const result = await testClient.files.getFileLarge();
-          const body = await result.blobBody();
+          const body = await result.blobBody;
           body.size.should.equal(3000 * 1024 * 1024);
         });
       }
@@ -1915,7 +1915,7 @@ describe('typescript', function () {
           const content = require(`arraybuffer-loader!${__dirname}/sample.png`);
           const blob = new Blob([content]);
           const response = await testClient.formdata.uploadFile(blob, 'sample.png');
-          const body = await response.blobBody();
+          const body = await response.blobBody;
           const reader = new FileReader();
           const readPromise = new Promise(function (resolve, reject) {
             reader.addEventListener("error", reject);
@@ -1951,7 +1951,7 @@ describe('typescript', function () {
             reader.addEventListener("error", reject);
             reader.addEventListener("load", resolve);
           });
-          reader.readAsArrayBuffer(await response.blobBody());
+          reader.readAsArrayBuffer(await response.blobBody);
           await readPromise;
           const actual = new Uint8Array(reader.result as ArrayBuffer);
           const expected = new Uint8Array(content);
@@ -1978,7 +1978,7 @@ describe('typescript', function () {
         });
         const streamBody = response.readableStreamBody;
         if (response.blobBody) {
-          await response.blobBody();
+          await response.blobBody;
         } else if (streamBody) {
           streamBody.on('data', () => { });
           await new Promise((resolve, reject) => {

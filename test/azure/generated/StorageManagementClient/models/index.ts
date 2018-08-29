@@ -494,10 +494,6 @@ export enum UsageUnit {
  */
 export type StorageAccountsCheckNameAvailabilityResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Gets a boolean value that indicates whether the name is available for you to use. If true, the
    * name is available. If false, the name has already been taken or invalid and cannot be used.
    */
@@ -512,6 +508,19 @@ export type StorageAccountsCheckNameAvailabilityResponse = {
    * Gets an error message explaining the Reason value in more detail.
    */
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CheckNameAvailabilityResult;
+    };
 };
 
 /**
@@ -519,10 +528,6 @@ export type StorageAccountsCheckNameAvailabilityResponse = {
  */
 export type StorageAccountsCreateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -597,6 +602,19 @@ export type StorageAccountsCreateResponse = {
    * StandardRAGRS.
    */
   secondaryEndpoints: Endpoints;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccount;
+    };
 };
 
 /**
@@ -604,10 +622,6 @@ export type StorageAccountsCreateResponse = {
  */
 export type StorageAccountsGetPropertiesResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -682,6 +696,19 @@ export type StorageAccountsGetPropertiesResponse = {
    * StandardRAGRS.
    */
   secondaryEndpoints: Endpoints;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccount;
+    };
 };
 
 /**
@@ -689,10 +716,6 @@ export type StorageAccountsGetPropertiesResponse = {
  */
 export type StorageAccountsUpdateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -767,6 +790,19 @@ export type StorageAccountsUpdateResponse = {
    * StandardRAGRS.
    */
   secondaryEndpoints: Endpoints;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccount;
+    };
 };
 
 /**
@@ -774,10 +810,6 @@ export type StorageAccountsUpdateResponse = {
  */
 export type StorageAccountsListKeysResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Gets the value of key 1.
    */
   key1: string;
@@ -785,6 +817,19 @@ export type StorageAccountsListKeysResponse = {
    * Gets the value of key 2.
    */
   key2: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccountKeys;
+    };
 };
 
 /**
@@ -792,10 +837,6 @@ export type StorageAccountsListKeysResponse = {
  */
 export type StorageAccountsListResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Gets the list of storage accounts and their properties.
    */
   value: StorageAccount[];
@@ -804,6 +845,19 @@ export type StorageAccountsListResponse = {
    * not support pagination.
    */
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccountListResult;
+    };
 };
 
 /**
@@ -811,10 +865,6 @@ export type StorageAccountsListResponse = {
  */
 export type StorageAccountsListByResourceGroupResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Gets the list of storage accounts and their properties.
    */
   value: StorageAccount[];
@@ -823,16 +873,25 @@ export type StorageAccountsListByResourceGroupResponse = {
    * not support pagination.
    */
   nextLink: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccountListResult;
+    };
 };
 
 /**
  * Contains response data for the regenerateKey operation.
  */
 export type StorageAccountsRegenerateKeyResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Gets the value of key 1.
    */
@@ -841,16 +900,25 @@ export type StorageAccountsRegenerateKeyResponse = {
    * Gets the value of key 2.
    */
   key2: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccountKeys;
+    };
 };
 
 /**
  * Contains response data for the beginCreate operation.
  */
 export type StorageAccountsBeginCreateResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -926,6 +994,19 @@ export type StorageAccountsBeginCreateResponse = {
    * StandardRAGRS.
    */
   secondaryEndpoints: Endpoints;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageAccount;
+    };
 };
 
 /**
@@ -933,11 +1014,20 @@ export type StorageAccountsBeginCreateResponse = {
  */
 export type UsageListResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Gets or sets the list Storage Resource Usages.
    */
   value: Usage[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: UsageListResult;
+    };
 };

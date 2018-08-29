@@ -52,12 +52,21 @@ export interface AutoRestReportServiceForAzureGetReportOptionalParams extends ms
  */
 export type GetReportResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: number;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: number };
+    };
 };

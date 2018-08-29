@@ -821,10 +821,6 @@ export enum ArchiveStatus {
  */
 export type XmlGetComplexTypeRefNoMetaResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * XML will use RefToModel
    */
   refToModel: ComplexTypeNoMeta;
@@ -832,16 +828,25 @@ export type XmlGetComplexTypeRefNoMetaResponse = {
    * Something else (just to avoid flattening)
    */
   something: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RootWithRefAndNoMeta;
+    };
 };
 
 /**
  * Contains response data for the getComplexTypeRefWithMeta operation.
  */
 export type XmlGetComplexTypeRefWithMetaResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * XML will use XMLComplexTypeWithMeta
    */
@@ -850,32 +855,63 @@ export type XmlGetComplexTypeRefWithMetaResponse = {
    * Something else (just to avoid flattening)
    */
   something: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RootWithRefAndMeta;
+    };
 };
 
 /**
  * Contains response data for the getSimple operation.
  */
 export type XmlGetSimpleResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   title: string;
   date: string;
   author: string;
   slides: Slide[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Slideshow;
+    };
 };
 
 /**
  * Contains response data for the getWrappedLists operation.
  */
 export type XmlGetWrappedListsResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   goodApples: string[];
   badApples: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: AppleBarrel;
+    };
 };
 
 /**
@@ -883,111 +919,175 @@ export type XmlGetWrappedListsResponse = {
  */
 export type XmlGetHeadersResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * A custom response header.
    */
   customHeader: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: XmlGetHeadersHeaders;
+    };
 };
 
 /**
  * Contains response data for the getEmptyList operation.
  */
 export type XmlGetEmptyListResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   title: string;
   date: string;
   author: string;
   slides: Slide[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Slideshow;
+    };
 };
 
 /**
  * Contains response data for the getEmptyWrappedLists operation.
  */
 export type XmlGetEmptyWrappedListsResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   goodApples: string[];
   badApples: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: AppleBarrel;
+    };
 };
 
 /**
  * Contains response data for the getRootList operation.
  */
-export type XmlGetRootListResponse = {
+export type XmlGetRootListResponse = Array<Banana> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Banana>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Banana[];
+    };
+};
 
 /**
  * Contains response data for the getRootListSingleItem operation.
  */
-export type XmlGetRootListSingleItemResponse = {
+export type XmlGetRootListSingleItemResponse = Array<Banana> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Banana>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Banana[];
+    };
+};
 
 /**
  * Contains response data for the getEmptyRootList operation.
  */
-export type XmlGetEmptyRootListResponse = {
+export type XmlGetEmptyRootListResponse = Array<Banana> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<Banana>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Banana[];
+    };
+};
 
 /**
  * Contains response data for the getEmptyChildElement operation.
  */
 export type XmlGetEmptyChildElementResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   name: string;
   flavor: string;
   /**
    * The time at which you should reconsider eating this banana
    */
   expiration: Date;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Banana;
+    };
 };
 
 /**
  * Contains response data for the listContainers operation.
  */
 export type XmlListContainersResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   serviceEndpoint: string;
   prefix: string;
   marker: string;
   maxResults: number;
   containers: Container[];
   nextMarker: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ListContainersResponse;
+    };
 };
 
 /**
  * Contains response data for the getServiceProperties operation.
  */
 export type XmlGetServicePropertiesResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Azure Analytics Logging settings
    */
@@ -1013,26 +1113,44 @@ export type XmlGetServicePropertiesResponse = {
    * The Delete Retention Policy for the service
    */
   deleteRetentionPolicy: RetentionPolicy;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: StorageServiceProperties;
+    };
 };
 
 /**
  * Contains response data for the getAcls operation.
  */
-export type XmlGetAclsResponse = {
+export type XmlGetAclsResponse = Array<SignedIdentifier> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<SignedIdentifier>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SignedIdentifier[];
+    };
+};
 
 /**
  * Contains response data for the listBlobs operation.
  */
 export type XmlListBlobsResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   serviceEndpoint: string;
   containerName: string;
   prefix: string;
@@ -1041,4 +1159,17 @@ export type XmlListBlobsResponse = {
   delimiter: string;
   blobs: Blobs;
   nextMarker: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ListBlobsResponse;
+    };
 };

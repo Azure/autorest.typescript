@@ -2708,10 +2708,6 @@ export enum Status {
  */
 export type LROsPut200SucceededResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -2734,6 +2730,19 @@ export type LROsPut200SucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -2741,10 +2750,6 @@ export type LROsPut200SucceededResponse = {
  */
 export type LROsPut200SucceededNoStateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -2767,6 +2772,19 @@ export type LROsPut200SucceededNoStateResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -2774,10 +2792,6 @@ export type LROsPut200SucceededNoStateResponse = {
  */
 export type LROsPut202Retry200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -2800,6 +2814,19 @@ export type LROsPut202Retry200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -2807,10 +2834,6 @@ export type LROsPut202Retry200Response = {
  */
 export type LROsPut201CreatingSucceeded200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -2833,6 +2856,19 @@ export type LROsPut201CreatingSucceeded200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -2840,10 +2876,6 @@ export type LROsPut201CreatingSucceeded200Response = {
  */
 export type LROsPut200UpdatingSucceeded204Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -2866,6 +2898,19 @@ export type LROsPut200UpdatingSucceeded204Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -2873,10 +2918,6 @@ export type LROsPut200UpdatingSucceeded204Response = {
  */
 export type LROsPut201CreatingFailed200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -2899,6 +2940,19 @@ export type LROsPut201CreatingFailed200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -2906,10 +2960,6 @@ export type LROsPut201CreatingFailed200Response = {
  */
 export type LROsPut200Acceptedcanceled200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -2932,16 +2982,25 @@ export type LROsPut200Acceptedcanceled200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putNoHeaderInRetry operation.
  */
 export type LROsPutNoHeaderInRetryResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/noheader/202/200/operationResults
@@ -2970,6 +3029,23 @@ export type LROsPutNoHeaderInRetryResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPutNoHeaderInRetryHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -2977,10 +3053,6 @@ export type LROsPutNoHeaderInRetryResponse = {
  */
 export type LROsPutAsyncRetrySucceededResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
    */
@@ -3017,6 +3089,23 @@ export type LROsPutAsyncRetrySucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPutAsyncRetrySucceededHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3024,10 +3113,6 @@ export type LROsPutAsyncRetrySucceededResponse = {
  */
 export type LROsPutAsyncNoRetrySucceededResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/putasync/noretry/succeeded/operationResults/200
    */
@@ -3060,16 +3145,29 @@ export type LROsPutAsyncNoRetrySucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPutAsyncNoRetrySucceededHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putAsyncRetryFailed operation.
  */
 export type LROsPutAsyncRetryFailedResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/failed/operationResults/200
@@ -3107,16 +3205,29 @@ export type LROsPutAsyncRetryFailedResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPutAsyncRetryFailedHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putAsyncNoRetrycanceled operation.
  */
 export type LROsPutAsyncNoRetrycanceledResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/noretry/canceled/operationResults/200
@@ -3150,16 +3261,29 @@ export type LROsPutAsyncNoRetrycanceledResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPutAsyncNoRetrycanceledHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putAsyncNoHeaderInRetry operation.
  */
 export type LROsPutAsyncNoHeaderInRetryResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   azureAsyncOperation: string;
   /**
    * Resource Id
@@ -3184,30 +3308,65 @@ export type LROsPutAsyncNoHeaderInRetryResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPutAsyncNoHeaderInRetryHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putNonResource operation.
  */
 export type LROsPutNonResourceResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Sku;
+    };
 };
 
 /**
  * Contains response data for the putAsyncNonResource operation.
  */
 export type LROsPutAsyncNonResourceResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Sku;
+    };
 };
 
 /**
@@ -3215,10 +3374,6 @@ export type LROsPutAsyncNonResourceResponse = {
  */
 export type LROsPutSubResourceResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Sub Resource Id
    */
   id: string;
@@ -3228,6 +3383,19 @@ export type LROsPutSubResourceResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues1;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SubProduct;
+    };
 };
 
 /**
@@ -3235,10 +3403,6 @@ export type LROsPutSubResourceResponse = {
  */
 export type LROsPutAsyncSubResourceResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Sub Resource Id
    */
   id: string;
@@ -3248,6 +3412,19 @@ export type LROsPutAsyncSubResourceResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues1;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SubProduct;
+    };
 };
 
 /**
@@ -3255,10 +3432,6 @@ export type LROsPutAsyncSubResourceResponse = {
  * operation.
  */
 export type LROsDeleteProvisioning202Accepted200SucceededResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/delete/provisioning/202/accepted/200/succeeded
@@ -3291,6 +3464,23 @@ export type LROsDeleteProvisioning202Accepted200SucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDeleteProvisioning202Accepted200SucceededHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3298,10 +3488,6 @@ export type LROsDeleteProvisioning202Accepted200SucceededResponse = {
  * operation.
  */
 export type LROsDeleteProvisioning202DeletingFailed200Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/delete/provisioning/202/deleting/200/failed
@@ -3334,6 +3520,23 @@ export type LROsDeleteProvisioning202DeletingFailed200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDeleteProvisioning202DeletingFailed200Headers;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3341,10 +3544,6 @@ export type LROsDeleteProvisioning202DeletingFailed200Response = {
  * operation.
  */
 export type LROsDeleteProvisioning202Deletingcanceled200Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/delete/provisioning/202/deleting/200/canceled
@@ -3377,16 +3576,29 @@ export type LROsDeleteProvisioning202Deletingcanceled200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDeleteProvisioning202Deletingcanceled200Headers;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the delete202Retry200 operation.
  */
 export type LROsDelete202Retry200Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/delete/202/retry/200
    */
@@ -3418,16 +3630,29 @@ export type LROsDelete202Retry200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDelete202Retry200Headers;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the delete202NoRetry204 operation.
  */
 export type LROsDelete202NoRetry204Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/delete/202/noretry/204
    */
@@ -3459,6 +3684,23 @@ export type LROsDelete202NoRetry204Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDelete202NoRetry204Headers;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3466,13 +3708,18 @@ export type LROsDelete202NoRetry204Response = {
  */
 export type LROsDeleteNoHeaderInRetryResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
    */
   location: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
+    };
 };
 
 /**
@@ -3480,13 +3727,18 @@ export type LROsDeleteNoHeaderInRetryResponse = {
  */
 export type LROsDeleteAsyncNoHeaderInRetryResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
    */
   location: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
+    };
 };
 
 /**
@@ -3494,10 +3746,6 @@ export type LROsDeleteAsyncNoHeaderInRetryResponse = {
  */
 export type LROsDeleteAsyncRetrySucceededResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/succeeded/operationResults/200
    */
@@ -3511,6 +3759,15 @@ export type LROsDeleteAsyncRetrySucceededResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDeleteAsyncRetrySucceededHeaders;
+    };
 };
 
 /**
@@ -3518,10 +3775,6 @@ export type LROsDeleteAsyncRetrySucceededResponse = {
  */
 export type LROsDeleteAsyncNoRetrySucceededResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/noretry/succeeded/operationResults/200
    */
@@ -3535,6 +3788,15 @@ export type LROsDeleteAsyncNoRetrySucceededResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDeleteAsyncNoRetrySucceededHeaders;
+    };
 };
 
 /**
@@ -3542,10 +3804,6 @@ export type LROsDeleteAsyncNoRetrySucceededResponse = {
  */
 export type LROsDeleteAsyncRetryFailedResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/failed/operationResults/200
    */
@@ -3559,6 +3817,15 @@ export type LROsDeleteAsyncRetryFailedResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDeleteAsyncRetryFailedHeaders;
+    };
 };
 
 /**
@@ -3566,10 +3833,6 @@ export type LROsDeleteAsyncRetryFailedResponse = {
  */
 export type LROsDeleteAsyncRetrycanceledResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/canceled/operationResults/200
    */
@@ -3583,28 +3846,42 @@ export type LROsDeleteAsyncRetrycanceledResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsDeleteAsyncRetrycanceledHeaders;
+    };
 };
 
 /**
  * Contains response data for the post200WithPayload operation.
  */
 export type LROsPost200WithPayloadResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Sku;
+    };
 };
 
 /**
  * Contains response data for the post202Retry200 operation.
  */
 export type LROsPost202Retry200Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/post/202/retry/200
    */
@@ -3613,16 +3890,21 @@ export type LROsPost202Retry200Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPost202Retry200Headers;
+    };
 };
 
 /**
  * Contains response data for the post202NoRetry204 operation.
  */
 export type LROsPost202NoRetry204Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/post/202/noretry/204
    */
@@ -3654,16 +3936,29 @@ export type LROsPost202NoRetry204Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPost202NoRetry204Headers;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the postDoubleHeadersFinalLocationGet operation.
  */
 export type LROsPostDoubleHeadersFinalLocationGetResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -3687,6 +3982,19 @@ export type LROsPostDoubleHeadersFinalLocationGetResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3695,10 +4003,6 @@ export type LROsPostDoubleHeadersFinalLocationGetResponse = {
  */
 export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -3721,6 +4025,19 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3729,10 +4046,6 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = {
  */
 export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -3755,6 +4068,19 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3762,10 +4088,6 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
  */
 export type LROsPostAsyncRetrySucceededResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
    */
@@ -3802,6 +4124,23 @@ export type LROsPostAsyncRetrySucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPostAsyncRetrySucceededHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3809,10 +4148,6 @@ export type LROsPostAsyncRetrySucceededResponse = {
  */
 export type LROsPostAsyncNoRetrySucceededResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
    */
@@ -3849,6 +4184,23 @@ export type LROsPostAsyncNoRetrySucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPostAsyncNoRetrySucceededHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3856,10 +4208,6 @@ export type LROsPostAsyncNoRetrySucceededResponse = {
  */
 export type LROsPostAsyncRetryFailedResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/failed/operationResults/200
    */
@@ -3873,6 +4221,15 @@ export type LROsPostAsyncRetryFailedResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPostAsyncRetryFailedHeaders;
+    };
 };
 
 /**
@@ -3880,10 +4237,6 @@ export type LROsPostAsyncRetryFailedResponse = {
  */
 export type LROsPostAsyncRetrycanceledResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/canceled/operationResults/200
    */
@@ -3897,6 +4250,15 @@ export type LROsPostAsyncRetrycanceledResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsPostAsyncRetrycanceledHeaders;
+    };
 };
 
 /**
@@ -3904,10 +4266,6 @@ export type LROsPostAsyncRetrycanceledResponse = {
  */
 export type LROsBeginPut200SucceededResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -3930,6 +4288,19 @@ export type LROsBeginPut200SucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3937,10 +4308,6 @@ export type LROsBeginPut200SucceededResponse = {
  */
 export type LROsBeginPut200SucceededNoStateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -3963,6 +4330,19 @@ export type LROsBeginPut200SucceededNoStateResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -3970,10 +4350,6 @@ export type LROsBeginPut200SucceededNoStateResponse = {
  */
 export type LROsBeginPut202Retry200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -3996,6 +4372,19 @@ export type LROsBeginPut202Retry200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4003,10 +4392,6 @@ export type LROsBeginPut202Retry200Response = {
  */
 export type LROsBeginPut201CreatingSucceeded200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4029,6 +4414,19 @@ export type LROsBeginPut201CreatingSucceeded200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4036,10 +4434,6 @@ export type LROsBeginPut201CreatingSucceeded200Response = {
  */
 export type LROsBeginPut200UpdatingSucceeded204Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4062,6 +4456,19 @@ export type LROsBeginPut200UpdatingSucceeded204Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4069,10 +4476,6 @@ export type LROsBeginPut200UpdatingSucceeded204Response = {
  */
 export type LROsBeginPut201CreatingFailed200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4095,6 +4498,19 @@ export type LROsBeginPut201CreatingFailed200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4102,10 +4518,6 @@ export type LROsBeginPut201CreatingFailed200Response = {
  */
 export type LROsBeginPut200Acceptedcanceled200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4128,30 +4540,61 @@ export type LROsBeginPut200Acceptedcanceled200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the beginPutNonResource operation.
  */
 export type LROsBeginPutNonResourceResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Sku;
+    };
 };
 
 /**
  * Contains response data for the beginPutAsyncNonResource operation.
  */
 export type LROsBeginPutAsyncNonResourceResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Sku;
+    };
 };
 
 /**
@@ -4159,10 +4602,6 @@ export type LROsBeginPutAsyncNonResourceResponse = {
  */
 export type LROsBeginPutSubResourceResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Sub Resource Id
    */
   id: string;
@@ -4172,6 +4611,19 @@ export type LROsBeginPutSubResourceResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues1;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SubProduct;
+    };
 };
 
 /**
@@ -4179,10 +4631,6 @@ export type LROsBeginPutSubResourceResponse = {
  */
 export type LROsBeginPutAsyncSubResourceResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Sub Resource Id
    */
   id: string;
@@ -4192,18 +4640,40 @@ export type LROsBeginPutAsyncSubResourceResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues1;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SubProduct;
+    };
 };
 
 /**
  * Contains response data for the beginPost200WithPayload operation.
  */
 export type LROsBeginPost200WithPayloadResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   name: string;
   id: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Sku;
+    };
 };
 
 /**
@@ -4212,10 +4682,6 @@ export type LROsBeginPost200WithPayloadResponse = {
  */
 export type LROsBeginPostDoubleHeadersFinalLocationGetResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4238,6 +4704,19 @@ export type LROsBeginPostDoubleHeadersFinalLocationGetResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4246,10 +4725,6 @@ export type LROsBeginPostDoubleHeadersFinalLocationGetResponse = {
  */
 export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4272,6 +4747,19 @@ export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4280,10 +4768,6 @@ export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse = {
  */
 export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4306,6 +4790,19 @@ export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4313,10 +4810,6 @@ export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
  */
 export type LRORetrysPut201CreatingSucceeded200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4339,16 +4832,25 @@ export type LRORetrysPut201CreatingSucceeded200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putAsyncRelativeRetrySucceeded operation.
  */
 export type LRORetrysPutAsyncRelativeRetrySucceededResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/putasync/retry/succeeded/operationResults/200
@@ -4386,6 +4888,23 @@ export type LRORetrysPutAsyncRelativeRetrySucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LRORetrysPutAsyncRelativeRetrySucceededHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4393,10 +4912,6 @@ export type LRORetrysPutAsyncRelativeRetrySucceededResponse = {
  * operation.
  */
 export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
@@ -4429,16 +4944,29 @@ export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LRORetrysDeleteProvisioning202Accepted200SucceededHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the delete202Retry200 operation.
  */
 export type LRORetrysDelete202Retry200Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
    */
@@ -4447,16 +4975,21 @@ export type LRORetrysDelete202Retry200Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LRORetrysDelete202Retry200Headers;
+    };
 };
 
 /**
  * Contains response data for the deleteAsyncRelativeRetrySucceeded operation.
  */
 export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
@@ -4471,16 +5004,21 @@ export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
+    };
 };
 
 /**
  * Contains response data for the post202Retry200 operation.
  */
 export type LRORetrysPost202Retry200Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
    */
@@ -4489,16 +5027,21 @@ export type LRORetrysPost202Retry200Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LRORetrysPost202Retry200Headers;
+    };
 };
 
 /**
  * Contains response data for the postAsyncRelativeRetrySucceeded operation.
  */
 export type LRORetrysPostAsyncRelativeRetrySucceededResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/retryerror/putasync/retry/succeeded/operationResults/200
@@ -4513,6 +5056,15 @@ export type LRORetrysPostAsyncRelativeRetrySucceededResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LRORetrysPostAsyncRelativeRetrySucceededHeaders;
+    };
 };
 
 /**
@@ -4520,10 +5072,6 @@ export type LRORetrysPostAsyncRelativeRetrySucceededResponse = {
  */
 export type LRORetrysBeginPut201CreatingSucceeded200Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4546,6 +5094,19 @@ export type LRORetrysBeginPut201CreatingSucceeded200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4553,10 +5114,6 @@ export type LRORetrysBeginPut201CreatingSucceeded200Response = {
  */
 export type LROSADsPutNonRetry400Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4579,6 +5136,19 @@ export type LROSADsPutNonRetry400Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4586,10 +5156,6 @@ export type LROSADsPutNonRetry400Response = {
  */
 export type LROSADsPutNonRetry201Creating400Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4612,6 +5178,19 @@ export type LROSADsPutNonRetry201Creating400Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4620,10 +5199,6 @@ export type LROSADsPutNonRetry201Creating400Response = {
  */
 export type LROSADsPutNonRetry201Creating400InvalidJsonResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4646,16 +5221,25 @@ export type LROSADsPutNonRetry201Creating400InvalidJsonResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putAsyncRelativeRetry400 operation.
  */
 export type LROSADsPutAsyncRelativeRetry400Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/nonretryerror/putasync/retry/operationResults/400
@@ -4693,6 +5277,23 @@ export type LROSADsPutAsyncRelativeRetry400Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPutAsyncRelativeRetry400Headers;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4700,10 +5301,6 @@ export type LROSADsPutAsyncRelativeRetry400Response = {
  */
 export type LROSADsDeleteNonRetry400Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
    */
   location: string;
@@ -4711,6 +5308,15 @@ export type LROSADsDeleteNonRetry400Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsDeleteNonRetry400Headers;
+    };
 };
 
 /**
@@ -4718,10 +5324,6 @@ export type LROSADsDeleteNonRetry400Response = {
  */
 export type LROSADsDelete202NonRetry400Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
    */
   location: string;
@@ -4729,6 +5331,15 @@ export type LROSADsDelete202NonRetry400Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsDelete202NonRetry400Headers;
+    };
 };
 
 /**
@@ -4736,10 +5347,6 @@ export type LROSADsDelete202NonRetry400Response = {
  */
 export type LROSADsDeleteAsyncRelativeRetry400Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/nonretryerror/deleteasync/retry/operationResults/400
    */
@@ -4753,6 +5360,15 @@ export type LROSADsDeleteAsyncRelativeRetry400Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsDeleteAsyncRelativeRetry400Headers;
+    };
 };
 
 /**
@@ -4760,10 +5376,6 @@ export type LROSADsDeleteAsyncRelativeRetry400Response = {
  */
 export type LROSADsPostNonRetry400Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
    */
   location: string;
@@ -4771,6 +5383,15 @@ export type LROSADsPostNonRetry400Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPostNonRetry400Headers;
+    };
 };
 
 /**
@@ -4778,10 +5399,6 @@ export type LROSADsPostNonRetry400Response = {
  */
 export type LROSADsPost202NonRetry400Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
    */
   location: string;
@@ -4789,16 +5406,21 @@ export type LROSADsPost202NonRetry400Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPost202NonRetry400Headers;
+    };
 };
 
 /**
  * Contains response data for the postAsyncRelativeRetry400 operation.
  */
 export type LROSADsPostAsyncRelativeRetry400Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/nonretryerror/putasync/retry/operationResults/400
@@ -4813,6 +5435,15 @@ export type LROSADsPostAsyncRelativeRetry400Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPostAsyncRelativeRetry400Headers;
+    };
 };
 
 /**
@@ -4821,10 +5452,6 @@ export type LROSADsPostAsyncRelativeRetry400Response = {
  */
 export type LROSADsPutError201NoProvisioningStatePayloadResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -4847,16 +5474,25 @@ export type LROSADsPutError201NoProvisioningStatePayloadResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putAsyncRelativeRetryNoStatus operation.
  */
 export type LROSADsPutAsyncRelativeRetryNoStatusResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -4894,6 +5530,23 @@ export type LROSADsPutAsyncRelativeRetryNoStatusResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -4902,10 +5555,6 @@ export type LROSADsPutAsyncRelativeRetryNoStatusResponse = {
  */
 export type LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
    */
@@ -4942,16 +5591,29 @@ export type LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryNoStatus operation.
  */
 export type LROSADsDeleteAsyncRelativeRetryNoStatusResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/deleteasync/retry/succeeded/operationResults/200
@@ -4966,16 +5628,21 @@ export type LROSADsDeleteAsyncRelativeRetryNoStatusResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsDeleteAsyncRelativeRetryNoStatusHeaders;
+    };
 };
 
 /**
  * Contains response data for the post202NoLocation operation.
  */
 export type LROSADsPost202NoLocationResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will not be set
    */
@@ -4984,16 +5651,21 @@ export type LROSADsPost202NoLocationResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPost202NoLocationHeaders;
+    };
 };
 
 /**
  * Contains response data for the postAsyncRelativeRetryNoPayload operation.
  */
 export type LROSADsPostAsyncRelativeRetryNoPayloadResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/error/putasync/retry/failed/operationResults/nopayload
@@ -5008,16 +5680,21 @@ export type LROSADsPostAsyncRelativeRetryNoPayloadResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPostAsyncRelativeRetryNoPayloadHeaders;
+    };
 };
 
 /**
  * Contains response data for the put200InvalidJson operation.
  */
 export type LROSADsPut200InvalidJsonResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -5041,16 +5718,25 @@ export type LROSADsPut200InvalidJsonResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putAsyncRelativeRetryInvalidHeader operation.
  */
 export type LROSADsPutAsyncRelativeRetryInvalidHeaderResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/succeeded/operationResults/200
@@ -5088,6 +5774,23 @@ export type LROSADsPutAsyncRelativeRetryInvalidHeaderResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -5096,10 +5799,6 @@ export type LROSADsPutAsyncRelativeRetryInvalidHeaderResponse = {
  */
 export type LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/putasync/retry/failed/operationResults/200
    */
@@ -5136,16 +5835,29 @@ export type LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the delete202RetryInvalidHeader operation.
  */
 export type LROSADsDelete202RetryInvalidHeaderResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /foo
    */
@@ -5154,6 +5866,15 @@ export type LROSADsDelete202RetryInvalidHeaderResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to /bar
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsDelete202RetryInvalidHeaderHeaders;
+    };
 };
 
 /**
@@ -5162,10 +5883,6 @@ export type LROSADsDelete202RetryInvalidHeaderResponse = {
  */
 export type LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to /foo
    */
   azureAsyncOperation: string;
@@ -5177,6 +5894,15 @@ export type LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to /bar
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
+    };
 };
 
 /**
@@ -5185,10 +5911,6 @@ export type LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse = {
  */
 export type LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Location to poll for result status: will be set to
    * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
    */
@@ -5202,16 +5924,21 @@ export type LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
+    };
 };
 
 /**
  * Contains response data for the post202RetryInvalidHeader operation.
  */
 export type LROSADsPost202RetryInvalidHeaderResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /foo
    */
@@ -5220,6 +5947,15 @@ export type LROSADsPost202RetryInvalidHeaderResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to /bar
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPost202RetryInvalidHeaderHeaders;
+    };
 };
 
 /**
@@ -5227,10 +5963,6 @@ export type LROSADsPost202RetryInvalidHeaderResponse = {
  * operation.
  */
 export type LROSADsPostAsyncRelativeRetryInvalidHeaderResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to foo
    */
@@ -5243,6 +5975,15 @@ export type LROSADsPostAsyncRelativeRetryInvalidHeaderResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to /bar
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders;
+    };
 };
 
 /**
@@ -5250,10 +5991,6 @@ export type LROSADsPostAsyncRelativeRetryInvalidHeaderResponse = {
  * operation.
  */
 export type LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
@@ -5268,6 +6005,15 @@ export type LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
+    };
 };
 
 /**
@@ -5275,10 +6021,6 @@ export type LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse = {
  */
 export type LROSADsBeginPutNonRetry400Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -5301,6 +6043,19 @@ export type LROSADsBeginPutNonRetry400Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -5308,10 +6063,6 @@ export type LROSADsBeginPutNonRetry400Response = {
  */
 export type LROSADsBeginPutNonRetry201Creating400Response = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -5334,6 +6085,19 @@ export type LROSADsBeginPutNonRetry201Creating400Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -5342,10 +6106,6 @@ export type LROSADsBeginPutNonRetry201Creating400Response = {
  */
 export type LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -5368,6 +6128,19 @@ export type LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -5376,10 +6149,6 @@ export type LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse = {
  */
 export type LROSADsBeginPutError201NoProvisioningStatePayloadResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -5402,6 +6171,19 @@ export type LROSADsBeginPutError201NoProvisioningStatePayloadResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
@@ -5409,10 +6191,6 @@ export type LROSADsBeginPutError201NoProvisioningStatePayloadResponse = {
  */
 export type LROSADsBeginPut200InvalidJsonResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Resource Id
    */
   id: string;
@@ -5435,16 +6213,25 @@ export type LROSADsBeginPut200InvalidJsonResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the putAsyncRetrySucceeded operation.
  */
 export type LROsCustomHeaderPutAsyncRetrySucceededResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/customheader/putasync/retry/succeeded/operationResults/200
@@ -5482,16 +6269,29 @@ export type LROsCustomHeaderPutAsyncRetrySucceededResponse = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsCustomHeaderPutAsyncRetrySucceededHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the put201CreatingSucceeded200 operation.
  */
 export type LROsCustomHeaderPut201CreatingSucceeded200Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -5515,16 +6315,25 @@ export type LROsCustomHeaderPut201CreatingSucceeded200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };
 
 /**
  * Contains response data for the post202Retry200 operation.
  */
 export type LROsCustomHeaderPost202Retry200Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to /lro/customheader/post/202/retry/200
    */
@@ -5533,16 +6342,21 @@ export type LROsCustomHeaderPost202Retry200Response = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsCustomHeaderPost202Retry200Headers;
+    };
 };
 
 /**
  * Contains response data for the postAsyncRetrySucceeded operation.
  */
 export type LROsCustomHeaderPostAsyncRetrySucceededResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Location to poll for result status: will be set to
    * /lro/customheader/putasync/retry/succeeded/operationResults/200
@@ -5557,16 +6371,21 @@ export type LROsCustomHeaderPostAsyncRetrySucceededResponse = {
    * Number of milliseconds until the next poll should be sent, will be set to zero
    */
   retryAfter: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: LROsCustomHeaderPostAsyncRetrySucceededHeaders;
+    };
 };
 
 /**
  * Contains response data for the beginPut201CreatingSucceeded200 operation.
  */
 export type LROsCustomHeaderBeginPut201CreatingSucceeded200Response = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Resource Id
    */
@@ -5590,4 +6409,17 @@ export type LROsCustomHeaderBeginPut201CreatingSucceeded200Response = {
    * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
   provisioningStateValues: ProvisioningStateValues;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Product;
+    };
 };

@@ -342,178 +342,313 @@ export interface ExplicitPostOptionalArrayHeaderOptionalParams extends msRest.Re
  * Contains response data for the getRequiredPath operation.
  */
 export type ImplicitGetRequiredPathResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the getRequiredGlobalPath operation.
  */
 export type ImplicitGetRequiredGlobalPathResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the getRequiredGlobalQuery operation.
  */
 export type ImplicitGetRequiredGlobalQueryResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the getOptionalGlobalQuery operation.
  */
 export type ImplicitGetOptionalGlobalQueryResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredIntegerParameter operation.
  */
 export type ExplicitPostRequiredIntegerParameterResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredIntegerProperty operation.
  */
 export type ExplicitPostRequiredIntegerPropertyResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredIntegerHeader operation.
  */
 export type ExplicitPostRequiredIntegerHeaderResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredStringParameter operation.
  */
 export type ExplicitPostRequiredStringParameterResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredStringProperty operation.
  */
 export type ExplicitPostRequiredStringPropertyResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredStringHeader operation.
  */
 export type ExplicitPostRequiredStringHeaderResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredClassParameter operation.
  */
 export type ExplicitPostRequiredClassParameterResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredClassProperty operation.
  */
 export type ExplicitPostRequiredClassPropertyResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredArrayParameter operation.
  */
 export type ExplicitPostRequiredArrayParameterResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredArrayProperty operation.
  */
 export type ExplicitPostRequiredArrayPropertyResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };
 
 /**
  * Contains response data for the postRequiredArrayHeader operation.
  */
 export type ExplicitPostRequiredArrayHeaderResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   status: number;
   message: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
 };

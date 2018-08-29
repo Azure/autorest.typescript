@@ -154,13 +154,18 @@ export interface HeaderCustomNamedRequestIdHeadHeaders {
  */
 export type HeaderCustomNamedRequestIdResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Gets the foo-request-id.
    */
   fooRequestId: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderCustomNamedRequestIdHeaders;
+    };
 };
 
 /**
@@ -168,23 +173,24 @@ export type HeaderCustomNamedRequestIdResponse = {
  */
 export type HeaderCustomNamedRequestIdParamGroupingResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Gets the foo-request-id.
    */
   fooRequestId: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderCustomNamedRequestIdParamGroupingHeaders;
+    };
 };
 
 /**
  * Contains response data for the customNamedRequestIdHead operation.
  */
 export type HeaderCustomNamedRequestIdHeadResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   /**
    * Gets the foo-request-id.
    */
@@ -193,4 +199,21 @@ export type HeaderCustomNamedRequestIdHeadResponse = {
    * The parsed response body.
    */
   body: boolean;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The parsed HTTP response headers.
+       */
+      parsedHeaders: HeaderCustomNamedRequestIdHeadHeaders;
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: boolean;
+    };
 };

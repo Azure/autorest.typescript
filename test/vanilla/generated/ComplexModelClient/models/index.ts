@@ -140,13 +140,22 @@ export interface ComplexModelClientUpdateOptionalParams extends msRest.RequestOp
  */
 export type ListResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Array of products
    */
   productArray: Product[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CatalogArray;
+    };
 };
 
 /**
@@ -154,13 +163,22 @@ export type ListResponse = {
  */
 export type CreateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Dictionary of products
    */
   productDictionary: { [propertyName: string]: Product };
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CatalogDictionary;
+    };
 };
 
 /**
@@ -168,11 +186,20 @@ export type CreateResponse = {
  */
 export type UpdateResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Array of products
    */
   productArray: Product[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CatalogArray;
+    };
 };

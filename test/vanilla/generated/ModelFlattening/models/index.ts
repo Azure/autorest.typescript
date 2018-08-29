@@ -344,49 +344,85 @@ export enum ProvisioningStateValues {
 /**
  * Contains response data for the getArray operation.
  */
-export type GetArrayResponse = {
+export type GetArrayResponse = Array<FlattenedProduct> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<FlattenedProduct>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FlattenedProduct[];
+    };
+};
 
 /**
  * Contains response data for the getWrappedArray operation.
  */
-export type GetWrappedArrayResponse = {
+export type GetWrappedArrayResponse = Array<ProductWrapper> & {
   /**
-   * The raw HTTP response.
+   * The underlying HTTP response.
    */
-  _response: msRest.HttpOperationResponse;
-} & Array<ProductWrapper>;
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ProductWrapper[];
+    };
+};
 
 /**
  * Contains response data for the getDictionary operation.
  */
 export type GetDictionaryResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-} & {
-  /**
    * The response body properties.
    */
   [propertyName: string]: FlattenedProduct;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: { [propertyName: string]: FlattenedProduct };
+    };
 };
 
 /**
  * Contains response data for the getResourceCollection operation.
  */
 export type GetResourceCollectionResponse = {
-  /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
   productresource: FlattenedProduct;
   arrayofresources: FlattenedProduct[];
   dictionaryofresources: { [propertyName: string]: FlattenedProduct };
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ResourceCollection;
+    };
 };
 
 /**
@@ -394,10 +430,6 @@ export type GetResourceCollectionResponse = {
  */
 export type PutSimpleProductResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Unique identifier representing a specific product for a given latitude & longitude. For
    * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
    */
@@ -422,6 +454,19 @@ export type PutSimpleProductResponse = {
    * URL value.
    */
   odatavalue: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SimpleProduct;
+    };
 };
 
 /**
@@ -429,10 +474,6 @@ export type PutSimpleProductResponse = {
  */
 export type PostFlattenedSimpleProductResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Unique identifier representing a specific product for a given latitude & longitude. For
    * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
    */
@@ -457,6 +498,19 @@ export type PostFlattenedSimpleProductResponse = {
    * URL value.
    */
   odatavalue: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SimpleProduct;
+    };
 };
 
 /**
@@ -464,10 +518,6 @@ export type PostFlattenedSimpleProductResponse = {
  */
 export type PutSimpleProductWithGroupingResponse = {
   /**
-   * The raw HTTP response.
-   */
-  _response: msRest.HttpOperationResponse;
-  /**
    * Unique identifier representing a specific product for a given latitude & longitude. For
    * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
    */
@@ -492,4 +542,17 @@ export type PutSimpleProductWithGroupingResponse = {
    * URL value.
    */
   odatavalue: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SimpleProduct;
+    };
 };
