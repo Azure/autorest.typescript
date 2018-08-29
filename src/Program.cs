@@ -165,7 +165,7 @@ namespace AutoRest.TypeScript
                 codeModel.PackageVersion = Settings.Instance.PackageVersion;
                 codeModel.OutputFolder = generatorSettings.OutputFolder;
                 codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
-                codeModel.ModelDateAsString = generatorSettings.ModelDateAsString;
+                codeModel.ModelDateTimeAsString = generatorSettings.ModelDateTimeAsString;
                 codeModel.GenerateMetadata = generatorSettings.GenerateMetadata;
                 codeModel.GenerateBodyMethods = generatorSettings.GenerateBodyMethods;
             }

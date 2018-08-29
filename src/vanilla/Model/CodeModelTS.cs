@@ -151,7 +151,7 @@ namespace AutoRest.TypeScript.Model
 
         public bool ModelEnumAsUnion { get; set; }
 
-        public bool ModelDateAsString { get; set; }
+        public bool ModelDateTimeAsString { get; set; }
 
         public bool GenerateMetadata { get; set; }
 

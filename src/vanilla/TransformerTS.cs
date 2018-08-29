@@ -33,15 +33,15 @@ namespace AutoRest.TypeScript
             EnsureParameterMethodSet(codeModel);
             CreateUniqueParameterMapperNames(codeModel);
 
-            if (codeModel.ModelDateAsString)
+            if (codeModel.ModelDateTimeAsString)
             {
-                ConvertDateToString(codeModel);
+                ConvertDateTimeToString(codeModel);
             }
 
             return codeModel;
         }
 
-        private void ConvertDateToString(CodeModelTS codeModel)
+        private void ConvertDateTimeToString(CodeModelTS codeModel)
         {
             void convertModel(IModelType modelType)
             {
@@ -53,9 +53,7 @@ namespace AutoRest.TypeScript
                     }
                 }
                 else if (modelType is PrimaryType pt &&
-                         (pt.KnownPrimaryType == KnownPrimaryType.Date ||
-                          pt.KnownPrimaryType == KnownPrimaryType.DateTime ||
-                          pt.KnownPrimaryType == KnownPrimaryType.DateTimeRfc1123))
+                    pt.KnownPrimaryType == KnownPrimaryType.DateTime)
                 {
                     pt.KnownPrimaryType = KnownPrimaryType.String;
                 }
