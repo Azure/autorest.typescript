@@ -275,7 +275,9 @@ namespace AutoRest.TypeScript.Model
             {
                 propertyName = "readonly " + propertyName;
             }
-            if (!property.IsRequired)
+
+            bool isHeaders = CodeModel?.HeaderTypes.Contains(this) == true;
+            if (!property.IsRequired && !isHeaders)
                 return propertyName + "?: " + typeString;
             else
                 return propertyName + ": " + typeString;

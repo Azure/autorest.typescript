@@ -119,7 +119,7 @@ export interface HeaderCustomNamedRequestIdHeaders {
   /**
    * @member {string} [fooRequestId] Gets the foo-request-id.
    */
-  fooRequestId?: string;
+  fooRequestId: string;
 }
 
 /**
@@ -132,7 +132,7 @@ export interface HeaderCustomNamedRequestIdParamGroupingHeaders {
   /**
    * @member {string} [fooRequestId] Gets the foo-request-id.
    */
-  fooRequestId?: string;
+  fooRequestId: string;
 }
 
 /**
@@ -145,7 +145,7 @@ export interface HeaderCustomNamedRequestIdHeadHeaders {
   /**
    * @member {string} [fooRequestId] Gets the foo-request-id.
    */
-  fooRequestId?: string;
+  fooRequestId: string;
 }
 
 

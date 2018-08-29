@@ -620,7 +620,8 @@ export interface DictionaryWrapper {
  */
 export interface ReadonlyObj {
   /**
-   * @member {string} [id]
+   * @member {string} [id] **NOTE: This property will not be serialized. It can
+   * only be populated by the server.**
    */
   readonly id?: string;
   /**
@@ -860,7 +861,7 @@ export type ListResponse = {
   /**
    * Array of products
    */
-  productArray: Product[];
+  productArray?: Product[];
   /**
    * The underlying HTTP response.
    */
@@ -883,7 +884,7 @@ export type CreateResponse = {
   /**
    * Dictionary of products
    */
-  productDictionary: { [propertyName: string]: Product };
+  productDictionary?: { [propertyName: string]: Product };
   /**
    * The underlying HTTP response.
    */
@@ -906,7 +907,7 @@ export type UpdateResponse = {
   /**
    * Array of products
    */
-  productArray: Product[];
+  productArray?: Product[];
   /**
    * The underlying HTTP response.
    */
@@ -929,16 +930,16 @@ export type BasicGetValidResponse = {
   /**
    * Basic Id
    */
-  id: number;
+  id?: number;
   /**
    * Name property with a very long description that does not fit on a single line and a line
    * break.
    */
-  name: string;
+  name?: string;
   /**
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
-  color: CMYKColors;
+  color?: CMYKColors;
   /**
    * The underlying HTTP response.
    */
@@ -961,16 +962,16 @@ export type BasicGetInvalidResponse = {
   /**
    * Basic Id
    */
-  id: number;
+  id?: number;
   /**
    * Name property with a very long description that does not fit on a single line and a line
    * break.
    */
-  name: string;
+  name?: string;
   /**
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
-  color: CMYKColors;
+  color?: CMYKColors;
   /**
    * The underlying HTTP response.
    */
@@ -993,16 +994,16 @@ export type BasicGetEmptyResponse = {
   /**
    * Basic Id
    */
-  id: number;
+  id?: number;
   /**
    * Name property with a very long description that does not fit on a single line and a line
    * break.
    */
-  name: string;
+  name?: string;
   /**
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
-  color: CMYKColors;
+  color?: CMYKColors;
   /**
    * The underlying HTTP response.
    */
@@ -1025,16 +1026,16 @@ export type BasicGetNullResponse = {
   /**
    * Basic Id
    */
-  id: number;
+  id?: number;
   /**
    * Name property with a very long description that does not fit on a single line and a line
    * break.
    */
-  name: string;
+  name?: string;
   /**
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
-  color: CMYKColors;
+  color?: CMYKColors;
   /**
    * The underlying HTTP response.
    */
@@ -1057,16 +1058,16 @@ export type BasicGetNotProvidedResponse = {
   /**
    * Basic Id
    */
-  id: number;
+  id?: number;
   /**
    * Name property with a very long description that does not fit on a single line and a line
    * break.
    */
-  name: string;
+  name?: string;
   /**
    * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
    */
-  color: CMYKColors;
+  color?: CMYKColors;
   /**
    * The underlying HTTP response.
    */
@@ -1086,8 +1087,8 @@ export type BasicGetNotProvidedResponse = {
  * Contains response data for the getInt operation.
  */
 export type PrimitiveGetIntResponse = {
-  field1: number;
-  field2: number;
+  field1?: number;
+  field2?: number;
   /**
    * The underlying HTTP response.
    */
@@ -1107,8 +1108,8 @@ export type PrimitiveGetIntResponse = {
  * Contains response data for the getLong operation.
  */
 export type PrimitiveGetLongResponse = {
-  field1: number;
-  field2: number;
+  field1?: number;
+  field2?: number;
   /**
    * The underlying HTTP response.
    */
@@ -1128,8 +1129,8 @@ export type PrimitiveGetLongResponse = {
  * Contains response data for the getFloat operation.
  */
 export type PrimitiveGetFloatResponse = {
-  field1: number;
-  field2: number;
+  field1?: number;
+  field2?: number;
   /**
    * The underlying HTTP response.
    */
@@ -1149,8 +1150,8 @@ export type PrimitiveGetFloatResponse = {
  * Contains response data for the getDouble operation.
  */
 export type PrimitiveGetDoubleResponse = {
-  field1: number;
-  field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: number;
+  field1?: number;
+  field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose?: number;
   /**
    * The underlying HTTP response.
    */
@@ -1170,8 +1171,8 @@ export type PrimitiveGetDoubleResponse = {
  * Contains response data for the getBool operation.
  */
 export type PrimitiveGetBoolResponse = {
-  fieldTrue: boolean;
-  fieldFalse: boolean;
+  fieldTrue?: boolean;
+  fieldFalse?: boolean;
   /**
    * The underlying HTTP response.
    */
@@ -1191,9 +1192,9 @@ export type PrimitiveGetBoolResponse = {
  * Contains response data for the getString operation.
  */
 export type PrimitiveGetStringResponse = {
-  field: string;
-  empty: string;
-  nullProperty: string;
+  field?: string;
+  empty?: string;
+  nullProperty?: string;
   /**
    * The underlying HTTP response.
    */
@@ -1213,8 +1214,8 @@ export type PrimitiveGetStringResponse = {
  * Contains response data for the getDate operation.
  */
 export type PrimitiveGetDateResponse = {
-  field: Date;
-  leap: Date;
+  field?: Date;
+  leap?: Date;
   /**
    * The underlying HTTP response.
    */
@@ -1234,8 +1235,8 @@ export type PrimitiveGetDateResponse = {
  * Contains response data for the getDateTime operation.
  */
 export type PrimitiveGetDateTimeResponse = {
-  field: Date;
-  now: Date;
+  field?: Date;
+  now?: Date;
   /**
    * The underlying HTTP response.
    */
@@ -1255,8 +1256,8 @@ export type PrimitiveGetDateTimeResponse = {
  * Contains response data for the getDateTimeRfc1123 operation.
  */
 export type PrimitiveGetDateTimeRfc1123Response = {
-  field: Date;
-  now: Date;
+  field?: Date;
+  now?: Date;
   /**
    * The underlying HTTP response.
    */
@@ -1276,7 +1277,7 @@ export type PrimitiveGetDateTimeRfc1123Response = {
  * Contains response data for the getDuration operation.
  */
 export type PrimitiveGetDurationResponse = {
-  field: string;
+  field?: string;
   /**
    * The underlying HTTP response.
    */
@@ -1296,7 +1297,7 @@ export type PrimitiveGetDurationResponse = {
  * Contains response data for the getByte operation.
  */
 export type PrimitiveGetByteResponse = {
-  field: Uint8Array;
+  field?: Uint8Array;
   /**
    * The underlying HTTP response.
    */
@@ -1316,7 +1317,7 @@ export type PrimitiveGetByteResponse = {
  * Contains response data for the getValid operation.
  */
 export type ArrayModelGetValidResponse = {
-  arrayProperty: string[];
+  arrayProperty?: string[];
   /**
    * The underlying HTTP response.
    */
@@ -1336,7 +1337,7 @@ export type ArrayModelGetValidResponse = {
  * Contains response data for the getEmpty operation.
  */
 export type ArrayModelGetEmptyResponse = {
-  arrayProperty: string[];
+  arrayProperty?: string[];
   /**
    * The underlying HTTP response.
    */
@@ -1356,7 +1357,7 @@ export type ArrayModelGetEmptyResponse = {
  * Contains response data for the getNotProvided operation.
  */
 export type ArrayModelGetNotProvidedResponse = {
-  arrayProperty: string[];
+  arrayProperty?: string[];
   /**
    * The underlying HTTP response.
    */
@@ -1376,7 +1377,7 @@ export type ArrayModelGetNotProvidedResponse = {
  * Contains response data for the getValid operation.
  */
 export type DictionaryGetValidResponse = {
-  defaultProgram: { [propertyName: string]: string };
+  defaultProgram?: { [propertyName: string]: string };
   /**
    * The underlying HTTP response.
    */
@@ -1396,7 +1397,7 @@ export type DictionaryGetValidResponse = {
  * Contains response data for the getEmpty operation.
  */
 export type DictionaryGetEmptyResponse = {
-  defaultProgram: { [propertyName: string]: string };
+  defaultProgram?: { [propertyName: string]: string };
   /**
    * The underlying HTTP response.
    */
@@ -1416,7 +1417,7 @@ export type DictionaryGetEmptyResponse = {
  * Contains response data for the getNull operation.
  */
 export type DictionaryGetNullResponse = {
-  defaultProgram: { [propertyName: string]: string };
+  defaultProgram?: { [propertyName: string]: string };
   /**
    * The underlying HTTP response.
    */
@@ -1436,7 +1437,7 @@ export type DictionaryGetNullResponse = {
  * Contains response data for the getNotProvided operation.
  */
 export type DictionaryGetNotProvidedResponse = {
-  defaultProgram: { [propertyName: string]: string };
+  defaultProgram?: { [propertyName: string]: string };
   /**
    * The underlying HTTP response.
    */
@@ -1456,11 +1457,11 @@ export type DictionaryGetNotProvidedResponse = {
  * Contains response data for the getValid operation.
  */
 export type InheritanceGetValidResponse = {
-  id: number;
-  name: string;
-  color: string;
-  hates: Dog[];
-  breed: string;
+  id?: number;
+  name?: string;
+  color?: string;
+  hates?: Dog[];
+  breed?: string;
   /**
    * The underlying HTTP response.
    */
@@ -1480,9 +1481,9 @@ export type InheritanceGetValidResponse = {
  * Contains response data for the getValid operation.
  */
 export type PolymorphismGetValidResponse = {
-  species: string;
+  species?: string;
   length: number;
-  siblings: FishUnion[];
+  siblings?: FishUnion[];
   /**
    * Polymorphic Discriminator
    */
@@ -1506,15 +1507,15 @@ export type PolymorphismGetValidResponse = {
  * Contains response data for the getComplicated operation.
  */
 export type PolymorphismGetComplicatedResponse = {
-  species: string;
+  species?: string;
   length: number;
-  siblings: FishUnion[];
+  siblings?: FishUnion[];
   /**
    * Polymorphic Discriminator
    */
   fishtype: string;
-  location: string;
-  iswild: boolean;
+  location?: string;
+  iswild?: boolean;
   /**
    * The underlying HTTP response.
    */
@@ -1534,15 +1535,15 @@ export type PolymorphismGetComplicatedResponse = {
  * Contains response data for the putMissingDiscriminator operation.
  */
 export type PolymorphismPutMissingDiscriminatorResponse = {
-  species: string;
+  species?: string;
   length: number;
-  siblings: FishUnion[];
+  siblings?: FishUnion[];
   /**
    * Polymorphic Discriminator
    */
   fishtype: string;
-  location: string;
-  iswild: boolean;
+  location?: string;
+  iswild?: boolean;
   /**
    * The underlying HTTP response.
    */
@@ -1562,9 +1563,9 @@ export type PolymorphismPutMissingDiscriminatorResponse = {
  * Contains response data for the getValid operation.
  */
 export type PolymorphicrecursiveGetValidResponse = {
-  species: string;
+  species?: string;
   length: number;
-  siblings: FishUnion[];
+  siblings?: FishUnion[];
   /**
    * Polymorphic Discriminator
    */
@@ -1588,8 +1589,11 @@ export type PolymorphicrecursiveGetValidResponse = {
  * Contains response data for the getValid operation.
  */
 export type ReadonlypropertyGetValidResponse = {
-  id: string;
-  size: number;
+  /**
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly id?: string;
+  size?: number;
   /**
    * The underlying HTTP response.
    */
@@ -1609,12 +1613,12 @@ export type ReadonlypropertyGetValidResponse = {
  * Contains response data for the getValid operation.
  */
 export type FlattencomplexGetValidResponse = {
-  propB1: string;
+  propB1?: string;
   /**
    * Polymorphic Discriminator
    */
   kind: string;
-  propBH1: string;
+  propBH1?: string;
   /**
    * The underlying HTTP response.
    */

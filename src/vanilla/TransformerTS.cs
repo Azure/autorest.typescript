@@ -33,6 +33,7 @@ namespace AutoRest.TypeScript
             EnsureParameterMethodSet(codeModel);
             CreateUniqueParameterMapperNames(codeModel);
             DisambiguateHeaderNames(codeModel);
+            AddReadOnlyDocumentation(codeModel);
 
             if (codeModel.ModelDateTimeAsString)
             {
@@ -40,6 +41,26 @@ namespace AutoRest.TypeScript
             }
 
             return codeModel;
+        }
+
+        private void AddReadOnlyDocumentation(CodeModelTS codeModel)
+        {
+            const string doc = "**NOTE: This property will not be serialized. It can only be populated by the server.**";
+            foreach (var model in codeModel.AllModelTypes)
+            {
+                foreach (var property in model.Properties)
+                {
+                    if (property.IsReadOnly)
+                    {
+                        if (string.IsNullOrEmpty(property.Documentation))
+                        {
+                            property.Documentation = "";
+                        }
+                        property.Documentation += Environment.NewLine + doc;
+                        property.Documentation = property.Documentation.Value.Trim();
+                    }
+                }
+            }
         }
 
         private void ConvertDateTimeToString(CodeModelTS codeModel)

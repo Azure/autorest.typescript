@@ -128,15 +128,15 @@ export type ValidationOfMethodParametersResponse = {
   /**
    * Non required array of unique items from 0 to 6 elements.
    */
-  displayNames: string[];
+  displayNames?: string[];
   /**
    * Non required int betwen 0 and 100 exclusive.
    */
-  capacity: number;
+  capacity?: number;
   /**
    * Image URL representing the product.
    */
-  image: string;
+  image?: string;
   child: ChildProduct;
   constChild: ConstantProduct;
   /**
@@ -150,7 +150,7 @@ export type ValidationOfMethodParametersResponse = {
   /**
    * Constant string as Enum. Possible values include: 'constant_string_as_enum'
    */
-  constStringAsEnum: EnumConst;
+  constStringAsEnum?: EnumConst;
   /**
    * The underlying HTTP response.
    */
@@ -173,15 +173,15 @@ export type ValidationOfBodyResponse = {
   /**
    * Non required array of unique items from 0 to 6 elements.
    */
-  displayNames: string[];
+  displayNames?: string[];
   /**
    * Non required int betwen 0 and 100 exclusive.
    */
-  capacity: number;
+  capacity?: number;
   /**
    * Image URL representing the product.
    */
-  image: string;
+  image?: string;
   child: ChildProduct;
   constChild: ConstantProduct;
   /**
@@ -195,7 +195,7 @@ export type ValidationOfBodyResponse = {
   /**
    * Constant string as Enum. Possible values include: 'constant_string_as_enum'
    */
-  constStringAsEnum: EnumConst;
+  constStringAsEnum?: EnumConst;
   /**
    * The underlying HTTP response.
    */
@@ -218,15 +218,15 @@ export type PostWithConstantInBodyResponse = {
   /**
    * Non required array of unique items from 0 to 6 elements.
    */
-  displayNames: string[];
+  displayNames?: string[];
   /**
    * Non required int betwen 0 and 100 exclusive.
    */
-  capacity: number;
+  capacity?: number;
   /**
    * Image URL representing the product.
    */
-  image: string;
+  image?: string;
   child: ChildProduct;
   constChild: ConstantProduct;
   /**
@@ -240,7 +240,7 @@ export type PostWithConstantInBodyResponse = {
   /**
    * Constant string as Enum. Possible values include: 'constant_string_as_enum'
    */
-  constStringAsEnum: EnumConst;
+  constStringAsEnum?: EnumConst;
   /**
    * The underlying HTTP response.
    */

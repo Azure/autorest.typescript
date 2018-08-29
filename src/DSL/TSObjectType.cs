@@ -45,10 +45,10 @@ namespace AutoRest.TypeScript.DSL
             }
         }
 
-        public void Property(string propertyName, string propertyType, bool optional = false)
+        public void Property(string propertyName, string propertyType, bool optional = false, bool readOnly = false)
         {
             SetCurrentState(State.PropertyDeclaration);
-            builder.Line($"{propertyName}{(optional ? "?" : "")}: {propertyType};");
+            builder.Line($"{(readOnly ? "readonly " : "")}{propertyName}{(optional ? "?" : "")}: {propertyType};");
         }
 
         public void Property(string propertyName, Action<TSIntersectionType> intersectionTypeAction, bool optional = false)

@@ -82,7 +82,7 @@ export interface HeaderResponseExistingKeyHeaders {
    * @member {string} [userAgent] response with header value "User-Agent":
    * "overwrite"
    */
-  userAgent?: string;
+  userAgent: string;
 }
 
 /**
@@ -96,7 +96,7 @@ export interface HeaderResponseProtectedKeyHeaders {
    * @member {string} [contentType] response with header value "Content-Type":
    * "text/html"
    */
-  contentType?: string;
+  contentType: string;
 }
 
 /**
@@ -109,7 +109,7 @@ export interface HeaderResponseIntegerHeaders {
   /**
    * @member {number} [value] response with header value "value": 1 or -2
    */
-  value?: number;
+  value: number;
 }
 
 /**
@@ -122,7 +122,7 @@ export interface HeaderResponseLongHeaders {
   /**
    * @member {number} [value] response with header value "value": 105 or -2
    */
-  value?: number;
+  value: number;
 }
 
 /**
@@ -135,7 +135,7 @@ export interface HeaderResponseFloatHeaders {
   /**
    * @member {number} [value] response with header value "value": 0.07 or -3.0
    */
-  value?: number;
+  value: number;
 }
 
 /**
@@ -148,7 +148,7 @@ export interface HeaderResponseDoubleHeaders {
   /**
    * @member {number} [value] response with header value "value": 7e120 or -3.0
    */
-  value?: number;
+  value: number;
 }
 
 /**
@@ -162,7 +162,7 @@ export interface HeaderResponseBoolHeaders {
    * @member {boolean} [value] response with header value "value": true or
    * false
    */
-  value?: boolean;
+  value: boolean;
 }
 
 /**
@@ -176,7 +176,7 @@ export interface HeaderResponseStringHeaders {
    * @member {string} [value] response with header values "The quick brown fox
    * jumps over the lazy dog" or null or ""
    */
-  value?: string;
+  value: string;
 }
 
 /**
@@ -190,7 +190,7 @@ export interface HeaderResponseDateHeaders {
    * @member {Date} [value] response with header values "2010-01-01" or
    * "0001-01-01"
    */
-  value?: Date;
+  value: Date;
 }
 
 /**
@@ -204,7 +204,7 @@ export interface HeaderResponseDatetimeHeaders {
    * @member {Date} [value] response with header values "2010-01-01T12:34:56Z"
    * or "0001-01-01T00:00:00Z"
    */
-  value?: Date;
+  value: Date;
 }
 
 /**
@@ -218,7 +218,7 @@ export interface HeaderResponseDatetimeRfc1123Headers {
    * @member {Date} [value] response with header values "Wed, 01 Jan 2010
    * 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
    */
-  value?: Date;
+  value: Date;
 }
 
 /**
@@ -231,7 +231,7 @@ export interface HeaderResponseDurationHeaders {
   /**
    * @member {string} [value] response with header values "P123DT22H14M12.011S"
    */
-  value?: string;
+  value: string;
 }
 
 /**
@@ -244,7 +244,7 @@ export interface HeaderResponseByteHeaders {
   /**
    * @member {Uint8Array} [value] response with header values "啊齄丂狛狜隣郎隣兀﨩"
    */
-  value?: Uint8Array;
+  value: Uint8Array;
 }
 
 /**
@@ -258,7 +258,7 @@ export interface HeaderResponseEnumHeaders {
    * @member {GreyscaleColors} [value] response with header values "GREY" or
    * null. Possible values include: 'White', 'black', 'GREY'
    */
-  value?: GreyscaleColors;
+  value: GreyscaleColors;
 }
 
 /**

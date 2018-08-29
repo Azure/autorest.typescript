@@ -774,7 +774,8 @@ namespace AutoRest.TypeScript.Model
                         foreach (var property in ((CompositeTypeTS)ReturnType.Headers).Properties)
                         {
                             iface.DocumentationComment(property.Documentation);
-                            iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true));
+                            // hard-coding response headers non-optional because Swagger itself can't specify whether or not they're required.
+                            iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true), optional: false);
                         }
                     }
 
@@ -801,7 +802,11 @@ namespace AutoRest.TypeScript.Model
                         foreach (var property in compositeBody.ComposedProperties.Distinct(PropertyNameComparer.Instance))
                         {
                             iface.DocumentationComment(property.Documentation);
-                            iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true));
+                            iface.Property(
+                                property.Name,
+                                property.ModelType.TSType(inModelsModule: true),
+                                optional: !property.IsRequired,
+                                readOnly: property.IsReadOnly);
                         }
                     }
                     else if (ReturnType.Body != null && !(ReturnType.Body is SequenceTypeTS || ReturnType.Body is DictionaryTypeTS))
