@@ -104,7 +104,7 @@ export class Datetimerfc1123 {
   /**
    * Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT
    *
-   * @param {string} datetimeBody
+   * @param {Date | string} datetimeBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -114,7 +114,7 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -164,7 +164,7 @@ export class Datetimerfc1123 {
   /**
    * Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT
    *
-   * @param {string} datetimeBody
+   * @param {Date | string} datetimeBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -174,7 +174,7 @@ export class Datetimerfc1123 {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
@@ -211,16 +211,16 @@ export class Datetimerfc1123 {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getNull(): Promise<string>;
-  getNull(options: msRest.RequestOptionsBase): Promise<string>;
-  getNull(callback: msRest.ServiceCallback<string>): void;
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getNull(): Promise<Date>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Date>;
+  getNull(callback: msRest.ServiceCallback<Date>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getNullWithHttpOperationResponse.bind(this), options, callback);
   }
 
@@ -233,16 +233,16 @@ export class Datetimerfc1123 {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getInvalid(): Promise<string>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<string>;
-  getInvalid(callback: msRest.ServiceCallback<string>): void;
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getInvalid(): Promise<Date>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<Date>;
+  getInvalid(callback: msRest.ServiceCallback<Date>): void;
+  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getInvalidWithHttpOperationResponse.bind(this), options, callback);
   }
 
@@ -255,16 +255,16 @@ export class Datetimerfc1123 {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getOverflow(): Promise<string>;
-  getOverflow(options: msRest.RequestOptionsBase): Promise<string>;
-  getOverflow(callback: msRest.ServiceCallback<string>): void;
-  getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getOverflow(): Promise<Date>;
+  getOverflow(options: msRest.RequestOptionsBase): Promise<Date>;
+  getOverflow(callback: msRest.ServiceCallback<Date>): void;
+  getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getOverflowWithHttpOperationResponse.bind(this), options, callback);
   }
 
@@ -277,23 +277,23 @@ export class Datetimerfc1123 {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getUnderflow(): Promise<string>;
-  getUnderflow(options: msRest.RequestOptionsBase): Promise<string>;
-  getUnderflow(callback: msRest.ServiceCallback<string>): void;
-  getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getUnderflow(): Promise<Date>;
+  getUnderflow(options: msRest.RequestOptionsBase): Promise<Date>;
+  getUnderflow(callback: msRest.ServiceCallback<Date>): void;
+  getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getUnderflowWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
    * Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT
    *
-   * @param {string} datetimeBody
+   * @param {Date | string} datetimeBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -306,11 +306,11 @@ export class Datetimerfc1123 {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putUtcMaxDateTime(datetimeBody: string): Promise<void>;
-  putUtcMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<void>;
-  putUtcMaxDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
-  putUtcMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putUtcMaxDateTime(datetimeBody: Date | string): Promise<void>;
+  putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
+  putUtcMaxDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
+  putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putUtcMaxDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     return msRest.responseToBody(this.putUtcMaxDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
   }
 
@@ -323,16 +323,16 @@ export class Datetimerfc1123 {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getUtcLowercaseMaxDateTime(): Promise<string>;
-  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<string>;
-  getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
-  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getUtcLowercaseMaxDateTime(): Promise<Date>;
+  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
+  getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
+  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
@@ -345,23 +345,23 @@ export class Datetimerfc1123 {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getUtcUppercaseMaxDateTime(): Promise<string>;
-  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<string>;
-  getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
-  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getUtcUppercaseMaxDateTime(): Promise<Date>;
+  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
+  getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
+  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
   /**
    * Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT
    *
-   * @param {string} datetimeBody
+   * @param {Date | string} datetimeBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -374,11 +374,11 @@ export class Datetimerfc1123 {
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putUtcMinDateTime(datetimeBody: string): Promise<void>;
-  putUtcMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<void>;
-  putUtcMinDateTime(datetimeBody: string, callback: msRest.ServiceCallback<void>): void;
-  putUtcMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putUtcMinDateTime(datetimeBody: Date | string): Promise<void>;
+  putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<void>;
+  putUtcMinDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
+  putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putUtcMinDateTime(datetimeBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     return msRest.responseToBody(this.putUtcMinDateTimeWithHttpOperationResponse.bind(this), datetimeBody, options, callback);
   }
 
@@ -391,16 +391,16 @@ export class Datetimerfc1123 {
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getUtcMinDateTime(): Promise<string>;
-  getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<string>;
-  getUtcMinDateTime(callback: msRest.ServiceCallback<string>): void;
-  getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getUtcMinDateTime(): Promise<Date>;
+  getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<Date>;
+  getUtcMinDateTime(callback: msRest.ServiceCallback<Date>): void;
+  getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
+  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): any {
     return msRest.responseToBody(this.getUtcMinDateTimeWithHttpOperationResponse.bind(this), options, callback);
   }
 
@@ -416,7 +416,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -435,7 +435,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -454,7 +454,7 @@ const getOverflowOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -473,7 +473,7 @@ const getUnderflowOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -493,7 +493,7 @@ const putUtcMaxDateTimeOperationSpec: msRest.OperationSpec = {
       required: true,
       serializedName: "datetimeBody",
       type: {
-        name: "String"
+        name: "DateTimeRfc1123"
       }
     }
   },
@@ -514,7 +514,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -533,7 +533,7 @@ const getUtcUppercaseMaxDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
@@ -553,7 +553,7 @@ const putUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       required: true,
       serializedName: "datetimeBody",
       type: {
-        name: "String"
+        name: "DateTimeRfc1123"
       }
     }
   },
@@ -574,7 +574,7 @@ const getUtcMinDateTimeOperationSpec: msRest.OperationSpec = {
       bodyMapper: {
         serializedName: "parsedResponse",
         type: {
-          name: "String"
+          name: "DateTimeRfc1123"
         }
       }
     },
