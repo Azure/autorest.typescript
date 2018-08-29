@@ -670,7 +670,7 @@ export interface HttpRedirectsHead300Headers {
    * @member {Location} [location] The redirect location for this request.
    * Possible values include: '/http/success/head/200'
    */
-  location?: Location;
+  location: Location;
 }
 
 /**
@@ -684,7 +684,7 @@ export interface HttpRedirectsGet300Headers {
    * @member {Location1} [location] The redirect location for this request.
    * Possible values include: '/http/success/get/200'
    */
-  location?: Location1;
+  location: Location1;
 }
 
 /**
@@ -698,7 +698,7 @@ export interface HttpRedirectsHead301Headers {
    * @member {Location2} [location] The redirect location for this request.
    * Possible values include: '/http/success/head/200'
    */
-  location?: Location2;
+  location: Location2;
 }
 
 /**
@@ -712,7 +712,7 @@ export interface HttpRedirectsGet301Headers {
    * @member {Location3} [location] The redirect location for this request.
    * Possible values include: '/http/success/get/200'
    */
-  location?: Location3;
+  location: Location3;
 }
 
 /**
@@ -726,7 +726,7 @@ export interface HttpRedirectsPut301Headers {
    * @member {Location4} [location] The redirect location for this request.
    * Possible values include: '/http/failure/500'
    */
-  location?: Location4;
+  location: Location4;
 }
 
 /**
@@ -740,7 +740,7 @@ export interface HttpRedirectsHead302Headers {
    * @member {Location5} [location] The redirect location for this request.
    * Possible values include: '/http/success/head/200'
    */
-  location?: Location5;
+  location: Location5;
 }
 
 /**
@@ -754,7 +754,7 @@ export interface HttpRedirectsGet302Headers {
    * @member {Location6} [location] The redirect location for this request.
    * Possible values include: '/http/success/get/200'
    */
-  location?: Location6;
+  location: Location6;
 }
 
 /**
@@ -768,7 +768,7 @@ export interface HttpRedirectsPatch302Headers {
    * @member {Location7} [location] The redirect location for this request.
    * Possible values include: '/http/failure/500'
    */
-  location?: Location7;
+  location: Location7;
 }
 
 /**
@@ -782,7 +782,7 @@ export interface HttpRedirectsPost303Headers {
    * @member {Location8} [location] The redirect location for this request.
    * Possible values include: '/http/success/get/200'
    */
-  location?: Location8;
+  location: Location8;
 }
 
 /**
@@ -796,7 +796,7 @@ export interface HttpRedirectsHead307Headers {
    * @member {Location9} [location] The redirect location for this request.
    * Possible values include: '/http/success/head/200'
    */
-  location?: Location9;
+  location: Location9;
 }
 
 /**
@@ -810,7 +810,7 @@ export interface HttpRedirectsGet307Headers {
    * @member {Location10} [location] The redirect location for this request.
    * Possible values include: '/http/success/get/200'
    */
-  location?: Location10;
+  location: Location10;
 }
 
 /**
@@ -824,7 +824,7 @@ export interface HttpRedirectsPut307Headers {
    * @member {Location11} [location] The redirect location for this request.
    * Possible values include: '/http/success/put/200'
    */
-  location?: Location11;
+  location: Location11;
 }
 
 /**
@@ -838,7 +838,7 @@ export interface HttpRedirectsPatch307Headers {
    * @member {Location12} [location] The redirect location for this request.
    * Possible values include: '/http/success/patch/200'
    */
-  location?: Location12;
+  location: Location12;
 }
 
 /**
@@ -852,7 +852,7 @@ export interface HttpRedirectsPost307Headers {
    * @member {Location13} [location] The redirect location for this request.
    * Possible values include: '/http/success/post/200'
    */
-  location?: Location13;
+  location: Location13;
 }
 
 /**
@@ -866,7 +866,7 @@ export interface HttpRedirectsDelete307Headers {
    * @member {Location14} [location] The redirect location for this request.
    * Possible values include: '/http/success/delete/200'
    */
-  location?: Location14;
+  location: Location14;
 }
 
 /**

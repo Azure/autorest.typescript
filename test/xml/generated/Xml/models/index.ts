@@ -694,7 +694,7 @@ export interface XmlGetHeadersHeaders {
   /**
    * @member {string} [customHeader] A custom response header.
    */
-  customHeader?: string;
+  customHeader: string;
 }
 
 /**

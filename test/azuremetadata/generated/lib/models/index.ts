@@ -1532,7 +1532,7 @@ export interface LROsPutNoHeaderInRetryHeaders {
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/noheader/202/200/operationResults
    */
-  locationHeader?: string;
+  locationHeader: string;
 }
 
 /**
@@ -1546,17 +1546,17 @@ export interface LROsPutAsyncRetrySucceededHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1570,12 +1570,12 @@ export interface LROsPutAsyncNoRetrySucceededHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/noretry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/noretry/succeeded/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
 }
 
 /**
@@ -1589,17 +1589,17 @@ export interface LROsPutAsyncRetryFailedHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/failed/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/retry/failed/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1613,12 +1613,12 @@ export interface LROsPutAsyncNoRetrycanceledHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/noretry/canceled/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/noretry/canceled/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
 }
 
 /**
@@ -1631,7 +1631,7 @@ export interface LROsPutAsyncNoHeaderInRetryHeaders {
   /**
    * @member {string} [azureAsyncOperation]
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
 }
 
 /**
@@ -1645,12 +1645,12 @@ export interface LROsDeleteProvisioning202Accepted200SucceededHeaders {
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/delete/provisioning/202/accepted/200/succeeded
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1664,12 +1664,12 @@ export interface LROsDeleteProvisioning202DeletingFailed200Headers {
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/delete/provisioning/202/deleting/200/failed
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1683,12 +1683,12 @@ export interface LROsDeleteProvisioning202Deletingcanceled200Headers {
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/delete/provisioning/202/deleting/200/canceled
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1702,12 +1702,12 @@ export interface LROsDelete202Retry200Headers {
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/delete/202/retry/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1721,12 +1721,12 @@ export interface LROsDelete202NoRetry204Headers {
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/delete/202/noretry/204
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1740,7 +1740,7 @@ export interface LROsDeleteNoHeaderInRetryHeaders {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/put/noheader/202/204/operationresults
    */
-  location?: string;
+  location: string;
 }
 
 /**
@@ -1754,7 +1754,7 @@ export interface LROsDeleteAsyncNoHeaderInRetryHeaders {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/put/noheader/202/204/operationresults
    */
-  location?: string;
+  location: string;
 }
 
 /**
@@ -1768,17 +1768,17 @@ export interface LROsDeleteAsyncRetrySucceededHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/deleteasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/deleteasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1792,17 +1792,17 @@ export interface LROsDeleteAsyncNoRetrySucceededHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/deleteasync/noretry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/deleteasync/noretry/succeeded/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1816,17 +1816,17 @@ export interface LROsDeleteAsyncRetryFailedHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/deleteasync/retry/failed/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/deleteasync/retry/failed/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1840,17 +1840,17 @@ export interface LROsDeleteAsyncRetrycanceledHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/deleteasync/retry/canceled/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/deleteasync/retry/canceled/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1864,12 +1864,12 @@ export interface LROsPost202Retry200Headers {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/post/202/retry/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1883,12 +1883,12 @@ export interface LROsPost202NoRetry204Headers {
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/post/202/noretry/204
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1902,17 +1902,17 @@ export interface LROsPostAsyncRetrySucceededHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1926,17 +1926,17 @@ export interface LROsPostAsyncNoRetrySucceededHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1950,17 +1950,17 @@ export interface LROsPostAsyncRetryFailedHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/failed/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/putasync/retry/failed/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1974,17 +1974,17 @@ export interface LROsPostAsyncRetrycanceledHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/canceled/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/putasync/retry/canceled/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -1999,17 +1999,17 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededHeaders {
    * will be set to
    * /lro/retryerror/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2023,12 +2023,12 @@ export interface LRORetrysDeleteProvisioning202Accepted200SucceededHeaders {
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2042,12 +2042,12 @@ export interface LRORetrysDelete202Retry200Headers {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/retryerror/delete/202/retry/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2062,17 +2062,17 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceededHeaders {
    * will be set to
    * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2086,12 +2086,12 @@ export interface LRORetrysPost202Retry200Headers {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/retryerror/post/202/retry/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2106,17 +2106,17 @@ export interface LRORetrysPostAsyncRelativeRetrySucceededHeaders {
    * will be set to
    * /lro/retryerror/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/retryerror/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2130,17 +2130,17 @@ export interface LROSADsPutAsyncRelativeRetry400Headers {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/nonretryerror/putasync/retry/operationResults/400
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/nonretryerror/putasync/retry/operationResults/400
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2154,12 +2154,12 @@ export interface LROSADsDeleteNonRetry400Headers {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/retryerror/delete/202/retry/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2173,12 +2173,12 @@ export interface LROSADsDelete202NonRetry400Headers {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/retryerror/delete/202/retry/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2192,17 +2192,17 @@ export interface LROSADsDeleteAsyncRelativeRetry400Headers {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/nonretryerror/deleteasync/retry/operationResults/400
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/nonretryerror/deleteasync/retry/operationResults/400
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2216,12 +2216,12 @@ export interface LROSADsPostNonRetry400Headers {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/retryerror/post/202/retry/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2235,12 +2235,12 @@ export interface LROSADsPost202NonRetry400Headers {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/retryerror/post/202/retry/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2254,17 +2254,17 @@ export interface LROSADsPostAsyncRelativeRetry400Headers {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/nonretryerror/putasync/retry/operationResults/400
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/nonretryerror/putasync/retry/operationResults/400
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2278,17 +2278,17 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2302,17 +2302,17 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2326,17 +2326,17 @@ export interface LROSADsDeleteAsyncRelativeRetryNoStatusHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/deleteasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/deleteasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2350,12 +2350,12 @@ export interface LROSADsPost202NoLocationHeaders {
    * @member {string} [location] Location to poll for result status: will not
    * be set
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2369,17 +2369,17 @@ export interface LROSADsPostAsyncRelativeRetryNoPayloadHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/error/putasync/retry/failed/operationResults/nopayload
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/error/putasync/retry/failed/operationResults/nopayload
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2393,17 +2393,17 @@ export interface LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/retry/succeeded/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2417,17 +2417,17 @@ export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /lro/putasync/retry/failed/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/putasync/retry/failed/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2441,12 +2441,12 @@ export interface LROSADsDelete202RetryInvalidHeaderHeaders {
    * @member {string} [location] Location to poll for result status: will be
    * set to /foo
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to /bar
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2460,17 +2460,17 @@ export interface LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to /foo
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /foo
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to /bar
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2485,18 +2485,18 @@ export interface LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders {
    * will be set to
    * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to
    * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2510,12 +2510,12 @@ export interface LROSADsPost202RetryInvalidHeaderHeaders {
    * @member {string} [location] Location to poll for result status: will be
    * set to /foo
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to /bar
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2529,17 +2529,17 @@ export interface LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders {
    * @member {string} [azureAsyncOperation] Location to poll for result status:
    * will be set to foo
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to foo
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to /bar
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2554,18 +2554,18 @@ export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders {
    * will be set to
    * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to
    * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2580,17 +2580,17 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededHeaders {
    * will be set to
    * /lro/customheader/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [locationHeader] Location to poll for result status: will
    * be set to /lro/customheader/putasync/retry/succeeded/operationResults/200
    */
-  locationHeader?: string;
+  locationHeader: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2604,12 +2604,12 @@ export interface LROsCustomHeaderPost202Retry200Headers {
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/customheader/post/202/retry/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 /**
@@ -2624,17 +2624,17 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededHeaders {
    * will be set to
    * /lro/customheader/putasync/retry/succeeded/operationResults/200
    */
-  azureAsyncOperation?: string;
+  azureAsyncOperation: string;
   /**
    * @member {string} [location] Location to poll for result status: will be
    * set to /lro/customheader/putasync/retry/succeeded/operationResults/200
    */
-  location?: string;
+  location: string;
   /**
    * @member {number} [retryAfter] Number of milliseconds until the next poll
    * should be sent, will be set to zero
    */
-  retryAfter?: number;
+  retryAfter: number;
 }
 
 
