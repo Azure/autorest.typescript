@@ -77,7 +77,8 @@ Swagger strings can have the format `"date-time"`, which causes AutoRest to mode
   getDate(): Promise<Date>;
 ```
 
-If you pass `--model-date-time-as-string=true` to the generator, it will instead model and treat the string as a plain old `string` in the interfaces and at runtime.
+If you pass `--model-date-time-as-string=true` to the generator, it will instead
+model and treat the ISO 8601 formatted date-time as a plain old `string` in the interfaces and at runtime.
 This allows users to use custom date formatting methods, particularly for services which are finicky about the accepted format of dates
 or require greater precision than what the JavaScript Date provides out of the box.
 
