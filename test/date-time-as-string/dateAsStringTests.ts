@@ -14,7 +14,7 @@ describe("--model-date-time-as-string=true", function () {
   });
 
   it("should put a string date-time", async function () {
-    await testClient.datetime.putUtcMinDateTime("9999-12-31");
+    await testClient.datetime.putUtcMinDateTime("0001-01-01T00:00:00Z");
   });
 
   it('should get a Date for "format": "date"', async function () {
