@@ -5,12 +5,12 @@
 @Header(" * ")
  */
 @EmptyLine
-@if (Model.OrderedModelTemplateModels.Any())
+@if (Model.OrderedMapperTemplateModels.Any())
 {
 @:import * as msRest from "ms-rest-js";
 }
 @EmptyLine
-@foreach (var model in Model.OrderedModelTemplateModels)
+@foreach (var model in Model.OrderedMapperTemplateModels)
 {
 @EmptyLine
 @:@(Include(new MapperTemplate(), model))

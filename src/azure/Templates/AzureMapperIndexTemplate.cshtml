@@ -9,14 +9,14 @@
  */
 @EmptyLine
 import { CloudErrorMapper, BaseResourceMapper } from "ms-rest-azure-js";
-@if (Model.OrderedModelTemplateModels.Any())
+@if (Model.OrderedMapperTemplateModels.Any())
 {
 @:import * as msRest from "ms-rest-js";
 }
 @EmptyLine
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
-@foreach (var model in Model.OrderedModelTemplateModels)
+@foreach (var model in Model.OrderedMapperTemplateModels)
 {
 @EmptyLine
 @:@(Include(new MapperTemplate(), model))
