@@ -33,59 +33,6 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderParamStringOptionalParams: msRest.CompositeMapper = {
-  serializedName: "ParamStringOptions",
-  type: {
-    name: "Composite",
-    className: "HeaderParamStringOptionalParams",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const HeaderParamDatetimeRfc1123OptionalParams: msRest.CompositeMapper = {
-  serializedName: "ParamDatetimeRfc1123Options",
-  type: {
-    name: "Composite",
-    className: "HeaderParamDatetimeRfc1123OptionalParams",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "DateTimeRfc1123"
-        }
-      }
-    }
-  }
-};
-
-export const HeaderParamEnumOptionalParams: msRest.CompositeMapper = {
-  serializedName: "ParamEnumOptions",
-  type: {
-    name: "Composite",
-    className: "HeaderParamEnumOptionalParams",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Enum",
-          allowedValues: [
-            "White",
-            "black",
-            "GREY"
-          ]
-        }
-      }
-    }
-  }
-};
-
 export const HeaderResponseExistingKeyHeaders: msRest.CompositeMapper = {
   serializedName: "header-responseexistingkey-headers",
   type: {

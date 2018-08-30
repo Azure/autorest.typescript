@@ -35,19 +35,3 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
-
-export const AutoRestReportServiceForAzureGetReportOptionalParams: msRest.CompositeMapper = {
-  serializedName: "GetReportOptions",
-  type: {
-    name: "Composite",
-    className: "AutoRestReportServiceForAzureGetReportOptionalParams",
-    modelProperties: {
-      qualifier: {
-        serializedName: "qualifier",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};

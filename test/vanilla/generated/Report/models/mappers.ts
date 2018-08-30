@@ -32,19 +32,3 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
-
-export const AutoRestReportServiceGetReportOptionalParams: msRest.CompositeMapper = {
-  serializedName: "GetReportOptions",
-  type: {
-    name: "Composite",
-    className: "AutoRestReportServiceGetReportOptionalParams",
-    modelProperties: {
-      qualifier: {
-        serializedName: "qualifier",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};

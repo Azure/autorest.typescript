@@ -82,66 +82,6 @@ export const HeaderCustomNamedRequestIdParamGroupingParameters: msRest.Composite
   }
 };
 
-export const ApiVersionLocalGetMethodLocalNullOptionalParams: msRest.CompositeMapper = {
-  serializedName: "GetMethodLocalNullOptions",
-  type: {
-    name: "Composite",
-    className: "ApiVersionLocalGetMethodLocalNullOptionalParams",
-    modelProperties: {
-      apiVersion: {
-        serializedName: "api-version",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const SkipUrlEncodingGetMethodQueryNullOptionalParams: msRest.CompositeMapper = {
-  serializedName: "GetMethodQueryNullOptions",
-  type: {
-    name: "Composite",
-    className: "SkipUrlEncodingGetMethodQueryNullOptionalParams",
-    modelProperties: {
-      q1: {
-        serializedName: "q1",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const OdataGetWithFilterOptionalParams: msRest.CompositeMapper = {
-  serializedName: "GetWithFilterOptions",
-  type: {
-    name: "Composite",
-    className: "OdataGetWithFilterOptionalParams",
-    modelProperties: {
-      filter: {
-        serializedName: "$filter",
-        type: {
-          name: "String"
-        }
-      },
-      top: {
-        serializedName: "$top",
-        type: {
-          name: "Number"
-        }
-      },
-      orderby: {
-        serializedName: "$orderby",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const HeaderCustomNamedRequestIdHeaders: msRest.CompositeMapper = {
   serializedName: "header-customnamedrequestid-headers",
   type: {

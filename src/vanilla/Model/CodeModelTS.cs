@@ -162,6 +162,9 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        public IEnumerable<CompositeTypeTS> OrderedMapperTemplateModels =>
+            OrderedModelTemplateModels.Where(m => m.BaseModelType?.Name != "RequestOptionsBase");
+
         public virtual string PackageName { get; set; }
 
         public virtual string PackageVersion { get; set; }
