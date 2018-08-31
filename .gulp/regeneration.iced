@@ -47,6 +47,9 @@ regenExpected = (opts,done) ->
     if (opts.modelDateAsString)
       args.push("--model-date-time-as-string=true")
 
+    if (opts.optionalResponseHeaders)
+      args.push("--optional-response-headers=true")
+
     if (opts.generateMetadata)
       args.push("--generate-metadata=true")
 
@@ -139,6 +142,10 @@ dateTimeAsStringMappings = {
   'BodyDate': 'body-date.json',
   'BodyDateTime': 'body-datetime.json',
   'BodyDateTimeRfc1123': 'body-datetime-rfc1123.json',
+}
+
+optionalResponseHeadersMappings = {
+  'Header': 'header.json'
 }
 
 metadataMappings = {
@@ -240,6 +247,19 @@ task 'regenerate-ts-date-time-as-string', '', [], (done) ->
   },done
   return null
 
+task 'regenerate-ts-optional-response-headers', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/optional-response-headers',
+    'inputBaseDir': swaggerDir,
+    'mappings': optionalResponseHeadersMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures',
+    'flatteningThreshold': '1',
+    'optionalResponseHeaders': true
+  },done
+  return null
+
 task 'regenerate-ts-no-client-validation', '', [], (done) ->
   regenExpected {
     'outputBaseDir': 'test/no-client-validation',
@@ -280,7 +300,15 @@ task 'regenerate-tsazure-metadata', '', [], (done) ->
   },done
   return null
 
-tsTasks = ['regenerate-tscomposite', 'regenerate-tsxml', 'regenerate-ts-enum-union', 'regenerate-ts-metadata', 'regenerate-ts-no-client-validation', 'regenerate-ts-date-time-as-string']
+tsTasks = [
+  'regenerate-tscomposite',
+  'regenerate-tsxml',
+  'regenerate-ts-enum-union',
+  'regenerate-ts-metadata',
+  'regenerate-ts-no-client-validation',
+  'regenerate-ts-date-time-as-string',
+  'regenerate-ts-optional-response-headers'
+]
 task 'regenerate-ts', '', tsTasks, (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]

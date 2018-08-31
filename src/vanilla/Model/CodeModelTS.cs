@@ -179,6 +179,8 @@ namespace AutoRest.TypeScript.Model
 
         public bool GenerateBodyMethods { get; set; }
 
+        public bool OptionalResponseHeaders { get; set; }
+
         public string HomePageUrl
         {
             get

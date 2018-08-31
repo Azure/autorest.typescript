@@ -29,5 +29,10 @@ namespace AutoRest.TypeScript
         /// If true, models Date parameters as string in parameters and properties.
         /// </summary>
         public bool ModelDateTimeAsString { get; set; }
+
+        /// <summmary>
+        /// If true, uses optional types for the response headers interface properties.
+        /// </summary>
+        public bool OptionalResponseHeaders { get; set; }
     }
 }

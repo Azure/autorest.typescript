@@ -23,6 +23,8 @@ namespace AutoRest.TypeScript.Model
 
         }
 
+        public CodeModelTS CodeModelTS => (CodeModelTS) CodeModel;
+
         public override Property Add(Property item)
         {
             var result = base.Add(item);
@@ -277,7 +279,8 @@ namespace AutoRest.TypeScript.Model
             }
 
             bool isHeaders = CodeModel?.HeaderTypes.Contains(this) == true;
-            if (!property.IsRequired && !isHeaders)
+            bool isOptional = !property.IsRequired && (!isHeaders || CodeModelTS.OptionalResponseHeaders);
+            if (isOptional)
                 return propertyName + "?: " + typeString;
             else
                 return propertyName + ": " + typeString;
