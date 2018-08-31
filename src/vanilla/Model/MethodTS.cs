@@ -766,19 +766,18 @@ namespace AutoRest.TypeScript.Model
                 {
                     type.NamedType($"Array<{sequenceBody.ElementType.TSType(inModelsModule: true)}>");
                 }
+                else if (ReturnType.Body is CompositeTypeTS compositeBody)
+                {
+                    type.NamedType(compositeBody.TSType(inModelsModule: true));
+                }
+
+                if (ReturnType.Headers != null)
+                {
+                    type.NamedType(ReturnType.Headers.TSType(inModelsModule: true));
+                }
 
                 type.ObjectType(iface =>
                 {
-                    if (ReturnType.Headers != null)
-                    {
-                        foreach (var property in ((CompositeTypeTS)ReturnType.Headers).Properties)
-                        {
-                            iface.DocumentationComment(property.Documentation);
-                            // hard-coding response headers non-optional because Swagger itself can't specify whether or not they're required.
-                            iface.Property(property.Name, property.ModelType.TSType(inModelsModule: true), optional: false);
-                        }
-                    }
-
                     if (HasStreamResponseType())
                     {
                         iface.DocumentationComment(
@@ -797,19 +796,7 @@ namespace AutoRest.TypeScript.Model
 
                         iface.Property("readableStreamBody", "NodeJS.ReadableStream", optional: true);
                     }
-                    else if (ReturnType.Body is CompositeTypeTS compositeBody)
-                    {
-                        foreach (var property in compositeBody.ComposedProperties.Distinct(PropertyNameComparer.Instance))
-                        {
-                            iface.DocumentationComment(property.Documentation);
-                            iface.Property(
-                                property.Name,
-                                property.ModelType.TSType(inModelsModule: true),
-                                optional: !property.IsRequired,
-                                readOnly: property.IsReadOnly);
-                        }
-                    }
-                    else if (ReturnType.Body != null && !(ReturnType.Body is SequenceTypeTS || ReturnType.Body is DictionaryTypeTS))
+                    else if (ReturnType.Body != null && !(ReturnType.Body is CompositeTypeTS || ReturnType.Body is SequenceTypeTS || ReturnType.Body is DictionaryTypeTS))
                     {
                         iface.DocumentationComment("The parsed response body.");
                         iface.Property(primitiveHttpBodyPropertyName, ReturnType.Body.TSType(inModelsModule: true));
