@@ -167,6 +167,7 @@ namespace AutoRest.TypeScript
                 codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
                 codeModel.ModelDateTimeAsString = generatorSettings.ModelDateTimeAsString;
                 codeModel.GenerateMetadata = generatorSettings.GenerateMetadata;
+                codeModel.OptionalResponseHeaders = generatorSettings.OptionalResponseHeaders;
             }
 
             using (plugin.Activate())
