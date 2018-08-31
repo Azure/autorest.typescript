@@ -417,9 +417,7 @@ export enum Status {
 /**
  * Contains response data for the getSinglePages operation.
  */
-export type PagingGetSinglePagesResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetSinglePagesResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -438,9 +436,7 @@ export type PagingGetSinglePagesResponse = {
 /**
  * Contains response data for the getMultiplePages operation.
  */
-export type PagingGetMultiplePagesResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -459,9 +455,7 @@ export type PagingGetMultiplePagesResponse = {
 /**
  * Contains response data for the getOdataMultiplePages operation.
  */
-export type PagingGetOdataMultiplePagesResponse = {
-  values?: Product[];
-  odatanextLink?: string;
+export type PagingGetOdataMultiplePagesResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -480,9 +474,7 @@ export type PagingGetOdataMultiplePagesResponse = {
 /**
  * Contains response data for the getMultiplePagesWithOffset operation.
  */
-export type PagingGetMultiplePagesWithOffsetResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesWithOffsetResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -501,9 +493,7 @@ export type PagingGetMultiplePagesWithOffsetResponse = {
 /**
  * Contains response data for the getMultiplePagesRetryFirst operation.
  */
-export type PagingGetMultiplePagesRetryFirstResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesRetryFirstResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -522,9 +512,7 @@ export type PagingGetMultiplePagesRetryFirstResponse = {
 /**
  * Contains response data for the getMultiplePagesRetrySecond operation.
  */
-export type PagingGetMultiplePagesRetrySecondResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesRetrySecondResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -543,9 +531,7 @@ export type PagingGetMultiplePagesRetrySecondResponse = {
 /**
  * Contains response data for the getSinglePagesFailure operation.
  */
-export type PagingGetSinglePagesFailureResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetSinglePagesFailureResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -564,9 +550,7 @@ export type PagingGetSinglePagesFailureResponse = {
 /**
  * Contains response data for the getMultiplePagesFailure operation.
  */
-export type PagingGetMultiplePagesFailureResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesFailureResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -585,9 +569,7 @@ export type PagingGetMultiplePagesFailureResponse = {
 /**
  * Contains response data for the getMultiplePagesFailureUri operation.
  */
-export type PagingGetMultiplePagesFailureUriResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesFailureUriResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -606,9 +588,7 @@ export type PagingGetMultiplePagesFailureUriResponse = {
 /**
  * Contains response data for the getMultiplePagesFragmentNextLink operation.
  */
-export type PagingGetMultiplePagesFragmentNextLinkResponse = {
-  values?: Product[];
-  odatanextLink?: string;
+export type PagingGetMultiplePagesFragmentNextLinkResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -628,9 +608,7 @@ export type PagingGetMultiplePagesFragmentNextLinkResponse = {
  * Contains response data for the getMultiplePagesFragmentWithGroupingNextLink
  * operation.
  */
-export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = {
-  values?: Product[];
-  odatanextLink?: string;
+export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -649,9 +627,7 @@ export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = {
 /**
  * Contains response data for the getMultiplePagesLRO operation.
  */
-export type PagingGetMultiplePagesLROResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesLROResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -670,9 +646,7 @@ export type PagingGetMultiplePagesLROResponse = {
 /**
  * Contains response data for the nextFragment operation.
  */
-export type PagingNextFragmentResponse = {
-  values?: Product[];
-  odatanextLink?: string;
+export type PagingNextFragmentResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -691,9 +665,7 @@ export type PagingNextFragmentResponse = {
 /**
  * Contains response data for the nextFragmentWithGrouping operation.
  */
-export type PagingNextFragmentWithGroupingResponse = {
-  values?: Product[];
-  odatanextLink?: string;
+export type PagingNextFragmentWithGroupingResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -712,9 +684,7 @@ export type PagingNextFragmentWithGroupingResponse = {
 /**
  * Contains response data for the beginGetMultiplePagesLRO operation.
  */
-export type PagingBeginGetMultiplePagesLROResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingBeginGetMultiplePagesLROResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -733,9 +703,7 @@ export type PagingBeginGetMultiplePagesLROResponse = {
 /**
  * Contains response data for the getSinglePagesNext operation.
  */
-export type PagingGetSinglePagesNextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetSinglePagesNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -754,9 +722,7 @@ export type PagingGetSinglePagesNextResponse = {
 /**
  * Contains response data for the getMultiplePagesNext operation.
  */
-export type PagingGetMultiplePagesNextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -775,9 +741,7 @@ export type PagingGetMultiplePagesNextResponse = {
 /**
  * Contains response data for the getOdataMultiplePagesNext operation.
  */
-export type PagingGetOdataMultiplePagesNextResponse = {
-  values?: Product[];
-  odatanextLink?: string;
+export type PagingGetOdataMultiplePagesNextResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -796,9 +760,7 @@ export type PagingGetOdataMultiplePagesNextResponse = {
 /**
  * Contains response data for the getMultiplePagesWithOffsetNext operation.
  */
-export type PagingGetMultiplePagesWithOffsetNextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesWithOffsetNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -817,9 +779,7 @@ export type PagingGetMultiplePagesWithOffsetNextResponse = {
 /**
  * Contains response data for the getMultiplePagesRetryFirstNext operation.
  */
-export type PagingGetMultiplePagesRetryFirstNextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesRetryFirstNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -838,9 +798,7 @@ export type PagingGetMultiplePagesRetryFirstNextResponse = {
 /**
  * Contains response data for the getMultiplePagesRetrySecondNext operation.
  */
-export type PagingGetMultiplePagesRetrySecondNextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesRetrySecondNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -859,9 +817,7 @@ export type PagingGetMultiplePagesRetrySecondNextResponse = {
 /**
  * Contains response data for the getSinglePagesFailureNext operation.
  */
-export type PagingGetSinglePagesFailureNextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetSinglePagesFailureNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -880,9 +836,7 @@ export type PagingGetSinglePagesFailureNextResponse = {
 /**
  * Contains response data for the getMultiplePagesFailureNext operation.
  */
-export type PagingGetMultiplePagesFailureNextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesFailureNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -901,9 +855,7 @@ export type PagingGetMultiplePagesFailureNextResponse = {
 /**
  * Contains response data for the getMultiplePagesFailureUriNext operation.
  */
-export type PagingGetMultiplePagesFailureUriNextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesFailureUriNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -922,9 +874,7 @@ export type PagingGetMultiplePagesFailureUriNextResponse = {
 /**
  * Contains response data for the getMultiplePagesLRONext operation.
  */
-export type PagingGetMultiplePagesLRONextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingGetMultiplePagesLRONextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
@@ -943,9 +893,7 @@ export type PagingGetMultiplePagesLRONextResponse = {
 /**
  * Contains response data for the beginGetMultiplePagesLRONext operation.
  */
-export type PagingBeginGetMultiplePagesLRONextResponse = {
-  values?: Product[];
-  nextLink?: string;
+export type PagingBeginGetMultiplePagesLRONextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */

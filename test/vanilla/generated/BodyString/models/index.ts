@@ -386,15 +386,7 @@ export type EnumModelGetReferencedResponse = {
 /**
  * Contains response data for the getReferencedConstant operation.
  */
-export type EnumModelGetReferencedConstantResponse = {
-  /**
-   * Referenced Color Constant Description.
-   */
-  colorConstant: string;
-  /**
-   * Sample string.
-   */
-  field1?: string;
+export type EnumModelGetReferencedConstantResponse = RefColorConstant & {
   /**
    * The underlying HTTP response.
    */

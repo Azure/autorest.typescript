@@ -138,11 +138,7 @@ export interface ComplexModelClientUpdateOptionalParams extends msRest.RequestOp
 /**
  * Contains response data for the list operation.
  */
-export type ListResponse = {
-  /**
-   * Array of products
-   */
-  productArray?: Product[];
+export type ListResponse = CatalogArray & {
   /**
    * The underlying HTTP response.
    */
@@ -161,11 +157,7 @@ export type ListResponse = {
 /**
  * Contains response data for the create operation.
  */
-export type CreateResponse = {
-  /**
-   * Dictionary of products
-   */
-  productDictionary?: { [propertyName: string]: Product };
+export type CreateResponse = CatalogDictionary & {
   /**
    * The underlying HTTP response.
    */
@@ -184,11 +176,7 @@ export type CreateResponse = {
 /**
  * Contains response data for the update operation.
  */
-export type UpdateResponse = {
-  /**
-   * Array of products
-   */
-  productArray?: Product[];
+export type UpdateResponse = CatalogArray & {
   /**
    * The underlying HTTP response.
    */

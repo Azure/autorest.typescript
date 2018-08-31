@@ -1174,11 +1174,7 @@ export type HttpSuccessGet200Response = {
 /**
  * Contains response data for the head300 operation.
  */
-export type HttpRedirectsHead300Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/head/200'
-   */
-  location: Location;
+export type HttpRedirectsHead300Response = HttpRedirectsHead300Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1193,11 +1189,7 @@ export type HttpRedirectsHead300Response = {
 /**
  * Contains response data for the get300 operation.
  */
-export type HttpRedirectsGet300Response = Array<string> & {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/get/200'
-   */
-  location: Location1;
+export type HttpRedirectsGet300Response = Array<string> & HttpRedirectsGet300Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1220,11 +1212,7 @@ export type HttpRedirectsGet300Response = Array<string> & {
 /**
  * Contains response data for the head301 operation.
  */
-export type HttpRedirectsHead301Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/head/200'
-   */
-  location: Location2;
+export type HttpRedirectsHead301Response = HttpRedirectsHead301Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1239,11 +1227,7 @@ export type HttpRedirectsHead301Response = {
 /**
  * Contains response data for the get301 operation.
  */
-export type HttpRedirectsGet301Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/get/200'
-   */
-  location: Location3;
+export type HttpRedirectsGet301Response = HttpRedirectsGet301Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1258,11 +1242,7 @@ export type HttpRedirectsGet301Response = {
 /**
  * Contains response data for the put301 operation.
  */
-export type HttpRedirectsPut301Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/failure/500'
-   */
-  location: Location4;
+export type HttpRedirectsPut301Response = HttpRedirectsPut301Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1277,11 +1257,7 @@ export type HttpRedirectsPut301Response = {
 /**
  * Contains response data for the head302 operation.
  */
-export type HttpRedirectsHead302Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/head/200'
-   */
-  location: Location5;
+export type HttpRedirectsHead302Response = HttpRedirectsHead302Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1296,11 +1272,7 @@ export type HttpRedirectsHead302Response = {
 /**
  * Contains response data for the get302 operation.
  */
-export type HttpRedirectsGet302Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/get/200'
-   */
-  location: Location6;
+export type HttpRedirectsGet302Response = HttpRedirectsGet302Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1315,11 +1287,7 @@ export type HttpRedirectsGet302Response = {
 /**
  * Contains response data for the patch302 operation.
  */
-export type HttpRedirectsPatch302Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/failure/500'
-   */
-  location: Location7;
+export type HttpRedirectsPatch302Response = HttpRedirectsPatch302Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1334,11 +1302,7 @@ export type HttpRedirectsPatch302Response = {
 /**
  * Contains response data for the post303 operation.
  */
-export type HttpRedirectsPost303Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/get/200'
-   */
-  location: Location8;
+export type HttpRedirectsPost303Response = HttpRedirectsPost303Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1353,11 +1317,7 @@ export type HttpRedirectsPost303Response = {
 /**
  * Contains response data for the head307 operation.
  */
-export type HttpRedirectsHead307Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/head/200'
-   */
-  location: Location9;
+export type HttpRedirectsHead307Response = HttpRedirectsHead307Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1372,11 +1332,7 @@ export type HttpRedirectsHead307Response = {
 /**
  * Contains response data for the get307 operation.
  */
-export type HttpRedirectsGet307Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/get/200'
-   */
-  location: Location10;
+export type HttpRedirectsGet307Response = HttpRedirectsGet307Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1391,11 +1347,7 @@ export type HttpRedirectsGet307Response = {
 /**
  * Contains response data for the put307 operation.
  */
-export type HttpRedirectsPut307Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/put/200'
-   */
-  location: Location11;
+export type HttpRedirectsPut307Response = HttpRedirectsPut307Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1410,11 +1362,7 @@ export type HttpRedirectsPut307Response = {
 /**
  * Contains response data for the patch307 operation.
  */
-export type HttpRedirectsPatch307Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/patch/200'
-   */
-  location: Location12;
+export type HttpRedirectsPatch307Response = HttpRedirectsPatch307Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1429,11 +1377,7 @@ export type HttpRedirectsPatch307Response = {
 /**
  * Contains response data for the post307 operation.
  */
-export type HttpRedirectsPost307Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/post/200'
-   */
-  location: Location13;
+export type HttpRedirectsPost307Response = HttpRedirectsPost307Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1448,11 +1392,7 @@ export type HttpRedirectsPost307Response = {
 /**
  * Contains response data for the delete307 operation.
  */
-export type HttpRedirectsDelete307Response = {
-  /**
-   * The redirect location for this request. Possible values include: '/http/success/delete/200'
-   */
-  location: Location14;
+export type HttpRedirectsDelete307Response = HttpRedirectsDelete307Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1467,9 +1407,7 @@ export type HttpRedirectsDelete307Response = {
 /**
  * Contains response data for the head400 operation.
  */
-export type HttpClientFailureHead400Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureHead400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1488,9 +1426,7 @@ export type HttpClientFailureHead400Response = {
 /**
  * Contains response data for the get400 operation.
  */
-export type HttpClientFailureGet400Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureGet400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1509,9 +1445,7 @@ export type HttpClientFailureGet400Response = {
 /**
  * Contains response data for the put400 operation.
  */
-export type HttpClientFailurePut400Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePut400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1530,9 +1464,7 @@ export type HttpClientFailurePut400Response = {
 /**
  * Contains response data for the patch400 operation.
  */
-export type HttpClientFailurePatch400Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePatch400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1551,9 +1483,7 @@ export type HttpClientFailurePatch400Response = {
 /**
  * Contains response data for the post400 operation.
  */
-export type HttpClientFailurePost400Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePost400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1572,9 +1502,7 @@ export type HttpClientFailurePost400Response = {
 /**
  * Contains response data for the delete400 operation.
  */
-export type HttpClientFailureDelete400Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureDelete400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1593,9 +1521,7 @@ export type HttpClientFailureDelete400Response = {
 /**
  * Contains response data for the head401 operation.
  */
-export type HttpClientFailureHead401Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureHead401Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1614,9 +1540,7 @@ export type HttpClientFailureHead401Response = {
 /**
  * Contains response data for the get402 operation.
  */
-export type HttpClientFailureGet402Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureGet402Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1635,9 +1559,7 @@ export type HttpClientFailureGet402Response = {
 /**
  * Contains response data for the get403 operation.
  */
-export type HttpClientFailureGet403Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureGet403Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1656,9 +1578,7 @@ export type HttpClientFailureGet403Response = {
 /**
  * Contains response data for the put404 operation.
  */
-export type HttpClientFailurePut404Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePut404Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1677,9 +1597,7 @@ export type HttpClientFailurePut404Response = {
 /**
  * Contains response data for the patch405 operation.
  */
-export type HttpClientFailurePatch405Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePatch405Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1698,9 +1616,7 @@ export type HttpClientFailurePatch405Response = {
 /**
  * Contains response data for the post406 operation.
  */
-export type HttpClientFailurePost406Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePost406Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1719,9 +1635,7 @@ export type HttpClientFailurePost406Response = {
 /**
  * Contains response data for the delete407 operation.
  */
-export type HttpClientFailureDelete407Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureDelete407Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1740,9 +1654,7 @@ export type HttpClientFailureDelete407Response = {
 /**
  * Contains response data for the put409 operation.
  */
-export type HttpClientFailurePut409Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePut409Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1761,9 +1673,7 @@ export type HttpClientFailurePut409Response = {
 /**
  * Contains response data for the head410 operation.
  */
-export type HttpClientFailureHead410Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureHead410Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1782,9 +1692,7 @@ export type HttpClientFailureHead410Response = {
 /**
  * Contains response data for the get411 operation.
  */
-export type HttpClientFailureGet411Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureGet411Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1803,9 +1711,7 @@ export type HttpClientFailureGet411Response = {
 /**
  * Contains response data for the get412 operation.
  */
-export type HttpClientFailureGet412Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureGet412Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1824,9 +1730,7 @@ export type HttpClientFailureGet412Response = {
 /**
  * Contains response data for the put413 operation.
  */
-export type HttpClientFailurePut413Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePut413Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1845,9 +1749,7 @@ export type HttpClientFailurePut413Response = {
 /**
  * Contains response data for the patch414 operation.
  */
-export type HttpClientFailurePatch414Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePatch414Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1866,9 +1768,7 @@ export type HttpClientFailurePatch414Response = {
 /**
  * Contains response data for the post415 operation.
  */
-export type HttpClientFailurePost415Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailurePost415Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1887,9 +1787,7 @@ export type HttpClientFailurePost415Response = {
 /**
  * Contains response data for the get416 operation.
  */
-export type HttpClientFailureGet416Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureGet416Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1908,9 +1806,7 @@ export type HttpClientFailureGet416Response = {
 /**
  * Contains response data for the delete417 operation.
  */
-export type HttpClientFailureDelete417Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureDelete417Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1929,9 +1825,7 @@ export type HttpClientFailureDelete417Response = {
 /**
  * Contains response data for the head429 operation.
  */
-export type HttpClientFailureHead429Response = {
-  status?: number;
-  message?: string;
+export type HttpClientFailureHead429Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1950,9 +1844,7 @@ export type HttpClientFailureHead429Response = {
 /**
  * Contains response data for the head501 operation.
  */
-export type HttpServerFailureHead501Response = {
-  status?: number;
-  message?: string;
+export type HttpServerFailureHead501Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1971,9 +1863,7 @@ export type HttpServerFailureHead501Response = {
 /**
  * Contains response data for the get501 operation.
  */
-export type HttpServerFailureGet501Response = {
-  status?: number;
-  message?: string;
+export type HttpServerFailureGet501Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -1992,9 +1882,7 @@ export type HttpServerFailureGet501Response = {
 /**
  * Contains response data for the post505 operation.
  */
-export type HttpServerFailurePost505Response = {
-  status?: number;
-  message?: string;
+export type HttpServerFailurePost505Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -2013,9 +1901,7 @@ export type HttpServerFailurePost505Response = {
 /**
  * Contains response data for the delete505 operation.
  */
-export type HttpServerFailureDelete505Response = {
-  status?: number;
-  message?: string;
+export type HttpServerFailureDelete505Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -2035,8 +1921,7 @@ export type HttpServerFailureDelete505Response = {
  * Contains response data for the get200Model204NoModelDefaultError200Valid
  * operation.
  */
-export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2056,8 +1941,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse =
  * Contains response data for the get200Model204NoModelDefaultError204Valid
  * operation.
  */
-export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2077,8 +1961,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse =
  * Contains response data for the get200Model204NoModelDefaultError201Invalid
  * operation.
  */
-export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2098,8 +1981,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse
  * Contains response data for the get200Model204NoModelDefaultError202None
  * operation.
  */
-export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2119,8 +2001,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = 
  * Contains response data for the get200Model204NoModelDefaultError400Valid
  * operation.
  */
-export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2140,8 +2021,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse =
  * Contains response data for the get200Model201ModelDefaultError200Valid
  * operation.
  */
-export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2161,8 +2041,7 @@ export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = {
  * Contains response data for the get200Model201ModelDefaultError201Valid
  * operation.
  */
-export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2182,8 +2061,7 @@ export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = {
  * Contains response data for the get200Model201ModelDefaultError400Valid
  * operation.
  */
-export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2298,8 +2176,7 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidR
 /**
  * Contains response data for the getDefaultModelA200Valid operation.
  */
-export type MultipleResponsesGetDefaultModelA200ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGetDefaultModelA200ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2318,8 +2195,7 @@ export type MultipleResponsesGetDefaultModelA200ValidResponse = {
 /**
  * Contains response data for the getDefaultModelA200None operation.
  */
-export type MultipleResponsesGetDefaultModelA200NoneResponse = {
-  statusCode?: string;
+export type MultipleResponsesGetDefaultModelA200NoneResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2338,8 +2214,7 @@ export type MultipleResponsesGetDefaultModelA200NoneResponse = {
 /**
  * Contains response data for the getDefaultModelA400Valid operation.
  */
-export type MultipleResponsesGetDefaultModelA400ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGetDefaultModelA400ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2358,8 +2233,7 @@ export type MultipleResponsesGetDefaultModelA400ValidResponse = {
 /**
  * Contains response data for the getDefaultModelA400None operation.
  */
-export type MultipleResponsesGetDefaultModelA400NoneResponse = {
-  statusCode?: string;
+export type MultipleResponsesGetDefaultModelA400NoneResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2378,8 +2252,7 @@ export type MultipleResponsesGetDefaultModelA400NoneResponse = {
 /**
  * Contains response data for the get200ModelA200None operation.
  */
-export type MultipleResponsesGet200ModelA200NoneResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200ModelA200NoneResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2398,8 +2271,7 @@ export type MultipleResponsesGet200ModelA200NoneResponse = {
 /**
  * Contains response data for the get200ModelA200Valid operation.
  */
-export type MultipleResponsesGet200ModelA200ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200ModelA200ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2418,8 +2290,7 @@ export type MultipleResponsesGet200ModelA200ValidResponse = {
 /**
  * Contains response data for the get200ModelA200Invalid operation.
  */
-export type MultipleResponsesGet200ModelA200InvalidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200ModelA200InvalidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2438,8 +2309,7 @@ export type MultipleResponsesGet200ModelA200InvalidResponse = {
 /**
  * Contains response data for the get200ModelA400None operation.
  */
-export type MultipleResponsesGet200ModelA400NoneResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200ModelA400NoneResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2458,8 +2328,7 @@ export type MultipleResponsesGet200ModelA400NoneResponse = {
 /**
  * Contains response data for the get200ModelA400Valid operation.
  */
-export type MultipleResponsesGet200ModelA400ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200ModelA400ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2478,8 +2347,7 @@ export type MultipleResponsesGet200ModelA400ValidResponse = {
 /**
  * Contains response data for the get200ModelA400Invalid operation.
  */
-export type MultipleResponsesGet200ModelA400InvalidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200ModelA400InvalidResponse = A & {
   /**
    * The underlying HTTP response.
    */
@@ -2498,8 +2366,7 @@ export type MultipleResponsesGet200ModelA400InvalidResponse = {
 /**
  * Contains response data for the get200ModelA202Valid operation.
  */
-export type MultipleResponsesGet200ModelA202ValidResponse = {
-  statusCode?: string;
+export type MultipleResponsesGet200ModelA202ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */

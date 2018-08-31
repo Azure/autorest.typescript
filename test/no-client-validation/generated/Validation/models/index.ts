@@ -124,33 +124,7 @@ export enum EnumConst {
 /**
  * Contains response data for the validationOfMethodParameters operation.
  */
-export type ValidationOfMethodParametersResponse = {
-  /**
-   * Non required array of unique items from 0 to 6 elements.
-   */
-  displayNames?: string[];
-  /**
-   * Non required int betwen 0 and 100 exclusive.
-   */
-  capacity?: number;
-  /**
-   * Image URL representing the product.
-   */
-  image?: string;
-  child: ChildProduct;
-  constChild: ConstantProduct;
-  /**
-   * Constant int
-   */
-  constInt: number;
-  /**
-   * Constant string
-   */
-  constString: string;
-  /**
-   * Constant string as Enum. Possible values include: 'constant_string_as_enum'
-   */
-  constStringAsEnum?: EnumConst;
+export type ValidationOfMethodParametersResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -169,33 +143,7 @@ export type ValidationOfMethodParametersResponse = {
 /**
  * Contains response data for the validationOfBody operation.
  */
-export type ValidationOfBodyResponse = {
-  /**
-   * Non required array of unique items from 0 to 6 elements.
-   */
-  displayNames?: string[];
-  /**
-   * Non required int betwen 0 and 100 exclusive.
-   */
-  capacity?: number;
-  /**
-   * Image URL representing the product.
-   */
-  image?: string;
-  child: ChildProduct;
-  constChild: ConstantProduct;
-  /**
-   * Constant int
-   */
-  constInt: number;
-  /**
-   * Constant string
-   */
-  constString: string;
-  /**
-   * Constant string as Enum. Possible values include: 'constant_string_as_enum'
-   */
-  constStringAsEnum?: EnumConst;
+export type ValidationOfBodyResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -214,33 +162,7 @@ export type ValidationOfBodyResponse = {
 /**
  * Contains response data for the postWithConstantInBody operation.
  */
-export type PostWithConstantInBodyResponse = {
-  /**
-   * Non required array of unique items from 0 to 6 elements.
-   */
-  displayNames?: string[];
-  /**
-   * Non required int betwen 0 and 100 exclusive.
-   */
-  capacity?: number;
-  /**
-   * Image URL representing the product.
-   */
-  image?: string;
-  child: ChildProduct;
-  constChild: ConstantProduct;
-  /**
-   * Constant int
-   */
-  constInt: number;
-  /**
-   * Constant string
-   */
-  constString: string;
-  /**
-   * Constant string as Enum. Possible values include: 'constant_string_as_enum'
-   */
-  constStringAsEnum?: EnumConst;
+export type PostWithConstantInBodyResponse = Product & {
   /**
    * The underlying HTTP response.
    */

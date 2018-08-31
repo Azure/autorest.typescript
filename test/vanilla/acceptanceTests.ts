@@ -1600,7 +1600,6 @@ describe('typescript', function () {
           var putDictionary: { [propertyName: string]: Date } =
             { 0: new Date('2000-12-01T00:00:01Z'), 1: new Date('1980-01-01T23:11:35Z'), 2: new Date('1492-10-12T18:15:01Z') };
           const result = await testClient.dictionary.getDateTimeValid();
-          delete result._response;
           assert.deepEqual(result, getDictionary);
           await testClient.dictionary.putDateTimeValid(putDictionary);
         });
@@ -1643,7 +1642,6 @@ describe('typescript', function () {
 
           const testDictionary: { [propertyName: string]: Date } = { "0": new Date("2000-12-01t00:00:01z"), "1": null };
           const result = await testClient.dictionary.getDateTimeInvalidNull();
-          delete result._response;
           assert.deepEqual(result, testDictionary);
         });
 
@@ -1651,7 +1649,6 @@ describe('typescript', function () {
           var testDictionary: { [propertyName: string]: Date } = { "0": new Date("2000-12-01t00:00:01z"), "1": new Date("date-time") };
           testClient.dictionary.getDateTimeInvalidChars(function (error, result) {
             should.not.exist(error);
-            delete result._response;
             assert.deepEqual(util.inspect(result), util.inspect(testDictionary));
             done();
           });
@@ -2614,7 +2611,6 @@ describe('typescript', function () {
 
         const result3 = await testClient.multipleResponses.get200Model201ModelDefaultError201Valid();
         should.exist(result3);
-        delete result3._response;
         assert.deepEqual(result3, { 'statusCode': '201', 'textStatusCode': 'Created' });
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200Model201ModelDefaultError400Valid(),

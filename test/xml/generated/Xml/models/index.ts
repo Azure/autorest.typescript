@@ -819,15 +819,7 @@ export enum ArchiveStatus {
 /**
  * Contains response data for the getComplexTypeRefNoMeta operation.
  */
-export type XmlGetComplexTypeRefNoMetaResponse = {
-  /**
-   * XML will use RefToModel
-   */
-  refToModel?: ComplexTypeNoMeta;
-  /**
-   * Something else (just to avoid flattening)
-   */
-  something?: string;
+export type XmlGetComplexTypeRefNoMetaResponse = RootWithRefAndNoMeta & {
   /**
    * The underlying HTTP response.
    */
@@ -846,15 +838,7 @@ export type XmlGetComplexTypeRefNoMetaResponse = {
 /**
  * Contains response data for the getComplexTypeRefWithMeta operation.
  */
-export type XmlGetComplexTypeRefWithMetaResponse = {
-  /**
-   * XML will use XMLComplexTypeWithMeta
-   */
-  refToModel?: ComplexTypeWithMeta;
-  /**
-   * Something else (just to avoid flattening)
-   */
-  something?: string;
+export type XmlGetComplexTypeRefWithMetaResponse = RootWithRefAndMeta & {
   /**
    * The underlying HTTP response.
    */
@@ -873,11 +857,7 @@ export type XmlGetComplexTypeRefWithMetaResponse = {
 /**
  * Contains response data for the getSimple operation.
  */
-export type XmlGetSimpleResponse = {
-  title?: string;
-  date?: string;
-  author?: string;
-  slides?: Slide[];
+export type XmlGetSimpleResponse = Slideshow & {
   /**
    * The underlying HTTP response.
    */
@@ -896,9 +876,7 @@ export type XmlGetSimpleResponse = {
 /**
  * Contains response data for the getWrappedLists operation.
  */
-export type XmlGetWrappedListsResponse = {
-  goodApples?: string[];
-  badApples?: string[];
+export type XmlGetWrappedListsResponse = AppleBarrel & {
   /**
    * The underlying HTTP response.
    */
@@ -917,11 +895,7 @@ export type XmlGetWrappedListsResponse = {
 /**
  * Contains response data for the getHeaders operation.
  */
-export type XmlGetHeadersResponse = {
-  /**
-   * A custom response header.
-   */
-  customHeader: string;
+export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -936,11 +910,7 @@ export type XmlGetHeadersResponse = {
 /**
  * Contains response data for the getEmptyList operation.
  */
-export type XmlGetEmptyListResponse = {
-  title?: string;
-  date?: string;
-  author?: string;
-  slides?: Slide[];
+export type XmlGetEmptyListResponse = Slideshow & {
   /**
    * The underlying HTTP response.
    */
@@ -959,9 +929,7 @@ export type XmlGetEmptyListResponse = {
 /**
  * Contains response data for the getEmptyWrappedLists operation.
  */
-export type XmlGetEmptyWrappedListsResponse = {
-  goodApples?: string[];
-  badApples?: string[];
+export type XmlGetEmptyWrappedListsResponse = AppleBarrel & {
   /**
    * The underlying HTTP response.
    */
@@ -1037,13 +1005,7 @@ export type XmlGetEmptyRootListResponse = Array<Banana> & {
 /**
  * Contains response data for the getEmptyChildElement operation.
  */
-export type XmlGetEmptyChildElementResponse = {
-  name?: string;
-  flavor?: string;
-  /**
-   * The time at which you should reconsider eating this banana
-   */
-  expiration?: Date;
+export type XmlGetEmptyChildElementResponse = Banana & {
   /**
    * The underlying HTTP response.
    */
@@ -1062,13 +1024,7 @@ export type XmlGetEmptyChildElementResponse = {
 /**
  * Contains response data for the listContainers operation.
  */
-export type XmlListContainersResponse = {
-  serviceEndpoint: string;
-  prefix: string;
-  marker?: string;
-  maxResults: number;
-  containers?: Container[];
-  nextMarker: string;
+export type XmlListContainersResponse = ListContainersResponse & {
   /**
    * The underlying HTTP response.
    */
@@ -1087,32 +1043,7 @@ export type XmlListContainersResponse = {
 /**
  * Contains response data for the getServiceProperties operation.
  */
-export type XmlGetServicePropertiesResponse = {
-  /**
-   * Azure Analytics Logging settings
-   */
-  logging?: Logging;
-  /**
-   * A summary of request statistics grouped by API in hourly aggregates for blobs
-   */
-  hourMetrics?: Metrics;
-  /**
-   * a summary of request statistics grouped by API in minute aggregates for blobs
-   */
-  minuteMetrics?: Metrics;
-  /**
-   * The set of CORS rules.
-   */
-  cors?: CorsRule[];
-  /**
-   * The default version to use for requests to the Blob service if an incoming request's version
-   * is not specified. Possible values include version 2008-10-27 and all more recent versions
-   */
-  defaultServiceVersion?: string;
-  /**
-   * The Delete Retention Policy for the service
-   */
-  deleteRetentionPolicy?: RetentionPolicy;
+export type XmlGetServicePropertiesResponse = StorageServiceProperties & {
   /**
    * The underlying HTTP response.
    */
@@ -1150,15 +1081,7 @@ export type XmlGetAclsResponse = Array<SignedIdentifier> & {
 /**
  * Contains response data for the listBlobs operation.
  */
-export type XmlListBlobsResponse = {
-  serviceEndpoint: string;
-  containerName: string;
-  prefix: string;
-  marker: string;
-  maxResults: number;
-  delimiter: string;
-  blobs: Blobs;
-  nextMarker: string;
+export type XmlListBlobsResponse = ListBlobsResponse & {
   /**
    * The underlying HTTP response.
    */

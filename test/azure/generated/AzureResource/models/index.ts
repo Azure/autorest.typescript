@@ -196,10 +196,7 @@ export type GetDictionaryResponse = {
 /**
  * Contains response data for the getResourceCollection operation.
  */
-export type GetResourceCollectionResponse = {
-  productresource?: FlattenedProduct;
-  arrayofresources?: FlattenedProduct[];
-  dictionaryofresources?: { [propertyName: string]: FlattenedProduct };
+export type GetResourceCollectionResponse = ResourceCollection & {
   /**
    * The underlying HTTP response.
    */

@@ -414,10 +414,7 @@ export type GetDictionaryResponse = {
 /**
  * Contains response data for the getResourceCollection operation.
  */
-export type GetResourceCollectionResponse = {
-  productresource?: FlattenedProduct;
-  arrayofresources?: FlattenedProduct[];
-  dictionaryofresources?: { [propertyName: string]: FlattenedProduct };
+export type GetResourceCollectionResponse = ResourceCollection & {
   /**
    * The underlying HTTP response.
    */
@@ -436,32 +433,7 @@ export type GetResourceCollectionResponse = {
 /**
  * Contains response data for the putSimpleProduct operation.
  */
-export type PutSimpleProductResponse = {
-  /**
-   * Unique identifier representing a specific product for a given latitude & longitude. For
-   * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-   */
-  productId: string;
-  /**
-   * Description of product.
-   */
-  description?: string;
-  /**
-   * Display name of product.
-   */
-  maxProductDisplayName: string;
-  /**
-   * Capacity of product. For example, 4 people.
-   */
-  capacity: string;
-  /**
-   * Generic URL value.
-   */
-  genericValue?: string;
-  /**
-   * URL value.
-   */
-  odatavalue?: string;
+export type PutSimpleProductResponse = SimpleProduct & {
   /**
    * The underlying HTTP response.
    */
@@ -480,32 +452,7 @@ export type PutSimpleProductResponse = {
 /**
  * Contains response data for the postFlattenedSimpleProduct operation.
  */
-export type PostFlattenedSimpleProductResponse = {
-  /**
-   * Unique identifier representing a specific product for a given latitude & longitude. For
-   * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-   */
-  productId: string;
-  /**
-   * Description of product.
-   */
-  description?: string;
-  /**
-   * Display name of product.
-   */
-  maxProductDisplayName: string;
-  /**
-   * Capacity of product. For example, 4 people.
-   */
-  capacity: string;
-  /**
-   * Generic URL value.
-   */
-  genericValue?: string;
-  /**
-   * URL value.
-   */
-  odatavalue?: string;
+export type PostFlattenedSimpleProductResponse = SimpleProduct & {
   /**
    * The underlying HTTP response.
    */
@@ -524,32 +471,7 @@ export type PostFlattenedSimpleProductResponse = {
 /**
  * Contains response data for the putSimpleProductWithGrouping operation.
  */
-export type PutSimpleProductWithGroupingResponse = {
-  /**
-   * Unique identifier representing a specific product for a given latitude & longitude. For
-   * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-   */
-  productId: string;
-  /**
-   * Description of product.
-   */
-  description?: string;
-  /**
-   * Display name of product.
-   */
-  maxProductDisplayName: string;
-  /**
-   * Capacity of product. For example, 4 people.
-   */
-  capacity: string;
-  /**
-   * Generic URL value.
-   */
-  genericValue?: string;
-  /**
-   * URL value.
-   */
-  odatavalue?: string;
+export type PutSimpleProductWithGroupingResponse = SimpleProduct & {
   /**
    * The underlying HTTP response.
    */
