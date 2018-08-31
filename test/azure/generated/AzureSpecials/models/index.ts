@@ -152,11 +152,7 @@ export interface HeaderCustomNamedRequestIdHeadHeaders {
 /**
  * Contains response data for the customNamedRequestId operation.
  */
-export type HeaderCustomNamedRequestIdResponse = {
-  /**
-   * Gets the foo-request-id.
-   */
-  fooRequestId: string;
+export type HeaderCustomNamedRequestIdResponse = HeaderCustomNamedRequestIdHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -171,11 +167,7 @@ export type HeaderCustomNamedRequestIdResponse = {
 /**
  * Contains response data for the customNamedRequestIdParamGrouping operation.
  */
-export type HeaderCustomNamedRequestIdParamGroupingResponse = {
-  /**
-   * Gets the foo-request-id.
-   */
-  fooRequestId: string;
+export type HeaderCustomNamedRequestIdParamGroupingResponse = HeaderCustomNamedRequestIdParamGroupingHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -190,11 +182,7 @@ export type HeaderCustomNamedRequestIdParamGroupingResponse = {
 /**
  * Contains response data for the customNamedRequestIdHead operation.
  */
-export type HeaderCustomNamedRequestIdHeadResponse = {
-  /**
-   * Gets the foo-request-id.
-   */
-  fooRequestId: string;
+export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdHeadHeaders & {
   /**
    * The parsed response body.
    */

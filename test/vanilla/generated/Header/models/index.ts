@@ -276,11 +276,7 @@ export enum GreyscaleColors {
 /**
  * Contains response data for the responseExistingKey operation.
  */
-export type HeaderResponseExistingKeyResponse = {
-  /**
-   * response with header value "User-Agent": "overwrite"
-   */
-  userAgent: string;
+export type HeaderResponseExistingKeyResponse = HeaderResponseExistingKeyHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -295,11 +291,7 @@ export type HeaderResponseExistingKeyResponse = {
 /**
  * Contains response data for the responseProtectedKey operation.
  */
-export type HeaderResponseProtectedKeyResponse = {
-  /**
-   * response with header value "Content-Type": "text/html"
-   */
-  contentType: string;
+export type HeaderResponseProtectedKeyResponse = HeaderResponseProtectedKeyHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -314,11 +306,7 @@ export type HeaderResponseProtectedKeyResponse = {
 /**
  * Contains response data for the responseInteger operation.
  */
-export type HeaderResponseIntegerResponse = {
-  /**
-   * response with header value "value": 1 or -2
-   */
-  value: number;
+export type HeaderResponseIntegerResponse = HeaderResponseIntegerHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -333,11 +321,7 @@ export type HeaderResponseIntegerResponse = {
 /**
  * Contains response data for the responseLong operation.
  */
-export type HeaderResponseLongResponse = {
-  /**
-   * response with header value "value": 105 or -2
-   */
-  value: number;
+export type HeaderResponseLongResponse = HeaderResponseLongHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -352,11 +336,7 @@ export type HeaderResponseLongResponse = {
 /**
  * Contains response data for the responseFloat operation.
  */
-export type HeaderResponseFloatResponse = {
-  /**
-   * response with header value "value": 0.07 or -3.0
-   */
-  value: number;
+export type HeaderResponseFloatResponse = HeaderResponseFloatHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -371,11 +351,7 @@ export type HeaderResponseFloatResponse = {
 /**
  * Contains response data for the responseDouble operation.
  */
-export type HeaderResponseDoubleResponse = {
-  /**
-   * response with header value "value": 7e120 or -3.0
-   */
-  value: number;
+export type HeaderResponseDoubleResponse = HeaderResponseDoubleHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -390,11 +366,7 @@ export type HeaderResponseDoubleResponse = {
 /**
  * Contains response data for the responseBool operation.
  */
-export type HeaderResponseBoolResponse = {
-  /**
-   * response with header value "value": true or false
-   */
-  value: boolean;
+export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -409,11 +381,7 @@ export type HeaderResponseBoolResponse = {
 /**
  * Contains response data for the responseString operation.
  */
-export type HeaderResponseStringResponse = {
-  /**
-   * response with header values "The quick brown fox jumps over the lazy dog" or null or ""
-   */
-  value: string;
+export type HeaderResponseStringResponse = HeaderResponseStringHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -428,11 +396,7 @@ export type HeaderResponseStringResponse = {
 /**
  * Contains response data for the responseDate operation.
  */
-export type HeaderResponseDateResponse = {
-  /**
-   * response with header values "2010-01-01" or "0001-01-01"
-   */
-  value: Date;
+export type HeaderResponseDateResponse = HeaderResponseDateHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -447,11 +411,7 @@ export type HeaderResponseDateResponse = {
 /**
  * Contains response data for the responseDatetime operation.
  */
-export type HeaderResponseDatetimeResponse = {
-  /**
-   * response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
-   */
-  value: Date;
+export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -466,11 +426,7 @@ export type HeaderResponseDatetimeResponse = {
 /**
  * Contains response data for the responseDatetimeRfc1123 operation.
  */
-export type HeaderResponseDatetimeRfc1123Response = {
-  /**
-   * response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
-   */
-  value: Date;
+export type HeaderResponseDatetimeRfc1123Response = HeaderResponseDatetimeRfc1123Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -485,11 +441,7 @@ export type HeaderResponseDatetimeRfc1123Response = {
 /**
  * Contains response data for the responseDuration operation.
  */
-export type HeaderResponseDurationResponse = {
-  /**
-   * response with header values "P123DT22H14M12.011S"
-   */
-  value: string;
+export type HeaderResponseDurationResponse = HeaderResponseDurationHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -504,11 +456,7 @@ export type HeaderResponseDurationResponse = {
 /**
  * Contains response data for the responseByte operation.
  */
-export type HeaderResponseByteResponse = {
-  /**
-   * response with header values "啊齄丂狛狜隣郎隣兀﨩"
-   */
-  value: Uint8Array;
+export type HeaderResponseByteResponse = HeaderResponseByteHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -523,11 +471,7 @@ export type HeaderResponseByteResponse = {
 /**
  * Contains response data for the responseEnum operation.
  */
-export type HeaderResponseEnumResponse = {
-  /**
-   * response with header values "GREY" or null. Possible values include: 'White', 'black', 'GREY'
-   */
-  value: GreyscaleColors;
+export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
   /**
    * The underlying HTTP response.
    */

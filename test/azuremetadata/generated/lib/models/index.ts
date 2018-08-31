@@ -2718,34 +2718,7 @@ export enum Status {
 /**
  * Contains response data for the put200Succeeded operation.
  */
-export type LROsPut200SucceededResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPut200SucceededResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -2764,34 +2737,7 @@ export type LROsPut200SucceededResponse = {
 /**
  * Contains response data for the put200SucceededNoState operation.
  */
-export type LROsPut200SucceededNoStateResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPut200SucceededNoStateResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -2810,34 +2756,7 @@ export type LROsPut200SucceededNoStateResponse = {
 /**
  * Contains response data for the put202Retry200 operation.
  */
-export type LROsPut202Retry200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPut202Retry200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -2856,34 +2775,7 @@ export type LROsPut202Retry200Response = {
 /**
  * Contains response data for the put201CreatingSucceeded200 operation.
  */
-export type LROsPut201CreatingSucceeded200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -2902,34 +2794,7 @@ export type LROsPut201CreatingSucceeded200Response = {
 /**
  * Contains response data for the put200UpdatingSucceeded204 operation.
  */
-export type LROsPut200UpdatingSucceeded204Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPut200UpdatingSucceeded204Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -2948,34 +2813,7 @@ export type LROsPut200UpdatingSucceeded204Response = {
 /**
  * Contains response data for the put201CreatingFailed200 operation.
  */
-export type LROsPut201CreatingFailed200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPut201CreatingFailed200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -2994,34 +2832,7 @@ export type LROsPut201CreatingFailed200Response = {
 /**
  * Contains response data for the put200Acceptedcanceled200 operation.
  */
-export type LROsPut200Acceptedcanceled200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPut200Acceptedcanceled200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -3040,39 +2851,7 @@ export type LROsPut200Acceptedcanceled200Response = {
 /**
  * Contains response data for the putNoHeaderInRetry operation.
  */
-export type LROsPutNoHeaderInRetryResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/noheader/202/200/operationResults
-   */
-  locationHeader: string;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPutNoHeaderInRetryResponse = Product & LROsPutNoHeaderInRetryHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3095,48 +2874,7 @@ export type LROsPutNoHeaderInRetryResponse = {
 /**
  * Contains response data for the putAsyncRetrySucceeded operation.
  */
-export type LROsPutAsyncRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPutAsyncRetrySucceededResponse = Product & LROsPutAsyncRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3159,44 +2897,7 @@ export type LROsPutAsyncRetrySucceededResponse = {
 /**
  * Contains response data for the putAsyncNoRetrySucceeded operation.
  */
-export type LROsPutAsyncNoRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/noretry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/noretry/succeeded/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPutAsyncNoRetrySucceededResponse = Product & LROsPutAsyncNoRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3219,48 +2920,7 @@ export type LROsPutAsyncNoRetrySucceededResponse = {
 /**
  * Contains response data for the putAsyncRetryFailed operation.
  */
-export type LROsPutAsyncRetryFailedResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/failed/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/failed/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPutAsyncRetryFailedResponse = Product & LROsPutAsyncRetryFailedHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3283,44 +2943,7 @@ export type LROsPutAsyncRetryFailedResponse = {
 /**
  * Contains response data for the putAsyncNoRetrycanceled operation.
  */
-export type LROsPutAsyncNoRetrycanceledResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/noretry/canceled/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/noretry/canceled/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPutAsyncNoRetrycanceledResponse = Product & LROsPutAsyncNoRetrycanceledHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3343,35 +2966,7 @@ export type LROsPutAsyncNoRetrycanceledResponse = {
 /**
  * Contains response data for the putAsyncNoHeaderInRetry operation.
  */
-export type LROsPutAsyncNoHeaderInRetryResponse = {
-  azureAsyncOperation: string;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPutAsyncNoHeaderInRetryResponse = Product & LROsPutAsyncNoHeaderInRetryHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3394,9 +2989,7 @@ export type LROsPutAsyncNoHeaderInRetryResponse = {
 /**
  * Contains response data for the putNonResource operation.
  */
-export type LROsPutNonResourceResponse = {
-  name?: string;
-  id?: string;
+export type LROsPutNonResourceResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
@@ -3415,9 +3008,7 @@ export type LROsPutNonResourceResponse = {
 /**
  * Contains response data for the putAsyncNonResource operation.
  */
-export type LROsPutAsyncNonResourceResponse = {
-  name?: string;
-  id?: string;
+export type LROsPutAsyncNonResourceResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
@@ -3436,19 +3027,7 @@ export type LROsPutAsyncNonResourceResponse = {
 /**
  * Contains response data for the putSubResource operation.
  */
-export type LROsPutSubResourceResponse = {
-  /**
-   * Sub Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues1;
+export type LROsPutSubResourceResponse = SubProduct & {
   /**
    * The underlying HTTP response.
    */
@@ -3467,19 +3046,7 @@ export type LROsPutSubResourceResponse = {
 /**
  * Contains response data for the putAsyncSubResource operation.
  */
-export type LROsPutAsyncSubResourceResponse = {
-  /**
-   * Sub Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues1;
+export type LROsPutAsyncSubResourceResponse = SubProduct & {
   /**
    * The underlying HTTP response.
    */
@@ -3499,43 +3066,7 @@ export type LROsPutAsyncSubResourceResponse = {
  * Contains response data for the deleteProvisioning202Accepted200Succeeded
  * operation.
  */
-export type LROsDeleteProvisioning202Accepted200SucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/delete/provisioning/202/accepted/200/succeeded
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsDeleteProvisioning202Accepted200SucceededResponse = Product & LROsDeleteProvisioning202Accepted200SucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3559,43 +3090,7 @@ export type LROsDeleteProvisioning202Accepted200SucceededResponse = {
  * Contains response data for the deleteProvisioning202DeletingFailed200
  * operation.
  */
-export type LROsDeleteProvisioning202DeletingFailed200Response = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/delete/provisioning/202/deleting/200/failed
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsDeleteProvisioning202DeletingFailed200Response = Product & LROsDeleteProvisioning202DeletingFailed200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -3619,43 +3114,7 @@ export type LROsDeleteProvisioning202DeletingFailed200Response = {
  * Contains response data for the deleteProvisioning202Deletingcanceled200
  * operation.
  */
-export type LROsDeleteProvisioning202Deletingcanceled200Response = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/delete/provisioning/202/deleting/200/canceled
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsDeleteProvisioning202Deletingcanceled200Response = Product & LROsDeleteProvisioning202Deletingcanceled200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -3678,42 +3137,7 @@ export type LROsDeleteProvisioning202Deletingcanceled200Response = {
 /**
  * Contains response data for the delete202Retry200 operation.
  */
-export type LROsDelete202Retry200Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/delete/202/retry/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsDelete202Retry200Response = Product & LROsDelete202Retry200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -3736,42 +3160,7 @@ export type LROsDelete202Retry200Response = {
 /**
  * Contains response data for the delete202NoRetry204 operation.
  */
-export type LROsDelete202NoRetry204Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/delete/202/noretry/204
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsDelete202NoRetry204Response = Product & LROsDelete202NoRetry204Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -3794,11 +3183,7 @@ export type LROsDelete202NoRetry204Response = {
 /**
  * Contains response data for the deleteNoHeaderInRetry operation.
  */
-export type LROsDeleteNoHeaderInRetryResponse = {
-  /**
-   * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
-   */
-  location: string;
+export type LROsDeleteNoHeaderInRetryResponse = LROsDeleteNoHeaderInRetryHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3813,11 +3198,7 @@ export type LROsDeleteNoHeaderInRetryResponse = {
 /**
  * Contains response data for the deleteAsyncNoHeaderInRetry operation.
  */
-export type LROsDeleteAsyncNoHeaderInRetryResponse = {
-  /**
-   * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
-   */
-  location: string;
+export type LROsDeleteAsyncNoHeaderInRetryResponse = LROsDeleteAsyncNoHeaderInRetryHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3832,21 +3213,7 @@ export type LROsDeleteAsyncNoHeaderInRetryResponse = {
 /**
  * Contains response data for the deleteAsyncRetrySucceeded operation.
  */
-export type LROsDeleteAsyncRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/retry/succeeded/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3861,21 +3228,7 @@ export type LROsDeleteAsyncRetrySucceededResponse = {
 /**
  * Contains response data for the deleteAsyncNoRetrySucceeded operation.
  */
-export type LROsDeleteAsyncNoRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/noretry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/noretry/succeeded/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROsDeleteAsyncNoRetrySucceededResponse = LROsDeleteAsyncNoRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3890,21 +3243,7 @@ export type LROsDeleteAsyncNoRetrySucceededResponse = {
 /**
  * Contains response data for the deleteAsyncRetryFailed operation.
  */
-export type LROsDeleteAsyncRetryFailedResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/retry/failed/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/retry/failed/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROsDeleteAsyncRetryFailedResponse = LROsDeleteAsyncRetryFailedHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3919,21 +3258,7 @@ export type LROsDeleteAsyncRetryFailedResponse = {
 /**
  * Contains response data for the deleteAsyncRetrycanceled operation.
  */
-export type LROsDeleteAsyncRetrycanceledResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/retry/canceled/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/retry/canceled/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROsDeleteAsyncRetrycanceledResponse = LROsDeleteAsyncRetrycanceledHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -3948,9 +3273,7 @@ export type LROsDeleteAsyncRetrycanceledResponse = {
 /**
  * Contains response data for the post200WithPayload operation.
  */
-export type LROsPost200WithPayloadResponse = {
-  name?: string;
-  id?: string;
+export type LROsPost200WithPayloadResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
@@ -3969,15 +3292,7 @@ export type LROsPost200WithPayloadResponse = {
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export type LROsPost202Retry200Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/post/202/retry/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROsPost202Retry200Response = LROsPost202Retry200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -3992,42 +3307,7 @@ export type LROsPost202Retry200Response = {
 /**
  * Contains response data for the post202NoRetry204 operation.
  */
-export type LROsPost202NoRetry204Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/post/202/noretry/204
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPost202NoRetry204Response = Product & LROsPost202NoRetry204Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -4050,34 +3330,7 @@ export type LROsPost202NoRetry204Response = {
 /**
  * Contains response data for the postDoubleHeadersFinalLocationGet operation.
  */
-export type LROsPostDoubleHeadersFinalLocationGetResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPostDoubleHeadersFinalLocationGetResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4097,34 +3350,7 @@ export type LROsPostDoubleHeadersFinalLocationGetResponse = {
  * Contains response data for the postDoubleHeadersFinalAzureHeaderGet
  * operation.
  */
-export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4144,34 +3370,7 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = {
  * Contains response data for the postDoubleHeadersFinalAzureHeaderGetDefault
  * operation.
  */
-export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4190,48 +3389,7 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
 /**
  * Contains response data for the postAsyncRetrySucceeded operation.
  */
-export type LROsPostAsyncRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPostAsyncRetrySucceededResponse = Product & LROsPostAsyncRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -4254,48 +3412,7 @@ export type LROsPostAsyncRetrySucceededResponse = {
 /**
  * Contains response data for the postAsyncNoRetrySucceeded operation.
  */
-export type LROsPostAsyncNoRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsPostAsyncNoRetrySucceededResponse = Product & LROsPostAsyncNoRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -4318,21 +3435,7 @@ export type LROsPostAsyncNoRetrySucceededResponse = {
 /**
  * Contains response data for the postAsyncRetryFailed operation.
  */
-export type LROsPostAsyncRetryFailedResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/failed/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/failed/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROsPostAsyncRetryFailedResponse = LROsPostAsyncRetryFailedHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -4347,21 +3450,7 @@ export type LROsPostAsyncRetryFailedResponse = {
 /**
  * Contains response data for the postAsyncRetrycanceled operation.
  */
-export type LROsPostAsyncRetrycanceledResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/canceled/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/canceled/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROsPostAsyncRetrycanceledResponse = LROsPostAsyncRetrycanceledHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -4376,34 +3465,7 @@ export type LROsPostAsyncRetrycanceledResponse = {
 /**
  * Contains response data for the beginPut200Succeeded operation.
  */
-export type LROsBeginPut200SucceededResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPut200SucceededResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4422,34 +3484,7 @@ export type LROsBeginPut200SucceededResponse = {
 /**
  * Contains response data for the beginPut200SucceededNoState operation.
  */
-export type LROsBeginPut200SucceededNoStateResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPut200SucceededNoStateResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4468,34 +3503,7 @@ export type LROsBeginPut200SucceededNoStateResponse = {
 /**
  * Contains response data for the beginPut202Retry200 operation.
  */
-export type LROsBeginPut202Retry200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPut202Retry200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4514,34 +3522,7 @@ export type LROsBeginPut202Retry200Response = {
 /**
  * Contains response data for the beginPut201CreatingSucceeded200 operation.
  */
-export type LROsBeginPut201CreatingSucceeded200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4560,34 +3541,7 @@ export type LROsBeginPut201CreatingSucceeded200Response = {
 /**
  * Contains response data for the beginPut200UpdatingSucceeded204 operation.
  */
-export type LROsBeginPut200UpdatingSucceeded204Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPut200UpdatingSucceeded204Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4606,34 +3560,7 @@ export type LROsBeginPut200UpdatingSucceeded204Response = {
 /**
  * Contains response data for the beginPut201CreatingFailed200 operation.
  */
-export type LROsBeginPut201CreatingFailed200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPut201CreatingFailed200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4652,34 +3579,7 @@ export type LROsBeginPut201CreatingFailed200Response = {
 /**
  * Contains response data for the beginPut200Acceptedcanceled200 operation.
  */
-export type LROsBeginPut200Acceptedcanceled200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPut200Acceptedcanceled200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4698,9 +3598,7 @@ export type LROsBeginPut200Acceptedcanceled200Response = {
 /**
  * Contains response data for the beginPutNonResource operation.
  */
-export type LROsBeginPutNonResourceResponse = {
-  name?: string;
-  id?: string;
+export type LROsBeginPutNonResourceResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
@@ -4719,9 +3617,7 @@ export type LROsBeginPutNonResourceResponse = {
 /**
  * Contains response data for the beginPutAsyncNonResource operation.
  */
-export type LROsBeginPutAsyncNonResourceResponse = {
-  name?: string;
-  id?: string;
+export type LROsBeginPutAsyncNonResourceResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
@@ -4740,19 +3636,7 @@ export type LROsBeginPutAsyncNonResourceResponse = {
 /**
  * Contains response data for the beginPutSubResource operation.
  */
-export type LROsBeginPutSubResourceResponse = {
-  /**
-   * Sub Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues1;
+export type LROsBeginPutSubResourceResponse = SubProduct & {
   /**
    * The underlying HTTP response.
    */
@@ -4771,19 +3655,7 @@ export type LROsBeginPutSubResourceResponse = {
 /**
  * Contains response data for the beginPutAsyncSubResource operation.
  */
-export type LROsBeginPutAsyncSubResourceResponse = {
-  /**
-   * Sub Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues1;
+export type LROsBeginPutAsyncSubResourceResponse = SubProduct & {
   /**
    * The underlying HTTP response.
    */
@@ -4802,9 +3674,7 @@ export type LROsBeginPutAsyncSubResourceResponse = {
 /**
  * Contains response data for the beginPost200WithPayload operation.
  */
-export type LROsBeginPost200WithPayloadResponse = {
-  name?: string;
-  id?: string;
+export type LROsBeginPost200WithPayloadResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
@@ -4824,34 +3694,7 @@ export type LROsBeginPost200WithPayloadResponse = {
  * Contains response data for the beginPostDoubleHeadersFinalLocationGet
  * operation.
  */
-export type LROsBeginPostDoubleHeadersFinalLocationGetResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPostDoubleHeadersFinalLocationGetResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4871,34 +3714,7 @@ export type LROsBeginPostDoubleHeadersFinalLocationGetResponse = {
  * Contains response data for the beginPostDoubleHeadersFinalAzureHeaderGet
  * operation.
  */
-export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4918,34 +3734,7 @@ export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse = {
  * Contains response data for the
  * beginPostDoubleHeadersFinalAzureHeaderGetDefault operation.
  */
-export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -4964,34 +3753,7 @@ export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = {
 /**
  * Contains response data for the put201CreatingSucceeded200 operation.
  */
-export type LRORetrysPut201CreatingSucceeded200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LRORetrysPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -5010,48 +3772,7 @@ export type LRORetrysPut201CreatingSucceeded200Response = {
 /**
  * Contains response data for the putAsyncRelativeRetrySucceeded operation.
  */
-export type LRORetrysPutAsyncRelativeRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LRORetrysPutAsyncRelativeRetrySucceededResponse = Product & LRORetrysPutAsyncRelativeRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -5075,43 +3796,7 @@ export type LRORetrysPutAsyncRelativeRetrySucceededResponse = {
  * Contains response data for the deleteProvisioning202Accepted200Succeeded
  * operation.
  */
-export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = Product & LRORetrysDeleteProvisioning202Accepted200SucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -5134,15 +3819,7 @@ export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = {
 /**
  * Contains response data for the delete202Retry200 operation.
  */
-export type LRORetrysDelete202Retry200Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LRORetrysDelete202Retry200Response = LRORetrysDelete202Retry200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -5157,21 +3834,7 @@ export type LRORetrysDelete202Retry200Response = {
 /**
  * Contains response data for the deleteAsyncRelativeRetrySucceeded operation.
  */
-export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LRORetrysDeleteAsyncRelativeRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -5186,15 +3849,7 @@ export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = {
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export type LRORetrysPost202Retry200Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LRORetrysPost202Retry200Response = LRORetrysPost202Retry200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -5209,21 +3864,7 @@ export type LRORetrysPost202Retry200Response = {
 /**
  * Contains response data for the postAsyncRelativeRetrySucceeded operation.
  */
-export type LRORetrysPostAsyncRelativeRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/retryerror/putasync/retry/succeeded/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LRORetrysPostAsyncRelativeRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -5238,34 +3879,7 @@ export type LRORetrysPostAsyncRelativeRetrySucceededResponse = {
 /**
  * Contains response data for the beginPut201CreatingSucceeded200 operation.
  */
-export type LRORetrysBeginPut201CreatingSucceeded200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LRORetrysBeginPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -5284,34 +3898,7 @@ export type LRORetrysBeginPut201CreatingSucceeded200Response = {
 /**
  * Contains response data for the putNonRetry400 operation.
  */
-export type LROSADsPutNonRetry400Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPutNonRetry400Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -5330,34 +3917,7 @@ export type LROSADsPutNonRetry400Response = {
 /**
  * Contains response data for the putNonRetry201Creating400 operation.
  */
-export type LROSADsPutNonRetry201Creating400Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPutNonRetry201Creating400Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -5377,34 +3937,7 @@ export type LROSADsPutNonRetry201Creating400Response = {
  * Contains response data for the putNonRetry201Creating400InvalidJson
  * operation.
  */
-export type LROSADsPutNonRetry201Creating400InvalidJsonResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPutNonRetry201Creating400InvalidJsonResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -5423,48 +3956,7 @@ export type LROSADsPutNonRetry201Creating400InvalidJsonResponse = {
 /**
  * Contains response data for the putAsyncRelativeRetry400 operation.
  */
-export type LROSADsPutAsyncRelativeRetry400Response = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/nonretryerror/putasync/retry/operationResults/400
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/nonretryerror/putasync/retry/operationResults/400
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPutAsyncRelativeRetry400Response = Product & LROSADsPutAsyncRelativeRetry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -5487,15 +3979,7 @@ export type LROSADsPutAsyncRelativeRetry400Response = {
 /**
  * Contains response data for the deleteNonRetry400 operation.
  */
-export type LROSADsDeleteNonRetry400Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsDeleteNonRetry400Response = LROSADsDeleteNonRetry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -5510,15 +3994,7 @@ export type LROSADsDeleteNonRetry400Response = {
 /**
  * Contains response data for the delete202NonRetry400 operation.
  */
-export type LROSADsDelete202NonRetry400Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsDelete202NonRetry400Response = LROSADsDelete202NonRetry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -5533,21 +4009,7 @@ export type LROSADsDelete202NonRetry400Response = {
 /**
  * Contains response data for the deleteAsyncRelativeRetry400 operation.
  */
-export type LROSADsDeleteAsyncRelativeRetry400Response = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/nonretryerror/deleteasync/retry/operationResults/400
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/nonretryerror/deleteasync/retry/operationResults/400
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsDeleteAsyncRelativeRetry400Response = LROSADsDeleteAsyncRelativeRetry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -5562,15 +4024,7 @@ export type LROSADsDeleteAsyncRelativeRetry400Response = {
 /**
  * Contains response data for the postNonRetry400 operation.
  */
-export type LROSADsPostNonRetry400Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsPostNonRetry400Response = LROSADsPostNonRetry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -5585,15 +4039,7 @@ export type LROSADsPostNonRetry400Response = {
 /**
  * Contains response data for the post202NonRetry400 operation.
  */
-export type LROSADsPost202NonRetry400Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsPost202NonRetry400Response = LROSADsPost202NonRetry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -5608,21 +4054,7 @@ export type LROSADsPost202NonRetry400Response = {
 /**
  * Contains response data for the postAsyncRelativeRetry400 operation.
  */
-export type LROSADsPostAsyncRelativeRetry400Response = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/nonretryerror/putasync/retry/operationResults/400
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/nonretryerror/putasync/retry/operationResults/400
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsPostAsyncRelativeRetry400Response = LROSADsPostAsyncRelativeRetry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -5638,34 +4070,7 @@ export type LROSADsPostAsyncRelativeRetry400Response = {
  * Contains response data for the putError201NoProvisioningStatePayload
  * operation.
  */
-export type LROSADsPutError201NoProvisioningStatePayloadResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPutError201NoProvisioningStatePayloadResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -5684,48 +4089,7 @@ export type LROSADsPutError201NoProvisioningStatePayloadResponse = {
 /**
  * Contains response data for the putAsyncRelativeRetryNoStatus operation.
  */
-export type LROSADsPutAsyncRelativeRetryNoStatusResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPutAsyncRelativeRetryNoStatusResponse = Product & LROSADsPutAsyncRelativeRetryNoStatusHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -5749,48 +4113,7 @@ export type LROSADsPutAsyncRelativeRetryNoStatusResponse = {
  * Contains response data for the putAsyncRelativeRetryNoStatusPayload
  * operation.
  */
-export type LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse = Product & LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -5813,21 +4136,7 @@ export type LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse = {
 /**
  * Contains response data for the deleteAsyncRelativeRetryNoStatus operation.
  */
-export type LROSADsDeleteAsyncRelativeRetryNoStatusResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/deleteasync/retry/succeeded/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsDeleteAsyncRelativeRetryNoStatusResponse = LROSADsDeleteAsyncRelativeRetryNoStatusHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -5842,15 +4151,7 @@ export type LROSADsDeleteAsyncRelativeRetryNoStatusResponse = {
 /**
  * Contains response data for the post202NoLocation operation.
  */
-export type LROSADsPost202NoLocationResponse = {
-  /**
-   * Location to poll for result status: will not be set
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsPost202NoLocationResponse = LROSADsPost202NoLocationHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -5865,21 +4166,7 @@ export type LROSADsPost202NoLocationResponse = {
 /**
  * Contains response data for the postAsyncRelativeRetryNoPayload operation.
  */
-export type LROSADsPostAsyncRelativeRetryNoPayloadResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/error/putasync/retry/failed/operationResults/nopayload
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/error/putasync/retry/failed/operationResults/nopayload
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsPostAsyncRelativeRetryNoPayloadResponse = LROSADsPostAsyncRelativeRetryNoPayloadHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -5894,34 +4181,7 @@ export type LROSADsPostAsyncRelativeRetryNoPayloadResponse = {
 /**
  * Contains response data for the put200InvalidJson operation.
  */
-export type LROSADsPut200InvalidJsonResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPut200InvalidJsonResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -5940,48 +4200,7 @@ export type LROSADsPut200InvalidJsonResponse = {
 /**
  * Contains response data for the putAsyncRelativeRetryInvalidHeader operation.
  */
-export type LROSADsPutAsyncRelativeRetryInvalidHeaderResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/succeeded/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPutAsyncRelativeRetryInvalidHeaderResponse = Product & LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6005,48 +4224,7 @@ export type LROSADsPutAsyncRelativeRetryInvalidHeaderResponse = {
  * Contains response data for the putAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export type LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/failed/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/putasync/retry/failed/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse = Product & LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6069,15 +4247,7 @@ export type LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse = {
 /**
  * Contains response data for the delete202RetryInvalidHeader operation.
  */
-export type LROSADsDelete202RetryInvalidHeaderResponse = {
-  /**
-   * Location to poll for result status: will be set to /foo
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to /bar
-   */
-  retryAfter: number;
+export type LROSADsDelete202RetryInvalidHeaderResponse = LROSADsDelete202RetryInvalidHeaderHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6093,19 +4263,7 @@ export type LROSADsDelete202RetryInvalidHeaderResponse = {
  * Contains response data for the deleteAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export type LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse = {
-  /**
-   * Location to poll for result status: will be set to /foo
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to /foo
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to /bar
-   */
-  retryAfter: number;
+export type LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse = LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6121,21 +4279,7 @@ export type LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse = {
  * Contains response data for the deleteAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export type LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6150,15 +4294,7 @@ export type LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = {
 /**
  * Contains response data for the post202RetryInvalidHeader operation.
  */
-export type LROSADsPost202RetryInvalidHeaderResponse = {
-  /**
-   * Location to poll for result status: will be set to /foo
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to /bar
-   */
-  retryAfter: number;
+export type LROSADsPost202RetryInvalidHeaderResponse = LROSADsPost202RetryInvalidHeaderHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6174,19 +4310,7 @@ export type LROSADsPost202RetryInvalidHeaderResponse = {
  * Contains response data for the postAsyncRelativeRetryInvalidHeader
  * operation.
  */
-export type LROSADsPostAsyncRelativeRetryInvalidHeaderResponse = {
-  /**
-   * Location to poll for result status: will be set to foo
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to foo
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to /bar
-   */
-  retryAfter: number;
+export type LROSADsPostAsyncRelativeRetryInvalidHeaderResponse = LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6202,21 +4326,7 @@ export type LROSADsPostAsyncRelativeRetryInvalidHeaderResponse = {
  * Contains response data for the postAsyncRelativeRetryInvalidJsonPolling
  * operation.
  */
-export type LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse = LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6231,34 +4341,7 @@ export type LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse = {
 /**
  * Contains response data for the beginPutNonRetry400 operation.
  */
-export type LROSADsBeginPutNonRetry400Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsBeginPutNonRetry400Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -6277,34 +4360,7 @@ export type LROSADsBeginPutNonRetry400Response = {
 /**
  * Contains response data for the beginPutNonRetry201Creating400 operation.
  */
-export type LROSADsBeginPutNonRetry201Creating400Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsBeginPutNonRetry201Creating400Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -6324,34 +4380,7 @@ export type LROSADsBeginPutNonRetry201Creating400Response = {
  * Contains response data for the beginPutNonRetry201Creating400InvalidJson
  * operation.
  */
-export type LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -6371,34 +4400,7 @@ export type LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse = {
  * Contains response data for the beginPutError201NoProvisioningStatePayload
  * operation.
  */
-export type LROSADsBeginPutError201NoProvisioningStatePayloadResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsBeginPutError201NoProvisioningStatePayloadResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -6417,34 +4419,7 @@ export type LROSADsBeginPutError201NoProvisioningStatePayloadResponse = {
 /**
  * Contains response data for the beginPut200InvalidJson operation.
  */
-export type LROSADsBeginPut200InvalidJsonResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROSADsBeginPut200InvalidJsonResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -6463,48 +4438,7 @@ export type LROSADsBeginPut200InvalidJsonResponse = {
 /**
  * Contains response data for the putAsyncRetrySucceeded operation.
  */
-export type LROsCustomHeaderPutAsyncRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/customheader/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/customheader/putasync/retry/succeeded/operationResults/200
-   */
-  locationHeader: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsCustomHeaderPutAsyncRetrySucceededResponse = Product & LROsCustomHeaderPutAsyncRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6527,34 +4461,7 @@ export type LROsCustomHeaderPutAsyncRetrySucceededResponse = {
 /**
  * Contains response data for the put201CreatingSucceeded200 operation.
  */
-export type LROsCustomHeaderPut201CreatingSucceeded200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsCustomHeaderPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -6573,15 +4480,7 @@ export type LROsCustomHeaderPut201CreatingSucceeded200Response = {
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export type LROsCustomHeaderPost202Retry200Response = {
-  /**
-   * Location to poll for result status: will be set to /lro/customheader/post/202/retry/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROsCustomHeaderPost202Retry200Response = LROsCustomHeaderPost202Retry200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -6596,21 +4495,7 @@ export type LROsCustomHeaderPost202Retry200Response = {
 /**
  * Contains response data for the postAsyncRetrySucceeded operation.
  */
-export type LROsCustomHeaderPostAsyncRetrySucceededResponse = {
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/customheader/putasync/retry/succeeded/operationResults/200
-   */
-  azureAsyncOperation: string;
-  /**
-   * Location to poll for result status: will be set to
-   * /lro/customheader/putasync/retry/succeeded/operationResults/200
-   */
-  location: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
-  retryAfter: number;
+export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LROsCustomHeaderPostAsyncRetrySucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -6625,34 +4510,7 @@ export type LROsCustomHeaderPostAsyncRetrySucceededResponse = {
 /**
  * Contains response data for the beginPut201CreatingSucceeded200 operation.
  */
-export type LROsCustomHeaderBeginPut201CreatingSucceeded200Response = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource Type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
-  location?: string;
-  /**
-   * Resource Name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  provisioningState?: string;
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly provisioningStateValues?: ProvisioningStateValues;
+export type LROsCustomHeaderBeginPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */

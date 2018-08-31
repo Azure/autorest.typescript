@@ -498,22 +498,7 @@ export enum UsageUnit {
 /**
  * Contains response data for the checkNameAvailability operation.
  */
-export type StorageAccountsCheckNameAvailabilityResponse = {
-  /**
-   * Gets a boolean value that indicates whether the name is available for you to use. If true, the
-   * name is available. If false, the name has already been taken or invalid and cannot be used.
-   */
-  nameAvailable?: boolean;
-  /**
-   * Gets the reason that a storage account name could not be used. The Reason element is only
-   * returned if NameAvailable is false. Possible values include: 'AccountNameInvalid',
-   * 'AlreadyExists'
-   */
-  reason?: Reason;
-  /**
-   * Gets an error message explaining the Reason value in more detail.
-   */
-  message?: string;
+export type StorageAccountsCheckNameAvailabilityResponse = CheckNameAvailabilityResult & {
   /**
    * The underlying HTTP response.
    */
@@ -532,85 +517,7 @@ export type StorageAccountsCheckNameAvailabilityResponse = {
 /**
  * Contains response data for the create operation.
  */
-export type StorageAccountsCreateResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  /**
-   * Resource location
-   */
-  location: string;
-  /**
-   * Resource tags
-   */
-  tags?: { [propertyName: string]: string };
-  /**
-   * Gets the status of the storage account at the time the operation was called. Possible values
-   * include: 'Creating', 'ResolvingDNS', 'Succeeded'
-   */
-  provisioningState?: ProvisioningState;
-  /**
-   * Gets the type of the storage account. Possible values include: 'Standard_LRS', 'Standard_ZRS',
-   * 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'
-   */
-  accountType?: AccountType;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table
-   * object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.
-   */
-  primaryEndpoints?: Endpoints;
-  /**
-   * Gets the location of the primary for the storage account.
-   */
-  primaryLocation?: string;
-  /**
-   * Gets the status indicating whether the primary location of the storage account is available or
-   * unavailable. Possible values include: 'Available', 'Unavailable'
-   */
-  statusOfPrimary?: AccountStatus;
-  /**
-   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only
-   * the most recent timestamp is retained. This element is not returned if there has never been a
-   * failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
-   */
-  lastGeoFailoverTime?: Date;
-  /**
-   * Gets the location of the geo replicated secondary for the storage account. Only available if
-   * the accountType is StandardGRS or StandardRAGRS.
-   */
-  secondaryLocation?: string;
-  /**
-   * Gets the status indicating whether the secondary location of the storage account is available
-   * or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible
-   * values include: 'Available', 'Unavailable'
-   */
-  statusOfSecondary?: AccountStatus;
-  /**
-   * Gets the creation date and time of the storage account in UTC.
-   */
-  creationTime?: Date;
-  /**
-   * Gets the user assigned custom domain assigned to this storage account.
-   */
-  customDomain?: CustomDomain;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table object
-   * from the secondary location of the storage account. Only available if the accountType is
-   * StandardRAGRS.
-   */
-  secondaryEndpoints?: Endpoints;
+export type StorageAccountsCreateResponse = StorageAccount & {
   /**
    * The underlying HTTP response.
    */
@@ -629,85 +536,7 @@ export type StorageAccountsCreateResponse = {
 /**
  * Contains response data for the getProperties operation.
  */
-export type StorageAccountsGetPropertiesResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  /**
-   * Resource location
-   */
-  location: string;
-  /**
-   * Resource tags
-   */
-  tags?: { [propertyName: string]: string };
-  /**
-   * Gets the status of the storage account at the time the operation was called. Possible values
-   * include: 'Creating', 'ResolvingDNS', 'Succeeded'
-   */
-  provisioningState?: ProvisioningState;
-  /**
-   * Gets the type of the storage account. Possible values include: 'Standard_LRS', 'Standard_ZRS',
-   * 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'
-   */
-  accountType?: AccountType;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table
-   * object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.
-   */
-  primaryEndpoints?: Endpoints;
-  /**
-   * Gets the location of the primary for the storage account.
-   */
-  primaryLocation?: string;
-  /**
-   * Gets the status indicating whether the primary location of the storage account is available or
-   * unavailable. Possible values include: 'Available', 'Unavailable'
-   */
-  statusOfPrimary?: AccountStatus;
-  /**
-   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only
-   * the most recent timestamp is retained. This element is not returned if there has never been a
-   * failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
-   */
-  lastGeoFailoverTime?: Date;
-  /**
-   * Gets the location of the geo replicated secondary for the storage account. Only available if
-   * the accountType is StandardGRS or StandardRAGRS.
-   */
-  secondaryLocation?: string;
-  /**
-   * Gets the status indicating whether the secondary location of the storage account is available
-   * or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible
-   * values include: 'Available', 'Unavailable'
-   */
-  statusOfSecondary?: AccountStatus;
-  /**
-   * Gets the creation date and time of the storage account in UTC.
-   */
-  creationTime?: Date;
-  /**
-   * Gets the user assigned custom domain assigned to this storage account.
-   */
-  customDomain?: CustomDomain;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table object
-   * from the secondary location of the storage account. Only available if the accountType is
-   * StandardRAGRS.
-   */
-  secondaryEndpoints?: Endpoints;
+export type StorageAccountsGetPropertiesResponse = StorageAccount & {
   /**
    * The underlying HTTP response.
    */
@@ -726,85 +555,7 @@ export type StorageAccountsGetPropertiesResponse = {
 /**
  * Contains response data for the update operation.
  */
-export type StorageAccountsUpdateResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  /**
-   * Resource location
-   */
-  location: string;
-  /**
-   * Resource tags
-   */
-  tags?: { [propertyName: string]: string };
-  /**
-   * Gets the status of the storage account at the time the operation was called. Possible values
-   * include: 'Creating', 'ResolvingDNS', 'Succeeded'
-   */
-  provisioningState?: ProvisioningState;
-  /**
-   * Gets the type of the storage account. Possible values include: 'Standard_LRS', 'Standard_ZRS',
-   * 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'
-   */
-  accountType?: AccountType;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table
-   * object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.
-   */
-  primaryEndpoints?: Endpoints;
-  /**
-   * Gets the location of the primary for the storage account.
-   */
-  primaryLocation?: string;
-  /**
-   * Gets the status indicating whether the primary location of the storage account is available or
-   * unavailable. Possible values include: 'Available', 'Unavailable'
-   */
-  statusOfPrimary?: AccountStatus;
-  /**
-   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only
-   * the most recent timestamp is retained. This element is not returned if there has never been a
-   * failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
-   */
-  lastGeoFailoverTime?: Date;
-  /**
-   * Gets the location of the geo replicated secondary for the storage account. Only available if
-   * the accountType is StandardGRS or StandardRAGRS.
-   */
-  secondaryLocation?: string;
-  /**
-   * Gets the status indicating whether the secondary location of the storage account is available
-   * or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible
-   * values include: 'Available', 'Unavailable'
-   */
-  statusOfSecondary?: AccountStatus;
-  /**
-   * Gets the creation date and time of the storage account in UTC.
-   */
-  creationTime?: Date;
-  /**
-   * Gets the user assigned custom domain assigned to this storage account.
-   */
-  customDomain?: CustomDomain;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table object
-   * from the secondary location of the storage account. Only available if the accountType is
-   * StandardRAGRS.
-   */
-  secondaryEndpoints?: Endpoints;
+export type StorageAccountsUpdateResponse = StorageAccount & {
   /**
    * The underlying HTTP response.
    */
@@ -823,15 +574,7 @@ export type StorageAccountsUpdateResponse = {
 /**
  * Contains response data for the listKeys operation.
  */
-export type StorageAccountsListKeysResponse = {
-  /**
-   * Gets the value of key 1.
-   */
-  key1?: string;
-  /**
-   * Gets the value of key 2.
-   */
-  key2?: string;
+export type StorageAccountsListKeysResponse = StorageAccountKeys & {
   /**
    * The underlying HTTP response.
    */
@@ -850,16 +593,7 @@ export type StorageAccountsListKeysResponse = {
 /**
  * Contains response data for the list operation.
  */
-export type StorageAccountsListResponse = {
-  /**
-   * Gets the list of storage accounts and their properties.
-   */
-  value?: StorageAccount[];
-  /**
-   * Gets the link to the next set of results. Currently this will always be empty as the API does
-   * not support pagination.
-   */
-  nextLink?: string;
+export type StorageAccountsListResponse = StorageAccountListResult & {
   /**
    * The underlying HTTP response.
    */
@@ -878,16 +612,7 @@ export type StorageAccountsListResponse = {
 /**
  * Contains response data for the listByResourceGroup operation.
  */
-export type StorageAccountsListByResourceGroupResponse = {
-  /**
-   * Gets the list of storage accounts and their properties.
-   */
-  value?: StorageAccount[];
-  /**
-   * Gets the link to the next set of results. Currently this will always be empty as the API does
-   * not support pagination.
-   */
-  nextLink?: string;
+export type StorageAccountsListByResourceGroupResponse = StorageAccountListResult & {
   /**
    * The underlying HTTP response.
    */
@@ -906,15 +631,7 @@ export type StorageAccountsListByResourceGroupResponse = {
 /**
  * Contains response data for the regenerateKey operation.
  */
-export type StorageAccountsRegenerateKeyResponse = {
-  /**
-   * Gets the value of key 1.
-   */
-  key1?: string;
-  /**
-   * Gets the value of key 2.
-   */
-  key2?: string;
+export type StorageAccountsRegenerateKeyResponse = StorageAccountKeys & {
   /**
    * The underlying HTTP response.
    */
@@ -933,85 +650,7 @@ export type StorageAccountsRegenerateKeyResponse = {
 /**
  * Contains response data for the beginCreate operation.
  */
-export type StorageAccountsBeginCreateResponse = {
-  /**
-   * Resource Id
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   * **NOTE: This property will not be serialized. It can only be populated by the server.**
-   */
-  readonly type?: string;
-  /**
-   * Resource location
-   */
-  location: string;
-  /**
-   * Resource tags
-   */
-  tags?: { [propertyName: string]: string };
-  /**
-   * Gets the status of the storage account at the time the operation was called. Possible values
-   * include: 'Creating', 'ResolvingDNS', 'Succeeded'
-   */
-  provisioningState?: ProvisioningState;
-  /**
-   * Gets the type of the storage account. Possible values include: 'Standard_LRS', 'Standard_ZRS',
-   * 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'
-   */
-  accountType?: AccountType;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table
-   * object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.
-   */
-  primaryEndpoints?: Endpoints;
-  /**
-   * Gets the location of the primary for the storage account.
-   */
-  primaryLocation?: string;
-  /**
-   * Gets the status indicating whether the primary location of the storage account is available or
-   * unavailable. Possible values include: 'Available', 'Unavailable'
-   */
-  statusOfPrimary?: AccountStatus;
-  /**
-   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only
-   * the most recent timestamp is retained. This element is not returned if there has never been a
-   * failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
-   */
-  lastGeoFailoverTime?: Date;
-  /**
-   * Gets the location of the geo replicated secondary for the storage account. Only available if
-   * the accountType is StandardGRS or StandardRAGRS.
-   */
-  secondaryLocation?: string;
-  /**
-   * Gets the status indicating whether the secondary location of the storage account is available
-   * or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible
-   * values include: 'Available', 'Unavailable'
-   */
-  statusOfSecondary?: AccountStatus;
-  /**
-   * Gets the creation date and time of the storage account in UTC.
-   */
-  creationTime?: Date;
-  /**
-   * Gets the user assigned custom domain assigned to this storage account.
-   */
-  customDomain?: CustomDomain;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue or table object
-   * from the secondary location of the storage account. Only available if the accountType is
-   * StandardRAGRS.
-   */
-  secondaryEndpoints?: Endpoints;
+export type StorageAccountsBeginCreateResponse = StorageAccount & {
   /**
    * The underlying HTTP response.
    */
@@ -1030,11 +669,7 @@ export type StorageAccountsBeginCreateResponse = {
 /**
  * Contains response data for the list operation.
  */
-export type UsageListResponse = {
-  /**
-   * Gets or sets the list Storage Resource Usages.
-   */
-  value?: Usage[];
+export type UsageListResponse = UsageListResult & {
   /**
    * The underlying HTTP response.
    */

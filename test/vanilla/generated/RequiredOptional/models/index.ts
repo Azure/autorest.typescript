@@ -341,9 +341,7 @@ export interface ExplicitPostOptionalArrayHeaderOptionalParams extends msRest.Re
 /**
  * Contains response data for the getRequiredPath operation.
  */
-export type ImplicitGetRequiredPathResponse = {
-  status?: number;
-  message?: string;
+export type ImplicitGetRequiredPathResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -362,9 +360,7 @@ export type ImplicitGetRequiredPathResponse = {
 /**
  * Contains response data for the getRequiredGlobalPath operation.
  */
-export type ImplicitGetRequiredGlobalPathResponse = {
-  status?: number;
-  message?: string;
+export type ImplicitGetRequiredGlobalPathResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -383,9 +379,7 @@ export type ImplicitGetRequiredGlobalPathResponse = {
 /**
  * Contains response data for the getRequiredGlobalQuery operation.
  */
-export type ImplicitGetRequiredGlobalQueryResponse = {
-  status?: number;
-  message?: string;
+export type ImplicitGetRequiredGlobalQueryResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -404,9 +398,7 @@ export type ImplicitGetRequiredGlobalQueryResponse = {
 /**
  * Contains response data for the getOptionalGlobalQuery operation.
  */
-export type ImplicitGetOptionalGlobalQueryResponse = {
-  status?: number;
-  message?: string;
+export type ImplicitGetOptionalGlobalQueryResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -425,9 +417,7 @@ export type ImplicitGetOptionalGlobalQueryResponse = {
 /**
  * Contains response data for the postRequiredIntegerParameter operation.
  */
-export type ExplicitPostRequiredIntegerParameterResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredIntegerParameterResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -446,9 +436,7 @@ export type ExplicitPostRequiredIntegerParameterResponse = {
 /**
  * Contains response data for the postRequiredIntegerProperty operation.
  */
-export type ExplicitPostRequiredIntegerPropertyResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredIntegerPropertyResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -467,9 +455,7 @@ export type ExplicitPostRequiredIntegerPropertyResponse = {
 /**
  * Contains response data for the postRequiredIntegerHeader operation.
  */
-export type ExplicitPostRequiredIntegerHeaderResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredIntegerHeaderResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -488,9 +474,7 @@ export type ExplicitPostRequiredIntegerHeaderResponse = {
 /**
  * Contains response data for the postRequiredStringParameter operation.
  */
-export type ExplicitPostRequiredStringParameterResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredStringParameterResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -509,9 +493,7 @@ export type ExplicitPostRequiredStringParameterResponse = {
 /**
  * Contains response data for the postRequiredStringProperty operation.
  */
-export type ExplicitPostRequiredStringPropertyResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredStringPropertyResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -530,9 +512,7 @@ export type ExplicitPostRequiredStringPropertyResponse = {
 /**
  * Contains response data for the postRequiredStringHeader operation.
  */
-export type ExplicitPostRequiredStringHeaderResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredStringHeaderResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -551,9 +531,7 @@ export type ExplicitPostRequiredStringHeaderResponse = {
 /**
  * Contains response data for the postRequiredClassParameter operation.
  */
-export type ExplicitPostRequiredClassParameterResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredClassParameterResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -572,9 +550,7 @@ export type ExplicitPostRequiredClassParameterResponse = {
 /**
  * Contains response data for the postRequiredClassProperty operation.
  */
-export type ExplicitPostRequiredClassPropertyResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredClassPropertyResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -593,9 +569,7 @@ export type ExplicitPostRequiredClassPropertyResponse = {
 /**
  * Contains response data for the postRequiredArrayParameter operation.
  */
-export type ExplicitPostRequiredArrayParameterResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredArrayParameterResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -614,9 +588,7 @@ export type ExplicitPostRequiredArrayParameterResponse = {
 /**
  * Contains response data for the postRequiredArrayProperty operation.
  */
-export type ExplicitPostRequiredArrayPropertyResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredArrayPropertyResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
@@ -635,9 +607,7 @@ export type ExplicitPostRequiredArrayPropertyResponse = {
 /**
  * Contains response data for the postRequiredArrayHeader operation.
  */
-export type ExplicitPostRequiredArrayHeaderResponse = {
-  status?: number;
-  message?: string;
+export type ExplicitPostRequiredArrayHeaderResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
