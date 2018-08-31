@@ -4,11 +4,13 @@
 'use strict';
 
 import * as should from 'should';
+import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
 import * as msRest from 'ms-rest-js';
 import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestPagingTestService } from './generated/Paging/autoRestPagingTestService';
+import { PagingGetMultiplePagesResponse } from './generated/Paging/models';
 
 var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
@@ -29,12 +31,19 @@ describe('typescript', function () {
       clientOptions.noRetryPolicy = true;
       var testClient = new AutoRestPagingTestService(credentials, baseUri, clientOptions);
 
-      it('should get single pages', function (done) {
-        testClient.paging.getSinglePages(function (error, result) {
-          should.not.exist(error);
-          should.not.exist(result.nextLink);
-          done();
-        });
+      it('should get single pages', async function () {
+        const result = await testClient.paging.getSinglePages();
+        should.not.exist(result.nextLink);
+        assert.deepEqual(result.slice(), [{ properties: { id: 1, name: "Product" } }]);
+      });
+
+      it('should get multiple pages using promises', async function () {
+        let result = await testClient.paging.getMultiplePages({ clientRequestId: 'client-id' });
+        for (let i = 1; i < 10; i++) {
+          should.exist(result.nextLink);
+          result = await testClient.paging.getMultiplePagesNext(result.nextLink, { clientRequestId: 'client-id' });
+        }
+        should.not.exist(result.nextLink);
       });
 
       it('should get multiple pages', function (done) {
