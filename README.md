@@ -32,8 +32,10 @@ autorest --typescript \
   --package-name=<your-package-name> \
   --package-version=<your-package-version>
 ```
-### Generate Metadata files
-Generating MetaData files enable you to build and pack the result as an NPM Package.
+
+# Flags
+## --generate-metadata
+Generating metadata files enable you to build and pack the result as an NPM package.
 If you want to generate metadata files provide `--generate-metadata=true`
 
 - package.json
@@ -56,7 +58,7 @@ autorest --typescript \
   --generate-metadata=true
 ```
 
-### Generate enums as unions
+## --model-enum-as-union
 By default, a Swagger enum is translated into a TypeScript enum, like so:
 ```ts
 enum Colors {
@@ -71,7 +73,7 @@ type Colors = 'red color' | 'green-color' | 'blue_color';
 ```
 This can save some space when bundling for the browser.
 
-### Generate date-times as strings
+## --model-date-time-as-string
 Swagger strings can have the format `"date-time"`, which causes AutoRest to model the parameter as JavaScript Date.
 ```ts
   putDate(date: Date): Promise<RestResponse>;
@@ -86,7 +88,24 @@ or require greater precision than what the JavaScript Date provides out of the b
   putDate(date: string): Promise<RestResponse>;
 ```
 
-Note that properties with the format `"date"` or `"date-time-rfc1123"` are unaffected by this flag.
+## --optional-response-headers
+Swagger response headers don't have the ability to specify whether the header is required or optional.
+The generator will make the generated response headers all required by default.
+
+```ts
+export interface MyOperationHeaders {
+  fooHeader: string;
+  barHeader: string;
+}
+```
+
+If you pass `--optional-response-headers=true` to the generator, it will instead make all the response headers optional.
+```ts
+export interface MyOperationHeaders {
+  fooHeader?: string;
+  barHeader?: string;
+}
+```
 
 ### Azure Service Client
 For generating a client for an azure service, provide `--typescript.azure-arm=true`:
