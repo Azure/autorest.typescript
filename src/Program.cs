@@ -161,8 +161,8 @@ namespace AutoRest.TypeScript
             void initializeSettings(CodeModelTS codeModel)
             {
                 GeneratorSettingsTS generatorSettings = Singleton<GeneratorSettingsTS>.Instance;
-                codeModel.PackageName = Settings.Instance.PackageName;
-                codeModel.PackageVersion = Settings.Instance.PackageVersion;
+                codeModel.PackageName = generatorSettings.PackageName;
+                codeModel.PackageVersion = Settings.Instance.PackageVersion; // todo: remove?
                 codeModel.OutputFolder = generatorSettings.OutputFolder;
                 codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
                 codeModel.ModelDateTimeAsString = generatorSettings.ModelDateTimeAsString;
