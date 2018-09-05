@@ -21,7 +21,7 @@ const config = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-          configFile: path.join(__dirname, "tsconfig.webpack.json")
+          configFile: path.join(__dirname, "tsconfig.esm.json")
         }
       }
     ]

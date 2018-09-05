@@ -1,32 +1,18 @@
 {
   "compilerOptions": {
-    "alwaysStrict": true,
-    "noImplicitAny": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "newLine": "LF",
-    "target": "es6",
-    "moduleResolution": "node",
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "allowJs": false,
-    "strict": true,
-    "strictNullChecks": true,
     "module": "commonjs",
-    "outDir": "./dist/lib",
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "es6",
+    "sourceMap": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es5"],
     "declaration": true,
-    "declarationDir": "./typings/lib",
-    "importHelpers": true,
-    "lib": [ "dom", "dom.iterable", "es5", "es6", "es7", "esnext", "esnext.asynciterable", "es2015.iterable"]
   },
-  "compileOnSave": true,
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "./lib/**/*.ts",
-    "./test/**/*.ts"
-  ]
+  "outDir": "./cjs",
+  "include": ["./lib/**/*"],
+  "exclude": ["node_modules"]
 }

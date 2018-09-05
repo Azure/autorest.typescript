@@ -18,7 +18,7 @@ npm install
 
 ### nodejs - Authentication, client creation and getValid basic as an example written in TypeScript.
 
-```javascript
+```ts
 import * as msRest from "ms-rest-js";
 import { AutoRestComplexTestService, AutoRestComplexTestServiceModels, AutoRestComplexTestServiceMappers } from "";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
@@ -30,8 +30,7 @@ client.basic.getValid().then((result) => {
   console.log("The result is:");
   console.log(result);
 }).catch((err) => {
-  console.log('An error ocurred:');
-  console.dir(err, {depth: null, colors: true});
+  console.error(err);
 });
 ```
 
@@ -42,11 +41,10 @@ client.basic.getValid().then((result) => {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>My Todos</title>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestBundle.js"></script>
+    <title> sample</title>
+    <script type="text/javascript" src="./node_modules/ms-rest-js/msRestBundle.js"></script>
     <script type="text/javascript" src="./autoRestComplexTestServiceBundle.js"></script>
     <script type="text/javascript">
-      document.write('hello world');
       const subscriptionId = "<Subscription_Id>";
       const token = "<access_token>";
       const creds = new msRest.TokenCredentials(token);
@@ -55,8 +53,7 @@ client.basic.getValid().then((result) => {
         console.log("The result is:");
         console.log(result);
       }).catch((err) => {
-        console.log('An error ocurred:');
-        console.dir(err, { depth: null, colors: true});
+        console.error(err);
       });
     </script>
   </head>

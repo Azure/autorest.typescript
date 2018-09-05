@@ -19,8 +19,8 @@
   "devDependencies": {
     "ts-loader": "^4.4.2",
     "tslib": "^1.9.3",
-    "typescript": "^2.9.2",
-    "webpack": "^4.16.2",
+    "typescript": "^3.0.3",
+    "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0"
   },
   "homepage": "https://github.com/azure/azure-sdk-for-js",
@@ -32,6 +32,6 @@
     "url": "https://github.com/azure/azure-sdk-for-js/issues"
   },
   "scripts": {
-    "build": "tsc && webpack"
+    "build": "tsc  && webpack"
   }
 }

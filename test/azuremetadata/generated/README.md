@@ -18,7 +18,7 @@ npm install
 
 ### nodejs - Authentication, client creation and put200Succeeded lROs as an example written in TypeScript.
 
-```javascript
+```ts
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import * as msRestNodeAuth from "ms-rest-nodeauth";
@@ -37,8 +37,7 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
     console.log(result);
   });
 }).catch((err) => {
-  console.log('An error ocurred:');
-  console.dir(err, {depth: null, colors: true});
+  console.error(err);
 });
 ```
 
@@ -49,12 +48,11 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>My Todos</title>
+    <title> sample</title>
     <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestBundle.js"></script>
     <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestAzureBundle.js"></script>
     <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services//autoRestLongRunningOperationTestServiceBundle.js"></script>
     <script type="text/javascript">
-      document.write('hello world');
       const subscriptionId = "<Subscription_Id>";
       const token = "<access_token>";
       const creds = new msRest.TokenCredentials(token);
@@ -69,7 +67,7 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
         console.log(result);
       }).catch((err) => {
         console.log('An error ocurred:');
-        console.dir(err, { depth: null, colors: true});
+        console.error(err);
       });
     </script>
   </head>
