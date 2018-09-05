@@ -1,22 +1,39 @@
 ﻿@using System.Linq
 @using AutoRest.TypeScript.vanilla.Templates
-@inherits AutoRest.Core.Template<object>
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 {
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "typings",
     "module": "commonjs",
     "moduleResolution": "node",
     "strict": true,
-    "outDir": "./cjs",
     "target": "es6",
     "sourceMap": true,
     "declarationMap": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es5"]
+    "lib": ["es5"],
+    "declaration": true,
+@if(!string.IsNullOrEmpty(Model.DefaultApiVersion))
+{
+<text>
+    "composite": true
+</text>
+}
   },
+@if(string.IsNullOrEmpty(Model.DefaultApiVersion))
+{
+<text>
+  "outDir": "./cjs",
   "include": ["./lib/**/*"],
   "exclude": ["node_modules"]
+</text>
+}
+else
+{
+<text>
+  "references": @(Model.GenerateTsConfigReferences()),
+  "include": []
+</text>
+}
 }

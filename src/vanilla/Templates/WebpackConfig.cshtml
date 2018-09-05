@@ -13,7 +13,18 @@ const path = require('path');
  */
 const config = {
   mode: 'production',
+@if (!string.IsNullOrEmpty(Model.DefaultApiVersion))
+{
+<text>
+  entry: './@(Model.DefaultApiVersion)/lib/@(Model.Name.ToCamelCase()).ts',
+</text>
+}
+else
+{
+<text>
   entry: './lib/@(Model.Name.ToCamelCase()).ts',
+</text>
+}
   devtool: 'source-map',
   output: {
     filename: '@(Model.Name.ToCamelCase())Bundle.js',
@@ -27,7 +38,18 @@ const config = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-          configFile: path.join(__dirname, "tsconfig.webpack.json")
+@if (!string.IsNullOrEmpty(Model.DefaultApiVersion))
+{
+<text>
+          configFile: path.join(__dirname, '@(Model.DefaultApiVersion)/tsconfig.esm.json'),
+</text>
+}
+else
+{
+<text>
+          configFile: path.join(__dirname, "tsconfig.esm.json")
+</text>
+}
         }
       }
     ]

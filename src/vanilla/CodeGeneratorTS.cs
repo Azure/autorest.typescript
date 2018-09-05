@@ -82,12 +82,12 @@ namespace AutoRest.TypeScript
                 await Write(packageJson, Path.Combine("../", "package.json"));
 
                 //tsconfig.json
-                var nodeTsConfig = new TsConfig();
+                var nodeTsConfig = new TsConfig { Model = codeModel };
                 await Write(nodeTsConfig, Path.Combine("../", "tsconfig.json"));
 
-                //tsconfig.webpack.json
+                //tsconfig.esm.json
                 var webpackTsConfig = new TsConfigWebpack();
-                await Write(webpackTsConfig, Path.Combine("../", "tsconfig.webpack.json"));
+                await Write(webpackTsConfig, Path.Combine("../", "tsconfig.esm.json"));
 
                 // webpack.config.js
                 var webpackConfig = new WebpackConfig { Model = codeModel };

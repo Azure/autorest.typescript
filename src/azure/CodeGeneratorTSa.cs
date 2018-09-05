@@ -40,56 +40,74 @@ namespace AutoRest.TypeScript.Azure
                 throw new InvalidCastException("CodeModel is not a Azure TypeScript code model.");
             }
 
-            // Service client
-            var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel };
-            await Write(serviceClientTemplate, codeModel.Name.ToCamelCase() + ".ts");
-            await Write(new AzureServiceClientContextTemplate { Model = codeModel }, codeModel.ContextName.ToCamelCase() + ".ts");
-            var modelIndexTemplate = new AzureModelIndexTemplate { Model = codeModel };
-            await Write(modelIndexTemplate, Path.Combine("models", "index.ts"));
-            var mapperIndexTemplate = new AzureMapperIndexTemplate { Model = codeModel };
-            await Write(mapperIndexTemplate, Path.Combine("models", "mappers.ts"));
-            await Write(new ParameterTemplate {Model = codeModel}, Path.Combine("models", "parameters.ts"));
-
-            //MethodGroups
-            if (codeModel.MethodGroupModels.Any())
+            if (string.IsNullOrEmpty(codeModel.DefaultApiVersion))
             {
-                var methodGroupIndexTemplate = new MethodGroupIndexTemplate { Model = codeModel };
-                await Write(methodGroupIndexTemplate, Path.Combine("operations", "index.ts"));
+                // Service client
+                var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel };
+                await Write(serviceClientTemplate, codeModel.Name.ToCamelCase() + ".ts");
+                await Write(new AzureServiceClientContextTemplate { Model = codeModel }, codeModel.ContextName.ToCamelCase() + ".ts");
+                var modelIndexTemplate = new AzureModelIndexTemplate { Model = codeModel };
+                await Write(modelIndexTemplate, Path.Combine("models", "index.ts"));
+                var mapperIndexTemplate = new AzureMapperIndexTemplate { Model = codeModel };
+                await Write(mapperIndexTemplate, Path.Combine("models", "mappers.ts"));
+                await Write(new ParameterTemplate {Model = codeModel}, Path.Combine("models", "parameters.ts"));
 
-                foreach (var methodGroupModel in codeModel.MethodGroupModels)
+                //MethodGroups
+                if (codeModel.MethodGroupModels.Any())
                 {
-                    var mappersTemplate = new MethodGroupMappersTemplate { Model = methodGroupModel };
-                    await Write(mappersTemplate, Path.Combine("models", methodGroupModel.MappersModuleName + ".ts"));
-                    var methodGroupTemplate = new AzureMethodGroupTemplate { Model = methodGroupModel };
-                    await Write(methodGroupTemplate, Path.Combine("operations", methodGroupModel.TypeName.ToCamelCase() + ".ts"));
+                    var methodGroupIndexTemplate = new MethodGroupIndexTemplate { Model = codeModel };
+                    await Write(methodGroupIndexTemplate, Path.Combine("operations", "index.ts"));
+
+                    foreach (var methodGroupModel in codeModel.MethodGroupModels)
+                    {
+                        var mappersTemplate = new MethodGroupMappersTemplate { Model = methodGroupModel };
+                        await Write(mappersTemplate, Path.Combine("models", methodGroupModel.MappersModuleName + ".ts"));
+                        var methodGroupTemplate = new AzureMethodGroupTemplate { Model = methodGroupModel };
+                        await Write(methodGroupTemplate, Path.Combine("operations", methodGroupModel.TypeName.ToCamelCase() + ".ts"));
+                    }
                 }
             }
 
             if (codeModel.GenerateMetadata)
             {
-                // package.json
-                var packageJson = new PackageJson { Model = codeModel };
-                await Write(packageJson, Path.Combine("../", "package.json"));
+                if (codeModel.MultiApi && string.IsNullOrEmpty(codeModel.DefaultApiVersion))
+                {
+                    await Write(new PackageJsonMultiApi() { Model = codeModel },
+                        Path.Combine("../", "package.json"));
 
-                //tsconfig.json
-                var nodeTsConfig = new TsConfig();
-                await Write(nodeTsConfig, Path.Combine("../", "tsconfig.json"));
 
-                //tsconfig.webpack.json
-                var webpackTsConfig = new TsConfigWebpack();
-                await Write(webpackTsConfig, Path.Combine("../", "tsconfig.webpack.json"));
+                    await Write(new TsConfigMultiApi() { Model = codeModel },
+                        Path.Combine("../", "tsconfig.json"));
 
-                // webpack.config.js
-                var webpackConfig = new WebpackConfig { Model = codeModel };
-                await Write(webpackConfig, Path.Combine("../", "webpack.config.js"));
+                    await Write(new TsConfigWebpackMultiApi() { Model = codeModel },
+                        Path.Combine("../", "tsconfig.esm.json"));
+                }
+                else
+                {
+                    // package.json
+                    var packageJson = new PackageJson { Model = codeModel };
+                    await Write(packageJson, Path.Combine("../", "package.json"));
 
-                // .npmignore
-                var npmIgnore = new NpmIgnore { Model = codeModel };
-                await Write(npmIgnore, Path.Combine("../", ".npmignore"));
+                    //tsconfig.json
+                    var nodeTsConfig = new TsConfig { Model = codeModel };
+                    await Write(nodeTsConfig, Path.Combine("../", "tsconfig.json"));
 
-                //README.md
-                var readme = new AzureReadmeTemplate { Model = codeModel };
-                await Write(readme, Path.Combine("../", "README.md"));
+                    //tsconfig.esm.json
+                    var webpackTsConfig = new TsConfigWebpack();
+                    await Write(webpackTsConfig, Path.Combine("../", "tsconfig.esm.json"));
+
+                    // webpack.config.js
+                    var webpackConfig = new WebpackConfig { Model = codeModel };
+                    await Write(webpackConfig, Path.Combine("../", "webpack.config.js"));
+
+                    // .npmignore
+                    var npmIgnore = new NpmIgnore { Model = codeModel };
+                    await Write(npmIgnore, Path.Combine("../", ".npmignore"));
+
+                    //README.md
+                    var readme = new AzureReadmeTemplate { Model = codeModel };
+                    await Write(readme, Path.Combine("../", "README.md"));
+                }
             }
         }
     }
