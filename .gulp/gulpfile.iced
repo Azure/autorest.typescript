@@ -72,6 +72,12 @@ task 'test/azure-metadata', '', [], (done) ->
   await execute "npm run build", {cwd: cwd, silent: false }, defer _
   done()
 
+task 'test/multiapi', '', [], (done) ->
+  cwd = "#{basefolder}/test/multiapi/generated"
+  await execute "npm install", {cwd: cwd, silent: false }, defer _
+  await execute "npm run build", {cwd: cwd, silent: false }, defer _
+  done()
+
 task 'test/typecheck', 'type check generated code', [], (done) ->
   await execute "#{basefolder}/node_modules/.bin/tsc -p #{basefolder}/test/tsconfig.generated.json", defer _
   done();
@@ -82,7 +88,7 @@ task 'testci/nodejs-unit', '', [], (done) ->
   await execute "node #{basefolder}/.scripts/coverage", defer _
   done()
 
-task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
+task 'test/nodejs-unit', 'run nodejs unit tests', ['test/multiapi'], (done) ->
   await execute "#{basefolder}/node_modules/.bin/mocha", defer _
   done();
 

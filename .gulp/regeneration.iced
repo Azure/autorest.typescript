@@ -194,7 +194,11 @@ task 'regenerate-tsazurecomposite', '', (done) ->
   },done
   return null
 
-task 'regenerate-tsazure', '', ['regenerate-tsazurecomposite', 'regenerate-tsazure-metadata'], (done) ->
+task 'regenerate-tsazure-multiapi', '', [], (done) ->
+  autorest ["#{basefolder}/test/multiapi", "--testserver-dir=./#{swaggerDir}"], () =>
+    done()
+
+task 'regenerate-tsazure', '', ['regenerate-tsazurecomposite', 'regenerate-tsazure-metadata', 'regenerate-tsazure-multiapi'], (done) ->
   for p of defaultAzureMappings
     tsAzureMappings[p] = defaultAzureMappings[p]
   regenExpected {
