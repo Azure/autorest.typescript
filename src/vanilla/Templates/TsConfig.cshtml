@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es5"],
+    "lib": ["es6"],
     "declaration": true,
 @if(!string.IsNullOrEmpty(Model.DefaultApiVersion))
 {
@@ -20,11 +20,16 @@
     "composite": true
 </text>
 }
+else
+{
+<text>
+    "outDir": "./cjs"
+</text>
+}
   },
 @if(string.IsNullOrEmpty(Model.DefaultApiVersion))
 {
 <text>
-  "outDir": "./cjs",
   "include": ["./lib/**/*"],
   "exclude": ["node_modules"]
 </text>
