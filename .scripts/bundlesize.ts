@@ -16,7 +16,7 @@ async function getBundleSize() {
   return status.size;
 }
 
-function execVerbose(script) {
+function execVerbose(script: string): any {
   console.log(`> ${script}`);
   return exec(script, { maxBuffer: 1024 * 1024 });
 }
@@ -24,7 +24,7 @@ function execVerbose(script) {
 /**
  * Output a message to the console.
  */
-function outputMessage(message) {
+function outputMessage(message: string) {
   const json = JSON.stringify({
     title: message,
     summary: ""
@@ -34,7 +34,7 @@ ${json}
 ---`)
 }
 
-function outputErrorMessage(message, error) {
+function outputErrorMessage(message: string, error: any) {
   outputMessage(`${message}: ${JSON.stringify(error)}`);
 }
 
