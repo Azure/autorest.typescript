@@ -1,3 +1,4 @@
+Install "path"
 
 # ==============================================================================
 # file selections
@@ -27,7 +28,8 @@ dotnet = (cmd) ->
 # Tasks
 
 task 'build/scripts', '', [], (done) ->
-  execute "tsc -p ./.scripts/", (code, stdout, stderr) ->
+  tscPath = path.join(".", "node_modules", ".bin", "tsc");
+  execute "#{tscPath} -p ./.scripts/", (code, stdout, stderr) ->
     done()
 
 task 'build/generator','dotnet',['restore', 'version-number'], (done) ->
