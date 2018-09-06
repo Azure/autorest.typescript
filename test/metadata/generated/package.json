@@ -14,9 +14,9 @@
     "isomorphic"
   ],
   "license": "MIT",
-  "main": "./cjs/lib/autoRestComplexTestService.js",
-  "module": "./esm/lib/autoRestComplexTestService.js",
-  "types": "./cjs/lib/autoRestComplexTestService.d.ts",
+  "main": "./cjs/autoRestComplexTestService.js",
+  "module": "./esm/autoRestComplexTestService.js",
+  "types": "./cjs/autoRestComplexTestService.d.ts",
   "devDependencies": {
     "tslib": "^1.9.3",
     "typescript": "^3.0.3",

@@ -14,9 +14,9 @@
     "isomorphic"
   ],
   "license": "MIT",
-  "main": "./cjs/lib/autoRestLongRunningOperationTestService.js",
-  "module": "./esm/lib/autoRestLongRunningOperationTestService.js",
-  "types": "./cjs/lib/autoRestLongRunningOperationTestService.d.ts",
+  "main": "./cjs/autoRestLongRunningOperationTestService.js",
+  "module": "./esm/autoRestLongRunningOperationTestService.js",
+  "types": "./cjs/autoRestLongRunningOperationTestService.d.ts",
   "devDependencies": {
     "tslib": "^1.9.3",
     "typescript": "^3.0.3",
