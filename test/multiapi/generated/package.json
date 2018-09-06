@@ -1,0 +1,38 @@
+{
+  "name": "@azure/multiapi-test",
+  "author": "Microsoft Corporation",
+  "description": "AutoRestParameterizedCustomHostTestClient Library with typescript type definitions for node.js and browser.",
+  "version": "",
+  "dependencies": {
+    "ms-rest-azure-js": "~0.17.162"
+  },
+  "keywords": [
+    "node",
+    "azure",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
+  "license": "MIT",
+  "main": "./2018-02-01/cjs/lib/autoRestParameterizedCustomHostTestClient.js",
+  "module": "./2018-02-01/esm/lib/autoRestParameterizedCustomHostTestClient.js",
+  "types": "./2018-02-01/cjs/lib/autoRestParameterizedCustomHostTestClient.d.ts",
+  "devDependencies": {
+    "ts-loader": "^4.4.2",
+    "tslib": "^1.9.3",
+    "typescript": "^3.0.3",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
+  },
+  "homepage": "https://github.com/azure/azure-sdk-for-js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azure/azure-sdk-for-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azure/azure-sdk-for-js/issues"
+  },
+  "scripts": {
+    "build": "tsc -b && webpack"
+  }
+}

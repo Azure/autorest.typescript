@@ -16,13 +16,22 @@
     "isomorphic"
   ],
   "license": "MIT",
-  "main": "./dist/lib/@(Model.Name.ToCamelCase()).js",
-  "types": "./typings/lib/@(Model.Name.ToCamelCase()).d.ts",
+@if (string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
+{
+@:  "main": "./dist/lib/@(Model.Name.ToCamelCase()).js",
+@:  "types": "./typings/lib/@(Model.Name.ToCamelCase()).d.ts",
+}
+else
+{
+@:  "main": "./@(Model.Settings.DefaultApiVersion)/cjs/lib/@(Model.Name.ToCamelCase()).js",
+@:  "module": "./@(Model.Settings.DefaultApiVersion)/esm/lib/@(Model.Name.ToCamelCase()).js",
+@:  "types": "./@(Model.Settings.DefaultApiVersion)/cjs/lib/@(Model.Name.ToCamelCase()).d.ts",
+}
   "devDependencies": {
     "ts-loader": "^4.4.2",
     "tslib": "^1.9.3",
-    "typescript": "^2.9.2",
-    "webpack": "^4.16.2",
+    "typescript": "^3.0.3",
+    "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0"
   },
   "homepage": "@(Model.HomePageUrl)",
@@ -34,6 +43,6 @@
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc && webpack"
+    "build": "tsc @(string.IsNullOrEmpty(Model.Settings.DefaultApiVersion) ? "" : "-b ")&& webpack"
   }
 }

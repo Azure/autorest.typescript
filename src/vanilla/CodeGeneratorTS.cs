@@ -11,7 +11,6 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.Model;
 using AutoRest.TypeScript.vanilla.Templates;
-using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.TypeScript
 {
@@ -98,12 +97,12 @@ namespace AutoRest.TypeScript
             if (codeModel.Settings.GenerateMetadata)
             {
                 //tsconfig.json
-                var nodeTsConfig = new TsConfig();
+                var nodeTsConfig = new TsConfig { Model = codeModel };
                 await Write(nodeTsConfig, Path.Combine("../", "tsconfig.json"));
 
-                //tsconfig.webpack.json
+                //tsconfig.esm.json
                 var webpackTsConfig = new TsConfigWebpack();
-                await Write(webpackTsConfig, Path.Combine("../", "tsconfig.webpack.json"));
+                await Write(webpackTsConfig, Path.Combine("../", "tsconfig.esm.json"));
 
                 // webpack.config.js
                 var webpackConfig = new WebpackConfig { Model = codeModel };
