@@ -16,12 +16,12 @@ namespace AutoRest.TypeScript
         /// <summary>
         /// Whether or not to generate a new readme.md file.
         /// </summary>
-        public bool GenerateReadmeMd { get; set; } = false;
+        public bool GenerateReadmeMd { get; set; }
 
         /// <summary>
         /// Whether or not to generate the LICENSE.txt file.
         /// </summary>
-        public bool GenerateLicenseTxt { get; set; } = true;
+        public bool GenerateLicenseTxt { get; set; }
 
         /// <summary>
         /// The name of the npm package.
