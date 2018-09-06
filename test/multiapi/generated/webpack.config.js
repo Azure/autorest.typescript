@@ -7,13 +7,13 @@ const path = require('path');
  */
 const config = {
   mode: 'production',
-  entry: './lib/autoRestLongRunningOperationTestService.ts',
+  entry: './2018-02-01/lib/autoRestParameterizedCustomHostTestClient.ts',
   devtool: 'source-map',
   output: {
-    filename: 'autoRestLongRunningOperationTestServiceBundle.js',
+    filename: 'autoRestParameterizedCustomHostTestClientBundle.js',
     path: __dirname,
     libraryTarget: 'var',
-    library: 'autoRestLongRunningOperationTestService'
+    library: 'autoRestParameterizedCustomHostTestClient'
   },
   module: {
     rules: [
@@ -21,7 +21,7 @@ const config = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-          configFile: path.join(__dirname, "tsconfig.esm.json")
+          configFile: path.join(__dirname, '2018-02-01/tsconfig.esm.json'),
         }
       }
     ]

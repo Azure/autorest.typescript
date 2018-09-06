@@ -123,8 +123,7 @@ namespace AutoRest.TypeScript
             Settings.Instance.CustomSettings.Add("SyncMethods", GetXmsCodeGenSetting<string>(codeModel, "syncMethods") ?? await GetValue("sync-methods") ?? "essential");
             Settings.Instance.CustomSettings.Add("UseDateTimeOffset", GetXmsCodeGenSetting<bool?>(codeModel, "useDateTimeOffset") ?? await GetValue<bool?>("use-datetimeoffset") ?? false);
             Settings.Instance.CustomSettings[CodeModelTS.ClientSideValidationSettingName] = await GetValue<bool?>("client-side-validation") ?? true;
-            int defaultMaximumCommentColumns = codeGenerator == "go" ? 120 : Settings.DefaultMaximumCommentColumns;
-            Settings.Instance.MaximumCommentColumns = await GetValue<int?>("max-comment-columns") ?? defaultMaximumCommentColumns;
+            Settings.Instance.MaximumCommentColumns = await GetValue<int?>("max-comment-columns") ?? Settings.DefaultMaximumCommentColumns;
             Settings.Instance.OutputFileName = await GetValue<string>("output-file");
 
             foreach (PropertyInfo propertyInfo in typeof(GeneratorSettingsTS).GetProperties())
@@ -143,6 +142,14 @@ namespace AutoRest.TypeScript
                 else if (propertyType == typeof(string))
                 {
                     string propertyValue = await GetValue<string>(kebabCasePropertyName);
+                    if (propertyValue != null)
+                    {
+                        Settings.Instance.CustomSettings[propertyName] = propertyValue;
+                    }
+                }
+                else if (propertyType == typeof(string[]))
+                {
+                    string[] propertyValue = await GetValue<string[]>(kebabCasePropertyName);
                     if (propertyValue != null)
                     {
                         Settings.Instance.CustomSettings[propertyName] = propertyValue;

@@ -155,7 +155,6 @@ namespace AutoRest.TypeScript.Model
         public IEnumerable<CompositeTypeTS> OrderedMapperTemplateModels =>
             OrderedModelTemplateModels.Where(m => m.BaseModelType?.Name != "RequestOptionsBase");
 
-
         public string HomePageUrl
         {
             get
@@ -583,6 +582,20 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.ExportAll("./operations");
             }
+            return builder.ToString();
+        }
+
+        public string GenerateTsConfigReferences()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Array(arr =>
+            {
+                foreach (string version in Settings.ApiVersions)
+                {
+                    arr.Text($"{{ \"path\": \"{version}/tsconfig.json\" }}");
+                    arr.Text($"{{ \"path\": \"{version}/tsconfig.esm.json\" }}");
+                }
+            });
             return builder.ToString();
         }
     }

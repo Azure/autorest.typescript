@@ -15,7 +15,7 @@ npm install @(Model.Settings.PackageName)
 ```
 - browser
 ```html
-@{ 
+@{
 @:<script type="text/javascript" src="@(Model.Settings.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
 }
 ```
@@ -24,7 +24,7 @@ npm install @(Model.Settings.PackageName)
 @EmptyLine
 ### nodejs - Authentication, client creation and @(Model.GetSampleMethod()?.Name) @(Model.GetSampleMethodGroupName()) as an example written in TypeScript.
 @EmptyLine
-```javascript
+```ts
 import * as msRest from "ms-rest-js";
 import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.Settings.PackageName)";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
@@ -33,8 +33,7 @@ const token = "<access_token>";
 const creds = new msRest.TokenCredentials(token);
 const client = new @(Model.Name)(creds, subscriptionId);
 @(Model.GenerateSampleMethod(true)).catch((err) => {
-  console.log('An error ocurred:');
-  console.dir(err, {depth: null, colors: true});
+  console.error(err);
 });
 ```
 @EmptyLine
@@ -46,18 +45,16 @@ const client = new @(Model.Name)(creds, subscriptionId);
 @:<!DOCTYPE html>
 @:<html lang="en">
 @:  <head>
-@:    <title>My Todos</title>
-@:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestBundle.js"></script>
+@:    <title>@(Model.Settings.PackageName) sample</title>
+@:    <script type="text/javascript" src="./node_modules/ms-rest-js/msRestBundle.js"></script>
 @:    <script type="text/javascript" src="./@(Model.Name.ToCamelCase())Bundle.js"></script>
 @:    <script type="text/javascript">
-@:      document.write('hello world');
 @:      const subscriptionId = "<Subscription_Id>";
 @:      const token = "<access_token>";
 @:      const creds = new msRest.TokenCredentials(token);
 @:      const client = new @(Model.Name)(creds, subscriptionId);
 @:      @(Model.GenerateSampleMethod(true)).catch((err) => {
-@:        console.log('An error ocurred:');
-@:        console.dir(err, { depth: null, colors: true});
+@:        console.error(err);
 @:      });
 @:    </script>
 @:  </head>

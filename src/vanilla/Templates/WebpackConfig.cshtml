@@ -1,6 +1,4 @@
-﻿@using System.Linq
-@using AutoRest.Core.Utilities;
-@using AutoRest.TypeScript.vanilla.Templates
+﻿@using AutoRest.Core.Utilities;
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 
 // This is a template webpack config file with minimal configuration.
@@ -13,7 +11,18 @@ const path = require('path');
  */
 const config = {
   mode: 'production',
+@if (!string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
+{
+<text>
+  entry: './@(Model.Settings.DefaultApiVersion)/lib/@(Model.Name.ToCamelCase()).ts',
+</text>
+}
+else
+{
+<text>
   entry: './lib/@(Model.Name.ToCamelCase()).ts',
+</text>
+}
   devtool: 'source-map',
   output: {
     filename: '@(Model.Name.ToCamelCase())Bundle.js',
@@ -27,7 +36,18 @@ const config = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-          configFile: path.join(__dirname, "tsconfig.webpack.json")
+@if (!string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
+{
+<text>
+          configFile: path.join(__dirname, '@(Model.Settings.DefaultApiVersion)/tsconfig.esm.json'),
+</text>
+}
+else
+{
+<text>
+          configFile: path.join(__dirname, "tsconfig.esm.json")
+</text>
+}
         }
       }
     ]
