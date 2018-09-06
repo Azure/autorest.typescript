@@ -1,9 +1,8 @@
-﻿@using AutoRest.TypeScript.vanilla.Templates
-@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
+﻿@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 {
   "extends": "./tsconfig",
   "compilerOptions": {
-@if(string.IsNullOrEmpty(Model.DefaultApiVersion))
+@if(string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
 {
 @:    "outDir": "./esm",
 }
