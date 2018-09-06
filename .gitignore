@@ -303,5 +303,7 @@ src/obj/
 
 *.js
 *.js.map
+*.d.ts
+*.d.ts.map
 !.scripts/*.js
 !webpack.config.js

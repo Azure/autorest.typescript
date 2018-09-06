@@ -83,21 +83,6 @@ namespace AutoRest.TypeScript
             var modelAsJson = (await ReadFile(files[0])).EnsureYamlIsJson();
             var codeModelT = new ModelSerializer<CodeModel>().Load(modelAsJson);
 
-            // get internal name
-            var language = new[] {
-                "CSharp",
-                "Ruby",
-                "NodeJS",
-                "TypeScript",
-                "Python",
-                "Go",
-                "Php",
-                "Java",
-                "AzureResourceSchema",
-                "JsonRpcClient" }
-                .Where(x => x.ToLowerInvariant() == codeGenerator)
-                .First();
-
             // build settings
             var altNamespace = (await GetValue<string[]>("input-file") ?? new[] { "" }).FirstOrDefault()?.Split('/').Last().Split('\\').Last().Split('.').First();
 
@@ -119,8 +104,7 @@ namespace AutoRest.TypeScript
             Settings.Instance.CustomSettings.Add("SyncMethods", GetXmsCodeGenSetting<string>(codeModelT, "syncMethods") ?? await GetValue("sync-methods") ?? "essential");
             Settings.Instance.CustomSettings.Add("UseDateTimeOffset", GetXmsCodeGenSetting<bool?>(codeModelT, "useDateTimeOffset") ?? await GetValue<bool?>("use-datetimeoffset") ?? false);
             Settings.Instance.CustomSettings[CodeModelTS.ClientSideValidationSettingName] = await GetValue<bool?>("client-side-validation") ?? true;
-            int defaultMaximumCommentColumns = codeGenerator == "go" ? 120 : Settings.DefaultMaximumCommentColumns;
-            Settings.Instance.MaximumCommentColumns = await GetValue<int?>("max-comment-columns") ?? defaultMaximumCommentColumns;
+            Settings.Instance.MaximumCommentColumns = await GetValue<int?>("max-comment-columns") ?? Settings.DefaultMaximumCommentColumns;
             Settings.Instance.OutputFileName = await GetValue<string>("output-file");
 
             foreach (PropertyInfo propertyInfo in typeof(GeneratorSettingsTS).GetProperties())
@@ -144,6 +128,14 @@ namespace AutoRest.TypeScript
                         Settings.Instance.CustomSettings[propertyName] = propertyValue;
                     }
                 }
+                else if (propertyType == typeof(string[]))
+                {
+                    string[] propertyValue = await GetValue<string[]>(kebabCasePropertyName);
+                    if (propertyValue != null)
+                    {
+                        Settings.Instance.CustomSettings[propertyName] = propertyValue;
+                    }
+                }
                 else
                 {
                     throw new NotSupportedException($"Cannot convert command line argument --{kebabCasePropertyName} to {nameof(GeneratorSettingsTS)}.{propertyName} because type {propertyType} is not supported.");
@@ -153,7 +145,7 @@ namespace AutoRest.TypeScript
             // process
             var plugin = ExtensionsLoader.GetPlugin(
                 (await GetValue<bool?>("azure-arm") ?? false ? "Azure." : "") +
-                language +
+                "TypeScript" +
                 (await GetValue<bool?>("fluent") ?? false ? ".Fluent" : "") +
                 (await GetValue<bool?>("testgen") ?? false ? ".TestGen" : ""));
             Settings.PopulateSettings(plugin.Settings, Settings.Instance.CustomSettings);
@@ -161,8 +153,11 @@ namespace AutoRest.TypeScript
             void initializeSettings(CodeModelTS codeModel)
             {
                 GeneratorSettingsTS generatorSettings = Singleton<GeneratorSettingsTS>.Instance;
-                codeModel.PackageName = Settings.Instance.PackageName;
-                codeModel.PackageVersion = Settings.Instance.PackageVersion;
+                codeModel.PackageName = generatorSettings.PackageName;
+                codeModel.PackageVersion = Settings.Instance.PackageVersion; // todo: remove?
+                codeModel.MultiApi = generatorSettings.Multiapi;
+                codeModel.DefaultApiVersion = generatorSettings.DefaultApiVersion;
+                codeModel.ApiVersions = generatorSettings.ApiVersions;
                 codeModel.OutputFolder = generatorSettings.OutputFolder;
                 codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
                 codeModel.ModelDateTimeAsString = generatorSettings.ModelDateTimeAsString;

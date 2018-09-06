@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "@azure/multiapi-test",
   "author": "Microsoft Corporation",
-  "description": "AutoRestLongRunningOperationTestService Library with typescript type definitions for node.js and browser.",
+  "description": "AutoRestParameterizedCustomHostTestClient Library with typescript type definitions for node.js and browser.",
   "version": "",
   "dependencies": {
     "ms-rest-azure-js": "~0.17.162"
@@ -14,8 +14,9 @@
     "isomorphic"
   ],
   "license": "MIT",
-  "main": "./dist/lib/autoRestLongRunningOperationTestService.js",
-  "types": "./typings/lib/autoRestLongRunningOperationTestService.d.ts",
+  "main": "./2018-02-01/cjs/lib/autoRestParameterizedCustomHostTestClient.js",
+  "module": "./2018-02-01/esm/lib/autoRestParameterizedCustomHostTestClient.js",
+  "types": "./2018-02-01/cjs/lib/autoRestParameterizedCustomHostTestClient.d.ts",
   "devDependencies": {
     "ts-loader": "^4.4.2",
     "tslib": "^1.9.3",
@@ -32,6 +33,6 @@
     "url": "https://github.com/azure/azure-sdk-for-js/issues"
   },
   "scripts": {
-    "build": "tsc && webpack"
+    "build": "tsc -b && webpack"
   }
 }

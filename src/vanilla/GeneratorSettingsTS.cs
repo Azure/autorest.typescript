@@ -8,6 +8,26 @@ namespace AutoRest.TypeScript
 {
     public class GeneratorSettingsTS : IGeneratorSettings
     {
+        /// <summary>The name of the npm package.</summary>
+        public string PackageName { get; set; }
+
+        /// <summary>
+        /// Whether to use the multi-api generation mode.
+        /// </summary>
+        public bool Multiapi { get; set; }
+
+        /// <summary>
+        /// The path to the "default" API version, e.g. 2016-04-01.
+        /// The presence of this property indicates that we are generating
+        /// the multi-api "root" artifacts, and not any TS source files.
+        /// </summary>
+        public string DefaultApiVersion { get; set; }
+
+        /// <summary>
+        /// All API version subfolders present in this package.
+        /// </summary>
+        public string[] ApiVersions { get; set; }
+
         /// <summary>
         /// If true, outputs package.json, tsconfig.json, webpack.config.js, and README.md files.
         /// Defaults to false.

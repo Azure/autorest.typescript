@@ -169,6 +169,12 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageVersion { get; set; }
 
+        public bool MultiApi { get; set; }
+
+        public string DefaultApiVersion { get; set; }
+
+        public string[] ApiVersions { get; set; }
+
         public string OutputFolder { get; set; }
 
         public bool ModelEnumAsUnion { get; set; }
@@ -608,6 +614,20 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.ExportAll("./operations");
             }
+            return builder.ToString();
+        }
+
+        public string GenerateTsConfigReferences()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Array(arr =>
+            {
+                foreach (string version in ApiVersions)
+                {
+                    arr.Text($"{{ \"path\": \"{version}/tsconfig.json\" }}");
+                    arr.Text($"{{ \"path\": \"{version}/tsconfig.esm.json\" }}");
+                }
+            });
             return builder.ToString();
         }
     }
