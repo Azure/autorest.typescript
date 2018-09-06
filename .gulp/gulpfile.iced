@@ -63,19 +63,16 @@ task 'test/metadata', '', ['test/vanilla-metadata', 'test/azure-metadata'], (don
 task 'test/vanilla-metadata', '', [], (done) ->
   cwd = "#{basefolder}/test/metadata/generated"
   await execute "npm install", { cwd: cwd, silent: false }, defer _
-  await execute "npm run build", { cwd: cwd, silent: false }, defer _
   done()
 
 task 'test/azure-metadata', '', [], (done) ->
   cwd = "#{basefolder}/test/azuremetadata/generated"
   await execute "npm install", {cwd: cwd, silent: false }, defer _
-  await execute "npm run build", {cwd: cwd, silent: false }, defer _
   done()
 
 task 'test/multiapi', '', [], (done) ->
   cwd = "#{basefolder}/test/multiapi/generated"
   await execute "npm install", {cwd: cwd, silent: false }, defer _
-  await execute "npm run build", {cwd: cwd, silent: false }, defer _
   done()
 
 task 'test/typecheck', 'type check generated code', [], (done) ->

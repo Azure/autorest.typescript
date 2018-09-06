@@ -67,14 +67,13 @@ namespace AutoRest.TypeScript.Azure
             {
                 if (codeModel.Settings.Multiapi && string.IsNullOrEmpty(codeModel.Settings.DefaultApiVersion))
                 {
-                    await Write(new PackageJsonMultiApi() { Model = codeModel },
+                    await Write(new PackageJsonMultiApi { Model = codeModel },
                         Path.Combine("../", "package.json"));
 
-
-                    await Write(new TsConfigMultiApi() { Model = codeModel },
+                    await Write(new TsConfigMultiApi { Model = codeModel },
                         Path.Combine("../", "tsconfig.json"));
 
-                    await Write(new TsConfigWebpackMultiApi() { Model = codeModel },
+                    await Write(new TsConfigWebpackMultiApi { Model = codeModel },
                         Path.Combine("../", "tsconfig.esm.json"));
                 }
                 else
@@ -88,7 +87,7 @@ namespace AutoRest.TypeScript.Azure
                     await Write(nodeTsConfig, Path.Combine("../", "tsconfig.json"));
 
                     //tsconfig.esm.json
-                    var webpackTsConfig = new TsConfigWebpack();
+                    var webpackTsConfig = new TsConfigWebpack { Model = codeModel };
                     await Write(webpackTsConfig, Path.Combine("../", "tsconfig.esm.json"));
 
                     // webpack.config.js

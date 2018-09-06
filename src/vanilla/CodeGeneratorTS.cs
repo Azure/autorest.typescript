@@ -101,7 +101,7 @@ namespace AutoRest.TypeScript
                 await Write(nodeTsConfig, Path.Combine("../", "tsconfig.json"));
 
                 //tsconfig.esm.json
-                var webpackTsConfig = new TsConfigWebpack();
+                var webpackTsConfig = new TsConfigWebpack { Model = codeModel };
                 await Write(webpackTsConfig, Path.Combine("../", "tsconfig.esm.json"));
 
                 // webpack.config.js
