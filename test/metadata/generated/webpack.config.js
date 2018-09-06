@@ -7,24 +7,13 @@ const path = require('path');
  */
 const config = {
   mode: 'production',
-  entry: './lib/autoRestComplexTestService.ts',
+  entry: './esm/autoRestComplexTestService.js',
   devtool: 'source-map',
   output: {
     filename: 'autoRestComplexTestServiceBundle.js',
     path: __dirname,
     libraryTarget: 'var',
     library: 'autoRestComplexTestService'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-        options: {
-          configFile: path.join(__dirname, "tsconfig.esm.json")
-        }
-      }
-    ]
   },
   // "ms-rest-js" and "ms-rest-azure-js" are dependencies of this library.
   // Customer is expected to import/include this library in browser javascript
