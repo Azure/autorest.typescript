@@ -8,6 +8,10 @@ namespace AutoRest.TypeScript
 {
     public class GeneratorSettingsTS : IGeneratorSettings
     {
+        public string PackageName { get; set; }
+
+        public string PackageVersion { get; set; }
+
         /// <summary>
         /// If true, outputs package.json, tsconfig.json, webpack.config.js, and README.md files.
         /// Defaults to false.

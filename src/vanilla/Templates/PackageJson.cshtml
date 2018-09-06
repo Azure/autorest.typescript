@@ -1,10 +1,10 @@
 ﻿@using AutoRest.Core.Utilities;
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 {
-  "name": "@(Model.PackageName)",
+  "name": "@(Model.Settings.PackageName)",
   "author": "Microsoft Corporation",
   "description": "@(Model.Name.ToPascalCase()) Library with typescript type definitions for node.js and browser.",
-  "version": "@(Model.PackageVersion)",
+  "version": "@(Model.Settings.PackageVersion)",
   "dependencies": {
     @(Model.PackageDependencies())
   },

@@ -11,6 +11,6 @@ namespace AutoRest.TypeScript.Model
         public CodeModelTS CodeModelTS => (CodeModelTS) base.CodeModel;
         protected override string ModelAsStringType => "string";
         public string EnumName => CodeNamer.Instance.PascalCase(Name);
-        public bool ModelAsUnion => CodeModelTS.ModelEnumAsUnion;
+        public bool ModelAsUnion => CodeModelTS.Settings.ModelEnumAsUnion;
     }
 }

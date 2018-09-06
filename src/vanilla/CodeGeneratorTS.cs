@@ -75,7 +75,7 @@ namespace AutoRest.TypeScript
                 }
             }
 
-            if (codeModel.GenerateMetadata)
+            if (codeModel.Settings.GenerateMetadata)
             {
                 // package.json
                 var packageJson = new PackageJson { Model = codeModel };
