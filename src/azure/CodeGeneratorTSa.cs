@@ -1,20 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using AutoRest.Core.Model;
+using AutoRest.Core.Utilities;
+using AutoRest.TypeScript.azure.Templates;
+using AutoRest.TypeScript.Azure.Model;
+using AutoRest.TypeScript.vanilla.Templates;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoRest.Core.Model;
-using AutoRest.Core.Utilities;
-using AutoRest.TypeScript.Azure.Model;
-using AutoRest.TypeScript.azure.Templates;
-using AutoRest.TypeScript.vanilla.Templates;
-using static AutoRest.Core.Utilities.DependencyInjection;
-using AutoRest.TypeScript.Model;
-using AutoRest.Core;
 
 namespace AutoRest.TypeScript.Azure
 {
@@ -40,7 +35,7 @@ namespace AutoRest.TypeScript.Azure
                 throw new InvalidCastException("CodeModel is not a Azure TypeScript code model.");
             }
 
-            if (string.IsNullOrEmpty(codeModel.DefaultApiVersion))
+            if (string.IsNullOrEmpty(codeModel.Settings.DefaultApiVersion))
             {
                 // Service client
                 var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel };
@@ -68,9 +63,9 @@ namespace AutoRest.TypeScript.Azure
                 }
             }
 
-            if (codeModel.GenerateMetadata)
+            if (codeModel.Settings.GenerateMetadata)
             {
-                if (codeModel.MultiApi && string.IsNullOrEmpty(codeModel.DefaultApiVersion))
+                if (codeModel.Settings.Multiapi && string.IsNullOrEmpty(codeModel.Settings.DefaultApiVersion))
                 {
                     await Write(new PackageJsonMultiApi() { Model = codeModel },
                         Path.Combine("../", "package.json"));

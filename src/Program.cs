@@ -8,6 +8,7 @@ using AutoRest.Core.Extensibility;
 using AutoRest.Core.Model;
 using AutoRest.Core.Parsing;
 using AutoRest.Core.Utilities;
+using AutoRest.TypeScript.Azure;
 using AutoRest.TypeScript.Model;
 using Microsoft.Perks.JsonRPC;
 using static AutoRest.Core.Utilities.DependencyInjection;
@@ -49,11 +50,11 @@ namespace AutoRest.TypeScript
             return 1;
         }
 
-        private string plugin;
+        private string codeGenerator;
 
-        public Program(Connection connection, string plugin, string sessionId) : base(connection, plugin, sessionId)
+        public Program(Connection connection, string codeGenerator, string sessionId) : base(connection, codeGenerator, sessionId)
         {
-            this.plugin = plugin;
+            this.codeGenerator = codeGenerator;
         }
 
         private T GetXmsCodeGenSetting<T>(CodeModel codeModel, string name)
@@ -73,36 +74,54 @@ namespace AutoRest.TypeScript
 
         protected override async Task<bool> ProcessInternal()
         {
-            var codeGenerator = this.plugin;
-
-            var files = await ListInputs();
+            string[] files = await ListInputs();
             if (files.Length != 1)
             {
                 throw new Exception($"Generator received incorrect number of inputs: {files.Length} : {string.Join(",", files)}");
             }
-            var modelAsJson = (await ReadFile(files[0])).EnsureYamlIsJson();
-            var codeModelT = new ModelSerializer<CodeModel>().Load(modelAsJson);
 
-            // build settings
-            var altNamespace = (await GetValue<string[]>("input-file") ?? new[] { "" }).FirstOrDefault()?.Split('/').Last().Split('\\').Last().Split('.').First();
+            string modelAsJson = (await ReadFile(files[0])).EnsureYamlIsJson();
+            CodeModel codeModelT = new ModelSerializer<CodeModel>().Load(modelAsJson);
 
+            await InitializeCustomSettings(codeModelT);
+
+            IAnyPlugin plugin = await CreatePlugin();
+            using (plugin.Activate())
+            {
+                await InitializeNamespace();
+
+                CodeModel codeModel = plugin.Serializer.Load(modelAsJson);
+                ((CodeModelTS)codeModel).Settings = Singleton<GeneratorSettingsTS>.Instance;
+
+                codeModel = plugin.Transformer.TransformCodeModel(codeModel);
+
+                plugin.CodeGenerator.Generate(codeModel).GetAwaiter().GetResult();
+            }
+
+            WriteGeneratedFilesToDisk();
+
+            return true;
+        }
+
+        private async Task InitializeCustomSettings(CodeModel codeModel)
+        {
             new Settings
             {
                 Namespace = await GetValue("namespace"),
-                ClientName = GetXmsCodeGenSetting<string>(codeModelT, "name") ?? await GetValue("override-client-name"),
-                PayloadFlatteningThreshold = GetXmsCodeGenSetting<int?>(codeModelT, "ft") ?? await GetValue<int?>("payload-flattening-threshold") ?? 0,
+                ClientName = GetXmsCodeGenSetting<string>(codeModel, "name") ?? await GetValue("override-client-name"),
+                PayloadFlatteningThreshold = GetXmsCodeGenSetting<int?>(codeModel, "ft") ?? await GetValue<int?>("payload-flattening-threshold") ?? 0,
                 AddCredentials = await GetValue<bool?>("add-credentials") ?? false,
                 Host = this
             };
-            var header = await GetValue("license-header");
+            string header = await GetValue("license-header");
 
             if (header != null)
             {
                 Settings.Instance.Header = header;
             }
-            Settings.Instance.CustomSettings.Add("InternalConstructors", GetXmsCodeGenSetting<bool?>(codeModelT, "internalConstructors") ?? await GetValue<bool?>("use-internal-constructors") ?? false);
-            Settings.Instance.CustomSettings.Add("SyncMethods", GetXmsCodeGenSetting<string>(codeModelT, "syncMethods") ?? await GetValue("sync-methods") ?? "essential");
-            Settings.Instance.CustomSettings.Add("UseDateTimeOffset", GetXmsCodeGenSetting<bool?>(codeModelT, "useDateTimeOffset") ?? await GetValue<bool?>("use-datetimeoffset") ?? false);
+            Settings.Instance.CustomSettings.Add("InternalConstructors", GetXmsCodeGenSetting<bool?>(codeModel, "internalConstructors") ?? await GetValue<bool?>("use-internal-constructors") ?? false);
+            Settings.Instance.CustomSettings.Add("SyncMethods", GetXmsCodeGenSetting<string>(codeModel, "syncMethods") ?? await GetValue("sync-methods") ?? "essential");
+            Settings.Instance.CustomSettings.Add("UseDateTimeOffset", GetXmsCodeGenSetting<bool?>(codeModel, "useDateTimeOffset") ?? await GetValue<bool?>("use-datetimeoffset") ?? false);
             Settings.Instance.CustomSettings[CodeModelTS.ClientSideValidationSettingName] = await GetValue<bool?>("client-side-validation") ?? true;
             Settings.Instance.MaximumCommentColumns = await GetValue<int?>("max-comment-columns") ?? Settings.DefaultMaximumCommentColumns;
             Settings.Instance.OutputFileName = await GetValue<string>("output-file");
@@ -141,55 +160,44 @@ namespace AutoRest.TypeScript
                     throw new NotSupportedException($"Cannot convert command line argument --{kebabCasePropertyName} to {nameof(GeneratorSettingsTS)}.{propertyName} because type {propertyType} is not supported.");
                 }
             }
+        }
 
-            // process
-            var plugin = ExtensionsLoader.GetPlugin(
-                (await GetValue<bool?>("azure-arm") ?? false ? "Azure." : "") +
-                "TypeScript" +
-                (await GetValue<bool?>("fluent") ?? false ? ".Fluent" : "") +
-                (await GetValue<bool?>("testgen") ?? false ? ".TestGen" : ""));
+        private async Task<IAnyPlugin> CreatePlugin()
+        {
+            bool azureArm = await GetValue<bool?>("azure-arm") ?? false;
+            IAnyPlugin plugin;
+            if (azureArm)
+            {
+                plugin = new PluginTSa();
+            }
+            else
+            {
+                plugin = new PluginTS();
+            }
+
             Settings.PopulateSettings(plugin.Settings, Settings.Instance.CustomSettings);
 
-            void initializeSettings(CodeModelTS codeModel)
-            {
-                GeneratorSettingsTS generatorSettings = Singleton<GeneratorSettingsTS>.Instance;
-                codeModel.PackageName = generatorSettings.PackageName;
-                codeModel.PackageVersion = Settings.Instance.PackageVersion; // todo: remove?
-                codeModel.MultiApi = generatorSettings.Multiapi;
-                codeModel.DefaultApiVersion = generatorSettings.DefaultApiVersion;
-                codeModel.ApiVersions = generatorSettings.ApiVersions;
-                codeModel.OutputFolder = generatorSettings.OutputFolder;
-                codeModel.ModelEnumAsUnion = generatorSettings.ModelEnumAsUnion;
-                codeModel.ModelDateTimeAsString = generatorSettings.ModelDateTimeAsString;
-                codeModel.GenerateMetadata = generatorSettings.GenerateMetadata;
-                codeModel.OptionalResponseHeaders = generatorSettings.OptionalResponseHeaders;
-            }
+            return plugin;
+        }
 
-            using (plugin.Activate())
+        private async Task InitializeNamespace()
+        {
+            if (Settings.Instance.Namespace == null)
             {
-                Settings.Instance.Namespace = Settings.Instance.Namespace ?? CodeNamer.Instance.GetNamespaceName(altNamespace);
-                var codeModel = plugin.Serializer.Load(modelAsJson);
-                initializeSettings((CodeModelTS) codeModel);
-                codeModel = plugin.Transformer.TransformCodeModel(codeModel);
-                if (await GetValue<bool?>("sample-generation") ?? false)
-                {
-                    plugin.CodeGenerator.GenerateSamples(codeModel).GetAwaiter().GetResult();
-                }
-                else
-                {
-                    plugin.CodeGenerator.Generate(codeModel).GetAwaiter().GetResult();
-                }
+                string[] inputFiles = await GetValue<string[]>("input-file") ?? new string[0];
+                string altNamespace = inputFiles.FirstOrDefault()?.Split('/').Last().Split('\\').Last().Split('.').First();
+                Settings.Instance.Namespace = CodeNamer.Instance.GetNamespaceName(altNamespace);
             }
+        }
 
-            // write out files
-            var outFS = Settings.Instance.FileSystemOutput;
-            var outFiles = outFS.GetFiles("", "*", System.IO.SearchOption.AllDirectories);
-            foreach (var outFile in outFiles)
+        private void WriteGeneratedFilesToDisk()
+        {
+            MemoryFileSystem outFS = Settings.Instance.FileSystemOutput;
+            string[] outFiles = outFS.GetFiles("", "*", System.IO.SearchOption.AllDirectories);
+            foreach (string outFile in outFiles)
             {
                 WriteFile(outFile, outFS.ReadAllText(outFile), null);
             }
-
-            return true;
         }
     }
 }

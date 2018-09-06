@@ -35,7 +35,7 @@ namespace AutoRest.TypeScript
             DisambiguateHeaderNames(codeModel);
             AddReadOnlyDocumentation(codeModel);
 
-            if (codeModel.ModelDateTimeAsString)
+            if (codeModel.Settings.ModelDateTimeAsString)
             {
                 ConvertDateTimeToString(codeModel);
             }

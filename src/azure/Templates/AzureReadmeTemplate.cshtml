@@ -11,12 +11,12 @@ This project provides an isomorphic javascript package for accessing Azure. Righ
 @EmptyLine
 - nodejs
 ```
-npm install @(Model.PackageName)
+npm install @(Model.Settings.PackageName)
 ```
 - browser
 ```html
 @{
-@:<script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@(Model.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
+@:<script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@(Model.Settings.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
 }
 ```
 @EmptyLine
@@ -28,7 +28,7 @@ npm install @(Model.PackageName)
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import * as msRestNodeAuth from "ms-rest-nodeauth";
-import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.PackageName)";
+import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.Settings.PackageName)";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 @EmptyLine
 msRestNodeAuth.interactiveLogin().then((creds) => {
@@ -47,10 +47,10 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 @:<!DOCTYPE html>
 @:<html lang="en">
 @:  <head>
-@:    <title>@(Model.PackageName) sample</title>
+@:    <title>@(Model.Settings.PackageName) sample</title>
 @:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestBundle.js"></script>
 @:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestAzureBundle.js"></script>
-@:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@(Model.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
+@:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@(Model.Settings.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
 @:    <script type="text/javascript">
 @:      const subscriptionId = "<Subscription_Id>";
 @:      const token = "<access_token>";

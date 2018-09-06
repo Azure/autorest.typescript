@@ -8,8 +8,15 @@ namespace AutoRest.TypeScript
 {
     public class GeneratorSettingsTS : IGeneratorSettings
     {
-        /// <summary>The name of the npm package.</summary>
+        /// <summary>
+        /// The name of the npm package.
+        /// </summary>
         public string PackageName { get; set; }
+
+        /// <summary>
+        /// The version of the npm package.
+        /// </summary>
+        public string PackageVersion { get; set; }
 
         /// <summary>
         /// Whether to use the multi-api generation mode.

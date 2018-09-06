@@ -1,6 +1,4 @@
-﻿@using System.Linq
-@using AutoRest.Core.Utilities;
-@using AutoRest.TypeScript.vanilla.Templates
+﻿@using AutoRest.Core.Utilities;
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 
 // This is a template webpack config file with minimal configuration.
@@ -13,10 +11,10 @@ const path = require('path');
  */
 const config = {
   mode: 'production',
-@if (!string.IsNullOrEmpty(Model.DefaultApiVersion))
+@if (!string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
 {
 <text>
-  entry: './@(Model.DefaultApiVersion)/lib/@(Model.Name.ToCamelCase()).ts',
+  entry: './@(Model.Settings.DefaultApiVersion)/lib/@(Model.Name.ToCamelCase()).ts',
 </text>
 }
 else
@@ -38,10 +36,10 @@ else
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-@if (!string.IsNullOrEmpty(Model.DefaultApiVersion))
+@if (!string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
 {
 <text>
-          configFile: path.join(__dirname, '@(Model.DefaultApiVersion)/tsconfig.esm.json'),
+          configFile: path.join(__dirname, '@(Model.Settings.DefaultApiVersion)/tsconfig.esm.json'),
 </text>
 }
 else
