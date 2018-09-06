@@ -32,6 +32,6 @@
     "url": "https://github.com/azure/azure-sdk-for-js/issues"
   },
   "scripts": {
-    "build": "tsc  && webpack"
+    "build": "tsc && webpack"
   }
 }
