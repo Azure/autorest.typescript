@@ -8,6 +8,21 @@ namespace AutoRest.TypeScript
 {
     public class GeneratorSettingsTS : IGeneratorSettings
     {
+        /// <summary>
+        /// Whether or not to generate a new package.json file.
+        /// </summary>
+        public bool GeneratePackageJson { get; set; } = true;
+
+        /// <summary>
+        /// Whether or not to generate a new readme.md file.
+        /// </summary>
+        public bool GenerateReadmeMd { get; set; } = false;
+
+        /// <summary>
+        /// Whether or not to generate the LICENSE.txt file.
+        /// </summary>
+        public bool GenerateLicenseTxt { get; set; } = true;
+
         public string PackageName { get; set; }
 
         public string PackageVersion { get; set; }

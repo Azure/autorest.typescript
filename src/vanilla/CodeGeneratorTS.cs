@@ -75,12 +75,28 @@ namespace AutoRest.TypeScript
                 }
             }
 
-            if (codeModel.Settings.GenerateMetadata)
+            if (codeModel.Settings.GeneratePackageJson || codeModel.Settings.GenerateMetadata)
             {
                 // package.json
                 var packageJson = new PackageJson { Model = codeModel };
                 await Write(packageJson, Path.Combine("../", "package.json"));
+            }
 
+            if (codeModel.Settings.GenerateReadmeMd || codeModel.Settings.GenerateMetadata)
+            {
+                //README.md
+                var readme = new ReadmeTemplate { Model = codeModel };
+                await Write(readme, Path.Combine("../", "README.md"));
+            }
+
+            if (codeModel.Settings.GenerateLicenseTxt || codeModel.Settings.GenerateMetadata)
+            {
+                var license = new LicenseTemplate { Model = codeModel };
+                await Write(license, Path.Combine("../", "LICENSE.txt"));
+            }
+
+            if (codeModel.Settings.GenerateMetadata)
+            {
                 //tsconfig.json
                 var nodeTsConfig = new TsConfig();
                 await Write(nodeTsConfig, Path.Combine("../", "tsconfig.json"));
@@ -96,10 +112,6 @@ namespace AutoRest.TypeScript
                 // .npmignore
                 var npmIgnore = new NpmIgnore { Model = codeModel };
                 await Write(npmIgnore, Path.Combine("../", ".npmignore"));
-
-                //README.md
-                var readme = new ReadmeTemplate { Model = codeModel };
-                await Write(readme, Path.Combine("../", "README.md"));
             }
         }
     }

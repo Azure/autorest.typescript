@@ -1,0 +1,37 @@
+{
+  "name": "",
+  "author": "Microsoft Corporation",
+  "description": "AutoRestUrlMutliCollectionFormatTestService Library with typescript type definitions for node.js and browser.",
+  "version": "",
+  "dependencies": {
+    "ms-rest-js": "~0.22.416"
+  },
+  "keywords": [
+    "node",
+    "azure",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
+  "license": "MIT",
+  "main": "./dist/lib/autoRestUrlMutliCollectionFormatTestService.js",
+  "types": "./typings/lib/autoRestUrlMutliCollectionFormatTestService.d.ts",
+  "devDependencies": {
+    "ts-loader": "^4.4.2",
+    "tslib": "^1.9.3",
+    "typescript": "^2.9.2",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0"
+  },
+  "homepage": "https://github.com/azure/azure-sdk-for-js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azure/azure-sdk-for-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azure/azure-sdk-for-js/issues"
+  },
+  "scripts": {
+    "build": "tsc && webpack"
+  }
+}
