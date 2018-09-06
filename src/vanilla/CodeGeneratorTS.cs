@@ -88,7 +88,7 @@ namespace AutoRest.TypeScript
                 await Write(readme, Path.Combine("../", "README.md"));
             }
 
-            if (codeModel.Settings.GenerateLicenseTxt || codeModel.Settings.GenerateMetadata)
+            if (codeModel.Settings.GenerateLicenseTxt)
             {
                 var license = new LicenseTemplate { Model = codeModel };
                 await Write(license, Path.Combine("../", "LICENSE.txt"));

@@ -11,7 +11,7 @@ namespace AutoRest.TypeScript
         /// <summary>
         /// Whether or not to generate a new package.json file.
         /// </summary>
-        public bool GeneratePackageJson { get; set; } = true;
+        public bool GeneratePackageJson { get; set; }
 
         /// <summary>
         /// Whether or not to generate a new readme.md file.
