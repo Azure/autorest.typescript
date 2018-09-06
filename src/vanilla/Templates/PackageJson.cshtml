@@ -43,6 +43,6 @@ else
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc @(string.IsNullOrEmpty(Model.DefaultApiVersion) ? "" : "-b") && webpack"
+    "build": "tsc @(string.IsNullOrEmpty(Model.DefaultApiVersion) ? "" : "-b ")&& webpack"
   }
 }
