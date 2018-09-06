@@ -1,6 +1,4 @@
-﻿@using System.Linq
-@using AutoRest.TypeScript.vanilla.Templates
-@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
+﻿@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 {
   "compilerOptions": {
     "module": "commonjs",
@@ -14,7 +12,7 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["es6"],
     "declaration": true,
-@if(!string.IsNullOrEmpty(Model.DefaultApiVersion))
+@if(!string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
 {
 <text>
     "composite": true
@@ -27,7 +25,7 @@ else
 </text>
 }
   },
-@if(string.IsNullOrEmpty(Model.DefaultApiVersion))
+@if(string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
 {
 <text>
   "include": ["./lib/**/*"],

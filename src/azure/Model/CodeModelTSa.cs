@@ -15,17 +15,6 @@ namespace AutoRest.TypeScript.Azure.Model
 
     public class CodeModelTSa : CodeModelTS
     {
-        public CodeModelTSa()
-            : base()
-        {
-        }
-
-        public CodeModelTSa(string packageName = "azure-test-client", string packageVersion = "0.1.0")
-        {
-            PackageName = packageName;
-            PackageVersion = packageVersion;
-        }
-
         private string _optionalParameterTypeForClientConstructor;
 
         [JsonIgnore]

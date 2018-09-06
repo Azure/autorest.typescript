@@ -1,10 +1,10 @@
 ﻿@using AutoRest.Core.Utilities;
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 {
-  "name": "@(Model.PackageName)",
+  "name": "@(Model.Settings.PackageName)",
   "author": "Microsoft Corporation",
   "description": "@(Model.Name.ToPascalCase()) Library with typescript type definitions for node.js and browser.",
-  "version": "@(Model.PackageVersion)",
+  "version": "@(Model.Settings.PackageVersion)",
   "dependencies": {
     @(Model.PackageDependencies())
   },
@@ -16,7 +16,7 @@
     "isomorphic"
   ],
   "license": "MIT",
-@if (string.IsNullOrEmpty(Model.DefaultApiVersion))
+@if (string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
 {
 @:  "main": "./cjs/@(Model.Name.ToCamelCase()).js",
 @:  "module": "./esm/@(Model.Name.ToCamelCase()).js",
@@ -24,9 +24,9 @@
 }
 else
 {
-@:  "main": "./@(Model.DefaultApiVersion)/cjs/lib/@(Model.Name.ToCamelCase()).js",
-@:  "module": "./@(Model.DefaultApiVersion)/esm/lib/@(Model.Name.ToCamelCase()).js",
-@:  "types": "./@(Model.DefaultApiVersion)/cjs/lib/@(Model.Name.ToCamelCase()).d.ts",
+@:  "main": "./@(Model.Settings.DefaultApiVersion)/cjs/lib/@(Model.Name.ToCamelCase()).js",
+@:  "module": "./@(Model.Settings.DefaultApiVersion)/esm/lib/@(Model.Name.ToCamelCase()).js",
+@:  "types": "./@(Model.Settings.DefaultApiVersion)/cjs/lib/@(Model.Name.ToCamelCase()).d.ts",
 }
   "devDependencies": {
     "tslib": "^1.9.3",
@@ -43,7 +43,7 @@ else
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc @(string.IsNullOrEmpty(Model.DefaultApiVersion) ? "&& tsc -p tsconfig.esm.json" : "-b") && webpack",
+    "build": "tsc @(string.IsNullOrEmpty(Model.Settings.DefaultApiVersion) ? "&& tsc -p tsconfig.esm.json" : "-b") && webpack",
     "prepare": "npm run build"
   }
 }

@@ -279,7 +279,7 @@ namespace AutoRest.TypeScript.Model
             }
 
             bool isHeaders = CodeModel?.HeaderTypes.Contains(this) == true;
-            bool isOptional = !property.IsRequired && (!isHeaders || CodeModelTS.OptionalResponseHeaders);
+            bool isOptional = !property.IsRequired && (!isHeaders || CodeModelTS.Settings.OptionalResponseHeaders);
             if (isOptional)
                 return propertyName + "?: " + typeString;
             else

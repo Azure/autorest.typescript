@@ -1,19 +1,16 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using AutoRest.Core.Model;
+using AutoRest.Core.Utilities;
+using AutoRest.Extensions;
+using AutoRest.TypeScript.DSL;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using AutoRest.Core.Model;
-using AutoRest.Core.Utilities;
-using AutoRest.Extensions;
-using AutoRest.TypeScript.DSL;
-using AutoRest.TypeScript;
-using Newtonsoft.Json;
-using AutoRest.Core;
-using AutoRest.TypeScript.Azure.Model;
 
 namespace AutoRest.TypeScript.Model
 {
@@ -28,14 +25,7 @@ namespace AutoRest.TypeScript.Model
         private const string searchStringSuffix = "/lib/services/";
         private const string outputFolderSearchString = "/" + defaultGitHubRepositoryName + searchStringSuffix;
 
-        public CodeModelTS()
-        {
-        }
-        public CodeModelTS(string packageName = "test-client", string packageVersion = "0.1.0")
-        {
-            PackageName = packageName;
-            PackageVersion = packageVersion;
-        }
+        public GeneratorSettingsTS Settings { get; set; }
 
         private string _optionalParameterTypeForClientConstructor;
 
@@ -165,36 +155,14 @@ namespace AutoRest.TypeScript.Model
         public IEnumerable<CompositeTypeTS> OrderedMapperTemplateModels =>
             OrderedModelTemplateModels.Where(m => m.BaseModelType?.Name != "RequestOptionsBase");
 
-        public virtual string PackageName { get; set; }
-
-        public virtual string PackageVersion { get; set; }
-
-        public bool MultiApi { get; set; }
-
-        public string DefaultApiVersion { get; set; }
-
-        public string[] ApiVersions { get; set; }
-
-        public string OutputFolder { get; set; }
-
-        public bool ModelEnumAsUnion { get; set; }
-
-        public bool ModelDateTimeAsString { get; set; }
-
-        public bool GenerateMetadata { get; set; }
-
-        public bool GenerateBodyMethods { get; set; }
-
-        public bool OptionalResponseHeaders { get; set; }
-
         public string HomePageUrl
         {
             get
             {
                 string result = defaultGitHubUrl;
-                if (!string.IsNullOrEmpty(OutputFolder))
+                if (!string.IsNullOrEmpty(Settings.OutputFolder))
                 {
-                    string outputFolder = OutputFolder.Replace('\\', '/');
+                    string outputFolder = Settings.OutputFolder.Replace('\\', '/');
                     int searchStringIndex = outputFolder.IndexOf(outputFolderSearchString, StringComparison.OrdinalIgnoreCase);
                     if (0 <= searchStringIndex)
                     {
@@ -622,7 +590,7 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
             builder.Array(arr =>
             {
-                foreach (string version in ApiVersions)
+                foreach (string version in Settings.ApiVersions)
                 {
                     arr.Text($"{{ \"path\": \"{version}/tsconfig.json\" }}");
                     arr.Text($"{{ \"path\": \"{version}/tsconfig.esm.json\" }}");
