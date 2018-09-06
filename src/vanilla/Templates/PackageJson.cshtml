@@ -18,9 +18,9 @@
   "license": "MIT",
 @if (string.IsNullOrEmpty(Model.DefaultApiVersion))
 {
-@:  "main": "./cjs/lib/@(Model.Name.ToCamelCase()).js",
-@:  "module": "./esm/lib/@(Model.Name.ToCamelCase()).js",
-@:  "types": "./cjs/lib/@(Model.Name.ToCamelCase()).d.ts",
+@:  "main": "./cjs/@(Model.Name.ToCamelCase()).js",
+@:  "module": "./esm/@(Model.Name.ToCamelCase()).js",
+@:  "types": "./cjs/@(Model.Name.ToCamelCase()).d.ts",
 }
 else
 {
