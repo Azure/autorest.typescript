@@ -16,13 +16,13 @@ const config = {
 @if (!string.IsNullOrEmpty(Model.DefaultApiVersion))
 {
 <text>
-  entry: './@(Model.DefaultApiVersion)/lib/@(Model.Name.ToCamelCase()).ts',
+  entry: './@(Model.DefaultApiVersion)/esm/lib/@(Model.Name.ToCamelCase()).js',
 </text>
 }
 else
 {
 <text>
-  entry: './lib/@(Model.Name.ToCamelCase()).ts',
+  entry: './esm/@(Model.Name.ToCamelCase()).js',
 </text>
 }
   devtool: 'source-map',
@@ -31,28 +31,6 @@ else
     path: __dirname,
     libraryTarget: 'var',
     library: '@(Model.Name.ToCamelCase())'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-        options: {
-@if (!string.IsNullOrEmpty(Model.DefaultApiVersion))
-{
-<text>
-          configFile: path.join(__dirname, '@(Model.DefaultApiVersion)/tsconfig.esm.json'),
-</text>
-}
-else
-{
-<text>
-          configFile: path.join(__dirname, "tsconfig.esm.json")
-</text>
-}
-        }
-      }
-    ]
   },
   // "ms-rest-js" and "ms-rest-azure-js" are dependencies of this library.
   // Customer is expected to import/include this library in browser javascript
