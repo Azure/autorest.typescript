@@ -11,7 +11,6 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.Model;
 using AutoRest.TypeScript.vanilla.Templates;
-using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.TypeScript
 {

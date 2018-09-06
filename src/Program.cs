@@ -184,7 +184,7 @@ namespace AutoRest.TypeScript
         {
             if (Settings.Instance.Namespace == null)
             {
-                string[] inputFiles = await GetValue<string[]>("input-file") ?? new[] { "" };
+                string[] inputFiles = await GetValue<string[]>("input-file") ?? new string[0];
                 string altNamespace = inputFiles.FirstOrDefault()?.Split('/').Last().Split('\\').Last().Split('.').First();
                 Settings.Instance.Namespace = CodeNamer.Instance.GetNamespaceName(altNamespace);
             }
