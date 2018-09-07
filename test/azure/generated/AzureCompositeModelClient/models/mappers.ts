@@ -370,16 +370,6 @@ export const SmartSalmon: msRest.CompositeMapper = {
     className: "SmartSalmon",
     modelProperties: {
       ...Salmon.type.modelProperties,
-      additionalProperties: {
-        type: {
-          name: "Dictionary",
-          value: {
-            type: {
-              name: "Object"
-            }
-          }
-        }
-      },
       collegeDegree: {
         serializedName: "college_degree",
         type: {

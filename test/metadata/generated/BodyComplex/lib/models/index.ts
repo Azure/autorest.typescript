@@ -196,14 +196,14 @@ export interface SmartSalmon {
    */
   iswild?: boolean;
   /**
-   * @member {{ [propertyName: string]: any }} [additionalProperties] Unmatched
-   * properties from the message are deserialized this collection
-   */
-  additionalProperties?: { [propertyName: string]: any };
-  /**
    * @member {string} [collegeDegree]
    */
   collegeDegree?: string;
+  /**
+   * @property Describes unknown properties. The value of an unknown property
+   * can be of "any" type.
+   */
+  [property: string]: any;
 }
 
 /**
