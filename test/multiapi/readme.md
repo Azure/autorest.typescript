@@ -21,17 +21,17 @@ This is the autorest.typescript test fixture for multiapi support.
 ```
 
 ```yaml $(default-api-version) == '2018-02-01'
-output-folder: ./generated/lib
+output-folder: ./generated
 ```
 
 ```yaml $(tag) == 'package-2017-10'
 input-file:
   - $(testserver-dir)/custom-baseUrl.json
-output-folder: ./generated/2017-10-01/lib
+output-folder: ./generated/2017-10-01
 ```
 
 ```yaml $(tag) == 'package-2018-02'
 input-file:
   - $(testserver-dir)/custom-baseUrl-more-options.json
-output-folder: ./generated/2018-02-01/lib
+output-folder: ./generated/2018-02-01
 ```

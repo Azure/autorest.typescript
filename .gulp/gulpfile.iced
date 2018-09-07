@@ -61,13 +61,13 @@ task 'test/metadata', '', ['test/vanilla-metadata', 'test/azure-metadata'], (don
   done()
 
 task 'test/vanilla-metadata', '', [], (done) ->
-  cwd = "#{basefolder}/test/metadata/generated"
+  cwd = "#{basefolder}/test/metadata/generated/BodyComplex"
   await execute "npm install", { cwd: cwd, silent: false }, defer _
   await execute "npm run build", { cwd: cwd, silent: false }, defer _
   done()
 
 task 'test/azure-metadata', '', [], (done) ->
-  cwd = "#{basefolder}/test/azuremetadata/generated"
+  cwd = "#{basefolder}/test/azuremetadata/generated/Lro"
   await execute "npm install", {cwd: cwd, silent: false }, defer _
   await execute "npm run build", {cwd: cwd, silent: false }, defer _
   done()

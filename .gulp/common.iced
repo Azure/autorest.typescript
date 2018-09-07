@@ -367,7 +367,9 @@ module.exports =
     return proc
 
   autorest: (args,done,ignoreexitcode) ->
-    autorestCommand = "#{basefolder}/node_modules/.bin/autorest #{args.map((a) -> "\"#{a}\"").join(' ')} \"--use=#{basefolder}\""
+    args.unshift("#{basefolder}/node_modules/.bin/autorest")
+    args.push("--use=#{basefolder}")
+    autorestCommand = args.map((a) -> if a.indexOf(' ') != -1 then "\"#{a}\"" else a).join(' ')
     echo info "Queuing up: #{autorestCommand}"
     execute autorestCommand , {silent:true, ignoreexitcode: ignoreexitcode || false}, (code,stdout,stderr) ->
       return done(code,stdout,stderr)
