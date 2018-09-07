@@ -17,7 +17,8 @@ regenExpected = (opts,done) ->
       "--#{opts.language}",
       "--clear-output-folder",
       "--output-folder=#{outputDir}/#{key}",
-      "--license-header=#{if !!opts.header then opts.header else 'MICROSOFT_MIT_NO_VERSION'}"
+      "--license-header=#{if !!opts.header then opts.header else 'MICROSOFT_MIT_NO_VERSION'}",
+      "--source-code-folder-path=#{opts.sourceCodeFolderPath ? "''"}"
     ]
 
     for swaggerFile in swaggerFiles
@@ -149,11 +150,11 @@ optionalResponseHeadersMappings = {
 }
 
 metadataMappings = {
-  'lib': 'body-complex.json',
+  'BodyComplex': 'body-complex.json',
 }
 
 azureMetadataMappings = {
-  'lib': 'lro.json',
+  'Lro': 'lro.json',
 }
 
 renameParameterMappings = {
@@ -290,7 +291,8 @@ task 'regenerate-ts-metadata', '', [], (done) ->
     'language': 'typescript',
     'nsPrefix': 'Fixtures',
     'flatteningThreshold': '1',
-    'generateMetadata': true
+    'generateMetadata': true,
+    'sourceCodeFolderPath': 'lib'
   },done
   return null
 
@@ -304,7 +306,8 @@ task 'regenerate-tsazure-metadata', '', [], (done) ->
     'nsPrefix': 'Fixtures',
     'flatteningThreshold': '1',
     'azureArm': true,
-    'generateMetadata': true
+    'generateMetadata': true,
+    'sourceCodeFolderPath': 'lib'
   },done
   return null
 

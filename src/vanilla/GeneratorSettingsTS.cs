@@ -24,6 +24,11 @@ namespace AutoRest.TypeScript
         public bool GenerateLicenseTxt { get; set; }
 
         /// <summary>
+        /// The sub-folder path where source code will be generated.
+        /// </summary>
+        public string SourceCodeFolderPath { get; set; } = "lib";
+
+        /// <summary>
         /// The name of the npm package.
         /// </summary>
         public string PackageName { get; set; }
