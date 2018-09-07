@@ -318,24 +318,55 @@ namespace AutoRest.TypeScript
             }
         }
 
+        private static readonly string[] reservedClientPropertyNames = new[]
+        {
+            "requestPolicyFactories",
+            "httpClient",
+            "httpPipelineLogger",
+            "noRetryPolicy",
+            "rpRegistrationRetryTimeout",
+            "generateClientRequestIdHeader",
+            "withCredentials",
+            "clientRequestIdHeaderName"
+        };
+
         public virtual void CreateModelTypeForOptionalClientProperties(CodeModelTS cm)
         {
             List<string> predefinedOptionalProperties = new List<string>() { "requestOptions", "filters", "noRetryPolicy" };
-            var optionalProperitesOnClient = cm.Properties.Where(
+            var optionalPropertiesOnClient = cm.Properties.Where(
                 p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue))
                 && !p.IsConstant && !predefinedOptionalProperties.Contains(p.Name));
-            if (optionalProperitesOnClient.Count() > 0)
+            if (optionalPropertiesOnClient.Count() > 0)
             {
                 string modelTypeName = cm.Name + "Options";
                 var modelType = new CompositeTypeTS(modelTypeName);
                 modelType.BaseModelType = New<CompositeType>(new { Name = "ServiceClientOptions", SerializedName = "ServiceClientOptions" });
                 // We could end up having a property that is required but has a default value based on the above condition. If so then make it optional.
-                optionalProperitesOnClient.Where(p => p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)).ForEach(prop => prop.IsRequired = false);
-                modelType.AddRange(optionalProperitesOnClient);
+                optionalPropertiesOnClient.Where(p => p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)).ForEach(prop => prop.IsRequired = false);
+
+                foreach (var prop in optionalPropertiesOnClient)
+                {
+                    if (reservedClientPropertyNames.Contains(prop.Name.ToCamelCase()))
+                    {
+                        prop.Name += "Property";
+                    }
+                }
+
+                modelType.AddRange(optionalPropertiesOnClient);
                 cm.Add(modelType);
                 cm.OptionalParameterTypeForClientConstructor = "Models." + modelTypeName;
             }
         }
+
+
+        private static readonly string[] reservedParameterNames = new[]
+        {
+            "customHeaders",
+            "abortSignal",
+            "timeout",
+            "onUploadProgress",
+            "onDownloadProgress"
+        };
 
         public virtual void CreateModelTypesForOptionalMethodParameters(CodeModelTS cm)
         {
@@ -378,12 +409,17 @@ namespace AutoRest.TypeScript
                     });
                     var optionsParameterModelType = ((CompositeType)optionsParameterTemplateModel.ModelType);
                     optionsParameterModelType.BaseModelType = New<CompositeType>(new { Name = "RequestOptionsBase", SerializedName = "RequestOptionsBase" });
+
                     foreach(var optionalParameter in optionalParameters)
                     {
+                        var name = reservedParameterNames.Contains(optionalParameter.Name.ToCamelCase())
+                            ? optionalParameter.Name + "Parameter"
+                            : optionalParameter.Name.Value;
+
                         optionsParameterModelType.Add(New<Property>(new
                         {
                             IsReadOnly = false,
-                            Name = optionalParameter.Name,
+                            Name = name,
                             IsRequired = optionalParameter.IsRequired,
                             DefaultValue = optionalParameter.DefaultValue,
                             Documentation = optionalParameter.Documentation,

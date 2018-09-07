@@ -2,6 +2,8 @@ import { join } from "path";
 import { promisify } from "util";
 import cp = require("child_process");
 import fs = require("fs");
+import path = require("path");
+
 import filesize = require("filesize");
 
 const exec = promisify(cp.exec);
@@ -16,9 +18,10 @@ async function getBundleSize() {
   return status.size;
 }
 
-function execVerbose(script: string): any {
-  console.log(`> ${script}`);
-  return exec(script, { maxBuffer: 1024 * 1024 });
+function execVerbose(script: string, opts?: cp.ExecOptions): any {
+  const cwd = path.resolve(opts && opts.cwd || process.cwd());
+  console.log(`> ${cwd} - ${script}`);
+  return exec(script, { maxBuffer: 1024 * 1024, ...opts });
 }
 
 /**
@@ -48,10 +51,12 @@ async function main() {
   try {
     await execVerbose("git reset --hard " + branch);
     await execVerbose("npm i --ignore-scripts");
+    await execVerbose("npm i", { cwd: "./test/multiapi/generated" });
     baseSize = await getBundleSize();
 
     await execVerbose("git reset --hard " + prCommit);
     await execVerbose("npm i --ignore-scripts");
+    await execVerbose("npm i", { cwd: "./test/multiapi/generated" });
     headSize = await getBundleSize();
 
     const change = (headSize / baseSize) - 1;

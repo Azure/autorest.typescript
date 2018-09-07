@@ -69,7 +69,6 @@ namespace AutoRest.TypeScript.Azure
                 {
                     await Write(new PackageJsonMultiApi() { Model = codeModel }, "package.json");
 
-
                     await Write(new TsConfigMultiApi() { Model = codeModel }, "tsconfig.json");
 
                     await Write(new TsConfigWebpackMultiApi() { Model = codeModel }, "tsconfig.esm.json");
@@ -85,7 +84,7 @@ namespace AutoRest.TypeScript.Azure
                     await Write(nodeTsConfig, "tsconfig.json");
 
                     //tsconfig.esm.json
-                    var webpackTsConfig = new TsConfigWebpack();
+                    var webpackTsConfig = new TsConfigWebpack { Model = codeModel };
                     await Write(webpackTsConfig, "tsconfig.esm.json");
 
                     // webpack.config.js

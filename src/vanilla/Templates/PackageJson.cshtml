@@ -18,8 +18,9 @@
   "license": "MIT",
 @if (string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
 {
-@:  "main": "./dist/lib/@(Model.Name.ToCamelCase()).js",
-@:  "types": "./typings/lib/@(Model.Name.ToCamelCase()).d.ts",
+@:  "main": "./cjs/@(Model.Name.ToCamelCase()).js",
+@:  "module": "./esm/@(Model.Name.ToCamelCase()).js",
+@:  "types": "./cjs/@(Model.Name.ToCamelCase()).d.ts",
 }
 else
 {
@@ -28,7 +29,6 @@ else
 @:  "types": "./@(Model.Settings.DefaultApiVersion)/cjs/lib/@(Model.Name.ToCamelCase()).d.ts",
 }
   "devDependencies": {
-    "ts-loader": "^4.4.2",
     "tslib": "^1.9.3",
     "typescript": "^3.0.3",
     "webpack": "^4.17.2",
@@ -43,6 +43,7 @@ else
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc @(string.IsNullOrEmpty(Model.Settings.DefaultApiVersion) ? "" : "-b ")&& webpack"
+    "build": "tsc @(string.IsNullOrEmpty(Model.Settings.DefaultApiVersion) ? "&& tsc -p tsconfig.esm.json" : "-b") && webpack",
+    "prepare": "npm run build"
   }
 }

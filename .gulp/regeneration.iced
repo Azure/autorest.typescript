@@ -157,6 +157,10 @@ azureMetadataMappings = {
   'Lro': 'lro.json',
 }
 
+renameParameterMappings = {
+  'lib': 'rename-parameter.json'
+}
+
 noClientValidationMappings = {
   'Validation': 'validation.json'
 }
@@ -307,6 +311,18 @@ task 'regenerate-tsazure-metadata', '', [], (done) ->
   },done
   return null
 
+task 'regenerate-ts-rename-parameter', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/rename-parameter',
+    'inputBaseDir': 'test/rename-parameter',
+    'mappings': renameParameterMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures',
+    'flatteningThreshold': '1'
+  },done
+  return null
+
 tsTasks = [
   'regenerate-tscomposite',
   'regenerate-tsxml',
@@ -314,8 +330,10 @@ tsTasks = [
   'regenerate-ts-metadata',
   'regenerate-ts-no-client-validation',
   'regenerate-ts-date-time-as-string',
-  'regenerate-ts-optional-response-headers'
+  'regenerate-ts-optional-response-headers',
+  'regenerate-ts-rename-parameter'
 ]
+
 task 'regenerate-ts', '', tsTasks, (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]
