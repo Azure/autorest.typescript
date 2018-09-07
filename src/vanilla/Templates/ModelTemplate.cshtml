@@ -61,5 +61,12 @@
         }
     }
 
+    if (Model.AdditionalProperties != null)
+    {
+  @:/**
+  @:@WrapComment(" * ", $"@property {Model.AdditionalPropertiesDocumentation()}")
+  @: */
+  @:[property: string]: @(Model.AdditionalPropertiesTSType());
+    }
 @:}
 }

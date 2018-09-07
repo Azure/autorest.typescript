@@ -67,6 +67,38 @@ namespace AutoRest.TypeScript.Model
 
         public string NameAsFileName => Name.EqualsIgnoreCase("index") ? "IndexModelType" : (string)Name;
 
+        public IModelType AdditionalProperties { get; set; }
+
+        public string AdditionalPropertiesTSType()
+        {
+            string result = "any";
+            if (AdditionalProperties != null)
+            {
+                var type = AdditionalProperties.TSType(true);
+                result = type != "any" ? $"{type} | any" : "any";
+            }
+            return result;
+        }
+
+        public string AdditionalPropertiesDocumentation()
+        {
+            string result = "Describes unknown properties. ";
+            if (AdditionalProperties != null)
+            {
+                var type = AdditionalProperties.TSType(true);
+                if (type != "any")
+                {
+                    result += $"The value of an unknown property MUST be of type \"{type}\". Due to valid TS constraints " +
+                        $"we have modeled this as a union of `{type} | any`.";
+                }
+                else
+                {
+                    result += "The value of an unknown property can be of \"any\" type.";
+                }
+            }
+            return result;
+        }
+
         /// <summary>
         /// Gets or sets the discriminator property for polymorphic types.
         /// </summary>
