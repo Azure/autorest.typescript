@@ -34,6 +34,7 @@ namespace AutoRest.TypeScript
             CreateUniqueParameterMapperNames(codeModel);
             DisambiguateHeaderNames(codeModel);
             AddReadOnlyDocumentation(codeModel);
+            ProcessAdditionalProperties(codeModel);
 
             if (codeModel.Settings.ModelDateTimeAsString)
             {
@@ -475,6 +476,29 @@ namespace AutoRest.TypeScript
                         IsRequired = true,
                         Documentation = "Subscription credentials which uniquely identify client subscription."
                     }));
+                }
+            }
+        }
+
+
+        private void ProcessAdditionalProperties(CodeModelTS cm)
+        {
+            var modelTypes = cm.ModelTypes.Cast<CompositeTypeTS>();
+            foreach(var model in modelTypes)
+            {
+                var modelProperties = model.Properties.ToList();
+                foreach (var property in modelProperties)
+                {
+                    bool isAdditionalProperties =
+                        property.Name.EqualsIgnoreCase("additionalProperties") &&
+                        property.SerializedName == null &&
+                        property.ModelType is DictionaryTypeTS;
+
+                    if (isAdditionalProperties)
+                    {
+                        model.AdditionalProperties = (property.ModelType as DictionaryTypeTS).ValueType;
+                        model.Remove(property);
+                    }
                 }
             }
         }

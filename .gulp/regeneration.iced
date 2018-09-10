@@ -99,7 +99,8 @@ defaultMappings = {
   'CustomBaseUri': 'custom-baseUrl.json',
   'CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
   'ModelFlattening': 'model-flattening.json',
-  'UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json'
+  'UrlMultiCollectionFormat': 'url-multi-collectionFormat.json',
+  'AdditionalProperties': 'additionalProperties.json'
 }
 
 defaultAzureMappings = {
