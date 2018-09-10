@@ -234,6 +234,11 @@ export const SmartSalmon: msRest.CompositeMapper = {
           name: "String"
         }
       }
+    },
+    additionalProperties: {
+      type: {
+        name: "Object"
+      }
     }
   }
 };
