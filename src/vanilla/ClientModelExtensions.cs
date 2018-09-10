@@ -898,7 +898,6 @@ namespace AutoRest.TypeScript
                     {
                         typeObject.ObjectProperty("additionalProperties", additionalProperties =>
                         {
-
                             ConstructMapper(additionalProperties, composite.AdditionalProperties, serializedName: null, parameter: null, isPageable: false, expandComposite: false, isXML: isXML);
                         });
                     }
