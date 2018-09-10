@@ -16,7 +16,7 @@ before(function (done) {
 
   child.stdout.on('data', function (data: Buffer) {
     fs.writeSync(out, data.toString('UTF-8'));
-    if (data.toString().indexOf('started') > 0) {
+    if (!started && data.toString().indexOf('started') > 0) {
       started = true;
       done();
     }
@@ -40,6 +40,6 @@ before(function (done) {
   });
 });
 
-after(async function () {
+after(function () {
   child.kill();
 });
