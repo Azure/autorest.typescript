@@ -523,9 +523,6 @@ namespace AutoRest.TypeScript
             }
             else if (dictionary != null)
             {
-                // TODO: Confirm with Mark exactly what cases for additionalProperties AutoRest intends to handle (what about
-                // additonalProperties combined with explicit properties?) and add support for those if needed to at least match
-                // C# target level of functionality
                 if (dictionary.IsDictionaryContainingDateKind()) //then provide a union of Date and string
                     tsType = "{ [propertyName: string]: " + dictionary.ValueType.TSType(inModelsModule) + " }" + " | { [propertyName: string]: string }";
                 else
@@ -660,7 +657,7 @@ namespace AutoRest.TypeScript
                 }
             }
 
-            CompositeType composite = type as CompositeType;
+            CompositeTypeTS composite = type as CompositeTypeTS;
             if (composite != null && composite.ContainsConstantProperties && (parameter != null && parameter.IsRequired))
             {
                 defaultValue = "{}";
@@ -895,6 +892,32 @@ namespace AutoRest.TypeScript
                                 }
                             }
                         });
+                    }
+
+                    if (composite.AdditionalProperties != null)
+                    {
+                        typeObject.ObjectProperty("additionalProperties", additionalProperties =>
+                        {
+
+                            ConstructMapper(additionalProperties, composite.AdditionalProperties, serializedName: null, parameter: null, isPageable: false, expandComposite: false, isXML: isXML);
+                        });
+                    }
+                    else
+                    {
+                        CompositeTypeTS baseType = composite;
+                        while (true)
+                        {
+                            baseType = (CompositeTypeTS) baseType.BaseModelType;
+                            if (baseType == null)
+                            {
+                                break;
+                            }
+                            else if (baseType.AdditionalProperties != null)
+                            {
+                                typeObject.TextProperty("additionalProperties", $"{baseType.Name}.type.additionalProperties");
+                                break;
+                            }
+                        }
                     }
                 });
             }
