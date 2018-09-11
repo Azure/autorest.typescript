@@ -844,12 +844,16 @@ namespace AutoRest.TypeScript
                             polymorphicDiscriminator.QuotedStringProperty("serializedName", composite.PolymorphicDiscriminator);
                             polymorphicDiscriminator.QuotedStringProperty("clientName", Singleton<CodeNamerTS>.Instance.GetPropertyName(composite.PolymorphicDiscriminator));
                         });
-
+                        typeObject.QuotedStringProperty("uberParent", composite.Name);
+                    }
+                    else if (composite.ImmediatePolymorphicSubtypes.Any())
+                    {
                         CompositeType polymorphicType = composite;
                         while (polymorphicType.BaseModelType != null)
                         {
                             polymorphicType = polymorphicType.BaseModelType;
                         }
+                        typeObject.TextProperty("polymorphicDiscriminator", polymorphicType.Name + ".type.polymorphicDiscriminator");
                         typeObject.QuotedStringProperty("uberParent", polymorphicType.Name);
                     }
 

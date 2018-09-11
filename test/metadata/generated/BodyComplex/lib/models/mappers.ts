@@ -202,6 +202,8 @@ export const Salmon: msRest.CompositeMapper = {
   serializedName: "salmon",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Fish",
     className: "Salmon",
     modelProperties: {
       ...Fish.type.modelProperties,
@@ -247,6 +249,8 @@ export const Shark: msRest.CompositeMapper = {
   serializedName: "shark",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Fish",
     className: "Shark",
     modelProperties: {
       ...Fish.type.modelProperties,
