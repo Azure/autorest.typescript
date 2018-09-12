@@ -33,6 +33,7 @@ import { AutoRestParameterizedCustomHostTestClient } from './generated/CustomBas
 import { fail } from "assert";
 import { timeoutPromise } from '../util/util';
 import { FooEnum } from './generated/BodyArray/models';
+import { Colors } from './generated/BodyString/models';
 
 const readStreamToBuffer = async function (strm: NodeJS.ReadableStream): Promise<Buffer> {
   return new Promise<Buffer>((resolve, reject) => {
@@ -490,6 +491,24 @@ describe('typescript', function () {
             done();
           });
         });
+      });
+
+      it('should getEnumReferenced', async function () {
+        const result = await testClient.enumModel.getReferenced();
+        should(result.body).equal(Colors.Redcolor);
+      });
+
+      it('should putEnumReferenced', async function () {
+        await testClient.enumModel.putReferenced(Colors.Redcolor);
+      });
+
+      it('should getEnumReferencedConstant', async function () {
+        const result = await testClient.enumModel.getReferencedConstant();
+        should(result.field1).equal('Sample String');
+      });
+
+      it('should putEnumReferencedConstant', async function () {
+        await testClient.enumModel.putReferencedConstant({ field1: '' });
       });
     });
 
