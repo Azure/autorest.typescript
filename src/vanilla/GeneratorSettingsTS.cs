@@ -9,19 +9,24 @@ namespace AutoRest.TypeScript
     public class GeneratorSettingsTS : IGeneratorSettings
     {
         /// <summary>
+        /// Whether or not the generator should produce Azure-specific code.
+        /// </summary>
+        public bool? AzureArm { get; set; }
+
+        /// <summary>
         /// Whether or not to generate a new package.json file.
         /// </summary>
-        public bool GeneratePackageJson { get; set; }
+        public bool? GeneratePackageJson { get; set; }
 
         /// <summary>
         /// Whether or not to generate a new readme.md file.
         /// </summary>
-        public bool GenerateReadmeMd { get; set; }
+        public bool? GenerateReadmeMd { get; set; }
 
         /// <summary>
         /// Whether or not to generate the LICENSE.txt file.
         /// </summary>
-        public bool GenerateLicenseTxt { get; set; }
+        public bool? GenerateLicenseTxt { get; set; }
 
         /// <summary>
         /// The sub-folder path where source code will be generated.

@@ -5,6 +5,7 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.azure.Templates;
 using AutoRest.TypeScript.Azure.Model;
+using AutoRest.TypeScript.Model;
 using AutoRest.TypeScript.vanilla.Templates;
 using System;
 using System.IO;
@@ -35,70 +36,59 @@ namespace AutoRest.TypeScript.Azure
                 throw new InvalidCastException("CodeModel is not a Azure TypeScript code model.");
             }
 
-            if (string.IsNullOrEmpty(codeModel.Settings.DefaultApiVersion))
+            await Generate(new AzureTemplateFactory(), codeModel);
+
+            if (IsNotDefaultApiVersion(codeModel))
             {
-                // Service client
-                var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel };
-                await Write(serviceClientTemplate, GetSourceCodeFilePath(codeModel, codeModel.Name.ToCamelCase() + ".ts"));
-                await Write(new AzureServiceClientContextTemplate { Model = codeModel }, GetSourceCodeFilePath(codeModel, codeModel.ContextName.ToCamelCase() + ".ts"));
-                var modelIndexTemplate = new AzureModelIndexTemplate { Model = codeModel };
-                await Write(modelIndexTemplate, GetSourceCodeFilePath(codeModel, "models", "index.ts"));
-                var mapperIndexTemplate = new AzureMapperIndexTemplate { Model = codeModel };
-                await Write(mapperIndexTemplate, GetSourceCodeFilePath(codeModel, "models", "mappers.ts"));
-                await Write(new ParameterTemplate {Model = codeModel}, GetSourceCodeFilePath(codeModel, "models", "parameters.ts"));
-
-                //MethodGroups
-                if (codeModel.MethodGroupModels.Any())
+                if (ShouldWriteParameterMappersFile(codeModel))
                 {
-                    var methodGroupIndexTemplate = new MethodGroupIndexTemplate { Model = codeModel };
-                    await Write(methodGroupIndexTemplate, GetSourceCodeFilePath(codeModel, "operations", "index.ts"));
+                    await WriteParameterMappersFile(codeModel);
+                }
 
-                    foreach (var methodGroupModel in codeModel.MethodGroupModels)
+                if (ShouldWriteMethodGroupFiles(codeModel))
+                {
+                    await WriteMethodGroupIndexFile(codeModel);
+
+                    bool shouldWriteModelsFiles = ShouldWriteModelsFiles(codeModel);
+                    foreach (MethodGroupTS methodGroup in codeModel.MethodGroupModels)
                     {
-                        var mappersTemplate = new MethodGroupMappersTemplate { Model = methodGroupModel };
-                        await Write(mappersTemplate, GetSourceCodeFilePath(codeModel, "models", methodGroupModel.MappersModuleName + ".ts"));
-                        var methodGroupTemplate = new AzureMethodGroupTemplate { Model = methodGroupModel };
-                        await Write(methodGroupTemplate, GetSourceCodeFilePath(codeModel, "operations", methodGroupModel.TypeName.ToCamelCase() + ".ts"));
+                        if (shouldWriteModelsFiles)
+                        {
+                            await WriteMethodGroupMappersFile(methodGroup);
+                        }
+                        await WriteMethodGroupFile(new AzureMethodGroupTemplate { Model = methodGroup });
                     }
                 }
             }
 
-            if (codeModel.Settings.GenerateMetadata)
+            if (ShouldWritePackageJsonFile(codeModel))
             {
-                if (codeModel.Settings.Multiapi && string.IsNullOrEmpty(codeModel.Settings.DefaultApiVersion))
-                {
-                    await Write(new PackageJsonMultiApi() { Model = codeModel }, "package.json");
+                await WritePackageJsonFile(codeModel);
+            }
 
-                    await Write(new TsConfigMultiApi() { Model = codeModel }, "tsconfig.json");
+            if (ShouldWriteReadmeMdFile(codeModel))
+            {
+                await WriteReadmeMdFile(new AzureReadmeTemplate { Model = codeModel });
+            }
 
-                    await Write(new TsConfigWebpackMultiApi() { Model = codeModel }, "tsconfig.esm.json");
-                }
-                else
-                {
-                    // package.json
-                    var packageJson = new PackageJson { Model = codeModel };
-                    await Write(packageJson, "package.json");
+            if (ShouldWriteLicenseFile(codeModel))
+            {
+                await WriteLicenseFile(codeModel);
+            }
 
-                    //tsconfig.json
-                    var nodeTsConfig = new TsConfig { Model = codeModel };
-                    await Write(nodeTsConfig, "tsconfig.json");
+            if (ShouldWriteMultiApiMetadata(codeModel))
+            {
+                await WriteMultiApiPackageJson(codeModel);
+                await WriteMultiApiTsConfig(codeModel);
+                await WriteMultiApiWebpackTsConfig(codeModel);
+            }
 
-                    //tsconfig.esm.json
-                    var webpackTsConfig = new TsConfigWebpack { Model = codeModel };
-                    await Write(webpackTsConfig, "tsconfig.esm.json");
-
-                    // webpack.config.js
-                    var webpackConfig = new WebpackConfig { Model = codeModel };
-                    await Write(webpackConfig, "webpack.config.js");
-
-                    // .npmignore
-                    var npmIgnore = new NpmIgnore { Model = codeModel };
-                    await Write(npmIgnore, ".npmignore");
-
-                    //README.md
-                    var readme = new AzureReadmeTemplate { Model = codeModel };
-                    await Write(readme, "README.md");
-                }
+            if (ShouldWriteNonMultiApiMetadata(codeModel))
+            {
+                await WriteTsConfig(codeModel);
+                await WriteWebpackTsConfig(codeModel);
+                await WriteWebpackConfig(codeModel);
+                await WriteNpmIgnore(codeModel);
             }
         }
     }

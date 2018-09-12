@@ -115,16 +115,17 @@ namespace AutoRest.TypeScript
             };
             string header = await GetValue("license-header");
 
+            Settings settings = Settings.Instance;
             if (header != null)
             {
-                Settings.Instance.Header = header;
+                settings.Header = header;
             }
-            Settings.Instance.CustomSettings.Add("InternalConstructors", GetXmsCodeGenSetting<bool?>(codeModel, "internalConstructors") ?? await GetValue<bool?>("use-internal-constructors") ?? false);
-            Settings.Instance.CustomSettings.Add("SyncMethods", GetXmsCodeGenSetting<string>(codeModel, "syncMethods") ?? await GetValue("sync-methods") ?? "essential");
-            Settings.Instance.CustomSettings.Add("UseDateTimeOffset", GetXmsCodeGenSetting<bool?>(codeModel, "useDateTimeOffset") ?? await GetValue<bool?>("use-datetimeoffset") ?? false);
-            Settings.Instance.CustomSettings[CodeModelTS.ClientSideValidationSettingName] = await GetValue<bool?>("client-side-validation") ?? true;
-            Settings.Instance.MaximumCommentColumns = await GetValue<int?>("max-comment-columns") ?? Settings.DefaultMaximumCommentColumns;
-            Settings.Instance.OutputFileName = await GetValue<string>("output-file");
+            settings.CustomSettings.Add("InternalConstructors", GetXmsCodeGenSetting<bool?>(codeModel, "internalConstructors") ?? await GetValue<bool?>("use-internal-constructors") ?? false);
+            settings.CustomSettings.Add("SyncMethods", GetXmsCodeGenSetting<string>(codeModel, "syncMethods") ?? await GetValue("sync-methods") ?? "essential");
+            settings.CustomSettings.Add("UseDateTimeOffset", GetXmsCodeGenSetting<bool?>(codeModel, "useDateTimeOffset") ?? await GetValue<bool?>("use-datetimeoffset") ?? false);
+            settings.CustomSettings[CodeModelTS.ClientSideValidationSettingName] = await GetValue<bool?>("client-side-validation") ?? true;
+            settings.MaximumCommentColumns = await GetValue<int?>("max-comment-columns") ?? Settings.DefaultMaximumCommentColumns;
+            settings.OutputFileName = await GetValue<string>("output-file");
 
             foreach (PropertyInfo propertyInfo in typeof(GeneratorSettingsTS).GetProperties())
             {
@@ -134,9 +135,17 @@ namespace AutoRest.TypeScript
                 if (propertyType == typeof(bool))
                 {
                     bool? propertyValue = await GetValue<bool?>(kebabCasePropertyName);
-                    if (propertyValue.HasValue)
+                    if (propertyValue != null)
                     {
-                        Settings.Instance.CustomSettings[propertyName] = propertyValue.Value;
+                        settings.CustomSettings[propertyName] = propertyValue.Value;
+                    }
+                }
+                else if (propertyType == typeof(bool?))
+                {
+                    bool? propertyValue = await GetValue<bool?>(kebabCasePropertyName);
+                    if (propertyValue != null)
+                    {
+                        settings.CustomSettings[propertyName] = propertyValue.Value.ToString();
                     }
                 }
                 else if (propertyType == typeof(string))
@@ -144,7 +153,7 @@ namespace AutoRest.TypeScript
                     string propertyValue = await GetValue<string>(kebabCasePropertyName);
                     if (propertyValue != null)
                     {
-                        Settings.Instance.CustomSettings[propertyName] = propertyValue;
+                        settings.CustomSettings[propertyName] = propertyValue;
                     }
                 }
                 else if (propertyType == typeof(string[]))
@@ -152,7 +161,7 @@ namespace AutoRest.TypeScript
                     string[] propertyValue = await GetValue<string[]>(kebabCasePropertyName);
                     if (propertyValue != null)
                     {
-                        Settings.Instance.CustomSettings[propertyName] = propertyValue;
+                        settings.CustomSettings[propertyName] = propertyValue;
                     }
                 }
                 else
