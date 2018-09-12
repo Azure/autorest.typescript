@@ -473,6 +473,14 @@ describe('typescript', function () {
       it('should put complicated polymorphic types', async function () {
         await testClient.polymorphism.putComplicated(getRawSalmon());
       });
+
+      it('should put polymorphic types missing discriminator', async function () {
+        const expected = getFish();
+        delete expected.fishtype;
+
+        const response = await testClient.polymorphism.putMissingDiscriminator(getFish() as AutoRestComplexTestServiceModels.Salmon);
+        assert.deepStrictEqual(response, expected);
+      });
     });
 
     describe('Complex Types with recursive definitions', function () {

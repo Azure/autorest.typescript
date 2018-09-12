@@ -2279,12 +2279,25 @@ describe('typescript', function () {
     describe('Http infrastructure Client', function () {
       const serializer = new msRest.Serializer(AutoRestHttpInfrastructureTestServiceMappers);
       var testOptions: msRest.ServiceClientOptions = { ...clientOptions };
+
+      // Prevents caching redirects
+      const preventCachingPolicy: msRest.RequestPolicyFactory = {
+        create: next => ({
+          sendRequest: req => {
+            if (!req.query) {
+              req.query = {};
+            }
+            req.query._ = new Date().toISOString();
+            return next.sendRequest(req);
+          }
+        })
+      };
       testOptions.requestPolicyFactories = [
+        preventCachingPolicy,
         msRest.redirectPolicy(),
         msRest.exponentialRetryPolicy(3, 0, 0, 0),
         msRest.deserializationPolicy()
       ];
-      testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHttpInfrastructureTestService(baseUri, testOptions);
       it('should work for all http success status codes with different verbs', function (done) {
         testClient.httpSuccess.head200(function (error, result) {
@@ -2343,80 +2356,20 @@ describe('typescript', function () {
           });
         });
       });
-      it('should work for all http redirect status codes with different verbs', function (done) {
-        // For whatever reason, Chrome's redirect caching seems to break this.
-        // Be sure to run tests either with inspector open/cache disabled, or in a fresh incognito window.
-        this.timeout(2000);
-        testClient.httpRedirects.head300(function (error, result, request, response) {
-          should.not.exist(error);
-          response.status.should.equal(200);
-          testClient.httpRedirects.get300(function (error, result, request, response) {
-            should.not.exist(error);
-            response.status.should.equal(200);
-            testClient.httpRedirects.head301(function (error, result, request, response) {
-              should.not.exist(error);
-              response.status.should.equal(200);
-              testClient.httpRedirects.get301(function (error, result, request, response) {
-                should.not.exist(error);
-                response.status.should.equal(200);
-                // Clients relying on newer version of the HTTP spec redirect a request that
-                //received a 301 response if it contains a location header. Older clients did
-                //not do that. Our test server is designed to conform to the old behavior
-                //hence we are commenting this test.
-                //testClient.httpRedirects.put301({ booleanValue: true }, function (error, result, request, response) {
-                //  should.not.exist(error);
-                //  response.status.should.equal(301);
-                testClient.httpRedirects.head302(function (error, result, request, response) {
-                  should.not.exist(error);
-                  response.status.should.equal(200);
-                  testClient.httpRedirects.get302(function (error, result, request, response) {
-                    should.not.exist(error);
-                    response.status.should.equal(200);
-                    // same as put 301
-                    //testClient.httpRedirects.patch302({ booleanValue: true }, function (error, result, request, response) {
-                    //  should.not.exist(error);
-                    //  response.status.should.equal(302);
-                    testClient.httpRedirects.post303({ booleanValue: true }, function (error, result, request, response) {
-                      should.not.exist(error);
-                      response.status.should.equal(200);
-                      testClient.httpRedirects.head307(function (error, result, request, response) {
-                        should.not.exist(error);
-                        response.status.should.equal(200);
-                        testClient.httpRedirects.get307(function (error, result, request, response) {
-                          should.not.exist(error);
-                          response.status.should.equal(200);
-                          //TODO, 4042586: Support options operations in swagger modeler
-                          //testClient.httpRedirects.options307(function (error, result, request, response) {
-                          //  should.not.exist(error);
-                          testClient.httpRedirects.put307({ booleanValue: true }, function (error, result, request, response) {
-                            should.not.exist(error);
-                            response.status.should.equal(200);
-                            testClient.httpRedirects.post307({ booleanValue: true }, function (error, result, request, response) {
-                              should.not.exist(error);
-                              response.status.should.equal(200);
-                              testClient.httpRedirects.patch307({ booleanValue: true }, function (error, result, request, response) {
-                                should.not.exist(error);
-                                response.status.should.equal(200);
-                                testClient.httpRedirects.delete307({ booleanValue: true }, function (error, result, request, response) {
-                                  should.not.exist(error);
-                                  response.status.should.equal(200);
-                                  done();
-                                });
-                              });
-                            });
-                          });
-                        });
-                        //});
-                      });
-                    });
-                    //});
-                  });
-                });
-                //});
-              });
-            });
-          });
-        });
+      it('should work for all http redirect status codes with different verbs', async function () {
+        (await testClient.httpRedirects.head300())._response.status.should.equal(200);
+        (await testClient.httpRedirects.get300())._response.status.should.equal(200);
+        (await testClient.httpRedirects.head301())._response.status.should.equal(200);
+        (await testClient.httpRedirects.get301())._response.status.should.equal(200);
+        (await testClient.httpRedirects.head302())._response.status.should.equal(200);
+        (await testClient.httpRedirects.get302())._response.status.should.equal(200);
+        (await testClient.httpRedirects.post303({ booleanValue: true }))._response.status.should.equal(200);
+        (await testClient.httpRedirects.head307())._response.status.should.equal(200);
+        (await testClient.httpRedirects.get307())._response.status.should.equal(200);
+        (await testClient.httpRedirects.put307({ booleanValue: true }))._response.status.should.equal(200);
+        (await testClient.httpRedirects.post307({ booleanValue: true }))._response.status.should.equal(200);
+        (await testClient.httpRedirects.patch307({ booleanValue: true }))._response.status.should.equal(200);
+        (await testClient.httpRedirects.delete307({ booleanValue: true }))._response.status.should.equal(200);
       });
 
       it('should work for all client failure status codes (4xx) with different verbs', function (done) {
