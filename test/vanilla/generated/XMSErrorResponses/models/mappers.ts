@@ -191,6 +191,8 @@ export const PetHungryOrThirstyError: msRest.CompositeMapper = {
   serializedName: "PetHungryOrThirstyError",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: PetActionError.type.polymorphicDiscriminator,
+    uberParent: "PetActionError",
     className: "PetHungryOrThirstyError",
     modelProperties: {
       ...PetSadError.type.modelProperties,
