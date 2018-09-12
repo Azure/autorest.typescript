@@ -100,7 +100,8 @@ defaultMappings = {
   'CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
   'ModelFlattening': 'model-flattening.json',
   'UrlMultiCollectionFormat': 'url-multi-collectionFormat.json',
-  'AdditionalProperties': 'additionalProperties.json'
+  'AdditionalProperties': 'additionalProperties.json',
+  'ExtensibleEnum': 'extensible-enums-swagger.json'
 }
 
 defaultAzureMappings = {
