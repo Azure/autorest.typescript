@@ -1,10 +1,10 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+
 import { PetStoreInc } from "./generated/ExtensibleEnum/petStoreInc";
 import { DaysOfWeekExtensibleEnum, IntEnum } from "./generated/ExtensibleEnum/models";
 
 import * as assert from "assert";
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See License.txt in the project root for license information.
 
 const testClient = new PetStoreInc();
 
