@@ -2391,112 +2391,43 @@ describe('typescript', function () {
         (await testClient.httpRedirects.delete307({ booleanValue: true }))._response.status.should.equal(200);
       });
 
-      it('should work for all client failure status codes (4xx) with different verbs', function (done) {
-        this.skip(); // FIXME
-        testClient.httpClientFailure.head400(function (error, result) {
-          should.exist(error);
-          (<msRest.RestError>error).statusCode.should.equal(400);
-          testClient.httpClientFailure.get400(function (error, result) {
-            should.exist(error);
-            (<msRest.RestError>error).statusCode.should.equal(400);
-            testClient.httpClientFailure.put400({ booleanValue: true }, function (error, result) {
-              should.exist(error);
-              (<msRest.RestError>error).statusCode.should.equal(400);
-              testClient.httpClientFailure.patch400({ booleanValue: true }, function (error, result) {
-                should.exist(error);
-                (<msRest.RestError>error).statusCode.should.equal(400);
-                testClient.httpClientFailure.post400({ booleanValue: true }, function (error, result) {
-                  should.exist(error);
-                  (<msRest.RestError>error).statusCode.should.equal(400);
-                  testClient.httpClientFailure.delete400({ booleanValue: true }, function (error, result) {
-                    should.exist(error);
-                    (<msRest.RestError>error).statusCode.should.equal(400);
-                    testClient.httpClientFailure.head401(function (error, result) {
-                      should.exist(error);
-                      (<msRest.RestError>error).statusCode.should.equal(401);
-                      testClient.httpClientFailure.get402(function (error, result) {
-                        should.exist(error);
-                        (<msRest.RestError>error).statusCode.should.equal(402);
-                        testClient.httpClientFailure.get403(function (error, result) {
-                          should.exist(error);
-                          (<msRest.RestError>error).statusCode.should.equal(403);
-                          testClient.httpClientFailure.put404({ booleanValue: true }, function (error, result) {
-                            should.exist(error);
-                            (<msRest.RestError>error).statusCode.should.equal(404);
-                            testClient.httpClientFailure.patch405({ booleanValue: true }, function (error, result) {
-                              should.exist(error);
-                              (<msRest.RestError>error).statusCode.should.equal(405);
-                              testClient.httpClientFailure.post406({ booleanValue: true }, function (error, result) {
-                                should.exist(error);
-                                (<msRest.RestError>error).statusCode.should.equal(406);
-                                testClient.httpClientFailure.delete407({ booleanValue: true }, function (error, result) {
-                                  should.exist(error);
-                                  (<msRest.RestError>error).statusCode.should.equal(407);
-                                  testClient.httpClientFailure.put409({ booleanValue: true }, function (error, result) {
-                                    should.exist(error);
-                                    (<msRest.RestError>error).statusCode.should.equal(409);
-                                    testClient.httpClientFailure.head410(function (error, result) {
-                                      should.exist(error);
-                                      (<msRest.RestError>error).statusCode.should.equal(410);
-                                      testClient.httpClientFailure.get411(function (error, result) {
-                                        should.exist(error);
-                                        (<msRest.RestError>error).statusCode.should.equal(411);
-                                        testClient.httpClientFailure.get412(function (error, result) {
-                                          should.exist(error);
-                                          (<msRest.RestError>error).statusCode.should.equal(412);
-                                          testClient.httpClientFailure.put413({ booleanValue: true }, function (error, result) {
-                                            should.exist(error);
-                                            (<msRest.RestError>error).statusCode.should.equal(413);
-                                            testClient.httpClientFailure.patch414({ booleanValue: true }, function (error, result) {
-                                              should.exist(error);
-                                              (<msRest.RestError>error).statusCode.should.equal(414);
-                                              testClient.httpClientFailure.post415({ booleanValue: true }, function (error, result) {
-                                                should.exist(error);
-                                                (<msRest.RestError>error).statusCode.should.equal(415);
-                                                testClient.httpClientFailure.get416(function (error, result) {
-                                                  should.exist(error);
-                                                  (<msRest.RestError>error).statusCode.should.equal(416);
-                                                  testClient.httpClientFailure.delete417({ booleanValue: true }, function (error, result) {
-                                                    should.exist(error);
-                                                    (<msRest.RestError>error).statusCode.should.equal(417);
-                                                    testClient.httpClientFailure.head429(function (error, result) {
-                                                      should.exist(error);
-                                                      (<msRest.RestError>error).statusCode.should.equal(429);
-                                                      testClient.httpFailure.getEmptyError(function (error, result) {
-                                                        should.exist(error);
-                                                        (<msRest.RestError>error).statusCode.should.equal(400);
-                                                        testClient.httpFailure.getNoModelError(function (error, result) {
-                                                          should.exist(error);
-                                                          (<msRest.RestError>error).statusCode.should.equal(400);
-                                                          should.exist(error.message);
-                                                          // TODO, 4213049: Better default error message
-                                                          //error.message.should.match(/.*unexpected status code: 400.*/);
-                                                          done();
-                                                        });
-                                                      });
-                                                    });
-                                                  });
-                                                });
-                                              });
-                                            });
-                                          });
-                                        });
-                                      });
-                                    });
-                                  });
-                                });
-                              });
-                            });
-                          });
-                        });
-                      });
-                    });
-                  });
-                });
-              });
-            });
-          });
+      it('should work for all client failure status codes (4xx) with different verbs', async function () {
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.head400(), (err: msRest.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get400(), (err: msRest.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.put400({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.patch400({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.post400({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.delete400({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(400));
+
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.head401(), (err: msRest.RestError) => err.statusCode.should.equal(401));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get402(), (err: msRest.RestError) => err.statusCode.should.equal(402));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get403(), (err: msRest.RestError) => err.statusCode.should.equal(403));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.put404({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(404));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.patch405({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(405));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.post406({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(406));
+
+        // In browser, HTTP 407 causes an XHR-level error
+        // https://bugs.chromium.org/p/chromium/issues/detail?id=372136
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.delete407({ booleanValue: true }), (err: msRest.RestError) => {
+          if (msRest.isNode) {
+            err.statusCode.should.equal(407);
+          } else {
+            should.exist(err);
+          }
         });
+
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.put409({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(409));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.head410(), (err: msRest.RestError) => err.statusCode.should.equal(410));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get411(), (err: msRest.RestError) => err.statusCode.should.equal(411));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get412(), (err: msRest.RestError) => err.statusCode.should.equal(412));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.put413({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(413));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.patch414({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(414));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.post415({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(415));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get416(), (err: msRest.RestError) => err.statusCode.should.equal(416));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.delete417({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(417));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.head429(), (err: msRest.RestError) => err.statusCode.should.equal(429));
+        await msAssert.throwsAsync(() => testClient.httpFailure.getEmptyError(), (err: msRest.RestError) => should.exist(err));
+        await msAssert.throwsAsync(() => testClient.httpFailure.getNoModelError(), (err: msRest.RestError) => should.exist(err.message));
       });
 
       it('should work for all server failure status codes (5xx) with different verbs', async () => {
