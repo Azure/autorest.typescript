@@ -528,7 +528,7 @@ describe('typescript', function () {
         });
       });
 
-      //TODO Client does not consider the string as invalid byte
+      // TODO coverage
       it.skip('should get invalid byte value', function (done) {
         testClient.byteModel.getInvalid(function (error, result) {
           should.not.exist(error);
