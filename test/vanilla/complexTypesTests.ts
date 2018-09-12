@@ -479,6 +479,10 @@ describe('typescript', function () {
         delete expected.fishtype;
 
         const response = await testClient.polymorphism.putMissingDiscriminator(getFish() as AutoRestComplexTestServiceModels.Salmon);
+
+        delete (expected.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        delete (response.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+
         assert.deepStrictEqual(response, expected);
       });
     });
