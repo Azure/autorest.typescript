@@ -101,7 +101,8 @@ defaultMappings = {
   'ModelFlattening': 'model-flattening.json',
   'UrlMultiCollectionFormat': 'url-multi-collectionFormat.json',
   'AdditionalProperties': 'additionalProperties.json',
-  'ExtensibleEnum': 'extensible-enums-swagger.json'
+  'ExtensibleEnum': 'extensible-enums-swagger.json',
+  'XMSErrorResponses': 'xms-error-responses.json';
 }
 
 defaultAzureMappings = {
