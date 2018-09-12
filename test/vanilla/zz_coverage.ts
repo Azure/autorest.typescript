@@ -31,7 +31,12 @@ describe('typescript', function () {
     });
     const coverage = Math.floor((passed / total) * 100);
     console.log('Passed: ' + passed + ', Total: ' + total + ', coverage: ' + coverage + '% .');
-    // coverage.should.equal(100);
+    console.log();
+
+    console.log('The following scenarios are intentionally not supported:');
+    console.log('HeaderResponseStringNull');
+    console.log('HttpRedirect301Put');
+    console.log('HttpRedirect302Patch');
     console.log();
   });
 });
