@@ -15,6 +15,7 @@ namespace AutoRest.TypeScript
         {
             return new AzureServiceClientTemplate { Model = codeModel };
         }
+
         public override Template<CodeModelTSa> CreateServiceClientContextTemplate(CodeModelTSa codeModel)
         {
             return new AzureServiceClientContextTemplate { Model = codeModel };
