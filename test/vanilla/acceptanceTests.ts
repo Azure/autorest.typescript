@@ -890,8 +890,8 @@ describe('typescript', function () {
         });
       });
 
-      it.skip('should properly handle invalid value for Duration', function (done) {
-        testClient.duration.getInvalid(function (error, result) {
+      it('should properly handle invalid value for Duration', function (done) {
+        testClient.duration.getInvalid(function (error) {
           should.exist(error);
           done();
         });

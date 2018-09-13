@@ -344,6 +344,8 @@ export const Salmon: msRest.CompositeMapper = {
   serializedName: "salmon",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Fish",
     className: "Salmon",
     modelProperties: {
       ...Fish.type.modelProperties,
@@ -370,21 +372,16 @@ export const SmartSalmon: msRest.CompositeMapper = {
     className: "SmartSalmon",
     modelProperties: {
       ...Salmon.type.modelProperties,
-      additionalProperties: {
-        type: {
-          name: "Dictionary",
-          value: {
-            type: {
-              name: "Object"
-            }
-          }
-        }
-      },
       collegeDegree: {
         serializedName: "college_degree",
         type: {
           name: "String"
         }
+      }
+    },
+    additionalProperties: {
+      type: {
+        name: "Object"
       }
     }
   }
@@ -394,6 +391,8 @@ export const Shark: msRest.CompositeMapper = {
   serializedName: "shark",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Fish",
     className: "Shark",
     modelProperties: {
       ...Fish.type.modelProperties,

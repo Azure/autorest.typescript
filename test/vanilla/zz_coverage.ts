@@ -22,7 +22,6 @@ describe('typescript', function () {
 
     const total = _.keys(result).length - 2;
     let passed = 0;
-    passed++; // Adding this until we fix additionalProperties: true
     _.keys(result).forEach(function (item: string) {
       if (result[item] > 0) {
         passed++;

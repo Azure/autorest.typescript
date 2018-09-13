@@ -410,40 +410,44 @@ describe('typescript', function () {
       });
 
       var getRawSalmon = () => (<AutoRestComplexTestServiceModels.SalmonUnion>{
-        "species": "king",
-        "length": 1,
-        "siblings": [
+        fishtype: "smart_salmon",
+        location: "alaska",
+        iswild: true,
+        species: "king",
+        additionalProperty1: 1,
+        additionalProperty2: false,
+        additionalProperty3: "hello",
+        additionalProperty4: { a: 1, b: 2 },
+        additionalProperty5: [1, 3],
+        length: 1,
+        siblings: [
           <AutoRestComplexTestServiceModels.Shark>{
-            "species": "predator",
-            "length": 20,
-            "fishtype": "shark",
-            "age": 6,
-            "birthday": new Date("2012-01-05T01:00:00.000Z")
+            species: "predator",
+            length: 20,
+            fishtype: "shark",
+            age: 6,
+            birthday: new Date("2012-01-05T01:00:00.000Z")
           },
           <AutoRestComplexTestServiceModels.Sawshark>{
-            "species": "dangerous",
-            "length": 10,
-            "fishtype": "sawshark",
-            "age": 105,
-            "birthday": new Date("1900-01-05T01:00:00.000Z"),
-            "picture": new Uint8Array([255, 255, 255, 255, 254])
+            species: "dangerous",
+            length: 10,
+            fishtype: "sawshark",
+            age: 105,
+            birthday: new Date("1900-01-05T01:00:00.000Z"),
+            picture: new Uint8Array([255, 255, 255, 255, 254])
           },
           <AutoRestComplexTestServiceModels.Goblinshark>{
-            "species": "scary",
-            "length": 30,
-            "color": "pinkish-gray" as AutoRestComplexTestServiceModels.GoblinSharkColor,
-            "fishtype": "goblin",
-            "age": 1,
-            "birthday": new Date("2015-08-08T00:00:00.000Z"),
-            "jawsize": 5
+            species: "scary",
+            length: 30,
+            color: "pinkish-gray" as AutoRestComplexTestServiceModels.GoblinSharkColor,
+            fishtype: "goblin",
+            age: 1,
+            birthday: new Date("2015-08-08T00:00:00.000Z"),
+            jawsize: 5
           }
-        ],
-        "fishtype": "smart_salmon",
-        "location": "alaska",
-        "iswild": true
+        ]
       });
-      // Still need to support additionalProperties: true.
-      //Today Autorest converts additionalProperties: <boolean value> into a dictionary all the time.
+
       it('should get complicated polymorphic types', function (done) {
         testClient.polymorphism.getComplicated(function (err, result, req, res) {
           should.not.exist(err);
@@ -466,13 +470,8 @@ describe('typescript', function () {
         });
       });
 
-      // This test will fail until we support addtionalProperties with boolean value in Autorest.
-      it.skip('should put complicated polymorphic types', function (done) {
-        testClient.polymorphism.putComplicated(getRawSalmon(), function (err, result, req, res) {
-          should.not.exist(err);
-          assert.deepEqual(result, getRawSalmon());
-          done();
-        });
+      it('should put complicated polymorphic types', async function () {
+        await testClient.polymorphism.putComplicated(getRawSalmon());
       });
     });
 
