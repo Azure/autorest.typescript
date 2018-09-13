@@ -7,14 +7,18 @@ using AutoRest.TypeScript.Model;
 
 namespace AutoRest.TypeScript
 {
-    public interface TemplateFactory<TCodeModel> where TCodeModel : CodeModelTS
+    public abstract class TemplateFactory<TCodeModel> where TCodeModel : CodeModelTS
     {
-        Template<TCodeModel> CreateServiceClientTemplate(TCodeModel codeModel);
+        public abstract Template<TCodeModel> CreateMappersIndexTemplate(TCodeModel codeModel);
 
-        Template<TCodeModel> CreateServiceClientContextTemplate(TCodeModel codeModel);
+        public abstract Template<TCodeModel> CreateModelsIndexTemplate(TCodeModel codeModel);
 
-        Template<TCodeModel> CreateModelsIndexTemplate(TCodeModel codeModel);
+        public abstract Template<TCodeModel> CreateServiceClientContextTemplate(TCodeModel codeModel);
 
-        Template<TCodeModel> CreateMappersIndexTemplate(TCodeModel codeModel);
+        public abstract Template<TCodeModel> CreateServiceClientTemplate(TCodeModel codeModel);
+
+        public abstract Template<MethodGroupTS> CreateMethodGroupTemplate(MethodGroupTS methodGroup);
+
+        public abstract Template<TCodeModel> CreateReadmeTemplate(TCodeModel codeModel);
     }
 }

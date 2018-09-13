@@ -8,7 +8,7 @@ using AutoRest.TypeScript.vanilla.Templates;
 
 namespace AutoRest.TypeScript
 {
-    public class VanillaTemplateFactory : TemplateFactoryBase<CodeModelTS>
+    public class VanillaTemplateFactory : TemplateFactory<CodeModelTS>
     {
         public override Template<CodeModelTS> CreateServiceClientTemplate(CodeModelTS codeModel)
         {
@@ -28,6 +28,16 @@ namespace AutoRest.TypeScript
         public override Template<CodeModelTS> CreateMappersIndexTemplate(CodeModelTS codeModel)
         {
             return new MapperIndexTemplate { Model = codeModel };
+        }
+
+        public override Template<MethodGroupTS> CreateMethodGroupTemplate(MethodGroupTS methodGroup)
+        {
+            return new MethodGroupTemplate { Model = methodGroup };
+        }
+
+        public override Template<CodeModelTS> CreateReadmeTemplate(CodeModelTS codeModel)
+        {
+            return new ReadmeTemplate { Model = codeModel };
         }
     }
 }

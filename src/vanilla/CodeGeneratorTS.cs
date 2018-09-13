@@ -2,16 +2,16 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 //
 
-using System;
+using AutoRest.Core;
+using AutoRest.Core.Model;
+using AutoRest.Core.Utilities;
+using AutoRest.TypeScript.Azure.Model;
+using AutoRest.TypeScript.Model;
+using AutoRest.TypeScript.vanilla.Templates;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoRest.Core;
-using AutoRest.Core.Model;
-using AutoRest.Core.Utilities;
-using AutoRest.TypeScript.Model;
-using AutoRest.TypeScript.vanilla.Templates;
 
 namespace AutoRest.TypeScript
 {
@@ -30,18 +30,35 @@ namespace AutoRest.TypeScript
         /// </summary>
         /// <param name="serviceClient"></param>
         /// <returns></returns>
-        public override async Task Generate(CodeModel cm)
+        public override async Task Generate(CodeModel codeModel)
         {
-            var codeModel = cm as CodeModelTS;
-            if (codeModel == null)
+            CodeModelTS codeModelTS = (CodeModelTS)codeModel;
+            if (codeModelTS.Settings.AzureArm == true)
             {
-                throw new InvalidCastException("CodeModel is not a TypeScript code model.");
+                await Generate(new AzureTemplateFactory(), (CodeModelTSa)codeModelTS);
             }
+            else
+            {
+                await Generate(new VanillaTemplateFactory(), codeModelTS);
+            }
+        }
 
-            await Generate(new VanillaTemplateFactory(), codeModel);
-
+        protected async Task Generate<TCodeModel>(TemplateFactory<TCodeModel> templateFactory, TCodeModel codeModel) where TCodeModel : CodeModelTS
+        {
             if (IsNotDefaultApiVersion(codeModel))
             {
+                await WriteServiceClientCodeFile(templateFactory, codeModel);
+                await WriteServiceClientContextCodeFile(templateFactory, codeModel);
+
+                if (ShouldWriteModelsFiles(codeModel))
+                {
+                    await WriteModelsIndexFile(templateFactory.CreateModelsIndexTemplate(codeModel));
+                    if (ShouldWriteMappersIndexFile(codeModel))
+                    {
+                        await WriteMappersIndexFile(templateFactory.CreateMappersIndexTemplate(codeModel));
+                    }
+                }
+
                 if (ShouldWriteParameterMappersFile(codeModel))
                 {
                     await WriteParameterMappersFile(codeModel);
@@ -51,15 +68,14 @@ namespace AutoRest.TypeScript
                 {
                     await WriteMethodGroupIndexFile(codeModel);
 
-                    bool shouldWriteMappersIndexFile = ShouldWriteMappersIndexFile(codeModel);
-
+                    bool shouldWriteModelsFiles = ShouldWriteModelsFiles(codeModel);
                     foreach (MethodGroupTS methodGroup in codeModel.MethodGroupModels)
                     {
-                        if (shouldWriteMappersIndexFile)
+                        if (shouldWriteModelsFiles)
                         {
                             await WriteMethodGroupMappersFile(methodGroup);
                         }
-                        await WriteMethodGroupFile(new MethodGroupTemplate { Model = methodGroup });
+                        await WriteMethodGroupFile(templateFactory.CreateMethodGroupTemplate(methodGroup));
                     }
                 }
             }
@@ -71,7 +87,7 @@ namespace AutoRest.TypeScript
 
             if (ShouldWriteReadmeMdFile(codeModel))
             {
-                await WriteReadmeMdFile(new ReadmeTemplate { Model = codeModel });
+                await WriteReadmeMdFile(templateFactory.CreateReadmeTemplate(codeModel));
             }
 
             if (ShouldWriteLicenseFile(codeModel))
@@ -92,24 +108,6 @@ namespace AutoRest.TypeScript
                 await WriteWebpackTsConfig(codeModel);
                 await WriteWebpackConfig(codeModel);
                 await WriteNpmIgnore(codeModel);
-            }
-        }
-
-        protected async Task Generate<T>(TemplateFactory<T> templateFactory, T codeModel) where T : CodeModelTS
-        {
-            if (IsNotDefaultApiVersion(codeModel))
-            {
-                await WriteServiceClientCodeFile(templateFactory, codeModel);
-                await WriteServiceClientContextCodeFile(templateFactory, codeModel);
-
-                if (ShouldWriteModelsFiles(codeModel))
-                {
-                    await WriteModelsIndexFile(templateFactory.CreateModelsIndexTemplate(codeModel));
-                    if (ShouldWriteMappersIndexFile(codeModel))
-                    {
-                        await WriteMappersIndexFile(templateFactory.CreateMappersIndexTemplate(codeModel));
-                    }
-                }
             }
         }
 

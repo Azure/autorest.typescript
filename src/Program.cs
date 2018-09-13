@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AutoRest.Core;
 using AutoRest.Core.Extensibility;
+using AutoRest.Core.Logging;
 using AutoRest.Core.Model;
 using AutoRest.Core.Parsing;
 using AutoRest.Core.Utilities;
@@ -173,9 +174,9 @@ namespace AutoRest.TypeScript
 
         private async Task<IAnyPlugin> CreatePlugin()
         {
-            bool azureArm = await GetValue<bool?>("azure-arm") ?? false;
+            bool? azureArm = await GetValue<bool?>("azure-arm");
             IAnyPlugin plugin;
-            if (azureArm)
+            if (azureArm == true)
             {
                 plugin = new PluginTSa();
             }

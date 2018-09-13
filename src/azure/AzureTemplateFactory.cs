@@ -5,10 +5,11 @@
 using AutoRest.Core;
 using AutoRest.TypeScript.azure.Templates;
 using AutoRest.TypeScript.Azure.Model;
+using AutoRest.TypeScript.Model;
 
 namespace AutoRest.TypeScript
 {
-    public class AzureTemplateFactory : TemplateFactoryBase<CodeModelTSa>
+    public class AzureTemplateFactory : TemplateFactory<CodeModelTSa>
     {
         public override Template<CodeModelTSa> CreateServiceClientTemplate(CodeModelTSa codeModel)
         {
@@ -27,6 +28,16 @@ namespace AutoRest.TypeScript
         public override Template<CodeModelTSa> CreateMappersIndexTemplate(CodeModelTSa codeModel)
         {
             return new AzureMapperIndexTemplate { Model = codeModel };
+        }
+
+        public override Template<MethodGroupTS> CreateMethodGroupTemplate(MethodGroupTS methodGroup)
+        {
+            return new AzureMethodGroupTemplate { Model = methodGroup };
+        }
+
+        public override Template<CodeModelTSa> CreateReadmeTemplate(CodeModelTSa codeModel)
+        {
+            return new AzureReadmeTemplate { Model = codeModel };
         }
     }
 }
