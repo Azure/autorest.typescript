@@ -7,7 +7,7 @@ using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.TypeScript.Azure
 {
-    public sealed class PluginTSa : Plugin<GeneratorSettingsTS, TransformerTSa, CodeGeneratorTSa, CodeNamerTS, CodeModelTSa>
+    public sealed class PluginTSa : Plugin<GeneratorSettingsTS, TransformerTSa, CodeGeneratorTS, CodeNamerTS, CodeModelTSa>
     {
         public PluginTSa()
         {

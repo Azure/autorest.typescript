@@ -94,6 +94,14 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        /// <summary>
+        /// Get whether or not this CodeModelTS has any model types.
+        /// </summary>
+        public bool HasModelTypes()
+        {
+            return ModelTypes.Any();
+        }
+
         public bool IsCustomBaseUri => Extensions.ContainsKey(SwaggerExtensions.ParameterizedHostExtension);
 
         [JsonIgnore]
@@ -509,10 +517,7 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public bool HasMappableParameters =>
-            MethodTemplateModels
-                .SelectMany(m => m.LogicalParameters)
-                .Any(p => p.Location != ParameterLocation.Body);
+        public bool HasMappableParameters => CodeGeneratorTS.HasMappableParameters(MethodTemplateModels);
 
         public string GenerateParameterMappers()
         {
@@ -550,15 +555,23 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.ImportAllAs("msRest", "ms-rest-js");
             }
-            builder.ImportAllAs("Models", "./models");
-            builder.ImportAllAs("Mappers", "./models/mappers");
+
+            if (CodeGeneratorTS.ShouldWriteModelsFiles(this))
+            {
+                builder.ImportAllAs("Models", "./models");
+            }
+
+            if (CodeGeneratorTS.ShouldWriteMappersIndexFile(this))
+            {
+                builder.ImportAllAs("Mappers", "./models/mappers");
+            }
 
             if (HasMappableParameters)
             {
                 builder.ImportAllAs("Parameters", "./models/parameters");
             }
 
-            if (MethodGroupModels.Any())
+            if (CodeGeneratorTS.ShouldWriteMethodGroupFiles(this))
             {
                 builder.ImportAllAs("operations", "./operations");
             }
@@ -574,8 +587,14 @@ namespace AutoRest.TypeScript.Model
             {
                 exports.Export(Name);
                 exports.Export(ContextName);
-                exports.ExportAs("Models", $"{ClientPrefix}Models");
-                exports.ExportAs("Mappers", $"{ClientPrefix}Mappers");
+                if (CodeGeneratorTS.ShouldWriteModelsFiles(this))
+                {
+                    exports.ExportAs("Models", $"{ClientPrefix}Models");
+                }
+                if (CodeGeneratorTS.ShouldWriteMappersIndexFile(this))
+                {
+                    exports.ExportAs("Mappers", $"{ClientPrefix}Mappers");
+                }
             });
 
             if (MethodGroupModels.Any())

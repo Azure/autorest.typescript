@@ -150,10 +150,7 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        public bool HasMappableParameters =>
-            Methods
-                .SelectMany(m => m.LogicalParameters)
-                .Any(p => p.Location != ParameterLocation.Body);
+        public bool HasMappableParameters => CodeGeneratorTS.HasMappableParameters(Methods);
 
         public string GenerateMethodGroupImports()
         {
@@ -164,18 +161,27 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.ImportAllAs("msRestAzure", "ms-rest-azure-js");
             }
-            if (ContainsCompositeOrEnumTypeInParametersOrReturnType() || MethodTemplateModels.Any(m => m.HasCustomHttpResponseType))
+
+            CodeModelTS codeModel = CodeModelTS;
+
+            if (CodeGeneratorTS.ShouldWriteModelsFiles(codeModel))
             {
-                builder.ImportAllAs("Models", "../models");
+                if (ContainsCompositeOrEnumTypeInParametersOrReturnType() || MethodTemplateModels.Any(m => m.HasCustomHttpResponseType))
+                {
+                    builder.ImportAllAs("Models", "../models");
+                }
+                if (CodeGeneratorTS.ShouldWriteMappersIndexFile(codeModel))
+                {
+                    builder.ImportAllAs("Mappers", $"../models/{MappersModuleName}");
+                }
             }
-            builder.ImportAllAs("Mappers", $"../models/{MappersModuleName}");
 
             if (HasMappableParameters)
             {
                 builder.ImportAllAs("Parameters", "../models/parameters");
             }
 
-            builder.Import(new string[] { CodeModelTS.ContextName }, $"../{CodeModelTS.ContextName.ToCamelCase()}");
+            builder.Import(new string[] { codeModel.ContextName }, $"../{codeModel.ContextName.ToCamelCase()}");
 
             return builder.ToString();
         }

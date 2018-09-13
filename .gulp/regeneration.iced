@@ -54,6 +54,9 @@ regenExpected = (opts,done) ->
     if (opts.generateMetadata)
       args.push("--generate-metadata=true")
 
+    if (opts.generateLicenseTxt != undefined)
+      args.push("--generate-license-txt=#{opts.generateLicenseTxt}")
+
     if (opts.clientSideValidation == false)
       args.push("--client-side-validation=false")
 
@@ -180,6 +183,7 @@ task 'regenerate-tscomposite', '', (done) ->
     'flatteningThreshold': '1',
     'override-info.title': "Composite Bool Int",
     'override-info.description': "Composite Swagger Client that represents merging body boolean and body integer swagger clients"
+    'generateLicenseTxt': true
   },done
   return null
 
@@ -293,6 +297,7 @@ task 'regenerate-ts-metadata', '', [], (done) ->
     'nsPrefix': 'Fixtures',
     'flatteningThreshold': '1',
     'generateMetadata': true,
+    'generateLicenseTxt': false,
     'sourceCodeFolderPath': 'lib'
   },done
   return null

@@ -81,8 +81,14 @@ namespace AutoRest.TypeScript.Azure.Model
                 builder.ImportAllAs("msRestAzure", "ms-rest-azure-js");
             }
 
-            builder.ImportAllAs("Models", "./models");
-            builder.ImportAllAs("Mappers", "./models/mappers");
+            if (CodeGeneratorTS.ShouldWriteModelsFiles(this))
+            {
+                builder.ImportAllAs("Models", "./models");
+            }
+            if (CodeGeneratorTS.ShouldWriteMappersIndexFile(this))
+            {
+                builder.ImportAllAs("Mappers", "./models/mappers");
+            }
 
             if (HasMappableParameters)
             {
