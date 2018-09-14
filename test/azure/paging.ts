@@ -184,6 +184,12 @@ describe('typescript', function () {
         const error: Error = await msAssert.throwsAsync(testClient.paging.getMultiplePagesFailureUriNext(result.nextLink));
         error.should.be.instanceof(Error);
       });
+
+      // TODO coverage
+      it.skip('should handle PagingMultipleLRO', async () => {
+        const result = await testClient.paging.getMultiplePagesLRO();
+        await testClient.paging.getMultiplePagesLRONext(result.nextLink);
+      });
     });
   });
 });

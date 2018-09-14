@@ -369,6 +369,8 @@ export const SmartSalmon: msRest.CompositeMapper = {
   serializedName: "smart_salmon",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Fish",
     className: "SmartSalmon",
     modelProperties: {
       ...Salmon.type.modelProperties,
@@ -417,6 +419,8 @@ export const Sawshark: msRest.CompositeMapper = {
   serializedName: "sawshark",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Fish",
     className: "Sawshark",
     modelProperties: {
       ...Shark.type.modelProperties,
@@ -434,6 +438,8 @@ export const Goblinshark: msRest.CompositeMapper = {
   serializedName: "goblin",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Fish",
     className: "Goblinshark",
     modelProperties: {
       ...Shark.type.modelProperties,
@@ -458,6 +464,8 @@ export const Cookiecuttershark: msRest.CompositeMapper = {
   serializedName: "cookiecuttershark",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Fish",
     className: "Cookiecuttershark",
     modelProperties: {
       ...Shark.type.modelProperties
@@ -804,6 +812,8 @@ export const MyDerivedType: msRest.CompositeMapper = {
   serializedName: "Kind1",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: MyBaseType.type.polymorphicDiscriminator,
+    uberParent: "MyBaseType",
     className: "MyDerivedType",
     modelProperties: {
       ...MyBaseType.type.modelProperties,

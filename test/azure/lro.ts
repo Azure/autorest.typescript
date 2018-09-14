@@ -187,6 +187,21 @@ describe('typescript', function () {
       await testClient.lROs.post202NoRetry204({ product: product });
     });
 
+    // TODO coverage
+    it.skip('should work with LROPostDoubleHeadersFinalLocationGet', async () => {
+      await testClient.lROs.postDoubleHeadersFinalLocationGet({ product });
+    });
+
+    // TODO coverage
+    it.skip('should work with LROPostDoubleHeadersFinalAzureHeaderGet', async () => {
+      await testClient.lROs.postDoubleHeadersFinalAzureHeaderGet({ product });
+    });
+
+    // TODO coverage
+    it.skip('should work with LROPostDoubleHeadersFinalAzureHeaderGetDefault', async () => {
+      await testClient.lROs.postDoubleHeadersFinalAzureHeaderGetDefault({ product });
+    });
+
     it('should work with Post200WithPayload', async () => {
       const result = await testClient.lROs.post200WithPayload();
       result.id.should.equal("1");
@@ -270,6 +285,11 @@ describe('typescript', function () {
 
     it('should throw on PutNonRetry201Creating400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry201Creating400({ product: product }));
+      error.message.should.containEql(`"Error from the server"`);
+    });
+
+    it('should throw on LRONonRetryPut201Creating400InvalidJson', async () => {
+      const error = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry201Creating400InvalidJson({ product: product }));
       error.message.should.containEql(`"Error from the server"`);
     });
 

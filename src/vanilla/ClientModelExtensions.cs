@@ -846,15 +846,18 @@ namespace AutoRest.TypeScript
                         });
                         typeObject.QuotedStringProperty("uberParent", composite.Name);
                     }
-                    else if (composite.ImmediatePolymorphicSubtypes.Any())
+                    else
                     {
-                        CompositeType polymorphicType = composite;
-                        while (polymorphicType.BaseModelType != null)
+                        CompositeType baseType = composite;
+                        while (baseType.BaseModelType != null)
                         {
-                            polymorphicType = polymorphicType.BaseModelType;
+                            baseType = baseType.BaseModelType;
                         }
-                        typeObject.TextProperty("polymorphicDiscriminator", polymorphicType.Name + ".type.polymorphicDiscriminator");
-                        typeObject.QuotedStringProperty("uberParent", polymorphicType.Name);
+                        if (baseType.IsPolymorphic)
+                        {
+                            typeObject.TextProperty("polymorphicDiscriminator", baseType.Name + ".type.polymorphicDiscriminator");
+                            typeObject.QuotedStringProperty("uberParent", baseType.Name);
+                        }
                     }
 
                     typeObject.QuotedStringProperty("className", composite.Name);
