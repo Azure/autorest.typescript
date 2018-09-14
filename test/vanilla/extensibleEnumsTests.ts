@@ -10,15 +10,24 @@ const testClient = new PetStoreInc();
 
 describe("Extensible enums", function () {
   it("should handle expectedEnum", async function () {
-    await testClient.pet.getByPetId("tommy");
+    const pet = await testClient.pet.getByPetId("tommy");
+    assert.equal(pet.intEnum, IntEnum.One);
+    assert.equal(pet.daysOfWeek, DaysOfWeekExtensibleEnum.Monday);
+    assert.equal(pet.name, "Tommy Tomson");
   });
 
   it("should handle unexpectedEnum", async function () {
-    await testClient.pet.getByPetId("casper");
+    const pet = await testClient.pet.getByPetId("casper");
+    assert.equal(pet.daysOfWeek, "Weekend");
+    assert.equal(pet.intEnum, IntEnum.Two);
+    assert.equal(pet.name, "Casper Ghosty");
   });
 
   it("should handle allowedValueEnum", async function () {
-    await testClient.pet.getByPetId("scooby");
+    const pet = await testClient.pet.getByPetId("scooby");
+    assert.equal(pet.daysOfWeek, DaysOfWeekExtensibleEnum.Thursday);
+    assert.equal(pet.intEnum, "2.1");
+    assert.equal(pet.name, "Scooby Scarface");
   });
 
   it("should handle roundTripEnum", async function () {
