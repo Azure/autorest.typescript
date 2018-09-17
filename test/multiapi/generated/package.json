@@ -2,7 +2,7 @@
   "name": "@azure/multiapi-test",
   "author": "Microsoft Corporation",
   "description": "AutoRestParameterizedCustomHostTestClient Library with typescript type definitions for node.js and browser.",
-  "version": "",
+  "version": "1.0.0",
   "dependencies": {
     "ms-rest-azure-js": "~0.17.164"
   },

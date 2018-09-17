@@ -92,7 +92,10 @@ namespace AutoRest.TypeScript
                 await InitializeNamespace();
 
                 CodeModel codeModel = plugin.Serializer.Load(modelAsJson);
-                ((CodeModelTS)codeModel).Settings = Singleton<GeneratorSettingsTS>.Instance;
+
+                GeneratorSettingsTS settings = Singleton<GeneratorSettingsTS>.Instance;
+                settings.UpdatePackageVersion();
+                ((CodeModelTS)codeModel).Settings = settings;
 
                 codeModel = plugin.Transformer.TransformCodeModel(codeModel);
 
