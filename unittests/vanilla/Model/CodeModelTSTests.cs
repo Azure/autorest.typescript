@@ -8,13 +8,14 @@ namespace AutoRest.TypeScript.Model
 {
     public class CodeModelTSTests
     {
-        private static CodeModelTS CreateCodeModel(string outputFolder)
+        private static CodeModelTS CreateCodeModel(string outputFolder, string packageName = "arm-batch")
         {
             return new CodeModelTS()
             {
                 Settings = new GeneratorSettingsTS()
                 {
                     OutputFolder = outputFolder,
+                    PackageName = packageName
                 }
             };
         }
@@ -43,15 +44,29 @@ namespace AutoRest.TypeScript.Model
         [Fact]
         public void HomePageUrlWithBackslashOutputFolderThatContainsAzureSdkForJs()
         {
-            CodeModelTS codeModel = CreateCodeModel("C:\\Users\\daschult\\Sources\\azure-sdk-for-js\\lib\\services\\batchManagement");
-            Assert.Equal("https://github.com/azure/azure-sdk-for-js/lib/services/batchManagement", codeModel.HomePageUrl);
+            CodeModelTS codeModel = CreateCodeModel("C:\\Users\\daschult\\Sources\\azure-sdk-for-js\\packages\\arm-batch");
+            Assert.Equal("https://github.com/azure/azure-sdk-for-js/tree/master/packages/arm-batch", codeModel.HomePageUrl);
         }
 
         [Fact]
         public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJs()
         {
-            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/lib/services/batchManagement");
-            Assert.Equal("https://github.com/azure/azure-sdk-for-js/lib/services/batchManagement", codeModel.HomePageUrl);
+            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/packages/arm-batch");
+            Assert.Equal("https://github.com/azure/azure-sdk-for-js/tree/master/packages/arm-batch", codeModel.HomePageUrl);
+        }
+
+        [Fact]
+        public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJsButNullPackageNameProperty()
+        {
+            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/packages/arm-batch", null);
+            Assert.Equal("https://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
+        }
+
+        [Fact]
+        public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJsButEmptyPackageNameProperty()
+        {
+            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/packages/arm-batch", "");
+            Assert.Equal("https://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
         }
     }
 }

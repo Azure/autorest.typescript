@@ -22,9 +22,7 @@ namespace AutoRest.TypeScript.Model
 
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
         private const string defaultGitHubUrl = "https://github.com/azure/" + defaultGitHubRepositoryName;
-        private const string searchStringSuffix = "/lib/services/";
-        private const string outputFolderSearchString = "/" + defaultGitHubRepositoryName + searchStringSuffix;
-
+        
         public GeneratorSettingsTS Settings { get; set; }
 
         private string _optionalParameterTypeForClientConstructor;
@@ -168,13 +166,15 @@ namespace AutoRest.TypeScript.Model
             get
             {
                 string result = defaultGitHubUrl;
-                if (!string.IsNullOrEmpty(Settings.OutputFolder))
+                if (!string.IsNullOrEmpty(Settings.OutputFolder) && !string.IsNullOrEmpty(Settings.PackageName))
                 {
                     string outputFolder = Settings.OutputFolder.Replace('\\', '/');
+                    string searchStringSuffix = $"/packages/{Settings.PackageName}";
+                    string outputFolderSearchString = "/" + defaultGitHubRepositoryName + searchStringSuffix;
                     int searchStringIndex = outputFolder.IndexOf(outputFolderSearchString, StringComparison.OrdinalIgnoreCase);
                     if (0 <= searchStringIndex)
                     {
-                        result += searchStringSuffix + outputFolder.Substring(searchStringIndex + outputFolderSearchString.Length);
+                        result += "/tree/master" + searchStringSuffix + outputFolder.Substring(searchStringIndex + outputFolderSearchString.Length);
                     }
                 }
                 return result;
