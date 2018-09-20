@@ -59,14 +59,14 @@ namespace AutoRest.TypeScript.Model
         public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJsButNullPackageNameProperty()
         {
             CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/packages/arm-batch", null);
-            Assert.Equal("https://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
+            Assert.Equal("https://github.com/azure/azure-sdk-for-js/tree/master/packages/arm-batch", codeModel.HomePageUrl);
         }
 
         [Fact]
         public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJsButEmptyPackageNameProperty()
         {
             CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/packages/arm-batch", "");
-            Assert.Equal("https://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
+            Assert.Equal("https://github.com/azure/azure-sdk-for-js/tree/master/packages/arm-batch", codeModel.HomePageUrl);
         }
     }
 }

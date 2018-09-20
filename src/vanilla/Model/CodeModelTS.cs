@@ -166,10 +166,10 @@ namespace AutoRest.TypeScript.Model
             get
             {
                 string result = defaultGitHubUrl;
-                if (!string.IsNullOrEmpty(Settings.OutputFolder) && !string.IsNullOrEmpty(Settings.PackageName))
+                if (!string.IsNullOrEmpty(Settings.OutputFolder))
                 {
                     string outputFolder = Settings.OutputFolder.Replace('\\', '/');
-                    string searchStringSuffix = $"/packages/{Settings.PackageName}";
+                    string searchStringSuffix = $"/packages/";
                     string outputFolderSearchString = "/" + defaultGitHubRepositoryName + searchStringSuffix;
                     int searchStringIndex = outputFolder.IndexOf(outputFolderSearchString, StringComparison.OrdinalIgnoreCase);
                     if (0 <= searchStringIndex)
