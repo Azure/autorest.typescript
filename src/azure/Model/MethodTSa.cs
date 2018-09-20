@@ -8,7 +8,6 @@ using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript.Model;
 using Newtonsoft.Json;
 using System.Linq;
-using System.Net;
 
 namespace AutoRest.TypeScript.Azure.Model
 {
@@ -29,7 +28,7 @@ namespace AutoRest.TypeScript.Azure.Model
         /// Returns true if method has x-ms-long-running-operation extension.
         /// </summary>
         [JsonIgnore]
-        public override bool IsLongRunningOperation => Extensions.ContainsKey(AzureExtensions.LongRunningExtension);
+        public override bool IsLongRunningOperation => Extensions.Get<bool>(AzureExtensions.LongRunningExtension) == true;
 
         /// <summary>
         /// Whether or not this is a LROPoller method version for a long running operation.
