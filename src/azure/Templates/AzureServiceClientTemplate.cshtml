@@ -1,6 +1,4 @@
 ﻿@using System.Linq
-@using AutoRest.Core.Utilities
-@using AutoRest.TypeScript.vanilla.Templates
 @using AutoRest.TypeScript.Model
 @using AutoRest.TypeScript.Azure.Model
 @inherits AutoRest.Core.Template<CodeModelTSa>
@@ -10,8 +8,6 @@
 @EmptyLine
 @(Model.GenerateAzureServiceClientImports())
 @EmptyLine
-@{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
-@{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant && !p.Name.EqualsIgnoreCase("apiVersion"));}
 @EmptyLine
 class @(Model.Name) extends @(Model.ContextName) {
 @if (Model.MethodGroupModels.Any())
@@ -23,36 +19,7 @@ foreach (var methodGroup in Model.MethodGroupModels)
 }
 @EmptyLine
 }
-  /**
-   * @@class
-   * Initializes a new instance of the @Model.Name class.
-   * @@constructor
-   *
-@foreach (var param in requiredParameters)
-{
-   @:* @@param {@param.ModelType.Name.ToCamelCase()} @param.Name - @param.Documentation
-   @:*
-}
-@if(!Model.IsCustomBaseUri)
-{
-   @:* @@param {string} [baseUri] - The base URI of the service.
-   @:*
-}
-   * @@param {object} [options] - The parameter options
-   *
-   * @@param {Array} [options.filters] - Filters to be added to the request pipeline
-   *
-   * @@param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @@param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
-@foreach (var param in optionalParameters)
-{
-   @:* @@param {@param.ModelType.Name.ToCamelCase()} [options.@param.Name] - @param.Documentation
-   @:*
-}
-   */
+  @(Model.GenerateConstructorComment(Model.Name))
 @{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions" ? "msRestAzure.AzureServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
   constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
     super(@(!string.IsNullOrEmpty(Model.RequiredConstructorParameters) ? Model.RequiredConstructorParameters + ", " : "")options);
