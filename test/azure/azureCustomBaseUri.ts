@@ -6,11 +6,9 @@
 import * as should from 'should';
 import * as assert from 'assert';
 import * as msRest from 'ms-rest-js';
-import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestParameterizedHostTestClient } from './generated/CustomBaseUri/autoRestParameterizedHostTestClient';
 import { timeoutPromise } from '../util/util';
-var dummySubscriptionId = '1234-5678-9012-3456';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 

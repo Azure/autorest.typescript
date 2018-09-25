@@ -4,19 +4,14 @@
 'use strict';
 
 import * as should from 'should';
-import * as assert from 'assert';
-import * as msRest from 'ms-rest-js';
-import * as stream from 'stream';
-
 import { AutoRestValidationTest } from './generated/Validation/autoRestValidationTest';
 
-var dummyToken = 'dummy12321343423';
-var credentials = new msRest.TokenCredentials(dummyToken);
-var clientOptions: msRest.ServiceClientOptions = {};
-var baseUri = 'http://localhost:3000';
+var clientOptions = {
+  baseUri: 'http://localhost:3000'
+};
 describe('typescript', function () {
   describe('Swagger BAT Validation', function () {
-    var testClient = new AutoRestValidationTest("abc123", "12-34-5678", baseUri, clientOptions);
+    var testClient = new AutoRestValidationTest("abc123", "12-34-5678", clientOptions);
     describe('Of Method Parameters', function () {
       it('should test the minimum length constraint on resourceGroupName', async function () {
         try {
@@ -68,7 +63,7 @@ describe('typescript', function () {
       });
 
       it('should test the pattern constraint on apiVersion', function (done) {
-        var testClient2 = new AutoRestValidationTest("abc123", "12345", baseUri, clientOptions);
+        var testClient2 = new AutoRestValidationTest("abc123", "12345", clientOptions);
         testClient2.validationOfMethodParameters("123", 150, function (err, result) {
           should.exist(err);
           err.message.should.match(/.*apiVersion.*constraint.*Pattern.*/ig);

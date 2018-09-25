@@ -34,6 +34,7 @@ import { fail } from "assert";
 import { timeoutPromise } from '../util/util';
 import { FooEnum } from './generated/BodyArray/models';
 import { Colors } from './generated/BodyString/models';
+import { AutoRestBoolTestServiceOptions } from './generated/BodyBoolean/models';
 
 const readStreamToBuffer = async function (strm: NodeJS.ReadableStream): Promise<Buffer> {
   return new Promise<Buffer>((resolve, reject) => {
@@ -71,8 +72,7 @@ function stringToByteArray(str: string): Uint8Array {
   }
 }
 
-var clientOptions: msRest.ServiceClientOptions = { noRetryPolicy: true };
-var baseUri = 'http://localhost:3000';
+var clientOptions: AutoRestBoolTestServiceOptions = { noRetryPolicy: true, baseUri: 'http://localhost:3000' };
 describe('typescript', function () {
   describe('Swagger BAT', function () {
     describe('Custom BaseUri Client with more options', function () {
@@ -89,7 +89,7 @@ describe('typescript', function () {
       });
     });
     describe('Bool Client', function () {
-      var testClient = new AutoRestBoolTestService(baseUri, clientOptions);
+      var testClient = new AutoRestBoolTestService(clientOptions);
       it('should get valid boolean values', function (done) {
         testClient.bool.getTrue(function (error, result) {
           should.not.exist(error);
@@ -125,7 +125,7 @@ describe('typescript', function () {
     });
 
     describe('Integer Client', function () {
-      var testClient = new AutoRestIntegerTestService(baseUri, clientOptions);
+      var testClient = new AutoRestIntegerTestService(clientOptions);
       it('should put max value for 32 and 64 bit Integers', function (done) {
         testClient.intModel.putMax32((Math.pow(2, 32 - 1) - 1), function (error, result) {
           should.not.exist(error);
@@ -206,7 +206,7 @@ describe('typescript', function () {
     });
 
     describe('CompositeBoolInt Client', function () {
-      var testClient = new CompositeBoolInt(baseUri, clientOptions);
+      var testClient = new CompositeBoolInt(clientOptions);
       it('should get valid boolean values', function (done) {
         testClient.bool.getTrue(function (error, result) {
           should.not.exist(error);
@@ -297,7 +297,7 @@ describe('typescript', function () {
     });
 
     describe('Number Client', function () {
-      var testClient = new AutoRestNumberTestService(baseUri, clientOptions);
+      var testClient = new AutoRestNumberTestService(clientOptions);
       it('should put big float and double values', function (done) {
         testClient.number.putBigFloat(3.402823e+20, function (error, result) {
           should.not.exist(error);
@@ -381,7 +381,7 @@ describe('typescript', function () {
     });
 
     describe('String Client', function () {
-      var testClient = new AutoRestSwaggerBATService(baseUri, clientOptions);
+      var testClient = new AutoRestSwaggerBATService(clientOptions);
       it('should support valid null value', function (done) {
         testClient.string.getNull(function (error, result) {
           should.not.exist(result);
@@ -513,7 +513,7 @@ describe('typescript', function () {
     });
 
     describe('Byte Client', function () {
-      var testClient = new AutoRestSwaggerBATByteService(baseUri, clientOptions);
+      var testClient = new AutoRestSwaggerBATByteService(clientOptions);
       var bytes = new Uint8Array([255, 254, 253, 252, 251, 250, 249, 248, 247, 246]);
       it('should support valid null and empty value', function (done) {
         testClient.byteModel.getNull(function (error, result) {
@@ -559,7 +559,7 @@ describe('typescript', function () {
     });
 
     describe('Date Client', function () {
-      var testClient = new AutoRestDateTestService(baseUri, clientOptions);
+      var testClient = new AutoRestDateTestService(clientOptions);
       it('should get min and max date', function (done) {
         testClient.dateModel.getMinDate(function (error, result) {
           should.not.exist(error);
@@ -630,7 +630,7 @@ describe('typescript', function () {
     });
 
     describe('DateTime Client', function () {
-      var testClient = new AutoRestDateTimeTestService(baseUri, clientOptions);
+      var testClient = new AutoRestDateTimeTestService(clientOptions);
       it('should properly handle null value for DateTime', function (done) {
         testClient.datetime.getNull(function (error, result) {
           should.not.exist(result);
@@ -808,7 +808,7 @@ describe('typescript', function () {
     });
 
     describe('DateTimeRfc1123 Client', function () {
-      var testClient = new AutoRestRFC1123DateTimeTestService(baseUri, clientOptions);
+      var testClient = new AutoRestRFC1123DateTimeTestService(clientOptions);
       it('should properly handle null value for DateTimeRfc1123', function (done) {
         testClient.datetimerfc1123.getNull(function (error, result) {
           should.not.exist(result);
@@ -900,7 +900,7 @@ describe('typescript', function () {
     });
 
     describe('Duration Client', function () {
-      var testClient = new AutoRestDurationTestService(baseUri, clientOptions);
+      var testClient = new AutoRestDurationTestService(clientOptions);
       it('should properly handle null value for Duration', function (done) {
         testClient.duration.getNull(function (error, result) {
           should.not.exist(result);
@@ -938,7 +938,7 @@ describe('typescript', function () {
     describe('Array Client', function () {
 
       describe('for primitive types', function () {
-        var testClient = new AutoRestSwaggerBATArrayService(baseUri, clientOptions);
+        var testClient = new AutoRestSwaggerBATArrayService(clientOptions);
         it('should get and put empty arrays', function (done) {
           testClient.arrayModel.getEmpty(function (error, result) {
             if (error) { done(error); return; }
@@ -1220,7 +1220,7 @@ describe('typescript', function () {
       });
 
       describe('for complex types', function () {
-        var testClient = new AutoRestSwaggerBATArrayService(baseUri, clientOptions);
+        var testClient = new AutoRestSwaggerBATArrayService(clientOptions);
         it('should get null and empty complex types in array', function (done) {
           testClient.arrayModel.getComplexEmpty(function (error, result) {
             should.not.exist(error);
@@ -1261,7 +1261,7 @@ describe('typescript', function () {
       });
 
       describe('for array of arrays', function () {
-        var testClient = new AutoRestSwaggerBATArrayService(baseUri, clientOptions);
+        var testClient = new AutoRestSwaggerBATArrayService(clientOptions);
         it('should get null and empty array in an array', function (done) {
           testClient.arrayModel.getArrayNull(function (error, result) {
             should.not.exist(error);
@@ -1302,7 +1302,7 @@ describe('typescript', function () {
       });
 
       describe('for array of dictionaries', function () {
-        var testClient = new AutoRestSwaggerBATArrayService(baseUri, clientOptions);
+        var testClient = new AutoRestSwaggerBATArrayService(clientOptions);
         it('should get null and empty dictionary in an array', function (done) {
           testClient.arrayModel.getDictionaryNull(function (error, result) {
             should.not.exist(error);
@@ -1347,7 +1347,7 @@ describe('typescript', function () {
     describe('Dictionary Client', function () {
 
       describe('for primitive types', function () {
-        var testClient = new AutoRestSwaggerBATdictionaryService(baseUri, clientOptions);
+        var testClient = new AutoRestSwaggerBATdictionaryService(clientOptions);
         it('should get and put empty dictionaries', function (done) {
           testClient.dictionary.getEmpty(function (error, result) {
             should.not.exist(error);
@@ -1722,7 +1722,7 @@ describe('typescript', function () {
       });
 
       describe('for complex types', function () {
-        var testClient = new AutoRestSwaggerBATdictionaryService(baseUri, clientOptions);
+        var testClient = new AutoRestSwaggerBATdictionaryService(clientOptions);
         it('should get null and empty complex types in dictionary', function (done) {
           testClient.dictionary.getComplexEmpty(function (error, result) {
             should.not.exist(error);
@@ -1763,7 +1763,7 @@ describe('typescript', function () {
       });
 
       describe('for dictionary of arrays', function () {
-        var testClient = new AutoRestSwaggerBATdictionaryService(baseUri, clientOptions);
+        var testClient = new AutoRestSwaggerBATdictionaryService(clientOptions);
         it('should get null and empty array in dictionary', function (done) {
           testClient.dictionary.getArrayNull(function (error, result) {
             should.not.exist(error);
@@ -1804,7 +1804,7 @@ describe('typescript', function () {
       });
 
       describe('for dictionary of dictionaries', function () {
-        var testClient = new AutoRestSwaggerBATdictionaryService(baseUri, clientOptions);
+        var testClient = new AutoRestSwaggerBATdictionaryService(clientOptions);
         it('should get null and empty dictionary in dictionary', function (done) {
           testClient.dictionary.getDictionaryNull(function (error, result) {
             should.not.exist(error);
@@ -1848,7 +1848,7 @@ describe('typescript', function () {
       });
     });
     describe('Files Client', function () {
-      var testClient = new AutoRestSwaggerBATFileService(baseUri, clientOptions);
+      var testClient = new AutoRestSwaggerBATFileService(clientOptions);
 
       if (msRest.isNode) {
         it('nodejs should correctly deserialize binary streams', async function () {
@@ -1916,7 +1916,7 @@ describe('typescript', function () {
     });
 
     describe('Form Data Client', function () {
-      var testClient = new AutoRestSwaggerBATFormDataService(baseUri, clientOptions);
+      var testClient = new AutoRestSwaggerBATFormDataService(clientOptions);
 
       if (msRest.isNode) {
         it('nodejs should correctly accept file via form-dat', async function () {
@@ -2009,7 +2009,7 @@ describe('typescript', function () {
     });
 
     describe('Url Client', function () {
-      var testClient = new AutoRestUrlTestService('globalStringPath', baseUri, clientOptions);
+      var testClient = new AutoRestUrlTestService('globalStringPath', clientOptions);
       testClient.globalStringQuery = 'globalStringQuery';
       it('should work when path has null, empty, and multi-byte byte values', function (done) {
         testClient.paths.byteNull(null, function (error, result) {
@@ -2297,7 +2297,7 @@ describe('typescript', function () {
     });
     describe('Http infrastructure Client', function () {
       const serializer = new msRest.Serializer(AutoRestHttpInfrastructureTestServiceMappers);
-      var testOptions: msRest.ServiceClientOptions = { ...clientOptions };
+      var testOptions = { ...clientOptions };
 
       // Prevents caching redirects
       const preventCachingPolicy: msRest.RequestPolicyFactory = {
@@ -2317,7 +2317,7 @@ describe('typescript', function () {
         msRest.exponentialRetryPolicy(3, 0, 0, 0),
         msRest.deserializationPolicy()
       ];
-      var testClient = new AutoRestHttpInfrastructureTestService(baseUri, testOptions);
+      var testClient = new AutoRestHttpInfrastructureTestService(testOptions);
       it('should work for all http success status codes with different verbs', function (done) {
         testClient.httpSuccess.head200(function (error, result) {
           should.not.exist(error);

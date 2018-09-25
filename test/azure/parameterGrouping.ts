@@ -4,17 +4,16 @@
 'use strict';
 
 import * as should from 'should';
-import * as assert from 'assert';
 import * as msRest from 'ms-rest-js';
-import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestParameterGroupingTestService } from './generated/AzureParameterGrouping/autoRestParameterGroupingTestService';
-import { ParameterGroupingPostOptionalOptionalParams } from "./generated/AzureParameterGrouping/models";
+import { ParameterGroupingPostOptionalOptionalParams, AutoRestParameterGroupingTestServiceOptions } from "./generated/AzureParameterGrouping/models";
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: any = {};
-var baseUri = 'http://localhost:3000';
+var clientOptions: AutoRestParameterGroupingTestServiceOptions = {
+  baseUri: 'http://localhost:3000'
+};
 
 describe('typescript', function () {
   var body = 1234;
@@ -23,7 +22,7 @@ describe('typescript', function () {
   var path = "path";
 
   describe('Azure Parameter Grouping', function () {
-    var testClient = new AutoRestParameterGroupingTestService(credentials, baseUri, clientOptions);
+    var testClient = new AutoRestParameterGroupingTestService(credentials, clientOptions);
     it('should accept valid required parameters', function (done) {
       testClient.parameterGrouping.postRequired({ body: body, customHeader: header, query: query, path: path }, function (error, result, request, response) {
         should.not.exist(error);

@@ -4,22 +4,20 @@
 'use strict';
 
 import * as should from 'should';
-import * as assert from 'assert';
 import * as msRest from 'ms-rest-js';
-import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestAzureSpecialParametersTestClient } from './generated/AzureSpecials/autoRestAzureSpecialParametersTestClient';
 var dummySubscriptionId = '1234-5678-9012-3456';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: any = {};
+var clientOptions: any = { baseUri: 'http://localhost:3000' };
 var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
 
   describe('Azure Special Properties', function () {
-    var testClient = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, baseUri, clientOptions);
+    var testClient = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, clientOptions);
     it('should use the default api-version when no api-version parameter is present', function (done) {
       testClient.apiVersionDefault.getMethodGlobalValid(function (error, result, request, response) {
         should.not.exist(error);
@@ -159,7 +157,7 @@ describe('typescript', function () {
     });
 
     it('should not overwrite x-ms-client-request-id', function (done) {
-      var testClient2 = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, baseUri, {
+      var testClient2 = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, {
         ...clientOptions,
         generateClientRequestIdHeader: false
       });

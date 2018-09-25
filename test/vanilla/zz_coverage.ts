@@ -3,16 +3,13 @@
 
 'use strict';
 
-import * as msRest from 'ms-rest-js';
 import * as _ from 'underscore';
 import { AutoRestReportService } from './generated/Report/autoRestReportService';
 
-var dummyToken = 'dummy12321343423';
-var credentials = new msRest.TokenCredentials(dummyToken);
-
-var clientOptions = {};
-var baseUri = 'http://localhost:3000';
-var testClient = new AutoRestReportService(baseUri, clientOptions);
+var clientOptions = {
+  baseUri: 'http://localhost:3000'
+};
+var testClient = new AutoRestReportService(clientOptions);
 
 describe('typescript', function () {
   it('should have full test coverage', async function () {

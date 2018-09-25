@@ -6,27 +6,26 @@
 import * as should from 'should';
 import * as msAssert from "../util/msAssert";
 import * as msRest from 'ms-rest-js';
-import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestLongRunningOperationTestService, AutoRestLongRunningOperationTestServiceModels } from './generated/Lro/autoRestLongRunningOperationTestService';
+import { AutoRestLongRunningOperationTestServiceOptions } from '../azuremetadata/generated/Lro/lib/models';
 
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: msRestAzure.AzureServiceClientOptions = {
+var clientOptions: AutoRestLongRunningOperationTestServiceOptions = {
+  baseUri: 'http://localhost:3000',
   requestPolicyFactories: [
     msRest.exponentialRetryPolicy(3, 0, 0, 0),
     msRest.deserializationPolicy()
   ],
-  noRetryPolicy: true,
   longRunningOperationRetryTimeout: 0
 };
-var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
 
   describe('Swagger LRO Happy BAT', function () {
-    var testClient = new AutoRestLongRunningOperationTestService(credentials, baseUri, clientOptions);
+    var testClient = new AutoRestLongRunningOperationTestService(credentials, clientOptions);
     var product: AutoRestLongRunningOperationTestServiceModels.Product = { location: 'West US' };
 
     it('should work with Put201CreatingSucceeded200', async () => {
@@ -274,7 +273,7 @@ describe('typescript', function () {
   });
 
   describe('Swagger LRO Sad BAT', function () {
-    var testClient = new AutoRestLongRunningOperationTestService(credentials, baseUri, clientOptions);
+    var testClient = new AutoRestLongRunningOperationTestService(credentials, clientOptions);
     testClient.longRunningOperationRetryTimeout = 0;
     var product = { location: 'West US' };
 
