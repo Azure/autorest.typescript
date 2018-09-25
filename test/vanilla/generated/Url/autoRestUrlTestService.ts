@@ -24,19 +24,11 @@ class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
    * Initializes a new instance of the AutoRestUrlTestService class.
    * @constructor
    *
-   * @param {string} [baseUri] - The base URI of the service.
+   * @param {string} globalStringPath A string value 'globalItemStringPath' that appears in the path
    *
-   * @param {object} [options] - The parameter options
+   * @param {string} [baseUri] The base URI of the service.
    *
-   * @param {Array} [options.filters] - Filters to be added to the request pipeline
-   *
-   * @param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
-   * @param {string} [options.globalStringQuery] - should contain value null
-   *
+   * @param {object} [options] The parameter options
    */
   constructor(globalStringPath: string, baseUri?: string, options?: Models.AutoRestUrlTestServiceOptions) {
     super(globalStringPath, baseUri, options);

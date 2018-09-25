@@ -22,17 +22,7 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
    * Initializes a new instance of the AutoRestParameterizedHostTestClient class.
    * @constructor
    *
-   * @param {object} [options] - The parameter options
-   *
-   * @param {Array} [options.filters] - Filters to be added to the request pipeline
-   *
-   * @param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
-   * @param {string} [options.host] - A string value that is used as a global part of the parameterized host
-   *
+   * @param {object} [options] The parameter options
    */
   constructor(options?: Models.AutoRestParameterizedHostTestClientOptions) {
     super(options);

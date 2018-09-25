@@ -20,17 +20,9 @@ class ComplexModelClient extends ComplexModelClientContext {
    * Initializes a new instance of the ComplexModelClient class.
    * @constructor
    *
-   * @param {string} [baseUri] - The base URI of the service.
+   * @param {string} [baseUri] The base URI of the service.
    *
-   * @param {object} [options] - The parameter options
-   *
-   * @param {Array} [options.filters] - Filters to be added to the request pipeline
-   *
-   * @param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
+   * @param {object} [options] The parameter options
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
