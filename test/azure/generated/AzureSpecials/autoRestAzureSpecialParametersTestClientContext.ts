@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as Models from "./models";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 
@@ -53,7 +54,7 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
    * @param {boolean} [options.generateClientRequestId] - Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
    *
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: msRestAzure.AzureServiceClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

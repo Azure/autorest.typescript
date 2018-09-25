@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -47,7 +46,7 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
    * @param {boolean} [options.generateClientRequestId] - Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
    *
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: msRestAzure.AzureServiceClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
     super(credentials, subscriptionId, options);
     this.group = new operations.Group(this);
   }

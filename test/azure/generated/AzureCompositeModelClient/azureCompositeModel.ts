@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as Parameters from "./models/parameters";
@@ -54,7 +53,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    * @param {boolean} [options.generateClientRequestId] - Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
    *
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: msRestAzure.AzureServiceClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AzureCompositeModelOptions) {
     super(credentials, options);
     this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);

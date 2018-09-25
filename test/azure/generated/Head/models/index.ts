@@ -8,11 +8,23 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
 
+
+/**
+ * @interface
+ * An interface representing AutoRestHeadTestServiceOptions.
+ * @extends AzureServiceClientOptions
+ */
+export interface AutoRestHeadTestServiceOptions extends AzureServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
+}
 
 
 /**

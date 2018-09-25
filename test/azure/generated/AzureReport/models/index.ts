@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
@@ -44,6 +44,18 @@ export interface AutoRestReportServiceForAzureGetReportOptionalParams extends ms
    * reports.
    */
   qualifier?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestReportServiceForAzureOptions.
+ * @extends AzureServiceClientOptions
+ */
+export interface AutoRestReportServiceForAzureOptions extends AzureServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 

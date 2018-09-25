@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
@@ -400,6 +400,18 @@ export interface StorageAccountsRegenerateKeyOptionalParams extends msRest.Reque
    * @member {KeyName} [keyName] Possible values include: 'key1', 'key2'
    */
   keyName?: KeyName;
+}
+
+/**
+ * @interface
+ * An interface representing StorageManagementClientOptions.
+ * @extends AzureServiceClientOptions
+ */
+export interface StorageManagementClientOptions extends AzureServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 
