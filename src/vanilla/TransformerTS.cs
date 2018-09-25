@@ -336,7 +336,7 @@ namespace AutoRest.TypeScript
             var optionalPropertiesOnClient = cm.Properties.Where(
                 p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue))
                 && !p.IsConstant);
-            if (optionalPropertiesOnClient.Count() > 0)
+            if (optionalPropertiesOnClient.Count() > 0 || !cm.IsCustomBaseUri)
             {
                 string modelTypeName = cm.Name + "Options";
                 var modelType = new CompositeTypeTS(modelTypeName);
@@ -353,6 +353,14 @@ namespace AutoRest.TypeScript
                 }
 
                 modelType.AddRange(optionalPropertiesOnClient);
+                if (!cm.IsCustomBaseUri)
+                {
+                    var prop = New<PropertyTS>();
+                    prop.Name = "baseUri";
+                    prop.ModelType = new PrimaryTypeTS(KnownPrimaryType.String);
+                    modelType.Add(prop);
+                }
+
                 cm.Add(modelType);
                 cm.OptionalParameterTypeForClientConstructor = "Models." + modelTypeName;
             }

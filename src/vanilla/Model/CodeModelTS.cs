@@ -22,7 +22,7 @@ namespace AutoRest.TypeScript.Model
 
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
         private const string defaultGitHubUrl = "https://github.com/azure/" + defaultGitHubRepositoryName;
-        
+
         public GeneratorSettingsTS Settings { get; set; }
 
         private string _optionalParameterTypeForClientConstructor;
@@ -300,10 +300,6 @@ namespace AutoRest.TypeScript.Model
                 var requireParams = new List<string>();
                 this.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue))
                     .ForEach(p => requireParams.Add(p.Name.ToCamelCase()));
-                if (!IsCustomBaseUri)
-                {
-                    requireParams.Add("baseUri");
-                }
 
                 if (requireParams == null || requireParams.Count == 0)
                 {
@@ -337,14 +333,6 @@ namespace AutoRest.TypeScript.Model
                     requiredParams.Append(p.ModelType.TSType(inModelsModule: false));
 
                     first = false;
-                }
-
-                if (!IsCustomBaseUri)
-                {
-                    if (!first)
-                        requiredParams.Append(", ");
-
-                    requiredParams.Append("baseUri?: string");
                 }
 
                 return requiredParams.ToString();

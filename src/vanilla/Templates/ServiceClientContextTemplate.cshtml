@@ -99,11 +99,7 @@ export class @(Model.ContextName) extends msRest.ServiceClient {
 @if (!Model.IsCustomBaseUri)
 {
 <text>
-    this.baseUri = baseUri as string;
-
-    if (!this.baseUri) {
-      this.baseUri = "@Model.SchemeHostAndPort";
-    }
+    this.baseUri = options.baseUri || this.baseUri || "@Model.SchemeHostAndPort";
 </text>
 }
 else
