@@ -28,13 +28,9 @@ export class IntModel {
   /**
    * Get null Int value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNull(): Promise<Models.IntModelGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullResponse>;
@@ -52,13 +48,9 @@ export class IntModel {
   /**
    * Get invalid Int value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getInvalid(): Promise<Models.IntModelGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidResponse>;
@@ -76,13 +68,9 @@ export class IntModel {
   /**
    * Get overflow Int32 value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getOverflowInt32(): Promise<Models.IntModelGetOverflowInt32Response>;
   getOverflowInt32(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt32Response>;
@@ -100,13 +88,9 @@ export class IntModel {
   /**
    * Get underflow Int32 value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUnderflowInt32(): Promise<Models.IntModelGetUnderflowInt32Response>;
   getUnderflowInt32(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt32Response>;
@@ -124,13 +108,9 @@ export class IntModel {
   /**
    * Get overflow Int64 value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getOverflowInt64(): Promise<Models.IntModelGetOverflowInt64Response>;
   getOverflowInt64(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt64Response>;
@@ -148,13 +128,9 @@ export class IntModel {
   /**
    * Get underflow Int64 value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUnderflowInt64(): Promise<Models.IntModelGetUnderflowInt64Response>;
   getUnderflowInt64(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt64Response>;
@@ -172,15 +148,11 @@ export class IntModel {
   /**
    * Put max int32 value
    *
-   * @param {number} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putMax32(intBody: number): Promise<msRest.RestResponse>;
   putMax32(intBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -199,15 +171,11 @@ export class IntModel {
   /**
    * Put max int64 value
    *
-   * @param {number} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putMax64(intBody: number): Promise<msRest.RestResponse>;
   putMax64(intBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -226,15 +194,11 @@ export class IntModel {
   /**
    * Put min int32 value
    *
-   * @param {number} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putMin32(intBody: number): Promise<msRest.RestResponse>;
   putMin32(intBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -253,15 +217,11 @@ export class IntModel {
   /**
    * Put min int64 value
    *
-   * @param {number} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putMin64(intBody: number): Promise<msRest.RestResponse>;
   putMin64(intBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -280,13 +240,9 @@ export class IntModel {
   /**
    * Get datetime encoded as Unix time value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUnixTime(): Promise<Models.IntModelGetUnixTimeResponse>;
   getUnixTime(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnixTimeResponse>;
@@ -304,15 +260,11 @@ export class IntModel {
   /**
    * Put datetime encoded as Unix time
    *
-   * @param {Date | string} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putUnixTimeDate(intBody: Date | string): Promise<msRest.RestResponse>;
   putUnixTimeDate(intBody: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -331,13 +283,9 @@ export class IntModel {
   /**
    * Get invalid Unix time value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getInvalidUnixTime(): Promise<Models.IntModelGetInvalidUnixTimeResponse>;
   getInvalidUnixTime(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidUnixTimeResponse>;
@@ -355,13 +303,9 @@ export class IntModel {
   /**
    * Get null Unix time value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNullUnixTime(): Promise<Models.IntModelGetNullUnixTimeResponse>;
   getNullUnixTime(options: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullUnixTimeResponse>;

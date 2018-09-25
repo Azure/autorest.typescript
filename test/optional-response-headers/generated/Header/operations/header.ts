@@ -29,15 +29,11 @@ export class Header {
   /**
    * Send a post request with header value "User-Agent": "overwrite"
    *
-   * @param {string} userAgent Send a post request with header value "User-Agent": "overwrite"
+   * @param userAgent Send a post request with header value "User-Agent": "overwrite"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramExistingKey(userAgent: string): Promise<msRest.RestResponse>;
   paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -56,13 +52,9 @@ export class Header {
   /**
    * Get a response with header value "User-Agent": "overwrite"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseExistingKey(): Promise<Models.HeaderResponseExistingKeyResponse>;
   responseExistingKey(options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseExistingKeyResponse>;
@@ -80,15 +72,11 @@ export class Header {
   /**
    * Send a post request with header value "Content-Type": "text/html"
    *
-   * @param {string} contentType Send a post request with header value "Content-Type": "text/html"
+   * @param contentType Send a post request with header value "Content-Type": "text/html"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramProtectedKey(contentType: string): Promise<msRest.RestResponse>;
   paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -107,13 +95,9 @@ export class Header {
   /**
    * Get a response with header value "Content-Type": "text/html"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseProtectedKey(): Promise<Models.HeaderResponseProtectedKeyResponse>;
   responseProtectedKey(options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseProtectedKeyResponse>;
@@ -132,18 +116,13 @@ export class Header {
    * Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
    * "negative", "value": -2
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {number} value Send a post request with header values 1 or -2
+   * @param value Send a post request with header values 1 or -2
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramInteger(scenario: string, value: number): Promise<msRest.RestResponse>;
   paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -163,16 +142,11 @@ export class Header {
   /**
    * Get a response with header value "value": 1 or -2
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseInteger(scenario: string): Promise<Models.HeaderResponseIntegerResponse>;
   responseInteger(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse>;
@@ -192,18 +166,13 @@ export class Header {
    * Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
    * "negative", "value": -2
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {number} value Send a post request with header values 105 or -2
+   * @param value Send a post request with header values 105 or -2
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramLong(scenario: string, value: number): Promise<msRest.RestResponse>;
   paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -223,16 +192,11 @@ export class Header {
   /**
    * Get a response with header value "value": 105 or -2
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseLong(scenario: string): Promise<Models.HeaderResponseLongResponse>;
   responseLong(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse>;
@@ -252,18 +216,13 @@ export class Header {
    * Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
    * "negative", "value": -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {number} value Send a post request with header values 0.07 or -3.0
+   * @param value Send a post request with header values 0.07 or -3.0
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramFloat(scenario: string, value: number): Promise<msRest.RestResponse>;
   paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -283,16 +242,11 @@ export class Header {
   /**
    * Get a response with header value "value": 0.07 or -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseFloat(scenario: string): Promise<Models.HeaderResponseFloatResponse>;
   responseFloat(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse>;
@@ -312,18 +266,13 @@ export class Header {
    * Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
    * "negative", "value": -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {number} value Send a post request with header values 7e120 or -3.0
+   * @param value Send a post request with header values 7e120 or -3.0
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramDouble(scenario: string, value: number): Promise<msRest.RestResponse>;
   paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -343,16 +292,11 @@ export class Header {
   /**
    * Get a response with header value "value": 7e120 or -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseDouble(scenario: string): Promise<Models.HeaderResponseDoubleResponse>;
   responseDouble(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse>;
@@ -372,17 +316,13 @@ export class Header {
    * Send a post request with header values "scenario": "true", "value": true or "scenario": "false",
    * "value": false
    *
-   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
+   * @param scenario Send a post request with header values "scenario": "true" or "false"
    *
-   * @param {boolean} value Send a post request with header values true or false
+   * @param value Send a post request with header values true or false
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramBool(scenario: string, value: boolean): Promise<msRest.RestResponse>;
   paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -402,15 +342,11 @@ export class Header {
   /**
    * Get a response with header value "value": true or false
    *
-   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
+   * @param scenario Send a post request with header values "scenario": "true" or "false"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseBool(scenario: string): Promise<Models.HeaderResponseBoolResponse>;
   responseBool(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse>;
@@ -430,16 +366,11 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
    * over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": ""
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    *
-   * @param {HeaderParamStringOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramString(scenario: string): Promise<msRest.RestResponse>;
   paramString(scenario: string, options: Models.HeaderParamStringOptionalParams): Promise<msRest.RestResponse>;
@@ -458,16 +389,11 @@ export class Header {
   /**
    * Get a response with header values "The quick brown fox jumps over the lazy dog" or null or ""
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseString(scenario: string): Promise<Models.HeaderResponseStringResponse>;
   responseString(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse>;
@@ -487,17 +413,13 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario":
    * "min", "value": "0001-01-01"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {Date | string} value Send a post request with header values "2010-01-01" or "0001-01-01"
+   * @param value Send a post request with header values "2010-01-01" or "0001-01-01"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramDate(scenario: string, value: Date | string): Promise<msRest.RestResponse>;
   paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -517,15 +439,11 @@ export class Header {
   /**
    * Get a response with header values "2010-01-01" or "0001-01-01"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseDate(scenario: string): Promise<Models.HeaderResponseDateResponse>;
   responseDate(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse>;
@@ -545,18 +463,14 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
    * "scenario": "min", "value": "0001-01-01T00:00:00Z"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {Date | string} value Send a post request with header values "2010-01-01T12:34:56Z" or
+   * @param value Send a post request with header values "2010-01-01T12:34:56Z" or
    * "0001-01-01T00:00:00Z"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramDatetime(scenario: string, value: Date | string): Promise<msRest.RestResponse>;
   paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -576,15 +490,11 @@ export class Header {
   /**
    * Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseDatetime(scenario: string): Promise<Models.HeaderResponseDatetimeResponse>;
   responseDatetime(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse>;
@@ -604,15 +514,11 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
    * GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {HeaderParamDatetimeRfc1123OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramDatetimeRfc1123(scenario: string): Promise<msRest.RestResponse>;
   paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.RestResponse>;
@@ -632,15 +538,11 @@ export class Header {
    * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
    * GMT"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseDatetimeRfc1123(scenario: string): Promise<Models.HeaderResponseDatetimeRfc1123Response>;
   responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response>;
@@ -659,17 +561,13 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
+   * @param scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {string} value Send a post request with header values "P123DT22H14M12.011S"
+   * @param value Send a post request with header values "P123DT22H14M12.011S"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramDuration(scenario: string, value: string): Promise<msRest.RestResponse>;
   paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -689,15 +587,11 @@ export class Header {
   /**
    * Get a response with header values "P123DT22H14M12.011S"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
+   * @param scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseDuration(scenario: string): Promise<Models.HeaderResponseDurationResponse>;
   responseDuration(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse>;
@@ -716,17 +610,13 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
+   * @param scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {Uint8Array} value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
+   * @param value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramByte(scenario: string, value: Uint8Array): Promise<msRest.RestResponse>;
   paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -746,15 +636,11 @@ export class Header {
   /**
    * Get a response with header values "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
+   * @param scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseByte(scenario: string): Promise<Models.HeaderResponseByteResponse>;
   responseByte(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse>;
@@ -774,16 +660,11 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
    * "null", "value": null
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    *
-   * @param {HeaderParamEnumOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramEnum(scenario: string): Promise<msRest.RestResponse>;
   paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams): Promise<msRest.RestResponse>;
@@ -802,16 +683,11 @@ export class Header {
   /**
    * Get a response with header values "GREY" or null
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   responseEnum(scenario: string): Promise<Models.HeaderResponseEnumResponse>;
   responseEnum(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse>;
@@ -830,13 +706,9 @@ export class Header {
   /**
    * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   customRequestId(): Promise<msRest.RestResponse>;
   customRequestId(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

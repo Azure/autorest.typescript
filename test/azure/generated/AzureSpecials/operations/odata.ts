@@ -29,13 +29,9 @@ export class Odata {
   /**
    * Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'
    *
-   * @param {OdataGetWithFilterOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getWithFilter(): Promise<msRest.RestResponse>;
   getWithFilter(options: Models.OdataGetWithFilterOptionalParams): Promise<msRest.RestResponse>;

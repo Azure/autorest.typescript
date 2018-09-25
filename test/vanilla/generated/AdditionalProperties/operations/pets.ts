@@ -28,15 +28,11 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPTrue} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   createAPTrue(createParameters: Models.PetAPTrue): Promise<Models.PetsCreateAPTrueResponse>;
   createAPTrue(createParameters: Models.PetAPTrue, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPTrueResponse>;
@@ -55,15 +51,11 @@ export class Pets {
   /**
    * Create a CatAPTrue which contains more properties than what is defined.
    *
-   * @param {CatAPTrue} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   createCatAPTrue(createParameters: Models.CatAPTrue): Promise<Models.PetsCreateCatAPTrueResponse>;
   createCatAPTrue(createParameters: Models.CatAPTrue, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateCatAPTrueResponse>;
@@ -82,15 +74,11 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPObject} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   createAPObject(createParameters: Models.PetAPObject): Promise<Models.PetsCreateAPObjectResponse>;
   createAPObject(createParameters: Models.PetAPObject, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPObjectResponse>;
@@ -109,15 +97,11 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPString} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   createAPString(createParameters: Models.PetAPString): Promise<Models.PetsCreateAPStringResponse>;
   createAPString(createParameters: Models.PetAPString, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPStringResponse>;
@@ -136,15 +120,11 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPInProperties} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   createAPInProperties(createParameters: Models.PetAPInProperties): Promise<Models.PetsCreateAPInPropertiesResponse>;
   createAPInProperties(createParameters: Models.PetAPInProperties, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPInPropertiesResponse>;
@@ -163,15 +143,11 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPInPropertiesWithAPString} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse>;
   createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse>;

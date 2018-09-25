@@ -28,13 +28,9 @@ export class ApiVersionDefault {
   /**
    * GET method with api-version modeled in global settings.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getMethodGlobalValid(): Promise<msRest.RestResponse>;
   getMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -52,13 +48,9 @@ export class ApiVersionDefault {
   /**
    * GET method with api-version modeled in global settings.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getMethodGlobalNotProvidedValid(): Promise<msRest.RestResponse>;
   getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -76,13 +68,9 @@ export class ApiVersionDefault {
   /**
    * GET method with api-version modeled in global settings.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getPathGlobalValid(): Promise<msRest.RestResponse>;
   getPathGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -100,13 +88,9 @@ export class ApiVersionDefault {
   /**
    * GET method with api-version modeled in global settings.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getSwaggerGlobalValid(): Promise<msRest.RestResponse>;
   getSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

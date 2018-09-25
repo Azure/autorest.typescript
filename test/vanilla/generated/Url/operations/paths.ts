@@ -29,13 +29,9 @@ export class Paths {
   /**
    * Get true Boolean value on path
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBooleanTrue(): Promise<msRest.RestResponse>;
   getBooleanTrue(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -53,13 +49,9 @@ export class Paths {
   /**
    * Get false Boolean value on path
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBooleanFalse(): Promise<msRest.RestResponse>;
   getBooleanFalse(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -77,13 +69,9 @@ export class Paths {
   /**
    * Get '1000000' integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getIntOneMillion(): Promise<msRest.RestResponse>;
   getIntOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -101,13 +89,9 @@ export class Paths {
   /**
    * Get '-1000000' integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getIntNegativeOneMillion(): Promise<msRest.RestResponse>;
   getIntNegativeOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -125,13 +109,9 @@ export class Paths {
   /**
    * Get '10000000000' 64 bit integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getTenBillion(): Promise<msRest.RestResponse>;
   getTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -149,13 +129,9 @@ export class Paths {
   /**
    * Get '-10000000000' 64 bit integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNegativeTenBillion(): Promise<msRest.RestResponse>;
   getNegativeTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -173,13 +149,9 @@ export class Paths {
   /**
    * Get '1.034E+20' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   floatScientificPositive(): Promise<msRest.RestResponse>;
   floatScientificPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -197,13 +169,9 @@ export class Paths {
   /**
    * Get '-1.034E-20' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   floatScientificNegative(): Promise<msRest.RestResponse>;
   floatScientificNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -221,13 +189,9 @@ export class Paths {
   /**
    * Get '9999999.999' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   doubleDecimalPositive(): Promise<msRest.RestResponse>;
   doubleDecimalPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -245,13 +209,9 @@ export class Paths {
   /**
    * Get '-9999999.999' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   doubleDecimalNegative(): Promise<msRest.RestResponse>;
   doubleDecimalNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -269,13 +229,9 @@ export class Paths {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   stringUnicode(): Promise<msRest.RestResponse>;
   stringUnicode(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -293,13 +249,9 @@ export class Paths {
   /**
    * Get 'begin!*'();:@ &=+$,/?#[]end
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   stringUrlEncoded(): Promise<msRest.RestResponse>;
   stringUrlEncoded(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -317,13 +269,9 @@ export class Paths {
   /**
    * Get ''
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   stringEmpty(): Promise<msRest.RestResponse>;
   stringEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -341,15 +289,11 @@ export class Paths {
   /**
    * Get null (should throw)
    *
-   * @param {string} stringPath null string value
+   * @param stringPath null string value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   stringNull(stringPath: string): Promise<msRest.RestResponse>;
   stringNull(stringPath: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -368,16 +312,12 @@ export class Paths {
   /**
    * Get using uri with 'green color' in path parameter
    *
-   * @param {UriColor} enumPath send the value green. Possible values include: 'red color', 'green
-   * color', 'blue color'
+   * @param enumPath send the value green. Possible values include: 'red color', 'green color', 'blue
+   * color'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   enumValid(enumPath: Models.UriColor): Promise<msRest.RestResponse>;
   enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -396,16 +336,12 @@ export class Paths {
   /**
    * Get null (should throw on the client before the request is sent on wire)
    *
-   * @param {UriColor} enumPath send null should throw. Possible values include: 'red color', 'green
-   * color', 'blue color'
+   * @param enumPath send null should throw. Possible values include: 'red color', 'green color',
+   * 'blue color'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   enumNull(enumPath: Models.UriColor): Promise<msRest.RestResponse>;
   enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -424,15 +360,11 @@ export class Paths {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
-   * @param {Uint8Array} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+   * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   byteMultiByte(bytePath: Uint8Array): Promise<msRest.RestResponse>;
   byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -451,13 +383,9 @@ export class Paths {
   /**
    * Get '' as byte array
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   byteEmpty(): Promise<msRest.RestResponse>;
   byteEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -475,15 +403,11 @@ export class Paths {
   /**
    * Get null as byte array (should throw)
    *
-   * @param {Uint8Array} bytePath null as byte array (should throw)
+   * @param bytePath null as byte array (should throw)
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   byteNull(bytePath: Uint8Array): Promise<msRest.RestResponse>;
   byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -502,13 +426,9 @@ export class Paths {
   /**
    * Get '2012-01-01' as date
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   dateValid(): Promise<msRest.RestResponse>;
   dateValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -527,15 +447,11 @@ export class Paths {
    * Get null as date - this should throw or be unusable on the client side, depending on date
    * representation
    *
-   * @param {Date | string} datePath null as date (should throw)
+   * @param datePath null as date (should throw)
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   dateNull(datePath: Date | string): Promise<msRest.RestResponse>;
   dateNull(datePath: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -554,13 +470,9 @@ export class Paths {
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   dateTimeValid(): Promise<msRest.RestResponse>;
   dateTimeValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -578,15 +490,11 @@ export class Paths {
   /**
    * Get null as date-time, should be disallowed or throw depending on representation of date-time
    *
-   * @param {Date | string} dateTimePath null as date-time
+   * @param dateTimePath null as date-time
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   dateTimeNull(dateTimePath: Date | string): Promise<msRest.RestResponse>;
   dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -605,15 +513,11 @@ export class Paths {
   /**
    * Get 'lorem' encoded value as 'bG9yZW0' (base64url)
    *
-   * @param {Uint8Array} base64UrlPath base64url encoded value
+   * @param base64UrlPath base64url encoded value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   base64Url(base64UrlPath: Uint8Array): Promise<msRest.RestResponse>;
   base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -633,16 +537,12 @@ export class Paths {
    * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * csv-array format
    *
-   * @param {string[]} arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' ,
-   * null, ''] using the csv-array format
+   * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+   * using the csv-array format
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayCsvInPath(arrayPath: string[]): Promise<msRest.RestResponse>;
   arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -661,15 +561,11 @@ export class Paths {
   /**
    * Get the date 2016-04-13 encoded value as '1460505600' (Unix time)
    *
-   * @param {Date | string} unixTimeUrlPath Unix time encoded value
+   * @param unixTimeUrlPath Unix time encoded value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   unixTimeUrl(unixTimeUrlPath: Date | string): Promise<msRest.RestResponse>;
   unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

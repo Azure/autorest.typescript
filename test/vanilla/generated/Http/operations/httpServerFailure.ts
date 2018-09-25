@@ -28,13 +28,9 @@ export class HttpServerFailure {
   /**
    * Return 501 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head501(): Promise<Models.HttpServerFailureHead501Response>;
   head501(options: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureHead501Response>;
@@ -52,13 +48,9 @@ export class HttpServerFailure {
   /**
    * Return 501 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get501(): Promise<Models.HttpServerFailureGet501Response>;
   get501(options: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureGet501Response>;
@@ -76,13 +68,9 @@ export class HttpServerFailure {
   /**
    * Return 505 status code - should be represented in the client as an error
    *
-   * @param {HttpServerFailurePost505OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post505(): Promise<Models.HttpServerFailurePost505Response>;
   post505(options: Models.HttpServerFailurePost505OptionalParams): Promise<Models.HttpServerFailurePost505Response>;
@@ -100,13 +88,9 @@ export class HttpServerFailure {
   /**
    * Return 505 status code - should be represented in the client as an error
    *
-   * @param {HttpServerFailureDelete505OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete505(): Promise<Models.HttpServerFailureDelete505Response>;
   delete505(options: Models.HttpServerFailureDelete505OptionalParams): Promise<Models.HttpServerFailureDelete505Response>;

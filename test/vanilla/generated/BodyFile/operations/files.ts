@@ -28,13 +28,9 @@ export class Files {
   /**
    * Get file
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getFile(): Promise<Models.FilesGetFileResponse>;
   getFile(options: msRest.RequestOptionsBase): Promise<Models.FilesGetFileResponse>;
@@ -52,13 +48,9 @@ export class Files {
   /**
    * Get a large file
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getFileLarge(): Promise<Models.FilesGetFileLargeResponse>;
   getFileLarge(options: msRest.RequestOptionsBase): Promise<Models.FilesGetFileLargeResponse>;
@@ -76,13 +68,9 @@ export class Files {
   /**
    * Get empty file
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmptyFile(): Promise<Models.FilesGetEmptyFileResponse>;
   getEmptyFile(options: msRest.RequestOptionsBase): Promise<Models.FilesGetEmptyFileResponse>;

@@ -29,13 +29,9 @@ export class UsageOperations {
   /**
    * Gets the current usage count and the limit for the resources under the subscription.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   list(): Promise<Models.UsageListResponse>;
   list(options: msRest.RequestOptionsBase): Promise<Models.UsageListResponse>;

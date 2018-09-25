@@ -432,43 +432,30 @@ namespace AutoRest.TypeScript.Model
             {
                 comment.WithWordWrap(Settings.Instance?.MaximumCommentColumns ?? Settings.DefaultMaximumCommentColumns, () =>
                 {
-                    comment.Summary(Summary);
                     comment.Description(Description);
+                    comment.Summary(Summary);
 
                     foreach (Parameter parameter in LocalParametersWithOptions)
                     {
-                        comment.Parameter(ProvideParameterType(parameter.ModelType, true), parameter.Name, parameter.Documentation, !parameter.IsRequired);
+                        comment.Parameter(parameter.Name, parameter.Documentation, !parameter.IsRequired);
                     }
                 });
 
-                if (flavor == MethodFlavor.HttpOperationResponse)
+                switch (flavor)
                 {
-                    comment.Returns("Promise", "A promise is returned");
-                    comment.Resolve("HttpOperationResponse", "The deserialized result object.");
-                    comment.Reject("Error|ServiceError", "The error object.");
-                }
-                else
-                {
-                    if (flavor == MethodFlavor.Callback)
-                    {
-                        comment.Parameter("ServiceCallback", "callback", "The callback.");
-                        comment.Returns("ServiceCallback", "callback(err, result, request, operationRes)");
-                    }
-                    else if (flavor == MethodFlavor.Promise)
-                    {
-                        comment.Parameter("ServiceClient", "optionalCallback", "The optional callback.", true);
-                        comment.Returns("ServiceCallback|Promise", "If a callback was passed as the last parameter, then it returns the callback, else returns a Promise.");
-                        comment.Line("{Promise} A promise is returned.");
-                        comment.Line($"                     @resolve {{{ReturnTypeTSString}}} - The deserialized result object.");
-                        comment.Line($"                     @reject {{Error | ServiceError}} - The error object.");
-                        comment.Line("{ServiceCallback} optionalCallback(err, result, request, operationRes)");
-                    }
-                    comment.Line($"                     {{Error|ServiceError}}  err        - The Error object if an error occurred, null otherwise.");
-                    comment.Line($"                     {{{ReturnTypeTSString}}} [result]   - The deserialized result object if an error did not occur.");
-                    comment.Line($"                     {ReturnTypeInfo}");
-                    comment.Line($"                     {{WebResource}} [request]  - The HTTP Request object if an error did not occur.");
-                    comment.Line($"                     {{HttpOperationResponse}} [response] - The HTTP Response stream if an error did not occur.");
+                    case MethodFlavor.HttpOperationResponse:
+                        comment.Returns("A promise is returned");
+                        break;
 
+                    case MethodFlavor.Callback:
+                        comment.Parameter("callback", "The callback.");
+                        comment.Returns("callback(err, result, request, operationRes)");
+                        break;
+
+                    case MethodFlavor.Promise:
+                        comment.Parameter("optionalCallback", "The optional callback.", true);
+                        comment.Returns("If a callback was passed as the last parameter, then it returns the callback, else returns a Promise.");
+                        break;
                 }
             });
 

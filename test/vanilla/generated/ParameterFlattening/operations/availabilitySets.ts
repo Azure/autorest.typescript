@@ -28,20 +28,15 @@ export class AvailabilitySets {
   /**
    * Updates the tags for an availability set.
    *
-   * @param {string} resourceGroupName The name of the resource group.
+   * @param resourceGroupName The name of the resource group.
    *
-   * @param {string} avset The name of the storage availability set.
+   * @param avset The name of the storage availability set.
    *
-   * @param {{ [propertyName: string]: string }} tags A set of tags. A description about the set of
-   * tags.
+   * @param tags A set of tags. A description about the set of tags.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

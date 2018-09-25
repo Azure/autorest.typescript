@@ -29,13 +29,9 @@ export class XMsClientRequestId {
    * Get method that overwrites x-ms-client-request header with value
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get(): Promise<msRest.RestResponse>;
   get(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -54,16 +50,12 @@ export class XMsClientRequestId {
    * Get method that overwrites x-ms-client-request header with value
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    *
-   * @param {string} xMsClientRequestId This should appear as a method parameter, use value
+   * @param xMsClientRequestId This should appear as a method parameter, use value
    * '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   paramGet(xMsClientRequestId: string): Promise<msRest.RestResponse>;
   paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

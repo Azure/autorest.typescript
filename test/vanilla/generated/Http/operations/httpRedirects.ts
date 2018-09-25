@@ -28,13 +28,9 @@ export class HttpRedirects {
   /**
    * Return 300 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head300(): Promise<Models.HttpRedirectsHead300Response>;
   head300(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead300Response>;
@@ -52,13 +48,9 @@ export class HttpRedirects {
   /**
    * Return 300 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get300(): Promise<Models.HttpRedirectsGet300Response>;
   get300(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet300Response>;
@@ -76,13 +68,9 @@ export class HttpRedirects {
   /**
    * Return 301 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head301(): Promise<Models.HttpRedirectsHead301Response>;
   head301(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead301Response>;
@@ -100,13 +88,9 @@ export class HttpRedirects {
   /**
    * Return 301 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get301(): Promise<Models.HttpRedirectsGet301Response>;
   get301(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet301Response>;
@@ -125,13 +109,9 @@ export class HttpRedirects {
    * Put true Boolean value in request returns 301.  This request should not be automatically
    * redirected, but should return the received 301 to the caller for evaluation
    *
-   * @param {HttpRedirectsPut301OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put301(): Promise<Models.HttpRedirectsPut301Response>;
   put301(options: Models.HttpRedirectsPut301OptionalParams): Promise<Models.HttpRedirectsPut301Response>;
@@ -149,13 +129,9 @@ export class HttpRedirects {
   /**
    * Return 302 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head302(): Promise<Models.HttpRedirectsHead302Response>;
   head302(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead302Response>;
@@ -173,13 +149,9 @@ export class HttpRedirects {
   /**
    * Return 302 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get302(): Promise<Models.HttpRedirectsGet302Response>;
   get302(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet302Response>;
@@ -198,13 +170,9 @@ export class HttpRedirects {
    * Patch true Boolean value in request returns 302.  This request should not be automatically
    * redirected, but should return the received 302 to the caller for evaluation
    *
-   * @param {HttpRedirectsPatch302OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   patch302(): Promise<Models.HttpRedirectsPatch302Response>;
   patch302(options: Models.HttpRedirectsPatch302OptionalParams): Promise<Models.HttpRedirectsPatch302Response>;
@@ -223,13 +191,9 @@ export class HttpRedirects {
    * Post true Boolean value in request returns 303.  This request should be automatically redirected
    * usign a get, ultimately returning a 200 status code
    *
-   * @param {HttpRedirectsPost303OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post303(): Promise<Models.HttpRedirectsPost303Response>;
   post303(options: Models.HttpRedirectsPost303OptionalParams): Promise<Models.HttpRedirectsPost303Response>;
@@ -247,13 +211,9 @@ export class HttpRedirects {
   /**
    * Redirect with 307, resulting in a 200 success
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head307(): Promise<Models.HttpRedirectsHead307Response>;
   head307(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead307Response>;
@@ -271,13 +231,9 @@ export class HttpRedirects {
   /**
    * Redirect get with 307, resulting in a 200 success
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get307(): Promise<Models.HttpRedirectsGet307Response>;
   get307(options: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet307Response>;
@@ -295,13 +251,9 @@ export class HttpRedirects {
   /**
    * Put redirected with 307, resulting in a 200 after redirect
    *
-   * @param {HttpRedirectsPut307OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put307(): Promise<Models.HttpRedirectsPut307Response>;
   put307(options: Models.HttpRedirectsPut307OptionalParams): Promise<Models.HttpRedirectsPut307Response>;
@@ -319,13 +271,9 @@ export class HttpRedirects {
   /**
    * Patch redirected with 307, resulting in a 200 after redirect
    *
-   * @param {HttpRedirectsPatch307OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   patch307(): Promise<Models.HttpRedirectsPatch307Response>;
   patch307(options: Models.HttpRedirectsPatch307OptionalParams): Promise<Models.HttpRedirectsPatch307Response>;
@@ -343,13 +291,9 @@ export class HttpRedirects {
   /**
    * Post redirected with 307, resulting in a 200 after redirect
    *
-   * @param {HttpRedirectsPost307OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post307(): Promise<Models.HttpRedirectsPost307Response>;
   post307(options: Models.HttpRedirectsPost307OptionalParams): Promise<Models.HttpRedirectsPost307Response>;
@@ -367,13 +311,9 @@ export class HttpRedirects {
   /**
    * Delete redirected with 307, resulting in a 200 after redirect
    *
-   * @param {HttpRedirectsDelete307OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete307(): Promise<Models.HttpRedirectsDelete307Response>;
   delete307(options: Models.HttpRedirectsDelete307OptionalParams): Promise<Models.HttpRedirectsDelete307Response>;

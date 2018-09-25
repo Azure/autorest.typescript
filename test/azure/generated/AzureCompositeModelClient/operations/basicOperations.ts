@@ -29,13 +29,9 @@ export class BasicOperations {
   /**
    * Get complex type {id: 2, name: 'abc', color: 'YELLOW'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getValid(): Promise<Models.BasicGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.BasicGetValidResponse>;
@@ -53,15 +49,11 @@ export class BasicOperations {
   /**
    * Please put {id: 2, name: 'abc', color: 'Magenta'}
    *
-   * @param {Basic} complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
+   * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putValid(complexBody: Models.Basic): Promise<msRest.RestResponse>;
   putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -80,13 +72,9 @@ export class BasicOperations {
   /**
    * Get a basic complex type that is invalid for the local strong type
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getInvalid(): Promise<Models.BasicGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.BasicGetInvalidResponse>;
@@ -104,13 +92,9 @@ export class BasicOperations {
   /**
    * Get a basic complex type that is empty
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmpty(): Promise<Models.BasicGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.BasicGetEmptyResponse>;
@@ -128,13 +112,9 @@ export class BasicOperations {
   /**
    * Get a basic complex type whose properties are null
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNull(): Promise<Models.BasicGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.BasicGetNullResponse>;
@@ -152,13 +132,9 @@ export class BasicOperations {
   /**
    * Get a basic complex type while the server doesn't provide a response payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNotProvided(): Promise<Models.BasicGetNotProvidedResponse>;
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.BasicGetNotProvidedResponse>;

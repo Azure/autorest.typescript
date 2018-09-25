@@ -29,15 +29,11 @@ export class Implicit {
   /**
    * Test implicitly required path parameter
    *
-   * @param {string} pathParameter
+   * @param pathParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getRequiredPath(pathParameter: string): Promise<Models.ImplicitGetRequiredPathResponse>;
   getRequiredPath(pathParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ImplicitGetRequiredPathResponse>;
@@ -56,13 +52,9 @@ export class Implicit {
   /**
    * Test implicitly optional query parameter
    *
-   * @param {ImplicitPutOptionalQueryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putOptionalQuery(): Promise<msRest.RestResponse>;
   putOptionalQuery(options: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.RestResponse>;
@@ -80,13 +72,9 @@ export class Implicit {
   /**
    * Test implicitly optional header parameter
    *
-   * @param {ImplicitPutOptionalHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putOptionalHeader(): Promise<msRest.RestResponse>;
   putOptionalHeader(options: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.RestResponse>;
@@ -104,13 +92,9 @@ export class Implicit {
   /**
    * Test implicitly optional body parameter
    *
-   * @param {ImplicitPutOptionalBodyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putOptionalBody(): Promise<msRest.RestResponse>;
   putOptionalBody(options: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.RestResponse>;
@@ -128,13 +112,9 @@ export class Implicit {
   /**
    * Test implicitly required path parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getRequiredGlobalPath(): Promise<Models.ImplicitGetRequiredGlobalPathResponse>;
   getRequiredGlobalPath(options: msRest.RequestOptionsBase): Promise<Models.ImplicitGetRequiredGlobalPathResponse>;
@@ -152,13 +132,9 @@ export class Implicit {
   /**
    * Test implicitly required query parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getRequiredGlobalQuery(): Promise<Models.ImplicitGetRequiredGlobalQueryResponse>;
   getRequiredGlobalQuery(options: msRest.RequestOptionsBase): Promise<Models.ImplicitGetRequiredGlobalQueryResponse>;
@@ -176,13 +152,9 @@ export class Implicit {
   /**
    * Test implicitly optional query parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getOptionalGlobalQuery(): Promise<Models.ImplicitGetOptionalGlobalQueryResponse>;
   getOptionalGlobalQuery(options: msRest.RequestOptionsBase): Promise<Models.ImplicitGetOptionalGlobalQueryResponse>;

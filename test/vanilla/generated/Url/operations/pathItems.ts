@@ -31,17 +31,13 @@ export class PathItems {
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
    *
-   * @param {string} localStringPath should contain value 'localStringPath'
+   * @param localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetAllWithValuesOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getAllWithValues(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
   getAllWithValues(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.RestResponse>;
@@ -63,17 +59,13 @@ export class PathItems {
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
    *
-   * @param {string} localStringPath should contain value 'localStringPath'
+   * @param localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetGlobalQueryNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.RestResponse>;
@@ -95,17 +87,13 @@ export class PathItems {
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery=null
    *
-   * @param {string} localStringPath should contain value 'localStringPath'
+   * @param localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetGlobalAndLocalQueryNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.RestResponse>;
@@ -127,17 +115,13 @@ export class PathItems {
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
    * pathItemStringQuery=null, localStringQuery=null
    *
-   * @param {string} localStringPath should contain value 'localStringPath'
+   * @param localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetLocalPathItemQueryNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.RestResponse>;

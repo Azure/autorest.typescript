@@ -28,13 +28,9 @@ export class HeadException {
   /**
    * Return 200 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head200(): Promise<msRest.RestResponse>;
   head200(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -52,13 +48,9 @@ export class HeadException {
   /**
    * Return 204 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head204(): Promise<msRest.RestResponse>;
   head204(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -76,13 +68,9 @@ export class HeadException {
   /**
    * Return 404 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head404(): Promise<msRest.RestResponse>;
   head404(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

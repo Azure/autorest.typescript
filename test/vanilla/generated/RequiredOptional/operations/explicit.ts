@@ -30,15 +30,11 @@ export class Explicit {
    * Test explicitly required integer. Please put null and the client library should throw before the
    * request is sent.
    *
-   * @param {number} bodyParameter
+   * @param bodyParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredIntegerParameter(bodyParameter: number): Promise<Models.ExplicitPostRequiredIntegerParameterResponse>;
   postRequiredIntegerParameter(bodyParameter: number, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredIntegerParameterResponse>;
@@ -57,13 +53,9 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put null.
    *
-   * @param {ExplicitPostOptionalIntegerParameterOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalIntegerParameter(): Promise<msRest.RestResponse>;
   postOptionalIntegerParameter(options: Models.ExplicitPostOptionalIntegerParameterOptionalParams): Promise<msRest.RestResponse>;
@@ -82,15 +74,11 @@ export class Explicit {
    * Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
    * client library should throw before the request is sent.
    *
-   * @param {number} value
+   * @param value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredIntegerProperty(value: number): Promise<Models.ExplicitPostRequiredIntegerPropertyResponse>;
   postRequiredIntegerProperty(value: number, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredIntegerPropertyResponse>;
@@ -109,13 +97,9 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalIntegerPropertyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalIntegerProperty(): Promise<msRest.RestResponse>;
   postOptionalIntegerProperty(options: Models.ExplicitPostOptionalIntegerPropertyOptionalParams): Promise<msRest.RestResponse>;
@@ -134,15 +118,11 @@ export class Explicit {
    * Test explicitly required integer. Please put a header 'headerParameter' => null and the client
    * library should throw before the request is sent.
    *
-   * @param {number} headerParameter
+   * @param headerParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredIntegerHeader(headerParameter: number): Promise<Models.ExplicitPostRequiredIntegerHeaderResponse>;
   postRequiredIntegerHeader(headerParameter: number, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredIntegerHeaderResponse>;
@@ -161,13 +141,9 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalIntegerHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalIntegerHeader(): Promise<msRest.RestResponse>;
   postOptionalIntegerHeader(options: Models.ExplicitPostOptionalIntegerHeaderOptionalParams): Promise<msRest.RestResponse>;
@@ -186,15 +162,11 @@ export class Explicit {
    * Test explicitly required string. Please put null and the client library should throw before the
    * request is sent.
    *
-   * @param {string} bodyParameter
+   * @param bodyParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredStringParameter(bodyParameter: string): Promise<Models.ExplicitPostRequiredStringParameterResponse>;
   postRequiredStringParameter(bodyParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredStringParameterResponse>;
@@ -213,13 +185,9 @@ export class Explicit {
   /**
    * Test explicitly optional string. Please put null.
    *
-   * @param {ExplicitPostOptionalStringParameterOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalStringParameter(): Promise<msRest.RestResponse>;
   postOptionalStringParameter(options: Models.ExplicitPostOptionalStringParameterOptionalParams): Promise<msRest.RestResponse>;
@@ -238,15 +206,11 @@ export class Explicit {
    * Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
    * client library should throw before the request is sent.
    *
-   * @param {string} value
+   * @param value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredStringProperty(value: string): Promise<Models.ExplicitPostRequiredStringPropertyResponse>;
   postRequiredStringProperty(value: string, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredStringPropertyResponse>;
@@ -265,13 +229,9 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalStringPropertyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalStringProperty(): Promise<msRest.RestResponse>;
   postOptionalStringProperty(options: Models.ExplicitPostOptionalStringPropertyOptionalParams): Promise<msRest.RestResponse>;
@@ -290,15 +250,11 @@ export class Explicit {
    * Test explicitly required string. Please put a header 'headerParameter' => null and the client
    * library should throw before the request is sent.
    *
-   * @param {string} headerParameter
+   * @param headerParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredStringHeader(headerParameter: string): Promise<Models.ExplicitPostRequiredStringHeaderResponse>;
   postRequiredStringHeader(headerParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredStringHeaderResponse>;
@@ -317,13 +273,9 @@ export class Explicit {
   /**
    * Test explicitly optional string. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalStringHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalStringHeader(): Promise<msRest.RestResponse>;
   postOptionalStringHeader(options: Models.ExplicitPostOptionalStringHeaderOptionalParams): Promise<msRest.RestResponse>;
@@ -342,15 +294,11 @@ export class Explicit {
    * Test explicitly required complex object. Please put null and the client library should throw
    * before the request is sent.
    *
-   * @param {Product} bodyParameter
+   * @param bodyParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredClassParameter(bodyParameter: Models.Product): Promise<Models.ExplicitPostRequiredClassParameterResponse>;
   postRequiredClassParameter(bodyParameter: Models.Product, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredClassParameterResponse>;
@@ -369,13 +317,9 @@ export class Explicit {
   /**
    * Test explicitly optional complex object. Please put null.
    *
-   * @param {ExplicitPostOptionalClassParameterOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalClassParameter(): Promise<msRest.RestResponse>;
   postOptionalClassParameter(options: Models.ExplicitPostOptionalClassParameterOptionalParams): Promise<msRest.RestResponse>;
@@ -394,15 +338,11 @@ export class Explicit {
    * Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
    * and the client library should throw before the request is sent.
    *
-   * @param {Product} value
+   * @param value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredClassProperty(value: Models.Product): Promise<Models.ExplicitPostRequiredClassPropertyResponse>;
   postRequiredClassProperty(value: Models.Product, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredClassPropertyResponse>;
@@ -421,13 +361,9 @@ export class Explicit {
   /**
    * Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalClassPropertyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalClassProperty(): Promise<msRest.RestResponse>;
   postOptionalClassProperty(options: Models.ExplicitPostOptionalClassPropertyOptionalParams): Promise<msRest.RestResponse>;
@@ -446,15 +382,11 @@ export class Explicit {
    * Test explicitly required array. Please put null and the client library should throw before the
    * request is sent.
    *
-   * @param {string[]} bodyParameter
+   * @param bodyParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredArrayParameter(bodyParameter: string[]): Promise<Models.ExplicitPostRequiredArrayParameterResponse>;
   postRequiredArrayParameter(bodyParameter: string[], options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredArrayParameterResponse>;
@@ -473,13 +405,9 @@ export class Explicit {
   /**
    * Test explicitly optional array. Please put null.
    *
-   * @param {ExplicitPostOptionalArrayParameterOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalArrayParameter(): Promise<msRest.RestResponse>;
   postOptionalArrayParameter(options: Models.ExplicitPostOptionalArrayParameterOptionalParams): Promise<msRest.RestResponse>;
@@ -498,15 +426,11 @@ export class Explicit {
    * Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
    * client library should throw before the request is sent.
    *
-   * @param {string[]} value
+   * @param value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredArrayProperty(value: string[]): Promise<Models.ExplicitPostRequiredArrayPropertyResponse>;
   postRequiredArrayProperty(value: string[], options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredArrayPropertyResponse>;
@@ -525,13 +449,9 @@ export class Explicit {
   /**
    * Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalArrayPropertyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalArrayProperty(): Promise<msRest.RestResponse>;
   postOptionalArrayProperty(options: Models.ExplicitPostOptionalArrayPropertyOptionalParams): Promise<msRest.RestResponse>;
@@ -550,15 +470,11 @@ export class Explicit {
    * Test explicitly required array. Please put a header 'headerParameter' => null and the client
    * library should throw before the request is sent.
    *
-   * @param {string[]} headerParameter
+   * @param headerParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequiredArrayHeader(headerParameter: string[]): Promise<Models.ExplicitPostRequiredArrayHeaderResponse>;
   postRequiredArrayHeader(headerParameter: string[], options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredArrayHeaderResponse>;
@@ -577,13 +493,9 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalArrayHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptionalArrayHeader(): Promise<msRest.RestResponse>;
   postOptionalArrayHeader(options: Models.ExplicitPostOptionalArrayHeaderOptionalParams): Promise<msRest.RestResponse>;

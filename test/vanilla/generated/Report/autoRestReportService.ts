@@ -18,9 +18,9 @@ class AutoRestReportService extends AutoRestReportServiceContext {
   /**
    * Initializes a new instance of the AutoRestReportService class.
    *
-   * @param {string} [baseUri] The base URI of the service.
+   * @param [baseUri] The base URI of the service.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
@@ -30,13 +30,9 @@ class AutoRestReportService extends AutoRestReportServiceContext {
   /**
    * Get test coverage report
    *
-   * @param {AutoRestReportServiceGetReportOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getReport(): Promise<Models.GetReportResponse>;
   getReport(options: Models.AutoRestReportServiceGetReportOptionalParams): Promise<Models.GetReportResponse>;

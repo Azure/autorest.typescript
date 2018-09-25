@@ -20,12 +20,11 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   /**
    * Initializes a new instance of the AutoRestReportServiceForAzure class.
    *
-   * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
-   * connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure.
    *
-   * @param {string} [baseUri] The base URI of the service.
+   * @param [baseUri] The base URI of the service.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
@@ -35,13 +34,9 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   /**
    * Get test coverage report
    *
-   * @param {AutoRestReportServiceForAzureGetReportOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getReport(): Promise<Models.GetReportResponse>;
   getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<Models.GetReportResponse>;

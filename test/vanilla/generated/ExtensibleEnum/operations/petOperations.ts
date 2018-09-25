@@ -27,15 +27,11 @@ export class PetOperations {
   }
 
   /**
-   * @param {string} petId Pet id
+   * @param petId Pet id
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getByPetId(petId: string): Promise<Models.PetGetByPetIdResponse>;
   getByPetId(petId: string, options: msRest.RequestOptionsBase): Promise<Models.PetGetByPetIdResponse>;
@@ -52,13 +48,9 @@ export class PetOperations {
   }
 
   /**
-   * @param {PetAddPetOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   addPet(): Promise<Models.PetAddPetResponse>;
   addPet(options: Models.PetAddPetOptionalParams): Promise<Models.PetAddPetResponse>;

@@ -29,16 +29,11 @@ export class ParameterGrouping {
   /**
    * Post a bunch of required parameters grouped
    *
-   * @param {ParameterGroupingPostRequiredParameters} parameterGroupingPostRequiredParameters
-   * Additional parameters for the operation
+   * @param parameterGroupingPostRequiredParameters Additional parameters for the operation
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters): Promise<msRest.RestResponse>;
   postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -57,13 +52,9 @@ export class ParameterGrouping {
   /**
    * Post a bunch of optional parameters grouped
    *
-   * @param {ParameterGroupingPostOptionalOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postOptional(): Promise<msRest.RestResponse>;
   postOptional(options: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.RestResponse>;
@@ -81,13 +72,9 @@ export class ParameterGrouping {
   /**
    * Post parameters from multiple different parameter groups
    *
-   * @param {ParameterGroupingPostMultiParamGroupsOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postMultiParamGroups(): Promise<msRest.RestResponse>;
   postMultiParamGroups(options: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.RestResponse>;
@@ -105,14 +92,9 @@ export class ParameterGrouping {
   /**
    * Post parameters with a shared parameter group object
    *
-   * @param {ParameterGroupingPostSharedParameterGroupObjectOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postSharedParameterGroupObject(): Promise<msRest.RestResponse>;
   postSharedParameterGroupObject(options: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.RestResponse>;

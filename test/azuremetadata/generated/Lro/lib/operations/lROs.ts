@@ -32,13 +32,9 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Succeeded’.
    *
-   * @param {LROsPut200SucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put200Succeeded(options?: Models.LROsPut200SucceededOptionalParams): Promise<Models.LROsPut200SucceededResponse> {
     return this.beginPut200Succeeded(options)
@@ -50,13 +46,9 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that does
    * not contain ProvisioningState=’Succeeded’.
    *
-   * @param {LROsPut200SucceededNoStateOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put200SucceededNoState(options?: Models.LROsPut200SucceededNoStateOptionalParams): Promise<Models.LROsPut200SucceededNoStateResponse> {
     return this.beginPut200SucceededNoState(options)
@@ -69,13 +61,9 @@ export class LROs {
    * that points to a polling URL that returns a 200 and an entity that doesn't contains
    * ProvisioningState
    *
-   * @param {LROsPut202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put202Retry200(options?: Models.LROsPut202Retry200OptionalParams): Promise<Models.LROsPut202Retry200Response> {
     return this.beginPut202Retry200(options)
@@ -88,13 +76,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put201CreatingSucceeded200(options?: Models.LROsPut201CreatingSucceeded200OptionalParams): Promise<Models.LROsPut201CreatingSucceeded200Response> {
     return this.beginPut201CreatingSucceeded200(options)
@@ -107,13 +91,9 @@ export class LROs {
    * contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsPut200UpdatingSucceeded204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put200UpdatingSucceeded204(options?: Models.LROsPut200UpdatingSucceeded204OptionalParams): Promise<Models.LROsPut200UpdatingSucceeded204Response> {
     return this.beginPut200UpdatingSucceeded204(options)
@@ -126,13 +106,9 @@ export class LROs {
    * contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    *
-   * @param {LROsPut201CreatingFailed200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put201CreatingFailed200(options?: Models.LROsPut201CreatingFailed200OptionalParams): Promise<Models.LROsPut201CreatingFailed200Response> {
     return this.beginPut201CreatingFailed200(options)
@@ -145,13 +121,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    *
-   * @param {LROsPut200Acceptedcanceled200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put200Acceptedcanceled200(options?: Models.LROsPut200Acceptedcanceled200OptionalParams): Promise<Models.LROsPut200Acceptedcanceled200Response> {
     return this.beginPut200Acceptedcanceled200(options)
@@ -163,13 +135,9 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with location header.
    * Subsequent calls to operation status do not contain location header.
    *
-   * @param {LROsPutNoHeaderInRetryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putNoHeaderInRetry(options?: Models.LROsPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
     return this.beginPutNoHeaderInRetry(options)
@@ -182,13 +150,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPutAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putAsyncRetrySucceeded(options?: Models.LROsPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
     return this.beginPutAsyncRetrySucceeded(options)
@@ -201,13 +165,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPutAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putAsyncNoRetrySucceeded(options?: Models.LROsPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
     return this.beginPutAsyncNoRetrySucceeded(options)
@@ -220,13 +180,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPutAsyncRetryFailedOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putAsyncRetryFailed(options?: Models.LROsPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
     return this.beginPutAsyncRetryFailed(options)
@@ -239,13 +195,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPutAsyncNoRetrycanceledOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putAsyncNoRetrycanceled(options?: Models.LROsPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
     return this.beginPutAsyncNoRetrycanceled(options)
@@ -257,13 +209,9 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation
    * header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    *
-   * @param {LROsPutAsyncNoHeaderInRetryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putAsyncNoHeaderInRetry(options?: Models.LROsPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
     return this.beginPutAsyncNoHeaderInRetry(options)
@@ -274,13 +222,9 @@ export class LROs {
   /**
    * Long running put request with non resource.
    *
-   * @param {LROsPutNonResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putNonResource(options?: Models.LROsPutNonResourceOptionalParams): Promise<Models.LROsPutNonResourceResponse> {
     return this.beginPutNonResource(options)
@@ -291,13 +235,9 @@ export class LROs {
   /**
    * Long running put request with non resource.
    *
-   * @param {LROsPutAsyncNonResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putAsyncNonResource(options?: Models.LROsPutAsyncNonResourceOptionalParams): Promise<Models.LROsPutAsyncNonResourceResponse> {
     return this.beginPutAsyncNonResource(options)
@@ -308,13 +248,9 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    *
-   * @param {LROsPutSubResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putSubResource(options?: Models.LROsPutSubResourceOptionalParams): Promise<Models.LROsPutSubResourceResponse> {
     return this.beginPutSubResource(options)
@@ -325,13 +261,9 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    *
-   * @param {LROsPutAsyncSubResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putAsyncSubResource(options?: Models.LROsPutAsyncSubResourceOptionalParams): Promise<Models.LROsPutAsyncSubResourceResponse> {
     return this.beginPutAsyncSubResource(options)
@@ -344,13 +276,9 @@ export class LROs {
    * contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
     return this.beginDeleteProvisioning202Accepted200Succeeded(options)
@@ -363,13 +291,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteProvisioning202DeletingFailed200(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
     return this.beginDeleteProvisioning202DeletingFailed200(options)
@@ -382,13 +306,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteProvisioning202Deletingcanceled200(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
     return this.beginDeleteProvisioning202Deletingcanceled200(options)
@@ -399,13 +319,9 @@ export class LROs {
   /**
    * Long running delete succeeds and returns right away
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDelete204Succeeded(options)
@@ -417,13 +333,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete202Retry200(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
     return this.beginDelete202Retry200(options)
@@ -435,13 +347,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete202NoRetry204(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
     return this.beginDelete202NoRetry204(options)
@@ -453,13 +361,9 @@ export class LROs {
    * Long running delete request, service returns a location header in the initial request.
    * Subsequent calls to operation status do not contain location header.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
     return this.beginDeleteNoHeaderInRetry(options)
@@ -471,13 +375,9 @@ export class LROs {
    * Long running delete request, service returns an Azure-AsyncOperation header in the initial
    * request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteAsyncNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
     return this.beginDeleteAsyncNoHeaderInRetry(options)
@@ -489,13 +389,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteAsyncRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
     return this.beginDeleteAsyncRetrySucceeded(options)
@@ -507,13 +403,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteAsyncNoRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
     return this.beginDeleteAsyncNoRetrySucceeded(options)
@@ -525,13 +417,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteAsyncRetryFailed(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
     return this.beginDeleteAsyncRetryFailed(options)
@@ -543,13 +431,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteAsyncRetrycanceled(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
     return this.beginDeleteAsyncRetrycanceled(options)
@@ -561,13 +445,9 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header.
    * Poll returns a 200 with a response body after success.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post200WithPayload(options?: msRest.RequestOptionsBase): Promise<Models.LROsPost200WithPayloadResponse> {
     return this.beginPost200WithPayload(options)
@@ -579,13 +459,9 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' and
    * 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsPost202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post202Retry200(options?: Models.LROsPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
     return this.beginPost202Retry200(options)
@@ -597,13 +473,9 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header,
    * 204 with noresponse body after success
    *
-   * @param {LROsPost202NoRetry204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post202NoRetry204(options?: Models.LROsPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
     return this.beginPost202NoRetry204(options)
@@ -616,13 +488,9 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
    * object
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse> {
     return this.beginPostDoubleHeadersFinalLocationGet(options)
@@ -635,13 +503,9 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse> {
     return this.beginPostDoubleHeadersFinalAzureHeaderGet(options)
@@ -654,13 +518,9 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object if you support initial Autorest behavior.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postDoubleHeadersFinalAzureHeaderGetDefault(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> {
     return this.beginPostDoubleHeadersFinalAzureHeaderGetDefault(options)
@@ -673,13 +533,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPostAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postAsyncRetrySucceeded(options?: Models.LROsPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
     return this.beginPostAsyncRetrySucceeded(options)
@@ -692,13 +548,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPostAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postAsyncNoRetrySucceeded(options?: Models.LROsPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
     return this.beginPostAsyncNoRetrySucceeded(options)
@@ -711,13 +563,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPostAsyncRetryFailedOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postAsyncRetryFailed(options?: Models.LROsPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
     return this.beginPostAsyncRetryFailed(options)
@@ -730,13 +578,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPostAsyncRetrycanceledOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postAsyncRetrycanceled(options?: Models.LROsPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
     return this.beginPostAsyncRetrycanceled(options)
@@ -747,13 +591,9 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Succeeded’.
    *
-   * @param {LROsBeginPut200SucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPut200Succeeded(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -768,13 +608,9 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that does
    * not contain ProvisioningState=’Succeeded’.
    *
-   * @param {LROsBeginPut200SucceededNoStateOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPut200SucceededNoState(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -790,13 +626,9 @@ export class LROs {
    * that points to a polling URL that returns a 200 and an entity that doesn't contains
    * ProvisioningState
    *
-   * @param {LROsBeginPut202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPut202Retry200(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -812,13 +644,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsBeginPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPut201CreatingSucceeded200(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -834,13 +662,9 @@ export class LROs {
    * contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsBeginPut200UpdatingSucceeded204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPut200UpdatingSucceeded204(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -856,13 +680,9 @@ export class LROs {
    * contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    *
-   * @param {LROsBeginPut201CreatingFailed200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPut201CreatingFailed200(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -878,13 +698,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    *
-   * @param {LROsBeginPut200Acceptedcanceled200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPut200Acceptedcanceled200(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -899,13 +715,9 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with location header.
    * Subsequent calls to operation status do not contain location header.
    *
-   * @param {LROsBeginPutNoHeaderInRetryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutNoHeaderInRetry(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -921,13 +733,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPutAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutAsyncRetrySucceeded(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -943,13 +751,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPutAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutAsyncNoRetrySucceeded(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -965,13 +769,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPutAsyncRetryFailedOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutAsyncRetryFailed(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -987,13 +787,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPutAsyncNoRetrycanceledOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutAsyncNoRetrycanceled(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1008,13 +804,9 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation
    * header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    *
-   * @param {LROsBeginPutAsyncNoHeaderInRetryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutAsyncNoHeaderInRetry(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1028,13 +820,9 @@ export class LROs {
   /**
    * Long running put request with non resource.
    *
-   * @param {LROsBeginPutNonResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutNonResource(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1048,13 +836,9 @@ export class LROs {
   /**
    * Long running put request with non resource.
    *
-   * @param {LROsBeginPutAsyncNonResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutAsyncNonResource(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1068,13 +852,9 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    *
-   * @param {LROsBeginPutSubResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutSubResource(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1088,13 +868,9 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    *
-   * @param {LROsBeginPutAsyncSubResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutAsyncSubResource(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1110,13 +886,9 @@ export class LROs {
    * contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1132,13 +904,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteProvisioning202DeletingFailed200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1154,13 +922,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteProvisioning202Deletingcanceled200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1174,13 +938,9 @@ export class LROs {
   /**
    * Long running delete succeeds and returns right away
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDelete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1195,13 +955,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDelete202Retry200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1216,13 +972,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDelete202NoRetry204(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1237,13 +989,9 @@ export class LROs {
    * Long running delete request, service returns a location header in the initial request.
    * Subsequent calls to operation status do not contain location header.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1258,13 +1006,9 @@ export class LROs {
    * Long running delete request, service returns an Azure-AsyncOperation header in the initial
    * request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteAsyncNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1279,13 +1023,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteAsyncRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1300,13 +1040,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteAsyncNoRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1321,13 +1057,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteAsyncRetryFailed(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1342,13 +1074,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteAsyncRetrycanceled(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1363,13 +1091,9 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header.
    * Poll returns a 200 with a response body after success.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPost200WithPayload(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1384,13 +1108,9 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' and
    * 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsBeginPost202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPost202Retry200(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1405,13 +1125,9 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header,
    * 204 with noresponse body after success
    *
-   * @param {LROsBeginPost202NoRetry204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPost202NoRetry204(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1427,13 +1143,9 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
    * object
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPostDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1449,13 +1161,9 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPostDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1471,13 +1179,9 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object if you support initial Autorest behavior.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPostDoubleHeadersFinalAzureHeaderGetDefault(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1493,13 +1197,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPostAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPostAsyncRetrySucceeded(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1515,13 +1215,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPostAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPostAsyncNoRetrySucceeded(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1537,13 +1233,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPostAsyncRetryFailedOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPostAsyncRetryFailed(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1559,13 +1251,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPostAsyncRetrycanceledOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPostAsyncRetrycanceled(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(

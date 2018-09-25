@@ -18,9 +18,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Initializes a new instance of the AutoRestResourceFlatteningTestService class.
    *
-   * @param {string} [baseUri] The base URI of the service.
+   * @param [baseUri] The base URI of the service.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
@@ -30,14 +30,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as an Array
    *
-   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putArray(): Promise<msRest.RestResponse>;
   putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.RestResponse>;
@@ -56,13 +51,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Get External Resource as an Array
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getArray(): Promise<Models.GetArrayResponse>;
   getArray(options: msRest.RequestOptionsBase): Promise<Models.GetArrayResponse>;
@@ -82,14 +73,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * No need to have a route in Express server for this operation. Used to verify the type flattened
    * is not removed if it's referenced in an array
    *
-   * @param {AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putWrappedArray(): Promise<msRest.RestResponse>;
   putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<msRest.RestResponse>;
@@ -109,13 +95,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * No need to have a route in Express server for this operation. Used to verify the type flattened
    * is not removed if it's referenced in an array
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getWrappedArray(): Promise<Models.GetWrappedArrayResponse>;
   getWrappedArray(options: msRest.RequestOptionsBase): Promise<Models.GetWrappedArrayResponse>;
@@ -134,14 +116,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a Dictionary
    *
-   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDictionary(): Promise<msRest.RestResponse>;
   putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.RestResponse>;
@@ -160,13 +137,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Get External Resource as a Dictionary
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDictionary(): Promise<Models.GetDictionaryResponse>;
   getDictionary(options: msRest.RequestOptionsBase): Promise<Models.GetDictionaryResponse>;
@@ -185,14 +158,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a ResourceCollection
    *
-   * @param {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams} [options]
-   * Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putResourceCollection(): Promise<msRest.RestResponse>;
   putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.RestResponse>;
@@ -211,13 +179,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Get External Resource as a ResourceCollection
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getResourceCollection(): Promise<Models.GetResourceCollectionResponse>;
   getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.GetResourceCollectionResponse>;
@@ -236,14 +200,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put Simple Product with client flattening true on the model
    *
-   * @param {AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putSimpleProduct(): Promise<Models.PutSimpleProductResponse>;
   putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<Models.PutSimpleProductResponse>;
@@ -262,20 +221,15 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put Flattened Simple Product with client flattening true on the parameter
    *
-   * @param {string} productId Unique identifier representing a specific product for a given latitude
-   * & longitude. For example, uberX in San Francisco will have a different product_id than uberX in
+   * @param productId Unique identifier representing a specific product for a given latitude &
+   * longitude. For example, uberX in San Francisco will have a different product_id than uberX in
    * Los Angeles.
    *
-   * @param {string} maxProductDisplayName Display name of product.
+   * @param maxProductDisplayName Display name of product.
    *
-   * @param {AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams} [options]
-   * Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string): Promise<Models.PostFlattenedSimpleProductResponse>;
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams): Promise<Models.PostFlattenedSimpleProductResponse>;
@@ -296,15 +250,11 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put Simple Product with client flattening true on the model
    *
-   * @param {FlattenParameterGroup} flattenParameterGroup Additional parameters for the operation
+   * @param flattenParameterGroup Additional parameters for the operation
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup): Promise<Models.PutSimpleProductWithGroupingResponse>;
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.PutSimpleProductWithGroupingResponse>;
