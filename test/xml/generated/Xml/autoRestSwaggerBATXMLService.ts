@@ -19,9 +19,7 @@ class AutoRestSwaggerBATXMLService extends AutoRestSwaggerBATXMLServiceContext {
   xml: operations.Xml;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestSwaggerBATXMLService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

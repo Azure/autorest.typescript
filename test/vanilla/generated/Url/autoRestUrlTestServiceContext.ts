@@ -19,9 +19,7 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
   globalStringQuery?: string;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestUrlTestServiceContext class.
-   * @constructor
    *
    * @param {string} globalStringPath A string value 'globalItemStringPath' that appears in the path
    *

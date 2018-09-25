@@ -18,9 +18,7 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
   paths: operations.Paths;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestParameterizedHostTestClient class.
-   * @constructor
    *
    * @param {object} [options] The parameter options
    */

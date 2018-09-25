@@ -19,9 +19,7 @@ class AutoRestSwaggerBATFormDataService extends AutoRestSwaggerBATFormDataServic
   formdata: operations.Formdata;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestSwaggerBATFormDataService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

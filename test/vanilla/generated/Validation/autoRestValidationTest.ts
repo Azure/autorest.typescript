@@ -16,9 +16,7 @@ import { AutoRestValidationTestContext } from "./autoRestValidationTestContext";
 
 class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
-   * @class
    * Initializes a new instance of the AutoRestValidationTest class.
-   * @constructor
    *
    * @param {string} subscriptionId Subscription ID.
    *

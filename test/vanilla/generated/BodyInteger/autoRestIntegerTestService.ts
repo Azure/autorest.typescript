@@ -19,9 +19,7 @@ class AutoRestIntegerTestService extends AutoRestIntegerTestServiceContext {
   intModel: operations.IntModel;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestIntegerTestService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

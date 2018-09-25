@@ -19,9 +19,7 @@ class AutoRestSwaggerBATFileService extends AutoRestSwaggerBATFileServiceContext
   files: operations.Files;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestSwaggerBATFileService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

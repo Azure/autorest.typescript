@@ -16,9 +16,7 @@ const packageVersion = "";
 export class AutoRestNumberTestServiceContext extends msRest.ServiceClient {
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestNumberTestServiceContext class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

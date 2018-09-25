@@ -23,9 +23,7 @@ export class AutoRestReportServiceForAzureContext extends msRestAzure.AzureServi
   longRunningOperationRetryTimeout: number;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestReportServiceForAzure class.
-   * @constructor
    *
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.

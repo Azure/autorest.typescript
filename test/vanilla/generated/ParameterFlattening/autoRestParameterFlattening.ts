@@ -19,9 +19,7 @@ class AutoRestParameterFlattening extends AutoRestParameterFlatteningContext {
   availabilitySets: operations.AvailabilitySets;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestParameterFlattening class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

@@ -19,9 +19,7 @@ class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestSe
   explicit: operations.Explicit;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestRequiredOptionalTestService class.
-   * @constructor
    *
    * @param {string} requiredGlobalPath number of items to skip
    *

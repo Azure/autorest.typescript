@@ -19,9 +19,7 @@ class PetStoreInc extends PetStoreIncContext {
   pet: operations.PetOperations;
 
   /**
-   * @class
    * Initializes a new instance of the PetStoreInc class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

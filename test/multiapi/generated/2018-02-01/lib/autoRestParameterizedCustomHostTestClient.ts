@@ -16,9 +16,7 @@ class AutoRestParameterizedCustomHostTestClient extends AutoRestParameterizedCus
   paths: operations.Paths;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestParameterizedCustomHostTestClient class.
-   * @constructor
    *
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.

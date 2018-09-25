@@ -27,9 +27,7 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
   longRunningOperationRetryTimeout: number;
 
   /**
-   * @class
    * Initializes a new instance of the MicrosoftAzureTestUrl class.
-   * @constructor
    *
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.

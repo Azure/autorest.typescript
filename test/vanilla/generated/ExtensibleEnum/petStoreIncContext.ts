@@ -16,9 +16,7 @@ const packageVersion = "";
 export class PetStoreIncContext extends msRest.ServiceClient {
 
   /**
-   * @class
    * Initializes a new instance of the PetStoreIncContext class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

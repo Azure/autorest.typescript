@@ -27,9 +27,7 @@ export class StorageManagementClientContext extends msRestAzure.AzureServiceClie
   longRunningOperationRetryTimeout: number;
 
   /**
-   * @class
    * Initializes a new instance of the StorageManagementClient class.
-   * @constructor
    *
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.

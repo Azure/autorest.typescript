@@ -27,9 +27,7 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
   longRunningOperationRetryTimeout: number;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestAzureSpecialParametersTestClient class.
-   * @constructor
    *
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.

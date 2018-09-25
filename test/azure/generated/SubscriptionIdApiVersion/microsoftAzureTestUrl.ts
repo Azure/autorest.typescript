@@ -21,9 +21,7 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
   group: operations.Group;
 
   /**
-   * @class
    * Initializes a new instance of the MicrosoftAzureTestUrl class.
-   * @constructor
    *
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.

@@ -20,9 +20,7 @@ class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
   pathItems: operations.PathItems;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestUrlTestService class.
-   * @constructor
    *
    * @param {string} globalStringPath A string value 'globalItemStringPath' that appears in the path
    *

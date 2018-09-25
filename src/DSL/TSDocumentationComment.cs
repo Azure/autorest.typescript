@@ -19,9 +19,7 @@ namespace AutoRest.TypeScript.DSL
             Parameters,
             Returns,
             Resolve,
-            Reject,
-            Class,
-            Constructor
+            Reject
         }
 
         public TSDocumentationComment(TSBuilder builder)
@@ -38,7 +36,7 @@ namespace AutoRest.TypeScript.DSL
                 builder.AddToPrefix(" * ");
                 builder.WordWrapWidth = TSBuilder.multiLineCommentWordWrapWidth;
             }
-            else if (currentState != State.Class && newState != State.Constructor)
+            else
             {
                 Line();
             }
@@ -110,18 +108,6 @@ namespace AutoRest.TypeScript.DSL
         public void Line(string text)
         {
             builder.Line(text);
-        }
-
-        public void Class()
-        {
-            SetCurrentState(State.Class);
-            builder.Line("@class");
-        }
-
-        public void Constructor()
-        {
-            SetCurrentState(State.Constructor);
-            builder.Line("@constructor");
         }
     }
 }

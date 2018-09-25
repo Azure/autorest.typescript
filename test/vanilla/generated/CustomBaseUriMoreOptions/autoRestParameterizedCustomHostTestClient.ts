@@ -18,9 +18,7 @@ class AutoRestParameterizedCustomHostTestClient extends AutoRestParameterizedCus
   paths: operations.Paths;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestParameterizedCustomHostTestClient class.
-   * @constructor
    *
    * @param {string} subscriptionId The subscription id with value 'test12'.
    *

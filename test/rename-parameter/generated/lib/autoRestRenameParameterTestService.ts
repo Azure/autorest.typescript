@@ -16,9 +16,7 @@ import { AutoRestRenameParameterTestServiceContext } from "./autoRestRenameParam
 
 class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServiceContext {
   /**
-   * @class
    * Initializes a new instance of the AutoRestRenameParameterTestService class.
-   * @constructor
    *
    * @param {string} noRetryPolicy A query parameter.
    *

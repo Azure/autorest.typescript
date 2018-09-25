@@ -19,9 +19,7 @@ class XMSErrorResponseExtensions extends XMSErrorResponseExtensionsContext {
   pet: operations.PetOperations;
 
   /**
-   * @class
    * Initializes a new instance of the XMSErrorResponseExtensions class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

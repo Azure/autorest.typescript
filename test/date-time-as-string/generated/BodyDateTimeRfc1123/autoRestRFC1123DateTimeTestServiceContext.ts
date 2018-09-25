@@ -16,9 +16,7 @@ const packageVersion = "";
 export class AutoRestRFC1123DateTimeTestServiceContext extends msRest.ServiceClient {
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestRFC1123DateTimeTestServiceContext class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

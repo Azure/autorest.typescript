@@ -20,9 +20,7 @@ class CompositeBoolInt extends CompositeBoolIntContext {
   intModel: operations.IntModel;
 
   /**
-   * @class
    * Initializes a new instance of the CompositeBoolInt class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

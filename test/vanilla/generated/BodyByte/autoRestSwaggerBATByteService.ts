@@ -19,9 +19,7 @@ class AutoRestSwaggerBATByteService extends AutoRestSwaggerBATByteServiceContext
   byteModel: operations.ByteModel;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestSwaggerBATByteService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

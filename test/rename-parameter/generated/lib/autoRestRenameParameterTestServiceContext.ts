@@ -19,9 +19,7 @@ export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceCli
   noRetryPolicy: string;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestRenameParameterTestServiceContext class.
-   * @constructor
    *
    * @param {string} noRetryPolicy A query parameter.
    *

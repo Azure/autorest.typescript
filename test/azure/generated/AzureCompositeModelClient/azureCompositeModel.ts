@@ -30,9 +30,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   flattencomplex: operations.Flattencomplex;
 
   /**
-   * @class
    * Initializes a new instance of the AzureCompositeModel class.
-   * @constructor
    *
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.

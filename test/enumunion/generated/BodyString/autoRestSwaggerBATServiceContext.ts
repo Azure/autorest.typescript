@@ -16,9 +16,7 @@ const packageVersion = "";
 export class AutoRestSwaggerBATServiceContext extends msRest.ServiceClient {
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestSwaggerBATServiceContext class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

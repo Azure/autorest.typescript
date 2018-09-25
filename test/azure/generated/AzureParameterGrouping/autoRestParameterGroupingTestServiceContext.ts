@@ -23,9 +23,7 @@ export class AutoRestParameterGroupingTestServiceContext extends msRestAzure.Azu
   longRunningOperationRetryTimeout: number;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestParameterGroupingTestService class.
-   * @constructor
    *
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.

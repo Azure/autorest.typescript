@@ -19,9 +19,7 @@ class AutoRestSwaggerBATHeaderService extends AutoRestSwaggerBATHeaderServiceCon
   header: operations.Header;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestSwaggerBATHeaderService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

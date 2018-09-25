@@ -18,9 +18,7 @@ export class ComplexModelClientContext extends msRest.ServiceClient {
   apiVersion: string;
 
   /**
-   * @class
    * Initializes a new instance of the ComplexModelClientContext class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

@@ -18,9 +18,7 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
   apiVersion: string;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestValidationTestContext class.
-   * @constructor
    *
    * @param {string} subscriptionId Subscription ID.
    *

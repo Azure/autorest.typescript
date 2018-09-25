@@ -19,9 +19,7 @@ class AutoRestRFC1123DateTimeTestService extends AutoRestRFC1123DateTimeTestServ
   datetimerfc1123: operations.Datetimerfc1123;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestRFC1123DateTimeTestService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

@@ -16,9 +16,7 @@ const packageVersion = "";
 export class AutoRestIntegerTestServiceContext extends msRest.ServiceClient {
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestIntegerTestServiceContext class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

@@ -19,9 +19,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
   dnsSuffix?: string;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestParameterizedCustomHostTestClientContext class.
-   * @constructor
    *
    * @param {string} subscriptionId The subscription id with value 'test12'.
    *

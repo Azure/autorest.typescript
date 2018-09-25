@@ -19,9 +19,7 @@ class AutoRestSwaggerBATArrayService extends AutoRestSwaggerBATArrayServiceConte
   arrayModel: operations.ArrayModel;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestSwaggerBATArrayService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

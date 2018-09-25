@@ -19,9 +19,7 @@ class AutoRestDateTimeTestService extends AutoRestDateTimeTestServiceContext {
   datetime: operations.Datetime;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestDateTimeTestService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

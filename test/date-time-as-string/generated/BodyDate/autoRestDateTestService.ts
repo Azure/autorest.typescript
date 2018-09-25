@@ -19,9 +19,7 @@ class AutoRestDateTestService extends AutoRestDateTestServiceContext {
   dateModel: operations.DateModel;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestDateTestService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

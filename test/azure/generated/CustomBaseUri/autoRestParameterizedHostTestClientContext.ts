@@ -26,9 +26,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
   longRunningOperationRetryTimeout: number;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestParameterizedHostTestClient class.
-   * @constructor
    *
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.

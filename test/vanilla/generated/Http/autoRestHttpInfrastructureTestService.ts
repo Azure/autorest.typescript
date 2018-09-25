@@ -25,9 +25,7 @@ class AutoRestHttpInfrastructureTestService extends AutoRestHttpInfrastructureTe
   multipleResponses: operations.MultipleResponses;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestHttpInfrastructureTestService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

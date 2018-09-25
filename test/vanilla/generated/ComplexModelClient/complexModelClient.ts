@@ -16,9 +16,7 @@ import { ComplexModelClientContext } from "./complexModelClientContext";
 
 class ComplexModelClient extends ComplexModelClientContext {
   /**
-   * @class
    * Initializes a new instance of the ComplexModelClient class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

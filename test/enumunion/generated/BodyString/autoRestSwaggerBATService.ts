@@ -20,9 +20,7 @@ class AutoRestSwaggerBATService extends AutoRestSwaggerBATServiceContext {
   enumModel: operations.EnumModel;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestSwaggerBATService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

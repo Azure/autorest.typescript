@@ -27,9 +27,7 @@ class AutoRestComplexTestService extends AutoRestComplexTestServiceContext {
   flattencomplex: operations.Flattencomplex;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestComplexTestService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

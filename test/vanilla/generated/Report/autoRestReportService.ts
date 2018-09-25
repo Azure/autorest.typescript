@@ -16,9 +16,7 @@ import { AutoRestReportServiceContext } from "./autoRestReportServiceContext";
 
 class AutoRestReportService extends AutoRestReportServiceContext {
   /**
-   * @class
    * Initializes a new instance of the AutoRestReportService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

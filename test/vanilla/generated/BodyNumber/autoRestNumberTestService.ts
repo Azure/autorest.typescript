@@ -19,9 +19,7 @@ class AutoRestNumberTestService extends AutoRestNumberTestServiceContext {
   number: operations.Number;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestNumberTestService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

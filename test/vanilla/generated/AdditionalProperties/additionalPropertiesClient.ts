@@ -19,9 +19,7 @@ class AdditionalPropertiesClient extends AdditionalPropertiesClientContext {
   pets: operations.Pets;
 
   /**
-   * @class
    * Initializes a new instance of the AdditionalPropertiesClient class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

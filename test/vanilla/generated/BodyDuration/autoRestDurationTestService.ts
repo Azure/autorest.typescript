@@ -19,9 +19,7 @@ class AutoRestDurationTestService extends AutoRestDurationTestServiceContext {
   duration: operations.Duration;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestDurationTestService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *

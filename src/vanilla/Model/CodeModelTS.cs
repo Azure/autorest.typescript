@@ -623,10 +623,8 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
             builder.DocumentationComment(comment =>
             {
-                comment.Class();
                 comment.Description($"Initializes a new instance of the {className} class.");
-                comment.Constructor();
-
+                
                 IEnumerable<Property> requiredParameters = Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
                 foreach (Property requiredParameter in requiredParameters)
                 {

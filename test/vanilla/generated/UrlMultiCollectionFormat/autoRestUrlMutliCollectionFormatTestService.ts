@@ -19,9 +19,7 @@ class AutoRestUrlMutliCollectionFormatTestService extends AutoRestUrlMutliCollec
   queries: operations.Queries;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestUrlMutliCollectionFormatTestService class.
-   * @constructor
    *
    * @param {string} [baseUri] The base URI of the service.
    *
