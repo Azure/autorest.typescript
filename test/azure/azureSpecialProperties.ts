@@ -227,5 +227,34 @@ describe('typescript', function () {
       });
     });
 
+    describe("credentials.environment property", function () {
+      const creds = {
+        environment: {
+          resourceManagerEndpointUrl: "http://microsoft.com"
+        },
+        signRequest: req => Promise.resolve(req)
+      };
+
+      it("should override the service base URL", async function () {
+        const client = new AutoRestAzureSpecialParametersTestClient(creds, dummySubscriptionId, {
+          httpClient: {
+            sendRequest: req => Promise.resolve({ status: 200, headers: new msRest.HttpHeaders(), request: req })
+          }
+        });
+        const response = await client.apiVersionDefault.getMethodGlobalValid();
+        response._response.request.url.should.startWith("http://microsoft.com");
+      });
+
+      it("should be overridden by a user-specified base URL", async function () {
+        const client = new AutoRestAzureSpecialParametersTestClient(creds, dummySubscriptionId, {
+          httpClient: {
+            sendRequest: req => Promise.resolve({ status: 200, headers: new msRest.HttpHeaders(), request: req })
+          },
+          baseUri: "http://usethisone.com"
+        });
+        const response = await client.apiVersionDefault.getMethodGlobalValid();
+        response._response.request.url.should.startWith("http://usethisone.com");
+      });
+    });
   });
 });
