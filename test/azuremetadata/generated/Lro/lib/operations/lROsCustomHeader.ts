@@ -36,7 +36,7 @@ export class LROsCustomHeader {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -56,7 +56,7 @@ export class LROsCustomHeader {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -75,7 +75,7 @@ export class LROsCustomHeader {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -95,7 +95,7 @@ export class LROsCustomHeader {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -114,7 +114,7 @@ export class LROsCustomHeader {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -137,7 +137,7 @@ export class LROsCustomHeader {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -159,7 +159,7 @@ export class LROsCustomHeader {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -182,7 +182,7 @@ export class LROsCustomHeader {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *

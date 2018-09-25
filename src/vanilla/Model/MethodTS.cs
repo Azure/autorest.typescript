@@ -443,7 +443,7 @@ namespace AutoRest.TypeScript.Model
 
                 if (flavor == MethodFlavor.HttpOperationResponse)
                 {
-                    comment.Returns("Promise", "A promise is returned");
+                    comment.Returns("A promise is returned");
                     comment.Resolve("HttpOperationResponse", "The deserialized result object.");
                     comment.Reject("Error|ServiceError", "The error object.");
                 }
@@ -452,12 +452,12 @@ namespace AutoRest.TypeScript.Model
                     if (flavor == MethodFlavor.Callback)
                     {
                         comment.Parameter("callback", "The callback.");
-                        comment.Returns("ServiceCallback", "callback(err, result, request, operationRes)");
+                        comment.Returns("callback(err, result, request, operationRes)");
                     }
                     else if (flavor == MethodFlavor.Promise)
                     {
                         comment.Parameter("optionalCallback", "The optional callback.", true);
-                        comment.Returns("ServiceCallback|Promise", "If a callback was passed as the last parameter, then it returns the callback, else returns a Promise.");
+                        comment.Returns("If a callback was passed as the last parameter, then it returns the callback, else returns a Promise.");
                         comment.Line("{Promise} A promise is returned.");
                         comment.Line($"                     @resolve {{{ReturnTypeTSString}}} - The deserialized result object.");
                         comment.Line($"                     @reject {{Error | ServiceError}} - The error object.");

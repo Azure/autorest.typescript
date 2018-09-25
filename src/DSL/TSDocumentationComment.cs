@@ -82,10 +82,10 @@ namespace AutoRest.TypeScript.DSL
             Line($"@param {(isOptional ? '[' + parameterName + ']' : parameterName)} {parameterDocumentation}");
         }
 
-        public void Returns(string returnType, string returnDocumentation)
+        public void Returns(string returnDocumentation)
         {
             SetCurrentState(State.Returns);
-            Line($"@returns {{{returnType}}} {returnDocumentation}");
+            Line($"@returns {returnDocumentation}");
         }
 
         public void Resolve(string resolveType, string resolveDocumentation)

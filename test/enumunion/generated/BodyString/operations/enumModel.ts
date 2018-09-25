@@ -30,7 +30,7 @@ export class EnumModel {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -56,7 +56,7 @@ export class EnumModel {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -81,7 +81,7 @@ export class EnumModel {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -107,7 +107,7 @@ export class EnumModel {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -132,7 +132,7 @@ export class EnumModel {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
@@ -156,7 +156,7 @@ export class EnumModel {
    *
    * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
+   * @returns A promise is returned
    *
    * @resolve {HttpOperationResponse} The deserialized result object.
    *
