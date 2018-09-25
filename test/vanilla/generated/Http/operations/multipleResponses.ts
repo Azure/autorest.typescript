@@ -28,7 +28,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with valid payload: {'statusCode': '200'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class MultipleResponses {
   /**
    * Send a 204 response with no payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class MultipleResponses {
   /**
    * Send a 201 response with valid payload: {'statusCode': '201'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class MultipleResponses {
   /**
    * Send a 202 response with no payload:
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,7 +124,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -148,7 +148,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with valid payload: {'statusCode': '200'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -172,7 +172,7 @@ export class MultipleResponses {
   /**
    * Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -196,7 +196,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -220,7 +220,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with valid payload: {'statusCode': '200'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -244,7 +244,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with valid payload: {'httpCode': '201'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -268,7 +268,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with valid payload: {'httpStatusCode': '404'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -292,7 +292,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -316,7 +316,7 @@ export class MultipleResponses {
   /**
    * Send a 202 response with no payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -340,7 +340,7 @@ export class MultipleResponses {
   /**
    * Send a 204 response with no payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -364,7 +364,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -388,7 +388,7 @@ export class MultipleResponses {
   /**
    * Send a 202 response with an unexpected payload {'property': 'value'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -412,7 +412,7 @@ export class MultipleResponses {
   /**
    * Send a 204 response with no payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -436,7 +436,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with no payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -460,7 +460,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with an unexpected payload {'property': 'value'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -484,7 +484,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with valid payload: {'statusCode': '200'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -508,7 +508,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with no payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -532,7 +532,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with valid payload: {'statusCode': '400'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -556,7 +556,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with no payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -580,7 +580,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with invalid payload: {'statusCode': '200'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -604,7 +604,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with no payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -628,7 +628,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with valid payload: {'statusCode': '400'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -652,7 +652,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with no payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -677,7 +677,7 @@ export class MultipleResponses {
    * Send a 200 response with no payload, when a payload is expected - client should return a null
    * object of thde type for model A
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -701,7 +701,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with payload {'statusCode': '200'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -725,7 +725,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with invalid payload {'statusCodeInvalid': '200'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -749,7 +749,7 @@ export class MultipleResponses {
   /**
    * Send a 400 response with no payload client should treat as an http error with no error model
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -773,7 +773,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with payload {'statusCode': '400'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -797,7 +797,7 @@ export class MultipleResponses {
   /**
    * Send a 200 response with invalid payload {'statusCodeInvalid': '400'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -821,7 +821,7 @@ export class MultipleResponses {
   /**
    * Send a 202 response with payload {'statusCode': '202'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

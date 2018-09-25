@@ -29,7 +29,7 @@ export class UsageOperations {
   /**
    * Gets the current usage count and the limit for the resources under the subscription.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

@@ -29,7 +29,7 @@ export class Primitive {
   /**
    * Get complex types with integer properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -53,9 +53,9 @@ export class Primitive {
   /**
    * Put complex types with integer properties
    *
-   * @param {IntWrapper} complexBody Please put -1 and 2
+   * @param complexBody Please put -1 and 2
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -80,7 +80,7 @@ export class Primitive {
   /**
    * Get complex types with long properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -104,9 +104,9 @@ export class Primitive {
   /**
    * Put complex types with long properties
    *
-   * @param {LongWrapper} complexBody Please put 1099511627775 and -999511627788
+   * @param complexBody Please put 1099511627775 and -999511627788
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -131,7 +131,7 @@ export class Primitive {
   /**
    * Get complex types with float properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -155,9 +155,9 @@ export class Primitive {
   /**
    * Put complex types with float properties
    *
-   * @param {FloatWrapper} complexBody Please put 1.05 and -0.003
+   * @param complexBody Please put 1.05 and -0.003
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -182,7 +182,7 @@ export class Primitive {
   /**
    * Get complex types with double properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -206,10 +206,10 @@ export class Primitive {
   /**
    * Put complex types with double properties
    *
-   * @param {DoubleWrapper} complexBody Please put 3e-100 and
+   * @param complexBody Please put 3e-100 and
    * -0.000000000000000000000000000000000000000000000000000000005
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -234,7 +234,7 @@ export class Primitive {
   /**
    * Get complex types with bool properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -258,9 +258,9 @@ export class Primitive {
   /**
    * Put complex types with bool properties
    *
-   * @param {BooleanWrapper} complexBody Please put true and false
+   * @param complexBody Please put true and false
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -285,7 +285,7 @@ export class Primitive {
   /**
    * Get complex types with string properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -309,9 +309,9 @@ export class Primitive {
   /**
    * Put complex types with string properties
    *
-   * @param {StringWrapper} complexBody Please put 'goodrequest', '', and null
+   * @param complexBody Please put 'goodrequest', '', and null
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -336,7 +336,7 @@ export class Primitive {
   /**
    * Get complex types with date properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -360,9 +360,9 @@ export class Primitive {
   /**
    * Put complex types with date properties
    *
-   * @param {DateWrapper} complexBody Please put '0001-01-01' and '2016-02-29'
+   * @param complexBody Please put '0001-01-01' and '2016-02-29'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -387,7 +387,7 @@ export class Primitive {
   /**
    * Get complex types with datetime properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -411,10 +411,9 @@ export class Primitive {
   /**
    * Put complex types with datetime properties
    *
-   * @param {DatetimeWrapper} complexBody Please put '0001-01-01T12:00:00-04:00' and
-   * '2015-05-18T11:38:00-08:00'
+   * @param complexBody Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -439,7 +438,7 @@ export class Primitive {
   /**
    * Get complex types with datetimeRfc1123 properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -463,10 +462,10 @@ export class Primitive {
   /**
    * Put complex types with datetimeRfc1123 properties
    *
-   * @param {Datetimerfc1123Wrapper} complexBody Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon,
-   * 18 May 2015 11:38:00 GMT'
+   * @param complexBody Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+   * GMT'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -491,7 +490,7 @@ export class Primitive {
   /**
    * Get complex types with duration properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -515,7 +514,7 @@ export class Primitive {
   /**
    * Put complex types with duration properties
    *
-   * @param {PrimitivePutDurationOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -539,7 +538,7 @@ export class Primitive {
   /**
    * Get complex types with byte properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -563,7 +562,7 @@ export class Primitive {
   /**
    * Put complex types with byte properties
    *
-   * @param {PrimitivePutByteOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

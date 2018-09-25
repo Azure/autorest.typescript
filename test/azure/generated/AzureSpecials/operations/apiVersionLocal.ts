@@ -29,7 +29,7 @@ export class ApiVersionLocal {
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -53,7 +53,7 @@ export class ApiVersionLocal {
   /**
    * Get method with api-version modeled in the method.  pass in api-version = null to succeed
    *
-   * @param {ApiVersionLocalGetMethodLocalNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -77,7 +77,7 @@ export class ApiVersionLocal {
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -101,7 +101,7 @@ export class ApiVersionLocal {
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

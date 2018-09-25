@@ -28,7 +28,7 @@ export class ByteModel {
   /**
    * Get null byte value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class ByteModel {
   /**
    * Get empty byte value ''
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class ByteModel {
   /**
    * Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,10 +100,9 @@ export class ByteModel {
   /**
    * Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    *
-   * @param {Uint8Array} byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7
-   * F6)
+   * @param byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -128,7 +127,7 @@ export class ByteModel {
   /**
    * Get invalid byte value ':::SWAGGER::::'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

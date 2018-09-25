@@ -27,9 +27,9 @@ export class PetOperations {
   }
 
   /**
-   * @param {string} petId Pet id
+   * @param petId Pet id
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class PetOperations {
   }
 
   /**
-   * @param {PetAddPetOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

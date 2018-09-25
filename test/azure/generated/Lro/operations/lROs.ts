@@ -32,7 +32,7 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Succeeded’.
    *
-   * @param {LROsPut200SucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -50,7 +50,7 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that does
    * not contain ProvisioningState=’Succeeded’.
    *
-   * @param {LROsPut200SucceededNoStateOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -69,7 +69,7 @@ export class LROs {
    * that points to a polling URL that returns a 200 and an entity that doesn't contains
    * ProvisioningState
    *
-   * @param {LROsPut202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -88,7 +88,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -107,7 +107,7 @@ export class LROs {
    * contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsPut200UpdatingSucceeded204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -126,7 +126,7 @@ export class LROs {
    * contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    *
-   * @param {LROsPut201CreatingFailed200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -145,7 +145,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    *
-   * @param {LROsPut200Acceptedcanceled200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -163,7 +163,7 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with location header.
    * Subsequent calls to operation status do not contain location header.
    *
-   * @param {LROsPutNoHeaderInRetryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -182,7 +182,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPutAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -201,7 +201,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPutAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -220,7 +220,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPutAsyncRetryFailedOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -239,7 +239,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPutAsyncNoRetrycanceledOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -257,7 +257,7 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation
    * header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    *
-   * @param {LROsPutAsyncNoHeaderInRetryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -274,7 +274,7 @@ export class LROs {
   /**
    * Long running put request with non resource.
    *
-   * @param {LROsPutNonResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -291,7 +291,7 @@ export class LROs {
   /**
    * Long running put request with non resource.
    *
-   * @param {LROsPutAsyncNonResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -308,7 +308,7 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    *
-   * @param {LROsPutSubResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -325,7 +325,7 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    *
-   * @param {LROsPutAsyncSubResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -344,7 +344,7 @@ export class LROs {
    * contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -363,7 +363,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -382,7 +382,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -399,7 +399,7 @@ export class LROs {
   /**
    * Long running delete succeeds and returns right away
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -417,7 +417,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -435,7 +435,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -453,7 +453,7 @@ export class LROs {
    * Long running delete request, service returns a location header in the initial request.
    * Subsequent calls to operation status do not contain location header.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -471,7 +471,7 @@ export class LROs {
    * Long running delete request, service returns an Azure-AsyncOperation header in the initial
    * request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -489,7 +489,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -507,7 +507,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -525,7 +525,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -543,7 +543,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -561,7 +561,7 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header.
    * Poll returns a 200 with a response body after success.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -579,7 +579,7 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' and
    * 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsPost202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -597,7 +597,7 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header,
    * 204 with noresponse body after success
    *
-   * @param {LROsPost202NoRetry204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -616,7 +616,7 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
    * object
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -635,7 +635,7 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -654,7 +654,7 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object if you support initial Autorest behavior.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -673,7 +673,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPostAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -692,7 +692,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPostAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -711,7 +711,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPostAsyncRetryFailedOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -730,7 +730,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsPostAsyncRetrycanceledOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -747,7 +747,7 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Succeeded’.
    *
-   * @param {LROsBeginPut200SucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -768,7 +768,7 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that does
    * not contain ProvisioningState=’Succeeded’.
    *
-   * @param {LROsBeginPut200SucceededNoStateOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -790,7 +790,7 @@ export class LROs {
    * that points to a polling URL that returns a 200 and an entity that doesn't contains
    * ProvisioningState
    *
-   * @param {LROsBeginPut202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -812,7 +812,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsBeginPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -834,7 +834,7 @@ export class LROs {
    * contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsBeginPut200UpdatingSucceeded204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -856,7 +856,7 @@ export class LROs {
    * contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    *
-   * @param {LROsBeginPut201CreatingFailed200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -878,7 +878,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    *
-   * @param {LROsBeginPut200Acceptedcanceled200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -899,7 +899,7 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with location header.
    * Subsequent calls to operation status do not contain location header.
    *
-   * @param {LROsBeginPutNoHeaderInRetryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -921,7 +921,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPutAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -943,7 +943,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPutAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -965,7 +965,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPutAsyncRetryFailedOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -987,7 +987,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPutAsyncNoRetrycanceledOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1008,7 +1008,7 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation
    * header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    *
-   * @param {LROsBeginPutAsyncNoHeaderInRetryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1028,7 +1028,7 @@ export class LROs {
   /**
    * Long running put request with non resource.
    *
-   * @param {LROsBeginPutNonResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1048,7 +1048,7 @@ export class LROs {
   /**
    * Long running put request with non resource.
    *
-   * @param {LROsBeginPutAsyncNonResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1068,7 +1068,7 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    *
-   * @param {LROsBeginPutSubResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1088,7 +1088,7 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    *
-   * @param {LROsBeginPutAsyncSubResourceOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1110,7 +1110,7 @@ export class LROs {
    * contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1132,7 +1132,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1154,7 +1154,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1174,7 +1174,7 @@ export class LROs {
   /**
    * Long running delete succeeds and returns right away
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1195,7 +1195,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1216,7 +1216,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1237,7 +1237,7 @@ export class LROs {
    * Long running delete request, service returns a location header in the initial request.
    * Subsequent calls to operation status do not contain location header.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1258,7 +1258,7 @@ export class LROs {
    * Long running delete request, service returns an Azure-AsyncOperation header in the initial
    * request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1279,7 +1279,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1300,7 +1300,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1321,7 +1321,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1342,7 +1342,7 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1363,7 +1363,7 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header.
    * Poll returns a 200 with a response body after success.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1384,7 +1384,7 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' and
    * 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsBeginPost202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1405,7 +1405,7 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header,
    * 204 with noresponse body after success
    *
-   * @param {LROsBeginPost202NoRetry204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1427,7 +1427,7 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
    * object
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1449,7 +1449,7 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1471,7 +1471,7 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object if you support initial Autorest behavior.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1493,7 +1493,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPostAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1515,7 +1515,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPostAsyncNoRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1537,7 +1537,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPostAsyncRetryFailedOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1559,7 +1559,7 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROsBeginPostAsyncRetrycanceledOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

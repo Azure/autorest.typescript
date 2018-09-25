@@ -29,10 +29,9 @@ export class SubscriptionInMethod {
    * POST method with subscriptionId modeled in the method.  pass in subscription id =
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {string} subscriptionId This should appear as a method parameter, use value
-   * '1234-5678-9012-3456'
+   * @param subscriptionId This should appear as a method parameter, use value '1234-5678-9012-3456'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -58,10 +57,10 @@ export class SubscriptionInMethod {
    * POST method with subscriptionId modeled in the method.  pass in subscription id = null,
    * client-side validation should prevent you from making this call
    *
-   * @param {string} subscriptionId This should appear as a method parameter, use value null,
-   * client-side validation should prvenet the call
+   * @param subscriptionId This should appear as a method parameter, use value null, client-side
+   * validation should prvenet the call
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -87,10 +86,9 @@ export class SubscriptionInMethod {
    * POST method with subscriptionId modeled in the method.  pass in subscription id =
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {string} subscriptionId Should appear as a method parameter -use value
-   * '1234-5678-9012-3456'
+   * @param subscriptionId Should appear as a method parameter -use value '1234-5678-9012-3456'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -116,10 +114,10 @@ export class SubscriptionInMethod {
    * POST method with subscriptionId modeled in the method.  pass in subscription id =
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {string} subscriptionId The subscriptionId, which appears in the path, the value is
-   * always '1234-5678-9012-3456'
+   * @param subscriptionId The subscriptionId, which appears in the path, the value is always
+   * '1234-5678-9012-3456'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

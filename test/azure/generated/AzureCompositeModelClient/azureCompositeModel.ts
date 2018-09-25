@@ -32,12 +32,11 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   /**
    * Initializes a new instance of the AzureCompositeModel class.
    *
-   * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
-   * connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure.
    *
-   * @param {string} [baseUri] The base URI of the service.
+   * @param [baseUri] The base URI of the service.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
@@ -60,9 +59,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    * The response includes the display name and other details about each product, and lists the
    * products in the proper display order.
    *
-   * @param {string} resourceGroupName Resource Group ID.
+   * @param resourceGroupName Resource Group ID.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -90,11 +89,11 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * Resets products.
    *
-   * @param {string} subscriptionId Subscription ID.
+   * @param subscriptionId Subscription ID.
    *
-   * @param {string} resourceGroupName Resource Group ID.
+   * @param resourceGroupName Resource Group ID.
    *
-   * @param {AzureCompositeModelCreateOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -123,11 +122,11 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * Resets products.
    *
-   * @param {string} subscriptionId Subscription ID.
+   * @param subscriptionId Subscription ID.
    *
-   * @param {string} resourceGroupName Resource Group ID.
+   * @param resourceGroupName Resource Group ID.
    *
-   * @param {AzureCompositeModelUpdateOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

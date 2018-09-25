@@ -29,9 +29,9 @@ export class Header {
   /**
    * Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
    *
-   * @param {string} fooClientRequestId The fooRequestId
+   * @param fooClientRequestId The fooRequestId
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -57,10 +57,9 @@ export class Header {
    * Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
    * via a parameter group
    *
-   * @param {HeaderCustomNamedRequestIdParamGroupingParameters}
-   * headerCustomNamedRequestIdParamGroupingParameters Additional parameters for the operation
+   * @param headerCustomNamedRequestIdParamGroupingParameters Additional parameters for the operation
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -85,9 +84,9 @@ export class Header {
   /**
    * Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
    *
-   * @param {string} fooClientRequestId The fooRequestId
+   * @param fooClientRequestId The fooRequestId
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

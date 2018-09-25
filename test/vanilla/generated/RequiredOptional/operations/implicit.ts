@@ -29,9 +29,9 @@ export class Implicit {
   /**
    * Test implicitly required path parameter
    *
-   * @param {string} pathParameter
+   * @param pathParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -56,7 +56,7 @@ export class Implicit {
   /**
    * Test implicitly optional query parameter
    *
-   * @param {ImplicitPutOptionalQueryOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -80,7 +80,7 @@ export class Implicit {
   /**
    * Test implicitly optional header parameter
    *
-   * @param {ImplicitPutOptionalHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -104,7 +104,7 @@ export class Implicit {
   /**
    * Test implicitly optional body parameter
    *
-   * @param {ImplicitPutOptionalBodyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -128,7 +128,7 @@ export class Implicit {
   /**
    * Test implicitly required path parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -152,7 +152,7 @@ export class Implicit {
   /**
    * Test implicitly required query parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -176,7 +176,7 @@ export class Implicit {
   /**
    * Test implicitly optional query parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

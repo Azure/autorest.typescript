@@ -28,7 +28,7 @@ export class Datetime {
   /**
    * Get null datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class Datetime {
   /**
    * Get invalid datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class Datetime {
   /**
    * Get overflow datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class Datetime {
   /**
    * Get underflow datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,11 +124,11 @@ export class Datetime {
   /**
    * Put max datetime value 9999-12-31T23:59:59.9999999Z
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -153,7 +153,7 @@ export class Datetime {
   /**
    * Get max datetime value 9999-12-31t23:59:59.9999999z
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -177,7 +177,7 @@ export class Datetime {
   /**
    * Get max datetime value 9999-12-31T23:59:59.9999999Z
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -201,11 +201,11 @@ export class Datetime {
   /**
    * Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999+14:00
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -230,7 +230,7 @@ export class Datetime {
   /**
    * Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999+14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -254,7 +254,7 @@ export class Datetime {
   /**
    * Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -278,11 +278,11 @@ export class Datetime {
   /**
    * Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999-14:00
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -307,7 +307,7 @@ export class Datetime {
   /**
    * Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999-14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -331,7 +331,7 @@ export class Datetime {
   /**
    * Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999-14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -355,11 +355,11 @@ export class Datetime {
   /**
    * Put min datetime value 0001-01-01T00:00:00Z
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -384,7 +384,7 @@ export class Datetime {
   /**
    * Get min datetime value 0001-01-01T00:00:00Z
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -408,11 +408,11 @@ export class Datetime {
   /**
    * Put min datetime value 0001-01-01T00:00:00+14:00
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -437,7 +437,7 @@ export class Datetime {
   /**
    * Get min datetime value 0001-01-01T00:00:00+14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -461,11 +461,11 @@ export class Datetime {
   /**
    * Put min datetime value 0001-01-01T00:00:00-14:00
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -490,7 +490,7 @@ export class Datetime {
   /**
    * Get min datetime value 0001-01-01T00:00:00-14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

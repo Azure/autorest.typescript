@@ -18,9 +18,9 @@ class ComplexModelClient extends ComplexModelClientContext {
   /**
    * Initializes a new instance of the ComplexModelClient class.
    *
-   * @param {string} [baseUri] The base URI of the service.
+   * @param [baseUri] The base URI of the service.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
@@ -34,9 +34,9 @@ class ComplexModelClient extends ComplexModelClientContext {
    * The response includes the display name and other details about each product, and lists the
    * products in the proper display order.
    *
-   * @param {string} resourceGroupName Resource Group ID.
+   * @param resourceGroupName Resource Group ID.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -64,11 +64,11 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * Resets products.
    *
-   * @param {string} subscriptionId Subscription ID.
+   * @param subscriptionId Subscription ID.
    *
-   * @param {string} resourceGroupName Resource Group ID.
+   * @param resourceGroupName Resource Group ID.
    *
-   * @param {ComplexModelClientCreateOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -97,11 +97,11 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * Resets products.
    *
-   * @param {string} subscriptionId Subscription ID.
+   * @param subscriptionId Subscription ID.
    *
-   * @param {string} resourceGroupName Resource Group ID.
+   * @param resourceGroupName Resource Group ID.
    *
-   * @param {ComplexModelClientUpdateOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

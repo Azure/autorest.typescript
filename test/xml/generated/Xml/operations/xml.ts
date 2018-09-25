@@ -29,7 +29,7 @@ export class Xml {
   /**
    * Get a complex type that has a ref to a complex type with no XML node
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -53,9 +53,9 @@ export class Xml {
   /**
    * Puts a complex type that has a ref to a complex type with no XML node
    *
-   * @param {RootWithRefAndNoMeta} model
+   * @param model
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -80,7 +80,7 @@ export class Xml {
   /**
    * Get a complex type that has a ref to a complex type with XML node
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -104,9 +104,9 @@ export class Xml {
   /**
    * Puts a complex type that has a ref to a complex type with XML node
    *
-   * @param {RootWithRefAndMeta} model
+   * @param model
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -131,7 +131,7 @@ export class Xml {
   /**
    * Get a simple XML document
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -155,9 +155,9 @@ export class Xml {
   /**
    * Put a simple XML document
    *
-   * @param {Slideshow} slideshow
+   * @param slideshow
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -182,7 +182,7 @@ export class Xml {
   /**
    * Get an XML document with multiple wrapped lists
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -206,9 +206,9 @@ export class Xml {
   /**
    * Put an XML document with multiple wrapped lists
    *
-   * @param {AppleBarrel} wrappedLists
+   * @param wrappedLists
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -233,7 +233,7 @@ export class Xml {
   /**
    * Get strongly-typed response headers.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -257,7 +257,7 @@ export class Xml {
   /**
    * Get an empty list.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -281,9 +281,9 @@ export class Xml {
   /**
    * Puts an empty list.
    *
-   * @param {Slideshow} slideshow
+   * @param slideshow
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -308,7 +308,7 @@ export class Xml {
   /**
    * Gets some empty wrapped lists.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -332,9 +332,9 @@ export class Xml {
   /**
    * Puts some empty wrapped lists.
    *
-   * @param {AppleBarrel} appleBarrel
+   * @param appleBarrel
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -359,7 +359,7 @@ export class Xml {
   /**
    * Gets a list as the root element.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -383,9 +383,9 @@ export class Xml {
   /**
    * Puts a list as the root element.
    *
-   * @param {Banana[]} bananas
+   * @param bananas
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -410,7 +410,7 @@ export class Xml {
   /**
    * Gets a list with a single item.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -434,9 +434,9 @@ export class Xml {
   /**
    * Puts a list with a single item.
    *
-   * @param {Banana[]} bananas
+   * @param bananas
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -461,7 +461,7 @@ export class Xml {
   /**
    * Gets an empty list as the root element.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -485,9 +485,9 @@ export class Xml {
   /**
    * Puts an empty list as the root element.
    *
-   * @param {Banana[]} bananas
+   * @param bananas
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -512,7 +512,7 @@ export class Xml {
   /**
    * Gets an XML document with an empty child element.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -536,9 +536,9 @@ export class Xml {
   /**
    * Puts a value with an empty child element.
    *
-   * @param {Banana} banana
+   * @param banana
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -563,7 +563,7 @@ export class Xml {
   /**
    * Lists containers in a storage account.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -587,7 +587,7 @@ export class Xml {
   /**
    * Gets storage service properties.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -611,9 +611,9 @@ export class Xml {
   /**
    * Puts storage service properties.
    *
-   * @param {StorageServiceProperties} properties
+   * @param properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -638,7 +638,7 @@ export class Xml {
   /**
    * Gets storage ACLs for a container.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -662,9 +662,9 @@ export class Xml {
   /**
    * Puts storage ACLs for a container.
    *
-   * @param {SignedIdentifier[]} properties
+   * @param properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -689,7 +689,7 @@ export class Xml {
   /**
    * Lists blobs in a storage container.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

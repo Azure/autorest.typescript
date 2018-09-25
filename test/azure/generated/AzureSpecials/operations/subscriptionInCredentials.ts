@@ -29,7 +29,7 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -54,7 +54,7 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * null, and client-side validation should prevent you from making this call
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -79,7 +79,7 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -104,7 +104,7 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -129,7 +129,7 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

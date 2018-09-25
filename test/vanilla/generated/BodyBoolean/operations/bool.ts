@@ -28,7 +28,7 @@ export class Bool {
   /**
    * Get true Boolean value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class Bool {
   /**
    * Set Boolean value true
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class Bool {
   /**
    * Get false Boolean value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class Bool {
   /**
    * Set Boolean value false
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,7 +124,7 @@ export class Bool {
   /**
    * Get null Boolean value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -148,7 +148,7 @@ export class Bool {
   /**
    * Get invalid Boolean value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

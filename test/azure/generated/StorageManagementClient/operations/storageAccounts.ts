@@ -30,11 +30,11 @@ export class StorageAccounts {
   /**
    * Checks that account name is valid and is not in use.
    *
-   * @param {StorageAccountCheckNameAvailabilityParameters} accountName The name of the storage
-   * account within the specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -63,16 +63,15 @@ export class StorageAccounts {
    * account is already created and subsequent PUT request is issued with exact same set of
    * properties, then HTTP 200 would be returned.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
-   * account.
+   * @param parameters The parameters to provide for the created account.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -88,13 +87,13 @@ export class StorageAccounts {
   /**
    * Deletes a storage account in Microsoft Azure.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -122,13 +121,13 @@ export class StorageAccounts {
    * account type, location, and account status. The ListKeys operation should be used to retrieve
    * storage keys.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -160,16 +159,16 @@ export class StorageAccounts {
    * account. If you want to change storage account keys, use the RegenerateKey operation. The
    * location and name of the storage account cannot be changed after creation.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {StorageAccountUpdateParameters} parameters The parameters to update on the account. Note
-   * that only one property can be changed at a time using this API.
+   * @param parameters The parameters to update on the account. Note that only one property can be
+   * changed at a time using this API.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -196,11 +195,11 @@ export class StorageAccounts {
   /**
    * Lists the access keys for the specified storage account.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account.
+   * @param accountName The name of the storage account.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -227,7 +226,7 @@ export class StorageAccounts {
    * Lists all the storage accounts available under the subscription. Note that storage keys are not
    * returned; use the ListKeys operation for this.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -252,9 +251,9 @@ export class StorageAccounts {
    * Lists all the storage accounts available under the given resource group. Note that storage keys
    * are not returned; use the ListKeys operation for this.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -279,13 +278,13 @@ export class StorageAccounts {
   /**
    * Regenerates the access keys for the specified storage account.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {StorageAccountsRegenerateKeyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -314,16 +313,15 @@ export class StorageAccounts {
    * account is already created and subsequent PUT request is issued with exact same set of
    * properties, then HTTP 200 would be returned.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
-   * account.
+   * @param parameters The parameters to provide for the created account.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

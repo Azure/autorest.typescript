@@ -28,7 +28,7 @@ export class HttpRetry {
   /**
    * Return 408 status code, then 200 after retry
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class HttpRetry {
   /**
    * Return 500 status code, then 200 after retry
    *
-   * @param {HttpRetryPut500OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class HttpRetry {
   /**
    * Return 500 status code, then 200 after retry
    *
-   * @param {HttpRetryPatch500OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class HttpRetry {
   /**
    * Return 502 status code, then 200 after retry
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,7 +124,7 @@ export class HttpRetry {
   /**
    * Return 503 status code, then 200 after retry
    *
-   * @param {HttpRetryPost503OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -148,7 +148,7 @@ export class HttpRetry {
   /**
    * Return 503 status code, then 200 after retry
    *
-   * @param {HttpRetryDelete503OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -172,7 +172,7 @@ export class HttpRetry {
   /**
    * Return 504 status code, then 200 after retry
    *
-   * @param {HttpRetryPut504OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -196,7 +196,7 @@ export class HttpRetry {
   /**
    * Return 504 status code, then 200 after retry
    *
-   * @param {HttpRetryPatch504OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

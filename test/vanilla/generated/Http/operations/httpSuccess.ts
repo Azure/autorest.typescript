@@ -28,7 +28,7 @@ export class HttpSuccess {
   /**
    * Return 200 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class HttpSuccess {
   /**
    * Get 200 success
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class HttpSuccess {
   /**
    * Put boolean value true returning 200 success
    *
-   * @param {HttpSuccessPut200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class HttpSuccess {
   /**
    * Patch true Boolean value in request returning 200
    *
-   * @param {HttpSuccessPatch200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,7 +124,7 @@ export class HttpSuccess {
   /**
    * Post bollean value true in request that returns a 200
    *
-   * @param {HttpSuccessPost200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -148,7 +148,7 @@ export class HttpSuccess {
   /**
    * Delete simple boolean value true returns 200
    *
-   * @param {HttpSuccessDelete200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -172,7 +172,7 @@ export class HttpSuccess {
   /**
    * Put true Boolean value in request returns 201
    *
-   * @param {HttpSuccessPut201OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -196,7 +196,7 @@ export class HttpSuccess {
   /**
    * Post true Boolean value in request returns 201 (Created)
    *
-   * @param {HttpSuccessPost201OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -220,7 +220,7 @@ export class HttpSuccess {
   /**
    * Put true Boolean value in request returns 202 (Accepted)
    *
-   * @param {HttpSuccessPut202OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -244,7 +244,7 @@ export class HttpSuccess {
   /**
    * Patch true Boolean value in request returns 202
    *
-   * @param {HttpSuccessPatch202OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -268,7 +268,7 @@ export class HttpSuccess {
   /**
    * Post true Boolean value in request returns 202 (Accepted)
    *
-   * @param {HttpSuccessPost202OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -292,7 +292,7 @@ export class HttpSuccess {
   /**
    * Delete true Boolean value in request returns 202 (accepted)
    *
-   * @param {HttpSuccessDelete202OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -316,7 +316,7 @@ export class HttpSuccess {
   /**
    * Return 204 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -340,7 +340,7 @@ export class HttpSuccess {
   /**
    * Put true Boolean value in request returns 204 (no content)
    *
-   * @param {HttpSuccessPut204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -364,7 +364,7 @@ export class HttpSuccess {
   /**
    * Patch true Boolean value in request returns 204 (no content)
    *
-   * @param {HttpSuccessPatch204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -388,7 +388,7 @@ export class HttpSuccess {
   /**
    * Post true Boolean value in request returns 204 (no content)
    *
-   * @param {HttpSuccessPost204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -412,7 +412,7 @@ export class HttpSuccess {
   /**
    * Delete true Boolean value in request returns 204 (no content)
    *
-   * @param {HttpSuccessDelete204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -436,7 +436,7 @@ export class HttpSuccess {
   /**
    * Return 404 status code
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

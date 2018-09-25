@@ -28,9 +28,9 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPTrue} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -55,9 +55,9 @@ export class Pets {
   /**
    * Create a CatAPTrue which contains more properties than what is defined.
    *
-   * @param {CatAPTrue} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -82,9 +82,9 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPObject} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -109,9 +109,9 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPString} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -136,9 +136,9 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPInProperties} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -163,9 +163,9 @@ export class Pets {
   /**
    * Create a Pet which contains more properties than what is defined.
    *
-   * @param {PetAPInPropertiesWithAPString} createParameters
+   * @param createParameters
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

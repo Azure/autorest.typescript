@@ -31,7 +31,7 @@ export class LROSADs {
   /**
    * Long running put request, service returns a 400 to the initial request
    *
-   * @param {LROSADsPutNonRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -49,7 +49,7 @@ export class LROSADs {
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
    * 201 response code
    *
-   * @param {LROSADsPutNonRetry201Creating400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -67,8 +67,7 @@ export class LROSADs {
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
    * 201 response code
    *
-   * @param {LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -86,7 +85,7 @@ export class LROSADs {
    * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
    * endpoint indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -103,7 +102,7 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 400 with an error body
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -120,7 +119,7 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 202 with a location header
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -138,7 +137,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -155,7 +154,7 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 400 with no error body
    *
-   * @param {LROSADsPostNonRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -172,7 +171,7 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 202 with a location header
    *
-   * @param {LROSADsPost202NonRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -190,7 +189,7 @@ export class LROSADs {
    * Long running post request, service returns a 202 to the initial request Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsPostAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -207,8 +206,7 @@ export class LROSADs {
   /**
    * Long running put request, service returns a 201 to the initial request with no payload
    *
-   * @param {LROSADsPutError201NoProvisioningStatePayloadOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -227,7 +225,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetryNoStatusOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -246,8 +244,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -264,7 +261,7 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -282,7 +279,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -300,7 +297,7 @@ export class LROSADs {
    * Long running post request, service returns a 202 to the initial request, without a location
    * header.
    *
-   * @param {LROSADsPost202NoLocationOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -319,7 +316,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -337,7 +334,7 @@ export class LROSADs {
    * Long running put request, service returns a 200 to the initial request, with an entity that is
    * not a valid json
    *
-   * @param {LROSADsPut200InvalidJsonOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -356,7 +353,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
    * is invalid.
    *
-   * @param {LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -375,8 +372,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -394,7 +390,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request receing a reponse with
    * an invalid 'Location' and 'Retry-After' headers
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -412,7 +408,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request. The endpoint
    * indicated in the Azure-AsyncOperation header is invalid
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -430,7 +426,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -448,7 +444,7 @@ export class LROSADs {
    * Long running post request, service returns a 202 to the initial request, with invalid 'Location'
    * and 'Retry-After' headers.
    *
-   * @param {LROSADsPost202RetryInvalidHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -467,7 +463,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
    * is invalid.
    *
-   * @param {LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -486,8 +482,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -503,7 +498,7 @@ export class LROSADs {
   /**
    * Long running put request, service returns a 400 to the initial request
    *
-   * @param {LROSADsBeginPutNonRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -524,7 +519,7 @@ export class LROSADs {
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
    * 201 response code
    *
-   * @param {LROSADsBeginPutNonRetry201Creating400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -545,8 +540,7 @@ export class LROSADs {
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
    * 201 response code
    *
-   * @param {LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -567,7 +561,7 @@ export class LROSADs {
    * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
    * endpoint indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -587,7 +581,7 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 400 with an error body
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -607,7 +601,7 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 202 with a location header
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -628,7 +622,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -648,7 +642,7 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 400 with no error body
    *
-   * @param {LROSADsBeginPostNonRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -668,7 +662,7 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 202 with a location header
    *
-   * @param {LROSADsBeginPost202NonRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -689,7 +683,7 @@ export class LROSADs {
    * Long running post request, service returns a 202 to the initial request Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -709,8 +703,7 @@ export class LROSADs {
   /**
    * Long running put request, service returns a 201 to the initial request with no payload
    *
-   * @param {LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -732,7 +725,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -754,8 +747,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -775,7 +767,7 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -796,7 +788,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -817,7 +809,7 @@ export class LROSADs {
    * Long running post request, service returns a 202 to the initial request, without a location
    * header.
    *
-   * @param {LROSADsBeginPost202NoLocationOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -839,8 +831,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -861,7 +852,7 @@ export class LROSADs {
    * Long running put request, service returns a 200 to the initial request, with an entity that is
    * not a valid json
    *
-   * @param {LROSADsBeginPut200InvalidJsonOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -883,8 +874,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
    * is invalid.
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -906,8 +896,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -928,7 +917,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request receing a reponse with
    * an invalid 'Location' and 'Retry-After' headers
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -949,7 +938,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request. The endpoint
    * indicated in the Azure-AsyncOperation header is invalid
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -970,7 +959,7 @@ export class LROSADs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -991,7 +980,7 @@ export class LROSADs {
    * Long running post request, service returns a 202 to the initial request, with invalid 'Location'
    * and 'Retry-After' headers.
    *
-   * @param {LROSADsBeginPost202RetryInvalidHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1013,8 +1002,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
    * is invalid.
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1036,8 +1024,7 @@ export class LROSADs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

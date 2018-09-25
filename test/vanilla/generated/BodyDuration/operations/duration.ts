@@ -28,7 +28,7 @@ export class Duration {
   /**
    * Get null duration value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,9 +52,9 @@ export class Duration {
   /**
    * Put a positive duration value
    *
-   * @param {string} durationBody
+   * @param durationBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -79,7 +79,7 @@ export class Duration {
   /**
    * Get a positive duration value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -103,7 +103,7 @@ export class Duration {
   /**
    * Get an invalid duration value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

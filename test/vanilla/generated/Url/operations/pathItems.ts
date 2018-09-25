@@ -31,11 +31,11 @@ export class PathItems {
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
    *
-   * @param {string} localStringPath should contain value 'localStringPath'
+   * @param localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetAllWithValuesOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -63,11 +63,11 @@ export class PathItems {
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
    *
-   * @param {string} localStringPath should contain value 'localStringPath'
+   * @param localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetGlobalQueryNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -95,11 +95,11 @@ export class PathItems {
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery=null
    *
-   * @param {string} localStringPath should contain value 'localStringPath'
+   * @param localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetGlobalAndLocalQueryNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -127,11 +127,11 @@ export class PathItems {
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
    * pathItemStringQuery=null, localStringQuery=null
    *
-   * @param {string} localStringPath should contain value 'localStringPath'
+   * @param localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetLocalPathItemQueryNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

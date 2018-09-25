@@ -28,14 +28,13 @@ export class AvailabilitySets {
   /**
    * Updates the tags for an availability set.
    *
-   * @param {string} resourceGroupName The name of the resource group.
+   * @param resourceGroupName The name of the resource group.
    *
-   * @param {string} avset The name of the storage availability set.
+   * @param avset The name of the storage availability set.
    *
-   * @param {{ [propertyName: string]: string }} tags A set of tags. A description about the set of
-   * tags.
+   * @param tags A set of tags. A description about the set of tags.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

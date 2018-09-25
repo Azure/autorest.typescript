@@ -28,7 +28,7 @@ export class Number {
   /**
    * Get null Number value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class Number {
   /**
    * Get invalid float Number value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class Number {
   /**
    * Get invalid double Number value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class Number {
   /**
    * Get invalid decimal Number value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,9 +124,9 @@ export class Number {
   /**
    * Put big float value 3.402823e+20
    *
-   * @param {number} numberBody
+   * @param numberBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -151,7 +151,7 @@ export class Number {
   /**
    * Get big float value 3.402823e+20
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -175,9 +175,9 @@ export class Number {
   /**
    * Put big double value 2.5976931e+101
    *
-   * @param {number} numberBody
+   * @param numberBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -202,7 +202,7 @@ export class Number {
   /**
    * Get big double value 2.5976931e+101
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -226,7 +226,7 @@ export class Number {
   /**
    * Put big double value 99999999.99
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -250,7 +250,7 @@ export class Number {
   /**
    * Get big double value 99999999.99
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -274,7 +274,7 @@ export class Number {
   /**
    * Put big double value -99999999.99
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -298,7 +298,7 @@ export class Number {
   /**
    * Get big double value -99999999.99
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -322,9 +322,9 @@ export class Number {
   /**
    * Put big decimal value 2.5976931e+101
    *
-   * @param {number} numberBody
+   * @param numberBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -349,7 +349,7 @@ export class Number {
   /**
    * Get big decimal value 2.5976931e+101
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -373,7 +373,7 @@ export class Number {
   /**
    * Put big decimal value 99999999.99
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -397,7 +397,7 @@ export class Number {
   /**
    * Get big decimal value 99999999.99
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -421,7 +421,7 @@ export class Number {
   /**
    * Put big decimal value -99999999.99
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -445,7 +445,7 @@ export class Number {
   /**
    * Get big decimal value -99999999.99
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -469,9 +469,9 @@ export class Number {
   /**
    * Put small float value 3.402823e-20
    *
-   * @param {number} numberBody
+   * @param numberBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -496,7 +496,7 @@ export class Number {
   /**
    * Get big double value 3.402823e-20
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -520,9 +520,9 @@ export class Number {
   /**
    * Put small double value 2.5976931e-101
    *
-   * @param {number} numberBody
+   * @param numberBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -547,7 +547,7 @@ export class Number {
   /**
    * Get big double value 2.5976931e-101
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -571,9 +571,9 @@ export class Number {
   /**
    * Put small decimal value 2.5976931e-101
    *
-   * @param {number} numberBody
+   * @param numberBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -598,7 +598,7 @@ export class Number {
   /**
    * Get small decimal value 2.5976931e-101
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

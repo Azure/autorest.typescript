@@ -28,7 +28,7 @@ export class Dictionary {
   /**
    * Get null dictionary value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class Dictionary {
   /**
    * Get empty dictionary value {}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,9 +76,9 @@ export class Dictionary {
   /**
    * Set dictionary value empty {}
    *
-   * @param {{ [propertyName: string]: string }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -103,7 +103,7 @@ export class Dictionary {
   /**
    * Get Dictionary with null value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -127,7 +127,7 @@ export class Dictionary {
   /**
    * Get Dictionary with null key
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -151,7 +151,7 @@ export class Dictionary {
   /**
    * Get Dictionary with key as empty string
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -175,7 +175,7 @@ export class Dictionary {
   /**
    * Get invalid Dictionary value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -199,7 +199,7 @@ export class Dictionary {
   /**
    * Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -223,9 +223,9 @@ export class Dictionary {
   /**
    * Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }
    *
-   * @param {{ [propertyName: string]: boolean }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -250,7 +250,7 @@ export class Dictionary {
   /**
    * Get boolean dictionary value {"0": true, "1": null, "2": false }
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -274,7 +274,7 @@ export class Dictionary {
   /**
    * Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -298,7 +298,7 @@ export class Dictionary {
   /**
    * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -322,9 +322,9 @@ export class Dictionary {
   /**
    * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
    *
-   * @param {{ [propertyName: string]: number }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -349,7 +349,7 @@ export class Dictionary {
   /**
    * Get integer dictionary value {"0": 1, "1": null, "2": 0}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -373,7 +373,7 @@ export class Dictionary {
   /**
    * Get integer dictionary value {"0": 1, "1": "integer", "2": 0}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -397,7 +397,7 @@ export class Dictionary {
   /**
    * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -421,9 +421,9 @@ export class Dictionary {
   /**
    * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
    *
-   * @param {{ [propertyName: string]: number }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -448,7 +448,7 @@ export class Dictionary {
   /**
    * Get long dictionary value {"0": 1, "1": null, "2": 0}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -472,7 +472,7 @@ export class Dictionary {
   /**
    * Get long dictionary value {"0": 1, "1": "integer", "2": 0}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -496,7 +496,7 @@ export class Dictionary {
   /**
    * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -520,9 +520,9 @@ export class Dictionary {
   /**
    * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    *
-   * @param {{ [propertyName: string]: number }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -547,7 +547,7 @@ export class Dictionary {
   /**
    * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -571,7 +571,7 @@ export class Dictionary {
   /**
    * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -595,7 +595,7 @@ export class Dictionary {
   /**
    * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -619,9 +619,9 @@ export class Dictionary {
   /**
    * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    *
-   * @param {{ [propertyName: string]: number }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -646,7 +646,7 @@ export class Dictionary {
   /**
    * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -670,7 +670,7 @@ export class Dictionary {
   /**
    * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -694,7 +694,7 @@ export class Dictionary {
   /**
    * Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -718,9 +718,9 @@ export class Dictionary {
   /**
    * Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
    *
-   * @param {{ [propertyName: string]: string }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -745,7 +745,7 @@ export class Dictionary {
   /**
    * Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -769,7 +769,7 @@ export class Dictionary {
   /**
    * Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -793,7 +793,7 @@ export class Dictionary {
   /**
    * Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -817,9 +817,9 @@ export class Dictionary {
   /**
    * Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
    *
-   * @param {{ [key: string]: Date } | { [key: string]: string }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -844,7 +844,7 @@ export class Dictionary {
   /**
    * Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -868,7 +868,7 @@ export class Dictionary {
   /**
    * Get date dictionary value {"0": "2011-03-22", "1": "date"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -893,7 +893,7 @@ export class Dictionary {
    * Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
    * "2": "1492-10-12T10:15:01-08:00"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -918,9 +918,9 @@ export class Dictionary {
    * Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
    * "1492-10-12T10:15:01-08:00"}
    *
-   * @param {{ [key: string]: Date } | { [key: string]: string }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -945,7 +945,7 @@ export class Dictionary {
   /**
    * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -969,7 +969,7 @@ export class Dictionary {
   /**
    * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -994,7 +994,7 @@ export class Dictionary {
    * Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
    * 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1019,9 +1019,9 @@ export class Dictionary {
    * Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
    * 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}
    *
-   * @param {{ [key: string]: Date } | { [key: string]: string }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1046,7 +1046,7 @@ export class Dictionary {
   /**
    * Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1070,9 +1070,9 @@ export class Dictionary {
   /**
    * Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
    *
-   * @param {{ [propertyName: string]: string }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1098,7 +1098,7 @@ export class Dictionary {
    * Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
    * with each item encoded in base64
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1123,9 +1123,9 @@ export class Dictionary {
    * Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with
    * each elementencoded in base 64
    *
-   * @param {{ [propertyName: string]: Uint8Array }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1150,7 +1150,7 @@ export class Dictionary {
   /**
    * Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1175,7 +1175,7 @@ export class Dictionary {
    * Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
    * string", "2": "Lorem ipsum"}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1199,7 +1199,7 @@ export class Dictionary {
   /**
    * Get dictionary of complex type null value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1223,7 +1223,7 @@ export class Dictionary {
   /**
    * Get empty dictionary of complex type {}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1248,7 +1248,7 @@ export class Dictionary {
    * Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
    * "2": {"integer": 5, "string": "6"}}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1273,7 +1273,7 @@ export class Dictionary {
    * Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
    * "2": {"integer": 5, "string": "6"}}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1298,7 +1298,7 @@ export class Dictionary {
    * Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
    * "string": "4"}, "2": {"integer": 5, "string": "6"}}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1323,9 +1323,9 @@ export class Dictionary {
    * Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
    * {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}
    *
-   * @param {{ [propertyName: string]: Widget }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1350,7 +1350,7 @@ export class Dictionary {
   /**
    * Get a null array
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1374,7 +1374,7 @@ export class Dictionary {
   /**
    * Get an empty dictionary {}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1398,7 +1398,7 @@ export class Dictionary {
   /**
    * Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1422,7 +1422,7 @@ export class Dictionary {
   /**
    * Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1447,7 +1447,7 @@ export class Dictionary {
    * Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
    * "9"]}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1472,9 +1472,9 @@ export class Dictionary {
    * Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
    * "9"]}
    *
-   * @param {{ [propertyName: string]: string[] }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1499,7 +1499,7 @@ export class Dictionary {
   /**
    * Get an dictionaries of dictionaries with value null
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1523,7 +1523,7 @@ export class Dictionary {
   /**
    * Get an dictionaries of dictionaries of type <string, string> with value {}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1548,7 +1548,7 @@ export class Dictionary {
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
    * "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1573,7 +1573,7 @@ export class Dictionary {
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
    * "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1599,7 +1599,7 @@ export class Dictionary {
    * "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
    * "eight", "9": "nine"}}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -1625,9 +1625,9 @@ export class Dictionary {
    * "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
    * "eight", "9": "nine"}}
    *
-   * @param {{ [propertyName: string]: { [propertyName: string]: string } }} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

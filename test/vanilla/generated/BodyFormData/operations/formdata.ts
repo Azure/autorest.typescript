@@ -29,11 +29,11 @@ export class Formdata {
   /**
    * Upload file
    *
-   * @param {msRest.HttpRequestBody} fileContent File to upload.
+   * @param fileContent File to upload.
    *
-   * @param {string} fileName File name to upload. Name has to be spelled exactly as written here.
+   * @param fileName File name to upload. Name has to be spelled exactly as written here.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -59,9 +59,9 @@ export class Formdata {
   /**
    * Upload file
    *
-   * @param {msRest.HttpRequestBody} fileContent File to upload.
+   * @param fileContent File to upload.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

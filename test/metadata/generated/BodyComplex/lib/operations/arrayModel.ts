@@ -28,7 +28,7 @@ export class ArrayModel {
   /**
    * Get complex types with array property
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class ArrayModel {
   /**
    * Put complex types with array property
    *
-   * @param {ArrayModelPutValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class ArrayModel {
   /**
    * Get complex types with array property which is empty
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class ArrayModel {
   /**
    * Put complex types with array property which is empty
    *
-   * @param {ArrayModelPutEmptyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,7 +124,7 @@ export class ArrayModel {
   /**
    * Get complex types with array property while server doesn't provide a response payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

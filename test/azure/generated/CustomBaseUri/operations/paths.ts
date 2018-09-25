@@ -28,9 +28,9 @@ export class Paths {
   /**
    * Get a 200 to test a valid base uri
    *
-   * @param {string} accountName Account Name
+   * @param accountName Account Name
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

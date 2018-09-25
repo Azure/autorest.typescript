@@ -28,7 +28,7 @@ export class HttpServerFailure {
   /**
    * Return 501 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class HttpServerFailure {
   /**
    * Return 501 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class HttpServerFailure {
   /**
    * Return 505 status code - should be represented in the client as an error
    *
-   * @param {HttpServerFailurePost505OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class HttpServerFailure {
   /**
    * Return 505 status code - should be represented in the client as an error
    *
-   * @param {HttpServerFailureDelete505OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

@@ -30,7 +30,7 @@ export class Paging {
   /**
    * A paging operation that finishes on the first call without a nextlink
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -54,7 +54,7 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingGetMultiplePagesOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -78,7 +78,7 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink in odata format that has 10 pages
    *
-   * @param {PagingGetOdataMultiplePagesOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -102,10 +102,9 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingGetMultiplePagesWithOffsetOptions} pagingGetMultiplePagesWithOffsetOptions
-   * Additional parameters for the operation
+   * @param pagingGetMultiplePagesWithOffsetOptions Additional parameters for the operation
    *
-   * @param {PagingGetMultiplePagesWithOffsetOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -131,7 +130,7 @@ export class Paging {
    * A paging operation that fails on the first call with 500 and then retries and then get a
    * response including a nextLink that has 10 pages
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -156,7 +155,7 @@ export class Paging {
    * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
    * with 500. The client should retry and finish all 10 pages eventually.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -180,7 +179,7 @@ export class Paging {
   /**
    * A paging operation that receives a 400 on the first call
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -204,7 +203,7 @@ export class Paging {
   /**
    * A paging operation that receives a 400 on the second call
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -228,7 +227,7 @@ export class Paging {
   /**
    * A paging operation that receives an invalid nextLink
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -252,11 +251,11 @@ export class Paging {
   /**
    * A paging operation that doesn't return a full URL, just a fragment
    *
-   * @param {string} apiVersion Sets the api version to use.
+   * @param apiVersion Sets the api version to use.
    *
-   * @param {string} tenant Sets the tenant to use.
+   * @param tenant Sets the tenant to use.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -282,9 +281,9 @@ export class Paging {
   /**
    * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
    *
-   * @param {CustomParameterGroup} customParameterGroup Additional parameters for the operation
+   * @param customParameterGroup Additional parameters for the operation
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -310,7 +309,7 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingGetMultiplePagesLROOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -326,13 +325,13 @@ export class Paging {
   /**
    * A paging operation that doesn't return a full URL, just a fragment
    *
-   * @param {string} apiVersion Sets the api version to use.
+   * @param apiVersion Sets the api version to use.
    *
-   * @param {string} tenant Sets the tenant to use.
+   * @param tenant Sets the tenant to use.
    *
-   * @param {string} nextLink Next link for list operation.
+   * @param nextLink Next link for list operation.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -359,11 +358,11 @@ export class Paging {
   /**
    * A paging operation that doesn't return a full URL, just a fragment
    *
-   * @param {string} nextLink Next link for list operation.
+   * @param nextLink Next link for list operation.
    *
-   * @param {CustomParameterGroup} customParameterGroup Additional parameters for the operation
+   * @param customParameterGroup Additional parameters for the operation
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -389,7 +388,7 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingBeginGetMultiplePagesLROOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -409,9 +408,9 @@ export class Paging {
   /**
    * A paging operation that finishes on the first call without a nextlink
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -436,9 +435,9 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetMultiplePagesNextOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -463,9 +462,9 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink in odata format that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetOdataMultiplePagesNextOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -490,9 +489,9 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetMultiplePagesWithOffsetNextOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -518,9 +517,9 @@ export class Paging {
    * A paging operation that fails on the first call with 500 and then retries and then get a
    * response including a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -546,9 +545,9 @@ export class Paging {
    * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
    * with 500. The client should retry and finish all 10 pages eventually.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -573,9 +572,9 @@ export class Paging {
   /**
    * A paging operation that receives a 400 on the first call
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -600,9 +599,9 @@ export class Paging {
   /**
    * A paging operation that receives a 400 on the second call
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -627,9 +626,9 @@ export class Paging {
   /**
    * A paging operation that receives an invalid nextLink
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -655,9 +654,9 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetMultiplePagesLRONextOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -673,9 +672,9 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
+   * @param nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingBeginGetMultiplePagesLRONextOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

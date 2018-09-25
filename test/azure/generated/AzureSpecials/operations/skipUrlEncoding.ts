@@ -29,9 +29,9 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
+   * @param unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -56,9 +56,9 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
+   * @param unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -83,7 +83,7 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -107,9 +107,9 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
+   * @param q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -134,7 +134,7 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value null
    *
-   * @param {SkipUrlEncodingGetMethodQueryNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -158,9 +158,9 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
+   * @param q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -185,7 +185,7 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

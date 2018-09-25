@@ -34,7 +34,7 @@ export class LROsCustomHeader {
    * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderPutAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -54,7 +54,7 @@ export class LROsCustomHeader {
    * that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns
    * a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsCustomHeaderPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -73,7 +73,7 @@ export class LROsCustomHeader {
    * requests. Long running post request, service returns a 202 to the initial request, with
    * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsCustomHeaderPost202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -93,7 +93,7 @@ export class LROsCustomHeader {
    * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderPostAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -112,8 +112,7 @@ export class LROsCustomHeader {
    * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -136,8 +135,7 @@ export class LROsCustomHeader {
    * that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns
    * a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -159,7 +157,7 @@ export class LROsCustomHeader {
    * requests. Long running post request, service returns a 202 to the initial request, with
    * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsCustomHeaderBeginPost202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -182,8 +180,7 @@ export class LROsCustomHeader {
    * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

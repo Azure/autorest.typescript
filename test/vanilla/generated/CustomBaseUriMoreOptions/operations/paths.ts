@@ -29,13 +29,13 @@ export class Paths {
   /**
    * Get a 200 to test a valid base uri
    *
-   * @param {string} vault The vault name, e.g. https://myvault
+   * @param vault The vault name, e.g. https://myvault
    *
-   * @param {string} secret Secret value.
+   * @param secret Secret value.
    *
-   * @param {string} keyName The key name with value 'key1'.
+   * @param keyName The key name with value 'key1'.
    *
-   * @param {PathsGetEmptyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

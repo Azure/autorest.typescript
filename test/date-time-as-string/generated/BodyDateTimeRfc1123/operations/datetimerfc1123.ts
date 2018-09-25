@@ -28,7 +28,7 @@ export class Datetimerfc1123 {
   /**
    * Get null datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class Datetimerfc1123 {
   /**
    * Get invalid datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class Datetimerfc1123 {
   /**
    * Get overflow datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class Datetimerfc1123 {
   /**
    * Get underflow datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,9 +124,9 @@ export class Datetimerfc1123 {
   /**
    * Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT
    *
-   * @param {Date | string} datetimeBody
+   * @param datetimeBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -151,7 +151,7 @@ export class Datetimerfc1123 {
   /**
    * Get max datetime value fri, 31 dec 9999 23:59:59 gmt
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -175,7 +175,7 @@ export class Datetimerfc1123 {
   /**
    * Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -199,9 +199,9 @@ export class Datetimerfc1123 {
   /**
    * Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT
    *
-   * @param {Date | string} datetimeBody
+   * @param datetimeBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -226,7 +226,7 @@ export class Datetimerfc1123 {
   /**
    * Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

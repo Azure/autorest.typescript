@@ -28,7 +28,7 @@ export class HttpRedirects {
   /**
    * Return 300 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class HttpRedirects {
   /**
    * Return 300 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class HttpRedirects {
   /**
    * Return 301 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class HttpRedirects {
   /**
    * Return 301 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -125,7 +125,7 @@ export class HttpRedirects {
    * Put true Boolean value in request returns 301.  This request should not be automatically
    * redirected, but should return the received 301 to the caller for evaluation
    *
-   * @param {HttpRedirectsPut301OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -149,7 +149,7 @@ export class HttpRedirects {
   /**
    * Return 302 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -173,7 +173,7 @@ export class HttpRedirects {
   /**
    * Return 302 status code and redirect to /http/success/200
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -198,7 +198,7 @@ export class HttpRedirects {
    * Patch true Boolean value in request returns 302.  This request should not be automatically
    * redirected, but should return the received 302 to the caller for evaluation
    *
-   * @param {HttpRedirectsPatch302OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -223,7 +223,7 @@ export class HttpRedirects {
    * Post true Boolean value in request returns 303.  This request should be automatically redirected
    * usign a get, ultimately returning a 200 status code
    *
-   * @param {HttpRedirectsPost303OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -247,7 +247,7 @@ export class HttpRedirects {
   /**
    * Redirect with 307, resulting in a 200 success
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -271,7 +271,7 @@ export class HttpRedirects {
   /**
    * Redirect get with 307, resulting in a 200 success
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -295,7 +295,7 @@ export class HttpRedirects {
   /**
    * Put redirected with 307, resulting in a 200 after redirect
    *
-   * @param {HttpRedirectsPut307OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -319,7 +319,7 @@ export class HttpRedirects {
   /**
    * Patch redirected with 307, resulting in a 200 after redirect
    *
-   * @param {HttpRedirectsPatch307OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -343,7 +343,7 @@ export class HttpRedirects {
   /**
    * Post redirected with 307, resulting in a 200 after redirect
    *
-   * @param {HttpRedirectsPost307OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -367,7 +367,7 @@ export class HttpRedirects {
   /**
    * Delete redirected with 307, resulting in a 200 after redirect
    *
-   * @param {HttpRedirectsDelete307OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

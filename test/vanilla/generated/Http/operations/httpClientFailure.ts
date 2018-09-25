@@ -28,7 +28,7 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePut400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePatch400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,7 +124,7 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePost400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -148,7 +148,7 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailureDelete400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -172,7 +172,7 @@ export class HttpClientFailure {
   /**
    * Return 401 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -196,7 +196,7 @@ export class HttpClientFailure {
   /**
    * Return 402 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -220,7 +220,7 @@ export class HttpClientFailure {
   /**
    * Return 403 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -244,7 +244,7 @@ export class HttpClientFailure {
   /**
    * Return 404 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePut404OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -268,7 +268,7 @@ export class HttpClientFailure {
   /**
    * Return 405 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePatch405OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -292,7 +292,7 @@ export class HttpClientFailure {
   /**
    * Return 406 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePost406OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -316,7 +316,7 @@ export class HttpClientFailure {
   /**
    * Return 407 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailureDelete407OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -340,7 +340,7 @@ export class HttpClientFailure {
   /**
    * Return 409 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePut409OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -364,7 +364,7 @@ export class HttpClientFailure {
   /**
    * Return 410 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -388,7 +388,7 @@ export class HttpClientFailure {
   /**
    * Return 411 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -412,7 +412,7 @@ export class HttpClientFailure {
   /**
    * Return 412 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -436,7 +436,7 @@ export class HttpClientFailure {
   /**
    * Return 413 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePut413OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -460,7 +460,7 @@ export class HttpClientFailure {
   /**
    * Return 414 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePatch414OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -484,7 +484,7 @@ export class HttpClientFailure {
   /**
    * Return 415 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePost415OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -508,7 +508,7 @@ export class HttpClientFailure {
   /**
    * Return 416 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -532,7 +532,7 @@ export class HttpClientFailure {
   /**
    * Return 417 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailureDelete417OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -556,7 +556,7 @@ export class HttpClientFailure {
   /**
    * Return 429 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

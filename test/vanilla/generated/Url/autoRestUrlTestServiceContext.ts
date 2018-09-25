@@ -21,11 +21,11 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
   /**
    * Initializes a new instance of the AutoRestUrlTestServiceContext class.
    *
-   * @param {string} globalStringPath A string value 'globalItemStringPath' that appears in the path
+   * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    *
-   * @param {string} [baseUri] The base URI of the service.
+   * @param [baseUri] The base URI of the service.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(globalStringPath: string, baseUri?: string, options?: Models.AutoRestUrlTestServiceOptions) {
     if (globalStringPath === null || globalStringPath === undefined) {

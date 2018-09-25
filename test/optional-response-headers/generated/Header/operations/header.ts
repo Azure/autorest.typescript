@@ -29,9 +29,9 @@ export class Header {
   /**
    * Send a post request with header value "User-Agent": "overwrite"
    *
-   * @param {string} userAgent Send a post request with header value "User-Agent": "overwrite"
+   * @param userAgent Send a post request with header value "User-Agent": "overwrite"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -56,7 +56,7 @@ export class Header {
   /**
    * Get a response with header value "User-Agent": "overwrite"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -80,9 +80,9 @@ export class Header {
   /**
    * Send a post request with header value "Content-Type": "text/html"
    *
-   * @param {string} contentType Send a post request with header value "Content-Type": "text/html"
+   * @param contentType Send a post request with header value "Content-Type": "text/html"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -107,7 +107,7 @@ export class Header {
   /**
    * Get a response with header value "Content-Type": "text/html"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -132,12 +132,11 @@ export class Header {
    * Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
    * "negative", "value": -2
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {number} value Send a post request with header values 1 or -2
+   * @param value Send a post request with header values 1 or -2
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -163,10 +162,9 @@ export class Header {
   /**
    * Get a response with header value "value": 1 or -2
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -192,12 +190,11 @@ export class Header {
    * Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
    * "negative", "value": -2
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {number} value Send a post request with header values 105 or -2
+   * @param value Send a post request with header values 105 or -2
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -223,10 +220,9 @@ export class Header {
   /**
    * Get a response with header value "value": 105 or -2
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -252,12 +248,11 @@ export class Header {
    * Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
    * "negative", "value": -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {number} value Send a post request with header values 0.07 or -3.0
+   * @param value Send a post request with header values 0.07 or -3.0
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -283,10 +278,9 @@ export class Header {
   /**
    * Get a response with header value "value": 0.07 or -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -312,12 +306,11 @@ export class Header {
    * Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
    * "negative", "value": -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {number} value Send a post request with header values 7e120 or -3.0
+   * @param value Send a post request with header values 7e120 or -3.0
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -343,10 +336,9 @@ export class Header {
   /**
    * Get a response with header value "value": 7e120 or -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario": "positive" or
-   * "negative"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -372,11 +364,11 @@ export class Header {
    * Send a post request with header values "scenario": "true", "value": true or "scenario": "false",
    * "value": false
    *
-   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
+   * @param scenario Send a post request with header values "scenario": "true" or "false"
    *
-   * @param {boolean} value Send a post request with header values true or false
+   * @param value Send a post request with header values true or false
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -402,9 +394,9 @@ export class Header {
   /**
    * Get a response with header value "value": true or false
    *
-   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
+   * @param scenario Send a post request with header values "scenario": "true" or "false"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -430,10 +422,9 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
    * over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": ""
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    *
-   * @param {HeaderParamStringOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -458,10 +449,9 @@ export class Header {
   /**
    * Get a response with header values "The quick brown fox jumps over the lazy dog" or null or ""
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -487,11 +477,11 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario":
    * "min", "value": "0001-01-01"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {Date | string} value Send a post request with header values "2010-01-01" or "0001-01-01"
+   * @param value Send a post request with header values "2010-01-01" or "0001-01-01"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -517,9 +507,9 @@ export class Header {
   /**
    * Get a response with header values "2010-01-01" or "0001-01-01"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -545,12 +535,12 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
    * "scenario": "min", "value": "0001-01-01T00:00:00Z"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {Date | string} value Send a post request with header values "2010-01-01T12:34:56Z" or
+   * @param value Send a post request with header values "2010-01-01T12:34:56Z" or
    * "0001-01-01T00:00:00Z"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -576,9 +566,9 @@ export class Header {
   /**
    * Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -604,9 +594,9 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
    * GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {HeaderParamDatetimeRfc1123OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -632,9 +622,9 @@ export class Header {
    * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
    * GMT"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -659,11 +649,11 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
+   * @param scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {string} value Send a post request with header values "P123DT22H14M12.011S"
+   * @param value Send a post request with header values "P123DT22H14M12.011S"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -689,9 +679,9 @@ export class Header {
   /**
    * Get a response with header values "P123DT22H14M12.011S"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
+   * @param scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -716,11 +706,11 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
+   * @param scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {Uint8Array} value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
+   * @param value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -746,9 +736,9 @@ export class Header {
   /**
    * Get a response with header values "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid"
+   * @param scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -774,10 +764,9 @@ export class Header {
    * Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
    * "null", "value": null
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    *
-   * @param {HeaderParamEnumOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -802,10 +791,9 @@ export class Header {
   /**
    * Get a response with header values "GREY" or null
    *
-   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
-   * "empty"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -830,7 +818,7 @@ export class Header {
   /**
    * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

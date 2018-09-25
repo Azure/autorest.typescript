@@ -18,11 +18,11 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * Initializes a new instance of the AutoRestRenameParameterTestService class.
    *
-   * @param {string} noRetryPolicy A query parameter.
+   * @param noRetryPolicy A query parameter.
    *
-   * @param {string} [baseUri] The base URI of the service.
+   * @param [baseUri] The base URI of the service.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(noRetryPolicy: string, baseUri?: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {
     super(noRetryPolicy, baseUri, options);
@@ -32,8 +32,7 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with an optional query parameter
    *
-   * @param {AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -58,9 +57,9 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with a required query parameter
    *
-   * @param {string} timeout A query parameter.
+   * @param timeout A query parameter.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -86,7 +85,7 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with an optional client query parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -111,7 +110,7 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with a required client query parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

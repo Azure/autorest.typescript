@@ -30,9 +30,9 @@ export class Explicit {
    * Test explicitly required integer. Please put null and the client library should throw before the
    * request is sent.
    *
-   * @param {number} bodyParameter
+   * @param bodyParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -57,7 +57,7 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put null.
    *
-   * @param {ExplicitPostOptionalIntegerParameterOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -82,9 +82,9 @@ export class Explicit {
    * Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
    * client library should throw before the request is sent.
    *
-   * @param {number} value
+   * @param value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -109,7 +109,7 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalIntegerPropertyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -134,9 +134,9 @@ export class Explicit {
    * Test explicitly required integer. Please put a header 'headerParameter' => null and the client
    * library should throw before the request is sent.
    *
-   * @param {number} headerParameter
+   * @param headerParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -161,7 +161,7 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalIntegerHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -186,9 +186,9 @@ export class Explicit {
    * Test explicitly required string. Please put null and the client library should throw before the
    * request is sent.
    *
-   * @param {string} bodyParameter
+   * @param bodyParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -213,7 +213,7 @@ export class Explicit {
   /**
    * Test explicitly optional string. Please put null.
    *
-   * @param {ExplicitPostOptionalStringParameterOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -238,9 +238,9 @@ export class Explicit {
    * Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
    * client library should throw before the request is sent.
    *
-   * @param {string} value
+   * @param value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -265,7 +265,7 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalStringPropertyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -290,9 +290,9 @@ export class Explicit {
    * Test explicitly required string. Please put a header 'headerParameter' => null and the client
    * library should throw before the request is sent.
    *
-   * @param {string} headerParameter
+   * @param headerParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -317,7 +317,7 @@ export class Explicit {
   /**
    * Test explicitly optional string. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalStringHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -342,9 +342,9 @@ export class Explicit {
    * Test explicitly required complex object. Please put null and the client library should throw
    * before the request is sent.
    *
-   * @param {Product} bodyParameter
+   * @param bodyParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -369,7 +369,7 @@ export class Explicit {
   /**
    * Test explicitly optional complex object. Please put null.
    *
-   * @param {ExplicitPostOptionalClassParameterOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -394,9 +394,9 @@ export class Explicit {
    * Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
    * and the client library should throw before the request is sent.
    *
-   * @param {Product} value
+   * @param value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -421,7 +421,7 @@ export class Explicit {
   /**
    * Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalClassPropertyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -446,9 +446,9 @@ export class Explicit {
    * Test explicitly required array. Please put null and the client library should throw before the
    * request is sent.
    *
-   * @param {string[]} bodyParameter
+   * @param bodyParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -473,7 +473,7 @@ export class Explicit {
   /**
    * Test explicitly optional array. Please put null.
    *
-   * @param {ExplicitPostOptionalArrayParameterOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -498,9 +498,9 @@ export class Explicit {
    * Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
    * client library should throw before the request is sent.
    *
-   * @param {string[]} value
+   * @param value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -525,7 +525,7 @@ export class Explicit {
   /**
    * Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalArrayPropertyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -550,9 +550,9 @@ export class Explicit {
    * Test explicitly required array. Please put a header 'headerParameter' => null and the client
    * library should throw before the request is sent.
    *
-   * @param {string[]} headerParameter
+   * @param headerParameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -577,7 +577,7 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalArrayHeaderOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

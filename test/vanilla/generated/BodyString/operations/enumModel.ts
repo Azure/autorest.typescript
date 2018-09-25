@@ -28,7 +28,7 @@ export class EnumModel {
   /**
    * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,9 +52,9 @@ export class EnumModel {
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
    *
-   * @param {Colors} stringBody Possible values include: 'red color', 'green-color', 'blue_color'
+   * @param stringBody Possible values include: 'red color', 'green-color', 'blue_color'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -79,7 +79,7 @@ export class EnumModel {
   /**
    * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -103,9 +103,9 @@ export class EnumModel {
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
    *
-   * @param {Colors} enumStringBody Possible values include: 'red color', 'green-color', 'blue_color'
+   * @param enumStringBody Possible values include: 'red color', 'green-color', 'blue_color'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -130,7 +130,7 @@ export class EnumModel {
   /**
    * Get value 'green-color' from the constant.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -154,7 +154,7 @@ export class EnumModel {
   /**
    * Sends value 'green-color' from a constant
    *
-   * @param {EnumModelPutReferencedConstantOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

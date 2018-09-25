@@ -28,7 +28,7 @@ export class DateModel {
   /**
    * Get null date value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class DateModel {
   /**
    * Get invalid date value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class DateModel {
   /**
    * Get overflow date value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class DateModel {
   /**
    * Get underflow date value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,9 +124,9 @@ export class DateModel {
   /**
    * Put max date value 9999-12-31
    *
-   * @param {Date | string} dateBody
+   * @param dateBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -151,7 +151,7 @@ export class DateModel {
   /**
    * Get max date value 9999-12-31
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -175,9 +175,9 @@ export class DateModel {
   /**
    * Put min date value 0000-01-01
    *
-   * @param {Date | string} dateBody
+   * @param dateBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -202,7 +202,7 @@ export class DateModel {
   /**
    * Get min date value 0000-01-01
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

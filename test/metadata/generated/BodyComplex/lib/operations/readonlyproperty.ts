@@ -28,7 +28,7 @@ export class Readonlyproperty {
   /**
    * Get complex types that have readonly properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class Readonlyproperty {
   /**
    * Put complex types that have readonly properties
    *
-   * @param {ReadonlypropertyPutValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

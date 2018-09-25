@@ -29,7 +29,7 @@ export class Queries {
   /**
    * Get a null array of string using the multi-array format
    *
-   * @param {QueriesArrayStringMultiNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -53,7 +53,7 @@ export class Queries {
   /**
    * Get an empty array [] of string using the multi-array format
    *
-   * @param {QueriesArrayStringMultiEmptyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -78,7 +78,7 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * mult-array format
    *
-   * @param {QueriesArrayStringMultiValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

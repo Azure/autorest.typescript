@@ -28,7 +28,7 @@ export class Polymorphism {
   /**
    * Get complex types that are polymorphic
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class Polymorphism {
   /**
    * Put complex types that are polymorphic
    *
-   * @param {FishUnion} complexBody Please put a salmon that looks like this:
+   * @param complexBody Please put a salmon that looks like this:
    * {
    * 'fishtype':'Salmon',
    * 'location':'alaska',
@@ -86,7 +86,7 @@ export class Polymorphism {
    * ]
    * };
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -112,7 +112,7 @@ export class Polymorphism {
    * Get complex types that are polymorphic, but not at the root of the hierarchy; also have
    * additional properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -137,9 +137,9 @@ export class Polymorphism {
    * Put complex types that are polymorphic, but not at the root of the hierarchy; also have
    * additional properties
    *
-   * @param {SalmonUnion} complexBody
+   * @param complexBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -164,9 +164,9 @@ export class Polymorphism {
   /**
    * Put complex types that are polymorphic, omitting the discriminator
    *
-   * @param {SalmonUnion} complexBody
+   * @param complexBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -192,8 +192,8 @@ export class Polymorphism {
    * Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
    * request should not be allowed from the client
    *
-   * @param {FishUnion} complexBody Please attempt put a sawshark that looks like this, the client
-   * should not allow this data to be sent:
+   * @param complexBody Please attempt put a sawshark that looks like this, the client should not
+   * allow this data to be sent:
    * {
    * "fishtype": "sawshark",
    * "species": "snaggle toothed",
@@ -220,7 +220,7 @@ export class Polymorphism {
    * ]
    * }
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

@@ -29,7 +29,7 @@ export class BasicOperations {
   /**
    * Get complex type {id: 2, name: 'abc', color: 'YELLOW'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -53,9 +53,9 @@ export class BasicOperations {
   /**
    * Please put {id: 2, name: 'abc', color: 'Magenta'}
    *
-   * @param {Basic} complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
+   * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -80,7 +80,7 @@ export class BasicOperations {
   /**
    * Get a basic complex type that is invalid for the local strong type
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -104,7 +104,7 @@ export class BasicOperations {
   /**
    * Get a basic complex type that is empty
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -128,7 +128,7 @@ export class BasicOperations {
   /**
    * Get a basic complex type whose properties are null
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -152,7 +152,7 @@ export class BasicOperations {
   /**
    * Get a basic complex type while the server doesn't provide a response payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

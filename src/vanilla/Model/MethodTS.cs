@@ -437,7 +437,7 @@ namespace AutoRest.TypeScript.Model
 
                     foreach (Parameter parameter in LocalParametersWithOptions)
                     {
-                        comment.Parameter(ProvideParameterType(parameter.ModelType, true), parameter.Name, parameter.Documentation, !parameter.IsRequired);
+                        comment.Parameter(parameter.Name, parameter.Documentation, !parameter.IsRequired);
                     }
                 });
 
@@ -451,12 +451,12 @@ namespace AutoRest.TypeScript.Model
                 {
                     if (flavor == MethodFlavor.Callback)
                     {
-                        comment.Parameter("ServiceCallback", "callback", "The callback.");
+                        comment.Parameter("callback", "The callback.");
                         comment.Returns("ServiceCallback", "callback(err, result, request, operationRes)");
                     }
                     else if (flavor == MethodFlavor.Promise)
                     {
-                        comment.Parameter("ServiceClient", "optionalCallback", "The optional callback.", true);
+                        comment.Parameter("optionalCallback", "The optional callback.", true);
                         comment.Returns("ServiceCallback|Promise", "If a callback was passed as the last parameter, then it returns the callback, else returns a Promise.");
                         comment.Line("{Promise} A promise is returned.");
                         comment.Line($"                     @resolve {{{ReturnTypeTSString}}} - The deserialized result object.");

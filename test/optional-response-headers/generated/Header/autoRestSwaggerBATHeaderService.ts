@@ -21,9 +21,9 @@ class AutoRestSwaggerBATHeaderService extends AutoRestSwaggerBATHeaderServiceCon
   /**
    * Initializes a new instance of the AutoRestSwaggerBATHeaderService class.
    *
-   * @param {string} [baseUri] The base URI of the service.
+   * @param [baseUri] The base URI of the service.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);

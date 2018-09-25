@@ -76,10 +76,10 @@ namespace AutoRest.TypeScript.DSL
             }
         }
 
-        public void Parameter(string parameterType, string parameterName, string parameterDocumentation, bool isOptional = false)
+        public void Parameter(string parameterName, string parameterDocumentation, bool isOptional = false)
         {
             SetCurrentState(State.Parameters);
-            Line($"@param {{{parameterType}}} {(isOptional ? '[' + parameterName + ']' : parameterName)} {parameterDocumentation}");
+            Line($"@param {(isOptional ? '[' + parameterName + ']' : parameterName)} {parameterDocumentation}");
         }
 
         public void Returns(string returnType, string returnDocumentation)

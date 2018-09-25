@@ -29,7 +29,7 @@ export class Queries {
   /**
    * Get true Boolean value on path
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -53,7 +53,7 @@ export class Queries {
   /**
    * Get false Boolean value on path
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -77,7 +77,7 @@ export class Queries {
   /**
    * Get null Boolean value on query (query string should be absent)
    *
-   * @param {QueriesGetBooleanNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -101,7 +101,7 @@ export class Queries {
   /**
    * Get '1000000' integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -125,7 +125,7 @@ export class Queries {
   /**
    * Get '-1000000' integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -149,7 +149,7 @@ export class Queries {
   /**
    * Get null integer value (no query parameter)
    *
-   * @param {QueriesGetIntNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -173,7 +173,7 @@ export class Queries {
   /**
    * Get '10000000000' 64 bit integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -197,7 +197,7 @@ export class Queries {
   /**
    * Get '-10000000000' 64 bit integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -221,7 +221,7 @@ export class Queries {
   /**
    * Get 'null 64 bit integer value (no query param in uri)
    *
-   * @param {QueriesGetLongNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -245,7 +245,7 @@ export class Queries {
   /**
    * Get '1.034E+20' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -269,7 +269,7 @@ export class Queries {
   /**
    * Get '-1.034E-20' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -293,7 +293,7 @@ export class Queries {
   /**
    * Get null numeric value (no query parameter)
    *
-   * @param {QueriesFloatNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -317,7 +317,7 @@ export class Queries {
   /**
    * Get '9999999.999' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -341,7 +341,7 @@ export class Queries {
   /**
    * Get '-9999999.999' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -365,7 +365,7 @@ export class Queries {
   /**
    * Get null numeric value (no query parameter)
    *
-   * @param {QueriesDoubleNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -389,7 +389,7 @@ export class Queries {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -413,7 +413,7 @@ export class Queries {
   /**
    * Get 'begin!*'();:@ &=+$,/?#[]end
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -437,7 +437,7 @@ export class Queries {
   /**
    * Get ''
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -461,7 +461,7 @@ export class Queries {
   /**
    * Get null (no query parameter in url)
    *
-   * @param {QueriesStringNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -485,7 +485,7 @@ export class Queries {
   /**
    * Get using uri with query parameter 'green color'
    *
-   * @param {QueriesEnumValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -509,7 +509,7 @@ export class Queries {
   /**
    * Get null (no query parameter in url)
    *
-   * @param {QueriesEnumNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -533,7 +533,7 @@ export class Queries {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
-   * @param {QueriesByteMultiByteOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -557,7 +557,7 @@ export class Queries {
   /**
    * Get '' as byte array
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -581,7 +581,7 @@ export class Queries {
   /**
    * Get null as byte array (no query parameters in uri)
    *
-   * @param {QueriesByteNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -605,7 +605,7 @@ export class Queries {
   /**
    * Get '2012-01-01' as date
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -629,7 +629,7 @@ export class Queries {
   /**
    * Get null as date - this should result in no query parameters in uri
    *
-   * @param {QueriesDateNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -653,7 +653,7 @@ export class Queries {
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -677,7 +677,7 @@ export class Queries {
   /**
    * Get null as date-time, should result in no query parameters in uri
    *
-   * @param {QueriesDateTimeNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -702,7 +702,7 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * csv-array format
    *
-   * @param {QueriesArrayStringCsvValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -726,7 +726,7 @@ export class Queries {
   /**
    * Get a null array of string using the csv-array format
    *
-   * @param {QueriesArrayStringCsvNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -750,7 +750,7 @@ export class Queries {
   /**
    * Get an empty array [] of string using the csv-array format
    *
-   * @param {QueriesArrayStringCsvEmptyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -775,7 +775,7 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * ssv-array format
    *
-   * @param {QueriesArrayStringSsvValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -800,7 +800,7 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * tsv-array format
    *
-   * @param {QueriesArrayStringTsvValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -825,7 +825,7 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * pipes-array format
    *
-   * @param {QueriesArrayStringPipesValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *

@@ -28,7 +28,7 @@ export class IntModel {
   /**
    * Get null Int value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -52,7 +52,7 @@ export class IntModel {
   /**
    * Get invalid Int value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -76,7 +76,7 @@ export class IntModel {
   /**
    * Get overflow Int32 value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -100,7 +100,7 @@ export class IntModel {
   /**
    * Get underflow Int32 value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -124,7 +124,7 @@ export class IntModel {
   /**
    * Get overflow Int64 value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -148,7 +148,7 @@ export class IntModel {
   /**
    * Get underflow Int64 value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -172,9 +172,9 @@ export class IntModel {
   /**
    * Put max int32 value
    *
-   * @param {number} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -199,9 +199,9 @@ export class IntModel {
   /**
    * Put max int64 value
    *
-   * @param {number} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -226,9 +226,9 @@ export class IntModel {
   /**
    * Put min int32 value
    *
-   * @param {number} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -253,9 +253,9 @@ export class IntModel {
   /**
    * Put min int64 value
    *
-   * @param {number} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -280,7 +280,7 @@ export class IntModel {
   /**
    * Get datetime encoded as Unix time value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -304,9 +304,9 @@ export class IntModel {
   /**
    * Put datetime encoded as Unix time
    *
-   * @param {Date | string} intBody
+   * @param intBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -331,7 +331,7 @@ export class IntModel {
   /**
    * Get invalid Unix time value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -355,7 +355,7 @@ export class IntModel {
   /**
    * Get null Unix time value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
