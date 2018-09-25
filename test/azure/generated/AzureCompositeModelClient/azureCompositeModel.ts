@@ -34,8 +34,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
    * connect to Azure.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AzureCompositeModelOptions) {

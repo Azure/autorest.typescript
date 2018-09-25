@@ -19,8 +19,6 @@ export class AutoRestSwaggerBATArrayServiceContext extends msRest.ServiceClient 
   /**
    * Initializes a new instance of the AutoRestSwaggerBATArrayServiceContext class.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATArrayServiceOptions) {

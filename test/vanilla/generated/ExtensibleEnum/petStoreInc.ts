@@ -20,8 +20,6 @@ class PetStoreInc extends PetStoreIncContext {
   /**
    * Initializes a new instance of the PetStoreInc class.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(options?: Models.PetStoreIncOptions) {

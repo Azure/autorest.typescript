@@ -22,8 +22,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @param {string} apiVersion Required string following pattern \d{2}-\d{2}-\d{4}
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(subscriptionId: string, apiVersion: string, options?: Models.AutoRestValidationTestOptions) {

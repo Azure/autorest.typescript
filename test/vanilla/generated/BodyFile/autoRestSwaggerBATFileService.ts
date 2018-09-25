@@ -20,8 +20,6 @@ class AutoRestSwaggerBATFileService extends AutoRestSwaggerBATFileServiceContext
   /**
    * Initializes a new instance of the AutoRestSwaggerBATFileService class.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATFileServiceOptions) {

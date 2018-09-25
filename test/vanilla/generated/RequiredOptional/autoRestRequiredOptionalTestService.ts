@@ -25,8 +25,6 @@ class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestSe
    *
    * @param {string} requiredGlobalQuery number of items to skip
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(requiredGlobalPath: string, requiredGlobalQuery: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {

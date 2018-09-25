@@ -27,8 +27,6 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
    *
    * @param {string} subscriptionId Subscription Id.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {

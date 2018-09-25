@@ -23,8 +23,6 @@ export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceCli
    *
    * @param {string} noRetryPolicy A query parameter.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(noRetryPolicy: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {

@@ -20,8 +20,6 @@ class XMSErrorResponseExtensions extends XMSErrorResponseExtensionsContext {
   /**
    * Initializes a new instance of the XMSErrorResponseExtensions class.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(options?: Models.XMSErrorResponseExtensionsOptions) {

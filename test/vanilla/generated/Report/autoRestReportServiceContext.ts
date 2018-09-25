@@ -19,8 +19,6 @@ export class AutoRestReportServiceContext extends msRest.ServiceClient {
   /**
    * Initializes a new instance of the AutoRestReportServiceContext class.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(options?: Models.AutoRestReportServiceOptions) {

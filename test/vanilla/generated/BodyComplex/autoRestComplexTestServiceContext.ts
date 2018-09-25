@@ -20,8 +20,6 @@ export class AutoRestComplexTestServiceContext extends msRest.ServiceClient {
   /**
    * Initializes a new instance of the AutoRestComplexTestServiceContext class.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(options?: Models.AutoRestComplexTestServiceOptions) {

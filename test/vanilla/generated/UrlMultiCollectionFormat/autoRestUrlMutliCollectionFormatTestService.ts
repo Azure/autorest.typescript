@@ -20,8 +20,6 @@ class AutoRestUrlMutliCollectionFormatTestService extends AutoRestUrlMutliCollec
   /**
    * Initializes a new instance of the AutoRestUrlMutliCollectionFormatTestService class.
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(options?: Models.AutoRestUrlMutliCollectionFormatTestServiceOptions) {

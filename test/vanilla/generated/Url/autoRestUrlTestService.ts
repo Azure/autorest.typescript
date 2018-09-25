@@ -24,8 +24,6 @@ class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
    *
    * @param {string} globalStringPath A string value 'globalItemStringPath' that appears in the path
    *
-   * @param {string} [baseUri] The base URI of the service.
-   *
    * @param {object} [options] The parameter options
    */
   constructor(globalStringPath: string, options?: Models.AutoRestUrlTestServiceOptions) {
