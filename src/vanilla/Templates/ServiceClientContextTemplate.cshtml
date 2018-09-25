@@ -2,7 +2,6 @@
 @using AutoRest.Core.Model
 @using AutoRest.Core.Utilities
 @using AutoRest.TypeScript
-@using AutoRest.TypeScript.vanilla.Templates
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 /*
 @Header(" * ")
@@ -36,42 +35,7 @@ export class @(Model.ContextName) extends msRest.ServiceClient {
     }
 }
 @EmptyLine
-  /**
-   * @@class
-   * Initializes a new instance of the @(Model.ContextName) class.
-   * @@constructor
-   *
-@foreach (var param in requiredParameters)
-{
-<text>
-   * @@param {@param.ModelType.Name.ToCamelCase()} @param.Name - @param.Documentation
-   *
-</text>
-}
-@if (!Model.IsCustomBaseUri)
-{
-<text>
-   * @@param {string} [baseUri] - The base URI of the service.
-   *
-</text>
-}
-   * @@param {object} [options] - The parameter options
-   *
-   * @@param {Array} [options.filters] - Filters to be added to the request pipeline
-   *
-   * @@param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @@param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
-@foreach (var param in optionalParameters)
-{
-<text>
-   * @@param {@param.ModelType.Name.ToCamelCase()} [options.@param.Name] - @param.Documentation
-   *
-</text>
-}
-   */
+  @(Model.GenerateConstructorComment(Model.ContextName))
 @{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "ServiceClientOptions" ? "msRest.ServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
   constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
 @foreach (var param in requiredParameters)

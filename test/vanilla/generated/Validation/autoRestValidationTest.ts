@@ -16,21 +16,15 @@ import { AutoRestValidationTestContext } from "./autoRestValidationTestContext";
 
 class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
-   * @class
    * Initializes a new instance of the AutoRestValidationTest class.
-   * @constructor
    *
-   * @param {string} [baseUri] - The base URI of the service.
+   * @param {string} subscriptionId Subscription ID.
    *
-   * @param {object} [options] - The parameter options
+   * @param {string} apiVersion Required string following pattern \d{2}-\d{2}-\d{4}
    *
-   * @param {Array} [options.filters] - Filters to be added to the request pipeline
+   * @param {string} [baseUri] The base URI of the service.
    *
-   * @param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
+   * @param {object} [options] The parameter options
    */
   constructor(subscriptionId: string, apiVersion: string, options?: Models.AutoRestValidationTestOptions) {
     super(subscriptionId, apiVersion, options);

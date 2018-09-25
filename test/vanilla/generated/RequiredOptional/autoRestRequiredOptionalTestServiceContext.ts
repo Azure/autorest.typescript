@@ -20,27 +20,15 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
   optionalGlobalQuery?: number;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestRequiredOptionalTestServiceContext class.
-   * @constructor
    *
-   * @param {string} requiredGlobalPath - number of items to skip
+   * @param {string} requiredGlobalPath number of items to skip
    *
-   * @param {string} requiredGlobalQuery - number of items to skip
+   * @param {string} requiredGlobalQuery number of items to skip
    *
-   * @param {string} [baseUri] - The base URI of the service.
+   * @param {string} [baseUri] The base URI of the service.
    *
-   * @param {object} [options] - The parameter options
-   *
-   * @param {Array} [options.filters] - Filters to be added to the request pipeline
-   *
-   * @param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
-   * @param {number} [options.optionalGlobalQuery] - number of items to skip
-   *
+   * @param {object} [options] The parameter options
    */
   constructor(requiredGlobalPath: string, requiredGlobalQuery: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
     if (requiredGlobalPath === null || requiredGlobalPath === undefined) {
