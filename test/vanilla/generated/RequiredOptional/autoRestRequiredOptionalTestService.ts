@@ -19,23 +19,15 @@ class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestSe
   explicit: operations.Explicit;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestRequiredOptionalTestService class.
-   * @constructor
    *
-   * @param {string} [baseUri] - The base URI of the service.
+   * @param {string} requiredGlobalPath number of items to skip
    *
-   * @param {object} [options] - The parameter options
+   * @param {string} requiredGlobalQuery number of items to skip
    *
-   * @param {Array} [options.filters] - Filters to be added to the request pipeline
+   * @param {string} [baseUri] The base URI of the service.
    *
-   * @param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
-   * @param {number} [options.optionalGlobalQuery] - number of items to skip
-   *
+   * @param {object} [options] The parameter options
    */
   constructor(requiredGlobalPath: string, requiredGlobalQuery: string, baseUri?: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
     super(requiredGlobalPath, requiredGlobalQuery, baseUri, options);

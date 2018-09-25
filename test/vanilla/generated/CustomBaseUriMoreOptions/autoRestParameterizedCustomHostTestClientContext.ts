@@ -19,23 +19,11 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
   dnsSuffix?: string;
 
   /**
-   * @class
    * Initializes a new instance of the AutoRestParameterizedCustomHostTestClientContext class.
-   * @constructor
    *
-   * @param {string} subscriptionId - The subscription id with value 'test12'.
+   * @param {string} subscriptionId The subscription id with value 'test12'.
    *
-   * @param {object} [options] - The parameter options
-   *
-   * @param {Array} [options.filters] - Filters to be added to the request pipeline
-   *
-   * @param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
-   * @param {string} [options.dnsSuffix] - A string value that is used as a global part of the parameterized host. Default value 'host'.
-   *
+   * @param {object} [options] The parameter options
    */
   constructor(subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
     if (subscriptionId === null || subscriptionId === undefined) {

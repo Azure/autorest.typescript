@@ -617,5 +617,28 @@ namespace AutoRest.TypeScript.Model
             });
             return builder.ToString();
         }
+
+        public string GenerateConstructorComment(string className)
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.DocumentationComment(comment =>
+            {
+                comment.Description($"Initializes a new instance of the {className} class.");
+                
+                IEnumerable<Property> requiredParameters = Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
+                foreach (Property requiredParameter in requiredParameters)
+                {
+                    comment.Parameter(requiredParameter.ModelType.Name.ToCamelCase(), requiredParameter.Name, requiredParameter.Documentation);
+                }
+
+                if (!IsCustomBaseUri)
+                {
+                    comment.Parameter("string", "baseUri", "The base URI of the service.", isOptional: true);
+                }
+
+                comment.Parameter("object", "options", "The parameter options", isOptional: true);
+            });
+            return builder.ToString();
+        }
     }
 }
