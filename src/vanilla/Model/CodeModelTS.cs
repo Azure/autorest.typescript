@@ -159,7 +159,10 @@ namespace AutoRest.TypeScript.Model
         }
 
         public IEnumerable<CompositeTypeTS> OrderedMapperTemplateModels =>
-            OrderedModelTemplateModels.Where(m => m.BaseModelType?.Name != "RequestOptionsBase" && m.BaseModelType?.Name != "ServiceClientOptions");
+            OrderedModelTemplateModels.Where(m =>
+                m.BaseModelType?.Name != "RequestOptionsBase" &&
+                m.BaseModelType?.Name != "ServiceClientOptions" &&
+                m.BaseModelType?.Name != "AzureServiceClientOptions");
 
         public string HomePageUrl
         {

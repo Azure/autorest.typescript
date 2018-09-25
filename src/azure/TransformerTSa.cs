@@ -106,7 +106,7 @@ namespace AutoRest.TypeScript.Azure
             var optionalProperitesOnClient = cm.Properties.Where(
                 p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue))
                 && !p.IsConstant && !predefinedOptionalProperties.Contains(p.Name));
-            if (optionalProperitesOnClient.Count() > 0)
+            if (optionalProperitesOnClient.Count() > 0 || !cm.IsCustomBaseUri)
             {
                 string modelTypeName = cm.Name + "Options";
                 var modelType = new CompositeTypeTS(modelTypeName);
@@ -114,6 +114,14 @@ namespace AutoRest.TypeScript.Azure
                 // We could end up having a property that is required but has a default value based on the above condition. If so then make it optional.
                 optionalProperitesOnClient.Where(p => p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)).ForEach(prop => prop.IsRequired = false);
                 modelType.AddRange(optionalProperitesOnClient);
+                if (!cm.IsCustomBaseUri)
+                {
+                    var prop = New<PropertyTS>();
+                    prop.Name = "baseUri";
+                    prop.ModelType = new PrimaryTypeTS(KnownPrimaryType.String);
+                    modelType.Add(prop);
+                }
+
                 var modelTypeFound = cm.ModelTypes.FirstOrDefault(m => m.Name.EqualsIgnoreCase(modelTypeName));
                 if (modelTypeFound != null)
                 {
