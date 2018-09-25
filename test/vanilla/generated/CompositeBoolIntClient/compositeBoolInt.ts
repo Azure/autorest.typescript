@@ -8,7 +8,6 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -36,8 +35,8 @@ class CompositeBoolInt extends CompositeBoolIntContext {
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.CompositeBoolIntOptions) {
+    super(options);
     this.bool = new operations.Bool(this);
     this.intModel = new operations.IntModel(this);
   }

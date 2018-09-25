@@ -39,7 +39,7 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
    * @param {string} [options.globalStringQuery] - should contain value null
    *
    */
-  constructor(globalStringPath: string, baseUri?: string, options?: Models.AutoRestUrlTestServiceOptions) {
+  constructor(globalStringPath: string, options?: Models.AutoRestUrlTestServiceOptions) {
     if (globalStringPath === null || globalStringPath === undefined) {
       throw new Error('\'globalStringPath\' cannot be null.');
     }
@@ -50,10 +50,7 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
 
     super(undefined, options);
 
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
+    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
     this.globalStringPath = globalStringPath;
 

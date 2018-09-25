@@ -32,3 +32,17 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
+
+export const AutoRestRFC1123DateTimeTestServiceOptions: msRest.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AutoRestRFC1123DateTimeTestServiceOptions",
+    modelProperties: {
+      baseUri: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};

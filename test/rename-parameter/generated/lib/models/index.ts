@@ -37,6 +37,10 @@ export interface AutoRestRenameParameterTestServiceOptions extends ServiceClient
    * @member {string} [withCredentialsProperty] A query parameter.
    */
   withCredentialsProperty?: string;
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

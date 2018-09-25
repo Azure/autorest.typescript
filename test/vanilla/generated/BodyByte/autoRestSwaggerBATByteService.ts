@@ -8,7 +8,6 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -35,8 +34,8 @@ class AutoRestSwaggerBATByteService extends AutoRestSwaggerBATByteServiceContext
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.AutoRestSwaggerBATByteServiceOptions) {
+    super(options);
     this.byteModel = new operations.ByteModel(this);
   }
 }

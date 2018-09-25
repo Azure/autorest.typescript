@@ -57,3 +57,17 @@ export const RefColorConstant: msRest.CompositeMapper = {
     }
   }
 };
+
+export const AutoRestSwaggerBATServiceOptions: msRest.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AutoRestSwaggerBATServiceOptions",
+    modelProperties: {
+      baseUri: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};

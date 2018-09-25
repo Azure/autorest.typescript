@@ -8,7 +8,6 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -36,8 +35,8 @@ class AutoRestSwaggerBATService extends AutoRestSwaggerBATServiceContext {
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.AutoRestSwaggerBATServiceOptions) {
+    super(options);
     this.string = new operations.String(this);
     this.enumModel = new operations.EnumModel(this);
   }

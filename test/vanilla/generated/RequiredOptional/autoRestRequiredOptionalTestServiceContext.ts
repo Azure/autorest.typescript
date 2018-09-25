@@ -42,7 +42,7 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
    * @param {number} [options.optionalGlobalQuery] - number of items to skip
    *
    */
-  constructor(requiredGlobalPath: string, requiredGlobalQuery: string, baseUri?: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
+  constructor(requiredGlobalPath: string, requiredGlobalQuery: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
     if (requiredGlobalPath === null || requiredGlobalPath === undefined) {
       throw new Error('\'requiredGlobalPath\' cannot be null.');
     }
@@ -56,10 +56,7 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
 
     super(undefined, options);
 
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
+    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
     this.requiredGlobalPath = requiredGlobalPath;
     this.requiredGlobalQuery = requiredGlobalQuery;

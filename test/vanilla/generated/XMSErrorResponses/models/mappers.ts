@@ -206,6 +206,20 @@ export const PetHungryOrThirstyError: msRest.CompositeMapper = {
   }
 };
 
+export const XMSErrorResponseExtensionsOptions: msRest.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "XMSErrorResponseExtensionsOptions",
+    modelProperties: {
+      baseUri: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const discriminators = {
   'BaseError.NotFoundErrorBase' : NotFoundErrorBase,
   'BaseError.InvalidResourceLink' : LinkNotFound,

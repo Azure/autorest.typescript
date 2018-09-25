@@ -32,3 +32,17 @@ export const AvailabilitySetUpdateParameters: msRest.CompositeMapper = {
     }
   }
 };
+
+export const AutoRestParameterFlatteningOptions: msRest.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AutoRestParameterFlatteningOptions",
+    modelProperties: {
+      baseUri: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};

@@ -43,6 +43,11 @@ export const AutoRestRenameParameterTestServiceOptions: msRest.CompositeMapper =
         type: {
           name: "String"
         }
+      },
+      baseUri: {
+        type: {
+          name: "String"
+        }
       }
     }
   }

@@ -42,8 +42,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param {boolean} [options.generateClientRequestId] - Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
    *
    */
-  constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    super(credentials, baseUri, options);
+  constructor(credentials: msRest.ServiceClientCredentials, options?: msRestAzure.AzureServiceClientOptions) {
+    super(credentials, options);
   }
   // methods on the client.
 

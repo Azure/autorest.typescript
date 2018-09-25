@@ -32,8 +32,8 @@ class ComplexModelClient extends ComplexModelClientContext {
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.ComplexModelClientOptions) {
+    super(options);
   }
   // methods on the client.
 

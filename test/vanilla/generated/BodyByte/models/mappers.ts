@@ -32,3 +32,17 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
+
+export const AutoRestSwaggerBATByteServiceOptions: msRest.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AutoRestSwaggerBATByteServiceOptions",
+    modelProperties: {
+      baseUri: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};

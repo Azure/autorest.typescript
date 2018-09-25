@@ -685,6 +685,20 @@ export const MyDerivedType: msRest.CompositeMapper = {
   }
 };
 
+export const AutoRestComplexTestServiceOptions: msRest.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AutoRestComplexTestServiceOptions",
+    modelProperties: {
+      baseUri: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const discriminators = {
   'Fish' : Fish,
   'Fish.salmon' : Salmon,

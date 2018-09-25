@@ -210,6 +210,11 @@ export const AutoRestRequiredOptionalTestServiceOptions: msRest.CompositeMapper 
         type: {
           name: "Number"
         }
+      },
+      baseUri: {
+        type: {
+          name: "String"
+        }
       }
     }
   }

@@ -8,7 +8,6 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -35,8 +34,8 @@ class AutoRestIntegerTestService extends AutoRestIntegerTestServiceContext {
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.AutoRestIntegerTestServiceOptions) {
+    super(options);
     this.intModel = new operations.IntModel(this);
   }
 }

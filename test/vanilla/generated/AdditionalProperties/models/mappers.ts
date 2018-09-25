@@ -249,3 +249,17 @@ export const PetAPInPropertiesWithAPString: msRest.CompositeMapper = {
     }
   }
 };
+
+export const AdditionalPropertiesClientOptions: msRest.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AdditionalPropertiesClientOptions",
+    modelProperties: {
+      baseUri: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};

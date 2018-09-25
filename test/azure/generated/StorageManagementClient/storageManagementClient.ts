@@ -48,8 +48,8 @@ class StorageManagementClient extends StorageManagementClientContext {
    * @param {boolean} [options.generateClientRequestId] - Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
    *
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    super(credentials, subscriptionId, baseUri, options);
+  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: msRestAzure.AzureServiceClientOptions) {
+    super(credentials, subscriptionId, options);
     this.storageAccounts = new operations.StorageAccounts(this);
     this.usage = new operations.UsageOperations(this);
   }

@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "./models";
 
 const packageName = "";
 const packageVersion = "";
@@ -38,7 +39,7 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(subscriptionId: string, apiVersion: string, baseUri?: string, options?: msRest.ServiceClientOptions) {
+  constructor(subscriptionId: string, apiVersion: string, options?: Models.AutoRestValidationTestOptions) {
     if (subscriptionId === null || subscriptionId === undefined) {
       throw new Error('\'subscriptionId\' cannot be null.');
     }
@@ -52,10 +53,7 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
 
     super(undefined, options);
 
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
+    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
     this.subscriptionId = subscriptionId;
     this.apiVersion = apiVersion;

@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "./models";
 
 const packageName = "";
 const packageVersion = "";
@@ -32,7 +33,7 @@ export class XMSErrorResponseExtensionsContext extends msRest.ServiceClient {
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
+  constructor(options?: Models.XMSErrorResponseExtensionsOptions) {
 
     if (!options) {
       options = {};
@@ -40,10 +41,7 @@ export class XMSErrorResponseExtensionsContext extends msRest.ServiceClient {
 
     super(undefined, options);
 
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost";
-    }
+    this.baseUri = options.baseUri || this.baseUri || "http://localhost";
     this.requestContentType = "application/json; charset=utf-8";
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);

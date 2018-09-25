@@ -32,8 +32,8 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(subscriptionId: string, apiVersion: string, baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(subscriptionId, apiVersion, baseUri, options);
+  constructor(subscriptionId: string, apiVersion: string, options?: Models.AutoRestValidationTestOptions) {
+    super(subscriptionId, apiVersion, options);
   }
   // methods on the client.
 

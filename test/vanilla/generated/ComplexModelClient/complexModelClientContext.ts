@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "./models";
 
 const packageName = "";
 const packageVersion = "";
@@ -34,7 +35,7 @@ export class ComplexModelClientContext extends msRest.ServiceClient {
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
+  constructor(options?: Models.ComplexModelClientOptions) {
 
     if (!options) {
       options = {};
@@ -44,10 +45,7 @@ export class ComplexModelClientContext extends msRest.ServiceClient {
 
     this.subscriptionId = '123456';
     this.apiVersion = '2014-04-01-preview';
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
+    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);

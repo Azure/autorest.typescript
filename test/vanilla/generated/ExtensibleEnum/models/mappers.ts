@@ -40,3 +40,17 @@ export const Pet: msRest.CompositeMapper = {
     }
   }
 };
+
+export const PetStoreIncOptions: msRest.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PetStoreIncOptions",
+    modelProperties: {
+      baseUri: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};

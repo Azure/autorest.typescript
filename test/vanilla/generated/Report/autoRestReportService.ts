@@ -32,8 +32,8 @@ class AutoRestReportService extends AutoRestReportServiceContext {
    * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
    *
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.AutoRestReportServiceOptions) {
+    super(options);
   }
   // methods on the client.
 

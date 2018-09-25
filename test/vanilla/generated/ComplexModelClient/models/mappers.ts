@@ -171,3 +171,17 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
+
+export const ComplexModelClientOptions: msRest.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ComplexModelClientOptions",
+    modelProperties: {
+      baseUri: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
