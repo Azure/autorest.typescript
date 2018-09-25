@@ -41,16 +41,6 @@ namespace AutoRest.TypeScript.Azure.Model
             return $"begin{method.Name.ToPascalCase()}";
         }
 
-        public string DeserializeResponse(IModelType type)
-        {
-            TSBuilder builder = new TSBuilder();
-            using (TSBlock block = new TSBlock(builder))
-            {
-                DeserializeResponse(block, type);
-            }
-            return builder.ToString();
-        }
-
         public override string Generate(string emptyLine)
         {
             string result;
