@@ -333,10 +333,9 @@ namespace AutoRest.TypeScript
 
         public virtual void CreateModelTypeForOptionalClientProperties(CodeModelTS cm)
         {
-            List<string> predefinedOptionalProperties = new List<string>() { "requestOptions", "filters", "noRetryPolicy" };
             var optionalPropertiesOnClient = cm.Properties.Where(
                 p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue))
-                && !p.IsConstant && !predefinedOptionalProperties.Contains(p.Name));
+                && !p.IsConstant);
             if (optionalPropertiesOnClient.Count() > 0)
             {
                 string modelTypeName = cm.Name + "Options";
