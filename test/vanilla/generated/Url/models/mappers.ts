@@ -32,23 +32,3 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
-
-export const AutoRestUrlTestServiceOptions: msRest.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AutoRestUrlTestServiceOptions",
-    modelProperties: {
-      globalStringQuery: {
-        serializedName: "globalStringQuery",
-        type: {
-          name: "String"
-        }
-      },
-      baseUri: {
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};

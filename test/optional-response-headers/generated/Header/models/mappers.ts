@@ -33,20 +33,6 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const AutoRestSwaggerBATHeaderServiceOptions: msRest.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AutoRestSwaggerBATHeaderServiceOptions",
-    modelProperties: {
-      baseUri: {
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const HeaderResponseExistingKeyHeaders: msRest.CompositeMapper = {
   serializedName: "header-responseexistingkey-headers",
   type: {

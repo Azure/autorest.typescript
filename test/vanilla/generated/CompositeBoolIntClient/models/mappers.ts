@@ -32,17 +32,3 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
-
-export const CompositeBoolIntOptions: msRest.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CompositeBoolIntOptions",
-    modelProperties: {
-      baseUri: {
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};

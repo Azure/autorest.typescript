@@ -1172,22 +1172,6 @@ export const RootWithRefAndMeta: msRest.CompositeMapper = {
   }
 };
 
-export const AutoRestSwaggerBATXMLServiceOptions: msRest.CompositeMapper = {
-  xmlName: "AutoRestSwaggerBATXMLServiceOptions",
-  type: {
-    name: "Composite",
-    className: "AutoRestSwaggerBATXMLServiceOptions",
-    modelProperties: {
-      baseUri: {
-        xmlName: "baseUri",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const XmlGetHeadersHeaders: msRest.CompositeMapper = {
   serializedName: "xml-getheaders-headers",
   type: {

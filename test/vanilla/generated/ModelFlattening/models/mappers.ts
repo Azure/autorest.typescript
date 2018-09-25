@@ -316,17 +316,3 @@ export const FlattenParameterGroup: msRest.CompositeMapper = {
     }
   }
 };
-
-export const AutoRestResourceFlatteningTestServiceOptions: msRest.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AutoRestResourceFlatteningTestServiceOptions",
-    modelProperties: {
-      baseUri: {
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};

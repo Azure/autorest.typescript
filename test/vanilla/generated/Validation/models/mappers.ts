@@ -182,17 +182,3 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
-
-export const AutoRestValidationTestOptions: msRest.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AutoRestValidationTestOptions",
-    modelProperties: {
-      baseUri: {
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};

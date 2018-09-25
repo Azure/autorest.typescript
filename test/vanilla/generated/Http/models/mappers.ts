@@ -98,20 +98,6 @@ export const D: msRest.CompositeMapper = {
   }
 };
 
-export const AutoRestHttpInfrastructureTestServiceOptions: msRest.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AutoRestHttpInfrastructureTestServiceOptions",
-    modelProperties: {
-      baseUri: {
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const HttpRedirectsHead300Headers: msRest.CompositeMapper = {
   serializedName: "httpredirects-head300-headers",
   type: {
