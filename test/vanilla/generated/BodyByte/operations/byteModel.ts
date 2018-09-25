@@ -31,10 +31,6 @@ export class ByteModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.ByteModelGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNullResponse>;
@@ -55,10 +51,6 @@ export class ByteModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getEmpty(): Promise<Models.ByteModelGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetEmptyResponse>;
@@ -79,10 +71,6 @@ export class ByteModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNonAscii(): Promise<Models.ByteModelGetNonAsciiResponse>;
   getNonAscii(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNonAsciiResponse>;
@@ -105,10 +93,6 @@ export class ByteModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putNonAscii(byteBody: Uint8Array): Promise<msRest.RestResponse>;
   putNonAscii(byteBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -130,10 +114,6 @@ export class ByteModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalid(): Promise<Models.ByteModelGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetInvalidResponse>;

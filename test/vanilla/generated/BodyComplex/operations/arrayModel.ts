@@ -31,10 +31,6 @@ export class ArrayModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getValid(): Promise<Models.ArrayModelGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetValidResponse>;
@@ -55,10 +51,6 @@ export class ArrayModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putValid(): Promise<msRest.RestResponse>;
   putValid(options: Models.ArrayModelPutValidOptionalParams): Promise<msRest.RestResponse>;
@@ -79,10 +71,6 @@ export class ArrayModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getEmpty(): Promise<Models.ArrayModelGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse>;
@@ -103,10 +91,6 @@ export class ArrayModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putEmpty(): Promise<msRest.RestResponse>;
   putEmpty(options: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.RestResponse>;
@@ -127,10 +111,6 @@ export class ArrayModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNotProvided(): Promise<Models.ArrayModelGetNotProvidedResponse>;
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNotProvidedResponse>;

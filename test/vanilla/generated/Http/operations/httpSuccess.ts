@@ -31,10 +31,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   head200(): Promise<msRest.RestResponse>;
   head200(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -55,10 +51,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200(): Promise<Models.HttpSuccessGet200Response>;
   get200(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessGet200Response>;
@@ -79,10 +71,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   put200(): Promise<msRest.RestResponse>;
   put200(options: Models.HttpSuccessPut200OptionalParams): Promise<msRest.RestResponse>;
@@ -103,10 +91,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   patch200(): Promise<msRest.RestResponse>;
   patch200(options: Models.HttpSuccessPatch200OptionalParams): Promise<msRest.RestResponse>;
@@ -127,10 +111,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   post200(): Promise<msRest.RestResponse>;
   post200(options: Models.HttpSuccessPost200OptionalParams): Promise<msRest.RestResponse>;
@@ -151,10 +131,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   delete200(): Promise<msRest.RestResponse>;
   delete200(options: Models.HttpSuccessDelete200OptionalParams): Promise<msRest.RestResponse>;
@@ -175,10 +151,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   put201(): Promise<msRest.RestResponse>;
   put201(options: Models.HttpSuccessPut201OptionalParams): Promise<msRest.RestResponse>;
@@ -199,10 +171,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   post201(): Promise<msRest.RestResponse>;
   post201(options: Models.HttpSuccessPost201OptionalParams): Promise<msRest.RestResponse>;
@@ -223,10 +191,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   put202(): Promise<msRest.RestResponse>;
   put202(options: Models.HttpSuccessPut202OptionalParams): Promise<msRest.RestResponse>;
@@ -247,10 +211,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   patch202(): Promise<msRest.RestResponse>;
   patch202(options: Models.HttpSuccessPatch202OptionalParams): Promise<msRest.RestResponse>;
@@ -271,10 +231,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   post202(): Promise<msRest.RestResponse>;
   post202(options: Models.HttpSuccessPost202OptionalParams): Promise<msRest.RestResponse>;
@@ -295,10 +251,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   delete202(): Promise<msRest.RestResponse>;
   delete202(options: Models.HttpSuccessDelete202OptionalParams): Promise<msRest.RestResponse>;
@@ -319,10 +271,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   head204(): Promise<msRest.RestResponse>;
   head204(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -343,10 +291,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   put204(): Promise<msRest.RestResponse>;
   put204(options: Models.HttpSuccessPut204OptionalParams): Promise<msRest.RestResponse>;
@@ -367,10 +311,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   patch204(): Promise<msRest.RestResponse>;
   patch204(options: Models.HttpSuccessPatch204OptionalParams): Promise<msRest.RestResponse>;
@@ -391,10 +331,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   post204(): Promise<msRest.RestResponse>;
   post204(options: Models.HttpSuccessPost204OptionalParams): Promise<msRest.RestResponse>;
@@ -415,10 +351,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   delete204(): Promise<msRest.RestResponse>;
   delete204(options: Models.HttpSuccessDelete204OptionalParams): Promise<msRest.RestResponse>;
@@ -439,10 +371,6 @@ export class HttpSuccess {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   head404(): Promise<msRest.RestResponse>;
   head404(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

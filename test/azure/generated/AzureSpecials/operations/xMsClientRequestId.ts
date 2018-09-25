@@ -32,10 +32,6 @@ export class XMsClientRequestId {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get(): Promise<msRest.RestResponse>;
   get(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -60,10 +56,6 @@ export class XMsClientRequestId {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramGet(xMsClientRequestId: string): Promise<msRest.RestResponse>;
   paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

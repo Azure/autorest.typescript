@@ -32,10 +32,6 @@ export class Readonlyproperty {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getValid(): Promise<Models.ReadonlypropertyGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.ReadonlypropertyGetValidResponse>;
@@ -56,10 +52,6 @@ export class Readonlyproperty {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putValid(): Promise<msRest.RestResponse>;
   putValid(options: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.RestResponse>;

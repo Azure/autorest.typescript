@@ -36,10 +36,6 @@ export class Formdata {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   uploadFile(fileContent: msRest.HttpRequestBody, fileName: string): Promise<Models.FormdataUploadFileResponse>;
   uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, options: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileResponse>;
@@ -64,10 +60,6 @@ export class Formdata {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   uploadFileViaBody(fileContent: msRest.HttpRequestBody): Promise<Models.FormdataUploadFileViaBodyResponse>;
   uploadFileViaBody(fileContent: msRest.HttpRequestBody, options: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileViaBodyResponse>;

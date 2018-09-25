@@ -29,10 +29,6 @@ export class Paths {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getEmpty(accountName: string): Promise<msRest.RestResponse>;
   getEmpty(accountName: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

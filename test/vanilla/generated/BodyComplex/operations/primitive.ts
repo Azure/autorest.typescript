@@ -31,10 +31,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInt(): Promise<Models.PrimitiveGetIntResponse>;
   getInt(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetIntResponse>;
@@ -57,10 +53,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putInt(complexBody: Models.IntWrapper): Promise<msRest.RestResponse>;
   putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -82,10 +74,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getLong(): Promise<Models.PrimitiveGetLongResponse>;
   getLong(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetLongResponse>;
@@ -108,10 +96,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putLong(complexBody: Models.LongWrapper): Promise<msRest.RestResponse>;
   putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -133,10 +117,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getFloat(): Promise<Models.PrimitiveGetFloatResponse>;
   getFloat(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetFloatResponse>;
@@ -159,10 +139,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putFloat(complexBody: Models.FloatWrapper): Promise<msRest.RestResponse>;
   putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -184,10 +160,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDouble(): Promise<Models.PrimitiveGetDoubleResponse>;
   getDouble(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDoubleResponse>;
@@ -211,10 +183,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDouble(complexBody: Models.DoubleWrapper): Promise<msRest.RestResponse>;
   putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -236,10 +204,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBool(): Promise<Models.PrimitiveGetBoolResponse>;
   getBool(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetBoolResponse>;
@@ -262,10 +226,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBool(complexBody: Models.BooleanWrapper): Promise<msRest.RestResponse>;
   putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -287,10 +247,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getString(): Promise<Models.PrimitiveGetStringResponse>;
   getString(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetStringResponse>;
@@ -313,10 +269,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putString(complexBody: Models.StringWrapper): Promise<msRest.RestResponse>;
   putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -338,10 +290,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDate(): Promise<Models.PrimitiveGetDateResponse>;
   getDate(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateResponse>;
@@ -364,10 +312,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDate(complexBody: Models.DateWrapper): Promise<msRest.RestResponse>;
   putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -389,10 +333,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDateTime(): Promise<Models.PrimitiveGetDateTimeResponse>;
   getDateTime(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeResponse>;
@@ -415,10 +355,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDateTime(complexBody: Models.DatetimeWrapper): Promise<msRest.RestResponse>;
   putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -440,10 +376,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDateTimeRfc1123(): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
   getDateTimeRfc1123(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
@@ -467,10 +399,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper): Promise<msRest.RestResponse>;
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -492,10 +420,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDuration(): Promise<Models.PrimitiveGetDurationResponse>;
   getDuration(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDurationResponse>;
@@ -516,10 +440,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDuration(): Promise<msRest.RestResponse>;
   putDuration(options: Models.PrimitivePutDurationOptionalParams): Promise<msRest.RestResponse>;
@@ -540,10 +460,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getByte(): Promise<Models.PrimitiveGetByteResponse>;
   getByte(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetByteResponse>;
@@ -564,10 +480,6 @@ export class Primitive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putByte(): Promise<msRest.RestResponse>;
   putByte(options: Models.PrimitivePutByteOptionalParams): Promise<msRest.RestResponse>;

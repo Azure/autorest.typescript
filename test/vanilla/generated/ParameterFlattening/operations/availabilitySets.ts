@@ -37,10 +37,6 @@ export class AvailabilitySets {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

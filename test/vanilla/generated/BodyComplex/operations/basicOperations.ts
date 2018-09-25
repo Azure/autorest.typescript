@@ -32,10 +32,6 @@ export class BasicOperations {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getValid(): Promise<Models.BasicGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.BasicGetValidResponse>;
@@ -58,10 +54,6 @@ export class BasicOperations {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putValid(complexBody: Models.Basic): Promise<msRest.RestResponse>;
   putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -83,10 +75,6 @@ export class BasicOperations {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalid(): Promise<Models.BasicGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.BasicGetInvalidResponse>;
@@ -107,10 +95,6 @@ export class BasicOperations {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getEmpty(): Promise<Models.BasicGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.BasicGetEmptyResponse>;
@@ -131,10 +115,6 @@ export class BasicOperations {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.BasicGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.BasicGetNullResponse>;
@@ -155,10 +135,6 @@ export class BasicOperations {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNotProvided(): Promise<Models.BasicGetNotProvidedResponse>;
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.BasicGetNotProvidedResponse>;

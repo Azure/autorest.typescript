@@ -38,10 +38,6 @@ export class PathItems {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getAllWithValues(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
   getAllWithValues(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.RestResponse>;
@@ -70,10 +66,6 @@ export class PathItems {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.RestResponse>;
@@ -102,10 +94,6 @@ export class PathItems {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.RestResponse>;
@@ -134,10 +122,6 @@ export class PathItems {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.RestResponse>;

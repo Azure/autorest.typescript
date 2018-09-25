@@ -31,10 +31,6 @@ export class Datetimerfc1123 {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.Datetimerfc1123GetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetNullResponse>;
@@ -55,10 +51,6 @@ export class Datetimerfc1123 {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalid(): Promise<Models.Datetimerfc1123GetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetInvalidResponse>;
@@ -79,10 +71,6 @@ export class Datetimerfc1123 {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getOverflow(): Promise<Models.Datetimerfc1123GetOverflowResponse>;
   getOverflow(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetOverflowResponse>;
@@ -103,10 +91,6 @@ export class Datetimerfc1123 {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getUnderflow(): Promise<Models.Datetimerfc1123GetUnderflowResponse>;
   getUnderflow(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUnderflowResponse>;
@@ -129,10 +113,6 @@ export class Datetimerfc1123 {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putUtcMaxDateTime(datetimeBody: Date | string): Promise<msRest.RestResponse>;
   putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -154,10 +134,6 @@ export class Datetimerfc1123 {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getUtcLowercaseMaxDateTime(): Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
@@ -178,10 +154,6 @@ export class Datetimerfc1123 {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getUtcUppercaseMaxDateTime(): Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
@@ -204,10 +176,6 @@ export class Datetimerfc1123 {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putUtcMinDateTime(datetimeBody: Date | string): Promise<msRest.RestResponse>;
   putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -229,10 +197,6 @@ export class Datetimerfc1123 {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getUtcMinDateTime(): Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse>;
   getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse>;

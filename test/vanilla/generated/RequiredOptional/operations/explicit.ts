@@ -35,10 +35,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredIntegerParameter(bodyParameter: number): Promise<Models.ExplicitPostRequiredIntegerParameterResponse>;
   postRequiredIntegerParameter(bodyParameter: number, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredIntegerParameterResponse>;
@@ -60,10 +56,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalIntegerParameter(): Promise<msRest.RestResponse>;
   postOptionalIntegerParameter(options: Models.ExplicitPostOptionalIntegerParameterOptionalParams): Promise<msRest.RestResponse>;
@@ -87,10 +79,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredIntegerProperty(value: number): Promise<Models.ExplicitPostRequiredIntegerPropertyResponse>;
   postRequiredIntegerProperty(value: number, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredIntegerPropertyResponse>;
@@ -112,10 +100,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalIntegerProperty(): Promise<msRest.RestResponse>;
   postOptionalIntegerProperty(options: Models.ExplicitPostOptionalIntegerPropertyOptionalParams): Promise<msRest.RestResponse>;
@@ -139,10 +123,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredIntegerHeader(headerParameter: number): Promise<Models.ExplicitPostRequiredIntegerHeaderResponse>;
   postRequiredIntegerHeader(headerParameter: number, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredIntegerHeaderResponse>;
@@ -164,10 +144,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalIntegerHeader(): Promise<msRest.RestResponse>;
   postOptionalIntegerHeader(options: Models.ExplicitPostOptionalIntegerHeaderOptionalParams): Promise<msRest.RestResponse>;
@@ -191,10 +167,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredStringParameter(bodyParameter: string): Promise<Models.ExplicitPostRequiredStringParameterResponse>;
   postRequiredStringParameter(bodyParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredStringParameterResponse>;
@@ -216,10 +188,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalStringParameter(): Promise<msRest.RestResponse>;
   postOptionalStringParameter(options: Models.ExplicitPostOptionalStringParameterOptionalParams): Promise<msRest.RestResponse>;
@@ -243,10 +211,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredStringProperty(value: string): Promise<Models.ExplicitPostRequiredStringPropertyResponse>;
   postRequiredStringProperty(value: string, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredStringPropertyResponse>;
@@ -268,10 +232,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalStringProperty(): Promise<msRest.RestResponse>;
   postOptionalStringProperty(options: Models.ExplicitPostOptionalStringPropertyOptionalParams): Promise<msRest.RestResponse>;
@@ -295,10 +255,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredStringHeader(headerParameter: string): Promise<Models.ExplicitPostRequiredStringHeaderResponse>;
   postRequiredStringHeader(headerParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredStringHeaderResponse>;
@@ -320,10 +276,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalStringHeader(): Promise<msRest.RestResponse>;
   postOptionalStringHeader(options: Models.ExplicitPostOptionalStringHeaderOptionalParams): Promise<msRest.RestResponse>;
@@ -347,10 +299,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredClassParameter(bodyParameter: Models.Product): Promise<Models.ExplicitPostRequiredClassParameterResponse>;
   postRequiredClassParameter(bodyParameter: Models.Product, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredClassParameterResponse>;
@@ -372,10 +320,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalClassParameter(): Promise<msRest.RestResponse>;
   postOptionalClassParameter(options: Models.ExplicitPostOptionalClassParameterOptionalParams): Promise<msRest.RestResponse>;
@@ -399,10 +343,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredClassProperty(value: Models.Product): Promise<Models.ExplicitPostRequiredClassPropertyResponse>;
   postRequiredClassProperty(value: Models.Product, options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredClassPropertyResponse>;
@@ -424,10 +364,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalClassProperty(): Promise<msRest.RestResponse>;
   postOptionalClassProperty(options: Models.ExplicitPostOptionalClassPropertyOptionalParams): Promise<msRest.RestResponse>;
@@ -451,10 +387,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredArrayParameter(bodyParameter: string[]): Promise<Models.ExplicitPostRequiredArrayParameterResponse>;
   postRequiredArrayParameter(bodyParameter: string[], options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredArrayParameterResponse>;
@@ -476,10 +408,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalArrayParameter(): Promise<msRest.RestResponse>;
   postOptionalArrayParameter(options: Models.ExplicitPostOptionalArrayParameterOptionalParams): Promise<msRest.RestResponse>;
@@ -503,10 +431,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredArrayProperty(value: string[]): Promise<Models.ExplicitPostRequiredArrayPropertyResponse>;
   postRequiredArrayProperty(value: string[], options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredArrayPropertyResponse>;
@@ -528,10 +452,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalArrayProperty(): Promise<msRest.RestResponse>;
   postOptionalArrayProperty(options: Models.ExplicitPostOptionalArrayPropertyOptionalParams): Promise<msRest.RestResponse>;
@@ -555,10 +475,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postRequiredArrayHeader(headerParameter: string[]): Promise<Models.ExplicitPostRequiredArrayHeaderResponse>;
   postRequiredArrayHeader(headerParameter: string[], options: msRest.RequestOptionsBase): Promise<Models.ExplicitPostRequiredArrayHeaderResponse>;
@@ -580,10 +496,6 @@ export class Explicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postOptionalArrayHeader(): Promise<msRest.RestResponse>;
   postOptionalArrayHeader(options: Models.ExplicitPostOptionalArrayHeaderOptionalParams): Promise<msRest.RestResponse>;

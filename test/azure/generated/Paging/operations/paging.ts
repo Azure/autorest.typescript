@@ -33,10 +33,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSinglePages(): Promise<Models.PagingGetSinglePagesResponse>;
   getSinglePages(options: msRest.RequestOptionsBase): Promise<Models.PagingGetSinglePagesResponse>;
@@ -57,10 +53,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePages(): Promise<Models.PagingGetMultiplePagesResponse>;
   getMultiplePages(options: Models.PagingGetMultiplePagesOptionalParams): Promise<Models.PagingGetMultiplePagesResponse>;
@@ -81,10 +73,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getOdataMultiplePages(): Promise<Models.PagingGetOdataMultiplePagesResponse>;
   getOdataMultiplePages(options: Models.PagingGetOdataMultiplePagesOptionalParams): Promise<Models.PagingGetOdataMultiplePagesResponse>;
@@ -107,10 +95,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions): Promise<Models.PagingGetMultiplePagesWithOffsetResponse>;
   getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options: Models.PagingGetMultiplePagesWithOffsetOptionalParams): Promise<Models.PagingGetMultiplePagesWithOffsetResponse>;
@@ -133,10 +117,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesRetryFirst(): Promise<Models.PagingGetMultiplePagesRetryFirstResponse>;
   getMultiplePagesRetryFirst(options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesRetryFirstResponse>;
@@ -158,10 +138,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesRetrySecond(): Promise<Models.PagingGetMultiplePagesRetrySecondResponse>;
   getMultiplePagesRetrySecond(options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesRetrySecondResponse>;
@@ -182,10 +158,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSinglePagesFailure(): Promise<Models.PagingGetSinglePagesFailureResponse>;
   getSinglePagesFailure(options: msRest.RequestOptionsBase): Promise<Models.PagingGetSinglePagesFailureResponse>;
@@ -206,10 +178,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesFailure(): Promise<Models.PagingGetMultiplePagesFailureResponse>;
   getMultiplePagesFailure(options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesFailureResponse>;
@@ -230,10 +198,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesFailureUri(): Promise<Models.PagingGetMultiplePagesFailureUriResponse>;
   getMultiplePagesFailureUri(options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesFailureUriResponse>;
@@ -258,10 +222,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string): Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse>;
   getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string, options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse>;
@@ -286,10 +246,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup): Promise<Models.PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse>;
   getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse>;
@@ -312,10 +268,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesLRO(options?: Models.PagingGetMultiplePagesLROOptionalParams): Promise<Models.PagingGetMultiplePagesLROResponse> {
     return this.beginGetMultiplePagesLRO(options)
@@ -334,10 +286,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   nextFragment(apiVersion: string, tenant: string, nextLink: string): Promise<Models.PagingNextFragmentResponse>;
   nextFragment(apiVersion: string, tenant: string, nextLink: string, options: msRest.RequestOptionsBase): Promise<Models.PagingNextFragmentResponse>;
@@ -365,10 +313,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup): Promise<Models.PagingNextFragmentWithGroupingResponse>;
   nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.PagingNextFragmentWithGroupingResponse>;
@@ -391,10 +335,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginGetMultiplePagesLRO(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -413,10 +353,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSinglePagesNext(nextPageLink: string): Promise<Models.PagingGetSinglePagesNextResponse>;
   getSinglePagesNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.PagingGetSinglePagesNextResponse>;
@@ -440,10 +376,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesNext(nextPageLink: string): Promise<Models.PagingGetMultiplePagesNextResponse>;
   getMultiplePagesNext(nextPageLink: string, options: Models.PagingGetMultiplePagesNextOptionalParams): Promise<Models.PagingGetMultiplePagesNextResponse>;
@@ -467,10 +399,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getOdataMultiplePagesNext(nextPageLink: string): Promise<Models.PagingGetOdataMultiplePagesNextResponse>;
   getOdataMultiplePagesNext(nextPageLink: string, options: Models.PagingGetOdataMultiplePagesNextOptionalParams): Promise<Models.PagingGetOdataMultiplePagesNextResponse>;
@@ -494,10 +422,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesWithOffsetNext(nextPageLink: string): Promise<Models.PagingGetMultiplePagesWithOffsetNextResponse>;
   getMultiplePagesWithOffsetNext(nextPageLink: string, options: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams): Promise<Models.PagingGetMultiplePagesWithOffsetNextResponse>;
@@ -522,10 +446,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesRetryFirstNext(nextPageLink: string): Promise<Models.PagingGetMultiplePagesRetryFirstNextResponse>;
   getMultiplePagesRetryFirstNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesRetryFirstNextResponse>;
@@ -550,10 +470,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesRetrySecondNext(nextPageLink: string): Promise<Models.PagingGetMultiplePagesRetrySecondNextResponse>;
   getMultiplePagesRetrySecondNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesRetrySecondNextResponse>;
@@ -577,10 +493,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSinglePagesFailureNext(nextPageLink: string): Promise<Models.PagingGetSinglePagesFailureNextResponse>;
   getSinglePagesFailureNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.PagingGetSinglePagesFailureNextResponse>;
@@ -604,10 +516,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesFailureNext(nextPageLink: string): Promise<Models.PagingGetMultiplePagesFailureNextResponse>;
   getMultiplePagesFailureNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesFailureNextResponse>;
@@ -631,10 +539,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesFailureUriNext(nextPageLink: string): Promise<Models.PagingGetMultiplePagesFailureUriNextResponse>;
   getMultiplePagesFailureUriNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.PagingGetMultiplePagesFailureUriNextResponse>;
@@ -659,10 +563,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<Models.PagingGetMultiplePagesLRONextResponse> {
     return this.beginGetMultiplePagesLRONext(nextPageLink, options)
@@ -677,10 +577,6 @@ export class Paging {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginGetMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(

@@ -31,10 +31,6 @@ export class ApiVersionDefault {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMethodGlobalValid(): Promise<msRest.RestResponse>;
   getMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -55,10 +51,6 @@ export class ApiVersionDefault {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMethodGlobalNotProvidedValid(): Promise<msRest.RestResponse>;
   getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -79,10 +71,6 @@ export class ApiVersionDefault {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getPathGlobalValid(): Promise<msRest.RestResponse>;
   getPathGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -103,10 +91,6 @@ export class ApiVersionDefault {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSwaggerGlobalValid(): Promise<msRest.RestResponse>;
   getSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

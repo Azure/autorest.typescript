@@ -34,10 +34,6 @@ export class Implicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getRequiredPath(pathParameter: string): Promise<Models.ImplicitGetRequiredPathResponse>;
   getRequiredPath(pathParameter: string, options: msRest.RequestOptionsBase): Promise<Models.ImplicitGetRequiredPathResponse>;
@@ -59,10 +55,6 @@ export class Implicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putOptionalQuery(): Promise<msRest.RestResponse>;
   putOptionalQuery(options: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.RestResponse>;
@@ -83,10 +75,6 @@ export class Implicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putOptionalHeader(): Promise<msRest.RestResponse>;
   putOptionalHeader(options: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.RestResponse>;
@@ -107,10 +95,6 @@ export class Implicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putOptionalBody(): Promise<msRest.RestResponse>;
   putOptionalBody(options: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.RestResponse>;
@@ -131,10 +115,6 @@ export class Implicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getRequiredGlobalPath(): Promise<Models.ImplicitGetRequiredGlobalPathResponse>;
   getRequiredGlobalPath(options: msRest.RequestOptionsBase): Promise<Models.ImplicitGetRequiredGlobalPathResponse>;
@@ -155,10 +135,6 @@ export class Implicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getRequiredGlobalQuery(): Promise<Models.ImplicitGetRequiredGlobalQueryResponse>;
   getRequiredGlobalQuery(options: msRest.RequestOptionsBase): Promise<Models.ImplicitGetRequiredGlobalQueryResponse>;
@@ -179,10 +155,6 @@ export class Implicit {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getOptionalGlobalQuery(): Promise<Models.ImplicitGetOptionalGlobalQueryResponse>;
   getOptionalGlobalQuery(options: msRest.RequestOptionsBase): Promise<Models.ImplicitGetOptionalGlobalQueryResponse>;

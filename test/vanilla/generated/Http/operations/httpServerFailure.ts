@@ -31,10 +31,6 @@ export class HttpServerFailure {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   head501(): Promise<Models.HttpServerFailureHead501Response>;
   head501(options: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureHead501Response>;
@@ -55,10 +51,6 @@ export class HttpServerFailure {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get501(): Promise<Models.HttpServerFailureGet501Response>;
   get501(options: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureGet501Response>;
@@ -79,10 +71,6 @@ export class HttpServerFailure {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   post505(): Promise<Models.HttpServerFailurePost505Response>;
   post505(options: Models.HttpServerFailurePost505OptionalParams): Promise<Models.HttpServerFailurePost505Response>;
@@ -103,10 +91,6 @@ export class HttpServerFailure {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   delete505(): Promise<Models.HttpServerFailureDelete505Response>;
   delete505(options: Models.HttpServerFailureDelete505OptionalParams): Promise<Models.HttpServerFailureDelete505Response>;

@@ -37,10 +37,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
@@ -74,10 +70,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCreateResponse> {
     return this.beginCreate(resourceGroupName, accountName, parameters, options)
@@ -96,10 +88,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   deleteMethod(resourceGroupName: string, accountName: string): Promise<msRest.RestResponse>;
   deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -130,10 +118,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getProperties(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsGetPropertiesResponse>;
   getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsGetPropertiesResponse>;
@@ -171,10 +155,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters): Promise<Models.StorageAccountsUpdateResponse>;
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsUpdateResponse>;
@@ -202,10 +182,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   listKeys(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsListKeysResponse>;
   listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListKeysResponse>;
@@ -229,10 +205,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   list(): Promise<Models.StorageAccountsListResponse>;
   list(options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListResponse>;
@@ -256,10 +228,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   listByResourceGroup(resourceGroupName: string): Promise<Models.StorageAccountsListByResourceGroupResponse>;
   listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListByResourceGroupResponse>;
@@ -287,10 +255,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   regenerateKey(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsRegenerateKeyResponse>;
   regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<Models.StorageAccountsRegenerateKeyResponse>;
@@ -324,10 +288,6 @@ export class StorageAccounts {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(

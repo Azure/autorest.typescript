@@ -35,10 +35,6 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getUsingOptional(): Promise<msRest.RestResponse>;
   getUsingOptional(options: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams): Promise<msRest.RestResponse>;
@@ -62,10 +58,6 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getUsingRequired(timeout: string): Promise<msRest.RestResponse>;
   getUsingRequired(timeout: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -88,10 +80,6 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getUsingClientOptional(): Promise<msRest.RestResponse>;
   getUsingClientOptional(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -113,10 +101,6 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getUsingClientRequired(): Promise<msRest.RestResponse>;
   getUsingClientRequired(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

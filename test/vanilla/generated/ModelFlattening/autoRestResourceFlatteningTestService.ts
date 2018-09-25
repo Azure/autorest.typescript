@@ -33,10 +33,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putArray(): Promise<msRest.RestResponse>;
   putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.RestResponse>;
@@ -58,10 +54,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getArray(): Promise<Models.GetArrayResponse>;
   getArray(options: msRest.RequestOptionsBase): Promise<Models.GetArrayResponse>;
@@ -84,10 +76,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putWrappedArray(): Promise<msRest.RestResponse>;
   putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<msRest.RestResponse>;
@@ -110,10 +98,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getWrappedArray(): Promise<Models.GetWrappedArrayResponse>;
   getWrappedArray(options: msRest.RequestOptionsBase): Promise<Models.GetWrappedArrayResponse>;
@@ -135,10 +119,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDictionary(): Promise<msRest.RestResponse>;
   putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.RestResponse>;
@@ -160,10 +140,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDictionary(): Promise<Models.GetDictionaryResponse>;
   getDictionary(options: msRest.RequestOptionsBase): Promise<Models.GetDictionaryResponse>;
@@ -185,10 +161,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putResourceCollection(): Promise<msRest.RestResponse>;
   putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.RestResponse>;
@@ -210,10 +182,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getResourceCollection(): Promise<Models.GetResourceCollectionResponse>;
   getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.GetResourceCollectionResponse>;
@@ -235,10 +203,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putSimpleProduct(): Promise<Models.PutSimpleProductResponse>;
   putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<Models.PutSimpleProductResponse>;
@@ -266,10 +230,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string): Promise<Models.PostFlattenedSimpleProductResponse>;
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams): Promise<Models.PostFlattenedSimpleProductResponse>;
@@ -295,10 +255,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup): Promise<Models.PutSimpleProductWithGroupingResponse>;
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.PutSimpleProductWithGroupingResponse>;

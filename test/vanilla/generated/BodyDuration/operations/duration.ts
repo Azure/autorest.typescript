@@ -31,10 +31,6 @@ export class Duration {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.DurationGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.DurationGetNullResponse>;
@@ -57,10 +53,6 @@ export class Duration {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putPositiveDuration(durationBody: string): Promise<msRest.RestResponse>;
   putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -82,10 +74,6 @@ export class Duration {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getPositiveDuration(): Promise<Models.DurationGetPositiveDurationResponse>;
   getPositiveDuration(options: msRest.RequestOptionsBase): Promise<Models.DurationGetPositiveDurationResponse>;
@@ -106,10 +94,6 @@ export class Duration {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalid(): Promise<Models.DurationGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.DurationGetInvalidResponse>;

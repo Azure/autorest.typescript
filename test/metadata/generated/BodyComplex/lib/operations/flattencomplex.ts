@@ -29,10 +29,6 @@ export class Flattencomplex {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getValid(): Promise<Models.FlattencomplexGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.FlattencomplexGetValidResponse>;

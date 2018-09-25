@@ -33,10 +33,6 @@ export class Pets {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   createAPTrue(createParameters: Models.PetAPTrue): Promise<Models.PetsCreateAPTrueResponse>;
   createAPTrue(createParameters: Models.PetAPTrue, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPTrueResponse>;
@@ -60,10 +56,6 @@ export class Pets {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   createCatAPTrue(createParameters: Models.CatAPTrue): Promise<Models.PetsCreateCatAPTrueResponse>;
   createCatAPTrue(createParameters: Models.CatAPTrue, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateCatAPTrueResponse>;
@@ -87,10 +79,6 @@ export class Pets {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   createAPObject(createParameters: Models.PetAPObject): Promise<Models.PetsCreateAPObjectResponse>;
   createAPObject(createParameters: Models.PetAPObject, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPObjectResponse>;
@@ -114,10 +102,6 @@ export class Pets {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   createAPString(createParameters: Models.PetAPString): Promise<Models.PetsCreateAPStringResponse>;
   createAPString(createParameters: Models.PetAPString, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPStringResponse>;
@@ -141,10 +125,6 @@ export class Pets {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   createAPInProperties(createParameters: Models.PetAPInProperties): Promise<Models.PetsCreateAPInPropertiesResponse>;
   createAPInProperties(createParameters: Models.PetAPInProperties, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPInPropertiesResponse>;
@@ -168,10 +148,6 @@ export class Pets {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse>;
   createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse>;

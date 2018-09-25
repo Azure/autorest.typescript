@@ -28,21 +28,17 @@ class ComplexModelClient extends ComplexModelClientContext {
   // methods on the client.
 
   /**
-   * @summary Product Types
-   *
    * The Products endpoint returns information about the Uber products offered at a given location.
    * The response includes the display name and other details about each product, and lists the
    * products in the proper display order.
+   *
+   * @summary Product Types
    *
    * @param resourceGroupName Resource Group ID.
    *
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   list(resourceGroupName: string): Promise<Models.ListResponse>;
   list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.ListResponse>;
@@ -60,9 +56,9 @@ class ComplexModelClient extends ComplexModelClientContext {
   // methods on the client.
 
   /**
-   * @summary Create products
-   *
    * Resets products.
+   *
+   * @summary Create products
    *
    * @param subscriptionId Subscription ID.
    *
@@ -71,10 +67,6 @@ class ComplexModelClient extends ComplexModelClientContext {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   create(subscriptionId: string, resourceGroupName: string): Promise<Models.CreateResponse>;
   create(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientCreateOptionalParams): Promise<Models.CreateResponse>;
@@ -93,9 +85,9 @@ class ComplexModelClient extends ComplexModelClientContext {
   // methods on the client.
 
   /**
-   * @summary Update products
-   *
    * Resets products.
+   *
+   * @summary Update products
    *
    * @param subscriptionId Subscription ID.
    *
@@ -104,10 +96,6 @@ class ComplexModelClient extends ComplexModelClientContext {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   update(subscriptionId: string, resourceGroupName: string): Promise<Models.UpdateResponse>;
   update(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientUpdateOptionalParams): Promise<Models.UpdateResponse>;

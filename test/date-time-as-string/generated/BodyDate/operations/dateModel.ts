@@ -31,10 +31,6 @@ export class DateModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.DateModelGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetNullResponse>;
@@ -55,10 +51,6 @@ export class DateModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalidDate(): Promise<Models.DateModelGetInvalidDateResponse>;
   getInvalidDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetInvalidDateResponse>;
@@ -79,10 +71,6 @@ export class DateModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getOverflowDate(): Promise<Models.DateModelGetOverflowDateResponse>;
   getOverflowDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetOverflowDateResponse>;
@@ -103,10 +91,6 @@ export class DateModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getUnderflowDate(): Promise<Models.DateModelGetUnderflowDateResponse>;
   getUnderflowDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetUnderflowDateResponse>;
@@ -129,10 +113,6 @@ export class DateModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putMaxDate(dateBody: Date | string): Promise<msRest.RestResponse>;
   putMaxDate(dateBody: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -154,10 +134,6 @@ export class DateModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMaxDate(): Promise<Models.DateModelGetMaxDateResponse>;
   getMaxDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetMaxDateResponse>;
@@ -180,10 +156,6 @@ export class DateModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putMinDate(dateBody: Date | string): Promise<msRest.RestResponse>;
   putMinDate(dateBody: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -205,10 +177,6 @@ export class DateModel {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMinDate(): Promise<Models.DateModelGetMinDateResponse>;
   getMinDate(options: msRest.RequestOptionsBase): Promise<Models.DateModelGetMinDateResponse>;

@@ -34,10 +34,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putNonRetry400(options?: Models.LROSADsPutNonRetry400OptionalParams): Promise<Models.LROSADsPutNonRetry400Response> {
     return this.beginPutNonRetry400(options)
@@ -52,10 +48,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putNonRetry201Creating400(options?: Models.LROSADsPutNonRetry201Creating400OptionalParams): Promise<Models.LROSADsPutNonRetry201Creating400Response> {
     return this.beginPutNonRetry201Creating400(options)
@@ -70,10 +62,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putNonRetry201Creating400InvalidJson(options?: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.LROSADsPutNonRetry201Creating400InvalidJsonResponse> {
     return this.beginPutNonRetry201Creating400InvalidJson(options)
@@ -88,10 +76,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putAsyncRelativeRetry400(options?: Models.LROSADsPutAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetry400Response> {
     return this.beginPutAsyncRelativeRetry400(options)
@@ -105,10 +89,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   deleteNonRetry400(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteNonRetry400Response> {
     return this.beginDeleteNonRetry400(options)
@@ -122,10 +102,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   delete202NonRetry400(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202NonRetry400Response> {
     return this.beginDelete202NonRetry400(options)
@@ -140,10 +116,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRelativeRetry400(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response> {
     return this.beginDeleteAsyncRelativeRetry400(options)
@@ -157,10 +129,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postNonRetry400(options?: Models.LROSADsPostNonRetry400OptionalParams): Promise<Models.LROSADsPostNonRetry400Response> {
     return this.beginPostNonRetry400(options)
@@ -174,10 +142,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   post202NonRetry400(options?: Models.LROSADsPost202NonRetry400OptionalParams): Promise<Models.LROSADsPost202NonRetry400Response> {
     return this.beginPost202NonRetry400(options)
@@ -192,10 +156,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postAsyncRelativeRetry400(options?: Models.LROSADsPostAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetry400Response> {
     return this.beginPostAsyncRelativeRetry400(options)
@@ -209,10 +169,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putError201NoProvisioningStatePayload(options?: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.LROSADsPutError201NoProvisioningStatePayloadResponse> {
     return this.beginPutError201NoProvisioningStatePayload(options)
@@ -228,10 +184,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putAsyncRelativeRetryNoStatus(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse> {
     return this.beginPutAsyncRelativeRetryNoStatus(options)
@@ -247,10 +199,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putAsyncRelativeRetryNoStatusPayload(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse> {
     return this.beginPutAsyncRelativeRetryNoStatusPayload(options)
@@ -264,10 +212,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   delete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDelete204Succeeded(options)
@@ -282,10 +226,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRelativeRetryNoStatus(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse> {
     return this.beginDeleteAsyncRelativeRetryNoStatus(options)
@@ -300,10 +240,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   post202NoLocation(options?: Models.LROSADsPost202NoLocationOptionalParams): Promise<Models.LROSADsPost202NoLocationResponse> {
     return this.beginPost202NoLocation(options)
@@ -319,10 +255,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postAsyncRelativeRetryNoPayload(options?: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse> {
     return this.beginPostAsyncRelativeRetryNoPayload(options)
@@ -337,10 +269,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   put200InvalidJson(options?: Models.LROSADsPut200InvalidJsonOptionalParams): Promise<Models.LROSADsPut200InvalidJsonResponse> {
     return this.beginPut200InvalidJson(options)
@@ -356,10 +284,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse> {
     return this.beginPutAsyncRelativeRetryInvalidHeader(options)
@@ -375,10 +299,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse> {
     return this.beginPutAsyncRelativeRetryInvalidJsonPolling(options)
@@ -393,10 +313,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   delete202RetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse> {
     return this.beginDelete202RetryInvalidHeader(options)
@@ -411,10 +327,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRelativeRetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse> {
     return this.beginDeleteAsyncRelativeRetryInvalidHeader(options)
@@ -429,10 +341,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   deleteAsyncRelativeRetryInvalidJsonPolling(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> {
     return this.beginDeleteAsyncRelativeRetryInvalidJsonPolling(options)
@@ -447,10 +355,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   post202RetryInvalidHeader(options?: Models.LROSADsPost202RetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPost202RetryInvalidHeaderResponse> {
     return this.beginPost202RetryInvalidHeader(options)
@@ -466,10 +370,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse> {
     return this.beginPostAsyncRelativeRetryInvalidHeader(options)
@@ -485,10 +385,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse> {
     return this.beginPostAsyncRelativeRetryInvalidJsonPolling(options)
@@ -501,10 +397,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPutNonRetry400(options?: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -522,10 +414,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPutNonRetry201Creating400(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -543,10 +431,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPutNonRetry201Creating400InvalidJson(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -564,10 +448,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPutAsyncRelativeRetry400(options?: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -584,10 +464,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginDeleteNonRetry400(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -604,10 +480,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginDelete202NonRetry400(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -625,10 +497,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginDeleteAsyncRelativeRetry400(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -645,10 +513,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPostNonRetry400(options?: Models.LROSADsBeginPostNonRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -665,10 +529,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPost202NonRetry400(options?: Models.LROSADsBeginPost202NonRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -686,10 +546,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPostAsyncRelativeRetry400(options?: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -706,10 +562,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPutError201NoProvisioningStatePayload(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -728,10 +580,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPutAsyncRelativeRetryNoStatus(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -750,10 +598,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPutAsyncRelativeRetryNoStatusPayload(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -770,10 +614,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginDelete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -791,10 +631,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginDeleteAsyncRelativeRetryNoStatus(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -812,10 +648,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPost202NoLocation(options?: Models.LROSADsBeginPost202NoLocationOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -834,10 +666,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPostAsyncRelativeRetryNoPayload(options?: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -855,10 +683,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPut200InvalidJson(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -877,10 +701,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPutAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -899,10 +719,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPutAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -920,10 +736,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginDelete202RetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -941,10 +753,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginDeleteAsyncRelativeRetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -962,10 +770,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -983,10 +787,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPost202RetryInvalidHeader(options?: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1005,10 +805,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPostAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -1027,10 +823,6 @@ export class LROSADs {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   beginPostAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(

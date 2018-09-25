@@ -31,10 +31,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.StringGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullResponse>;
@@ -55,10 +51,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putNull(): Promise<msRest.RestResponse>;
   putNull(options: Models.StringPutNullOptionalParams): Promise<msRest.RestResponse>;
@@ -79,10 +71,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getEmpty(): Promise<Models.StringGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.StringGetEmptyResponse>;
@@ -103,10 +91,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putEmpty(): Promise<msRest.RestResponse>;
   putEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -127,10 +111,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMbcs(): Promise<Models.StringGetMbcsResponse>;
   getMbcs(options: msRest.RequestOptionsBase): Promise<Models.StringGetMbcsResponse>;
@@ -151,10 +131,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putMbcs(): Promise<msRest.RestResponse>;
   putMbcs(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -176,10 +152,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getWhitespace(): Promise<Models.StringGetWhitespaceResponse>;
   getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.StringGetWhitespaceResponse>;
@@ -201,10 +173,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putWhitespace(): Promise<msRest.RestResponse>;
   putWhitespace(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -225,10 +193,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNotProvided(): Promise<Models.StringGetNotProvidedResponse>;
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.StringGetNotProvidedResponse>;
@@ -249,10 +213,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBase64Encoded(): Promise<Models.StringGetBase64EncodedResponse>;
   getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64EncodedResponse>;
@@ -273,10 +233,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBase64UrlEncoded(): Promise<Models.StringGetBase64UrlEncodedResponse>;
   getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64UrlEncodedResponse>;
@@ -299,10 +255,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBase64UrlEncoded(stringBody: Uint8Array): Promise<msRest.RestResponse>;
   putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -324,10 +276,6 @@ export class String {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNullBase64UrlEncoded(): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
   getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullBase64UrlEncodedResponse>;

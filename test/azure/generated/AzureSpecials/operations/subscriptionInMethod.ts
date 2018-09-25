@@ -34,10 +34,6 @@ export class SubscriptionInMethod {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postMethodLocalValid(subscriptionId: string): Promise<msRest.RestResponse>;
   postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -63,10 +59,6 @@ export class SubscriptionInMethod {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postMethodLocalNull(subscriptionId: string): Promise<msRest.RestResponse>;
   postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -91,10 +83,6 @@ export class SubscriptionInMethod {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postPathLocalValid(subscriptionId: string): Promise<msRest.RestResponse>;
   postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -120,10 +108,6 @@ export class SubscriptionInMethod {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postSwaggerLocalValid(subscriptionId: string): Promise<msRest.RestResponse>;
   postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

@@ -31,10 +31,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200Model204NoModelDefaultError200Valid(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>;
   get200Model204NoModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>;
@@ -55,10 +51,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200Model204NoModelDefaultError204Valid(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>;
   get200Model204NoModelDefaultError204Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>;
@@ -79,10 +71,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200Model204NoModelDefaultError201Invalid(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>;
   get200Model204NoModelDefaultError201Invalid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>;
@@ -103,10 +91,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200Model204NoModelDefaultError202None(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>;
   get200Model204NoModelDefaultError202None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>;
@@ -127,10 +111,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200Model204NoModelDefaultError400Valid(): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>;
   get200Model204NoModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>;
@@ -151,10 +131,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200Model201ModelDefaultError200Valid(): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>;
   get200Model201ModelDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>;
@@ -175,10 +151,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200Model201ModelDefaultError201Valid(): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>;
   get200Model201ModelDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>;
@@ -199,10 +171,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200Model201ModelDefaultError400Valid(): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>;
   get200Model201ModelDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>;
@@ -223,10 +191,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA201ModelC404ModelDDefaultError200Valid(): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>;
   get200ModelA201ModelC404ModelDDefaultError200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>;
@@ -247,10 +211,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA201ModelC404ModelDDefaultError201Valid(): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>;
   get200ModelA201ModelC404ModelDDefaultError201Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>;
@@ -271,10 +231,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA201ModelC404ModelDDefaultError404Valid(): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>;
   get200ModelA201ModelC404ModelDDefaultError404Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>;
@@ -295,10 +251,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA201ModelC404ModelDDefaultError400Valid(): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>;
   get200ModelA201ModelC404ModelDDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>;
@@ -319,10 +271,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get202None204NoneDefaultError202None(): Promise<msRest.RestResponse>;
   get202None204NoneDefaultError202None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -343,10 +291,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get202None204NoneDefaultError204None(): Promise<msRest.RestResponse>;
   get202None204NoneDefaultError204None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -367,10 +311,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get202None204NoneDefaultError400Valid(): Promise<msRest.RestResponse>;
   get202None204NoneDefaultError400Valid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -391,10 +331,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get202None204NoneDefaultNone202Invalid(): Promise<msRest.RestResponse>;
   get202None204NoneDefaultNone202Invalid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -415,10 +351,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get202None204NoneDefaultNone204None(): Promise<msRest.RestResponse>;
   get202None204NoneDefaultNone204None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -439,10 +371,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get202None204NoneDefaultNone400None(): Promise<msRest.RestResponse>;
   get202None204NoneDefaultNone400None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -463,10 +391,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get202None204NoneDefaultNone400Invalid(): Promise<msRest.RestResponse>;
   get202None204NoneDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -487,10 +411,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDefaultModelA200Valid(): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse>;
   getDefaultModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse>;
@@ -511,10 +431,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDefaultModelA200None(): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse>;
   getDefaultModelA200None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse>;
@@ -535,10 +451,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDefaultModelA400Valid(): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
   getDefaultModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
@@ -559,10 +471,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDefaultModelA400None(): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
   getDefaultModelA400None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
@@ -583,10 +491,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDefaultNone200Invalid(): Promise<msRest.RestResponse>;
   getDefaultNone200Invalid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -607,10 +511,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDefaultNone200None(): Promise<msRest.RestResponse>;
   getDefaultNone200None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -631,10 +531,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDefaultNone400Invalid(): Promise<msRest.RestResponse>;
   getDefaultNone400Invalid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -655,10 +551,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDefaultNone400None(): Promise<msRest.RestResponse>;
   getDefaultNone400None(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -680,10 +572,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA200None(): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse>;
   get200ModelA200None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse>;
@@ -704,10 +592,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA200Valid(): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse>;
   get200ModelA200Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse>;
@@ -728,10 +612,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA200Invalid(): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse>;
   get200ModelA200Invalid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse>;
@@ -752,10 +632,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA400None(): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse>;
   get200ModelA400None(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse>;
@@ -776,10 +652,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA400Valid(): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse>;
   get200ModelA400Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse>;
@@ -800,10 +672,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA400Invalid(): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse>;
   get200ModelA400Invalid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse>;
@@ -824,10 +692,6 @@ export class MultipleResponses {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get200ModelA202Valid(): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse>;
   get200ModelA202Valid(options: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse>;

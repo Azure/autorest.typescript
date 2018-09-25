@@ -34,10 +34,6 @@ export class Paths {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getEmpty(vault: string, secret: string, keyName: string): Promise<msRest.RestResponse>;
   getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams): Promise<msRest.RestResponse>;

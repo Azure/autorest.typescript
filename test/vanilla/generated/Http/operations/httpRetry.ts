@@ -31,10 +31,6 @@ export class HttpRetry {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   head408(): Promise<msRest.RestResponse>;
   head408(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -55,10 +51,6 @@ export class HttpRetry {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   put500(): Promise<msRest.RestResponse>;
   put500(options: Models.HttpRetryPut500OptionalParams): Promise<msRest.RestResponse>;
@@ -79,10 +71,6 @@ export class HttpRetry {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   patch500(): Promise<msRest.RestResponse>;
   patch500(options: Models.HttpRetryPatch500OptionalParams): Promise<msRest.RestResponse>;
@@ -103,10 +91,6 @@ export class HttpRetry {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   get502(): Promise<msRest.RestResponse>;
   get502(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -127,10 +111,6 @@ export class HttpRetry {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   post503(): Promise<msRest.RestResponse>;
   post503(options: Models.HttpRetryPost503OptionalParams): Promise<msRest.RestResponse>;
@@ -151,10 +131,6 @@ export class HttpRetry {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   delete503(): Promise<msRest.RestResponse>;
   delete503(options: Models.HttpRetryDelete503OptionalParams): Promise<msRest.RestResponse>;
@@ -175,10 +151,6 @@ export class HttpRetry {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   put504(): Promise<msRest.RestResponse>;
   put504(options: Models.HttpRetryPut504OptionalParams): Promise<msRest.RestResponse>;
@@ -199,10 +171,6 @@ export class HttpRetry {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   patch504(): Promise<msRest.RestResponse>;
   patch504(options: Models.HttpRetryPatch504OptionalParams): Promise<msRest.RestResponse>;

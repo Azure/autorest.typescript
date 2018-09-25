@@ -31,10 +31,6 @@ export class Bool {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getTrue(): Promise<Models.BoolGetTrueResponse>;
   getTrue(options: msRest.RequestOptionsBase): Promise<Models.BoolGetTrueResponse>;
@@ -55,10 +51,6 @@ export class Bool {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putTrue(): Promise<msRest.RestResponse>;
   putTrue(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -79,10 +71,6 @@ export class Bool {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getFalse(): Promise<Models.BoolGetFalseResponse>;
   getFalse(options: msRest.RequestOptionsBase): Promise<Models.BoolGetFalseResponse>;
@@ -103,10 +91,6 @@ export class Bool {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putFalse(): Promise<msRest.RestResponse>;
   putFalse(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -127,10 +111,6 @@ export class Bool {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.BoolGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.BoolGetNullResponse>;
@@ -151,10 +131,6 @@ export class Bool {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalid(): Promise<Models.BoolGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.BoolGetInvalidResponse>;

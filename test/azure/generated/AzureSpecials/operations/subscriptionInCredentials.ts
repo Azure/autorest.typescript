@@ -32,10 +32,6 @@ export class SubscriptionInCredentials {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postMethodGlobalValid(): Promise<msRest.RestResponse>;
   postMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -57,10 +53,6 @@ export class SubscriptionInCredentials {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postMethodGlobalNull(): Promise<msRest.RestResponse>;
   postMethodGlobalNull(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -82,10 +74,6 @@ export class SubscriptionInCredentials {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postMethodGlobalNotProvidedValid(): Promise<msRest.RestResponse>;
   postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -107,10 +95,6 @@ export class SubscriptionInCredentials {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postPathGlobalValid(): Promise<msRest.RestResponse>;
   postPathGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -132,10 +116,6 @@ export class SubscriptionInCredentials {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postSwaggerGlobalValid(): Promise<msRest.RestResponse>;
   postSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

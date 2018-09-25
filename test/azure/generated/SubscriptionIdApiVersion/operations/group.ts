@@ -34,10 +34,6 @@ export class Group {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSampleResourceGroup(resourceGroupName: string): Promise<Models.GroupGetSampleResourceGroupResponse>;
   getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.GroupGetSampleResourceGroupResponse>;

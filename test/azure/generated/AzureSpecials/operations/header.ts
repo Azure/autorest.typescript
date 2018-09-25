@@ -34,10 +34,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   customNamedRequestId(fooClientRequestId: string): Promise<Models.HeaderCustomNamedRequestIdResponse>;
   customNamedRequestId(fooClientRequestId: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdResponse>;
@@ -62,10 +58,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse>;
   customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse>;
@@ -89,10 +81,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   customNamedRequestIdHead(fooClientRequestId: string): Promise<Models.HeaderCustomNamedRequestIdHeadResponse>;
   customNamedRequestIdHead(fooClientRequestId: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdHeadResponse>;

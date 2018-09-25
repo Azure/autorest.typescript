@@ -32,10 +32,6 @@ export class Odata {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getWithFilter(): Promise<msRest.RestResponse>;
   getWithFilter(options: Models.OdataGetWithFilterOptionalParams): Promise<msRest.RestResponse>;

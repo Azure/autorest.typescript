@@ -31,10 +31,6 @@ export class Polymorphicrecursive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getValid(): Promise<Models.PolymorphicrecursiveGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.PolymorphicrecursiveGetValidResponse>;
@@ -109,10 +105,6 @@ export class Polymorphicrecursive {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putValid(complexBody: Models.FishUnion): Promise<msRest.RestResponse>;
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

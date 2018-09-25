@@ -32,10 +32,6 @@ export class Queries {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   arrayStringMultiNull(): Promise<msRest.RestResponse>;
   arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.RestResponse>;
@@ -56,10 +52,6 @@ export class Queries {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   arrayStringMultiEmpty(): Promise<msRest.RestResponse>;
   arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.RestResponse>;
@@ -81,10 +73,6 @@ export class Queries {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   arrayStringMultiValid(): Promise<msRest.RestResponse>;
   arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.RestResponse>;

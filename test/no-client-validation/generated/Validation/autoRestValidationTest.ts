@@ -41,10 +41,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   validationOfMethodParameters(resourceGroupName: string, id: number): Promise<Models.ValidationOfMethodParametersResponse>;
   validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase): Promise<Models.ValidationOfMethodParametersResponse>;
@@ -72,10 +68,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   validationOfBody(resourceGroupName: string, id: number): Promise<Models.ValidationOfBodyResponse>;
   validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<Models.ValidationOfBodyResponse>;
@@ -97,10 +89,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getWithConstantInPath(): Promise<msRest.RestResponse>;
   getWithConstantInPath(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -120,10 +108,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   postWithConstantInBody(): Promise<Models.PostWithConstantInBodyResponse>;
   postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<Models.PostWithConstantInBodyResponse>;

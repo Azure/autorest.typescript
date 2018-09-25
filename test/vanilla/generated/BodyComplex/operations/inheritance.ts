@@ -31,10 +31,6 @@ export class Inheritance {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getValid(): Promise<Models.InheritanceGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.InheritanceGetValidResponse>;
@@ -59,10 +55,6 @@ export class Inheritance {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putValid(complexBody: Models.Siamese): Promise<msRest.RestResponse>;
   putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

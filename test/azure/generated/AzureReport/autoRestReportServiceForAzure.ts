@@ -37,10 +37,6 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getReport(): Promise<Models.GetReportResponse>;
   getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<Models.GetReportResponse>;

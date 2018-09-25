@@ -31,10 +31,6 @@ export class HeadException {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   head200(): Promise<msRest.RestResponse>;
   head200(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -55,10 +51,6 @@ export class HeadException {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   head204(): Promise<msRest.RestResponse>;
   head204(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -79,10 +71,6 @@ export class HeadException {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   head404(): Promise<msRest.RestResponse>;
   head404(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

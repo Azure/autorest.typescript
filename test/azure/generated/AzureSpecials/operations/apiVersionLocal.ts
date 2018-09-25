@@ -32,10 +32,6 @@ export class ApiVersionLocal {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMethodLocalValid(): Promise<msRest.RestResponse>;
   getMethodLocalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -56,10 +52,6 @@ export class ApiVersionLocal {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMethodLocalNull(): Promise<msRest.RestResponse>;
   getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.RestResponse>;
@@ -80,10 +72,6 @@ export class ApiVersionLocal {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getPathLocalValid(): Promise<msRest.RestResponse>;
   getPathLocalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -104,10 +92,6 @@ export class ApiVersionLocal {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSwaggerLocalValid(): Promise<msRest.RestResponse>;
   getSwaggerLocalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

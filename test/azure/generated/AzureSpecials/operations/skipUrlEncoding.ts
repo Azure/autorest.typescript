@@ -34,10 +34,6 @@ export class SkipUrlEncoding {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMethodPathValid(unencodedPathParam: string): Promise<msRest.RestResponse>;
   getMethodPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -61,10 +57,6 @@ export class SkipUrlEncoding {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getPathPathValid(unencodedPathParam: string): Promise<msRest.RestResponse>;
   getPathPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -86,10 +78,6 @@ export class SkipUrlEncoding {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSwaggerPathValid(): Promise<msRest.RestResponse>;
   getSwaggerPathValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -112,10 +100,6 @@ export class SkipUrlEncoding {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMethodQueryValid(q1: string): Promise<msRest.RestResponse>;
   getMethodQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -137,10 +121,6 @@ export class SkipUrlEncoding {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getMethodQueryNull(): Promise<msRest.RestResponse>;
   getMethodQueryNull(options: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<msRest.RestResponse>;
@@ -163,10 +143,6 @@ export class SkipUrlEncoding {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getPathQueryValid(q1: string): Promise<msRest.RestResponse>;
   getPathQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -188,10 +164,6 @@ export class SkipUrlEncoding {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSwaggerQueryValid(): Promise<msRest.RestResponse>;
   getSwaggerQueryValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

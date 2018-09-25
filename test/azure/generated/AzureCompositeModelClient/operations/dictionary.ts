@@ -32,10 +32,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getValid(): Promise<Models.DictionaryGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetValidResponse>;
@@ -56,10 +52,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putValid(): Promise<msRest.RestResponse>;
   putValid(options: Models.DictionaryPutValidOptionalParams): Promise<msRest.RestResponse>;
@@ -80,10 +72,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getEmpty(): Promise<Models.DictionaryGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse>;
@@ -104,10 +92,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putEmpty(): Promise<msRest.RestResponse>;
   putEmpty(options: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.RestResponse>;
@@ -128,10 +112,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.DictionaryGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse>;
@@ -152,10 +132,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNotProvided(): Promise<Models.DictionaryGetNotProvidedResponse>;
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNotProvidedResponse>;

@@ -31,10 +31,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.DictionaryGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse>;
@@ -55,10 +51,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getEmpty(): Promise<Models.DictionaryGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse>;
@@ -81,10 +73,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putEmpty(arrayBody: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
   putEmpty(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -106,10 +94,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNullValue(): Promise<Models.DictionaryGetNullValueResponse>;
   getNullValue(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullValueResponse>;
@@ -130,10 +114,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNullKey(): Promise<Models.DictionaryGetNullKeyResponse>;
   getNullKey(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullKeyResponse>;
@@ -154,10 +134,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getEmptyStringKey(): Promise<Models.DictionaryGetEmptyStringKeyResponse>;
   getEmptyStringKey(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyStringKeyResponse>;
@@ -178,10 +154,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalid(): Promise<Models.DictionaryGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetInvalidResponse>;
@@ -202,10 +174,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBooleanTfft(): Promise<Models.DictionaryGetBooleanTfftResponse>;
   getBooleanTfft(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanTfftResponse>;
@@ -228,10 +196,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }): Promise<msRest.RestResponse>;
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -253,10 +217,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBooleanInvalidNull(): Promise<Models.DictionaryGetBooleanInvalidNullResponse>;
   getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidNullResponse>;
@@ -277,10 +237,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBooleanInvalidString(): Promise<Models.DictionaryGetBooleanInvalidStringResponse>;
   getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidStringResponse>;
@@ -301,10 +257,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getIntegerValid(): Promise<Models.DictionaryGetIntegerValidResponse>;
   getIntegerValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntegerValidResponse>;
@@ -327,10 +279,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putIntegerValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
   putIntegerValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -352,10 +300,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getIntInvalidNull(): Promise<Models.DictionaryGetIntInvalidNullResponse>;
   getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidNullResponse>;
@@ -376,10 +320,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getIntInvalidString(): Promise<Models.DictionaryGetIntInvalidStringResponse>;
   getIntInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidStringResponse>;
@@ -400,10 +340,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getLongValid(): Promise<Models.DictionaryGetLongValidResponse>;
   getLongValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongValidResponse>;
@@ -426,10 +362,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putLongValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
   putLongValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -451,10 +383,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getLongInvalidNull(): Promise<Models.DictionaryGetLongInvalidNullResponse>;
   getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidNullResponse>;
@@ -475,10 +403,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getLongInvalidString(): Promise<Models.DictionaryGetLongInvalidStringResponse>;
   getLongInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidStringResponse>;
@@ -499,10 +423,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getFloatValid(): Promise<Models.DictionaryGetFloatValidResponse>;
   getFloatValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatValidResponse>;
@@ -525,10 +445,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putFloatValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
   putFloatValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -550,10 +466,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getFloatInvalidNull(): Promise<Models.DictionaryGetFloatInvalidNullResponse>;
   getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidNullResponse>;
@@ -574,10 +486,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getFloatInvalidString(): Promise<Models.DictionaryGetFloatInvalidStringResponse>;
   getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidStringResponse>;
@@ -598,10 +506,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDoubleValid(): Promise<Models.DictionaryGetDoubleValidResponse>;
   getDoubleValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleValidResponse>;
@@ -624,10 +528,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDoubleValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
   putDoubleValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -649,10 +549,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDoubleInvalidNull(): Promise<Models.DictionaryGetDoubleInvalidNullResponse>;
   getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidNullResponse>;
@@ -673,10 +569,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDoubleInvalidString(): Promise<Models.DictionaryGetDoubleInvalidStringResponse>;
   getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidStringResponse>;
@@ -697,10 +589,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getStringValid(): Promise<Models.DictionaryGetStringValidResponse>;
   getStringValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringValidResponse>;
@@ -723,10 +611,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putStringValid(arrayBody: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
   putStringValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -748,10 +632,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getStringWithNull(): Promise<Models.DictionaryGetStringWithNullResponse>;
   getStringWithNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithNullResponse>;
@@ -772,10 +652,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getStringWithInvalid(): Promise<Models.DictionaryGetStringWithInvalidResponse>;
   getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithInvalidResponse>;
@@ -796,10 +672,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDateValid(): Promise<Models.DictionaryGetDateValidResponse>;
   getDateValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateValidResponse>;
@@ -822,10 +694,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<msRest.RestResponse>;
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -847,10 +715,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDateInvalidNull(): Promise<Models.DictionaryGetDateInvalidNullResponse>;
   getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidNullResponse>;
@@ -871,10 +735,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDateInvalidChars(): Promise<Models.DictionaryGetDateInvalidCharsResponse>;
   getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidCharsResponse>;
@@ -896,10 +756,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDateTimeValid(): Promise<Models.DictionaryGetDateTimeValidResponse>;
   getDateTimeValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeValidResponse>;
@@ -923,10 +779,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<msRest.RestResponse>;
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -948,10 +800,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDateTimeInvalidNull(): Promise<Models.DictionaryGetDateTimeInvalidNullResponse>;
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidNullResponse>;
@@ -972,10 +820,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDateTimeInvalidChars(): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>;
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>;
@@ -997,10 +841,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDateTimeRfc1123Valid(): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>;
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>;
@@ -1024,10 +864,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<msRest.RestResponse>;
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1049,10 +885,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDurationValid(): Promise<Models.DictionaryGetDurationValidResponse>;
   getDurationValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDurationValidResponse>;
@@ -1075,10 +907,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDurationValid(arrayBody: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
   putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1101,10 +929,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getByteValid(): Promise<Models.DictionaryGetByteValidResponse>;
   getByteValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteValidResponse>;
@@ -1128,10 +952,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }): Promise<msRest.RestResponse>;
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1153,10 +973,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getByteInvalidNull(): Promise<Models.DictionaryGetByteInvalidNullResponse>;
   getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteInvalidNullResponse>;
@@ -1178,10 +994,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBase64Url(): Promise<Models.DictionaryGetBase64UrlResponse>;
   getBase64Url(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBase64UrlResponse>;
@@ -1202,10 +1014,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getComplexNull(): Promise<Models.DictionaryGetComplexNullResponse>;
   getComplexNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexNullResponse>;
@@ -1226,10 +1034,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getComplexEmpty(): Promise<Models.DictionaryGetComplexEmptyResponse>;
   getComplexEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexEmptyResponse>;
@@ -1251,10 +1055,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getComplexItemNull(): Promise<Models.DictionaryGetComplexItemNullResponse>;
   getComplexItemNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemNullResponse>;
@@ -1276,10 +1076,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getComplexItemEmpty(): Promise<Models.DictionaryGetComplexItemEmptyResponse>;
   getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemEmptyResponse>;
@@ -1301,10 +1097,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getComplexValid(): Promise<Models.DictionaryGetComplexValidResponse>;
   getComplexValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexValidResponse>;
@@ -1328,10 +1120,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }): Promise<msRest.RestResponse>;
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1353,10 +1141,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getArrayNull(): Promise<Models.DictionaryGetArrayNullResponse>;
   getArrayNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayNullResponse>;
@@ -1377,10 +1161,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getArrayEmpty(): Promise<Models.DictionaryGetArrayEmptyResponse>;
   getArrayEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayEmptyResponse>;
@@ -1401,10 +1181,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getArrayItemNull(): Promise<Models.DictionaryGetArrayItemNullResponse>;
   getArrayItemNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemNullResponse>;
@@ -1425,10 +1201,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getArrayItemEmpty(): Promise<Models.DictionaryGetArrayItemEmptyResponse>;
   getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemEmptyResponse>;
@@ -1450,10 +1222,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getArrayValid(): Promise<Models.DictionaryGetArrayValidResponse>;
   getArrayValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayValidResponse>;
@@ -1477,10 +1245,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putArrayValid(arrayBody: { [propertyName: string]: string[] }): Promise<msRest.RestResponse>;
   putArrayValid(arrayBody: { [propertyName: string]: string[] }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1502,10 +1266,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDictionaryNull(): Promise<Models.DictionaryGetDictionaryNullResponse>;
   getDictionaryNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryNullResponse>;
@@ -1526,10 +1286,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDictionaryEmpty(): Promise<Models.DictionaryGetDictionaryEmptyResponse>;
   getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryEmptyResponse>;
@@ -1551,10 +1307,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDictionaryItemNull(): Promise<Models.DictionaryGetDictionaryItemNullResponse>;
   getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemNullResponse>;
@@ -1576,10 +1328,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDictionaryItemEmpty(): Promise<Models.DictionaryGetDictionaryItemEmptyResponse>;
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemEmptyResponse>;
@@ -1602,10 +1350,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getDictionaryValid(): Promise<Models.DictionaryGetDictionaryValidResponse>;
   getDictionaryValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryValidResponse>;
@@ -1630,10 +1374,6 @@ export class Dictionary {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }): Promise<msRest.RestResponse>;
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

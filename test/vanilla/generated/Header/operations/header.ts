@@ -34,10 +34,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramExistingKey(userAgent: string): Promise<msRest.RestResponse>;
   paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -59,10 +55,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseExistingKey(): Promise<Models.HeaderResponseExistingKeyResponse>;
   responseExistingKey(options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseExistingKeyResponse>;
@@ -85,10 +77,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramProtectedKey(contentType: string): Promise<msRest.RestResponse>;
   paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -110,10 +98,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseProtectedKey(): Promise<Models.HeaderResponseProtectedKeyResponse>;
   responseProtectedKey(options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseProtectedKeyResponse>;
@@ -139,10 +123,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramInteger(scenario: string, value: number): Promise<msRest.RestResponse>;
   paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -167,10 +147,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseInteger(scenario: string): Promise<Models.HeaderResponseIntegerResponse>;
   responseInteger(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse>;
@@ -197,10 +173,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramLong(scenario: string, value: number): Promise<msRest.RestResponse>;
   paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -225,10 +197,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseLong(scenario: string): Promise<Models.HeaderResponseLongResponse>;
   responseLong(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse>;
@@ -255,10 +223,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramFloat(scenario: string, value: number): Promise<msRest.RestResponse>;
   paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -283,10 +247,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseFloat(scenario: string): Promise<Models.HeaderResponseFloatResponse>;
   responseFloat(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse>;
@@ -313,10 +273,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramDouble(scenario: string, value: number): Promise<msRest.RestResponse>;
   paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -341,10 +297,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseDouble(scenario: string): Promise<Models.HeaderResponseDoubleResponse>;
   responseDouble(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse>;
@@ -371,10 +323,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramBool(scenario: string, value: boolean): Promise<msRest.RestResponse>;
   paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -399,10 +347,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseBool(scenario: string): Promise<Models.HeaderResponseBoolResponse>;
   responseBool(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse>;
@@ -427,10 +371,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramString(scenario: string): Promise<msRest.RestResponse>;
   paramString(scenario: string, options: Models.HeaderParamStringOptionalParams): Promise<msRest.RestResponse>;
@@ -454,10 +394,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseString(scenario: string): Promise<Models.HeaderResponseStringResponse>;
   responseString(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse>;
@@ -484,10 +420,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramDate(scenario: string, value: Date | string): Promise<msRest.RestResponse>;
   paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -512,10 +444,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseDate(scenario: string): Promise<Models.HeaderResponseDateResponse>;
   responseDate(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse>;
@@ -543,10 +471,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramDatetime(scenario: string, value: Date | string): Promise<msRest.RestResponse>;
   paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -571,10 +495,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseDatetime(scenario: string): Promise<Models.HeaderResponseDatetimeResponse>;
   responseDatetime(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse>;
@@ -599,10 +519,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramDatetimeRfc1123(scenario: string): Promise<msRest.RestResponse>;
   paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.RestResponse>;
@@ -627,10 +543,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseDatetimeRfc1123(scenario: string): Promise<Models.HeaderResponseDatetimeRfc1123Response>;
   responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response>;
@@ -656,10 +568,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramDuration(scenario: string, value: string): Promise<msRest.RestResponse>;
   paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -684,10 +592,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseDuration(scenario: string): Promise<Models.HeaderResponseDurationResponse>;
   responseDuration(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse>;
@@ -713,10 +617,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramByte(scenario: string, value: Uint8Array): Promise<msRest.RestResponse>;
   paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -741,10 +641,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseByte(scenario: string): Promise<Models.HeaderResponseByteResponse>;
   responseByte(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse>;
@@ -769,10 +665,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   paramEnum(scenario: string): Promise<msRest.RestResponse>;
   paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams): Promise<msRest.RestResponse>;
@@ -796,10 +688,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   responseEnum(scenario: string): Promise<Models.HeaderResponseEnumResponse>;
   responseEnum(scenario: string, options: msRest.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse>;
@@ -821,10 +709,6 @@ export class Header {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   customRequestId(): Promise<msRest.RestResponse>;
   customRequestId(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

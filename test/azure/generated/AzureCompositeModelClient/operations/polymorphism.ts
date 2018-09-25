@@ -32,10 +32,6 @@ export class Polymorphism {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getValid(): Promise<Models.PolymorphismGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.PolymorphismGetValidResponse>;
@@ -90,10 +86,6 @@ export class Polymorphism {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putValid(complexBody: Models.FishUnion): Promise<msRest.RestResponse>;
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -116,10 +108,6 @@ export class Polymorphism {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getComplicated(): Promise<Models.PolymorphismGetComplicatedResponse>;
   getComplicated(options: msRest.RequestOptionsBase): Promise<Models.PolymorphismGetComplicatedResponse>;
@@ -143,10 +131,6 @@ export class Polymorphism {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putComplicated(complexBody: Models.SalmonUnion): Promise<msRest.RestResponse>;
   putComplicated(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -170,10 +154,6 @@ export class Polymorphism {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putMissingDiscriminator(complexBody: Models.SalmonUnion): Promise<Models.PolymorphismPutMissingDiscriminatorResponse>;
   putMissingDiscriminator(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase): Promise<Models.PolymorphismPutMissingDiscriminatorResponse>;
@@ -224,10 +204,6 @@ export class Polymorphism {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putValidMissingRequired(complexBody: Models.FishUnion): Promise<msRest.RestResponse>;
   putValidMissingRequired(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

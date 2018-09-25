@@ -32,10 +32,6 @@ export class UsageOperations {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   list(): Promise<Models.UsageListResponse>;
   list(options: msRest.RequestOptionsBase): Promise<Models.UsageListResponse>;

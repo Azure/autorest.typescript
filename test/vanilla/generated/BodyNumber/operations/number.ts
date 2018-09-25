@@ -31,10 +31,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getNull(): Promise<Models.NumberGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.NumberGetNullResponse>;
@@ -55,10 +51,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalidFloat(): Promise<Models.NumberGetInvalidFloatResponse>;
   getInvalidFloat(options: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidFloatResponse>;
@@ -79,10 +71,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalidDouble(): Promise<Models.NumberGetInvalidDoubleResponse>;
   getInvalidDouble(options: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidDoubleResponse>;
@@ -103,10 +91,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getInvalidDecimal(): Promise<Models.NumberGetInvalidDecimalResponse>;
   getInvalidDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetInvalidDecimalResponse>;
@@ -129,10 +113,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBigFloat(numberBody: number): Promise<msRest.RestResponse>;
   putBigFloat(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -154,10 +134,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBigFloat(): Promise<Models.NumberGetBigFloatResponse>;
   getBigFloat(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigFloatResponse>;
@@ -180,10 +156,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBigDouble(numberBody: number): Promise<msRest.RestResponse>;
   putBigDouble(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -205,10 +177,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBigDouble(): Promise<Models.NumberGetBigDoubleResponse>;
   getBigDouble(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoubleResponse>;
@@ -229,10 +197,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBigDoublePositiveDecimal(): Promise<msRest.RestResponse>;
   putBigDoublePositiveDecimal(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -253,10 +217,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBigDoublePositiveDecimal(): Promise<Models.NumberGetBigDoublePositiveDecimalResponse>;
   getBigDoublePositiveDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoublePositiveDecimalResponse>;
@@ -277,10 +237,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBigDoubleNegativeDecimal(): Promise<msRest.RestResponse>;
   putBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -301,10 +257,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBigDoubleNegativeDecimal(): Promise<Models.NumberGetBigDoubleNegativeDecimalResponse>;
   getBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDoubleNegativeDecimalResponse>;
@@ -327,10 +279,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBigDecimal(numberBody: number): Promise<msRest.RestResponse>;
   putBigDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -352,10 +300,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBigDecimal(): Promise<Models.NumberGetBigDecimalResponse>;
   getBigDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalResponse>;
@@ -376,10 +320,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBigDecimalPositiveDecimal(): Promise<msRest.RestResponse>;
   putBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -400,10 +340,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBigDecimalPositiveDecimal(): Promise<Models.NumberGetBigDecimalPositiveDecimalResponse>;
   getBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalPositiveDecimalResponse>;
@@ -424,10 +360,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putBigDecimalNegativeDecimal(): Promise<msRest.RestResponse>;
   putBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -448,10 +380,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getBigDecimalNegativeDecimal(): Promise<Models.NumberGetBigDecimalNegativeDecimalResponse>;
   getBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetBigDecimalNegativeDecimalResponse>;
@@ -474,10 +402,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putSmallFloat(numberBody: number): Promise<msRest.RestResponse>;
   putSmallFloat(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -499,10 +423,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSmallFloat(): Promise<Models.NumberGetSmallFloatResponse>;
   getSmallFloat(options: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallFloatResponse>;
@@ -525,10 +445,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putSmallDouble(numberBody: number): Promise<msRest.RestResponse>;
   putSmallDouble(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -550,10 +466,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSmallDouble(): Promise<Models.NumberGetSmallDoubleResponse>;
   getSmallDouble(options: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallDoubleResponse>;
@@ -576,10 +488,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   putSmallDecimal(numberBody: number): Promise<msRest.RestResponse>;
   putSmallDecimal(numberBody: number, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -601,10 +509,6 @@ export class Number {
    * @param [options] Optional Parameters.
    *
    * @returns A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
    */
   getSmallDecimal(): Promise<Models.NumberGetSmallDecimalResponse>;
   getSmallDecimal(options: msRest.RequestOptionsBase): Promise<Models.NumberGetSmallDecimalResponse>;
