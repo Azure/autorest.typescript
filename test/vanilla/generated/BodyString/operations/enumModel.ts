@@ -28,13 +28,9 @@ export class EnumModel {
   /**
    * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNotExpandable(): Promise<Models.EnumModelGetNotExpandableResponse>;
   getNotExpandable(options: msRest.RequestOptionsBase): Promise<Models.EnumModelGetNotExpandableResponse>;
@@ -52,15 +48,11 @@ export class EnumModel {
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
    *
-   * @param {Colors} stringBody Possible values include: 'red color', 'green-color', 'blue_color'
+   * @param stringBody Possible values include: 'red color', 'green-color', 'blue_color'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putNotExpandable(stringBody: Models.Colors): Promise<msRest.RestResponse>;
   putNotExpandable(stringBody: Models.Colors, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -79,13 +71,9 @@ export class EnumModel {
   /**
    * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getReferenced(): Promise<Models.EnumModelGetReferencedResponse>;
   getReferenced(options: msRest.RequestOptionsBase): Promise<Models.EnumModelGetReferencedResponse>;
@@ -103,15 +91,11 @@ export class EnumModel {
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
    *
-   * @param {Colors} enumStringBody Possible values include: 'red color', 'green-color', 'blue_color'
+   * @param enumStringBody Possible values include: 'red color', 'green-color', 'blue_color'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putReferenced(enumStringBody: Models.Colors): Promise<msRest.RestResponse>;
   putReferenced(enumStringBody: Models.Colors, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -130,13 +114,9 @@ export class EnumModel {
   /**
    * Get value 'green-color' from the constant.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getReferencedConstant(): Promise<Models.EnumModelGetReferencedConstantResponse>;
   getReferencedConstant(options: msRest.RequestOptionsBase): Promise<Models.EnumModelGetReferencedConstantResponse>;
@@ -154,13 +134,9 @@ export class EnumModel {
   /**
    * Sends value 'green-color' from a constant
    *
-   * @param {EnumModelPutReferencedConstantOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putReferencedConstant(): Promise<msRest.RestResponse>;
   putReferencedConstant(options: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.RestResponse>;

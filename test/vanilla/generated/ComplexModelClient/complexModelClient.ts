@@ -18,7 +18,7 @@ class ComplexModelClient extends ComplexModelClientContext {
   /**
    * Initializes a new instance of the ComplexModelClient class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.ComplexModelClientOptions) {
     super(options);
@@ -26,21 +26,17 @@ class ComplexModelClient extends ComplexModelClientContext {
   // methods on the client.
 
   /**
-   * @summary Product Types
-   *
    * The Products endpoint returns information about the Uber products offered at a given location.
    * The response includes the display name and other details about each product, and lists the
    * products in the proper display order.
    *
-   * @param {string} resourceGroupName Resource Group ID.
+   * @summary Product Types
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param resourceGroupName Resource Group ID.
    *
-   * @returns {Promise} A promise is returned
+   * @param [options] Optional Parameters.
    *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   list(resourceGroupName: string): Promise<Models.ListResponse>;
   list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.ListResponse>;
@@ -58,21 +54,17 @@ class ComplexModelClient extends ComplexModelClientContext {
   // methods on the client.
 
   /**
-   * @summary Create products
-   *
    * Resets products.
    *
-   * @param {string} subscriptionId Subscription ID.
+   * @summary Create products
    *
-   * @param {string} resourceGroupName Resource Group ID.
+   * @param subscriptionId Subscription ID.
    *
-   * @param {ComplexModelClientCreateOptionalParams} [options] Optional Parameters.
+   * @param resourceGroupName Resource Group ID.
    *
-   * @returns {Promise} A promise is returned
+   * @param [options] Optional Parameters.
    *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   create(subscriptionId: string, resourceGroupName: string): Promise<Models.CreateResponse>;
   create(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientCreateOptionalParams): Promise<Models.CreateResponse>;
@@ -91,21 +83,17 @@ class ComplexModelClient extends ComplexModelClientContext {
   // methods on the client.
 
   /**
-   * @summary Update products
-   *
    * Resets products.
    *
-   * @param {string} subscriptionId Subscription ID.
+   * @summary Update products
    *
-   * @param {string} resourceGroupName Resource Group ID.
+   * @param subscriptionId Subscription ID.
    *
-   * @param {ComplexModelClientUpdateOptionalParams} [options] Optional Parameters.
+   * @param resourceGroupName Resource Group ID.
    *
-   * @returns {Promise} A promise is returned
+   * @param [options] Optional Parameters.
    *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   update(subscriptionId: string, resourceGroupName: string): Promise<Models.UpdateResponse>;
   update(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientUpdateOptionalParams): Promise<Models.UpdateResponse>;

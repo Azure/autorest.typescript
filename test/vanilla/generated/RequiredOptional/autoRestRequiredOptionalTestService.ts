@@ -21,11 +21,11 @@ class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestSe
   /**
    * Initializes a new instance of the AutoRestRequiredOptionalTestService class.
    *
-   * @param {string} requiredGlobalPath number of items to skip
+   * @param requiredGlobalPath number of items to skip
    *
-   * @param {string} requiredGlobalQuery number of items to skip
+   * @param requiredGlobalQuery number of items to skip
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(requiredGlobalPath: string, requiredGlobalQuery: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
     super(requiredGlobalPath, requiredGlobalQuery, options);

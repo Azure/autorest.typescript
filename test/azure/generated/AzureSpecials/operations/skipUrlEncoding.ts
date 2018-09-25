@@ -29,15 +29,11 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
+   * @param unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getMethodPathValid(unencodedPathParam: string): Promise<msRest.RestResponse>;
   getMethodPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -56,15 +52,11 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
+   * @param unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getPathPathValid(unencodedPathParam: string): Promise<msRest.RestResponse>;
   getPathPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -83,13 +75,9 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getSwaggerPathValid(): Promise<msRest.RestResponse>;
   getSwaggerPathValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -107,15 +95,11 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
+   * @param q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getMethodQueryValid(q1: string): Promise<msRest.RestResponse>;
   getMethodQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -134,13 +118,9 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value null
    *
-   * @param {SkipUrlEncodingGetMethodQueryNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getMethodQueryNull(): Promise<msRest.RestResponse>;
   getMethodQueryNull(options: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<msRest.RestResponse>;
@@ -158,15 +138,11 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
+   * @param q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getPathQueryValid(q1: string): Promise<msRest.RestResponse>;
   getPathQueryValid(q1: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -185,13 +161,9 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getSwaggerQueryValid(): Promise<msRest.RestResponse>;
   getSwaggerQueryValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

@@ -19,7 +19,7 @@ export class AutoRestSwaggerBATdictionaryServiceContext extends msRest.ServiceCl
   /**
    * Initializes a new instance of the AutoRestSwaggerBATdictionaryServiceContext class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATdictionaryServiceOptions) {
 

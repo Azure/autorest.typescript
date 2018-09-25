@@ -33,13 +33,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
    * returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LRORetrysPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put201CreatingSucceeded200(options?: Models.LRORetrysPut201CreatingSucceeded200OptionalParams): Promise<Models.LRORetrysPut201CreatingSucceeded200Response> {
     return this.beginPut201CreatingSucceeded200(options)
@@ -52,13 +48,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LRORetrysPutAsyncRelativeRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putAsyncRelativeRetrySucceeded(options?: Models.LRORetrysPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse> {
     return this.beginPutAsyncRelativeRetrySucceeded(options)
@@ -71,13 +63,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
    * returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
     return this.beginDeleteProvisioning202Accepted200Succeeded(options)
@@ -89,13 +77,9 @@ export class LRORetrys {
    * Long running delete request, service returns a 500, then a 202 to the initial request. Polls
    * return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete202Retry200(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDelete202Retry200Response> {
     return this.beginDelete202Retry200(options)
@@ -107,13 +91,9 @@ export class LRORetrys {
    * Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
    * endpoint indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteAsyncRelativeRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
     return this.beginDeleteAsyncRelativeRetrySucceeded(options)
@@ -125,13 +105,9 @@ export class LRORetrys {
    * Long running post request, service returns a 500, then a 202 to the initial request, with
    * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LRORetrysPost202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post202Retry200(options?: Models.LRORetrysPost202Retry200OptionalParams): Promise<Models.LRORetrysPost202Retry200Response> {
     return this.beginPost202Retry200(options)
@@ -144,13 +120,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LRORetrysPostAsyncRelativeRetrySucceededOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postAsyncRelativeRetrySucceeded(options?: Models.LRORetrysPostAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse> {
     return this.beginPostAsyncRelativeRetrySucceeded(options)
@@ -162,13 +134,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
    * returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LRORetrysBeginPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPut201CreatingSucceeded200(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -184,14 +152,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPutAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -207,13 +170,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
    * returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -228,13 +187,9 @@ export class LRORetrys {
    * Long running delete request, service returns a 500, then a 202 to the initial request. Polls
    * return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDelete202Retry200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -249,13 +204,9 @@ export class LRORetrys {
    * Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
    * endpoint indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginDeleteAsyncRelativeRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -270,13 +221,9 @@ export class LRORetrys {
    * Long running post request, service returns a 500, then a 202 to the initial request, with
    * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LRORetrysBeginPost202Retry200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPost202Retry200(options?: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -292,14 +239,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginPostAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(

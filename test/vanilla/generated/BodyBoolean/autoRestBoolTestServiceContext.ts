@@ -19,7 +19,7 @@ export class AutoRestBoolTestServiceContext extends msRest.ServiceClient {
   /**
    * Initializes a new instance of the AutoRestBoolTestServiceContext class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestBoolTestServiceOptions) {
 

@@ -29,13 +29,9 @@ export class Polymorphicrecursive {
   /**
    * Get complex types that are polymorphic and have recursive references
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getValid(): Promise<Models.PolymorphicrecursiveGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.PolymorphicrecursiveGetValidResponse>;
@@ -53,7 +49,7 @@ export class Polymorphicrecursive {
   /**
    * Put complex types that are polymorphic and have recursive references
    *
-   * @param {FishUnion} complexBody Please put a salmon that looks like this:
+   * @param complexBody Please put a salmon that looks like this:
    * {
    * "fishtype": "salmon",
    * "species": "king",
@@ -107,13 +103,9 @@ export class Polymorphicrecursive {
    * ]
    * }
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putValid(complexBody: Models.FishUnion): Promise<msRest.RestResponse>;
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

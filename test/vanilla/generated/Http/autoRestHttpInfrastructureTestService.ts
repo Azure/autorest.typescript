@@ -26,7 +26,7 @@ class AutoRestHttpInfrastructureTestService extends AutoRestHttpInfrastructureTe
   /**
    * Initializes a new instance of the AutoRestHttpInfrastructureTestService class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestHttpInfrastructureTestServiceOptions) {
     super(options);

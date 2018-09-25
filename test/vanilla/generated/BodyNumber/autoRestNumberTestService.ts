@@ -20,7 +20,7 @@ class AutoRestNumberTestService extends AutoRestNumberTestServiceContext {
   /**
    * Initializes a new instance of the AutoRestNumberTestService class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestNumberTestServiceOptions) {
     super(options);

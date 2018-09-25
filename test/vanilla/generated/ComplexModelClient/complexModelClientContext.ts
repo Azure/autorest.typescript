@@ -21,7 +21,7 @@ export class ComplexModelClientContext extends msRest.ServiceClient {
   /**
    * Initializes a new instance of the ComplexModelClientContext class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.ComplexModelClientOptions) {
 

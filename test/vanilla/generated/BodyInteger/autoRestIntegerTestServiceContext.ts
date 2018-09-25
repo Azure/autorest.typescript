@@ -19,7 +19,7 @@ export class AutoRestIntegerTestServiceContext extends msRest.ServiceClient {
   /**
    * Initializes a new instance of the AutoRestIntegerTestServiceContext class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestIntegerTestServiceOptions) {
 

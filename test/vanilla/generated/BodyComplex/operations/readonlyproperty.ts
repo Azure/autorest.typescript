@@ -28,13 +28,9 @@ export class Readonlyproperty {
   /**
    * Get complex types that have readonly properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getValid(): Promise<Models.ReadonlypropertyGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.ReadonlypropertyGetValidResponse>;
@@ -52,13 +48,9 @@ export class Readonlyproperty {
   /**
    * Put complex types that have readonly properties
    *
-   * @param {ReadonlypropertyPutValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putValid(): Promise<msRest.RestResponse>;
   putValid(options: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.RestResponse>;

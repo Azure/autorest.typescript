@@ -21,7 +21,7 @@ class AutoRestSwaggerBATService extends AutoRestSwaggerBATServiceContext {
   /**
    * Initializes a new instance of the AutoRestSwaggerBATService class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATServiceOptions) {
     super(options);

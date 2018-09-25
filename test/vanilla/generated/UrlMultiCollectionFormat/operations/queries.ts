@@ -29,13 +29,9 @@ export class Queries {
   /**
    * Get a null array of string using the multi-array format
    *
-   * @param {QueriesArrayStringMultiNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayStringMultiNull(): Promise<msRest.RestResponse>;
   arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.RestResponse>;
@@ -53,13 +49,9 @@ export class Queries {
   /**
    * Get an empty array [] of string using the multi-array format
    *
-   * @param {QueriesArrayStringMultiEmptyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayStringMultiEmpty(): Promise<msRest.RestResponse>;
   arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.RestResponse>;
@@ -78,13 +70,9 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * mult-array format
    *
-   * @param {QueriesArrayStringMultiValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayStringMultiValid(): Promise<msRest.RestResponse>;
   arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.RestResponse>;

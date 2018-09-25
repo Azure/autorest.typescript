@@ -28,7 +28,7 @@ class AutoRestComplexTestService extends AutoRestComplexTestServiceContext {
   /**
    * Initializes a new instance of the AutoRestComplexTestService class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestComplexTestServiceOptions) {
     super(options);

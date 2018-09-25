@@ -29,13 +29,9 @@ export class Queries {
   /**
    * Get true Boolean value on path
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBooleanTrue(): Promise<msRest.RestResponse>;
   getBooleanTrue(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -53,13 +49,9 @@ export class Queries {
   /**
    * Get false Boolean value on path
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBooleanFalse(): Promise<msRest.RestResponse>;
   getBooleanFalse(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -77,13 +69,9 @@ export class Queries {
   /**
    * Get null Boolean value on query (query string should be absent)
    *
-   * @param {QueriesGetBooleanNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBooleanNull(): Promise<msRest.RestResponse>;
   getBooleanNull(options: Models.QueriesGetBooleanNullOptionalParams): Promise<msRest.RestResponse>;
@@ -101,13 +89,9 @@ export class Queries {
   /**
    * Get '1000000' integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getIntOneMillion(): Promise<msRest.RestResponse>;
   getIntOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -125,13 +109,9 @@ export class Queries {
   /**
    * Get '-1000000' integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getIntNegativeOneMillion(): Promise<msRest.RestResponse>;
   getIntNegativeOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -149,13 +129,9 @@ export class Queries {
   /**
    * Get null integer value (no query parameter)
    *
-   * @param {QueriesGetIntNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getIntNull(): Promise<msRest.RestResponse>;
   getIntNull(options: Models.QueriesGetIntNullOptionalParams): Promise<msRest.RestResponse>;
@@ -173,13 +149,9 @@ export class Queries {
   /**
    * Get '10000000000' 64 bit integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getTenBillion(): Promise<msRest.RestResponse>;
   getTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -197,13 +169,9 @@ export class Queries {
   /**
    * Get '-10000000000' 64 bit integer value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNegativeTenBillion(): Promise<msRest.RestResponse>;
   getNegativeTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -221,13 +189,9 @@ export class Queries {
   /**
    * Get 'null 64 bit integer value (no query param in uri)
    *
-   * @param {QueriesGetLongNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLongNull(): Promise<msRest.RestResponse>;
   getLongNull(options: Models.QueriesGetLongNullOptionalParams): Promise<msRest.RestResponse>;
@@ -245,13 +209,9 @@ export class Queries {
   /**
    * Get '1.034E+20' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   floatScientificPositive(): Promise<msRest.RestResponse>;
   floatScientificPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -269,13 +229,9 @@ export class Queries {
   /**
    * Get '-1.034E-20' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   floatScientificNegative(): Promise<msRest.RestResponse>;
   floatScientificNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -293,13 +249,9 @@ export class Queries {
   /**
    * Get null numeric value (no query parameter)
    *
-   * @param {QueriesFloatNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   floatNull(): Promise<msRest.RestResponse>;
   floatNull(options: Models.QueriesFloatNullOptionalParams): Promise<msRest.RestResponse>;
@@ -317,13 +269,9 @@ export class Queries {
   /**
    * Get '9999999.999' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   doubleDecimalPositive(): Promise<msRest.RestResponse>;
   doubleDecimalPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -341,13 +289,9 @@ export class Queries {
   /**
    * Get '-9999999.999' numeric value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   doubleDecimalNegative(): Promise<msRest.RestResponse>;
   doubleDecimalNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -365,13 +309,9 @@ export class Queries {
   /**
    * Get null numeric value (no query parameter)
    *
-   * @param {QueriesDoubleNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   doubleNull(): Promise<msRest.RestResponse>;
   doubleNull(options: Models.QueriesDoubleNullOptionalParams): Promise<msRest.RestResponse>;
@@ -389,13 +329,9 @@ export class Queries {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   stringUnicode(): Promise<msRest.RestResponse>;
   stringUnicode(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -413,13 +349,9 @@ export class Queries {
   /**
    * Get 'begin!*'();:@ &=+$,/?#[]end
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   stringUrlEncoded(): Promise<msRest.RestResponse>;
   stringUrlEncoded(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -437,13 +369,9 @@ export class Queries {
   /**
    * Get ''
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   stringEmpty(): Promise<msRest.RestResponse>;
   stringEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -461,13 +389,9 @@ export class Queries {
   /**
    * Get null (no query parameter in url)
    *
-   * @param {QueriesStringNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   stringNull(): Promise<msRest.RestResponse>;
   stringNull(options: Models.QueriesStringNullOptionalParams): Promise<msRest.RestResponse>;
@@ -485,13 +409,9 @@ export class Queries {
   /**
    * Get using uri with query parameter 'green color'
    *
-   * @param {QueriesEnumValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   enumValid(): Promise<msRest.RestResponse>;
   enumValid(options: Models.QueriesEnumValidOptionalParams): Promise<msRest.RestResponse>;
@@ -509,13 +429,9 @@ export class Queries {
   /**
    * Get null (no query parameter in url)
    *
-   * @param {QueriesEnumNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   enumNull(): Promise<msRest.RestResponse>;
   enumNull(options: Models.QueriesEnumNullOptionalParams): Promise<msRest.RestResponse>;
@@ -533,13 +449,9 @@ export class Queries {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
-   * @param {QueriesByteMultiByteOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   byteMultiByte(): Promise<msRest.RestResponse>;
   byteMultiByte(options: Models.QueriesByteMultiByteOptionalParams): Promise<msRest.RestResponse>;
@@ -557,13 +469,9 @@ export class Queries {
   /**
    * Get '' as byte array
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   byteEmpty(): Promise<msRest.RestResponse>;
   byteEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -581,13 +489,9 @@ export class Queries {
   /**
    * Get null as byte array (no query parameters in uri)
    *
-   * @param {QueriesByteNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   byteNull(): Promise<msRest.RestResponse>;
   byteNull(options: Models.QueriesByteNullOptionalParams): Promise<msRest.RestResponse>;
@@ -605,13 +509,9 @@ export class Queries {
   /**
    * Get '2012-01-01' as date
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   dateValid(): Promise<msRest.RestResponse>;
   dateValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -629,13 +529,9 @@ export class Queries {
   /**
    * Get null as date - this should result in no query parameters in uri
    *
-   * @param {QueriesDateNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   dateNull(): Promise<msRest.RestResponse>;
   dateNull(options: Models.QueriesDateNullOptionalParams): Promise<msRest.RestResponse>;
@@ -653,13 +549,9 @@ export class Queries {
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   dateTimeValid(): Promise<msRest.RestResponse>;
   dateTimeValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -677,13 +569,9 @@ export class Queries {
   /**
    * Get null as date-time, should result in no query parameters in uri
    *
-   * @param {QueriesDateTimeNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   dateTimeNull(): Promise<msRest.RestResponse>;
   dateTimeNull(options: Models.QueriesDateTimeNullOptionalParams): Promise<msRest.RestResponse>;
@@ -702,13 +590,9 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * csv-array format
    *
-   * @param {QueriesArrayStringCsvValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayStringCsvValid(): Promise<msRest.RestResponse>;
   arrayStringCsvValid(options: Models.QueriesArrayStringCsvValidOptionalParams): Promise<msRest.RestResponse>;
@@ -726,13 +610,9 @@ export class Queries {
   /**
    * Get a null array of string using the csv-array format
    *
-   * @param {QueriesArrayStringCsvNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayStringCsvNull(): Promise<msRest.RestResponse>;
   arrayStringCsvNull(options: Models.QueriesArrayStringCsvNullOptionalParams): Promise<msRest.RestResponse>;
@@ -750,13 +630,9 @@ export class Queries {
   /**
    * Get an empty array [] of string using the csv-array format
    *
-   * @param {QueriesArrayStringCsvEmptyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayStringCsvEmpty(): Promise<msRest.RestResponse>;
   arrayStringCsvEmpty(options: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<msRest.RestResponse>;
@@ -775,13 +651,9 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * ssv-array format
    *
-   * @param {QueriesArrayStringSsvValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayStringSsvValid(): Promise<msRest.RestResponse>;
   arrayStringSsvValid(options: Models.QueriesArrayStringSsvValidOptionalParams): Promise<msRest.RestResponse>;
@@ -800,13 +672,9 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * tsv-array format
    *
-   * @param {QueriesArrayStringTsvValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayStringTsvValid(): Promise<msRest.RestResponse>;
   arrayStringTsvValid(options: Models.QueriesArrayStringTsvValidOptionalParams): Promise<msRest.RestResponse>;
@@ -825,13 +693,9 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * pipes-array format
    *
-   * @param {QueriesArrayStringPipesValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   arrayStringPipesValid(): Promise<msRest.RestResponse>;
   arrayStringPipesValid(options: Models.QueriesArrayStringPipesValidOptionalParams): Promise<msRest.RestResponse>;

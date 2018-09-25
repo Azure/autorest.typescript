@@ -29,17 +29,13 @@ export class Formdata {
   /**
    * Upload file
    *
-   * @param {msRest.HttpRequestBody} fileContent File to upload.
+   * @param fileContent File to upload.
    *
-   * @param {string} fileName File name to upload. Name has to be spelled exactly as written here.
+   * @param fileName File name to upload. Name has to be spelled exactly as written here.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   uploadFile(fileContent: msRest.HttpRequestBody, fileName: string): Promise<Models.FormdataUploadFileResponse>;
   uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, options: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileResponse>;
@@ -59,15 +55,11 @@ export class Formdata {
   /**
    * Upload file
    *
-   * @param {msRest.HttpRequestBody} fileContent File to upload.
+   * @param fileContent File to upload.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   uploadFileViaBody(fileContent: msRest.HttpRequestBody): Promise<Models.FormdataUploadFileViaBodyResponse>;
   uploadFileViaBody(fileContent: msRest.HttpRequestBody, options: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileViaBodyResponse>;

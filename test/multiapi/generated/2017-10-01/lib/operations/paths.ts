@@ -24,15 +24,11 @@ export class Paths {
   /**
    * Get a 200 to test a valid base uri
    *
-   * @param {string} accountName Account Name
+   * @param accountName Account Name
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmpty(accountName: string): Promise<msRest.RestResponse>;
   getEmpty(accountName: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

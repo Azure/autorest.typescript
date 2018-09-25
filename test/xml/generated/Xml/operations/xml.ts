@@ -29,13 +29,9 @@ export class Xml {
   /**
    * Get a complex type that has a ref to a complex type with no XML node
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getComplexTypeRefNoMeta(): Promise<Models.XmlGetComplexTypeRefNoMetaResponse>;
   getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefNoMetaResponse>;
@@ -53,15 +49,11 @@ export class Xml {
   /**
    * Puts a complex type that has a ref to a complex type with no XML node
    *
-   * @param {RootWithRefAndNoMeta} model
+   * @param model
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta): Promise<msRest.RestResponse>;
   putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -80,13 +72,9 @@ export class Xml {
   /**
    * Get a complex type that has a ref to a complex type with XML node
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getComplexTypeRefWithMeta(): Promise<Models.XmlGetComplexTypeRefWithMetaResponse>;
   getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefWithMetaResponse>;
@@ -104,15 +92,11 @@ export class Xml {
   /**
    * Puts a complex type that has a ref to a complex type with XML node
    *
-   * @param {RootWithRefAndMeta} model
+   * @param model
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta): Promise<msRest.RestResponse>;
   putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -131,13 +115,9 @@ export class Xml {
   /**
    * Get a simple XML document
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getSimple(): Promise<Models.XmlGetSimpleResponse>;
   getSimple(options: msRest.RequestOptionsBase): Promise<Models.XmlGetSimpleResponse>;
@@ -155,15 +135,11 @@ export class Xml {
   /**
    * Put a simple XML document
    *
-   * @param {Slideshow} slideshow
+   * @param slideshow
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putSimple(slideshow: Models.Slideshow): Promise<msRest.RestResponse>;
   putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -182,13 +158,9 @@ export class Xml {
   /**
    * Get an XML document with multiple wrapped lists
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getWrappedLists(): Promise<Models.XmlGetWrappedListsResponse>;
   getWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.XmlGetWrappedListsResponse>;
@@ -206,15 +178,11 @@ export class Xml {
   /**
    * Put an XML document with multiple wrapped lists
    *
-   * @param {AppleBarrel} wrappedLists
+   * @param wrappedLists
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putWrappedLists(wrappedLists: Models.AppleBarrel): Promise<msRest.RestResponse>;
   putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -233,13 +201,9 @@ export class Xml {
   /**
    * Get strongly-typed response headers.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getHeaders(): Promise<Models.XmlGetHeadersResponse>;
   getHeaders(options: msRest.RequestOptionsBase): Promise<Models.XmlGetHeadersResponse>;
@@ -257,13 +221,9 @@ export class Xml {
   /**
    * Get an empty list.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmptyList(): Promise<Models.XmlGetEmptyListResponse>;
   getEmptyList(options: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyListResponse>;
@@ -281,15 +241,11 @@ export class Xml {
   /**
    * Puts an empty list.
    *
-   * @param {Slideshow} slideshow
+   * @param slideshow
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putEmptyList(slideshow: Models.Slideshow): Promise<msRest.RestResponse>;
   putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -308,13 +264,9 @@ export class Xml {
   /**
    * Gets some empty wrapped lists.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmptyWrappedLists(): Promise<Models.XmlGetEmptyWrappedListsResponse>;
   getEmptyWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyWrappedListsResponse>;
@@ -332,15 +284,11 @@ export class Xml {
   /**
    * Puts some empty wrapped lists.
    *
-   * @param {AppleBarrel} appleBarrel
+   * @param appleBarrel
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putEmptyWrappedLists(appleBarrel: Models.AppleBarrel): Promise<msRest.RestResponse>;
   putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -359,13 +307,9 @@ export class Xml {
   /**
    * Gets a list as the root element.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getRootList(): Promise<Models.XmlGetRootListResponse>;
   getRootList(options: msRest.RequestOptionsBase): Promise<Models.XmlGetRootListResponse>;
@@ -383,15 +327,11 @@ export class Xml {
   /**
    * Puts a list as the root element.
    *
-   * @param {Banana[]} bananas
+   * @param bananas
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putRootList(bananas: Models.Banana[]): Promise<msRest.RestResponse>;
   putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -410,13 +350,9 @@ export class Xml {
   /**
    * Gets a list with a single item.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getRootListSingleItem(): Promise<Models.XmlGetRootListSingleItemResponse>;
   getRootListSingleItem(options: msRest.RequestOptionsBase): Promise<Models.XmlGetRootListSingleItemResponse>;
@@ -434,15 +370,11 @@ export class Xml {
   /**
    * Puts a list with a single item.
    *
-   * @param {Banana[]} bananas
+   * @param bananas
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putRootListSingleItem(bananas: Models.Banana[]): Promise<msRest.RestResponse>;
   putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -461,13 +393,9 @@ export class Xml {
   /**
    * Gets an empty list as the root element.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmptyRootList(): Promise<Models.XmlGetEmptyRootListResponse>;
   getEmptyRootList(options: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyRootListResponse>;
@@ -485,15 +413,11 @@ export class Xml {
   /**
    * Puts an empty list as the root element.
    *
-   * @param {Banana[]} bananas
+   * @param bananas
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putEmptyRootList(bananas: Models.Banana[]): Promise<msRest.RestResponse>;
   putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -512,13 +436,9 @@ export class Xml {
   /**
    * Gets an XML document with an empty child element.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmptyChildElement(): Promise<Models.XmlGetEmptyChildElementResponse>;
   getEmptyChildElement(options: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyChildElementResponse>;
@@ -536,15 +456,11 @@ export class Xml {
   /**
    * Puts a value with an empty child element.
    *
-   * @param {Banana} banana
+   * @param banana
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putEmptyChildElement(banana: Models.Banana): Promise<msRest.RestResponse>;
   putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -563,13 +479,9 @@ export class Xml {
   /**
    * Lists containers in a storage account.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   listContainers(): Promise<Models.XmlListContainersResponse>;
   listContainers(options: msRest.RequestOptionsBase): Promise<Models.XmlListContainersResponse>;
@@ -587,13 +499,9 @@ export class Xml {
   /**
    * Gets storage service properties.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getServiceProperties(): Promise<Models.XmlGetServicePropertiesResponse>;
   getServiceProperties(options: msRest.RequestOptionsBase): Promise<Models.XmlGetServicePropertiesResponse>;
@@ -611,15 +519,11 @@ export class Xml {
   /**
    * Puts storage service properties.
    *
-   * @param {StorageServiceProperties} properties
+   * @param properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putServiceProperties(properties: Models.StorageServiceProperties): Promise<msRest.RestResponse>;
   putServiceProperties(properties: Models.StorageServiceProperties, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -638,13 +542,9 @@ export class Xml {
   /**
    * Gets storage ACLs for a container.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getAcls(): Promise<Models.XmlGetAclsResponse>;
   getAcls(options: msRest.RequestOptionsBase): Promise<Models.XmlGetAclsResponse>;
@@ -662,15 +562,11 @@ export class Xml {
   /**
    * Puts storage ACLs for a container.
    *
-   * @param {SignedIdentifier[]} properties
+   * @param properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putAcls(properties: Models.SignedIdentifier[]): Promise<msRest.RestResponse>;
   putAcls(properties: Models.SignedIdentifier[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -689,13 +585,9 @@ export class Xml {
   /**
    * Lists blobs in a storage container.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   listBlobs(): Promise<Models.XmlListBlobsResponse>;
   listBlobs(options: msRest.RequestOptionsBase): Promise<Models.XmlListBlobsResponse>;

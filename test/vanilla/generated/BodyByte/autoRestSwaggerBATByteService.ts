@@ -20,7 +20,7 @@ class AutoRestSwaggerBATByteService extends AutoRestSwaggerBATByteServiceContext
   /**
    * Initializes a new instance of the AutoRestSwaggerBATByteService class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATByteServiceOptions) {
     super(options);

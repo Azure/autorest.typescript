@@ -26,10 +26,9 @@ export class AutoRestParameterGroupingTestServiceContext extends msRestAzure.Azu
   /**
    * Initializes a new instance of the AutoRestParameterGroupingTestService class.
    *
-   * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
-   * connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestParameterGroupingTestServiceOptions) {
     if (credentials == undefined) {

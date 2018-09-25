@@ -28,13 +28,9 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head400(): Promise<Models.HttpClientFailureHead400Response>;
   head400(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead400Response>;
@@ -52,13 +48,9 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get400(): Promise<Models.HttpClientFailureGet400Response>;
   get400(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet400Response>;
@@ -76,13 +68,9 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePut400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put400(): Promise<Models.HttpClientFailurePut400Response>;
   put400(options: Models.HttpClientFailurePut400OptionalParams): Promise<Models.HttpClientFailurePut400Response>;
@@ -100,13 +88,9 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePatch400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   patch400(): Promise<Models.HttpClientFailurePatch400Response>;
   patch400(options: Models.HttpClientFailurePatch400OptionalParams): Promise<Models.HttpClientFailurePatch400Response>;
@@ -124,13 +108,9 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePost400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post400(): Promise<Models.HttpClientFailurePost400Response>;
   post400(options: Models.HttpClientFailurePost400OptionalParams): Promise<Models.HttpClientFailurePost400Response>;
@@ -148,13 +128,9 @@ export class HttpClientFailure {
   /**
    * Return 400 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailureDelete400OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete400(): Promise<Models.HttpClientFailureDelete400Response>;
   delete400(options: Models.HttpClientFailureDelete400OptionalParams): Promise<Models.HttpClientFailureDelete400Response>;
@@ -172,13 +148,9 @@ export class HttpClientFailure {
   /**
    * Return 401 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head401(): Promise<Models.HttpClientFailureHead401Response>;
   head401(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead401Response>;
@@ -196,13 +168,9 @@ export class HttpClientFailure {
   /**
    * Return 402 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get402(): Promise<Models.HttpClientFailureGet402Response>;
   get402(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet402Response>;
@@ -220,13 +188,9 @@ export class HttpClientFailure {
   /**
    * Return 403 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get403(): Promise<Models.HttpClientFailureGet403Response>;
   get403(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet403Response>;
@@ -244,13 +208,9 @@ export class HttpClientFailure {
   /**
    * Return 404 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePut404OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put404(): Promise<Models.HttpClientFailurePut404Response>;
   put404(options: Models.HttpClientFailurePut404OptionalParams): Promise<Models.HttpClientFailurePut404Response>;
@@ -268,13 +228,9 @@ export class HttpClientFailure {
   /**
    * Return 405 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePatch405OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   patch405(): Promise<Models.HttpClientFailurePatch405Response>;
   patch405(options: Models.HttpClientFailurePatch405OptionalParams): Promise<Models.HttpClientFailurePatch405Response>;
@@ -292,13 +248,9 @@ export class HttpClientFailure {
   /**
    * Return 406 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePost406OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post406(): Promise<Models.HttpClientFailurePost406Response>;
   post406(options: Models.HttpClientFailurePost406OptionalParams): Promise<Models.HttpClientFailurePost406Response>;
@@ -316,13 +268,9 @@ export class HttpClientFailure {
   /**
    * Return 407 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailureDelete407OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete407(): Promise<Models.HttpClientFailureDelete407Response>;
   delete407(options: Models.HttpClientFailureDelete407OptionalParams): Promise<Models.HttpClientFailureDelete407Response>;
@@ -340,13 +288,9 @@ export class HttpClientFailure {
   /**
    * Return 409 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePut409OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put409(): Promise<Models.HttpClientFailurePut409Response>;
   put409(options: Models.HttpClientFailurePut409OptionalParams): Promise<Models.HttpClientFailurePut409Response>;
@@ -364,13 +308,9 @@ export class HttpClientFailure {
   /**
    * Return 410 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head410(): Promise<Models.HttpClientFailureHead410Response>;
   head410(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead410Response>;
@@ -388,13 +328,9 @@ export class HttpClientFailure {
   /**
    * Return 411 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get411(): Promise<Models.HttpClientFailureGet411Response>;
   get411(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet411Response>;
@@ -412,13 +348,9 @@ export class HttpClientFailure {
   /**
    * Return 412 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get412(): Promise<Models.HttpClientFailureGet412Response>;
   get412(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet412Response>;
@@ -436,13 +368,9 @@ export class HttpClientFailure {
   /**
    * Return 413 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePut413OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put413(): Promise<Models.HttpClientFailurePut413Response>;
   put413(options: Models.HttpClientFailurePut413OptionalParams): Promise<Models.HttpClientFailurePut413Response>;
@@ -460,13 +388,9 @@ export class HttpClientFailure {
   /**
    * Return 414 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePatch414OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   patch414(): Promise<Models.HttpClientFailurePatch414Response>;
   patch414(options: Models.HttpClientFailurePatch414OptionalParams): Promise<Models.HttpClientFailurePatch414Response>;
@@ -484,13 +408,9 @@ export class HttpClientFailure {
   /**
    * Return 415 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailurePost415OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post415(): Promise<Models.HttpClientFailurePost415Response>;
   post415(options: Models.HttpClientFailurePost415OptionalParams): Promise<Models.HttpClientFailurePost415Response>;
@@ -508,13 +428,9 @@ export class HttpClientFailure {
   /**
    * Return 416 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get416(): Promise<Models.HttpClientFailureGet416Response>;
   get416(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureGet416Response>;
@@ -532,13 +448,9 @@ export class HttpClientFailure {
   /**
    * Return 417 status code - should be represented in the client as an error
    *
-   * @param {HttpClientFailureDelete417OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete417(): Promise<Models.HttpClientFailureDelete417Response>;
   delete417(options: Models.HttpClientFailureDelete417OptionalParams): Promise<Models.HttpClientFailureDelete417Response>;
@@ -556,13 +468,9 @@ export class HttpClientFailure {
   /**
    * Return 429 status code - should be represented in the client as an error
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head429(): Promise<Models.HttpClientFailureHead429Response>;
   head429(options: msRest.RequestOptionsBase): Promise<Models.HttpClientFailureHead429Response>;

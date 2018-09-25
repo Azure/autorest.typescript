@@ -29,13 +29,9 @@ export class Primitive {
   /**
    * Get complex types with integer properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getInt(): Promise<Models.PrimitiveGetIntResponse>;
   getInt(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetIntResponse>;
@@ -53,15 +49,11 @@ export class Primitive {
   /**
    * Put complex types with integer properties
    *
-   * @param {IntWrapper} complexBody Please put -1 and 2
+   * @param complexBody Please put -1 and 2
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putInt(complexBody: Models.IntWrapper): Promise<msRest.RestResponse>;
   putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -80,13 +72,9 @@ export class Primitive {
   /**
    * Get complex types with long properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLong(): Promise<Models.PrimitiveGetLongResponse>;
   getLong(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetLongResponse>;
@@ -104,15 +92,11 @@ export class Primitive {
   /**
    * Put complex types with long properties
    *
-   * @param {LongWrapper} complexBody Please put 1099511627775 and -999511627788
+   * @param complexBody Please put 1099511627775 and -999511627788
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putLong(complexBody: Models.LongWrapper): Promise<msRest.RestResponse>;
   putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -131,13 +115,9 @@ export class Primitive {
   /**
    * Get complex types with float properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getFloat(): Promise<Models.PrimitiveGetFloatResponse>;
   getFloat(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetFloatResponse>;
@@ -155,15 +135,11 @@ export class Primitive {
   /**
    * Put complex types with float properties
    *
-   * @param {FloatWrapper} complexBody Please put 1.05 and -0.003
+   * @param complexBody Please put 1.05 and -0.003
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putFloat(complexBody: Models.FloatWrapper): Promise<msRest.RestResponse>;
   putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -182,13 +158,9 @@ export class Primitive {
   /**
    * Get complex types with double properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDouble(): Promise<Models.PrimitiveGetDoubleResponse>;
   getDouble(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDoubleResponse>;
@@ -206,16 +178,12 @@ export class Primitive {
   /**
    * Put complex types with double properties
    *
-   * @param {DoubleWrapper} complexBody Please put 3e-100 and
+   * @param complexBody Please put 3e-100 and
    * -0.000000000000000000000000000000000000000000000000000000005
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDouble(complexBody: Models.DoubleWrapper): Promise<msRest.RestResponse>;
   putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -234,13 +202,9 @@ export class Primitive {
   /**
    * Get complex types with bool properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBool(): Promise<Models.PrimitiveGetBoolResponse>;
   getBool(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetBoolResponse>;
@@ -258,15 +222,11 @@ export class Primitive {
   /**
    * Put complex types with bool properties
    *
-   * @param {BooleanWrapper} complexBody Please put true and false
+   * @param complexBody Please put true and false
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putBool(complexBody: Models.BooleanWrapper): Promise<msRest.RestResponse>;
   putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -285,13 +245,9 @@ export class Primitive {
   /**
    * Get complex types with string properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getString(): Promise<Models.PrimitiveGetStringResponse>;
   getString(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetStringResponse>;
@@ -309,15 +265,11 @@ export class Primitive {
   /**
    * Put complex types with string properties
    *
-   * @param {StringWrapper} complexBody Please put 'goodrequest', '', and null
+   * @param complexBody Please put 'goodrequest', '', and null
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putString(complexBody: Models.StringWrapper): Promise<msRest.RestResponse>;
   putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -336,13 +288,9 @@ export class Primitive {
   /**
    * Get complex types with date properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDate(): Promise<Models.PrimitiveGetDateResponse>;
   getDate(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateResponse>;
@@ -360,15 +308,11 @@ export class Primitive {
   /**
    * Put complex types with date properties
    *
-   * @param {DateWrapper} complexBody Please put '0001-01-01' and '2016-02-29'
+   * @param complexBody Please put '0001-01-01' and '2016-02-29'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDate(complexBody: Models.DateWrapper): Promise<msRest.RestResponse>;
   putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -387,13 +331,9 @@ export class Primitive {
   /**
    * Get complex types with datetime properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDateTime(): Promise<Models.PrimitiveGetDateTimeResponse>;
   getDateTime(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeResponse>;
@@ -411,16 +351,11 @@ export class Primitive {
   /**
    * Put complex types with datetime properties
    *
-   * @param {DatetimeWrapper} complexBody Please put '0001-01-01T12:00:00-04:00' and
-   * '2015-05-18T11:38:00-08:00'
+   * @param complexBody Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDateTime(complexBody: Models.DatetimeWrapper): Promise<msRest.RestResponse>;
   putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -439,13 +374,9 @@ export class Primitive {
   /**
    * Get complex types with datetimeRfc1123 properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDateTimeRfc1123(): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
   getDateTimeRfc1123(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
@@ -463,16 +394,12 @@ export class Primitive {
   /**
    * Put complex types with datetimeRfc1123 properties
    *
-   * @param {Datetimerfc1123Wrapper} complexBody Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon,
-   * 18 May 2015 11:38:00 GMT'
+   * @param complexBody Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+   * GMT'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper): Promise<msRest.RestResponse>;
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -491,13 +418,9 @@ export class Primitive {
   /**
    * Get complex types with duration properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDuration(): Promise<Models.PrimitiveGetDurationResponse>;
   getDuration(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDurationResponse>;
@@ -515,13 +438,9 @@ export class Primitive {
   /**
    * Put complex types with duration properties
    *
-   * @param {PrimitivePutDurationOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDuration(): Promise<msRest.RestResponse>;
   putDuration(options: Models.PrimitivePutDurationOptionalParams): Promise<msRest.RestResponse>;
@@ -539,13 +458,9 @@ export class Primitive {
   /**
    * Get complex types with byte properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getByte(): Promise<Models.PrimitiveGetByteResponse>;
   getByte(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetByteResponse>;
@@ -563,13 +478,9 @@ export class Primitive {
   /**
    * Put complex types with byte properties
    *
-   * @param {PrimitivePutByteOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putByte(): Promise<msRest.RestResponse>;
   putByte(options: Models.PrimitivePutByteOptionalParams): Promise<msRest.RestResponse>;

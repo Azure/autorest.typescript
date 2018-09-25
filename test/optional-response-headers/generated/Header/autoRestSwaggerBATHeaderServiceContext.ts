@@ -19,7 +19,7 @@ export class AutoRestSwaggerBATHeaderServiceContext extends msRest.ServiceClient
   /**
    * Initializes a new instance of the AutoRestSwaggerBATHeaderServiceContext class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATHeaderServiceOptions) {
 

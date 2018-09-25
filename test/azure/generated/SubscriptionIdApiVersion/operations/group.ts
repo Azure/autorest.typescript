@@ -29,15 +29,11 @@ export class Group {
   /**
    * Provides a resouce group with name 'testgroup101' and location 'West US'.
    *
-   * @param {string} resourceGroupName Resource Group name 'testgroup101'.
+   * @param resourceGroupName Resource Group name 'testgroup101'.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getSampleResourceGroup(resourceGroupName: string): Promise<Models.GroupGetSampleResourceGroupResponse>;
   getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.GroupGetSampleResourceGroupResponse>;

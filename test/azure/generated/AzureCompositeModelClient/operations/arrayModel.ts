@@ -29,13 +29,9 @@ export class ArrayModel {
   /**
    * Get complex types with array property
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getValid(): Promise<Models.ArrayModelGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetValidResponse>;
@@ -53,13 +49,9 @@ export class ArrayModel {
   /**
    * Put complex types with array property
    *
-   * @param {ArrayModelPutValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putValid(): Promise<msRest.RestResponse>;
   putValid(options: Models.ArrayModelPutValidOptionalParams): Promise<msRest.RestResponse>;
@@ -77,13 +69,9 @@ export class ArrayModel {
   /**
    * Get complex types with array property which is empty
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmpty(): Promise<Models.ArrayModelGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse>;
@@ -101,13 +89,9 @@ export class ArrayModel {
   /**
    * Put complex types with array property which is empty
    *
-   * @param {ArrayModelPutEmptyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putEmpty(): Promise<msRest.RestResponse>;
   putEmpty(options: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.RestResponse>;
@@ -125,13 +109,9 @@ export class ArrayModel {
   /**
    * Get complex types with array property while server doesn't provide a response payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNotProvided(): Promise<Models.ArrayModelGetNotProvidedResponse>;
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNotProvidedResponse>;

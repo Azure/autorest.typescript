@@ -28,13 +28,9 @@ export class HttpSuccess {
   /**
    * Return 200 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head200(): Promise<msRest.RestResponse>;
   head200(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -52,13 +48,9 @@ export class HttpSuccess {
   /**
    * Get 200 success
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   get200(): Promise<Models.HttpSuccessGet200Response>;
   get200(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessGet200Response>;
@@ -76,13 +68,9 @@ export class HttpSuccess {
   /**
    * Put boolean value true returning 200 success
    *
-   * @param {HttpSuccessPut200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put200(): Promise<msRest.RestResponse>;
   put200(options: Models.HttpSuccessPut200OptionalParams): Promise<msRest.RestResponse>;
@@ -100,13 +88,9 @@ export class HttpSuccess {
   /**
    * Patch true Boolean value in request returning 200
    *
-   * @param {HttpSuccessPatch200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   patch200(): Promise<msRest.RestResponse>;
   patch200(options: Models.HttpSuccessPatch200OptionalParams): Promise<msRest.RestResponse>;
@@ -124,13 +108,9 @@ export class HttpSuccess {
   /**
    * Post bollean value true in request that returns a 200
    *
-   * @param {HttpSuccessPost200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post200(): Promise<msRest.RestResponse>;
   post200(options: Models.HttpSuccessPost200OptionalParams): Promise<msRest.RestResponse>;
@@ -148,13 +128,9 @@ export class HttpSuccess {
   /**
    * Delete simple boolean value true returns 200
    *
-   * @param {HttpSuccessDelete200OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete200(): Promise<msRest.RestResponse>;
   delete200(options: Models.HttpSuccessDelete200OptionalParams): Promise<msRest.RestResponse>;
@@ -172,13 +148,9 @@ export class HttpSuccess {
   /**
    * Put true Boolean value in request returns 201
    *
-   * @param {HttpSuccessPut201OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put201(): Promise<msRest.RestResponse>;
   put201(options: Models.HttpSuccessPut201OptionalParams): Promise<msRest.RestResponse>;
@@ -196,13 +168,9 @@ export class HttpSuccess {
   /**
    * Post true Boolean value in request returns 201 (Created)
    *
-   * @param {HttpSuccessPost201OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post201(): Promise<msRest.RestResponse>;
   post201(options: Models.HttpSuccessPost201OptionalParams): Promise<msRest.RestResponse>;
@@ -220,13 +188,9 @@ export class HttpSuccess {
   /**
    * Put true Boolean value in request returns 202 (Accepted)
    *
-   * @param {HttpSuccessPut202OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put202(): Promise<msRest.RestResponse>;
   put202(options: Models.HttpSuccessPut202OptionalParams): Promise<msRest.RestResponse>;
@@ -244,13 +208,9 @@ export class HttpSuccess {
   /**
    * Patch true Boolean value in request returns 202
    *
-   * @param {HttpSuccessPatch202OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   patch202(): Promise<msRest.RestResponse>;
   patch202(options: Models.HttpSuccessPatch202OptionalParams): Promise<msRest.RestResponse>;
@@ -268,13 +228,9 @@ export class HttpSuccess {
   /**
    * Post true Boolean value in request returns 202 (Accepted)
    *
-   * @param {HttpSuccessPost202OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post202(): Promise<msRest.RestResponse>;
   post202(options: Models.HttpSuccessPost202OptionalParams): Promise<msRest.RestResponse>;
@@ -292,13 +248,9 @@ export class HttpSuccess {
   /**
    * Delete true Boolean value in request returns 202 (accepted)
    *
-   * @param {HttpSuccessDelete202OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete202(): Promise<msRest.RestResponse>;
   delete202(options: Models.HttpSuccessDelete202OptionalParams): Promise<msRest.RestResponse>;
@@ -316,13 +268,9 @@ export class HttpSuccess {
   /**
    * Return 204 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head204(): Promise<msRest.RestResponse>;
   head204(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -340,13 +288,9 @@ export class HttpSuccess {
   /**
    * Put true Boolean value in request returns 204 (no content)
    *
-   * @param {HttpSuccessPut204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   put204(): Promise<msRest.RestResponse>;
   put204(options: Models.HttpSuccessPut204OptionalParams): Promise<msRest.RestResponse>;
@@ -364,13 +308,9 @@ export class HttpSuccess {
   /**
    * Patch true Boolean value in request returns 204 (no content)
    *
-   * @param {HttpSuccessPatch204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   patch204(): Promise<msRest.RestResponse>;
   patch204(options: Models.HttpSuccessPatch204OptionalParams): Promise<msRest.RestResponse>;
@@ -388,13 +328,9 @@ export class HttpSuccess {
   /**
    * Post true Boolean value in request returns 204 (no content)
    *
-   * @param {HttpSuccessPost204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   post204(): Promise<msRest.RestResponse>;
   post204(options: Models.HttpSuccessPost204OptionalParams): Promise<msRest.RestResponse>;
@@ -412,13 +348,9 @@ export class HttpSuccess {
   /**
    * Delete true Boolean value in request returns 204 (no content)
    *
-   * @param {HttpSuccessDelete204OptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   delete204(): Promise<msRest.RestResponse>;
   delete204(options: Models.HttpSuccessDelete204OptionalParams): Promise<msRest.RestResponse>;
@@ -436,13 +368,9 @@ export class HttpSuccess {
   /**
    * Return 404 status code
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head404(): Promise<msRest.RestResponse>;
   head404(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

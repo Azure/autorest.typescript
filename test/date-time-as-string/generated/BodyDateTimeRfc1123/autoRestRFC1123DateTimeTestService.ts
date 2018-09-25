@@ -20,7 +20,7 @@ class AutoRestRFC1123DateTimeTestService extends AutoRestRFC1123DateTimeTestServ
   /**
    * Initializes a new instance of the AutoRestRFC1123DateTimeTestService class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestRFC1123DateTimeTestServiceOptions) {
     super(options);

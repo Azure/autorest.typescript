@@ -29,13 +29,9 @@ export class Inheritance {
   /**
    * Get complex types that extend others
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getValid(): Promise<Models.InheritanceGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.InheritanceGetValidResponse>;
@@ -53,17 +49,13 @@ export class Inheritance {
   /**
    * Put complex types that extend others
    *
-   * @param {Siamese} complexBody Please put a siamese with id=2, name="Siameee", color=green,
-   * breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-   * the 2nd one named "Tomato" with id=-1 and food="french fries".
+   * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
+   * which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
+   * named "Tomato" with id=-1 and food="french fries".
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putValid(complexBody: Models.Siamese): Promise<msRest.RestResponse>;
   putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

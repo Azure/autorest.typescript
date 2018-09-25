@@ -29,13 +29,9 @@ export class HttpSuccess {
   /**
    * Return 200 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head200(): Promise<Models.HttpSuccessHead200Response>;
   head200(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead200Response>;
@@ -53,13 +49,9 @@ export class HttpSuccess {
   /**
    * Return 204 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head204(): Promise<Models.HttpSuccessHead204Response>;
   head204(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead204Response>;
@@ -77,13 +69,9 @@ export class HttpSuccess {
   /**
    * Return 404 status code if successful
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   head404(): Promise<Models.HttpSuccessHead404Response>;
   head404(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead404Response>;

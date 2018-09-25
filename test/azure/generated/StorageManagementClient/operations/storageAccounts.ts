@@ -30,17 +30,13 @@ export class StorageAccounts {
   /**
    * Checks that account name is valid and is not in use.
    *
-   * @param {StorageAccountCheckNameAvailabilityParameters} accountName The name of the storage
-   * account within the specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
@@ -63,22 +59,17 @@ export class StorageAccounts {
    * account is already created and subsequent PUT request is issued with exact same set of
    * properties, then HTTP 200 would be returned.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
-   * account.
+   * @param parameters The parameters to provide for the created account.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCreateResponse> {
     return this.beginCreate(resourceGroupName, accountName, parameters, options)
@@ -88,19 +79,15 @@ export class StorageAccounts {
   /**
    * Deletes a storage account in Microsoft Azure.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   deleteMethod(resourceGroupName: string, accountName: string): Promise<msRest.RestResponse>;
   deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -122,19 +109,15 @@ export class StorageAccounts {
    * account type, location, and account status. The ListKeys operation should be used to retrieve
    * storage keys.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getProperties(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsGetPropertiesResponse>;
   getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsGetPropertiesResponse>;
@@ -160,22 +143,18 @@ export class StorageAccounts {
    * account. If you want to change storage account keys, use the RegenerateKey operation. The
    * location and name of the storage account cannot be changed after creation.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {StorageAccountUpdateParameters} parameters The parameters to update on the account. Note
-   * that only one property can be changed at a time using this API.
+   * @param parameters The parameters to update on the account. Note that only one property can be
+   * changed at a time using this API.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters): Promise<Models.StorageAccountsUpdateResponse>;
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsUpdateResponse>;
@@ -196,17 +175,13 @@ export class StorageAccounts {
   /**
    * Lists the access keys for the specified storage account.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account.
+   * @param accountName The name of the storage account.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   listKeys(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsListKeysResponse>;
   listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListKeysResponse>;
@@ -227,13 +202,9 @@ export class StorageAccounts {
    * Lists all the storage accounts available under the subscription. Note that storage keys are not
    * returned; use the ListKeys operation for this.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   list(): Promise<Models.StorageAccountsListResponse>;
   list(options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListResponse>;
@@ -252,15 +223,11 @@ export class StorageAccounts {
    * Lists all the storage accounts available under the given resource group. Note that storage keys
    * are not returned; use the ListKeys operation for this.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   listByResourceGroup(resourceGroupName: string): Promise<Models.StorageAccountsListByResourceGroupResponse>;
   listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListByResourceGroupResponse>;
@@ -279,19 +246,15 @@ export class StorageAccounts {
   /**
    * Regenerates the access keys for the specified storage account.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {StorageAccountsRegenerateKeyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   regenerateKey(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsRegenerateKeyResponse>;
   regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<Models.StorageAccountsRegenerateKeyResponse>;
@@ -314,22 +277,17 @@ export class StorageAccounts {
    * account is already created and subsequent PUT request is issued with exact same set of
    * properties, then HTTP 200 would be returned.
    *
-   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the specified resource group.
-   * Storage account names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
    *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
-   * account.
+   * @param parameters The parameters to provide for the created account.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(

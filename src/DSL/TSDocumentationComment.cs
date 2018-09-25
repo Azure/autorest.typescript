@@ -17,9 +17,7 @@ namespace AutoRest.TypeScript.DSL
             Summary,
             Description,
             Parameters,
-            Returns,
-            Resolve,
-            Reject
+            Returns
         }
 
         public TSDocumentationComment(TSBuilder builder)
@@ -32,13 +30,13 @@ namespace AutoRest.TypeScript.DSL
         {
             if (currentState == State.Start)
             {
-                Line("/**");
+                builder.Line("/**");
                 builder.AddToPrefix(" * ");
                 builder.WordWrapWidth = TSBuilder.multiLineCommentWordWrapWidth;
             }
             else
             {
-                Line();
+                builder.Line();
             }
             currentState = newState;
         }
@@ -49,7 +47,7 @@ namespace AutoRest.TypeScript.DSL
             {
                 builder.WordWrapWidth = previousWordWrapWidth;
                 builder.RemoveFromPrefix(" * ");
-                Line(" */");
+                builder.Line(" */");
             }
         }
 
@@ -63,7 +61,7 @@ namespace AutoRest.TypeScript.DSL
             if (!string.IsNullOrEmpty(text))
             {
                 SetCurrentState(State.Summary);
-                Line($"@summary {text}");
+                builder.Line($"@summary {text}");
             }
         }
 
@@ -71,43 +69,22 @@ namespace AutoRest.TypeScript.DSL
         {
             if (!string.IsNullOrEmpty(text))
             {
+                bool isFirstTag = (currentState == State.Start);
                 SetCurrentState(State.Description);
-                Line(text);
+                builder.Line($"{(isFirstTag ? "" : "@description ")}{text}");
             }
         }
 
-        public void Parameter(string parameterType, string parameterName, string parameterDocumentation, bool isOptional = false)
+        public void Parameter(string parameterName, string parameterDocumentation, bool isOptional = false)
         {
             SetCurrentState(State.Parameters);
-            Line($"@param {{{parameterType}}} {(isOptional ? '[' + parameterName + ']' : parameterName)} {parameterDocumentation}");
+            builder.Line($"@param {(isOptional ? '[' + parameterName + ']' : parameterName)} {parameterDocumentation}");
         }
 
-        public void Returns(string returnType, string returnDocumentation)
+        public void Returns(string returnDocumentation)
         {
             SetCurrentState(State.Returns);
-            Line($"@returns {{{returnType}}} {returnDocumentation}");
-        }
-
-        public void Resolve(string resolveType, string resolveDocumentation)
-        {
-            SetCurrentState(State.Resolve);
-            Line($"@resolve {{{resolveType}}} {resolveDocumentation}");
-        }
-
-        public void Reject(string rejectType, string rejectDocumentation)
-        {
-            SetCurrentState(State.Reject);
-            Line($"@reject {{{rejectType}}} {rejectDocumentation}");
-        }
-
-        public void Line()
-        {
-            builder.Line();
-        }
-
-        public void Line(string text)
-        {
-            builder.Line(text);
+            builder.Line($"@returns {returnDocumentation}");
         }
     }
 }

@@ -619,10 +619,10 @@ namespace AutoRest.TypeScript.Model
                 IEnumerable<Property> requiredParameters = Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
                 foreach (Property requiredParameter in requiredParameters)
                 {
-                    comment.Parameter(requiredParameter.ModelType.Name.ToCamelCase(), requiredParameter.Name, requiredParameter.Documentation);
+                    comment.Parameter(requiredParameter.Name, requiredParameter.Documentation);
                 }
 
-                comment.Parameter("object", "options", "The parameter options", isOptional: true);
+                comment.Parameter("options", "The parameter options", isOptional: true);
             });
             return builder.ToString();
         }

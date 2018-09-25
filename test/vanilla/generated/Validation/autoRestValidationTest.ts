@@ -18,11 +18,11 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * Initializes a new instance of the AutoRestValidationTest class.
    *
-   * @param {string} subscriptionId Subscription ID.
+   * @param subscriptionId Subscription ID.
    *
-   * @param {string} apiVersion Required string following pattern \d{2}-\d{2}-\d{4}
+   * @param apiVersion Required string following pattern \d{2}-\d{2}-\d{4}
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(subscriptionId: string, apiVersion: string, options?: Models.AutoRestValidationTestOptions) {
     super(subscriptionId, apiVersion, options);
@@ -32,18 +32,13 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * Validates input parameters on the method. See swagger for details.
    *
-   * @param {string} resourceGroupName Required string between 3 and 10 chars with pattern
-   * [a-zA-Z0-9]+.
+   * @param resourceGroupName Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
    *
-   * @param {number} id Required int multiple of 10 from 100 to 1000.
+   * @param id Required int multiple of 10 from 100 to 1000.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   validationOfMethodParameters(resourceGroupName: string, id: number): Promise<Models.ValidationOfMethodParametersResponse>;
   validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase): Promise<Models.ValidationOfMethodParametersResponse>;
@@ -64,18 +59,13 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * Validates body parameters on the method. See swagger for details.
    *
-   * @param {string} resourceGroupName Required string between 3 and 10 chars with pattern
-   * [a-zA-Z0-9]+.
+   * @param resourceGroupName Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
    *
-   * @param {number} id Required int multiple of 10 from 100 to 1000.
+   * @param id Required int multiple of 10 from 100 to 1000.
    *
-   * @param {AutoRestValidationTestValidationOfBodyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   validationOfBody(resourceGroupName: string, id: number): Promise<Models.ValidationOfBodyResponse>;
   validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<Models.ValidationOfBodyResponse>;
@@ -94,13 +84,9 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   // methods on the client.
 
   /**
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getWithConstantInPath(): Promise<msRest.RestResponse>;
   getWithConstantInPath(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -117,14 +103,9 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   // methods on the client.
 
   /**
-   * @param {AutoRestValidationTestPostWithConstantInBodyOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postWithConstantInBody(): Promise<Models.PostWithConstantInBodyResponse>;
   postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<Models.PostWithConstantInBodyResponse>;

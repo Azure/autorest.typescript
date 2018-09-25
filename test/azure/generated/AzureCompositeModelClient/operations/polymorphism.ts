@@ -29,13 +29,9 @@ export class Polymorphism {
   /**
    * Get complex types that are polymorphic
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getValid(): Promise<Models.PolymorphismGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.PolymorphismGetValidResponse>;
@@ -53,7 +49,7 @@ export class Polymorphism {
   /**
    * Put complex types that are polymorphic
    *
-   * @param {FishUnion} complexBody Please put a salmon that looks like this:
+   * @param complexBody Please put a salmon that looks like this:
    * {
    * 'fishtype':'Salmon',
    * 'location':'alaska',
@@ -87,13 +83,9 @@ export class Polymorphism {
    * ]
    * };
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putValid(complexBody: Models.FishUnion): Promise<msRest.RestResponse>;
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -113,13 +105,9 @@ export class Polymorphism {
    * Get complex types that are polymorphic, but not at the root of the hierarchy; also have
    * additional properties
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getComplicated(): Promise<Models.PolymorphismGetComplicatedResponse>;
   getComplicated(options: msRest.RequestOptionsBase): Promise<Models.PolymorphismGetComplicatedResponse>;
@@ -138,15 +126,11 @@ export class Polymorphism {
    * Put complex types that are polymorphic, but not at the root of the hierarchy; also have
    * additional properties
    *
-   * @param {SalmonUnion} complexBody
+   * @param complexBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putComplicated(complexBody: Models.SalmonUnion): Promise<msRest.RestResponse>;
   putComplicated(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -165,15 +149,11 @@ export class Polymorphism {
   /**
    * Put complex types that are polymorphic, omitting the discriminator
    *
-   * @param {SalmonUnion} complexBody
+   * @param complexBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putMissingDiscriminator(complexBody: Models.SalmonUnion): Promise<Models.PolymorphismPutMissingDiscriminatorResponse>;
   putMissingDiscriminator(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase): Promise<Models.PolymorphismPutMissingDiscriminatorResponse>;
@@ -193,8 +173,8 @@ export class Polymorphism {
    * Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
    * request should not be allowed from the client
    *
-   * @param {FishUnion} complexBody Please attempt put a sawshark that looks like this, the client
-   * should not allow this data to be sent:
+   * @param complexBody Please attempt put a sawshark that looks like this, the client should not
+   * allow this data to be sent:
    * {
    * "fishtype": "sawshark",
    * "species": "snaggle toothed",
@@ -221,13 +201,9 @@ export class Polymorphism {
    * ]
    * }
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putValidMissingRequired(complexBody: Models.FishUnion): Promise<msRest.RestResponse>;
   putValidMissingRequired(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

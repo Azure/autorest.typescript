@@ -28,13 +28,9 @@ export class HttpFailure {
   /**
    * Get empty error form server
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmptyError(): Promise<Models.HttpFailureGetEmptyErrorResponse>;
   getEmptyError(options: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetEmptyErrorResponse>;
@@ -52,13 +48,9 @@ export class HttpFailure {
   /**
    * Get empty error form server
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNoModelError(): Promise<Models.HttpFailureGetNoModelErrorResponse>;
   getNoModelError(options: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelErrorResponse>;
@@ -76,13 +68,9 @@ export class HttpFailure {
   /**
    * Get empty response from server
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNoModelEmpty(): Promise<Models.HttpFailureGetNoModelEmptyResponse>;
   getNoModelEmpty(options: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelEmptyResponse>;

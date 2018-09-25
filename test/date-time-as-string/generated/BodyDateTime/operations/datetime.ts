@@ -28,13 +28,9 @@ export class Datetime {
   /**
    * Get null datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNull(): Promise<Models.DatetimeGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetNullResponse>;
@@ -52,13 +48,9 @@ export class Datetime {
   /**
    * Get invalid datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getInvalid(): Promise<Models.DatetimeGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetInvalidResponse>;
@@ -76,13 +68,9 @@ export class Datetime {
   /**
    * Get overflow datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getOverflow(): Promise<Models.DatetimeGetOverflowResponse>;
   getOverflow(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetOverflowResponse>;
@@ -100,13 +88,9 @@ export class Datetime {
   /**
    * Get underflow datetime value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUnderflow(): Promise<Models.DatetimeGetUnderflowResponse>;
   getUnderflow(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUnderflowResponse>;
@@ -124,17 +108,13 @@ export class Datetime {
   /**
    * Put max datetime value 9999-12-31T23:59:59.9999999Z
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putUtcMaxDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
   putUtcMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -153,13 +133,9 @@ export class Datetime {
   /**
    * Get max datetime value 9999-12-31t23:59:59.9999999z
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUtcLowercaseMaxDateTime(): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse>;
   getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse>;
@@ -177,13 +153,9 @@ export class Datetime {
   /**
    * Get max datetime value 9999-12-31T23:59:59.9999999Z
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUtcUppercaseMaxDateTime(): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse>;
   getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse>;
@@ -201,17 +173,13 @@ export class Datetime {
   /**
    * Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999+14:00
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putLocalPositiveOffsetMaxDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
   putLocalPositiveOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -230,13 +198,9 @@ export class Datetime {
   /**
    * Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999+14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLocalPositiveOffsetLowercaseMaxDateTime(): Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
   getLocalPositiveOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
@@ -254,13 +218,9 @@ export class Datetime {
   /**
    * Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLocalPositiveOffsetUppercaseMaxDateTime(): Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
   getLocalPositiveOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
@@ -278,17 +238,13 @@ export class Datetime {
   /**
    * Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999-14:00
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putLocalNegativeOffsetMaxDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
   putLocalNegativeOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -307,13 +263,9 @@ export class Datetime {
   /**
    * Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999-14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLocalNegativeOffsetUppercaseMaxDateTime(): Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
   getLocalNegativeOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
@@ -331,13 +283,9 @@ export class Datetime {
   /**
    * Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999-14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLocalNegativeOffsetLowercaseMaxDateTime(): Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
   getLocalNegativeOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
@@ -355,17 +303,13 @@ export class Datetime {
   /**
    * Put min datetime value 0001-01-01T00:00:00Z
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putUtcMinDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
   putUtcMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -384,13 +328,9 @@ export class Datetime {
   /**
    * Get min datetime value 0001-01-01T00:00:00Z
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUtcMinDateTime(): Promise<Models.DatetimeGetUtcMinDateTimeResponse>;
   getUtcMinDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetUtcMinDateTimeResponse>;
@@ -408,17 +348,13 @@ export class Datetime {
   /**
    * Put min datetime value 0001-01-01T00:00:00+14:00
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putLocalPositiveOffsetMinDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
   putLocalPositiveOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -437,13 +373,9 @@ export class Datetime {
   /**
    * Get min datetime value 0001-01-01T00:00:00+14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLocalPositiveOffsetMinDateTime(): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
   getLocalPositiveOffsetMinDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
@@ -461,17 +393,13 @@ export class Datetime {
   /**
    * Put min datetime value 0001-01-01T00:00:00-14:00
    *
-   * @param {string} datetimeBody
+   * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putLocalNegativeOffsetMinDateTime(datetimeBody: string): Promise<msRest.RestResponse>;
   putLocalNegativeOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -490,13 +418,9 @@ export class Datetime {
   /**
    * Get min datetime value 0001-01-01T00:00:00-14:00
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLocalNegativeOffsetMinDateTime(): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
   getLocalNegativeOffsetMinDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;

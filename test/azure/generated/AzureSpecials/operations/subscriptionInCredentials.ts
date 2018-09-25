@@ -29,13 +29,9 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postMethodGlobalValid(): Promise<msRest.RestResponse>;
   postMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -54,13 +50,9 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * null, and client-side validation should prevent you from making this call
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postMethodGlobalNull(): Promise<msRest.RestResponse>;
   postMethodGlobalNull(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -79,13 +71,9 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postMethodGlobalNotProvidedValid(): Promise<msRest.RestResponse>;
   postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -104,13 +92,9 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postPathGlobalValid(): Promise<msRest.RestResponse>;
   postPathGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -129,13 +113,9 @@ export class SubscriptionInCredentials {
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   postSwaggerGlobalValid(): Promise<msRest.RestResponse>;
   postSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

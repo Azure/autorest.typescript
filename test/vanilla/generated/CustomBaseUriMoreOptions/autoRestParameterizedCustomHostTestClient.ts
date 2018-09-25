@@ -20,9 +20,9 @@ class AutoRestParameterizedCustomHostTestClient extends AutoRestParameterizedCus
   /**
    * Initializes a new instance of the AutoRestParameterizedCustomHostTestClient class.
    *
-   * @param {string} subscriptionId The subscription id with value 'test12'.
+   * @param subscriptionId The subscription id with value 'test12'.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
     super(subscriptionId, options);

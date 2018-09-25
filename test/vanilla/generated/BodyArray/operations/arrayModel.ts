@@ -28,13 +28,9 @@ export class ArrayModel {
   /**
    * Get null array value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNull(): Promise<Models.ArrayModelGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNullResponse>;
@@ -52,13 +48,9 @@ export class ArrayModel {
   /**
    * Get invalid array [1, 2, 3
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getInvalid(): Promise<Models.ArrayModelGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetInvalidResponse>;
@@ -76,13 +68,9 @@ export class ArrayModel {
   /**
    * Get empty array value []
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmpty(): Promise<Models.ArrayModelGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse>;
@@ -100,15 +88,11 @@ export class ArrayModel {
   /**
    * Set array value empty []
    *
-   * @param {string[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putEmpty(arrayBody: string[]): Promise<msRest.RestResponse>;
   putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -127,13 +111,9 @@ export class ArrayModel {
   /**
    * Get boolean array value [true, false, false, true]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBooleanTfft(): Promise<Models.ArrayModelGetBooleanTfftResponse>;
   getBooleanTfft(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanTfftResponse>;
@@ -151,15 +131,11 @@ export class ArrayModel {
   /**
    * Set array value empty [true, false, false, true]
    *
-   * @param {boolean[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putBooleanTfft(arrayBody: boolean[]): Promise<msRest.RestResponse>;
   putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -178,13 +154,9 @@ export class ArrayModel {
   /**
    * Get boolean array value [true, null, false]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBooleanInvalidNull(): Promise<Models.ArrayModelGetBooleanInvalidNullResponse>;
   getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidNullResponse>;
@@ -202,13 +174,9 @@ export class ArrayModel {
   /**
    * Get boolean array value [true, 'boolean', false]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBooleanInvalidString(): Promise<Models.ArrayModelGetBooleanInvalidStringResponse>;
   getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidStringResponse>;
@@ -226,13 +194,9 @@ export class ArrayModel {
   /**
    * Get integer array value [1, -1, 3, 300]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getIntegerValid(): Promise<Models.ArrayModelGetIntegerValidResponse>;
   getIntegerValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntegerValidResponse>;
@@ -250,15 +214,11 @@ export class ArrayModel {
   /**
    * Set array value empty [1, -1, 3, 300]
    *
-   * @param {number[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putIntegerValid(arrayBody: number[]): Promise<msRest.RestResponse>;
   putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -277,13 +237,9 @@ export class ArrayModel {
   /**
    * Get integer array value [1, null, 0]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getIntInvalidNull(): Promise<Models.ArrayModelGetIntInvalidNullResponse>;
   getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidNullResponse>;
@@ -301,13 +257,9 @@ export class ArrayModel {
   /**
    * Get integer array value [1, 'integer', 0]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getIntInvalidString(): Promise<Models.ArrayModelGetIntInvalidStringResponse>;
   getIntInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidStringResponse>;
@@ -325,13 +277,9 @@ export class ArrayModel {
   /**
    * Get integer array value [1, -1, 3, 300]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLongValid(): Promise<Models.ArrayModelGetLongValidResponse>;
   getLongValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongValidResponse>;
@@ -349,15 +297,11 @@ export class ArrayModel {
   /**
    * Set array value empty [1, -1, 3, 300]
    *
-   * @param {number[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putLongValid(arrayBody: number[]): Promise<msRest.RestResponse>;
   putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -376,13 +320,9 @@ export class ArrayModel {
   /**
    * Get long array value [1, null, 0]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLongInvalidNull(): Promise<Models.ArrayModelGetLongInvalidNullResponse>;
   getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidNullResponse>;
@@ -400,13 +340,9 @@ export class ArrayModel {
   /**
    * Get long array value [1, 'integer', 0]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getLongInvalidString(): Promise<Models.ArrayModelGetLongInvalidStringResponse>;
   getLongInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidStringResponse>;
@@ -424,13 +360,9 @@ export class ArrayModel {
   /**
    * Get float array value [0, -0.01, 1.2e20]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getFloatValid(): Promise<Models.ArrayModelGetFloatValidResponse>;
   getFloatValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatValidResponse>;
@@ -448,15 +380,11 @@ export class ArrayModel {
   /**
    * Set array value [0, -0.01, 1.2e20]
    *
-   * @param {number[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putFloatValid(arrayBody: number[]): Promise<msRest.RestResponse>;
   putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -475,13 +403,9 @@ export class ArrayModel {
   /**
    * Get float array value [0.0, null, -1.2e20]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getFloatInvalidNull(): Promise<Models.ArrayModelGetFloatInvalidNullResponse>;
   getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidNullResponse>;
@@ -499,13 +423,9 @@ export class ArrayModel {
   /**
    * Get boolean array value [1.0, 'number', 0.0]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getFloatInvalidString(): Promise<Models.ArrayModelGetFloatInvalidStringResponse>;
   getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidStringResponse>;
@@ -523,13 +443,9 @@ export class ArrayModel {
   /**
    * Get float array value [0, -0.01, 1.2e20]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDoubleValid(): Promise<Models.ArrayModelGetDoubleValidResponse>;
   getDoubleValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleValidResponse>;
@@ -547,15 +463,11 @@ export class ArrayModel {
   /**
    * Set array value [0, -0.01, 1.2e20]
    *
-   * @param {number[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDoubleValid(arrayBody: number[]): Promise<msRest.RestResponse>;
   putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -574,13 +486,9 @@ export class ArrayModel {
   /**
    * Get float array value [0.0, null, -1.2e20]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDoubleInvalidNull(): Promise<Models.ArrayModelGetDoubleInvalidNullResponse>;
   getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidNullResponse>;
@@ -598,13 +506,9 @@ export class ArrayModel {
   /**
    * Get boolean array value [1.0, 'number', 0.0]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDoubleInvalidString(): Promise<Models.ArrayModelGetDoubleInvalidStringResponse>;
   getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidStringResponse>;
@@ -622,13 +526,9 @@ export class ArrayModel {
   /**
    * Get string array value ['foo1', 'foo2', 'foo3']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getStringValid(): Promise<Models.ArrayModelGetStringValidResponse>;
   getStringValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringValidResponse>;
@@ -646,15 +546,11 @@ export class ArrayModel {
   /**
    * Set array value ['foo1', 'foo2', 'foo3']
    *
-   * @param {string[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putStringValid(arrayBody: string[]): Promise<msRest.RestResponse>;
   putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -673,13 +569,9 @@ export class ArrayModel {
   /**
    * Get enum array value ['foo1', 'foo2', 'foo3']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEnumValid(): Promise<Models.ArrayModelGetEnumValidResponse>;
   getEnumValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEnumValidResponse>;
@@ -697,15 +589,11 @@ export class ArrayModel {
   /**
    * Set array value ['foo1', 'foo2', 'foo3']
    *
-   * @param {FooEnum[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putEnumValid(arrayBody: Models.FooEnum[]): Promise<msRest.RestResponse>;
   putEnumValid(arrayBody: Models.FooEnum[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -724,13 +612,9 @@ export class ArrayModel {
   /**
    * Get enum array value ['foo1', 'foo2', 'foo3']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getStringEnumValid(): Promise<Models.ArrayModelGetStringEnumValidResponse>;
   getStringEnumValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringEnumValidResponse>;
@@ -748,15 +632,11 @@ export class ArrayModel {
   /**
    * Set array value ['foo1', 'foo2', 'foo3']
    *
-   * @param {string[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putStringEnumValid(arrayBody: string[]): Promise<msRest.RestResponse>;
   putStringEnumValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -775,13 +655,9 @@ export class ArrayModel {
   /**
    * Get string array value ['foo', null, 'foo2']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getStringWithNull(): Promise<Models.ArrayModelGetStringWithNullResponse>;
   getStringWithNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithNullResponse>;
@@ -799,13 +675,9 @@ export class ArrayModel {
   /**
    * Get string array value ['foo', 123, 'foo2']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getStringWithInvalid(): Promise<Models.ArrayModelGetStringWithInvalidResponse>;
   getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithInvalidResponse>;
@@ -824,13 +696,9 @@ export class ArrayModel {
    * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
    * 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUuidValid(): Promise<Models.ArrayModelGetUuidValidResponse>;
   getUuidValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetUuidValidResponse>;
@@ -849,15 +717,11 @@ export class ArrayModel {
    * Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
    * 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205']
    *
-   * @param {string[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putUuidValid(arrayBody: string[]): Promise<msRest.RestResponse>;
   putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -876,13 +740,9 @@ export class ArrayModel {
   /**
    * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUuidInvalidChars(): Promise<Models.ArrayModelGetUuidInvalidCharsResponse>;
   getUuidInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetUuidInvalidCharsResponse>;
@@ -900,13 +760,9 @@ export class ArrayModel {
   /**
    * Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDateValid(): Promise<Models.ArrayModelGetDateValidResponse>;
   getDateValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateValidResponse>;
@@ -924,15 +780,11 @@ export class ArrayModel {
   /**
    * Set array value  ['2000-12-01', '1980-01-02', '1492-10-12']
    *
-   * @param {Array<Date> | Array<string>} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDateValid(arrayBody: Array<Date> | Array<string>): Promise<msRest.RestResponse>;
   putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -951,13 +803,9 @@ export class ArrayModel {
   /**
    * Get date array value ['2012-01-01', null, '1776-07-04']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDateInvalidNull(): Promise<Models.ArrayModelGetDateInvalidNullResponse>;
   getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidNullResponse>;
@@ -975,13 +823,9 @@ export class ArrayModel {
   /**
    * Get date array value ['2011-03-22', 'date']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDateInvalidChars(): Promise<Models.ArrayModelGetDateInvalidCharsResponse>;
   getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidCharsResponse>;
@@ -1000,13 +844,9 @@ export class ArrayModel {
    * Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
    * '1492-10-12T10:15:01-08:00']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDateTimeValid(): Promise<Models.ArrayModelGetDateTimeValidResponse>;
   getDateTimeValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeValidResponse>;
@@ -1025,15 +865,11 @@ export class ArrayModel {
    * Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
    * '1492-10-12T10:15:01-08:00']
    *
-   * @param {Array<Date> | Array<string>} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDateTimeValid(arrayBody: Array<Date> | Array<string>): Promise<msRest.RestResponse>;
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1052,13 +888,9 @@ export class ArrayModel {
   /**
    * Get date array value ['2000-12-01t00:00:01z', null]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDateTimeInvalidNull(): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse>;
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse>;
@@ -1076,13 +908,9 @@ export class ArrayModel {
   /**
    * Get date array value ['2000-12-01t00:00:01z', 'date-time']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDateTimeInvalidChars(): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse>;
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse>;
@@ -1101,13 +929,9 @@ export class ArrayModel {
    * Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
    * 'Wed, 12 Oct 1492 10:15:01 GMT']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDateTimeRfc1123Valid(): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse>;
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse>;
@@ -1126,15 +950,11 @@ export class ArrayModel {
    * Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct
    * 1492 10:15:01 GMT']
    *
-   * @param {Array<Date> | Array<string>} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>): Promise<msRest.RestResponse>;
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1153,13 +973,9 @@ export class ArrayModel {
   /**
    * Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S']
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDurationValid(): Promise<Models.ArrayModelGetDurationValidResponse>;
   getDurationValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDurationValidResponse>;
@@ -1177,15 +993,11 @@ export class ArrayModel {
   /**
    * Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S']
    *
-   * @param {string[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDurationValid(arrayBody: string[]): Promise<msRest.RestResponse>;
   putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1205,13 +1017,9 @@ export class ArrayModel {
    * Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
    * in base64
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getByteValid(): Promise<Models.ArrayModelGetByteValidResponse>;
   getByteValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetByteValidResponse>;
@@ -1230,15 +1038,11 @@ export class ArrayModel {
    * Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded
    * in base 64
    *
-   * @param {Uint8Array[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putByteValid(arrayBody: Uint8Array[]): Promise<msRest.RestResponse>;
   putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1257,13 +1061,9 @@ export class ArrayModel {
   /**
    * Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getByteInvalidNull(): Promise<Models.ArrayModelGetByteInvalidNullResponse>;
   getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetByteInvalidNullResponse>;
@@ -1282,13 +1082,9 @@ export class ArrayModel {
    * Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
    * the items base64url encoded
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBase64Url(): Promise<Models.ArrayModelGetBase64UrlResponse>;
   getBase64Url(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBase64UrlResponse>;
@@ -1306,13 +1102,9 @@ export class ArrayModel {
   /**
    * Get array of complex type null value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getComplexNull(): Promise<Models.ArrayModelGetComplexNullResponse>;
   getComplexNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexNullResponse>;
@@ -1330,13 +1122,9 @@ export class ArrayModel {
   /**
    * Get empty array of complex type []
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getComplexEmpty(): Promise<Models.ArrayModelGetComplexEmptyResponse>;
   getComplexEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexEmptyResponse>;
@@ -1355,13 +1143,9 @@ export class ArrayModel {
    * Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
    * 'string': '6'}]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getComplexItemNull(): Promise<Models.ArrayModelGetComplexItemNullResponse>;
   getComplexItemNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemNullResponse>;
@@ -1380,13 +1164,9 @@ export class ArrayModel {
    * Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
    * 'string': '6'}]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getComplexItemEmpty(): Promise<Models.ArrayModelGetComplexItemEmptyResponse>;
   getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemEmptyResponse>;
@@ -1405,13 +1185,9 @@ export class ArrayModel {
    * Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
    * {'integer': 5, 'string': '6'}]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getComplexValid(): Promise<Models.ArrayModelGetComplexValidResponse>;
   getComplexValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexValidResponse>;
@@ -1430,15 +1206,11 @@ export class ArrayModel {
    * Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string':
    * '4'}, {'integer': 5, 'string': '6'}]
    *
-   * @param {Product[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putComplexValid(arrayBody: Models.Product[]): Promise<msRest.RestResponse>;
   putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1457,13 +1229,9 @@ export class ArrayModel {
   /**
    * Get a null array
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getArrayNull(): Promise<Models.ArrayModelGetArrayNullResponse>;
   getArrayNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayNullResponse>;
@@ -1481,13 +1249,9 @@ export class ArrayModel {
   /**
    * Get an empty array []
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getArrayEmpty(): Promise<Models.ArrayModelGetArrayEmptyResponse>;
   getArrayEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayEmptyResponse>;
@@ -1505,13 +1269,9 @@ export class ArrayModel {
   /**
    * Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getArrayItemNull(): Promise<Models.ArrayModelGetArrayItemNullResponse>;
   getArrayItemNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemNullResponse>;
@@ -1529,13 +1289,9 @@ export class ArrayModel {
   /**
    * Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getArrayItemEmpty(): Promise<Models.ArrayModelGetArrayItemEmptyResponse>;
   getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemEmptyResponse>;
@@ -1553,13 +1309,9 @@ export class ArrayModel {
   /**
    * Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getArrayValid(): Promise<Models.ArrayModelGetArrayValidResponse>;
   getArrayValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayValidResponse>;
@@ -1577,15 +1329,11 @@ export class ArrayModel {
   /**
    * Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
    *
-   * @param {string[][]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putArrayValid(arrayBody: string[][]): Promise<msRest.RestResponse>;
   putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -1604,13 +1352,9 @@ export class ArrayModel {
   /**
    * Get an array of Dictionaries with value null
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDictionaryNull(): Promise<Models.ArrayModelGetDictionaryNullResponse>;
   getDictionaryNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryNullResponse>;
@@ -1628,13 +1372,9 @@ export class ArrayModel {
   /**
    * Get an array of Dictionaries of type <string, string> with value []
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDictionaryEmpty(): Promise<Models.ArrayModelGetDictionaryEmptyResponse>;
   getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryEmptyResponse>;
@@ -1653,13 +1393,9 @@ export class ArrayModel {
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
    * 'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDictionaryItemNull(): Promise<Models.ArrayModelGetDictionaryItemNullResponse>;
   getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemNullResponse>;
@@ -1678,13 +1414,9 @@ export class ArrayModel {
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
    * 'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDictionaryItemEmpty(): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse>;
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse>;
@@ -1703,13 +1435,9 @@ export class ArrayModel {
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
    * 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDictionaryValid(): Promise<Models.ArrayModelGetDictionaryValidResponse>;
   getDictionaryValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryValidResponse>;
@@ -1728,15 +1456,11 @@ export class ArrayModel {
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
    * 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
    *
-   * @param {{ [propertyName: string]: string }[]} arrayBody
+   * @param arrayBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[]): Promise<msRest.RestResponse>;
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

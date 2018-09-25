@@ -28,13 +28,9 @@ export class Duration {
   /**
    * Get null duration value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNull(): Promise<Models.DurationGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.DurationGetNullResponse>;
@@ -52,15 +48,11 @@ export class Duration {
   /**
    * Put a positive duration value
    *
-   * @param {string} durationBody
+   * @param durationBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putPositiveDuration(durationBody: string): Promise<msRest.RestResponse>;
   putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -79,13 +71,9 @@ export class Duration {
   /**
    * Get a positive duration value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getPositiveDuration(): Promise<Models.DurationGetPositiveDurationResponse>;
   getPositiveDuration(options: msRest.RequestOptionsBase): Promise<Models.DurationGetPositiveDurationResponse>;
@@ -103,13 +91,9 @@ export class Duration {
   /**
    * Get an invalid duration value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getInvalid(): Promise<Models.DurationGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.DurationGetInvalidResponse>;

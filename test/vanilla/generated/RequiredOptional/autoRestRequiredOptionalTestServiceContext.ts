@@ -22,11 +22,11 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
   /**
    * Initializes a new instance of the AutoRestRequiredOptionalTestServiceContext class.
    *
-   * @param {string} requiredGlobalPath number of items to skip
+   * @param requiredGlobalPath number of items to skip
    *
-   * @param {string} requiredGlobalQuery number of items to skip
+   * @param requiredGlobalQuery number of items to skip
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(requiredGlobalPath: string, requiredGlobalQuery: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
     if (requiredGlobalPath === null || requiredGlobalPath === undefined) {

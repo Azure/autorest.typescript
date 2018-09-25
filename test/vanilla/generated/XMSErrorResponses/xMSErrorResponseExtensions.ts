@@ -20,7 +20,7 @@ class XMSErrorResponseExtensions extends XMSErrorResponseExtensionsContext {
   /**
    * Initializes a new instance of the XMSErrorResponseExtensions class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.XMSErrorResponseExtensionsOptions) {
     super(options);

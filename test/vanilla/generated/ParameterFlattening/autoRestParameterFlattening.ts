@@ -20,7 +20,7 @@ class AutoRestParameterFlattening extends AutoRestParameterFlatteningContext {
   /**
    * Initializes a new instance of the AutoRestParameterFlattening class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestParameterFlatteningOptions) {
     super(options);

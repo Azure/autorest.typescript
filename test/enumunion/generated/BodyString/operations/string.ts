@@ -28,13 +28,9 @@ export class String {
   /**
    * Get null string value value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNull(): Promise<Models.StringGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullResponse>;
@@ -52,13 +48,9 @@ export class String {
   /**
    * Set string value null
    *
-   * @param {StringPutNullOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putNull(): Promise<msRest.RestResponse>;
   putNull(options: Models.StringPutNullOptionalParams): Promise<msRest.RestResponse>;
@@ -76,13 +68,9 @@ export class String {
   /**
    * Get empty string value value ''
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmpty(): Promise<Models.StringGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.StringGetEmptyResponse>;
@@ -100,13 +88,9 @@ export class String {
   /**
    * Set string value empty ''
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putEmpty(): Promise<msRest.RestResponse>;
   putEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -124,13 +108,9 @@ export class String {
   /**
    * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getMbcs(): Promise<Models.StringGetMbcsResponse>;
   getMbcs(options: msRest.RequestOptionsBase): Promise<Models.StringGetMbcsResponse>;
@@ -148,13 +128,9 @@ export class String {
   /**
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putMbcs(): Promise<msRest.RestResponse>;
   putMbcs(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -173,13 +149,9 @@ export class String {
    * Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for
    * all good men to come to the aid of their country<tab><space><space>'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getWhitespace(): Promise<Models.StringGetWhitespaceResponse>;
   getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.StringGetWhitespaceResponse>;
@@ -198,13 +170,9 @@ export class String {
    * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for
    * all good men to come to the aid of their country<tab><space><space>'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putWhitespace(): Promise<msRest.RestResponse>;
   putWhitespace(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -222,13 +190,9 @@ export class String {
   /**
    * Get String value when no string value is sent in response payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNotProvided(): Promise<Models.StringGetNotProvidedResponse>;
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.StringGetNotProvidedResponse>;
@@ -246,13 +210,9 @@ export class String {
   /**
    * Get value that is base64 encoded
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBase64Encoded(): Promise<Models.StringGetBase64EncodedResponse>;
   getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64EncodedResponse>;
@@ -270,13 +230,9 @@ export class String {
   /**
    * Get value that is base64url encoded
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getBase64UrlEncoded(): Promise<Models.StringGetBase64UrlEncodedResponse>;
   getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64UrlEncodedResponse>;
@@ -294,15 +250,11 @@ export class String {
   /**
    * Put value that is base64url encoded
    *
-   * @param {Uint8Array} stringBody
+   * @param stringBody
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putBase64UrlEncoded(stringBody: Uint8Array): Promise<msRest.RestResponse>;
   putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -321,13 +273,9 @@ export class String {
   /**
    * Get null value that is expected to be base64url encoded
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNullBase64UrlEncoded(): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
   getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullBase64UrlEncodedResponse>;

@@ -28,13 +28,9 @@ export class Dictionary {
   /**
    * Get complex types with dictionary property
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getValid(): Promise<Models.DictionaryGetValidResponse>;
   getValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetValidResponse>;
@@ -52,13 +48,9 @@ export class Dictionary {
   /**
    * Put complex types with dictionary property
    *
-   * @param {DictionaryPutValidOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putValid(): Promise<msRest.RestResponse>;
   putValid(options: Models.DictionaryPutValidOptionalParams): Promise<msRest.RestResponse>;
@@ -76,13 +68,9 @@ export class Dictionary {
   /**
    * Get complex types with dictionary property which is empty
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmpty(): Promise<Models.DictionaryGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse>;
@@ -100,13 +88,9 @@ export class Dictionary {
   /**
    * Put complex types with dictionary property which is empty
    *
-   * @param {DictionaryPutEmptyOptionalParams} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putEmpty(): Promise<msRest.RestResponse>;
   putEmpty(options: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.RestResponse>;
@@ -124,13 +108,9 @@ export class Dictionary {
   /**
    * Get complex types with dictionary property which is null
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNull(): Promise<Models.DictionaryGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse>;
@@ -148,13 +128,9 @@ export class Dictionary {
   /**
    * Get complex types with dictionary property while server doesn't provide a response payload
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNotProvided(): Promise<Models.DictionaryGetNotProvidedResponse>;
   getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNotProvidedResponse>;

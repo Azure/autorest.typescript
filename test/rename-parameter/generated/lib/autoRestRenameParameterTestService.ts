@@ -18,9 +18,9 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * Initializes a new instance of the AutoRestRenameParameterTestService class.
    *
-   * @param {string} noRetryPolicy A query parameter.
+   * @param noRetryPolicy A query parameter.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(noRetryPolicy: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {
     super(noRetryPolicy, options);
@@ -30,14 +30,9 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with an optional query parameter
    *
-   * @param {AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUsingOptional(): Promise<msRest.RestResponse>;
   getUsingOptional(options: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams): Promise<msRest.RestResponse>;
@@ -56,15 +51,11 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with a required query parameter
    *
-   * @param {string} timeout A query parameter.
+   * @param timeout A query parameter.
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUsingRequired(timeout: string): Promise<msRest.RestResponse>;
   getUsingRequired(timeout: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -84,13 +75,9 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with an optional client query parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUsingClientOptional(): Promise<msRest.RestResponse>;
   getUsingClientOptional(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -109,13 +96,9 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with a required client query parameter
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getUsingClientRequired(): Promise<msRest.RestResponse>;
   getUsingClientRequired(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;

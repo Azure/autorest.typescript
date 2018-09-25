@@ -20,7 +20,7 @@ class AutoRestIntegerTestService extends AutoRestIntegerTestServiceContext {
   /**
    * Initializes a new instance of the AutoRestIntegerTestService class.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestIntegerTestServiceOptions) {
     super(options);

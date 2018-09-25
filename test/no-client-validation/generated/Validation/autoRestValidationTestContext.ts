@@ -21,11 +21,11 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
   /**
    * Initializes a new instance of the AutoRestValidationTestContext class.
    *
-   * @param {string} subscriptionId Subscription ID.
+   * @param subscriptionId Subscription ID.
    *
-   * @param {string} apiVersion Required string following pattern \d{2}-\d{2}-\d{4}
+   * @param apiVersion Required string following pattern \d{2}-\d{2}-\d{4}
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(subscriptionId: string, apiVersion: string, options?: Models.AutoRestValidationTestOptions) {
     if (subscriptionId === null || subscriptionId === undefined) {

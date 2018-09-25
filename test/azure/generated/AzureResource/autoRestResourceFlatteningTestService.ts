@@ -19,10 +19,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Initializes a new instance of the AutoRestResourceFlatteningTestService class.
    *
-   * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
-   * connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestResourceFlatteningTestServiceOptions) {
     super(credentials, options);
@@ -32,14 +31,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as an Array
    *
-   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putArray(): Promise<msRest.RestResponse>;
   putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.RestResponse>;
@@ -58,13 +52,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Get External Resource as an Array
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getArray(): Promise<Models.GetArrayResponse>;
   getArray(options: msRest.RequestOptionsBase): Promise<Models.GetArrayResponse>;
@@ -83,14 +73,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a Dictionary
    *
-   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams} [options] Optional
-   * Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putDictionary(): Promise<msRest.RestResponse>;
   putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.RestResponse>;
@@ -109,13 +94,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Get External Resource as a Dictionary
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getDictionary(): Promise<Models.GetDictionaryResponse>;
   getDictionary(options: msRest.RequestOptionsBase): Promise<Models.GetDictionaryResponse>;
@@ -134,14 +115,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a ResourceCollection
    *
-   * @param {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams} [options]
-   * Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putResourceCollection(): Promise<msRest.RestResponse>;
   putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.RestResponse>;
@@ -160,13 +136,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Get External Resource as a ResourceCollection
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getResourceCollection(): Promise<Models.GetResourceCollectionResponse>;
   getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.GetResourceCollectionResponse>;

@@ -22,12 +22,11 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
   /**
    * Initializes a new instance of the MicrosoftAzureTestUrl class.
    *
-   * @param {msRest.ServiceClientCredentials} credentials Credentials needed for the client to
-   * connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure.
    *
-   * @param {string} subscriptionId Subscription Id.
+   * @param subscriptionId Subscription Id.
    *
-   * @param {object} [options] The parameter options
+   * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
     super(credentials, subscriptionId, options);

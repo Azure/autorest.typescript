@@ -28,13 +28,9 @@ export class ByteModel {
   /**
    * Get null byte value
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNull(): Promise<Models.ByteModelGetNullResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNullResponse>;
@@ -52,13 +48,9 @@ export class ByteModel {
   /**
    * Get empty byte value ''
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getEmpty(): Promise<Models.ByteModelGetEmptyResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetEmptyResponse>;
@@ -76,13 +68,9 @@ export class ByteModel {
   /**
    * Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getNonAscii(): Promise<Models.ByteModelGetNonAsciiResponse>;
   getNonAscii(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNonAsciiResponse>;
@@ -100,16 +88,11 @@ export class ByteModel {
   /**
    * Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    *
-   * @param {Uint8Array} byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7
-   * F6)
+   * @param byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   putNonAscii(byteBody: Uint8Array): Promise<msRest.RestResponse>;
   putNonAscii(byteBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
@@ -128,13 +111,9 @@ export class ByteModel {
   /**
    * Get invalid byte value ':::SWAGGER::::'
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param [options] Optional Parameters.
    *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} The deserialized result object.
-   *
-   * @reject {Error|ServiceError} The error object.
+   * @returns A promise is returned
    */
   getInvalid(): Promise<Models.ByteModelGetInvalidResponse>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetInvalidResponse>;
