@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
@@ -159,5 +159,17 @@ export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams e
    * for the operation
    */
   firstParameterGroup?: FirstParameterGroup;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestParameterGroupingTestServiceOptions.
+ * @extends AzureServiceClientOptions
+ */
+export interface AutoRestParameterGroupingTestServiceOptions extends AzureServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 

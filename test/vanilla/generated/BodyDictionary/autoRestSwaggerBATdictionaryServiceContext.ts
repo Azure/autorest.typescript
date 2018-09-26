@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "./models";
 
 const packageName = "";
 const packageVersion = "";
@@ -18,11 +19,9 @@ export class AutoRestSwaggerBATdictionaryServiceContext extends msRest.ServiceCl
   /**
    * Initializes a new instance of the AutoRestSwaggerBATdictionaryServiceContext class.
    *
-   * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
+  constructor(options?: Models.AutoRestSwaggerBATdictionaryServiceOptions) {
 
     if (!options) {
       options = {};
@@ -30,10 +29,7 @@ export class AutoRestSwaggerBATdictionaryServiceContext extends msRest.ServiceCl
 
     super(undefined, options);
 
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
+    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);

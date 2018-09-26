@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -27,12 +26,10 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
    *
    * @param subscriptionId Subscription Id.
    *
-   * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    super(credentials, subscriptionId, baseUri, options);
+  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
+    super(credentials, subscriptionId, options);
     this.group = new operations.Group(this);
   }
 }

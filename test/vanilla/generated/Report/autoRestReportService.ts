@@ -18,12 +18,10 @@ class AutoRestReportService extends AutoRestReportServiceContext {
   /**
    * Initializes a new instance of the AutoRestReportService class.
    *
-   * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.AutoRestReportServiceOptions) {
+    super(options);
   }
   // methods on the client.
 

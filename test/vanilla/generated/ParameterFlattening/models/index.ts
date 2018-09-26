@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 
 
 /**
@@ -20,4 +21,16 @@ export interface AvailabilitySetUpdateParameters {
    * description about the set of tags.
    */
   tags: { [propertyName: string]: string };
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestParameterFlatteningOptions.
+ * @extends ServiceClientOptions
+ */
+export interface AutoRestParameterFlatteningOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }

@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as Models from "./models";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 
@@ -29,11 +30,9 @@ export class AzureCompositeModelContext extends msRestAzure.AzureServiceClient {
    *
    * @param credentials Credentials needed for the client to connect to Azure.
    *
-   * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AzureCompositeModelOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }
@@ -46,10 +45,7 @@ export class AzureCompositeModelContext extends msRestAzure.AzureServiceClient {
     this.subscriptionId = '123456';
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
-    }
+    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
 

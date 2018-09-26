@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -81,6 +82,18 @@ export interface ErrorModel {
    * @member {string} [fields]
    */
   fields?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestValidationTestOptions.
+ * @extends ServiceClientOptions
+ */
+export interface AutoRestValidationTestOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

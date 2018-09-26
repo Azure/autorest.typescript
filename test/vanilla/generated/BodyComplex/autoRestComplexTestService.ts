@@ -8,7 +8,6 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -29,12 +28,10 @@ class AutoRestComplexTestService extends AutoRestComplexTestServiceContext {
   /**
    * Initializes a new instance of the AutoRestComplexTestService class.
    *
-   * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.AutoRestComplexTestServiceOptions) {
+    super(options);
     this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);
     this.arrayModel = new operations.ArrayModel(this);

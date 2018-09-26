@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -682,6 +683,18 @@ export interface RootWithRefAndMeta {
    * @member {string} [something] Something else (just to avoid flattening)
    */
   something?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestSwaggerBATXMLServiceOptions.
+ * @extends ServiceClientOptions
+ */
+export interface AutoRestSwaggerBATXMLServiceOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

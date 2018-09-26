@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -193,6 +194,18 @@ export interface PetHungryOrThirstyError {
    * @member {string} [hungryOrThirsty] is the pet hungry or thirsty or both
    */
   hungryOrThirsty?: string;
+}
+
+/**
+ * @interface
+ * An interface representing XMSErrorResponseExtensionsOptions.
+ * @extends ServiceClientOptions
+ */
+export interface XMSErrorResponseExtensionsOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

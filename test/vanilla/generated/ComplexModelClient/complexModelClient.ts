@@ -18,12 +18,10 @@ class ComplexModelClient extends ComplexModelClientContext {
   /**
    * Initializes a new instance of the ComplexModelClient class.
    *
-   * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.ComplexModelClientOptions) {
+    super(options);
   }
   // methods on the client.
 

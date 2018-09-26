@@ -4,17 +4,12 @@
 'use strict';
 
 import should = require('should');
-import http = require('http');
-import assert = require('assert');
-import * as msRest from 'ms-rest-js';
 
 import { AutoRestRequiredOptionalTestService } from './generated/RequiredOptional/autoRestRequiredOptionalTestService';
 
-var dummyToken = 'dummy12321343423';
-var credentials = new msRest.TokenCredentials(dummyToken);
-
-var clientOptions = {};
-var baseUri = 'http://localhost:3000';
+var clientOptions = {
+  baseUri: 'http://localhost:3000'
+};
 
 
 describe('typescript', function () {
@@ -22,7 +17,7 @@ describe('typescript', function () {
   describe('Swagger Required Optional BAT', function () {
 
     describe('Basic Required Optional Operations', function () {
-      var testClient = new AutoRestRequiredOptionalTestService('', '', baseUri, clientOptions);
+      var testClient = new AutoRestRequiredOptionalTestService('', '', clientOptions);
 
       it('should throw error on null path parameter', function (done) {
         testClient.implicit.getRequiredPath(null, function (error, result) {

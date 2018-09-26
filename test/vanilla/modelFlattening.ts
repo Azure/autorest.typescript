@@ -4,22 +4,21 @@
 'use strict';
 
 import should = require('should');
-import http = require('http');
 import assert = require('assert');
-import * as msRest from 'ms-rest-js';
 var _ = require('underscore');
 
 import { AutoRestResourceFlatteningTestService, AutoRestResourceFlatteningTestServiceModels } from './generated/ModelFlattening/autoRestResourceFlatteningTestService';
 
-var clientOptions = {};
-var baseUri = 'http://localhost:3000';
+var clientOptions = {
+  baseUri: 'http://localhost:3000'
+};
 
 describe('typescript', function () {
 
   describe('Swagger ModelFlattening BAT', function () {
 
     describe('Resource Flattening Operations', function () {
-      var testClient = new AutoRestResourceFlatteningTestService(baseUri, clientOptions);
+      var testClient = new AutoRestResourceFlatteningTestService(clientOptions);
 
       it('should get external resource as an array', function (done) {
         var expectedResult = [

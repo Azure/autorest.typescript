@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -226,6 +227,18 @@ export interface FlattenParameterGroup {
    * @member {string} [odatavalue] URL value.
    */
   odatavalue?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestResourceFlatteningTestServiceOptions.
+ * @extends ServiceClientOptions
+ */
+export interface AutoRestResourceFlatteningTestServiceOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

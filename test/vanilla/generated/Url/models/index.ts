@@ -37,6 +37,10 @@ export interface AutoRestUrlTestServiceOptions extends ServiceClientOptions {
    * @member {string} [globalStringQuery] should contain value null
    */
   globalStringQuery?: string;
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

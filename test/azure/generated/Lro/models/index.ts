@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
@@ -1519,6 +1519,18 @@ export interface LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams exte
    * @member {Product} [product] Product to put
    */
   product?: Product;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestLongRunningOperationTestServiceOptions.
+ * @extends AzureServiceClientOptions
+ */
+export interface AutoRestLongRunningOperationTestServiceOptions extends AzureServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

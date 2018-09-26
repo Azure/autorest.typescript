@@ -6,11 +6,9 @@
 import * as should from 'should';
 import * as assert from 'assert';
 import * as msRest from 'ms-rest-js';
-import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestParameterizedHostTestClient } from './generated/CustomBaseUri/autoRestParameterizedHostTestClient';
 import { timeoutPromise } from '../util/util';
-var dummySubscriptionId = '1234-5678-9012-3456';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
@@ -48,6 +46,26 @@ describe('typescript', function () {
       } catch (error) {
         should(error).not.be.instanceof(assert.AssertionError);
       }
+    });
+
+    describe('credentials.environment', function () {
+      it('should be ignored for services that use x-ms-parameterized host', async function () {
+        const creds = {
+          signRequest: (req: msRest.WebResource) => Promise.resolve(req),
+          environment: {
+            resourceManagerEndpointUrl: "http://microsoft.com"
+          }
+        }
+        const client = new AutoRestParameterizedHostTestClient(creds, {
+          httpClient: {
+            sendRequest: request => Promise.resolve({ status: 200, headers: new msRest.HttpHeaders(), request })
+          },
+        });
+
+        const res = await client.paths.getEmpty("local");
+        const request = res._response.request;
+        request.url.should.not.startWith("http://microsoft.com");
+      });
     });
   });
 });

@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
@@ -147,6 +147,18 @@ export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptio
    * a ResourceCollection to put
    */
   resourceComplexObject?: ResourceCollection;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestResourceFlatteningTestServiceOptions.
+ * @extends AzureServiceClientOptions
+ */
+export interface AutoRestResourceFlatteningTestServiceOptions extends AzureServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 

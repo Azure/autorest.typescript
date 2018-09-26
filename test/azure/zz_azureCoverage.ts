@@ -3,20 +3,18 @@
 
 'use strict';
 
-import * as should from 'should';
-import * as assert from 'assert';
 import * as msRest from 'ms-rest-js';
-import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestReportServiceForAzure } from './generated/AzureReport/autoRestReportServiceForAzure';
+import { AutoRestReportServiceForAzureOptions } from './generated/AzureReport/models';
 
-var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: any = {};
-var baseUri = 'http://localhost:3000';
-var testClient = new AutoRestReportServiceForAzure(credentials, baseUri, clientOptions);
+var clientOptions: AutoRestReportServiceForAzureOptions = {
+  baseUri: 'http://localhost:3000'
+};
+var testClient = new AutoRestReportServiceForAzure(credentials, clientOptions);
 
 describe('typescript', function () {
   it('should have full Azure test coverage', async function () {

@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -25,12 +24,10 @@ class AutoRestHeadExceptionTestService extends AutoRestHeadExceptionTestServiceC
    *
    * @param credentials Credentials needed for the client to connect to Azure.
    *
-   * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    super(credentials, baseUri, options);
+  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestHeadExceptionTestServiceOptions) {
+    super(credentials, options);
     this.headException = new operations.HeadException(this);
   }
 }
