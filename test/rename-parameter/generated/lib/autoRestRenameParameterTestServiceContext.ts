@@ -21,10 +21,9 @@ export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceCli
   /**
    * Initializes a new instance of the AutoRestRenameParameterTestServiceContext class.
    * @param noRetryPolicy A query parameter.
-   * @param [baseUri] The base URI of the service.
    * @param [options] The parameter options
    */
-  constructor(noRetryPolicy: string, baseUri?: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {
+  constructor(noRetryPolicy: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {
     if (noRetryPolicy === null || noRetryPolicy === undefined) {
       throw new Error('\'noRetryPolicy\' cannot be null.');
     }
@@ -35,10 +34,7 @@ export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceCli
 
     super(undefined, options);
 
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
+    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
     this.noRetryPolicy = noRetryPolicy;
 

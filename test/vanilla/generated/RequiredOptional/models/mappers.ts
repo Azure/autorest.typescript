@@ -199,18 +199,3 @@ export const ClassOptionalWrapper: msRest.CompositeMapper = {
     }
   }
 };
-
-export const AutoRestRequiredOptionalTestServiceOptions: msRest.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AutoRestRequiredOptionalTestServiceOptions",
-    modelProperties: {
-      optionalGlobalQuery: {
-        serializedName: "optional-global-query",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};

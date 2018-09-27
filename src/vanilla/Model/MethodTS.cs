@@ -299,57 +299,6 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public void DeserializeResponse(TSBlock block, IModelType type)
-        {
-            if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
-
-            const string responseVariable = "parsedResponse";
-            const string valueReference = "operationRes.parsedBody";
-            block.Line($"let {responseVariable} = {valueReference} as {{ [key: string]: any }};");
-            block.If($"{responseVariable} != undefined", ifBlock =>
-            {
-                ifBlock.Try(tryBlock =>
-                {
-                    tryBlock.ConstObjectVariable("serializer", CodeModel.CreateSerializerExpression());
-                    tryBlock.Text($"{valueReference} = ");
-                    tryBlock.FunctionCall("serializer.deserialize", argumentList =>
-                    {
-                        string expressionToDeserialize = responseVariable;
-
-                        if (type is CompositeType)
-                        {
-                            argumentList.Text($"Mappers.{type.Name}");
-                        }
-                        else
-                        {
-                            bool isXml = CodeModel?.ShouldGenerateXmlSerialization == true;
-                            if (isXml && type is SequenceType st)
-                            {
-                                expressionToDeserialize = $"typeof {responseVariable} === \"object\" ? {responseVariable}[\"{st.ElementType.XmlName}\"] : []";
-                            }
-
-                            ClientModelExtensions.ConstructMapper(argumentList, type, responseVariable, null, isPageable: false, expandComposite: false, isXML: isXml);
-                        }
-
-                        argumentList.Text(expressionToDeserialize);
-
-                        argumentList.QuotedString(valueReference);
-                    });
-                })
-                .Catch("error", catchBlock =>
-                {
-                    string errorVariable = this.GetUniqueName("deserializationError");
-                    catchBlock.Line($"const {errorVariable} = new msRest.RestError(`Error ${{error}} occurred in deserializing the responseBody - ${{operationRes.bodyAsText}}`);");
-                    catchBlock.Line($"{errorVariable}.request = msRest.stripRequest(httpRequest);");
-                    catchBlock.Line($"{errorVariable}.response = msRest.stripResponse(operationRes);");
-                    catchBlock.Throw(errorVariable);
-                });
-            });
-        }
-
         /// <summary>
         /// Generate a reference to the ServiceClient
         /// </summary>

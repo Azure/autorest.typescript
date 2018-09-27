@@ -3,19 +3,20 @@
 
 'use strict';
 
-import { AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from 'ms-rest-js';
 import { AzureCompositeModel, AzureCompositeModelModels } from './generated/AzureCompositeModelClient/azureCompositeModel';
+import { AzureCompositeModelOptions } from './generated/AzureCompositeModelClient/models';
 
 const dummyToken = 'dummy12321343423';
 const credentials = new msRest.TokenCredentials(dummyToken);
 
-const clientOptions: AzureServiceClientOptions = {};
-const baseUri = 'http://localhost:3000';
+const clientOptions: AzureCompositeModelOptions = {
+  baseUri: 'http://localhost:3000'
+};
 
 describe('typescript', function () {
   describe('Azure Composite Client', function () {
-    const testClient = new AzureCompositeModel(credentials, baseUri, clientOptions);
+    const testClient = new AzureCompositeModel(credentials, clientOptions);
 
     it('should get and put valid basic type properties', async () => {
       const result = await testClient.basic.getValid();

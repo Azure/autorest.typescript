@@ -8,7 +8,6 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -20,11 +19,10 @@ class AutoRestBoolTestService extends AutoRestBoolTestServiceContext {
 
   /**
    * Initializes a new instance of the AutoRestBoolTestService class.
-   * @param [baseUri] The base URI of the service.
    * @param [options] The parameter options
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.AutoRestBoolTestServiceOptions) {
+    super(options);
     this.bool = new operations.Bool(this);
   }
 }

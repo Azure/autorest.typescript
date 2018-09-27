@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -26,11 +25,10 @@ class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperati
   /**
    * Initializes a new instance of the AutoRestLongRunningOperationTestService class.
    * @param credentials Credentials needed for the client to connect to Azure.
-   * @param [baseUri] The base URI of the service.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    super(credentials, baseUri, options);
+  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {
+    super(credentials, options);
     this.lROs = new operations.LROs(this);
     this.lRORetrys = new operations.LRORetrys(this);
     this.lROSADs = new operations.LROSADs(this);

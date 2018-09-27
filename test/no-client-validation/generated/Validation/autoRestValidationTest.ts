@@ -19,11 +19,10 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * Initializes a new instance of the AutoRestValidationTest class.
    * @param subscriptionId Subscription ID.
    * @param apiVersion Required string following pattern \d{2}-\d{2}-\d{4}
-   * @param [baseUri] The base URI of the service.
    * @param [options] The parameter options
    */
-  constructor(subscriptionId: string, apiVersion: string, baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(subscriptionId, apiVersion, baseUri, options);
+  constructor(subscriptionId: string, apiVersion: string, options?: Models.AutoRestValidationTestOptions) {
+    super(subscriptionId, apiVersion, options);
   }
 
   /**

@@ -8,7 +8,6 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -26,11 +25,10 @@ class AutoRestHttpInfrastructureTestService extends AutoRestHttpInfrastructureTe
 
   /**
    * Initializes a new instance of the AutoRestHttpInfrastructureTestService class.
-   * @param [baseUri] The base URI of the service.
    * @param [options] The parameter options
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.AutoRestHttpInfrastructureTestServiceOptions) {
+    super(options);
     this.httpFailure = new operations.HttpFailure(this);
     this.httpSuccess = new operations.HttpSuccess(this);
     this.httpRedirects = new operations.HttpRedirects(this);

@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -35,6 +36,18 @@ export interface RefColorConstant {
    * @member {string} [field1] Sample string.
    */
   field1?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestSwaggerBATServiceOptions.
+ * @extends ServiceClientOptions
+ */
+export interface AutoRestSwaggerBATServiceOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

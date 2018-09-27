@@ -140,6 +140,10 @@ export interface AutoRestRequiredOptionalTestServiceOptions extends ServiceClien
    * @member {number} [optionalGlobalQuery] number of items to skip
    */
   optionalGlobalQuery?: number;
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

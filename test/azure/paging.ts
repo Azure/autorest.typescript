@@ -7,17 +7,16 @@ import * as should from 'should';
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
 import * as msRest from 'ms-rest-js';
-import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestPagingTestService } from './generated/Paging/autoRestPagingTestService';
-import { PagingGetMultiplePagesResponse } from './generated/Paging/models';
+import { AutoRestPagingTestServiceOptions } from './generated/Paging/models';
 
-var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: msRestAzure.AzureServiceClientOptions = {};
-var baseUri = 'http://localhost:3000';
+var clientOptions: AutoRestPagingTestServiceOptions = {
+  baseUri: 'http://localhost:3000'
+};
 
 describe('typescript', function () {
 
@@ -28,8 +27,7 @@ describe('typescript', function () {
         msRest.exponentialRetryPolicy(3, 0, 0, 0),
         msRest.deserializationPolicy()
       ];
-      clientOptions.noRetryPolicy = true;
-      var testClient = new AutoRestPagingTestService(credentials, baseUri, clientOptions);
+      var testClient = new AutoRestPagingTestService(credentials, clientOptions);
 
       it('should get single pages', async function () {
         const result = await testClient.paging.getSinglePages();

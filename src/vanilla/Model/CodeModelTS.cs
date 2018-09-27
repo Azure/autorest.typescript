@@ -22,7 +22,7 @@ namespace AutoRest.TypeScript.Model
 
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
         private const string defaultGitHubUrl = "https://github.com/azure/" + defaultGitHubRepositoryName;
-        
+
         public GeneratorSettingsTS Settings { get; set; }
 
         private string _optionalParameterTypeForClientConstructor;
@@ -159,7 +159,10 @@ namespace AutoRest.TypeScript.Model
         }
 
         public IEnumerable<CompositeTypeTS> OrderedMapperTemplateModels =>
-            OrderedModelTemplateModels.Where(m => m.BaseModelType?.Name != "RequestOptionsBase");
+            OrderedModelTemplateModels.Where(m =>
+                m.BaseModelType?.Name != "RequestOptionsBase" &&
+                m.BaseModelType?.Name != "ServiceClientOptions" &&
+                m.BaseModelType?.Name != "AzureServiceClientOptions");
 
         public string HomePageUrl
         {
@@ -300,10 +303,6 @@ namespace AutoRest.TypeScript.Model
                 var requireParams = new List<string>();
                 this.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue))
                     .ForEach(p => requireParams.Add(p.Name.ToCamelCase()));
-                if (!IsCustomBaseUri)
-                {
-                    requireParams.Add("baseUri");
-                }
 
                 if (requireParams == null || requireParams.Count == 0)
                 {
@@ -337,14 +336,6 @@ namespace AutoRest.TypeScript.Model
                     requiredParams.Append(p.ModelType.TSType(inModelsModule: false));
 
                     first = false;
-                }
-
-                if (!IsCustomBaseUri)
-                {
-                    if (!first)
-                        requiredParams.Append(", ");
-
-                    requiredParams.Append("baseUri?: string");
                 }
 
                 return requiredParams.ToString();
@@ -402,7 +393,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.22.422\"";
+            return "\"ms-rest-js\": \"~0.22.426\"";
         }
 
         public virtual Method GetSampleMethod()
@@ -624,16 +615,11 @@ namespace AutoRest.TypeScript.Model
             builder.DocumentationComment(comment =>
             {
                 comment.Description($"Initializes a new instance of the {className} class.");
-                
+
                 IEnumerable<Property> requiredParameters = Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
                 foreach (Property requiredParameter in requiredParameters)
                 {
                     comment.Parameter(requiredParameter.Name, requiredParameter.Documentation);
-                }
-
-                if (!IsCustomBaseUri)
-                {
-                    comment.Parameter("baseUri", "The base URI of the service.", isOptional: true);
                 }
 
                 comment.Parameter("options", "The parameter options", isOptional: true);

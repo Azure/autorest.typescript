@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -32,11 +31,10 @@ class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParam
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param subscriptionId The subscription id, which appears in the path, always modeled in
    * credentials. The value is always '1234-5678-9012-3456'
-   * @param [baseUri] The base URI of the service.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    super(credentials, subscriptionId, baseUri, options);
+  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
+    super(credentials, subscriptionId, options);
     this.xMsClientRequestId = new operations.XMsClientRequestId(this);
     this.subscriptionInCredentials = new operations.SubscriptionInCredentials(this);
     this.subscriptionInMethod = new operations.SubscriptionInMethod(this);

@@ -17,11 +17,10 @@ import { AutoRestResourceFlatteningTestServiceContext } from "./autoRestResource
 class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTestServiceContext {
   /**
    * Initializes a new instance of the AutoRestResourceFlatteningTestService class.
-   * @param [baseUri] The base URI of the service.
    * @param [options] The parameter options
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-    super(baseUri, options);
+  constructor(options?: Models.AutoRestResourceFlatteningTestServiceOptions) {
+    super(options);
   }
 
   /**

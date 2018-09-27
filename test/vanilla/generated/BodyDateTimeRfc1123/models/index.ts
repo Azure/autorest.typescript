@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -24,6 +25,18 @@ export interface ErrorModel {
    * @member {string} [message]
    */
   message?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestRFC1123DateTimeTestServiceOptions.
+ * @extends ServiceClientOptions
+ */
+export interface AutoRestRFC1123DateTimeTestServiceOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

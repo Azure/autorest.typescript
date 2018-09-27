@@ -2,13 +2,11 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 import * as should from 'should';
-import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
 import * as msRest from "ms-rest-js";
 import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels as models } from './generated/Xml/autoRestSwaggerBATXMLService';
 
-const baseUri = 'http://localhost:3000';
-const testClient = new AutoRestSwaggerBATXMLService(baseUri);
+const testClient = new AutoRestSwaggerBATXMLService({ baseUri: 'http://localhost:3000' });
 
 function getAbortController(): AbortController {
   let controller: AbortController;

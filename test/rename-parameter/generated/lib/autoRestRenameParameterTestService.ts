@@ -18,11 +18,10 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * Initializes a new instance of the AutoRestRenameParameterTestService class.
    * @param noRetryPolicy A query parameter.
-   * @param [baseUri] The base URI of the service.
    * @param [options] The parameter options
    */
-  constructor(noRetryPolicy: string, baseUri?: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {
-    super(noRetryPolicy, baseUri, options);
+  constructor(noRetryPolicy: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {
+    super(noRetryPolicy, options);
   }
 
   /**

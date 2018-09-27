@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
@@ -362,6 +362,18 @@ export interface PagingBeginGetMultiplePagesLRONextOptionalParams extends msRest
    * [pagingGetMultiplePagesLROOptions] Additional parameters for the operation
    */
   pagingGetMultiplePagesLROOptions?: PagingGetMultiplePagesLROOptions;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestPagingTestServiceOptions.
+ * @extends AzureServiceClientOptions
+ */
+export interface AutoRestPagingTestServiceOptions extends AzureServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 

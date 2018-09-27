@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -69,6 +70,18 @@ export interface D {
    * @member {string} [httpStatusCode]
    */
   httpStatusCode?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestHttpInfrastructureTestServiceOptions.
+ * @extends ServiceClientOptions
+ */
+export interface AutoRestHttpInfrastructureTestServiceOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

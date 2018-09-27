@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as Models from "./models";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 
@@ -30,10 +31,9 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
    * Initializes a new instance of the MicrosoftAzureTestUrl class.
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param subscriptionId Subscription Id.
-   * @param [baseUri] The base URI of the service.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }
@@ -49,10 +49,7 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
     this.apiVersion = '2014-04-01-preview';
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = 'https://management.azure.com';
-    }
+    this.baseUri = options.baseUri || this.baseUri || "https://management.azure.com";
     this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
     this.subscriptionId = subscriptionId;

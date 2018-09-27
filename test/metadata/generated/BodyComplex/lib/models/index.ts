@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -593,6 +594,18 @@ export interface MyDerivedType {
    * @member {string} [propD1]
    */
   propD1?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestComplexTestServiceOptions.
+ * @extends ServiceClientOptions
+ */
+export interface AutoRestComplexTestServiceOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

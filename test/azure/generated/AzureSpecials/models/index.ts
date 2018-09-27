@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
@@ -107,6 +107,18 @@ export interface OdataGetWithFilterOptionalParams extends msRest.RequestOptionsB
    * @member {string} [orderby] The orderby parameter with value id.
    */
   orderby?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestAzureSpecialParametersTestClientOptions.
+ * @extends AzureServiceClientOptions
+ */
+export interface AutoRestAzureSpecialParametersTestClientOptions extends AzureServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -103,6 +104,18 @@ export interface ErrorModel {
    * @member {string} [message]
    */
   message?: string;
+}
+
+/**
+ * @interface
+ * An interface representing ComplexModelClientOptions.
+ * @extends ServiceClientOptions
+ */
+export interface ComplexModelClientOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

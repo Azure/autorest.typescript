@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
@@ -803,6 +803,18 @@ export interface ReadonlypropertyPutValidOptionalParams extends msRest.RequestOp
    * @member {number} [size]
    */
   size?: number;
+}
+
+/**
+ * @interface
+ * An interface representing AzureCompositeModelOptions.
+ * @extends AzureServiceClientOptions
+ */
+export interface AzureCompositeModelOptions extends AzureServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 

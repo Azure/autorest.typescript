@@ -3,25 +3,21 @@
 
 'use strict';
 
-import should = require('should');
-import assert = require('assert');
 import * as msRest from 'ms-rest-js';
 var _ = require('underscore');
 
 import { AutoRestSwaggerBATHeaderService, AutoRestSwaggerBATHeaderServiceModels } from './generated/Header/autoRestSwaggerBATHeaderService';
 
-var dummyToken = 'dummy12321343423';
-var credentials = new msRest.TokenCredentials(dummyToken);
-
-var clientOptions = {};
-var baseUri = 'http://localhost:3000';
+var clientOptions = {
+  baseUri: 'http://localhost:3000'
+};
 
 describe('typescript', function () {
 
   describe('Swagger Header BAT', function () {
 
     describe('Basic Header Operations', function () {
-      var testClient = new AutoRestSwaggerBATHeaderService(baseUri, clientOptions);
+      var testClient = new AutoRestSwaggerBATHeaderService(clientOptions);
       it('should override existing headers (nodejs only)', async function () {
         if (!msRest.isNode) {
           this.skip();

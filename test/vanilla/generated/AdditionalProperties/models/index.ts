@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -170,6 +171,18 @@ export interface PetAPInPropertiesWithAPString {
    * as a union of `string | any`.
    */
   [property: string]: string | any;
+}
+
+/**
+ * @interface
+ * An interface representing AdditionalPropertiesClientOptions.
+ * @extends ServiceClientOptions
+ */
+export interface AdditionalPropertiesClientOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

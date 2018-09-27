@@ -32,19 +32,3 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
-
-export const AutoRestParameterizedCustomHostTestClientOptions: msRest.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AutoRestParameterizedCustomHostTestClientOptions",
-    modelProperties: {
-      dnsSuffix: {
-        serializedName: "dnsSuffix",
-        defaultValue: 'host',
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};

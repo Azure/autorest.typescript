@@ -5,7 +5,7 @@ import * as assert from "assert";
 import { XMSErrorResponseExtensions } from './generated/XMSErrorResponses/xMSErrorResponseExtensions';
 import { deserializationPolicy } from 'ms-rest-js';
 
-const testClient = new XMSErrorResponseExtensions("http://localhost:3000", { requestPolicyFactories: [deserializationPolicy()] });
+const testClient = new XMSErrorResponseExtensions({ baseUri: "http://localhost:3000", requestPolicyFactories: [deserializationPolicy()] });
 
 describe("XMS Error Responses", function () {
   it("should handle expectedNoErrors", async function () {

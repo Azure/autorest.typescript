@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
 
 
@@ -30,6 +31,18 @@ export interface Pet {
    * @member {IntEnum} intEnum Possible values include: '1', '2', '3'
    */
   intEnum: IntEnum;
+}
+
+/**
+ * @interface
+ * An interface representing PetStoreIncOptions.
+ * @extends ServiceClientOptions
+ */
+export interface PetStoreIncOptions extends ServiceClientOptions {
+  /**
+   * @member {string} [baseUri]
+   */
+  baseUri?: string;
 }
 
 /**

@@ -9,16 +9,17 @@ import * as msRest from 'ms-rest-js';
 import * as should from 'should';
 import { AutoRestHeadTestService } from './generated/Head/autoRestHeadTestService';
 import { AutoRestHeadExceptionTestService } from './generated/HeadExceptions/autoRestHeadExceptionTestService';
+import { AutoRestHeadTestServiceOptions } from './generated/Head/models';
 
 
 var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: msRestAzure.AzureServiceClientOptions = {
+var clientOptions: AutoRestHeadTestServiceOptions = {
+  baseUri: 'http://localhost:3000',
   requestPolicyFactories: [msRest.exponentialRetryPolicy(3, 0, 0, 0), msRest.deserializationPolicy()]
 };
-var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
 
@@ -27,7 +28,7 @@ describe('typescript', function () {
     describe('Head Operations', function () {
       var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
       testOptions.noRetryPolicy = true;
-      var testClient = new AutoRestHeadTestService(credentials, baseUri, clientOptions);
+      var testClient = new AutoRestHeadTestService(credentials, clientOptions);
 
       it('should return true for 200 status code', async () => {
         const result = await testClient.httpSuccess.head200();
@@ -51,7 +52,7 @@ describe('typescript', function () {
     describe('Head Exception Operations', function () {
       var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
       testOptions.noRetryPolicy = true;
-      var testClient = new AutoRestHeadExceptionTestService(credentials, baseUri, clientOptions);
+      var testClient = new AutoRestHeadExceptionTestService(credentials, clientOptions);
 
       it('should not throw for 200 status code', async () => {
         await testClient.headException.head200();

@@ -32,18 +32,3 @@ export const ErrorModel: msRest.CompositeMapper = {
     }
   }
 };
-
-export const AutoRestRenameParameterTestServiceOptions: msRest.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AutoRestRenameParameterTestServiceOptions",
-    modelProperties: {
-      withCredentialsProperty: {
-        serializedName: "withCredentials",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
