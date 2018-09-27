@@ -28,20 +28,27 @@ export class Paths {
 
   /**
    * Get a 200 to test a valid base uri
-   *
    * @param vault The vault name, e.g. https://myvault
-   *
    * @param secret Secret value.
-   *
    * @param keyName The key name with value 'key1'.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getEmpty(vault: string, secret: string, keyName: string): Promise<msRest.RestResponse>;
-  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams): Promise<msRest.RestResponse>;
+  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param vault The vault name, e.g. https://myvault
+   * @param secret Secret value.
+   * @param keyName The key name with value 'key1'.
+   * @param callback The callback
+   */
   getEmpty(vault: string, secret: string, keyName: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param vault The vault name, e.g. https://myvault
+   * @param secret Secret value.
+   * @param keyName The key name with value 'key1'.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -54,7 +61,6 @@ export class Paths {
       getEmptyOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

@@ -1,5 +1,5 @@
 ﻿@using System.Linq
-@using AutoRest.TypeScript.Model
+@using AutoRest.TypeScript
 @using AutoRest.TypeScript.Azure.Model
 @inherits AutoRest.Core.Template<CodeModelTSa>
 /*
@@ -28,12 +28,7 @@ foreach (var methodGroup in Model.MethodGroupModels)
     @:this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
   }
   }
-@foreach (MethodTS method in Model.MethodTemplateModels)
-{
-@:  // methods on the client.
-@EmptyLine
-@:  @(method.Generate(EmptyLine))
-}
+  @(CodeGeneratorTS.GenerateMethods(Model.MethodTemplateModels, EmptyLine))
 }
 @EmptyLine
 @(Model.GenerateOperationSpecDefinitions(EmptyLine))

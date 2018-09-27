@@ -28,9 +28,7 @@ class AutoRestComplexTestService extends AutoRestComplexTestServiceContext {
 
   /**
    * Initializes a new instance of the AutoRestComplexTestService class.
-   *
    * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {

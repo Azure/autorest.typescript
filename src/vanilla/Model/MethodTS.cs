@@ -138,18 +138,19 @@ namespace AutoRest.TypeScript.Model
         {
             get
             {
-                List<string> declarations = new List<string>();
-                foreach (var parameter in LocalParametersWithOptions)
+                TSBuilder builder = new TSBuilder();
+                TSArgumentList argumentList = new TSArgumentList(builder);
+
+                foreach (Parameter parameter in LocalParametersWithOptions)
                 {
-                    declarations.Add(parameter.Name);
+                    argumentList.Text(parameter.Name);
                 }
 
-                var declaration = string.Join(", ", declarations);
-                return declaration;
+                return builder.ToString();
             }
         }
 
-        public string ProvideParameterType(IModelType type, bool inModelsModule = false)
+        public static string ProvideParameterType(IModelType type, bool inModelsModule = false)
         {
             if (type == null)
             {
@@ -178,48 +179,26 @@ namespace AutoRest.TypeScript.Model
         /// </summary>
         public string MethodParameterDeclarationTS(bool includeOptions, bool isOptionsOptional = true)
         {
-            StringBuilder declarations = new StringBuilder();
+            TSBuilder builder = new TSBuilder();
+            TSParameterList parameterList = new TSParameterList(builder);
 
-            bool first = true;
-            IEnumerable<Parameter> requiredParameters = LocalParameters.Where(p => p.IsRequired);
-            foreach (var parameter in requiredParameters)
-            {
-                if (!first)
-                    declarations.Append(", ");
-
-                declarations.Append(parameter.Name);
-                declarations.Append(": ");
-
-                // For date/datetime parameters, use a union type to reflect that they can be passed as a JS Date or a string.
-                var type = parameter.ModelType;
-                declarations.Append(ProvideParameterType(type));
-
-                first = false;
-            }
+            parameterList.Parameters(LocalParameters.Where(p => p.IsRequired).Select(AutoRestParameterToTSParameter));
 
             if (includeOptions)
             {
-                if (!first)
-                    declarations.Append(", ");
-                if (isOptionsOptional)
-                {
-                    declarations.Append("options?: ");
-                }
-                else
-                {
-                    declarations.Append("options: ");
-                }
+                string optionsParameterType;
                 if (OptionsParameterModelType.Name.EqualsIgnoreCase("RequestOptionsBase"))
                 {
-                    declarations.Append("msRest.RequestOptionsBase");
+                    optionsParameterType = "msRest.RequestOptionsBase";
                 }
                 else
                 {
-                    declarations.AppendFormat("Models.{0}", OptionsParameterModelType.Name);
+                    optionsParameterType = $"Models.{OptionsParameterModelType.Name}";
                 }
+                parameterList.Parameter("options", optionsParameterType, isOptionsOptional);
             }
 
-            return declarations.ToString();
+            return builder.ToString();
         }
 
         /// <summary>
@@ -418,50 +397,6 @@ namespace AutoRest.TypeScript.Model
         internal ParameterTransformations GetParameterTransformations()
             => new ParameterTransformations(InputParameterTransformation);
 
-        /// <summary>
-        /// Generates documentation for every method on the client.
-        /// </summary>
-        /// <param name="flavor">Describes the flavor of the method (Callback based, promise based,
-        /// raw httpOperationResponse based) to be documented.</param>
-        /// <returns></returns>
-        public string GenerateMethodDocumentation(MethodFlavor flavor)
-        {
-            TSBuilder builder = new TSBuilder();
-
-            builder.DocumentationComment(comment =>
-            {
-                comment.WithWordWrap(Settings.Instance?.MaximumCommentColumns ?? Settings.DefaultMaximumCommentColumns, () =>
-                {
-                    comment.Description(Description);
-                    comment.Summary(Summary);
-
-                    foreach (Parameter parameter in LocalParametersWithOptions)
-                    {
-                        comment.Parameter(parameter.Name, parameter.Documentation, !parameter.IsRequired);
-                    }
-                });
-
-                switch (flavor)
-                {
-                    case MethodFlavor.HttpOperationResponse:
-                        comment.Returns("A promise is returned");
-                        break;
-
-                    case MethodFlavor.Callback:
-                        comment.Parameter("callback", "The callback.");
-                        comment.Returns("callback(err, result, request, operationRes)");
-                        break;
-
-                    case MethodFlavor.Promise:
-                        comment.Parameter("optionalCallback", "The optional callback.", true);
-                        comment.Returns("If a callback was passed as the last parameter, then it returns the callback, else returns a Promise.");
-                        break;
-                }
-            });
-
-            return builder.ToString();
-        }
-
         public string BuildResultInitialization(string resultReference)
         {
             if (resultReference == null)
@@ -479,11 +414,6 @@ namespace AutoRest.TypeScript.Model
                 sb.AppendFormat("{0}.parsedBody as {1}", resultReference, ReturnTypeTSString);
             }
             return sb.ToString();
-        }
-
-        public string GenerateWithHttpOperationResponseMethodComment()
-        {
-            return GenerateMethodDocumentation(MethodFlavor.HttpOperationResponse);
         }
 
         public void GenerateOperationArguments(TSObject operationArguments)
@@ -816,19 +746,75 @@ namespace AutoRest.TypeScript.Model
             return parameter != null && !parameter.IsClientProperty && !string.IsNullOrWhiteSpace(parameter.Name) && !parameter.IsConstant && !parameter.IsRequired;
         }
 
-        public virtual string Generate(string emptyLine)
-        {
-            TSBuilder builder = new TSBuilder();
+        private static TSParameter AutoRestParameterToTSParameter(Parameter autoRestParameter)
+            => new TSParameter(autoRestParameter.Name, ProvideParameterType(autoRestParameter.ModelType), autoRestParameter.Documentation, autoRestParameter.IsRequired);
 
+        protected void GenerateDocumentationComment(TSClass tsClass, string returnType, IEnumerable<TSParameter> parameters, bool includeDescription = true)
+        {
+            tsClass.DocumentationComment(comment =>
+            {
+                if (includeDescription)
+                {
+                    comment.Description(Description);
+                    comment.Summary(Summary);
+                }
+                comment.Parameters(parameters);
+                if (returnType != "void")
+                {
+                    comment.Returns(returnType);
+                }
+            });
+        }
+
+        protected TSParameter[] GetRequiredParameters()
+        {
+            return LocalParameters.Where(parameter => parameter.IsRequired).Select(AutoRestParameterToTSParameter).ToArray();
+        }
+
+        protected TSParameter GetOptionsParameter(bool required)
+        {
+            string optionsParameterType;
+            if (OptionsParameterModelType.Name.EqualsIgnoreCase("RequestOptionsBase"))
+            {
+                optionsParameterType = "msRest.RequestOptionsBase";
+            }
+            else
+            {
+                optionsParameterType = $"Models.{OptionsParameterModelType.Name}";
+            }
+            return new TSParameter("options", optionsParameterType, "The optional parameters", required);
+        }
+
+        protected TSParameter GetCallbackParameter(bool required)
+        {
+            return new TSParameter("callback", $"msRest.ServiceCallback<{ReturnTypeTSString}>", "The callback", required);
+        }
+
+        public virtual void Generate(TSClass tsClass)
+        {
+            string methodName = Name.ToCamelCase();
             string responseName = HttpResponseReferenceName;
-            // todo fix doc comment
-            builder.Line(GenerateWithHttpOperationResponseMethodComment());
-            builder.MethodOverload(Name.ToCamelCase(), $"Promise<{responseName}>", MethodParameterDeclarationTS(false, false));
-            builder.MethodOverload(Name.ToCamelCase(), $"Promise<{responseName}>", MethodParameterDeclarationTS(true, false));
-            builder.MethodOverload(Name.ToCamelCase(), $"void", MethodParameterDeclarationWithCallbackTS(includeOptions: false));
-            builder.MethodOverload(Name.ToCamelCase(), $"void", MethodParameterDeclarationWithCallbackTS(includeOptions: true));
-            string parameterDecl = $"{MethodParameterDeclarationTS(true, true)}, callback?: msRest.ServiceCallback<{ReturnTypeTSString}>";
-            builder.Method(Name.ToCamelCase(), $"Promise<{responseName}>", parameterDecl, methodBody =>
+            IEnumerable<TSParameter> requiredParameters = GetRequiredParameters();
+            TSParameter optionalOptionsParameter = GetOptionsParameter(false);
+            TSParameter requiredOptionsParameter = GetOptionsParameter(true);
+            TSParameter optionalCallbackParameter = GetCallbackParameter(false);
+            TSParameter requiredCallbackParameter = GetCallbackParameter(true);
+            string returnType = $"Promise<{responseName}>";
+
+            IEnumerable<TSParameter> requiredParametersWithOptionalOptions = requiredParameters.Concat(new[] { optionalOptionsParameter });
+            GenerateDocumentationComment(tsClass, returnType, requiredParametersWithOptionalOptions);
+            tsClass.MethodOverload(methodName, returnType, requiredParametersWithOptionalOptions);
+
+            IEnumerable<TSParameter> requiredParametersWithRequiredCallback = requiredParameters.Concat(new[] { requiredCallbackParameter });
+            GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredCallback, includeDescription: false);
+            tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredCallback);
+
+            IEnumerable<TSParameter> requiredParametersWithRequiredOptionsAndRequiredCallback = requiredParameters.Concat(new[] { requiredOptionsParameter, requiredCallbackParameter });
+            GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredOptionsAndRequiredCallback, includeDescription: false);
+            tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredOptionsAndRequiredCallback);
+
+            IEnumerable<TSParameter> requiredParametersWithOptionalOptionsAndOptionalCallback = requiredParameters.Concat(new[] { optionalOptionsParameter, optionalCallbackParameter });
+            tsClass.Method(methodName, returnType, requiredParametersWithOptionalOptionsAndOptionalCallback, methodBody =>
             {
                 methodBody.Return(returnValue =>
                 {
@@ -841,12 +827,10 @@ namespace AutoRest.TypeScript.Model
 
                     if (HasCustomHttpResponseType)
                     {
-                        returnValue.Text($" as Promise<{responseName}>");
+                        returnValue.Text($" as {returnType}");
                     }
                 });
             });
-
-            return builder.ToString();
         }
 
         public virtual bool IsWrappable()

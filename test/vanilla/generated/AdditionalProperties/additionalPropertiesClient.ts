@@ -20,9 +20,7 @@ class AdditionalPropertiesClient extends AdditionalPropertiesClientContext {
 
   /**
    * Initializes a new instance of the AdditionalPropertiesClient class.
-   *
    * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {

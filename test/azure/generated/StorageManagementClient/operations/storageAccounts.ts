@@ -29,18 +29,27 @@ export class StorageAccounts {
 
   /**
    * Checks that account name is valid and is not in use.
-   *
    * @param accountName The name of the storage account within the specified resource group. Storage
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
    * letters only.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StorageAccountsCheckNameAvailabilityResponse>
    */
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
+  /**
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param callback The callback
+   */
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
+  /**
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): Promise<Models.StorageAccountsCheckNameAvailabilityResponse> {
     return this.client.sendOperationRequest(
@@ -52,46 +61,50 @@ export class StorageAccounts {
       callback) as Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
   }
 
-
   /**
    * Asynchronously creates a new storage account with the specified parameters. Existing accounts
    * cannot be updated with this API and should instead use the Update Storage Account API. If an
    * account is already created and subsequent PUT request is issued with exact same set of
    * properties, then HTTP 200 would be returned.
-   *
    * @param resourceGroupName The name of the resource group within the user’s subscription.
-   *
    * @param accountName The name of the storage account within the specified resource group. Storage
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
    * letters only.
-   *
    * @param parameters The parameters to provide for the created account.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StorageAccountsCreateResponse>
    */
   create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCreateResponse> {
-    return this.beginCreate(resourceGroupName, accountName, parameters, options)
+    return this.beginCreate(resourceGroupName,accountName,parameters,options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.StorageAccountsCreateResponse>;
   }
 
   /**
    * Deletes a storage account in Microsoft Azure.
-   *
    * @param resourceGroupName The name of the resource group within the user’s subscription.
-   *
    * @param accountName The name of the storage account within the specified resource group. Storage
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
    * letters only.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  deleteMethod(resourceGroupName: string, accountName: string): Promise<msRest.RestResponse>;
-  deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  deleteMethod(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param callback The callback
+   */
   deleteMethod(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -108,20 +121,30 @@ export class StorageAccounts {
    * Returns the properties for the specified storage account including but not limited to name,
    * account type, location, and account status. The ListKeys operation should be used to retrieve
    * storage keys.
-   *
    * @param resourceGroupName The name of the resource group within the user’s subscription.
-   *
    * @param accountName The name of the storage account within the specified resource group. Storage
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
    * letters only.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StorageAccountsGetPropertiesResponse>
    */
-  getProperties(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsGetPropertiesResponse>;
-  getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsGetPropertiesResponse>;
+  getProperties(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsGetPropertiesResponse>;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param callback The callback
+   */
   getProperties(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
   getProperties(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): Promise<Models.StorageAccountsGetPropertiesResponse> {
     return this.client.sendOperationRequest(
@@ -142,23 +165,36 @@ export class StorageAccounts {
    * multiple times with one change per call. This call does not change the storage keys for the
    * account. If you want to change storage account keys, use the RegenerateKey operation. The
    * location and name of the storage account cannot be changed after creation.
-   *
    * @param resourceGroupName The name of the resource group within the user’s subscription.
-   *
    * @param accountName The name of the storage account within the specified resource group. Storage
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
    * letters only.
-   *
    * @param parameters The parameters to update on the account. Note that only one property can be
    * changed at a time using this API.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StorageAccountsUpdateResponse>
    */
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters): Promise<Models.StorageAccountsUpdateResponse>;
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsUpdateResponse>;
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsUpdateResponse>;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param parameters The parameters to update on the account. Note that only one property can be
+   * changed at a time using this API.
+   * @param callback The callback
+   */
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param parameters The parameters to update on the account. Note that only one property can be
+   * changed at a time using this API.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccount>): Promise<Models.StorageAccountsUpdateResponse> {
     return this.client.sendOperationRequest(
@@ -174,18 +210,24 @@ export class StorageAccounts {
 
   /**
    * Lists the access keys for the specified storage account.
-   *
    * @param resourceGroupName The name of the resource group within the user’s subscription.
-   *
    * @param accountName The name of the storage account.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StorageAccountsListKeysResponse>
    */
-  listKeys(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsListKeysResponse>;
-  listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListKeysResponse>;
+  listKeys(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListKeysResponse>;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account.
+   * @param callback The callback
+   */
   listKeys(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
   listKeys(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): Promise<Models.StorageAccountsListKeysResponse> {
     return this.client.sendOperationRequest(
@@ -201,14 +243,18 @@ export class StorageAccounts {
   /**
    * Lists all the storage accounts available under the subscription. Note that storage keys are not
    * returned; use the ListKeys operation for this.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StorageAccountsListResponse>
    */
-  list(): Promise<Models.StorageAccountsListResponse>;
-  list(options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListResponse>;
+  list(options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListResponse>;
+  /**
+   * @param callback The callback
+   */
   list(callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
   list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): Promise<Models.StorageAccountsListResponse> {
     return this.client.sendOperationRequest(
@@ -222,16 +268,21 @@ export class StorageAccounts {
   /**
    * Lists all the storage accounts available under the given resource group. Note that storage keys
    * are not returned; use the ListKeys operation for this.
-   *
    * @param resourceGroupName The name of the resource group within the user’s subscription.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StorageAccountsListByResourceGroupResponse>
    */
-  listByResourceGroup(resourceGroupName: string): Promise<Models.StorageAccountsListByResourceGroupResponse>;
-  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListByResourceGroupResponse>;
+  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListByResourceGroupResponse>;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param callback The callback
+   */
   listByResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
   listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): Promise<Models.StorageAccountsListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
@@ -245,20 +296,30 @@ export class StorageAccounts {
 
   /**
    * Regenerates the access keys for the specified storage account.
-   *
    * @param resourceGroupName The name of the resource group within the user’s subscription.
-   *
    * @param accountName The name of the storage account within the specified resource group. Storage
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
    * letters only.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StorageAccountsRegenerateKeyResponse>
    */
-  regenerateKey(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountsRegenerateKeyResponse>;
-  regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<Models.StorageAccountsRegenerateKeyResponse>;
+  regenerateKey(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<Models.StorageAccountsRegenerateKeyResponse>;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param callback The callback
+   */
   regenerateKey(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
+  /**
+   * @param resourceGroupName The name of the resource group within the user’s subscription.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   * account names must be between 3 and 24 characters in length and use numbers and lower-case
+   * letters only.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
   regenerateKey(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): Promise<Models.StorageAccountsRegenerateKeyResponse> {
     return this.client.sendOperationRequest(
@@ -276,18 +337,13 @@ export class StorageAccounts {
    * cannot be updated with this API and should instead use the Update Storage Account API. If an
    * account is already created and subsequent PUT request is issued with exact same set of
    * properties, then HTTP 200 would be returned.
-   *
    * @param resourceGroupName The name of the resource group within the user’s subscription.
-   *
    * @param accountName The name of the storage account within the specified resource group. Storage
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
    * letters only.
-   *
    * @param parameters The parameters to provide for the created account.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -300,7 +356,6 @@ export class StorageAccounts {
       beginCreateOperationSpec,
       options);
   }
-
 }
 
 // Operation Specifications

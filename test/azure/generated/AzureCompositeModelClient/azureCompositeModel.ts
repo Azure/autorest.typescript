@@ -31,11 +31,8 @@ class AzureCompositeModel extends AzureCompositeModelContext {
 
   /**
    * Initializes a new instance of the AzureCompositeModel class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
@@ -50,24 +47,27 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     this.readonlyproperty = new operations.Readonlyproperty(this);
     this.flattencomplex = new operations.Flattencomplex(this);
   }
-  // methods on the client.
 
   /**
    * The Products endpoint returns information about the Uber products offered at a given location.
    * The response includes the display name and other details about each product, and lists the
    * products in the proper display order.
-   *
    * @summary Product Types
-   *
    * @param resourceGroupName Resource Group ID.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.ListResponse>
    */
-  list(resourceGroupName: string): Promise<Models.ListResponse>;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.ListResponse>;
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ListResponse>;
+  /**
+   * @param resourceGroupName Resource Group ID.
+   * @param callback The callback
+   */
   list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
+  /**
+   * @param resourceGroupName Resource Group ID.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
   list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.ListResponse> {
     return this.sendOperationRequest(
@@ -78,24 +78,28 @@ class AzureCompositeModel extends AzureCompositeModelContext {
       listOperationSpec,
       callback) as Promise<Models.ListResponse>;
   }
-  // methods on the client.
 
   /**
    * Resets products.
-   *
    * @summary Create products
-   *
    * @param subscriptionId Subscription ID.
-   *
    * @param resourceGroupName Resource Group ID.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.CreateResponse>
    */
-  create(subscriptionId: string, resourceGroupName: string): Promise<Models.CreateResponse>;
-  create(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelCreateOptionalParams): Promise<Models.CreateResponse>;
+  create(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams): Promise<Models.CreateResponse>;
+  /**
+   * @param subscriptionId Subscription ID.
+   * @param resourceGroupName Resource Group ID.
+   * @param callback The callback
+   */
   create(subscriptionId: string, resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
+  /**
+   * @param subscriptionId Subscription ID.
+   * @param resourceGroupName Resource Group ID.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   create(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelCreateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
   create(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams, callback?: msRest.ServiceCallback<Models.CatalogDictionary>): Promise<Models.CreateResponse> {
     return this.sendOperationRequest(
@@ -107,24 +111,28 @@ class AzureCompositeModel extends AzureCompositeModelContext {
       createOperationSpec,
       callback) as Promise<Models.CreateResponse>;
   }
-  // methods on the client.
 
   /**
    * Resets products.
-   *
    * @summary Update products
-   *
    * @param subscriptionId Subscription ID.
-   *
    * @param resourceGroupName Resource Group ID.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.UpdateResponse>
    */
-  update(subscriptionId: string, resourceGroupName: string): Promise<Models.UpdateResponse>;
-  update(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelUpdateOptionalParams): Promise<Models.UpdateResponse>;
+  update(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams): Promise<Models.UpdateResponse>;
+  /**
+   * @param subscriptionId Subscription ID.
+   * @param resourceGroupName Resource Group ID.
+   * @param callback The callback
+   */
   update(subscriptionId: string, resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
+  /**
+   * @param subscriptionId Subscription ID.
+   * @param resourceGroupName Resource Group ID.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   update(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelUpdateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
   update(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.UpdateResponse> {
     return this.sendOperationRequest(

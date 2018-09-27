@@ -27,9 +27,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
 
   /**
    * Initializes a new instance of the AutoRestParameterizedHostTestClient class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestParameterizedHostTestClientOptions) {

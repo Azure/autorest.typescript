@@ -28,14 +28,20 @@ export class PetOperations {
 
   /**
    * @param petId Pet id
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PetGetByPetIdResponse>
    */
-  getByPetId(petId: string): Promise<Models.PetGetByPetIdResponse>;
-  getByPetId(petId: string, options: msRest.RequestOptionsBase): Promise<Models.PetGetByPetIdResponse>;
+  getByPetId(petId: string, options?: msRest.RequestOptionsBase): Promise<Models.PetGetByPetIdResponse>;
+  /**
+   * @param petId Pet id
+   * @param callback The callback
+   */
   getByPetId(petId: string, callback: msRest.ServiceCallback<Models.Pet>): void;
+  /**
+   * @param petId Pet id
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getByPetId(petId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Pet>): void;
   getByPetId(petId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetByPetIdResponse> {
     return this.client.sendOperationRequest(
@@ -48,13 +54,18 @@ export class PetOperations {
   }
 
   /**
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PetAddPetResponse>
    */
-  addPet(): Promise<Models.PetAddPetResponse>;
-  addPet(options: Models.PetAddPetOptionalParams): Promise<Models.PetAddPetResponse>;
+  addPet(options?: Models.PetAddPetOptionalParams): Promise<Models.PetAddPetResponse>;
+  /**
+   * @param callback The callback
+   */
   addPet(callback: msRest.ServiceCallback<Models.Pet>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   addPet(options: Models.PetAddPetOptionalParams, callback: msRest.ServiceCallback<Models.Pet>): void;
   addPet(options?: Models.PetAddPetOptionalParams, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetAddPetResponse> {
     return this.client.sendOperationRequest(
@@ -64,7 +75,6 @@ export class PetOperations {
       addPetOperationSpec,
       callback) as Promise<Models.PetAddPetResponse>;
   }
-
 }
 
 // Operation Specifications

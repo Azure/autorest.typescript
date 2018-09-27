@@ -17,9 +17,7 @@ export class AdditionalPropertiesClientContext extends msRest.ServiceClient {
 
   /**
    * Initializes a new instance of the AdditionalPropertiesClientContext class.
-   *
    * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {

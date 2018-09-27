@@ -28,16 +28,21 @@ export class ParameterGrouping {
 
   /**
    * Post a bunch of required parameters grouped
-   *
    * @param parameterGroupingPostRequiredParameters Additional parameters for the operation
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters): Promise<msRest.RestResponse>;
-  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param parameterGroupingPostRequiredParameters Additional parameters for the operation
+   * @param callback The callback
+   */
   postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param parameterGroupingPostRequiredParameters Additional parameters for the operation
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -51,14 +56,18 @@ export class ParameterGrouping {
 
   /**
    * Post a bunch of optional parameters grouped
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  postOptional(): Promise<msRest.RestResponse>;
-  postOptional(options: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.RestResponse>;
+  postOptional(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   postOptional(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   postOptional(options: Models.ParameterGroupingPostOptionalOptionalParams, callback: msRest.ServiceCallback<void>): void;
   postOptional(options?: Models.ParameterGroupingPostOptionalOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -71,14 +80,18 @@ export class ParameterGrouping {
 
   /**
    * Post parameters from multiple different parameter groups
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  postMultiParamGroups(): Promise<msRest.RestResponse>;
-  postMultiParamGroups(options: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.RestResponse>;
+  postMultiParamGroups(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   postMultiParamGroups(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   postMultiParamGroups(options: Models.ParameterGroupingPostMultiParamGroupsOptionalParams, callback: msRest.ServiceCallback<void>): void;
   postMultiParamGroups(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -91,14 +104,18 @@ export class ParameterGrouping {
 
   /**
    * Post parameters with a shared parameter group object
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  postSharedParameterGroupObject(): Promise<msRest.RestResponse>;
-  postSharedParameterGroupObject(options: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.RestResponse>;
+  postSharedParameterGroupObject(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   postSharedParameterGroupObject(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   postSharedParameterGroupObject(options: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams, callback: msRest.ServiceCallback<void>): void;
   postSharedParameterGroupObject(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -108,7 +125,6 @@ export class ParameterGrouping {
       postSharedParameterGroupObjectOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

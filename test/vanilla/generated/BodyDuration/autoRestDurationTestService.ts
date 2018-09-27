@@ -20,9 +20,7 @@ class AutoRestDurationTestService extends AutoRestDurationTestServiceContext {
 
   /**
    * Initializes a new instance of the AutoRestDurationTestService class.
-   *
    * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {

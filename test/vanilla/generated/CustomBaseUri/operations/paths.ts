@@ -27,16 +27,21 @@ export class Paths {
 
   /**
    * Get a 200 to test a valid base uri
-   *
    * @param accountName Account Name
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getEmpty(accountName: string): Promise<msRest.RestResponse>;
-  getEmpty(accountName: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getEmpty(accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param accountName Account Name
+   * @param callback The callback
+   */
   getEmpty(accountName: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param accountName Account Name
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getEmpty(accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getEmpty(accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -47,7 +52,6 @@ export class Paths {
       getEmptyOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

@@ -27,14 +27,18 @@ export class Files {
 
   /**
    * Get file
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.FilesGetFileResponse>
    */
-  getFile(): Promise<Models.FilesGetFileResponse>;
-  getFile(options: msRest.RequestOptionsBase): Promise<Models.FilesGetFileResponse>;
+  getFile(options?: msRest.RequestOptionsBase): Promise<Models.FilesGetFileResponse>;
+  /**
+   * @param callback The callback
+   */
   getFile(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileResponse> {
     return this.client.sendOperationRequest(
@@ -47,14 +51,18 @@ export class Files {
 
   /**
    * Get a large file
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.FilesGetFileLargeResponse>
    */
-  getFileLarge(): Promise<Models.FilesGetFileLargeResponse>;
-  getFileLarge(options: msRest.RequestOptionsBase): Promise<Models.FilesGetFileLargeResponse>;
+  getFileLarge(options?: msRest.RequestOptionsBase): Promise<Models.FilesGetFileLargeResponse>;
+  /**
+   * @param callback The callback
+   */
   getFileLarge(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getFileLarge(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getFileLarge(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileLargeResponse> {
     return this.client.sendOperationRequest(
@@ -67,14 +75,18 @@ export class Files {
 
   /**
    * Get empty file
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.FilesGetEmptyFileResponse>
    */
-  getEmptyFile(): Promise<Models.FilesGetEmptyFileResponse>;
-  getEmptyFile(options: msRest.RequestOptionsBase): Promise<Models.FilesGetEmptyFileResponse>;
+  getEmptyFile(options?: msRest.RequestOptionsBase): Promise<Models.FilesGetEmptyFileResponse>;
+  /**
+   * @param callback The callback
+   */
   getEmptyFile(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getEmptyFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getEmptyFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetEmptyFileResponse> {
     return this.client.sendOperationRequest(
@@ -84,7 +96,6 @@ export class Files {
       getEmptyFileOperationSpec,
       callback) as Promise<Models.FilesGetEmptyFileResponse>;
   }
-
 }
 
 // Operation Specifications

@@ -19,7 +19,6 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
 
   /**
    * Initializes a new instance of the AutoRestParameterizedHostTestClient class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestParameterizedHostTestClientOptions) {

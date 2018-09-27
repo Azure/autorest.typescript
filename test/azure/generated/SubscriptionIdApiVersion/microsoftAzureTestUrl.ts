@@ -22,13 +22,9 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
 
   /**
    * Initializes a new instance of the MicrosoftAzureTestUrl class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param subscriptionId Subscription Id.
-   *
    * @param [baseUri] The base URI of the service.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {

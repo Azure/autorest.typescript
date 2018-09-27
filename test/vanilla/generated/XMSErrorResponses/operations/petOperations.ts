@@ -28,16 +28,21 @@ export class PetOperations {
 
   /**
    * Gets pets by id.
-   *
    * @param petId pet id
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PetGetPetByIdResponse>
    */
-  getPetById(petId: string): Promise<Models.PetGetPetByIdResponse>;
-  getPetById(petId: string, options: msRest.RequestOptionsBase): Promise<Models.PetGetPetByIdResponse>;
+  getPetById(petId: string, options?: msRest.RequestOptionsBase): Promise<Models.PetGetPetByIdResponse>;
+  /**
+   * @param petId pet id
+   * @param callback The callback
+   */
   getPetById(petId: string, callback: msRest.ServiceCallback<Models.Pet>): void;
+  /**
+   * @param petId pet id
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getPetById(petId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Pet>): void;
   getPetById(petId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetPetByIdResponse> {
     return this.client.sendOperationRequest(
@@ -51,16 +56,21 @@ export class PetOperations {
 
   /**
    * Asks pet to do something
-   *
    * @param whatAction what action the pet should do
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PetDoSomethingResponse>
    */
-  doSomething(whatAction: string): Promise<Models.PetDoSomethingResponse>;
-  doSomething(whatAction: string, options: msRest.RequestOptionsBase): Promise<Models.PetDoSomethingResponse>;
+  doSomething(whatAction: string, options?: msRest.RequestOptionsBase): Promise<Models.PetDoSomethingResponse>;
+  /**
+   * @param whatAction what action the pet should do
+   * @param callback The callback
+   */
   doSomething(whatAction: string, callback: msRest.ServiceCallback<Models.PetAction>): void;
+  /**
+   * @param whatAction what action the pet should do
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   doSomething(whatAction: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAction>): void;
   doSomething(whatAction: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PetAction>): Promise<Models.PetDoSomethingResponse> {
     return this.client.sendOperationRequest(
@@ -71,7 +81,6 @@ export class PetOperations {
       doSomethingOperationSpec,
       callback) as Promise<Models.PetDoSomethingResponse>;
   }
-
 }
 
 // Operation Specifications
