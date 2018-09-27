@@ -239,37 +239,6 @@ namespace AutoRest.TypeScript.DSL
                     {
                         lines.Add(lastWrappedLine);
                     }
-
-                    //string[] newLineStrings = new[] { "\r\n", "\n", "\r" };
-                    //char[] whitespaceCharacters = new[] { ' ', '\t', '\v' };
-
-                    //string[] preWrapLines = line.Split(newLineStrings, StringSplitOptions.None);
-                    //for (int i = 0; i < preWrapLines.Length; ++i)
-                    //{
-                    //    string preWrapLine = preWrapLines[i].TrimEnd();
-                    //    while (true)
-                    //    {
-                    //        if (preWrapLine.Length <= wordWrapIndexMinusLinePrefixLength)
-                    //        {
-                    //            wrappedLines.Add(preWrapLine);
-                    //            break;
-                    //        }
-                    //        else
-                    //        {
-                    //            int lastWhitespaceBeforeWrap = preWrapLine.LastIndexOfAny(whitespaceCharacters, wordWrapIndexMinusLinePrefixLength - 1);
-                    //            if (lastWhitespaceBeforeWrap == -1)
-                    //            {
-                    //                wrappedLines.Add(preWrapLine.Substring(0, wordWrapIndexMinusLinePrefixLength));
-                    //                preWrapLine = preWrapLine.Substring(wordWrapIndexMinusLinePrefixLength);
-                    //            }
-                    //            else
-                    //            {
-                    //                wrappedLines.Add(preWrapLine.Substring(0, lastWhitespaceBeforeWrap).TrimEnd());
-                    //                preWrapLine = preWrapLine.Substring(lastWhitespaceBeforeWrap).TrimStart();
-                    //            }
-                    //        }
-                    //    }
-                    //}
                 }
             }
             return lines;
